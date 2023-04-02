@@ -53,10 +53,6 @@ function imgui.ImVec4(x, y, z, w) end
 --- @
 --// GLOBALS & ENUMS
 
---- @class Pizda
-Pizda = {
-    nigga = 0
-}
 
 --- You char handle
 PLAYER_PED = 1
