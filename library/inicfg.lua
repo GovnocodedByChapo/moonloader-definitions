@@ -18,9 +18,10 @@ inicfg = {}
 ---ini.main.alive = false
 ---inicfg.save(ini, iniFileName)
 ---```
---- @param default table
+--- @generic T
+--- @param default T
 --- @param file string
---- @return table data
+--- @return T data
 function inicfg.load(default, file) end
 
 ---Usage:
@@ -32,7 +33,4 @@ function inicfg.load(default, file) end
 --- @return bool result
 function inicfg.save(data, file) end
 
-
-
 return inicfg
-
