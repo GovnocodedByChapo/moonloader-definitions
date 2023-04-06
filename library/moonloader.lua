@@ -3,20 +3,15 @@
 ---@meta
 ---@class Ped
 ---@class Model
----@class float
----@class double
 ---@class Vehicle
 ---@class AudioStream
 ---@class DxFont
----@class uint
 ---@class Checkpoint
----@class int
 ---@class Player
 ---@class Object
 ---@class VarId
 ---@class Marker
 ---@class Particle
----@class zstring
 ---@class Pickup
 ---@class GxtString
 ---@class Searchlight
@@ -24,7 +19,6 @@
 ---@class Filesearch
 ---@class DxTexture
 ---@class Bitstream 
----@class bool
 
 ---@type Ped
 PLAYER_PED = nil
@@ -1868,7 +1862,7 @@ function drawRect(positionX, positionY, width, height, r, g, b, a) end
 ---@return int id
 function loadSprite(name) end
 
----@param txd zstring
+---@param txd string
 ---@return bool result
 function loadTextureDictionary(txd) end
 
@@ -7474,12 +7468,12 @@ function isPcUsingJoypad() end
 ---@return bool result
 function isMouseUsingVerticalInversion() end
 
----@param filepath zstring
+---@param filepath string
 ---@param args table
 ---@return bool result
 function startNewCustomScript(filepath, args) end
 
----@param filepath zstring
+---@param filepath string
 ---@param args table
 function launchCustomMission(filepath, args) end
 
@@ -7500,11 +7494,11 @@ function sampSpawnPlayer() end
 ---@return uint handle
 function sampGetBase() end
 
----@param text zstring
+---@param text string
 ---@param color uint
 function sampAddChatMessage(text, color) end
 
----@param text zstring
+---@param text string
 function sampSendChat(text) end
 
 ---@return bool result
@@ -7565,7 +7559,7 @@ function sampSetGamestate(gamestate) end
 ---@param timeout bool
 function sampDisconnectWithReason(timeout) end
 
----@param name zstring
+---@param name string
 function sampSetLocalPlayerName(name) end
 
 ---@param id int
@@ -7605,35 +7599,35 @@ function sampSendSpawn() end
 ---@param tires int
 function sampSendDamageVehicle(car, panel, doors, lights, tires) end
 
----@param cmd zstring
+---@param cmd string
 ---@param func function
 ---@return bool result
 function sampRegisterChatCommand(cmd, func) end
 
 ---@param id int
----@return zstring name
+---@return string name
 function sampGetPlayerNickname(id) end
 
 ---@param id int
 ---@return uint color
 function sampGetPlayerColor(id) end
 
----@param ip zstring
+---@param ip string
 ---@param port uint
 function sampConnectToServer(ip, port) end
 
----@return zstring ip
+---@return string ip
 ---@return uint port
 function sampGetCurrentServerAddress() end
 
----@return zstring name
+---@return string name
 function sampGetCurrentServerName() end
 
 ---@param id int
----@param caption zstring
----@param text zstring
----@param button1 zstring
----@param button2 zstring
+---@param caption string
+---@param text string
+---@param button1 string
+---@param button2 string
 ---@param style int
 function sampShowDialog(id, caption, text, button1, button2, style) end
 
@@ -7641,7 +7635,7 @@ function sampShowDialog(id, caption, text, button1, button2, style) end
 ---@return bool result
 ---@return int button
 ---@return int list
----@return zstring input
+---@return string input
 function sampHasDialogRespond(id) end
 
 ---@return Bitstream bs
@@ -7700,7 +7694,7 @@ function raknetSendRpcEx(rpc, bs, priority, reliability, channel, timestamp) end
 ---@param channel int
 function raknetSendBitStreamEx(bs, priority, reliability, channel) end
 
----@param text zstring
+---@param text string
 ---@param color uint
 ---@param posX float
 ---@param posY float
@@ -7728,10 +7722,10 @@ function sampGetCurrentDialogListItem() end
 ---@param list int
 function sampSetCurrentDialogListItem(list) end
 
----@return zstring text
+---@return string text
 function sampGetCurrentDialogEditboxText() end
 
----@param text zstring
+---@param text string
 function sampSetCurrentDialogEditboxText(text) end
 
 ---@return bool result
@@ -7770,12 +7764,12 @@ function sampGetListboxItemsCount() end
 function sampGetPlayerAnimationId(playerId) end
 
 ---@param animid int
----@return zstring name
----@return zstring file
+---@return string name
+---@return string file
 function sampGetAnimationNameAndFile(animid) end
 
----@param name zstring
----@param file zstring
+---@param name string
+---@param file string
 ---@return int id
 function sampFindAnimationIdByNameAndFile(name, file) end
 
@@ -7784,7 +7778,7 @@ function sampFindAnimationIdByNameAndFile(name, file) end
 function getScreenResolution() end
 
 ---@param item int
----@return zstring text
+---@return string text
 function sampGetListboxItemText(item) end
 
 ---@param id int
@@ -7801,7 +7795,7 @@ function sampIsLocalPlayerSpawned() end
 ---@return int action
 function sampGetPlayerSpecialAction(id) end
 
----@param cmd zstring
+---@param cmd string
 ---@return bool result
 function sampUnregisterChatCommand(cmd) end
 
@@ -7814,26 +7808,26 @@ function sampIsPlayerNpc(id) end
 function sampGetPlayerScore(id) end
 
 ---@param id int
----@param text zstring
----@param prefix zstring
+---@param text string
+---@param prefix string
 ---@param color uint
 ---@param pcolor uint
 function sampSetChatString(id, text, prefix, color, pcolor) end
 
 ---@param id int
----@return zstring text
----@return zstring prefix
+---@return string text
+---@return string prefix
 ---@return uint color
 ---@return uint pcolor
 function sampGetChatString(id) end
 
----@param text zstring
+---@param text string
 function sampSetChatInputText(text) end
 
----@return zstring text
+---@return string text
 function sampGetChatInputText() end
 
----@param msg zstring
+---@param msg string
 function sampfuncsLog(msg) end
 
 ---@param enabled bool
@@ -7860,7 +7854,7 @@ function sampGetRpcNodeByRpcId(index) end
 ---@return uint sampPtr
 function sampGetSampInfoPtr() end
 
----@param name zstring
+---@param name string
 ---@return DxutDialog dialog
 function dxutCreateDialog(name) end
 
@@ -7872,7 +7866,7 @@ function dxutPopEvent(dialog) end
 
 ---@param dialog DxutDialog
 ---@param id int
----@param text zstring
+---@param text string
 ---@param posX int
 ---@param posY int
 ---@param sizeX int
@@ -7881,7 +7875,7 @@ function dxutAddButton(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
 ---@param id int
----@param text zstring
+---@param text string
 ---@param posX int
 ---@param posY int
 ---@param sizeX int
@@ -7912,7 +7906,7 @@ function dxutIsDialogVisible(dialog) end
 
 ---@param dialog DxutDialog
 ---@param id int
----@param text zstring
+---@param text string
 ---@param posX int
 ---@param posY int
 ---@param sizeX int
@@ -7921,7 +7915,7 @@ function dxutAddEditbox(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
 ---@param id int
----@return zstring text
+---@return string text
 function dxutGetControlText(dialog, id) end
 
 ---@param rpc int
@@ -7947,7 +7941,7 @@ function dxutSetControlVisible(dialog, id, visible) end
 
 ---@param dialog DxutDialog
 ---@param id int
----@param text zstring
+---@param text string
 ---@param posX int
 ---@param posY int
 ---@param sizeX int
@@ -7965,7 +7959,7 @@ function dxutSetDialogBackgroundColor(dialog, color) end
 
 ---@param dialog DxutDialog
 ---@param id int
----@param text zstring
+---@param text string
 function dxutSetControlText(dialog, id, text) end
 
 ---@param dialog DxutDialog
@@ -8002,7 +7996,7 @@ function dxutAddListbox(dialog, id, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
 ---@param id int
----@param element zstring
+---@param element string
 ---@param data uint
 ---@param after int
 function dxutListboxInsertItem(dialog, id, element, data, after) end
@@ -8021,7 +8015,7 @@ function dxutListboxDeleteItem(dialog, id, element) end
 ---@param dialog DxutDialog
 ---@param id int
 ---@param element int
----@return zstring text
+---@return string text
 ---@return uint data
 function dxutGetListboxItemTextAndData(dialog, id, element) end
 
@@ -8152,7 +8146,7 @@ function sampStorePlayerTrailerData(id, dstBuffer) end
 ---@param dstBuffer uint
 function sampStorePlayerAimData(id, dstBuffer) end
 
----@param cmd zstring
+---@param cmd string
 function sampSendRconCommand(cmd) end
 
 ---@param dataPtr uint
@@ -8186,7 +8180,7 @@ function sampSendClickPlayer(id, source) end
 ---@param id int
 ---@param button int
 ---@param listitem int
----@param input zstring
+---@param input string
 function sampSendDialogResponse(id, button, listitem, input) end
 
 ---@param id int
@@ -8267,10 +8261,10 @@ function sampIsScoreboardOpen() end
 ---@param show bool
 function sampToggleScoreboard(show) end
 
----@return zstring text
+---@return string text
 function sampGetDialogText() end
 
----@return zstring caption
+---@return string caption
 function sampGetDialogCaption() end
 
 ---@param clientside bool
@@ -8368,11 +8362,11 @@ function raknetBitStreamGetDataPtr(bs) end
 
 ---@param bs Bitstream
 ---@param size int
----@return zstring string
+---@return string string
 function raknetBitStreamDecodeString(bs, size) end
 
 ---@param bs Bitstream
----@param string zstring
+---@param string string
 function raknetBitStreamEncodeString(bs, string) end
 
 ---@param rpc int
@@ -8384,25 +8378,25 @@ function raknetEmulRpcReceiveBitStream(rpc, bs) end
 function raknetEmulPacketReceiveBitStream(packet, bs) end
 
 ---@param rpc int
----@return zstring name
+---@return string name
 function raknetGetRpcName(rpc) end
 
 ---@param packet int
----@return zstring name
+---@return string name
 function raknetGetPacketName(packet) end
 
----@param var zstring
+---@param var string
 ---@param value int
 ---@return bool result
 function setSampfuncsGlobalVar(var, value) end
 
----@param var zstring
+---@param var string
 ---@return bool result
 ---@return int value
 function getSampfuncsGlobalVar(var) end
 
 ---@param id int
----@param text zstring
+---@param text string
 ---@param color uint
 ---@param posX float
 ---@param posY float
@@ -8414,7 +8408,7 @@ function getSampfuncsGlobalVar(var) end
 function sampCreate3dTextEx(id, text, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId) end
 
 ---@param id int
----@return zstring string
+---@return string string
 ---@return uint color
 ---@return float posX
 ---@return float posY
@@ -8426,11 +8420,11 @@ function sampCreate3dTextEx(id, text, color, posX, posY, posZ, distance, ignoreW
 function sampGet3dTextInfoById(id) end
 
 ---@param id int
----@param text zstring
+---@param text string
 function sampSet3dTextString(id, text) end
 
 ---@param id int
----@param text zstring
+---@param text string
 ---@param posX float
 ---@param posY float
 function sampTextdrawCreate(id, text, posX, posY) end
@@ -8475,7 +8469,7 @@ function sampTextdrawSetOutlineColor(id, outline, color) end
 function sampTextdrawSetModelRotationZoomVehColor(id, model, rotX, rotY, rotZ, zoom, clr1, clr2) end
 
 ---@param id int
----@param text zstring
+---@param text string
 function sampTextdrawSetString(id, text) end
 
 ---@param id int
@@ -8529,7 +8523,7 @@ function sampTextdrawGetOutlineColor(id) end
 function sampTextdrawGetModelRotationZoomVehColor(id) end
 
 ---@param id int
----@return zstring text
+---@return string text
 function sampTextdrawGetString(id) end
 
 ---@param id int
@@ -8550,25 +8544,25 @@ function sampTextdrawIsExists(id) end
 ---@param id int
 function sampTextdrawDelete(id) end
 
----@param var zstring
+---@param var string
 ---@return bool result
 function isSampfuncsGlobalVarDefined(var) end
 
----@param var zstring
+---@param var string
 ---@param thread uint
 ---@return bool read
 ---@return bool write
 function getSampfuncsGlobalVarAccessForThread(var, thread) end
 
----@param cmd zstring
+---@param cmd string
 function runSampfuncsConsoleCommand(cmd) end
 
----@param cmd zstring
+---@param cmd string
 ---@param func function
 ---@return bool result
 function sampfuncsRegisterConsoleCommand(cmd, func) end
 
----@param cmd zstring
+---@param cmd string
 ---@return bool result
 function sampfuncsUnregisterConsoleCommand(cmd) end
 
@@ -8597,12 +8591,12 @@ function restartScmThread(thread, args) end
 ---@return bool result
 function isSampfuncsConsoleActive() end
 
----@param cmd zstring
----@param text zstring
+---@param cmd string
+---@param text string
 function sampSetClientCommandDescription(cmd, text) end
 
----@param cmd zstring
----@param text zstring
+---@param cmd string
+---@param text string
 function setSampfuncsConsoleCommandDescription(cmd, text) end
 
 ---@param id int
@@ -8635,14 +8629,14 @@ function sampGetMaxPlayerId(streamed) end
 ---@return int count
 function sampGetPlayerCount(streamed) end
 
----@param text zstring
+---@param text string
 function sampProcessChatInput(text) end
 
----@param cmd zstring
+---@param cmd string
 ---@return bool result
 function sampIsChatCommandDefined(cmd) end
 
----@param cmd zstring
+---@param cmd string
 ---@return bool result
 function isSampfuncsConsoleCommandDefined(cmd) end
 
@@ -8691,7 +8685,7 @@ function getCharQuaternion(ped) end
 ---@param w float
 function setCharQuaternion(ped, x, y, z, w) end
 
----@param audio zstring
+---@param audio string
 ---@return AudioStream handle
 function loadAudioStream(audio) end
 
@@ -8703,7 +8697,7 @@ function setAudioStreamState(handle, state) end
 function releaseAudioStream(handle) end
 
 ---@param handle AudioStream
----@return double length
+---@return number length
 function getAudioStreamLength(handle) end
 
 ---@param handle AudioStream
@@ -8722,7 +8716,7 @@ function setAudioStreamVolume(audio, volume) end
 ---@param loop bool
 function setAudioStreamLooped(audio, loop) end
 
----@param audio zstring
+---@param audio string
 ---@return AudioStream handle
 function load3dAudioStream(audio) end
 
@@ -8779,7 +8773,7 @@ function renderDrawBox(posX, posY, sizeX, sizeY, color) end
 function renderDrawBoxWithBorder(posX, posY, sizeX, sizeY, color, bsize, bcolor) end
 
 ---@param font DxFont
----@param text zstring
+---@param text string
 ---@param ignoreColorTags bool
 ---@return float length
 function renderGetFontDrawTextLength(font, text, ignoreColorTags) end
@@ -8800,7 +8794,7 @@ function renderGetFontCharIndexAt(font, text, x, ignoreColorTags) end
 ---@return float width
 function renderGetFontCharWidth(font, char) end
 
----@param font zstring
+---@param font string
 ---@param height int
 ---@param flags uint
 ---@param charset uint
@@ -8811,7 +8805,7 @@ function renderCreateFont(font, height, flags, charset) end
 function renderReleaseFont(font) end
 
 ---@param font DxFont
----@param text zstring
+---@param text string
 ---@param posX float
 ---@param posY float
 ---@param color uint
@@ -8827,7 +8821,7 @@ function renderFontDrawText(font, text, posX, posY, color, ignoreColorTags) end
 ---@param color uint
 function renderDrawPolygon(posX, posY, sizeX, sizeY, corners, rotation, color) end
 
----@param file zstring
+---@param file string
 ---@return DxTexture texture
 function renderLoadTextureFromFile(file) end
 
@@ -8907,9 +8901,6 @@ function script_dependencies(name) end
 
 ---@param version int
 function script_moonloader(version) end
-
----@return LuaScript s
-function thisScript() end
 
 ---@param time int
 function wait(time) end
@@ -8992,7 +8983,7 @@ function getGameVersion() end
 ---@return int version
 function getMoonloaderVersion() end
 
----@return double time
+---@return number time
 function localClock() end
 
 function freeTextures() end
@@ -9393,7 +9384,7 @@ function addEventHandler(eventName, callback) end
 ---@return bool paused
 function isGamePaused() end
 
----@return double time
+---@return number time
 function gameClock() end
 
 ---@param property string

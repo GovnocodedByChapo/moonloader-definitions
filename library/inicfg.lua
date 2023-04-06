@@ -1,5 +1,5 @@
 ---@meta
-local inicfg = {}
+inicfg = {}
 
 ---Usage:
 ---```lua

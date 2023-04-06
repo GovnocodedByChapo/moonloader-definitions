@@ -3,6 +3,33 @@
 local imgui = { }
 
 ---@class ImGuiTexture
+---@class ImDrawList
+local ImDrawList = {}
+---@class ImBuffer
+
+---@class ImVec2
+---@field x number
+---@field y number
+
+---@class ImVec4
+---@field x number
+---@field y number
+---@field z number
+---@field w number
+
+---@class ImBool
+local ImBool = {
+    ---@type boolean
+    [0] = true
+}
+
+---@class ImInt
+local ImInt = {
+    ---@type number
+    [0] = 1
+}
+
+---@alias ImFloat table<number, number>
 
 ---@enum imgui.MouseButton
 imgui.MouseButton = {
@@ -239,32 +266,7 @@ imgui.Cond = {
 	Appearing = 8,
 }
 
----@class ImDrawList
----@class ImBuffer
 
----@class ImVec2
----@field x number
----@field y number
-
----@class ImVec4
----@field x number
----@field y number
----@field z number
----@field w number
-
----@class ImBool
-ImBool = {
-    ---@type boolean
-    [0] = true
-}
-
----@class ImInt
-ImInt = {
-    ---@type number
-    [0] = 1
-}
-
----@alias ImFloat table<number, number>
 
 
 ---@param x number
