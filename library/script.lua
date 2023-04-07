@@ -45,4 +45,7 @@ function script.list() end
 ---@return LuaScript | nil
 function script.get(scriptId) end
 
+---@return LuaScript LuaScript
+function thisScript() end
+
 return script

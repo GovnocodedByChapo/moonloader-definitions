@@ -32,6 +32,28 @@ playerPed = nil
 playerHandle = nil
 
 --// FUNCTIONS
+
+---@return bool result
+function isCursorActive() end
+
+---@return Pickup[] pickups
+function getAllPickups() end
+
+---@return int handle
+function getPickupPointerHandle() end
+
+---@param pickup Pickup
+---@return int pointer
+function getPickupPointer(pickup) end
+
+---@param pickup Pickup
+---@return int type
+function getPickupType(pickup) end
+
+---@param pickup Pickup
+---@return int model
+function getPickupModel(pickup) end
+
 ---@param shake int
 function shakeCam(shake) end
 
