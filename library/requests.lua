@@ -65,7 +65,7 @@ function requests.head(url, args) end
 function requests.trace(url, args) end
 
 --- Sets up all the data for a request and makes the request
---- @param method "POST" | "GET" | "DELETE" | "PATCH" | "PUT" | "OPTIONS" | "HEAD" | "TRACE"
+--- @param method "POST" | "GET" | "DELETE" | "PATCH" | "PUT" | "OPTIONS" | "HEAD" | "TRACE" | "CONNECT"
 --- @param url string | table
 --- @param args table | nil
 --- @return Response
