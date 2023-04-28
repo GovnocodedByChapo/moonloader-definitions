@@ -23,7 +23,7 @@
 --- @field neutral2 MoonMonetSubColors
 
 --- @class MoonMonet
-local Monet = { }
+local Monet = {}
 
 --- @param color number Color AARRGGBB
 --- @param chroma_multiplier number Color brightness

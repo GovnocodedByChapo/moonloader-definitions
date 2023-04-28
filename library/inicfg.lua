@@ -30,7 +30,7 @@ function inicfg.load(default, file) end
 ---inicfg.save(<ini>, <iniFileName>)
 --- @param data table
 --- @param file string
---- @return bool result
+--- @return boolean result
 function inicfg.save(data, file) end
 
 return inicfg

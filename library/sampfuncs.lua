@@ -1,5 +1,5 @@
 --- @meta
---- Use 
+--- Use
 ---```lua
 ---local sampfuncs = require('sampfuncs')
 ---```
