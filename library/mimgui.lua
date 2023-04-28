@@ -549,7 +549,7 @@ function imgui.SetWindowPosVec2(pos, cond) end
 function imgui.SetWindowSizeVec2(size, cond) end
 
 ---Set window collapse
----@param boolean boolean
+---@param bool boolean
 ---@param cond imgui.Cond
 function imgui.SetWindowCollapsedBool(bool, cond) end
 
