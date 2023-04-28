@@ -1,6 +1,7 @@
---// by chapo
-
 ---@meta
+--// by chapo
+-- FIXME: Fix optional types, as is done in renderCreateFont
+
 ---@class Ped
 ---@class Model
 ---@class Vehicle
@@ -18,7 +19,7 @@
 ---@class DxutDialog
 ---@class Filesearch
 ---@class DxTexture
----@class Bitstream 
+---@class Bitstream
 
 ---@type Ped
 PLAYER_PED = nil
@@ -33,43 +34,43 @@ playerHandle = nil
 
 --// FUNCTIONS
 
----@return bool result
+---@return boolean result
 function isCursorActive() end
 
 ---@return Pickup[] pickups
 function getAllPickups() end
 
----@return int handle
+---@return number handle
 function getPickupPointerHandle() end
 
 ---@param pickup Pickup
----@return int pointer
+---@return number pointer
 function getPickupPointer(pickup) end
 
 ---@param pickup Pickup
----@return int type
+---@return number type
 function getPickupType(pickup) end
 
 ---@param pickup Pickup
----@return int model
+---@return number model
 function getPickupModel(pickup) end
 
----@param shake int
+---@param shake number
 function shakeCam(shake) end
 
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Player player
 function createPlayer(modelId, atX, atY, atZ) end
 
 ---asdhttps://wiki.blast.hk/moonloader/lua/getAllPickups
----@param pedtype int
+---@param pedtype number
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Ped ped
 function createChar(pedtype, modelId, atX, atY, atZ) end
 
@@ -79,41 +80,41 @@ function createChar(pedtype, modelId, atX, atY, atZ) end
 function deleteChar(ped) end
 
 ---@param ped Ped
----@return float positionX
----@return float positionY
----@return float positionZ
+---@return number positionX
+---@return number positionY
+---@return number positionZ
 function getCharCoordinates(ped) end
 
 ---@param ped Ped
----@param posX float
----@param posY float
----@param posZ float
+---@param posX number
+---@param posY number
+---@param posZ number
 function setCharCoordinates(ped, posX, posY, posZ) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharInArea2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharInArea3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Vehicle car
 function createCar(modelId, atX, atY, atZ) end
 
@@ -121,9 +122,9 @@ function createCar(modelId, atX, atY, atZ) end
 function deleteCar(car) end
 
 ---@param car Vehicle
----@param driveToX float
----@param driveToY float
----@param driveToZ float
+---@param driveToX number
+---@param driveToY number
+---@param driveToZ number
 function carGotoCoordinates(car, driveToX, driveToY, driveToZ) end
 
 ---@param car Vehicle
@@ -133,84 +134,84 @@ function carWanderRandomly(car) end
 function carSetIdle(car) end
 
 ---@param car Vehicle
----@return float positionX
----@return float positionY
----@return float positionZ
+---@return number positionX
+---@return number positionY
+---@return number positionZ
 function getCarCoordinates(car) end
 
 ---@param car Vehicle
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function setCarCoordinates(car, atX, atY, atZ) end
 
 ---@param car Vehicle
----@param maxSpeed float
+---@param maxSpeed number
 function setCarCruiseSpeed(car, maxSpeed) end
 
 ---@param car Vehicle
----@param behaviour int
+---@param behaviour number
 function setCarDrivingStyle(car, behaviour) end
 
 ---@param car Vehicle
----@param driverBehaviour int
+---@param driverBehaviour number
 function setCarMission(car, driverBehaviour) end
 
 ---@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCarInArea2d(car, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCarInArea3d(car, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---@param gxtString GxtString
----@param time int
----@param style int
+---@param time number
+---@param style number
 function printBig(gxtString, time, style) end
 
 ---@param gxtString GxtString
----@param time int
----@param flag int
+---@param time number
+---@param flag number
 function printText(gxtString, time, flag) end
 
 ---@param gxtString GxtString
----@param time int
----@param flag int
+---@param time number
+---@param flag number
 function printTextNow(gxtString, time, flag) end
 
 function clearPrints() end
 
----@return int hours
----@return int mins
+---@return number hours
+---@return number mins
 function getTimeOfDay() end
 
----@param hours int
----@param minutes int
+---@param hours number
+---@param minutes number
 function setTimeOfDay(hours, minutes) end
 
----@param hours int
----@param minutes int
----@return int minutes
+---@param hours number
+---@param minutes number
+---@return number minutes
 function getMinutesToTimeOfDay(hours, minutes) end
 
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radius float
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radius number
+---@return boolean result
 function isPointOnScreen(sphereX, sphereY, sphereZ, radius) end
 
 ---@param ped Ped
@@ -219,202 +220,202 @@ function storeCarCharIsIn(ped) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCharInCar(ped, car) end
 
 ---@param ped Ped
 ---@param carModel Model
----@return bool result
+---@return boolean result
 function isCharInModel(ped, carModel) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyCar(ped) end
 
 ---@param player Player
----@param key int
----@return bool result
+---@param key number
+---@return boolean result
 function isButtonPressed(player, key) end
 
 ---@param player Player
----@param key int
----@return int state
+---@param key number
+---@return number state
 function getPadState(player, key) end
 
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeans2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFoot2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCar2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharAnyMeans2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharOnFoot2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharInCar2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param sphere bool
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
 function locateCharOnFootChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeans3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFoot3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCar3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharAnyMeans3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharOnFoot3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharInCar3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFootChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Object object
 function createObject(modelId, atX, atY, atZ) end
 
@@ -422,86 +423,86 @@ function createObject(modelId, atX, atY, atZ) end
 function deleteObject(object) end
 
 ---@param player Player
----@param money int
+---@param money number
 function givePlayerMoney(player, money) end
 
 ---@param player Player
----@return int money
+---@return number money
 function getPlayerMoney(player) end
 
 ---@param player Player
----@param float2 float
----@param float3 float
----@param float4 float
+---@param float2 number
+---@param float3 number
+---@param float4 number
 function giveRemoteControlledCarToPlayer(player, float2, float3, float4) end
 
 ---@param player Player
----@param wantedLevel int
+---@param wantedLevel number
 function alterWantedLevel(player, wantedLevel) end
 
 ---@param player Player
----@param minimumWantedLevel int
+---@param minimumWantedLevel number
 function alterWantedLevelNoDrop(player, minimumWantedLevel) end
 
 ---@param player Player
----@param level int
----@return bool result
+---@param level number
+---@return boolean result
 function isWantedLevelGreater(player, level) end
 
 ---@param player Player
 function clearWantedLevel(player) end
 
----@param value bool
+---@param value boolean
 function setDeatharrestState(value) end
 
----@return bool result
+---@return boolean result
 function hasDeatharrestBeenExecuted() end
 
 ---@param ped Ped
----@param weapon int
----@param ammo int
+---@param weapon number
+---@param ammo number
 function addAmmoToChar(ped, weapon, ammo) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerDead(player) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharDead(ped) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarDead(car) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerPressingHorn(player) end
 
 ---@param car Vehicle
 ---@param pedtype Model
----@param model int
+---@param model number
 ---@return Ped ped
 function createCharInsideCar(car, pedtype, model) end
 
 ---@param car Vehicle
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isCarModel(car, modelId) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
 ---@param modelId Model
----@param color1 int
----@param color2 int
----@param forceSpawn bool
----@param alarm int
----@param doorLock int
----@param minDelay int
----@param maxDelay int
----@return int carGenerator
+---@param color1 number
+---@param color2 number
+---@param forceSpawn boolean
+---@param alarm number
+---@param doorLock number
+---@param minDelay number
+---@param maxDelay number
+---@return number carGenerator
 function createCarGenerator(
 	atX,
 	atY,
@@ -518,12 +519,12 @@ function createCarGenerator(
 )
 end
 
----@param carGenerator int
----@param carsToGenerate int
+---@param carGenerator number
+---@param carsToGenerate number
 function switchCarGenerator(carGenerator, carsToGenerate) end
 
 ---@param var VarId
----@param countInDirection bool
+---@param countInDirection boolean
 function displayOnscreenTimer(var, countInDirection) end
 
 ---@param var VarId
@@ -534,52 +535,52 @@ function clearOnscreenCounter(var) end
 
 ---@param ped Ped
 ---@param zoneName GxtString
----@return bool result
+---@return boolean result
 function isCharInZone(ped, zoneName) end
 
 ---@param car Vehicle
----@param mode int
----@param switchstyle int
+---@param mode number
+---@param switchstyle number
 function pointCameraAtCar(car, mode, switchstyle) end
 
 ---@param ped Ped
----@param mode int
----@param switchstyle int
+---@param mode number
+---@param switchstyle number
 function pointCameraAtChar(ped, mode, switchstyle) end
 
 function restoreCamera() end
 
 ---@param player Player
----@param time int
----@param intensity int
+---@param time number
+---@param intensity number
 function shakePad(player, time, intensity) end
 
----@param gamespeed float
+---@param gamespeed number
 function setTimeScale(gamespeed) end
 
----@param positionX float
----@param positionY float
----@param positionZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param positionX number
+---@param positionY number
+---@param positionZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function setFixedCameraPosition(positionX, positionY, positionZ, rotationX, rotationY, rotationZ) end
 
----@param pointAtX float
----@param pointAtY float
----@param pointAtZ float
----@param switchstyle int
+---@param pointAtX number
+---@param pointAtY number
+---@param pointAtZ number
+---@param switchstyle number
 function pointCameraAtPoint(pointAtX, pointAtY, pointAtZ, switchstyle) end
 
 ---@param car Vehicle
----@param unused int
----@param visibility bool
+---@param unused number
+---@param visibility boolean
 ---@return Marker marker
 function addBlipForCarOld(car, unused, visibility) end
 
 ---@param ped Ped
----@param int2 int
----@param int3 int
+---@param int2 number
+---@param int3 number
 ---@return Marker marker
 function addBlipForCharOld(ped, int2, int3) end
 
@@ -587,97 +588,97 @@ function addBlipForCharOld(ped, int2, int3) end
 function removeBlip(marker) end
 
 ---@param marker Marker
----@param color int
+---@param color number
 function changeBlipColour(marker, color) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param color int
----@param flag int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param color number
+---@param flag number
 ---@return Marker marker
 function addBlipForCoordOld(atX, atY, atZ, color, flag) end
 
 ---@param marker Marker
----@param size int
+---@param size number
 function changeBlipScale(marker, size) end
 
----@param r int
----@param g int
----@param b int
+---@param r number
+---@param g number
+---@param b number
 function setFadingColour(r, g, b) end
 
----@param _in bool
----@param time int
+---@param _in boolean
+---@param time number
 function doFade(_in, time) end
 
----@return bool result
+---@return boolean result
 function getFadingStatus() end
 
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
----@param townNumber int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
+---@param townNumber number
 function addHospitalRestart(atX, atY, atZ, angle, townNumber) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
----@param townNumber int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
+---@param townNumber number
 function addPoliceRestart(atX, atY, atZ, angle, townNumber) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
 function overrideNextRestart(atX, atY, atZ, angle) end
 
 ---@param particle Particle
----@param atX float
----@param atY float
----@param atZ float
----@param rotationFactor float
----@param size float
----@param intensity int
----@param flags1 int
----@param flags2 int
----@param flags3 int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param rotationFactor number
+---@param size number
+---@param intensity number
+---@param flags1 number
+---@param flags2 number
+---@param flags3 number
 function drawShadow(particle, atX, atY, atZ, rotationFactor, size, intensity, flags1, flags2, flags3) end
 
 ---@param ped Ped
----@return float angle
+---@return number angle
 function getCharHeading(ped) end
 
 ---@param ped Ped
----@param angle float
+---@param angle number
 function setCharHeading(ped, angle) end
 
 ---@param car Vehicle
----@return float angle
+---@return number angle
 function getCarHeading(car) end
 
 ---@param car Vehicle
----@param angle float
+---@param angle number
 function setCarHeading(car, angle) end
 
 ---@param object Object
----@return float angle
+---@return number angle
 function getObjectHeading(object) end
 
 ---@param object Object
----@param angle float
+---@param angle number
 function setObjectHeading(object, angle) end
 
 ---@param ped Ped
 ---@param object Object
----@return bool result
+---@return boolean result
 function isCharTouchingObject(ped, object) end
 
 ---@param ped Ped
----@param weapon int
----@param ammo int
+---@param weapon number
+---@param ammo number
 function setCharAmmo(ped, weapon, ammo) end
 
 ---@param flag VarId
@@ -695,34 +696,34 @@ function addBlipForChar(ped) end
 ---@return Marker marker
 function addBlipForObject(object) end
 
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Checkpoint checkpoint
 function addBlipForCoord(atX, atY, atZ) end
 
 ---@param marker Marker
----@param mode int
+---@param mode number
 function changeBlipDisplay(marker, mode) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param sound int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param sound number
 function addOneOffSound(atX, atY, atZ, sound) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param sound int
----@return int unk
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param sound number
+---@return number unk
 function addContinuousSound(atX, atY, atZ, sound) end
 
----@param sound int
+---@param sound number
 function removeSound(sound) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarStuckOnRoof(car) end
 
 ---@param car Vehicle
@@ -732,213 +733,213 @@ function addUpsidedownCarCheck(car) end
 function removeUpsidedownCarCheck(car) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharInAreaOnFoot2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharInAreaInCar2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInArea2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAreaOnFoot2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAreaInCar2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharInAreaOnFoot3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharInAreaInCar3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInArea3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAreaOnFoot3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAreaInCar3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCarStoppedInArea2d(car, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCarStoppedInArea3d(car, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---@param car Vehicle
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCar2d(car, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---@param car Vehicle
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCar2d(car, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---@param car Vehicle
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param car Vehicle
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
----@param weapon int
----@param ammo int
+---@param weapon number
+---@param ammo number
 function giveWeaponToChar(ped, weapon, ammo) end
 
 ---@param player Player
----@param canMove bool
----@return bool result
+---@param canMove boolean
+---@return boolean result
 function setPlayerControl(player, canMove) end
 
----@param weather int
----@return bool result
+---@param weather number
+---@return boolean result
 function forceWeather(weather) end
 
----@param weather int
----@return bool result
+---@param weather number
+---@return boolean result
 function forceWeatherNow(weather) end
 
 function releaseWeather() end
 
 ---@param ped Ped
----@param weapon int
+---@param weapon number
 function setCurrentCharWeapon(ped, weapon) end
 
 ---@param object Object
----@return bool result
----@return float positionX
----@return float positionY
----@return float positionZ
+---@return boolean result
+---@return number positionX
+---@return number positionY
+---@return number positionZ
 function getObjectCoordinates(object) end
 
 ---@param object Object
----@param atX float
----@param atY float
----@param atZ float
----@return bool result
+---@param atX number
+---@param atY number
+---@param atZ number
+---@return boolean result
 function setObjectCoordinates(object, atX, atY, atZ) end
 
----@return int timeMs
+---@return number timeMs
 function getGameTimer() end
 
 ---@param player Player
----@return bool result
----@return int level
+---@return boolean result
+---@return number level
 function storeWantedLevel(player) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarStopped(car) end
 
 ---@param ped Ped
@@ -958,102 +959,102 @@ function dontRemoveObject(object) end
 
 ---@param car Vehicle
 ---@param pedtype Model
----@param model int
----@param passengerSeat int
----@return bool result
+---@param model number
+---@param passengerSeat number
+---@return boolean result
 ---@return Ped ped
 function createCharAsPassenger(car, pedtype, model, passengerSeat) end
 
 ---@param gxtString GxtString
----@param number int
----@param time int
----@param style int
----@return bool result
+---@param number number
+---@param time number
+---@param style number
+---@return boolean result
 function printWithNumberBig(gxtString, number, time, style) end
 
 ---@param gxtString GxtString
----@param number int
----@param time int
----@param flag int
----@return bool result
+---@param number number
+---@param time number
+---@param flag number
+---@return boolean result
 function printWithNumber(gxtString, number, time, flag) end
 
 ---@param gxtString GxtString
----@param number int
----@param time int
----@param flag int
----@return bool result
+---@param number number
+---@param time number
+---@param flag number
+---@return boolean result
 function printWithNumberNow(gxtString, number, time, flag) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function switchRoadsOn(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---@param car Vehicle
----@return bool result
----@return int passengers
+---@return boolean result
+---@return number passengers
 function getNumberOfPassengers(car) end
 
 ---@param car Vehicle
----@return int maxPassengers
+---@return number maxPassengers
 function getMaximumNumberOfPassengers(car) end
 
----@param multiplier float
----@return bool result
+---@param multiplier number
+---@return boolean result
 function setCarDensityMultiplier(multiplier) end
 
 ---@param car Vehicle
----@param heavy bool
----@return bool result
+---@param heavy boolean
+---@return boolean result
 function setCarHeavy(car, heavy) end
 
----@param level int
+---@param level number
 function setMaxWantedLevel(level) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarInAirProper(car) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarUpsidedown(car) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 ---@return Ped ped
 function getPlayerChar(player) end
 
----@return bool result
+---@return boolean result
 function cancelOverrideRestart() end
 
 ---@param player Player
----@param ignored bool
----@return bool result
+---@param ignored boolean
+---@return boolean result
 function setPoliceIgnorePlayer(player, ignored) end
 
 ---@param gxtString GxtString
----@param weapon int
----@param timeLimit int
----@param targets int
+---@param weapon number
+---@param timeLimit number
+---@param targets number
 ---@param targetModels1 Model
 ---@param targetModels2 Model
 ---@param targetModels3 Model
 ---@param targetModels4 Model
----@param completedText bool
----@return bool result
+---@param completedText boolean
+---@return boolean result
 function startKillFrenzy(
 	gxtString,
 	weapon,
@@ -1067,182 +1068,182 @@ function startKillFrenzy(
 )
 end
 
----@return bool result
----@return int status
+---@return boolean result
+---@return number status
 function readKillFrenzyStatus() end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansCar2d(ped, car, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param flag bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param flag boolean
+---@return boolean result
 function locateCharOnFootCar2d(ped, car, radiusX, radiusY, flag) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarCar2d(ped, car, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param flag boolean
+---@return boolean result
 function locateCharAnyMeansCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param flag boolean
+---@return boolean result
 function locateCharOnFootCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param flag boolean
+---@return boolean result
 function locateCharInCarCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 
 ---@param car Vehicle
----@param status int
+---@param status number
 function lockCarDoors(car, status) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function explodeCar(car) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius int
----@return bool result
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@return boolean result
 function addExplosion(atX, atY, atZ, radius) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarUpright(car) end
 
 ---@param modelId Model
----@param type int
----@param atX float
----@param atY float
----@param atZ float
----@return bool result
+---@param type number
+---@param atX number
+---@param atY number
+---@param atZ number
+---@return boolean result
 ---@return Pickup pickup
 function createPickup(modelId, type, atX, atY, atZ) end
 
 ---@param pickup Pickup
----@return bool result
+---@return boolean result
 function hasPickupBeenCollected(pickup) end
 
 ---@param pickup Pickup
----@return bool result
+---@return boolean result
 function removePickup(pickup) end
 
 ---@param taxi Vehicle
----@param light bool
----@return bool result
+---@param light boolean
+---@return boolean result
 function setTaxiLights(taxi, light) end
 
 ---@param gxtString GxtString
----@param time int
----@param style int
----@return bool result
+---@param time number
+---@param style number
+---@return boolean result
 function printBigQ(gxtString, time, style) end
 
 ---@param garage GxtString
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function setTargetCarForMissionGarage(garage, car) end
 
 ---@param player Player
----@param apply bool
----@return bool result
+---@param apply boolean
+---@return boolean result
 function applyBrakesToPlayersCar(player, apply) end
 
 ---@param ped Ped
----@param health int
+---@param health number
 function setCharHealth(ped, health) end
 
 ---@param car Vehicle
----@param health int
+---@param health number
 function setCarHealth(car, health) end
 
 ---@param ped Ped
----@return int health
+---@return number health
 function getCharHealth(ped) end
 
 ---@param car Vehicle
----@return int health
+---@return number health
 function getCarHealth(car) end
 
 ---@param car Vehicle
----@param primaryColor int
----@param secondaryColor int
----@return bool result
+---@param primaryColor number
+---@param secondaryColor number
+---@return boolean result
 function changeCarColour(car, primaryColor, secondaryColor) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchPedRoadsOn(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchPedRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
----@param gang int
----@param weapons1 int
----@param weapons2 int
----@param weapons3 int
+---@param gang number
+---@param weapons1 number
+---@param weapons2 number
+---@param weapons3 number
 function setGangWeapons(gang, weapons1, weapons2, weapons3) end
 
 ---@param ped Ped
 ---@param object Object
----@return bool result
+---@return boolean result
 function isCharTouchingObjectOnFoot(ped, object) end
 
 ---@param gxtString GxtString
----@param id int
+---@param id number
 function loadSpecialCharacter(gxtString, id) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function hasSpecialCharacterLoaded(id) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerInRemoteMode(player) end
 
----@param posX float
----@param posY float
----@param posZ float
+---@param posX number
+---@param posY number
+---@param posZ number
 function setCutsceneOffset(posX, posY, posZ) end
 
 ---@param ped Ped
@@ -1253,21 +1254,21 @@ function setAnimGroupForChar(ped, style) end
 function requestModel(modelId) end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function hasModelLoaded(modelId) end
 
 ---@param modelId Model
 function markModelAsNoLongerNeeded(modelId) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@param type int
----@param lensflares bool
----@param r int
----@param g int
----@param b int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@param type number
+---@param lensflares boolean
+---@param r number
+---@param g number
+---@param b number
 function drawCorona(atX, atY, atZ, radius, type, lensflares, r, g, b) end
 
 function storeClock() end
@@ -1275,17 +1276,17 @@ function storeClock() end
 function restoreClock() end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerPlaying(player) end
 
----@return int mode
+---@return number mode
 function getControllerMode() end
 
 ---@param car Vehicle
----@param sprayable bool
+---@param sprayable boolean
 function setCanResprayCar(car, sprayable) end
 
----@param id int
+---@param id number
 function unloadSpecialCharacter(id) end
 
 ---@param player Player
@@ -1293,178 +1294,178 @@ function resetNumOfModelsKilledByPlayer(player) end
 
 ---@param player Player
 ---@param modelId Model
----@return int quantity
+---@return number quantity
 function getNumOfModelsKilledByPlayer(player, modelId) end
 
 ---@param garage GxtString
 function activateGarage(garage) end
 
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Object object
 function createObjectNoOffset(modelId, atX, atY, atZ) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharStopped(ped) end
 
----@param enable bool
+---@param enable boolean
 function switchWidescreen(enable) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param icon int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param icon number
 ---@return Marker marker
 function addSpriteBlipForContactPoint(atX, atY, atZ, icon) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param type int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param type number
 ---@return Marker marker
 function addSpriteBlipForCoord(atX, atY, atZ, type) end
 
 ---@param ped Ped
----@param enabled bool
+---@param enabled boolean
 function setCharOnlyDamagedByPlayer(ped, enabled) end
 
 ---@param car Vehicle
----@param enabled bool
+---@param enabled boolean
 function setCarOnlyDamagedByPlayer(car, enabled) end
 
 ---@param ped Ped
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+---@param BP boolean
+---@param FP boolean
+---@param EP boolean
+---@param CP boolean
+---@param MP boolean
 function setCharProofs(ped, BP, FP, EP, CP, MP) end
 
 ---@param car Vehicle
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+---@param BP boolean
+---@param FP boolean
+---@param EP boolean
+---@param CP boolean
+---@param MP boolean
 function setCarProofs(car, BP, FP, EP, CP, MP) end
 
 ---@param garage GxtString
 function deactivateGarage(garage) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarInWater(car) end
 
----@param closestToX float
----@param closestToY float
----@param closestToZ float
----@return float nodeX
----@return float nodeY
----@return float nodeZ
+---@param closestToX number
+---@param closestToY number
+---@param closestToZ number
+---@return number nodeX
+---@return number nodeY
+---@return number nodeZ
 function getClosestCharNode(closestToX, closestToY, closestToZ) end
 
----@param closestToX float
----@param closestToY float
----@param closestToZ float
----@return float nodeX
----@return float nodeY
----@return float nodeZ
+---@param closestToX number
+---@param closestToY number
+---@param closestToZ number
+---@return number nodeX
+---@return number nodeY
+---@return number nodeZ
 function getClosestCarNode(closestToX, closestToY, closestToZ) end
 
 ---@param car Vehicle
----@param toX float
----@param toY float
----@param toZ float
+---@param toX number
+---@param toY number
+---@param toZ number
 function carGotoCoordinatesAccurate(car, toX, toY, toZ) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarOnScreen(car) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharOnScreen(ped) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectOnScreen(object) end
 
----@param atX float
----@param atY float
----@param atZ float
----@return float z
+---@param atX number
+---@param atY number
+---@param atZ number
+---@return number z
 function getGroundZFor3dCoord(atX, atY, atZ) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param propagation int
----@param size int
----@return int fire
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param propagation number
+---@param size number
+---@return number fire
 function startScriptFire(atX, atY, atZ, propagation, size) end
 
----@param fire int
----@return bool result
+---@param fire number
+---@return boolean result
 function isScriptFireExtinguished(fire) end
 
----@param fire int
+---@param fire number
 function removeScriptFire(fire) end
 
 ---@param boat Vehicle
----@param toX float
----@param toY float
----@param toZ float
+---@param toX number
+---@param toY number
+---@param toZ number
 function boatGotoCoords(boat, toX, toY, toZ) end
 
 ---@param car Vehicle
 function boatStop(car) end
 
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param weapon int
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param weapon number
+---@return boolean result
 function isCharShootingInArea(ped, cornerAX, cornerAY, cornerBX, cornerBY, weapon) end
 
 ---@param ped Ped
----@param weapon int
----@return bool result
+---@param weapon number
+---@return boolean result
 function isCurrentCharWeapon(ped, weapon) end
 
 ---@param boat Vehicle
----@param speed float
+---@param speed number
 function setBoatCruiseSpeed(boat, speed) end
 
 ---@param zone GxtString
----@param pedtype bool
----@param gang bool
----@param criminal_prostitute bool
+---@param pedtype boolean
+---@param gang boolean
+---@param criminal_prostitute boolean
 ---@return Ped ped
 function getRandomCharInZone(zone, pedtype, gang, criminal_prostitute) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharShooting(ped) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param cash int
----@param permanenceFlag bool
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param cash number
+---@param permanenceFlag boolean
 ---@return Pickup pickup
 function createMoneyPickup(atX, atY, atZ, cash, permanenceFlag) end
 
 ---@param ped Ped
----@param accuracy int
+---@param accuracy number
 function setCharAccuracy(ped, accuracy) end
 
 ---@param car Vehicle
----@return float speed
+---@return number speed
 function getCarSpeed(car) end
 
 ---@param cutscene GxtString
@@ -1474,37 +1475,37 @@ function loadCutscene(cutscene) end
 ---@return Object object
 function createCutsceneObject(modelId) end
 
----@param cutscene int
+---@param cutscene number
 ---@param anim GxtString
 function setCutsceneAnim(cutscene, anim) end
 
 function startCutscene() end
 
----@return int time
+---@return number time
 function getCutsceneTime() end
 
----@return bool result
+---@return boolean result
 function hasCutsceneFinished() end
 
 function clearCutscene() end
 
 function restoreCameraJumpcut() end
 
----@param total int
+---@param total number
 function setCollectable1Total(total) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function isProjectileInArea(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---@param ped Ped
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isCharModel(ped, modelId) end
 
 ---@param modelId Model
@@ -1512,65 +1513,65 @@ function isCharModel(ped, modelId) end
 function loadSpecialModel(modelId, gxtString) end
 
 ---@param car Vehicle
----@return float forwardX
+---@return number forwardX
 function getCarForwardX(car) end
 
 ---@param car Vehicle
----@return float forwardY
+---@return number forwardY
 function getCarForwardY(car) end
 
 ---@param garage GxtString
----@param type int
+---@param type number
 function changeGarageType(garage, type) end
 
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param time number
+---@param flag number
 function printWith2NumbersNow(gxtString, numbers1, numbers2, time, flag) end
 
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param numbers3 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param numbers3 number
+---@param time number
+---@param flag number
 function printWith3Numbers(gxtString, numbers1, numbers2, numbers3, time, flag) end
 
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param numbers3 int
----@param numbers4 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param numbers3 number
+---@param numbers4 number
+---@param time number
+---@param flag number
 function printWith4Numbers(gxtString, numbers1, numbers2, numbers3, numbers4, time, flag) end
 
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param numbers3 int
----@param numbers4 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param numbers3 number
+---@param numbers4 number
+---@param time number
+---@param flag number
 function printWith4NumbersNow(gxtString, numbers1, numbers2, numbers3, numbers4, time, flag) end
 
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param numbers3 int
----@param numbers4 int
----@param numbers5 int
----@param numbers6 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param numbers3 number
+---@param numbers4 number
+---@param numbers5 number
+---@param numbers6 number
+---@param time number
+---@param flag number
 function printWith6Numbers(gxtString, numbers1, numbers2, numbers3, numbers4, numbers5, numbers6, time, flag) end
 
----@param progress int
+---@param progress number
 function playerMadeProgress(progress) end
 
----@param maxProgress int
+---@param maxProgress number
 function setProgressTotal(maxProgress) end
 
 function registerMissionGiven() end
@@ -1581,51 +1582,51 @@ function registerMissionPassed(mission) end
 function removeAllScriptFires() end
 
 ---@param ped Ped
----@param weapon int
----@return bool result
+---@param weapon number
+---@return boolean result
 function hasCharBeenDamagedByWeapon(ped, weapon) end
 
 ---@param car Vehicle
----@param weapon int
----@return bool result
+---@param weapon number
+---@return boolean result
 function hasCarBeenDamagedByWeapon(car, weapon) end
 
 ---@param ped Ped
 function explodeCharHead(ped) end
 
 ---@param boat Vehicle
----@param anchor bool
+---@param anchor boolean
 function anchorBoat(boat, anchor) end
 
 ---@param car Vehicle
----@return int fire
+---@return number fire
 function startCarFire(car) end
 
 ---@param ped Ped
----@return int fire
+---@return number fire
 function startCharFire(ped) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
 ---@param modelId Model
 ---@return Vehicle car
 function getRandomCarOfTypeInArea(cornerAX, cornerAY, cornerBX, cornerBY, modelId) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function hasResprayHappened(car) end
 
----@param mode int
+---@param mode number
 function setCameraZoom(mode) end
 
 ---@param modelId Model
----@param type int
----@param ammo int
----@param atX float
----@param atY float
----@param atZ float
+---@param type number
+---@param ammo number
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Pickup pickup
 function createPickupWithAmmo(modelId, type, ammo, atX, atY, atZ) end
 
@@ -1634,40 +1635,40 @@ function createPickupWithAmmo(modelId, type, ammo, atX, atY, atZ) end
 function setCarRamCar(car1, car2) end
 
 ---@param player Player
----@param infiniteRun bool
+---@param infiniteRun boolean
 function setPlayerNeverGetsTired(player, infiniteRun) end
 
 ---@param player Player
----@param fastReload bool
+---@param fastReload boolean
 function setPlayerFastReload(player, fastReload) end
 
 ---@param ped Ped
----@param bleeding bool
+---@param bleeding boolean
 function setCharBleeding(ped, bleeding) end
 
----@param enable bool
+---@param enable boolean
 function setFreeResprays(enable) end
 
 ---@param ped Ped
----@param visible bool
+---@param visible boolean
 function setCharVisible(ped, visible) end
 
 ---@param car Vehicle
----@param visible bool
+---@param visible boolean
 function setCarVisible(car, visible) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param solid bool
----@param car bool
----@param actor bool
----@param object bool
----@param particle bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param solid boolean
+---@param car boolean
+---@param actor boolean
+---@param object boolean
+---@param particle boolean
+---@return boolean result
 function isAreaOccupied(
 	cornerAX,
 	cornerAY,
@@ -1683,90 +1684,90 @@ function isAreaOccupied(
 )
 end
 
----@param posX float
----@param posY float
+---@param posX number
+---@param posY number
 ---@param gxtString GxtString
 function displayText(posX, posY, gxtString) end
 
----@param sizeX float
----@param sizeY float
+---@param sizeX number
+---@param sizeY number
 function setTextScale(sizeX, sizeY) end
 
----@param r int
----@param g int
----@param b int
----@param a int
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function setTextColour(r, g, b, a) end
 
----@param alignJustify bool
+---@param alignJustify boolean
 function setTextJustify(alignJustify) end
 
----@param centered bool
+---@param centered boolean
 function setTextCentre(centered) end
 
----@param linewidth float
+---@param linewidth number
 function setTextWrapx(linewidth) end
 
----@param linewidth float
+---@param linewidth number
 function setTextCentreSize(linewidth) end
 
----@param background bool
+---@param background boolean
 function setTextBackground(background) end
 
----@param proportional bool
+---@param proportional boolean
 function setTextProportional(proportional) end
 
----@param font int
+---@param font number
 function setTextFont(font) end
 
 ---@param object Object
----@param fromAngle float
----@param toAngle float
----@param flag bool
----@return bool result
+---@param fromAngle number
+---@param toAngle number
+---@param flag boolean
+---@return boolean result
 function rotateObject(object, fromAngle, toAngle, flag) end
 
 ---@param object Object
----@param toX float
----@param toY float
----@param toZ float
----@param speedX float
----@param speedY float
----@param speedZ float
----@param collisionCheck bool
----@return bool result
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param speedX number
+---@param speedY number
+---@param speedZ number
+---@param collisionCheck boolean
+---@return boolean result
 function slideObject(object, toX, toY, toZ, speedX, speedY, speedZ, collisionCheck) end
 
 ---@param ped Ped
 function removeCharElegantly(ped) end
 
 ---@param ped Ped
----@param enabled bool
+---@param enabled boolean
 function setCharStayInSamePlace(ped, enabled) end
 
----@param explosionType int
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param explosionType number
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function isExplosionInArea(explosionType, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---@param object Object
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 function placeObjectRelativeToCar(object, car, offsetX, offsetY, offsetZ) end
 
 ---@param object Object
----@param targetable bool
+---@param targetable boolean
 function makeObjectTargettable(object, targetable) end
 
 ---@param ped Ped
----@param points int
+---@param points number
 function addArmourToChar(ped, points) end
 
 ---@param garage GxtString
@@ -1776,26 +1777,26 @@ function openGarage(garage) end
 function closeGarage(garage) end
 
 ---@param ped Ped
----@param placeAtX float
----@param placeAtY float
----@param placeAtZ float
+---@param placeAtX number
+---@param placeAtY number
+---@param placeAtZ number
 function warpCharFromCarToCoord(ped, placeAtX, placeAtY, placeAtZ) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
 ---@param modelId Model
----@param visibility bool
+---@param visibility boolean
 function setVisibilityOfClosestObjectOfType(atX, atY, atZ, radius, modelId, visibility) end
 
 ---@param ped1 Ped
 ---@param ped2 Ped
----@return bool result
+---@return boolean result
 function hasCharSpottedChar(ped1, ped2) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function hasObjectBeenDamaged(object) end
 
 ---@param ped Ped
@@ -1803,200 +1804,200 @@ function hasObjectBeenDamaged(object) end
 function warpCharIntoCar(ped, car) end
 
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param time int
----@param style int
+---@param numbers1 number
+---@param numbers2 number
+---@param time number
+---@param style number
 function printWith2NumbersBig(gxtString, numbers1, numbers2, time, style) end
 
 function setCameraBehindPlayer() end
 
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Ped ped
 function createRandomChar(atX, atY, atZ) end
 
----@param float1 float
----@param float2 float
----@param float3 float
----@param float4 float
----@param float5 float
----@param float6 float
----@return bool result
+---@param float1 number
+---@param float2 number
+---@param float3 number
+---@param float4 number
+---@param float5 number
+---@param float6 number
+---@return boolean result
 function isSniperBulletInArea(float1, float2, float3, float4, float5, float6) end
 
 ---@param object Object
----@param velocityInDirectionX float
----@param velocityInDirectionY float
----@param velocityInDirectionZ float
+---@param velocityInDirectionX number
+---@param velocityInDirectionY number
+---@param velocityInDirectionZ number
 function setObjectVelocity(object, velocityInDirectionX, velocityInDirectionY, velocityInDirectionZ) end
 
 ---@param object Object
----@param collision bool
+---@param collision boolean
 function setObjectCollision(object, collision) end
 
 ---@param gxtString GxtString
 ---@param string GxtString
----@param time1 int
----@param time2 int
+---@param time1 number
+---@param time2 number
 function printStringInStringNow(gxtString, string, time1, time2) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function isPointObscuredByAMissionEntity(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 function loadAllModelsNow() end
 
 ---@param object Object
----@param velocityX float
----@param velocityY float
----@param velocityZ float
+---@param velocityX number
+---@param velocityY number
+---@param velocityZ number
 function addToObjectVelocity(object, velocityX, velocityY, velocityZ) end
 
----@param texture int
----@param positionX float
----@param positionY float
----@param width float
----@param height float
----@param r int
----@param g int
----@param b int
----@param a int
+---@param texture number
+---@param positionX number
+---@param positionY number
+---@param width number
+---@param height number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function drawSprite(texture, positionX, positionY, width, height, r, g, b, a) end
 
----@param positionX float
----@param positionY float
----@param width float
----@param height float
----@param r int
----@param g int
----@param b int
----@param a int
+---@param positionX number
+---@param positionY number
+---@param width number
+---@param height number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function drawRect(positionX, positionY, width, height, r, g, b, a) end
 
 ---@param name string
----@return int id
+---@return number id
 function loadSprite(name) end
 
 ---@param txd string
----@return bool result
+---@return boolean result
 function loadTextureDictionary(txd) end
 
 function removeTextureDictionary() end
 
 ---@param object Object
----@param moveable bool
+---@param moveable boolean
 function setObjectDynamic(object, moveable) end
 
 ---@param ped Ped
 ---@param animation string
----@param speed float
+---@param speed number
 function setCharAnimSpeed(ped, animation, speed) end
 
----@param music int
+---@param music number
 function playMissionPassedTune(music) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@param area bool
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@param area boolean
 function clearArea(atX, atY, atZ, radius, area) end
 
----@param timer bool
+---@param timer boolean
 function freezeOnscreenTimer(timer) end
 
 ---@param car Vehicle
----@param siren bool
+---@param siren boolean
 function switchCarSiren(car, siren) end
 
 ---@param car Vehicle
----@param watertight bool
+---@param watertight boolean
 function setCarWatertight(car, watertight) end
 
 ---@param ped Ped
----@param locked bool
+---@param locked boolean
 function setCharCantBeDraggedOut(ped, locked) end
 
 ---@param car Vehicle
----@param coordX float
----@param coordY float
+---@param coordX number
+---@param coordY number
 function turnCarToFaceCoord(car, coordX, coordY) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
 function drawSphere(atX, atY, atZ, radius) end
 
 ---@param car Vehicle
----@param action int
+---@param action number
 function setCarStatus(car, action) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharMale(ped) end
 
----@param float1 float
----@param float2 float
----@param float3 float
+---@param float1 number
+---@param float2 number
+---@param float3 number
 function policeRadioMessage(float1, float2, float3) end
 
 ---@param car Vehicle
----@param strong bool
+---@param strong boolean
 function setCarStrong(car, strong) end
 
----@param int1 bool
+---@param int1 boolean
 function switchRubbish(int1) end
 
----@param streaming bool
+---@param streaming boolean
 function switchStreaming(streaming) end
 
 ---@param garage GxtString
----@return bool result
+---@return boolean result
 function isGarageOpen(garage) end
 
 ---@param garage GxtString
----@return bool result
+---@return boolean result
 function isGarageClosed(garage) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
 ---@param from Model
 ---@param to Model
 function swapNearestBuildingModel(atX, atY, atZ, radius, from, to) end
 
----@param cutsceneOnly bool
+---@param cutsceneOnly boolean
 function switchWorldProcessing(cutsceneOnly) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function clearAreaOfCars(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@return int sphere
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@return number sphere
 function addSphere(atX, atY, atZ, radius) end
 
----@param sphere int
+---@param sphere number
 function removeSphere(sphere) end
 
 ---@param player Player
----@param ignored bool
+---@param ignored boolean
 function setEveryoneIgnorePlayer(player, ignored) end
 
 ---@param ped Ped
@@ -2004,78 +2005,78 @@ function setEveryoneIgnorePlayer(player, ignored) end
 function storeCarCharIsInNoSave(ped) end
 
 ---@param timer VarId
----@param type int
+---@param type number
 ---@param gxtString GxtString
 function displayOnscreenTimerWithString(timer, type, gxtString) end
 
 ---@param var VarId
----@param type bool
+---@param type boolean
 ---@param gxtString GxtString
 function displayOnscreenCounterWithString(var, type, gxtString) end
 
----@param coordsX float
----@param coordsY float
----@param coordsZ float
----@param zAngle float
+---@param coordsX number
+---@param coordsY number
+---@param coordsZ number
+---@param zAngle number
 function createRandomCarForCarPark(coordsX, coordsY, coordsZ, zAngle) end
 
----@param sensitivity float
+---@param sensitivity number
 function setWantedMultiplier(sensitivity) end
 
 function setCameraInFrontOfPlayer() end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarVisiblyDamaged(car) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function doesObjectExist(object) end
 
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function loadScene(atX, atY, atZ) end
 
 ---@param car Vehicle
----@param stuckCheckDistance float
----@param time int
+---@param stuckCheckDistance number
+---@param time number
 function addStuckCarCheck(car, stuckCheckDistance, time) end
 
 ---@param car Vehicle
 function removeStuckCarCheck(car) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarStuck(car) end
 
----@param asId int
----@param name int
+---@param asId number
+---@param name number
 function loadMissionAudio(asId, name) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function hasMissionAudioLoaded(id) end
 
----@param id int
+---@param id number
 function playMissionAudio(id) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function hasMissionAudioFinished(id) end
 
----@param X float
----@param Y float
----@param Z float
----@return float nodeX
----@return float nodeY
----@return float nodeZ
----@return float angle
+---@param X number
+---@param Y number
+---@param Z number
+---@return number nodeX
+---@return number nodeY
+---@return number nodeZ
+---@return number angle
 function getClosestCarNodeWithHeading(X, Y, Z) end
 
----@param int1 int
----@param int2 int
----@return bool result
+---@param int1 number
+---@param int2 number
+---@return boolean result
 function hasImportGarageSlotBeenFilled(int1, int2) end
 
 ---@param text GxtString
@@ -2084,37 +2085,37 @@ function clearThisPrint(text) end
 ---@param text GxtString
 function clearThisBigPrint(text) end
 
----@param id int
----@param locationX float
----@param locationY float
----@param locationZ float
+---@param id number
+---@param locationX number
+---@param locationY number
+---@param locationZ number
 function setMissionAudioPosition(id, locationX, locationY, locationZ) end
 
 function activateSaveMenu() end
 
----@return bool result
+---@return boolean result
 function hasSaveGameFinished() end
 
----@param int1 int
+---@param int1 number
 function noSpecialCameraForThisGarage(int1) end
 
 ---@param pickup Pickup
 ---@return Marker marker
 function addBlipForPickup(pickup) end
 
----@param multiplier float
+---@param multiplier number
 function setPedDensityMultiplier(multiplier) end
 
----@param int1 bool
+---@param int1 boolean
 function setTextDrawBeforeFade(int1) end
 
----@return int collected
+---@return number collected
 function getCollectable1sCollected() end
 
----@param antialiased bool
+---@param antialiased boolean
 function setSpritesDrawBeforeFade(antialiased) end
 
----@param alignRight bool
+---@param alignRight boolean
 function setTextRightJustify(alignRight) end
 
 ---@param gxtString GxtString
@@ -2122,245 +2123,245 @@ function printHelp(gxtString) end
 
 function clearHelp() end
 
----@param hudComponent int
+---@param hudComponent number
 function flashHudObject(hudComponent) end
 
----@param int1 bool
+---@param int1 boolean
 function setGenerateCarsAroundCamera(int1) end
 
 function clearSmallPrints() end
 
 ---@param car Vehicle
----@param disableFlippedExplosion bool
+---@param disableFlippedExplosion boolean
 function setUpsidedownCarNotDamaged(car, disableFlippedExplosion) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerControllable(player) end
 
 ---@param player Player
 function makePlayerSafe(player) end
 
 ---@param car Vehicle
----@return int primaryColor
----@return int secondaryColor
+---@return number primaryColor
+---@return number secondaryColor
 function getCarColours(car) end
 
----@param enable bool
+---@param enable boolean
 function setAllCarsCanBeDamaged(enable) end
 
 ---@param car Vehicle
----@param enable bool
+---@param enable boolean
 function setCarCanBeDamaged(car, enable) end
 
 ---@param player Player
----@param handlingResponsiveness int
+---@param handlingResponsiveness number
 function setDrunkInputDelay(player, handlingResponsiveness) end
 
 ---@param ped Ped
----@param money int
+---@param money number
 function setCharMoney(ped, money) end
 
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@return float X
----@return float Y
----@return float Z
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@return number X
+---@return number Y
+---@return number Z
 function getOffsetFromObjectInWorldCoords(object, offsetX, offsetY, offsetZ) end
 
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@return float X
----@return float Y
----@return float Z
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@return number X
+---@return number Y
+---@return number Z
 function getOffsetFromCarInWorldCoords(car, offsetX, offsetY, offsetZ) end
 
----@param id int
+---@param id number
 function clearMissionAudio(id) end
 
 ---@param player Player
----@param free bool
+---@param free boolean
 function setFreeHealthCare(player, free) end
 
----@param mission int
+---@param mission number
 function loadAndLaunchMissionInternal(mission) end
 
 ---@param object Object
----@param drawLast bool
+---@param drawLast boolean
 function setObjectDrawLast(object, drawLast) end
 
 ---@param ped Ped
----@param int int
----@return int ammo
-function getAmmoInCharWeapon(ped, int) end
+---@param number number
+---@return number ammo
+function getAmmoInCharWeapon(ped, number) end
 
----@param clip float
+---@param clip number
 function setNearClip(clip) end
 
----@param radioStation int
+---@param radioStation number
 function setRadioChannel(radioStation) end
 
 ---@param car Vehicle
----@param traction float
+---@param traction number
 function setCarTraction(car, traction) end
 
----@return bool result
+---@return boolean result
 function areMeasurementsInMetres() end
 
----@param meters float
----@return float feet
+---@param meters number
+---@return number feet
 function convertMetresToFeet(meters) end
 
 ---@param car Vehicle
----@param avoidLevelTransitions bool
+---@param avoidLevelTransitions boolean
 function setCarAvoidLevelTransitions(car, avoidLevelTransitions) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function clearAreaOfChars(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
----@param totalMissions int
+---@param totalMissions number
 function setTotalNumberOfMissions(totalMissions) end
 
----@param metric int
----@return int imperial
+---@param metric number
+---@return number imperial
 function convertMetresToFeetInt(metric) end
 
----@param stat int
----@param to int
+---@param stat number
+---@param to number
 function registerFastestTime(stat, to) end
 
----@param int1 int
----@param int2 int
+---@param int1 number
+---@param int2 number
 function registerHighestScore(int1, int2) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param passengerSeat int
+---@param passengerSeat number
 function warpCharIntoCarAsPassenger(ped, car, passengerSeat) end
 
 ---@param car Vehicle
----@param seat int
----@return bool result
+---@param seat number
+---@return boolean result
 function isCarPassengerSeatFree(car, seat) end
 
 ---@param car Vehicle
----@param seat int
+---@param seat number
 ---@return Ped ped
 function getCharInCarPassengerSeat(car, seat) end
 
 ---@param ped Ped
----@param flag bool
+---@param flag boolean
 function setCharIsChrisCriminal(ped, flag) end
 
 function startCredits() end
 
 function stopCredits() end
 
----@return bool result
+---@return boolean result
 function areCreditsFinished() end
 
----@param enable bool
+---@param enable boolean
 function setMusicDoesFade(enable) end
 
----@param int int
+---@param number number
 ---@return Model modelId
-function getCarModel(int) end
+function getCarModel(number) end
 
----@return bool result
+---@return boolean result
 function areAnyCarCheatsActivated() end
 
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setCharSuffersCriticalHits(ped, enable) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCharSittingInCar(ped, car) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharSittingInAnyCar(ped) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharOnFoot(ped) end
 
 ---@param gxtString GxtString
 function loadSplashScreen(gxtString) end
 
----@param int1 int
+---@param int1 number
 function setJamesCarOnPathToPlayer(int1) end
 
 ---@param object Object
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function setObjectRotation(object, rotationX, rotationY, rotationZ) end
 
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getDebugCameraCoordinates() end
 
 ---@param player Player
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isPlayerTargettingChar(player, ped) end
 
 ---@param player Player
 ---@param object Object
----@return bool result
+---@return boolean result
 function isPlayerTargettingObject(player, object) end
 
----@param x float
----@param y float
+---@param x number
+---@param y number
 ---@param gxtString GxtString
----@param number int
+---@param number number
 function displayTextWithNumber(x, y, gxtString, number) end
 
----@param x float
----@param y float
+---@param x number
+---@param y number
 ---@param gxtString GxtString
----@param numbersX int
----@param numbersY int
+---@param numbersX number
+---@param numbersY number
 function displayTextWith2Numbers(x, y, gxtString, numbersX, numbersY) end
 
 function failCurrentMission() end
 
----@param delay float
----@param time int
+---@param delay number
+---@param time number
 function setInterpolationParameters(delay, time) end
 
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getDebugCameraPointAt() end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param position int
----@param shootingAngleLimit float
----@param weapon int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param position number
+---@param shootingAngleLimit number
+---@param weapon number
 function attachCharToCar(ped, car, offsetX, offsetY, offsetZ, position, shootingAngleLimit, weapon) end
 
 ---@param ped Ped
 function detachCharFromCar(ped) end
 
 ---@param car Vehicle
----@param flag bool
+---@param flag boolean
 function setCarStayInFastLane(car, flag) end
 
 ---@param ped Ped
@@ -2369,16 +2370,16 @@ function clearCharLastWeaponDamage(ped) end
 ---@param car Vehicle
 function clearCarLastWeaponDamage(car) end
 
----@param float1 float
----@param float2 float
----@param float3 float
----@param float4 float
----@param int5 bool
----@param int6 bool
----@param int7 bool
----@param int8 bool
----@param int9 bool
----@return int int10
+---@param float1 number
+---@param float2 number
+---@param float3 number
+---@param float4 number
+---@param int5 boolean
+---@param int6 boolean
+---@param int7 boolean
+---@param int8 boolean
+---@param int9 boolean
+---@return number int10
 function getRandomCopInArea(float1, float2, float3, float4, int5, int6, int7, int8, int9) end
 
 ---@param car Vehicle
@@ -2386,454 +2387,454 @@ function getRandomCopInArea(float1, float2, float3, float4, int5, int6, int7, in
 function getDriverOfCar(car) end
 
 ---@param ped Ped
----@return int followers
+---@return number followers
 function getNumberOfFollowers(ped) end
 
 ---@param player Player
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
 ---@param RCModel Model
 function giveRemoteControlledModelToPlayer(player, atX, atY, atZ, angle, RCModel) end
 
 ---@param ped Ped
----@return int weapon
+---@return number weapon
 function getCurrentCharWeapon(ped) end
 
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansObject2d(ped, object, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFootObject2d(ped, object, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarObject2d(ped, object, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFootObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
 
 ---@param car Vehicle
----@param action int
----@param time int
+---@param action number
+---@param time number
 function setCarTempAction(car, action, time) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharOnAnyBike(ped) end
 
 ---@param ped Ped
----@param pedtype int
----@return bool result
+---@param pedtype number
+---@return boolean result
 function canCharSeeDeadChar(ped, pedtype) end
 
----@param float1 float
+---@param float1 number
 function setEnterCarRangeMultiplier(float1) end
 
 ---@param player Player
 ---@return Vehicle car
 function getRemoteControlledCar(player) end
 
----@return bool result
+---@return boolean result
 function isPcVersion() end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isModelAvailable(modelId) end
 
 ---@param ped Ped
----@param muted bool
+---@param muted boolean
 function shutCharUp(ped, muted) end
 
----@param detonation bool
+---@param detonation boolean
 function setEnableRcDetonate(detonation) end
 
 ---@param car Vehicle
----@param routeSeed int
+---@param routeSeed number
 function setCarRandomRouteSeed(car, routeSeed) end
 
----@param pickupX float
----@param pickupY float
----@param pickupZ float
----@return bool result
+---@param pickupX number
+---@param pickupY number
+---@param pickupZ number
+---@return boolean result
 function isAnyPickupAtCoords(pickupX, pickupY, pickupZ) end
 
 ---@param ped Ped
 function removeAllCharWeapons(ped) end
 
 ---@param ped Ped
----@param weapon int
----@return bool result
+---@param weapon number
+---@return boolean result
 function hasCharGotWeapon(ped, weapon) end
 
----@param tank int
----@param detonate bool
+---@param tank number
+---@param detonate boolean
 function setTankDetonateCars(tank, detonate) end
 
----@param joystick int
----@return int offset1
----@return int offset2
----@return int offset3
----@return int offset4
+---@param joystick number
+---@return number offset1
+---@return number offset2
+---@return number offset3
+---@return number offset4
 function getPositionOfAnalogueSticks(joystick) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarOnFire(car) end
 
 ---@param car Vehicle
----@param tire int
----@return bool result
+---@param tire number
+---@return boolean result
 function isCarTireBurst(car, tire) end
 
----@param int1 int
----@param float2 float
+---@param int1 number
+---@param float2 number
 function initialiseObjectPath(int1, float2) end
 
----@param int1 int
----@param int2 int
+---@param int1 number
+---@param int2 number
 function setObjectPathSpeed(int1, int2) end
 
----@param int1 int
----@param float2 float
+---@param int1 number
+---@param float2 number
 function setObjectPathPosition(int1, float2) end
 
----@param int1 int
+---@param int1 number
 function clearObjectPath(int1) end
 
 ---@param heli Vehicle
----@param toX float
----@param toY float
----@param toZ float
----@param altitudeMin float
----@param altitudeMax float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param altitudeMin number
+---@param altitudeMax number
 function heliGotoCoords(heli, toX, toY, toZ, altitudeMin, altitudeMax) end
 
 ---@param ped Ped
----@return float coordsX
----@return float coordsY
----@return float coordsZ
+---@return number coordsX
+---@return number coordsY
+---@return number coordsZ
 function getDeadCharPickupCoords(ped) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param int4 int
----@param int5 int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param int4 number
+---@param int5 number
 ---@return Pickup pickup
 function createProtectionPickup(atX, atY, atZ, int4, int5) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyBoat(ped) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyHeli(ped) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyPlane(ped) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInWater(ped) end
 
 ---@param ped Ped
----@param slot int
----@return int weapon
----@return int ammo
+---@param slot number
+---@return number weapon
+---@return number ammo
 ---@return Model modelId
 function getCharWeaponInSlot(ped, slot) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param height float
----@param radius float
----@return float float6
----@return float float7
----@return float float8
----@return float float9
----@return float float10
----@return float float11
----@return float float12
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param height number
+---@param radius number
+---@return number float6
+---@return number float7
+---@return number float8
+---@return number float9
+---@return number float10
+---@return number float11
+---@return number float12
 function getClosestStraightRoad(atX, atY, atZ, height, radius) end
 
 ---@param car Vehicle
----@param speed float
+---@param speed number
 function setCarForwardSpeed(car, speed) end
 
----@param interior int
+---@param interior number
 function setInteriorVisible(interior) end
 
 ---@param car Vehicle
----@param convoy bool
+---@param convoy boolean
 function markCarAsConvoyCar(car, convoy) end
 
----@param int1 int
+---@param int1 number
 function resetHavocCausedByPlayer(int1) end
 
----@param int1 int
----@return int int2
+---@param int1 number
+---@return number int2
 function getHavocCausedByPlayer(int1) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param type int
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param type number
 function createScriptRoadblock(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, type) end
 
 function clearAllScriptRoadblocks() end
 
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@return float X
----@return float Y
----@return float Z
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@return number X
+---@return number Y
+---@return number Z
 function getOffsetFromCharInWorldCoords(ped, offsetX, offsetY, offsetZ) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function hasCharBeenPhotographed(ped) end
 
----@param int1 bool
+---@param int1 boolean
 function switchSecurityCamera(int1) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInFlyingVehicle(ped) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param icon int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param icon number
 ---@return Marker marker
 function addShortRangeSpriteBlipForCoord(atX, atY, atZ, icon) end
 
 ---@param heli Vehicle
----@param angle float
+---@param angle number
 function setHeliOrientation(heli, angle) end
 
 ---@param heli Vehicle
 function clearHeliOrientation(heli) end
 
----@param plane int
----@param X float
----@param Y float
----@param Z float
----@param z1 float
----@param z2 float
+---@param plane number
+---@param X number
+---@param Y number
+---@param Z number
+---@param z1 number
+---@param z2 number
 function planeGotoCoords(plane, X, Y, Z, z1, z2) end
 
----@param X float
----@param Y float
----@param Z float
----@param type int
----@return float X
----@return float Y
----@return float Z
+---@param X number
+---@param Y number
+---@param Z number
+---@param type number
+---@return number X
+---@return number Y
+---@return number Z
 function getNthClosestCarNode(X, Y, Z, type) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param type int
----@param flare int
----@param r int
----@param g int
----@param b int
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param type number
+---@param flare number
+---@param r number
+---@param g number
+---@param b number
 function drawWeaponshopCorona(X, Y, Z, radius, type, flare, r, g, b) end
 
----@param enable bool
+---@param enable boolean
 function setEnableRcDetonateOnContact(enable) end
 
 ---@param ped Ped
----@param locked bool
+---@param locked boolean
 function freezeCharPosition(ped, locked) end
 
 ---@param ped Ped
----@param drowns bool
+---@param drowns boolean
 function setCharDrownsInWater(ped, drowns) end
 
 ---@param object Object
----@param set bool
+---@param set boolean
 function setObjectRecordsCollisions(object, set) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function hasObjectCollidedWithAnything(object) end
 
 function removeRcBuggy() end
 
 ---@param ped Ped
----@return int armour
+---@return number armour
 function getCharArmour(ped) end
 
 ---@param heli Vehicle
----@param limiter bool
+---@param limiter boolean
 function setHeliStabiliser(heli, limiter) end
 
 ---@param car Vehicle
----@param radius int
+---@param radius number
 function setCarStraightLineDistance(car, radius) end
 
 ---@param car Vehicle
 function popCarBoot(car) end
 
 ---@param player Player
----@param shut bool
+---@param shut boolean
 function shutPlayerUp(player, shut) end
 
 ---@param player Player
----@param flag int
----@param time int
+---@param flag number
+---@param time number
 function setPlayerMood(player, flag, time) end
 
----@param X float
----@param Y float
+---@param X number
+---@param Y number
 function requestCollision(X, Y) end
 
 ---@param object Object
----@param X float
----@param Y float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param X number
+---@param Y number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateObject2d(object, X, Y, radiusX, radiusY, sphere) end
 
 ---@param object Object
----@param X float
----@param Y float
----@param Z float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
----@return bool result
+---@param X number
+---@param Y number
+---@param Z number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param flag boolean
+---@return boolean result
 function locateObject3d(object, X, Y, Z, radiusX, radiusY, radiusZ, flag) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectInWater(object) end
 
 ---@param object Object
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isObjectInArea2d(object, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---@param object Object
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param flag bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param flag boolean
+---@return boolean result
 function isObjectInArea3d(object, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, flag) end
 
 ---@param ped Ped
----@param crouch bool
+---@param crouch boolean
 function taskToggleDuck(ped, crouch) end
 
 ---@param animation string
 function requestAnimation(animation) end
 
 ---@param animation string
----@return bool result
+---@return boolean result
 function hasAnimationLoaded(animation) end
 
 ---@param animation string
 function removeAnimation(animation) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharWaitingForWorldCollision(ped) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarWaitingForWorldCollision(car) end
 
 ---@param ped Ped
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param orientation int
----@param angle float
----@param lockWeapon int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param orientation number
+---@param angle number
+---@param lockWeapon number
 function attachCharToObject(ped, object, offsetX, offsetY, offsetZ, orientation, angle, lockWeapon) end
 
 ---@param text VarId
----@param type int
----@param line int
+---@param type number
+---@param line number
 ---@param gxtString GxtString
 function displayNthOnscreenCounterWithString(text, type, line, gxtString) end
 
----@param type int
----@param rectX1 float
----@param rectY1 float
----@param rectX2 float
----@param rectY2 float
----@param spawnAX float
----@param spawnAY float
----@param headedTowards1X float
----@param headedTowards1Y float
----@param spawnBX float
----@param spawnBY float
----@param headedTowards2X float
----@param headedTowards2Y float
+---@param type number
+---@param rectX1 number
+---@param rectY1 number
+---@param rectX2 number
+---@param rectY2 number
+---@param spawnAX number
+---@param spawnAY number
+---@param headedTowards1X number
+---@param headedTowards1Y number
+---@param spawnBX number
+---@param spawnBY number
+---@param headedTowards2X number
+---@param headedTowards2Y number
 function addSetPiece(
 	type,
 	rectX1,
@@ -2851,142 +2852,142 @@ function addSetPiece(
 )
 end
 
----@param color int
----@param fade bool
+---@param color number
+---@param fade boolean
 function setExtraColours(color, fade) end
 
----@param fade bool
+---@param fade boolean
 function clearExtraColours(fade) end
 
 ---@param player Player
----@return int twowheelstime
----@return float twowheelsdistance
----@return int wheelietime
----@return float wheelieDistance
----@return int stoppieTime
----@return float stoppieDistance
+---@return number twowheelstime
+---@return number twowheelsdistance
+---@return number wheelietime
+---@return number wheelieDistance
+---@return number stoppieTime
+---@return number stoppieDistance
 function getWheelieStats(player) end
 
 ---@param car Vehicle
----@param tire int
+---@param tire number
 function burstCarTire(car, tire) end
 
 ---@param player Player
 ---@param bodypart string
----@param skin int
----@return bool result
+---@param skin number
+---@return boolean result
 function isPlayerWearing(player, bodypart, skin) end
 
 ---@param player Player
----@param mode bool
+---@param mode boolean
 function setPlayerCanDoDriveBy(player, mode) end
 
----@param pedtype int
+---@param pedtype number
 ---@param modelId Model
----@param X float
----@param Y float
----@param Z float
----@return int handleAs
+---@param X number
+---@param Y number
+---@param Z number
+---@return number handleAs
 function createSwatRope(pedtype, modelId, X, Y, Z) end
 
 ---@param car Model
----@param variation1 int
----@param variation2 int
+---@param variation1 number
+---@param variation2 number
 function setCarModelComponents(car, variation1, variation2) end
 
 ---@param car Vehicle
 function closeAllCarDoors(car) end
 
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@return float distance
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@return number distance
 function getDistanceBetweenCoords2d(x1, y1, x2, y2) end
 
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@return float distance
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@return number distance
 function getDistanceBetweenCoords3d(x1, y1, z1, x2, y2, z2) end
 
 ---@param object Object
 ---@param car Vehicle
 function sortOutObjectCollisionWithCar(object, car) end
 
----@return int level
+---@return number level
 function getMaxWantedLevel() end
 
 ---@param text GxtString
 function printHelpForever(text) end
 
 ---@param text GxtString
----@param number int
+---@param number number
 function printHelpForeverWithNumber(text, number) end
 
----@param pX float
----@param pY float
----@param pZ float
+---@param pX number
+---@param pY number
+---@param pZ number
 ---@param gxtString GxtString
 ---@return Pickup pickup
 function createLockedPropertyPickup(pX, pY, pZ, gxtString) end
 
----@param pX float
----@param pY float
----@param pZ float
----@param price int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param price number
 ---@param gxtString GxtString
 ---@return Pickup pickup
 function createForsalePropertyPickup(pX, pY, pZ, price, gxtString) end
 
 ---@param car Vehicle
----@param locked bool
+---@param locked boolean
 function freezeCarPosition(car, locked) end
 
 ---@param ped Ped
 ---@param byActor Ped
----@return bool result
+---@return boolean result
 function hasCharBeenDamagedByChar(ped, byActor) end
 
 ---@param ped Ped
 ---@param byCar Vehicle
----@return bool result
+---@return boolean result
 function hasCharBeenDamagedByCar(ped, byCar) end
 
 ---@param car Vehicle
 ---@param byActor Ped
----@return bool result
+---@return boolean result
 function hasCarBeenDamagedByChar(car, byActor) end
 
 ---@param car Vehicle
 ---@param byCar Vehicle
----@return bool result
+---@return boolean result
 function hasCarBeenDamagedByCar(car, byCar) end
 
----@return int radio
+---@return number radio
 function getRadioChannel() end
 
 ---@param ped Ped
----@param stay bool
+---@param stay boolean
 function setCharStayInCarWhenJacked(ped, stay) end
 
 ---@param player Player
----@param drunk int
+---@param drunk number
 function setPlayerDrunkenness(player, drunk) end
 
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
 ---@param modelId Model
 ---@return Vehicle car
 function getRandomCarOfTypeInAreaNoSave(x1, y1, x2, y2, modelId) end
 
 ---@param car Vehicle
----@param vulnerability bool
+---@param vulnerability boolean
 function setCanBurstCarTires(car, vulnerability) end
 
 ---@param car Vehicle
@@ -2994,11 +2995,11 @@ function fireHunterGun(car) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCharTouchingVehicle(ped, car) end
 
 ---@param ped Ped
----@param can bool
+---@param can boolean
 function setCharCanBeShotInVehicle(ped, can) end
 
 ---@param table GxtString
@@ -3011,23 +3012,23 @@ function clearCharLastDamageEntity(ped) end
 function clearCarLastDamageEntity(car) end
 
 ---@param object Object
----@param freeze bool
+---@param freeze boolean
 function freezeObjectPosition(object, freeze) end
 
 ---@param ped Ped
----@param weapon int
+---@param weapon number
 function removeWeaponFromChar(ped, weapon) end
 
 ---@param player Player
----@param fireproof bool
+---@param fireproof boolean
 function makePlayerFireProof(player, fireproof) end
 
 ---@param player Player
----@param increase int
+---@param increase number
 function increasePlayerMaxHealth(player, increase) end
 
 ---@param player Player
----@param increase int
+---@param increase number
 function increasePlayerMaxArmour(player, increase) end
 
 ---@param car Vehicle
@@ -3035,163 +3036,163 @@ function increasePlayerMaxArmour(player, increase) end
 function createRandomCharAsDriver(car) end
 
 ---@param car Vehicle
----@param seat int
+---@param seat number
 ---@return Ped ped
 function createRandomCharAsPassenger(car, seat) end
 
 ---@param player Player
----@param ammo int
+---@param ammo number
 function ensurePlayerHasDriveByWeapon(player, ammo) end
 
 ---@param heli Vehicle
 function makeHeliComeCrashingDown(heli) end
 
----@param pX float
----@param pY float
----@param pZ float
----@param type int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param type number
 function addExplosionNoSound(pX, pY, pZ, type) end
 
 ---@param object Object
----@param interior int
+---@param interior number
 function linkObjectToInterior(object, interior) end
 
 ---@param ped Ped
----@param untargetable bool
+---@param untargetable boolean
 function setCharNeverTargetted(ped, untargetable) end
 
----@return bool result
+---@return boolean result
 function wasCutsceneSkipped() end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyPoliceVehicle(ped) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function doesCharExist(ped) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function doesVehicleExist(car) end
 
----@param pX float
----@param pY float
----@param pZ float
----@param icon int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param icon number
 ---@return Marker blip
 function addShortRangeSpriteBlipForContactPoint(pX, pY, pZ, icon) end
 
----@param toggle bool
+---@param toggle boolean
 function setAllTaxisHaveNitro(toggle) end
 
 ---@param car Vehicle
----@param keep bool
+---@param keep boolean
 function freezeCarPositionAndDontLoadCollision(car, keep) end
 
 ---@param ped Ped
----@param keep bool
+---@param keep boolean
 function freezeCharPositionAndDontLoadCollision(ped, keep) end
 
----@param set bool
+---@param set boolean
 function setPlayerIsInStadium(set) end
 
----@param enable bool
+---@param enable boolean
 function displayRadar(enable) end
 
----@param stat int
----@param float float
-function registerBestPosition(stat, float) end
+---@param stat number
+---@param number number
+function registerBestPosition(stat, number) end
 
 ---@param player Player
 ---@param zone GxtString
----@return bool result
+---@return boolean result
 function isPlayerInInfoZone(player, zone) end
 
 ---@param car Vehicle
----@param enable bool
+---@param enable boolean
 function setLoadCollisionForCarFlag(car, enable) end
 
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setLoadCollisionForCharFlag(ped, enable) end
 
----@param fromX float
----@param fromY float
----@param fromZ float
----@param toX float
----@param toY float
----@param toZ float
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param toX number
+---@param toY number
+---@param toZ number
 function addBigGunFlash(fromX, fromY, fromZ, toX, toY, toZ) end
 
----@return float progress
+---@return number progress
 function getProgressPercentage() end
 
 ---@param car Vehicle
----@param flag int
+---@param flag number
 function setVehicleToFadeIn(car, flag) end
 
 function registerOddjobMissionPassed() end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerInShortcutTaxi(player) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharDucking(ped) end
 
 ---@param text VarId
----@param flashing bool
+---@param flashing boolean
 function setOnscreenCounterFlashWhenFirstDisplayed(text, flashing) end
 
----@param shuffle bool
+---@param shuffle boolean
 function shuffleCardDecks(shuffle) end
 
----@return int card
+---@return number card
 function fetchNextCard() end
 
 ---@param object Object
----@return float vecX
----@return float vecY
----@return float vecZ
+---@return number vecX
+---@return number vecY
+---@return number vecZ
 function getObjectVelocity(object) end
 
----@return bool result
+---@return boolean result
 function isDebugCameraOn() end
 
 ---@param object Object
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function addToObjectRotationVelocity(object, vecX, vecY, vecZ) end
 
 ---@param object Object
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function setObjectRotationVelocity(object, vecX, vecY, vecZ) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectStatic(object) end
 
----@param vecX float
----@param vecY float
----@param vecX2 float
----@param vecY2 float
----@return float angle
+---@param vecX number
+---@param vecY number
+---@param vecX2 number
+---@param vecY2 number
+---@return number angle
 function getAngleBetween2dVectors(vecX, vecY, vecX2, vecY2) end
 
----@param areaX float
----@param areaY float
----@param scaleX float
----@param scaleY float
----@param overlapareaX float
----@param overlapareaY float
----@param overlapscaleX float
----@param overlapscaleY float
----@return bool result
+---@param areaX number
+---@param areaY number
+---@param scaleX number
+---@param scaleY number
+---@param overlapareaX number
+---@param overlapareaY number
+---@param overlapscaleX number
+---@param overlapscaleY number
+---@return boolean result
 function do2dRectanglesCollide(
 	areaX,
 	areaY,
@@ -3205,70 +3206,70 @@ function do2dRectanglesCollide(
 end
 
 ---@param object Object
----@return float axisX
----@return float axisY
----@return float axisZ
+---@return number axisX
+---@return number axisY
+---@return number axisZ
 function getObjectRotationVelocity(object) end
 
 ---@param object Object
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function addVelocityRelativeToObjectVelocity(object, vecX, vecY, vecZ) end
 
 ---@param object Object
----@return float speed
+---@return number speed
 function getObjectSpeed(object) end
 
----@param l1x1 float
----@param l1y1 float
----@param l1x2 float
----@param l1y2 float
----@param l2x1 float
----@param l2y1 float
----@param l2x2 float
----@param l2y2 float
----@return bool result
----@return float X
----@return float Y
+---@param l1x1 number
+---@param l1y1 number
+---@param l1x2 number
+---@param l1y2 number
+---@param l2x1 number
+---@param l2y1 number
+---@param l2x2 number
+---@param l2y2 number
+---@return boolean result
+---@return number X
+---@return number Y
 function get2dLinesIntersectPoint(l1x1, l1y1, l1x2, l1y2, l2x1, l2y1, l2x2, l2y2) end
 
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskPause(ped, timeMS) end
 
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskStandStill(ped, timeMS) end
 
 ---@param ped Ped
----@param int2 bool
----@param time int
+---@param int2 boolean
+---@param time number
 function taskFallAndGetUp(ped, int2, time) end
 
 ---@param ped Ped
----@param jump bool
+---@param jump boolean
 function taskJump(ped, jump) end
 
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskTired(ped, timeMS) end
 
 ---@param ped Ped
 function taskDie(ped) end
 
 ---@param ped Ped
----@param lookAt int
----@param timeMS int
+---@param lookAt number
+---@param timeMS number
 function taskLookAtChar(ped, lookAt, timeMS) end
 
 ---@param ped Ped
----@param lookAt int
----@param timeMS int
+---@param lookAt number
+---@param timeMS number
 function taskLookAtVehicle(ped, lookAt, timeMS) end
 
 ---@param ped Ped
----@param audio int
+---@param audio number
 function taskSay(ped, audio) end
 
 ---@param ped Ped
@@ -3278,11 +3279,11 @@ function taskShakeFist(ped) end
 function taskCower(ped) end
 
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskHandsUp(ped, timeMS) end
 
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskDuck(ped, timeMS) end
 
 ---@param ped Ped
@@ -3292,18 +3293,18 @@ function taskUseAtm(ped) end
 function taskScratchHead(ped) end
 
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskLookAbout(ped, timeMS) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param time int
----@param passengerSeat int
+---@param time number
+---@param passengerSeat number
 function taskEnterCarAsPassenger(ped, car, time, passengerSeat) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param timeMS int
+---@param timeMS number
 function taskEnterCarAsDriver(ped, car, timeMS) end
 
 ---@param ped Ped
@@ -3312,84 +3313,84 @@ function taskLeaveCar(ped, car) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function taskLeaveCarAndFlee(ped, car, X, Y, Z) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param toX float
----@param toY float
----@param toZ float
----@param speed float
----@param int7 int
----@param model int
----@param int9 int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param speed number
+---@param int7 number
+---@param model number
+---@param int9 number
 function taskCarDriveToCoord(ped, car, toX, toY, toZ, speed, int7, model, int9) end
 
 ---@param ped Ped
 ---@param hijackCar Vehicle
----@param searchRadius float
----@param trafficBehavior int
+---@param searchRadius number
+---@param trafficBehavior number
 function taskCarDriveWander(ped, hijackCar, searchRadius, trafficBehavior) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
----@param time int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
+---@param time number
 function taskGoStraightToCoord(ped, toX, toY, toZ, mode, time) end
 
 ---@param ped Ped
----@param angle float
+---@param angle number
 function taskAchieveHeading(ped, angle) end
 
 function flushRoute() end
 
----@param pointX float
----@param pointY float
----@param pointZ float
+---@param pointX number
+---@param pointY number
+---@param pointZ number
 function extendRoute(pointX, pointY, pointZ) end
 
 ---@param ped Ped
----@param flags1 int
----@param flags2 int
+---@param flags1 number
+---@param flags2 number
 function taskFollowPointRoute(ped, flags1, flags2) end
 
 ---@param ped Ped
 ---@param toActor Ped
----@param timelimit int
----@param stopWithinRadius float
+---@param timelimit number
+---@param stopWithinRadius number
 function taskGotoChar(ped, toActor, timelimit, stopWithinRadius) end
 
 ---@param ped Ped
----@param fromX float
----@param fromY float
----@param fromZ float
----@param awayRadius float
----@param timelimit int
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param awayRadius number
+---@param timelimit number
 function taskFleePoint(ped, fromX, fromY, fromZ, awayRadius, timelimit) end
 
 ---@param ped Ped
 ---@param fromActor Ped
----@param radius float
----@param timelimit int
+---@param radius number
+---@param timelimit number
 function taskFleeChar(ped, fromActor, radius, timelimit) end
 
 ---@param ped Ped
----@param fromX float
----@param fromY float
----@param fromZ float
----@param stopAtRadius float
----@param timelimit int
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param stopAtRadius number
+---@param timelimit number
 function taskSmartFleePoint(ped, fromX, fromY, fromZ, stopAtRadius, timelimit) end
 
 ---@param ped Ped
 ---@param fromActor Ped
----@param originRadius float
----@param timelimit int
+---@param originRadius number
+---@param timelimit number
 function taskSmartFleeChar(ped, fromActor, originRadius, timelimit) end
 
 ---@param ped Ped
@@ -3400,7 +3401,7 @@ function taskWanderStandard(ped) end
 function taskKillCharOnFoot(ped, killActor) end
 
 ---@param car Vehicle
----@param path int
+---@param path number
 function startPlaybackRecordedCar(car, path) end
 
 ---@param car Vehicle
@@ -3429,262 +3430,262 @@ function setCarEscortCarRear(car, followCar) end
 function setCarEscortCarFront(car, followCar) end
 
 ---@param ped Ped
----@param pathX float
----@param pathY float
----@param pathZ float
----@param mode int
----@param time int
+---@param pathX number
+---@param pathY number
+---@param pathZ number
+---@param mode number
+---@param time number
 function taskFollowPathNodesToCoord(ped, pathX, pathY, pathZ, mode, time) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledArea2d(ped, x1, y1, x2, y2, angle, sphere) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledAreaOnFoot2d(ped, x1, y1, x2, y2, angle, sphere) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledAreaInCar2d(ped, x1, y1, x2, y2, angle, sphere) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param height float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param height number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledArea2d(ped, x1, y1, x2, y2, height, flag) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAngledAreaOnFoot2d(ped, x1, y1, x2, y2, angle, sphere) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param height float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param height number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledAreaInCar2d(ped, x1, y1, x2, y2, height, flag) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledArea3d(ped, x1, y1, z1, x2, y2, z2, angle, sphere) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledAreaOnFoot3d(ped, x1, y1, z1, x2, y2, z2, angle, sphere) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isCharInAngledAreaInCar3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledArea3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledAreaOnFoot3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledAreaInCar3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInTaxi(ped) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
 ---@param useCar Vehicle
 function taskGoToCoordAnyMeans(ped, toX, toY, toZ, mode, useCar) end
 
----@param pX float
----@param pY float
----@return float zAngle
+---@param pX number
+---@param pY number
+---@return number zAngle
 function getHeadingFromVector2d(pX, pY) end
 
 ---@param ped Ped
 ---@param animation string
 ---@param IFP string
----@param framedelta float
----@param loop bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
+---@param framedelta number
+---@param loop boolean
+---@param lockX boolean
+---@param lockY boolean
+---@param lockF boolean
+---@param time number
 function taskPlayAnim(ped, animation, IFP, framedelta, loop, lockX, lockY, lockF, time) end
 
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
 function loadPathNodesInArea(x1, y1, x2, y2) end
 
 function releasePathNodes() end
 
----@param type int
----@return int maker
+---@param type number
+---@return number maker
 function loadCharDecisionMaker(type) end
 
 ---@param ped Ped
----@param maker int
+---@param maker number
 function setCharDecisionMaker(ped, maker) end
 
----@param shadow int
----@param r int
----@param g int
----@param b int
----@param a int
+---@param shadow number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function setTextDropshadow(shadow, r, g, b, a) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isPlaybackGoingOnForCar(car) end
 
 ---@param ped Ped
----@param accuracy float
+---@param accuracy number
 function setSenseRange(ped, accuracy) end
 
 ---@param ped Ped
 ---@param animation string
----@return bool result
+---@return boolean result
 function isCharPlayingAnim(ped, animation) end
 
 ---@param ped Ped
 ---@param animation string
----@param flag bool
+---@param flag boolean
 function setCharAnimPlayingFlag(ped, animation, flag) end
 
 ---@param ped Ped
 ---@param animation string
----@return float time
+---@return number time
 function getCharAnimCurrentTime(ped, animation) end
 
 ---@param ped Ped
 ---@param animation string
----@param time float
+---@param time number
 function setCharAnimCurrentTime(ped, animation, time) end
 
----@return int task
+---@return number task
 function openSequenceTask() end
 
----@param task int
+---@param task number
 function closeSequenceTask(task) end
 
 ---@param ped Ped
----@param task int
+---@param task number
 function performSequenceTask(ped, task) end
 
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setCharCollision(ped, enable) end
 
 ---@param ped Ped
 ---@param animation string
----@return float totalTime
+---@return number totalTime
 function getCharAnimTotalTime(ped, animation) end
 
----@param task int
+---@param task number
 function clearSequenceTask(task) end
 
----@param originX float
----@param originY float
----@param originZ float
----@param zAngle float
----@param unknownAngle float
----@param taskSequence int
----@return int handle
+---@param originX number
+---@param originY number
+---@param originZ number
+---@param zAngle number
+---@param unknownAngle number
+---@param taskSequence number
+---@return number handle
 function addAttractor(originX, originY, originZ, zAngle, unknownAngle, taskSequence) end
 
----@param handle int
+---@param handle number
 function clearAttractor(handle) end
 
----@param pedtype int
+---@param pedtype number
 ---@param modelId Model
----@param ASOrigin int
----@param task int
+---@param ASOrigin number
+---@param task number
 ---@return Ped ped
 function createCharAtAttractor(pedtype, modelId, ASOrigin, task) end
 
@@ -3692,116 +3693,116 @@ function createCharAtAttractor(pedtype, modelId, ASOrigin, task) end
 ---@param car Vehicle
 function taskLeaveCarImmediately(ped, car) end
 
----@param stat int
----@param add int
+---@param stat number
+---@param add number
 function incrementIntStat(stat, add) end
 
----@param stat int
----@param add float
+---@param stat number
+---@param add number
 function incrementFloatStat(stat, add) end
 
----@param stat int
----@param int int
-function decrementIntStat(stat, int) end
+---@param stat number
+---@param number number
+function decrementIntStat(stat, number) end
 
----@param stat int
----@param float float
-function decrementFloatStat(stat, float) end
+---@param stat number
+---@param number number
+function decrementFloatStat(stat, number) end
 
----@param stat int
----@param int int
-function registerIntStat(stat, int) end
+---@param stat number
+---@param number number
+function registerIntStat(stat, number) end
 
----@param stat int
----@param value float
+---@param stat number
+---@param value number
 function registerFloatStat(stat, value) end
 
----@param stat int
----@param int int
-function setIntStat(stat, int) end
+---@param stat number
+---@param number number
+function setIntStat(stat, number) end
 
----@param stat int
----@param float float
-function setFloatStat(stat, float) end
+---@param stat number
+---@param number number
+function setFloatStat(stat, number) end
 
 ---@param ped Ped
----@param task int
----@return int status
+---@param task number
+---@return number status
 function getScriptTaskStatus(ped, task) end
 
----@param type int
----@return int group
+---@param type number
+---@return number group
 function createGroup(type) end
 
----@param group int
+---@param group number
 ---@param ped Ped
 function setGroupLeader(group, ped) end
 
----@param group int
+---@param group number
 ---@param ped Ped
 function setGroupMember(group, ped) end
 
----@param group int
+---@param group number
 function removeGroup(group) end
 
 ---@param ped Ped
 function taskLeaveAnyCar(ped) end
 
 ---@param ped Ped
----@param weapon int
----@param flags int
----@param time int
----@param chance int
+---@param weapon number
+---@param flags number
+---@param time number
+---@param chance number
 function taskKillCharOnFootWhileDucking(ped, weapon, flags, time, chance) end
 
 ---@param ped Ped
----@param aimAt int
----@param timeMS int
+---@param aimAt number
+---@param timeMS number
 function taskAimGunAtChar(ped, aimAt, timeMS) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
----@param turnRadius float
----@param stopRadius float
----@param lookAtActor int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
+---@param turnRadius number
+---@param stopRadius number
+---@param lookAtActor number
 function taskGoToCoordWhileShooting(ped, toX, toY, toZ, mode, turnRadius, stopRadius, lookAtActor) end
 
 ---@param ped Ped
----@param stay bool
+---@param stay boolean
 function taskStayInSamePlace(ped, stay) end
 
 ---@param ped Ped
----@param rotateTo int
+---@param rotateTo number
 function taskTurnCharToFaceChar(ped, rotateTo) end
 
 ---@param ped Ped
----@param origin int
----@return bool result
+---@param origin number
+---@return boolean result
 function isCharAtScriptedAttractor(ped, origin) end
 
----@param pack int
----@param loop bool
+---@param pack number
+---@param loop boolean
 function setSequenceToRepeat(pack, loop) end
 
 ---@param ped Ped
----@return int progess
+---@return number progess
 function getSequenceProgress(ped) end
 
 ---@param ped Ped
 function clearLookAt(ped) end
 
 ---@param ped Ped
----@param dist float
+---@param dist number
 function setFollowNodeThresholdDistance(ped, dist) end
 
 ---@param particle string
----@param pX float
----@param pY float
----@param pZ float
----@param type int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param type number
 ---@return Particle particle
 function createFxSystem(particle, pX, pY, pZ, type) end
 
@@ -3817,38 +3818,38 @@ function playAndKillFxSystem(particle) end
 ---@param particle Particle
 function killFxSystem(particle) end
 
----@param stat int
----@return int stat
+---@param stat number
+---@return number stat
 function getIntStat(stat) end
 
----@param stat int
----@return float stat
+---@param stat number
+---@return number stat
 function getFloatStat(stat) end
 
 ---@param object Object
----@param fireproof bool
+---@param fireproof boolean
 function setObjectRenderScorched(object, fireproof) end
 
 ---@param ped Ped
----@param lookAt int
----@param timeMS int
+---@param lookAt number
+---@param timeMS number
 function taskLookAtObject(ped, lookAt, timeMS) end
 
----@param angle float
----@return float float
+---@param angle number
+---@return number number
 function limitAngle(angle) end
 
 ---@param car Vehicle
----@param door int
+---@param door number
 function openCarDoor(car, door) end
 
 ---@param pickup Pickup
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getPickupCoordinates(pickup) end
 
----@param maker int
+---@param maker number
 function removeDecisionMaker(maker) end
 
 ---@param ped Ped
@@ -3856,37 +3857,37 @@ function removeDecisionMaker(maker) end
 function getCharModel(ped) end
 
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
----@param timeMS int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param timeMS number
 function taskAimGunAtCoord(ped, atX, atY, atZ, timeMS) end
 
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
----@param timeMS int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param timeMS number
 function taskShootAtCoord(ped, atX, atY, atZ, timeMS) end
 
 ---@param particle string
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param type number
 ---@return Particle particle
 function createFxSystemOnChar(particle, ped, offsetX, offsetY, offsetZ, type) end
 
 ---@param particle string
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param type number
 ---@return Particle particle
 function createFxSystemOnCharWithDirection(
 	particle,
@@ -3903,22 +3904,22 @@ end
 
 ---@param particle string
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param type number
 ---@return Particle particle
 function createFxSystemOnCar(particle, car, offsetX, offsetY, offsetZ, type) end
 
 ---@param particle string
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param type number
 ---@return Particle particle
 function createFxSystemOnCarWithDirection(
 	particle,
@@ -3935,22 +3936,22 @@ end
 
 ---@param particle string
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param type number
 ---@return Particle particle
 function createFxSystemOnObject(particle, object, offsetX, offsetY, offsetZ, type) end
 
 ---@param particle string
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param flag int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param flag number
 ---@return Particle particle
 function createFxSystemOnObjectWithDirection(
 	particle,
@@ -3970,9 +3971,9 @@ end
 function taskDestroyCar(ped, car) end
 
 ---@param ped Ped
----@param toOffsetX float
----@param toOffsetY float
----@param time int
+---@param toOffsetX number
+---@param toOffsetY number
+---@param time number
 function taskDiveAndGetUp(ped, toOffsetX, toOffsetY, time) end
 
 ---@param modelId Model
@@ -3984,249 +3985,249 @@ function customPlateForNextCar(modelId, numberplate) end
 function taskShuffleToNextCarSeat(ped, car) end
 
 ---@param ped Ped
----@param withActor int
----@param flag bool
----@param unknownFlag int
+---@param withActor number
+---@param flag boolean
+---@param unknownFlag number
 function taskChatWithChar(ped, withActor, flag, unknownFlag) end
 
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param tilt float
----@param switchstyle int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param tilt number
+---@param switchstyle number
 function attachCameraToVehicle(car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, tilt, switchstyle) end
 
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param toCar int
----@param tilt float
----@param switchstyle int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param toCar number
+---@param tilt number
+---@param switchstyle number
 function attachCameraToVehicleLookAtVehicle(car, offsetX, offsetY, offsetZ, toCar, tilt, switchstyle) end
 
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 ---@param ped Ped
----@param tilt float
----@param switchstyle int
+---@param tilt number
+---@param switchstyle number
 function attachCameraToVehicleLookAtChar(car, offsetX, offsetY, offsetZ, ped, tilt, switchstyle) end
 
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param tilt float
----@param switchstyle int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param tilt number
+---@param switchstyle number
 function attachCameraToChar(ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, tilt, switchstyle) end
 
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param targetActor int
----@param tilt float
----@param switchstyle int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param targetActor number
+---@param tilt number
+---@param switchstyle number
 function attachCameraToCharLookAtChar(ped, offsetX, offsetY, offsetZ, targetActor, tilt, switchstyle) end
 
 ---@param car Vehicle
----@param lights int
+---@param lights number
 function forceCarLights(car, lights) end
 
----@param ASOrigin int
----@param pedtype int
+---@param ASOrigin number
+---@param pedtype number
 function addPedtypeAsAttractorUser(ASOrigin, pedtype) end
 
 ---@param object Object
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachObjectToCar(object, car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---@param object Object
----@param X float
----@param Y float
----@param Z float
----@param collisionDetection bool
+---@param X number
+---@param Y number
+---@param Z number
+---@param collisionDetection boolean
 function detachObject(object, X, Y, Z, collisionDetection) end
 
 ---@param car Vehicle
----@param toCar int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param toCar number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachCarToCar(car, toCar, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---@param car Vehicle
----@param X float
----@param Y float
----@param Z float
----@param collisionDetection bool
+---@param X number
+---@param Y number
+---@param Z number
+---@param collisionDetection boolean
 function detachCar(car, X, Y, Z, collisionDetection) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectAttached(object) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isVehicleAttached(car) end
 
 ---@param ped Ped
 function clearCharTasks(ped) end
 
 ---@param ped Ped
----@param unknownFlag1 bool
----@param unknownFlag2 bool
----@param unknownFlag3 bool
+---@param unknownFlag1 boolean
+---@param unknownFlag2 boolean
+---@param unknownFlag3 boolean
 function taskTogglePedThreatScanner(ped, unknownFlag1, unknownFlag2, unknownFlag3) end
 
 ---@param car Vehicle
----@param door int
----@param visible bool
+---@param door number
+---@param visible boolean
 function popCarDoor(car, door, visible) end
 
 ---@param car Vehicle
----@param door int
+---@param door number
 function fixCarDoor(car, door) end
 
 ---@param car Vehicle
 function taskEveryoneLeaveCar(car) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerTargettingAnything(player) end
 
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getActiveCameraCoordinates() end
 
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getActiveCameraPointAt() end
 
 ---@param car Vehicle
----@param component int
----@param effectFlag bool
+---@param component number
+---@param effectFlag boolean
 function popCarPanel(car, component, effectFlag) end
 
 ---@param car Vehicle
----@param componentB int
+---@param componentB number
 function fixCarPanel(car, componentB) end
 
 ---@param car Vehicle
----@param tire int
+---@param tire number
 function fixCarTire(car, tire) end
 
 ---@param object Object
----@param toObject int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param toObject number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachObjectToObject(object, toObject, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---@param object Object
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachObjectToChar(object, ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---@param car Vehicle
----@return float vecX
----@return float vecY
----@return float vecZ
+---@return number vecX
+---@return number vecY
+---@return number vecZ
 function getCarSpeedVector(car) end
 
 ---@param car Vehicle
----@return float mass
+---@return number mass
 function getCarMass(car) end
 
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskDiveFromAttachmentAndGetUp(ped, timeMS) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param position int
----@param shootingAngle1 float
----@param shootingAngle2 float
----@param weapon int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param position number
+---@param shootingAngle1 number
+---@param shootingAngle2 number
+---@param weapon number
 function attachCharToBike(ped, car, offsetX, offsetY, offsetZ, position, shootingAngle1, shootingAngle2, weapon) end
 
 ---@param ped Ped
----@param toActor int
----@param timelimit int
----@param approachDistance float
----@param approachAngle float
+---@param toActor number
+---@param timelimit number
+---@param approachDistance number
+---@param approachAngle number
 function taskGotoCharOffset(ped, toActor, timelimit, approachDistance, approachAngle) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param timeMS int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param timeMS number
 function taskLookAtCoord(ped, toX, toY, toZ, timeMS) end
 
 ---@param ped Ped
----@param hide bool
+---@param hide boolean
 function hideCharWeaponForScriptedCutscene(ped, hide) end
 
 ---@param ped Ped
----@return float speed
+---@return number speed
 function getCharSpeed(ped) end
 
----@param group int
----@param maker int
+---@param group number
+---@param maker number
 function setGroupDecisionMaker(group, maker) end
 
----@param type int
----@return int maker
+---@param type number
+---@return number maker
 function loadGroupDecisionMaker(type) end
 
 ---@param player Player
----@param mode bool
+---@param mode boolean
 function disablePlayerSprint(player, mode) end
 
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskSitDown(ped, timeMS) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param radius1 float
----@param radius2 float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param targetX number
+---@param targetY number
+---@param targetZ number
+---@param radius1 number
+---@param radius2 number
 ---@return Searchlight searchlight
 function createSearchlight(atX, atY, atZ, targetX, targetY, targetZ, radius1, radius2) end
 
@@ -4234,71 +4235,71 @@ function createSearchlight(atX, atY, atZ, targetX, targetY, targetZ, radius1, ra
 function deleteSearchlight(searchlight) end
 
 ---@param searchlight Searchlight
----@return bool result
+---@return boolean result
 function doesSearchlightExist(searchlight) end
 
 ---@param searchlight Searchlight
----@param fromX float
----@param fromY float
----@param fromZ float
----@param toX float
----@param toY float
----@param toZ float
----@param speed float
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param speed number
 function moveSearchlightBetweenCoords(searchlight, fromX, fromY, fromZ, toX, toY, toZ, speed) end
 
 ---@param searchlight Searchlight
----@param toX float
----@param toY float
----@param toZ float
----@param speed float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param speed number
 function pointSearchlightAtCoord(searchlight, toX, toY, toZ, speed) end
 
 ---@param searchlight Searchlight
 ---@param ped Ped
----@param speed float
+---@param speed number
 function pointSearchlightAtChar(searchlight, ped, speed) end
 
 ---@param searchlight Searchlight
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInSearchlight(searchlight, ped) end
 
----@return bool result
+---@return boolean result
 function hasCutsceneLoaded() end
 
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function taskTurnCharToFaceCoord(ped, atX, atY, atZ) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param speed float
+---@param speed number
 function taskDrivePointRoute(ped, car, speed) end
 
----@param fromX float
----@param fromY float
----@param fromZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param energy int
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param targetX number
+---@param targetY number
+---@param targetZ number
+---@param energy number
 function fireSingleBullet(fromX, fromY, fromZ, targetX, targetY, targetZ, energy) end
 
----@param fromX float
----@param fromY float
----@param fromZ float
----@param toX float
----@param toY float
----@param toZ float
----@param checkBuildings bool
----@param checkVehicles bool
----@param checkActors bool
----@param checkObjects bool
----@param checkParticles bool
----@return bool result
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param checkBuildings boolean
+---@param checkVehicles boolean
+---@param checkActors boolean
+---@param checkObjects boolean
+---@param checkParticles boolean
+---@return boolean result
 function isLineOfSightClear(
 	fromX,
 	fromY,
@@ -4315,49 +4316,49 @@ function isLineOfSightClear(
 end
 
 ---@param car Vehicle
----@return float roll
+---@return number roll
 function getCarRoll(car) end
 
 ---@param searchlight Searchlight
 ---@param car Vehicle
----@param speed float
+---@param speed number
 function pointSearchlightAtVehicle(searchlight, car, speed) end
 
----@param int int
+---@param number number
 ---@param car Vehicle
----@return bool result
-function isVehicleInSearchlight(int, car) end
+---@return boolean result
+function isVehicleInSearchlight(number, car) end
 
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param radius float
----@param radius2 float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param targetX number
+---@param targetY number
+---@param targetZ number
+---@param radius number
+---@param radius2 number
 ---@return Searchlight searchlight
 function createSearchlightOnVehicle(car, offsetX, offsetY, offsetZ, targetX, targetY, targetZ, radius, radius2) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
----@param turnRadius float
----@param stopRadius float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
+---@param turnRadius number
+---@param stopRadius number
 ---@param ped2 Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 function taskGoToCoordWhileAiming(ped, toX, toY, toZ, mode, turnRadius, stopRadius, ped2, offsetX, offsetY, offsetZ) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@return int num
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@return number num
 function getNumberOfFiresInRange(atX, atY, atZ, radius) end
 
 ---@param searchlight Searchlight
@@ -4369,50 +4370,50 @@ function skipToEndAndStopPlaybackRecordedCar(car) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param performAction int
----@param timelimit int
+---@param performAction number
+---@param timelimit number
 function taskCarTempAction(ped, car, performAction, timelimit) end
 
----@param enable bool
+---@param enable boolean
 function setLaRiots(enable) end
 
 ---@param ped Ped
 function removeCharFromGroup(ped) end
 
 ---@param searchlight Searchlight
----@param tower int
----@param housing int
----@param bulb int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param tower number
+---@param housing number
+---@param bulb number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 function attachSearchlightToSearchlightObject(searchlight, tower, housing, bulb, offsetX, offsetY, offsetZ) end
 
----@param enable bool
+---@param enable boolean
 function switchEmergencyServices(enable) end
 
----@param type int
----@param atX float
----@param atY float
----@param atZ float
----@param pointX float
----@param pointY float
----@param pointZ float
----@param radius float
+---@param type number
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param pointX number
+---@param pointY number
+---@param pointZ number
+---@param radius number
 ---@return Checkpoint checkpoint
 function createCheckpoint(type, atX, atY, atZ, pointX, pointY, pointZ, radius) end
 
 ---@param checkpoint Checkpoint
 function deleteCheckpoint(checkpoint) end
 
----@param enable bool
+---@param enable boolean
 function switchRandomTrains(enable) end
 
----@param type int
----@param atX float
----@param atY float
----@param atZ float
----@param direction bool
+---@param type number
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param direction boolean
 ---@return Vehicle train
 function createMissionTrain(type, atX, atY, atZ, direction) end
 
@@ -4423,194 +4424,194 @@ function markMissionTrainsAsNoLongerNeeded() end
 function deleteAllTrains() end
 
 ---@param train Vehicle
----@param speed float
+---@param speed number
 function setTrainSpeed(train, speed) end
 
 ---@param train Vehicle
----@param speed float
+---@param speed number
 function setTrainCruiseSpeed(train, speed) end
 
 ---@param train Vehicle
----@return int caboose
+---@return number caboose
 function getTrainCaboose(train) end
 
 ---@param player Player
 function deletePlayer(player) end
 
----@param mode bool
+---@param mode boolean
 function setTwoPlayerCameraMode(mode) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param targetCar int
----@param order int
----@param maxSpeed float
----@param trafficFlag int
+---@param targetCar number
+---@param order number
+---@param maxSpeed number
+---@param trafficFlag number
 function taskCarMission(ped, car, targetCar, order, maxSpeed, trafficFlag) end
 
 ---@param ped Ped
----@param toObject int
----@param timelimit int
----@param stopWithinRadius float
+---@param toObject number
+---@param timelimit number
+---@param stopWithinRadius number
 function taskGoToObject(ped, toObject, timelimit, stopWithinRadius) end
 
 ---@param ped Ped
----@param roll bool
+---@param roll boolean
 function taskWeaponRoll(ped, roll) end
 
 ---@param ped Ped
----@param bustActor int
+---@param bustActor number
 function taskCharArrestChar(ped, bustActor) end
 
 ---@param car Vehicle
----@param poolIndex int
+---@param poolIndex number
 ---@return Model itemID
 function getAvailableVehicleMod(car, poolIndex) end
 
 ---@param component Model
----@return int type
+---@return number type
 function getVehicleModType(component) end
 
 ---@param car Vehicle
 ---@param component Model
----@return int componentId
+---@return number componentId
 function addVehicleMod(car, component) end
 
 ---@param car Vehicle
----@param componentId int
+---@param componentId number
 function removeVehicleMod(car, componentId) end
 
 ---@param component Model
 function requestVehicleMod(component) end
 
 ---@param component Model
----@return bool result
+---@return boolean result
 function hasVehicleModLoaded(component) end
 
 ---@param component Model
 function markVehicleModAsNoLongerNeeded(component) end
 
 ---@param car Vehicle
----@return int num
+---@return number num
 function getNumAvailablePaintjobs(car) end
 
----@param set int
----@param paintjob int
+---@param set number
+---@param paintjob number
 function giveVehiclePaintjob(set, paintjob) end
 
 ---@param ped Ped
----@param group int
----@return bool result
+---@param group number
+---@return boolean result
 function isGroupMember(ped, group) end
 
 ---@param ped Ped
----@param group int
----@return bool result
+---@param group number
+---@return boolean result
 function isGroupLeader(ped, group) end
 
----@param group int
----@param range float
+---@param group number
+---@param range number
 function setGroupSeparationRange(group, range) end
 
----@param distance float
+---@param distance number
 function limitTwoPlayerDistance(distance) end
 
 function releaseTwoPlayerDistance() end
 
----@param can bool
+---@param can boolean
 function setPlayerPlayerTargetting(can) end
 
----@param fire int
----@return float X
----@return float Y
----@return float Z
+---@param fire number
+---@return number X
+---@return number Y
+---@return number Z
 function getScriptFireCoords(fire) end
 
----@param forX float
----@param forY float
----@param forZ float
----@param direction int
----@return float X
----@return float Y
----@return float Z
----@return float ZAngle
+---@param forX number
+---@param forY number
+---@param forZ number
+---@param direction number
+---@return number X
+---@return number Y
+---@return number Z
+---@return number ZAngle
 function getNthClosestCarNodeWithHeading(forX, forY, forZ, direction) end
 
----@param allow bool
+---@param allow boolean
 function setPlayersCanBeInSeparateCars(allow) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function doesCarHaveStuckCarCheck(car) end
 
 ---@param car Vehicle
----@param speed float
+---@param speed number
 function setPlaybackSpeed(car, speed) end
 
 ---@param ped Ped
----@param range float
----@return bool result
+---@param range number
+---@return boolean result
 function areAnyCharsNearChar(ped, range) end
 
 function skipCutsceneEnd() end
 
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@return int percentage
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@return number percentage
 function getPercentageTaggedInArea(x1, y1, x2, y2) end
 
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param value bool
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param value boolean
 function setTagStatusInArea(x1, y1, x2, y2, value) end
 
 ---@param car Vehicle
----@param toX float
----@param toY float
----@param toZ float
+---@param toX number
+---@param toY number
+---@param toZ number
 function carGotoCoordinatesRacing(car, toX, toY, toZ) end
 
 ---@param car Vehicle
----@param path int
+---@param path number
 function startPlaybackRecordedCarUsingAi(car, path) end
 
 ---@param car Vehicle
----@param path float
+---@param path number
 function skipInPlaybackRecordedCar(car, path) end
 
----@param maker int
----@param event int
+---@param maker number
+---@param event number
 function clearCharDecisionMakerEventResponse(maker, event) end
 
----@param maker int
----@param event int
----@param taskID int
----@param respect float
----@param hate float
----@param like float
----@param dislike float
----@param inCar bool
----@param onFoot bool
+---@param maker number
+---@param event number
+---@param taskID number
+---@param respect number
+---@param hate number
+---@param like number
+---@param dislike number
+---@param inCar boolean
+---@param onFoot boolean
 function addCharDecisionMakerEventResponse(maker, event, taskID, respect, hate, like, dislike, inCar, onFoot) end
 
 ---@param ped Ped
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param boneId1 int
----@param boneId2 int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param boneId1 number
+---@param boneId2 number
 ---@param performAnimation string
----@param IFPFile int
----@param time int
+---@param IFPFile number
+---@param time number
 function taskPickUpObject(ped, object, offsetX, offsetY, offsetZ, boneId1, boneId2, performAnimation, IFPFile, time) end
 
 ---@param ped Ped
----@param object bool
+---@param object boolean
 function dropObject(ped, object) end
 
 ---@param car Vehicle
@@ -4619,37 +4620,37 @@ function explodeCarInCutscene(car) end
 ---@param player Player
 function buildPlayerModel(player) end
 
----@param hydra int
+---@param hydra number
 ---@param car Vehicle
----@param radius float
+---@param radius number
 function planeAttackPlayer(hydra, car, radius) end
 
----@param plane int
----@param direction float
----@param altitudemin float
----@param altitudemax float
+---@param plane number
+---@param direction number
+---@param altitudemin number
+---@param altitudemax number
 function planeFlyInDirection(plane, direction, altitudemin, altitudemax) end
 
----@param plane int
+---@param plane number
 ---@param ped Ped
 ---@param car Vehicle
----@param radius float
+---@param radius number
 function planeFollowEntity(plane, ped, car, radius) end
 
 ---@param ped Ped
----@param drivebyActor int
+---@param drivebyActor number
 ---@param car Vehicle
----@param pX float
----@param pY float
----@param pZ float
----@param radiusX float
----@param radiusY int
----@param radiusZ bool
----@param firingRate int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ boolean
+---@param firingRate number
 function taskDriveBy(ped, drivebyActor, car, pX, pY, pZ, radiusX, radiusY, radiusZ, firingRate) end
 
 ---@param car Vehicle
----@param stay bool
+---@param stay boolean
 function setCarStayInSlowLane(car, stay) end
 
 ---@param player Player
@@ -4657,13 +4658,13 @@ function setCarStayInSlowLane(car, stay) end
 function takeRemoteControlOfCar(player, car) end
 
 ---@param object Model
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@param smashed bool
----@param damaged bool
----@return bool result
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@param smashed boolean
+---@param damaged boolean
+---@return boolean result
 function isClosestObjectOfTypeSmashedOrDamaged(object, atX, atY, atZ, radius, smashed, damaged) end
 
 ---@param ped Ped
@@ -4673,40 +4674,40 @@ function finishSettingUpConversation() end
 
 ---@param ped Ped
 ---@param gxtString GxtString
----@return bool result
+---@return boolean result
 function isConversationAtNode(ped, gxtString) end
 
 ---@param object Object
----@return int health
+---@return number health
 function getObjectHealth(object) end
 
 ---@param object Object
----@param health int
+---@param health number
 function setObjectHealth(object, health) end
 
 ---@param object Object
----@param intensity int
+---@param intensity number
 function breakObject(object, intensity) end
 
 ---@param heli Vehicle
 ---@param player Player
----@param radius float
+---@param radius number
 function heliAttackPlayer(heli, player, radius) end
 
 ---@param heli Vehicle
 ---@param ped Ped
 ---@param car Vehicle
----@param radius float
+---@param radius number
 function heliFollowEntity(heli, ped, car, radius) end
 
 ---@param heli Vehicle
 ---@param ped Ped
 ---@param car Vehicle
----@param radius float
+---@param radius number
 function policeHeliChaseEntity(heli, ped, car, radius) end
 
 ---@param ped Ped
----@param hold bool
+---@param hold boolean
 function taskUseMobilePhone(ped, hold) end
 
 ---@param ped Ped
@@ -4715,51 +4716,51 @@ function taskWarpCharIntoCarAsDriver(ped, car) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param passengerseat int
+---@param passengerseat number
 function taskWarpCharIntoCarAsPassenger(ped, car, passengerseat) end
 
----@param generate bool
+---@param generate boolean
 function switchCopsOnBikes(generate) end
 
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isFlameInAngledArea2d(x1, y1, x2, y2, angle, sphere) end
 
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isFlameInAngledArea3d(x1, y1, z1, x2, y2, z2, angle, sphere) end
 
 ---@param car Vehicle
----@param checkDistance float
----@param time int
----@param stuck bool
----@param flipped bool
----@param warp bool
----@param path int
+---@param checkDistance number
+---@param time number
+---@param stuck boolean
+---@param flipped boolean
+---@param warp boolean
+---@param path number
 function addStuckCarCheckWithWarp(car, checkDistance, time, stuck, flipped, warp, path) end
 
 ---@param car Vehicle
----@param door int
+---@param door number
 function damageCarPanel(car, door) end
 
 ---@param car Vehicle
----@param roll float
+---@param roll number
 function setCarRoll(car, roll) end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function suppressCarModel(modelId) end
 
 ---@param modelId Model
@@ -4767,139 +4768,139 @@ function dontSuppressCarModel(modelId) end
 
 function dontSuppressAnyCarModels() end
 
----@param key int
----@return bool result
+---@param key number
+---@return boolean result
 function isPs2KeyboardKeyPressed(key) end
 
----@param key int
----@return bool result
+---@param key number
+---@return boolean result
 function isPs2KeyboardKeyJustPressed(key) end
 
 ---@param ped Ped
----@param liftingObject int
----@return bool result
+---@param liftingObject number
+---@return boolean result
 function isCharHoldingObject(ped, liftingObject) end
 
 ---@param car Vehicle
----@param can bool
+---@param can boolean
 function setCarCanGoAgainstTraffic(car, can) end
 
 ---@param car Vehicle
----@param door int
+---@param door number
 function damageCarDoor(car, door) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param model int
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param model number
 ---@return Vehicle car
 function getRandomCarInSphereNoSave(X, Y, Z, radius, model) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param pedtypeCivilian bool
----@param gang bool
----@param prostitute bool
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param pedtypeCivilian boolean
+---@param gang boolean
+---@param prostitute boolean
 ---@return Ped ped
 function getRandomCharInSphere(X, Y, Z, radius, pedtypeCivilian, gang, prostitute) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function hasCharBeenArrested(ped) end
 
----@param plane int
----@param throttle float
+---@param plane number
+---@param throttle number
 function setPlaneThrottle(plane, throttle) end
 
 ---@param heli Vehicle
----@param X float
----@param Y float
----@param Z float
----@param minaltitude float
----@param maxaltitude float
+---@param X number
+---@param Y number
+---@param Z number
+---@param minaltitude number
+---@param maxaltitude number
 function heliLandAtCoords(heli, X, Y, Z, minaltitude, maxaltitude) end
 
----@param hydra int
+---@param hydra number
 function planeStartsInAir(hydra) end
 
----@param acquaintance int
----@param pedtype int
----@param toPedtype int
+---@param acquaintance number
+---@param pedtype number
+---@param toPedtype number
 function setRelationship(acquaintance, pedtype, toPedtype) end
 
----@param acquaintance int
----@param pedtype int
----@param toPedtype int
+---@param acquaintance number
+---@param pedtype number
+---@param toPedtype number
 function clearRelationship(acquaintance, pedtype, toPedtype) end
 
----@param maker int
----@param event int
+---@param maker number
+---@param event number
 function clearGroupDecisionMakerEventResponse(maker, event) end
 
----@param maker int
----@param event int
----@param taskID int
----@param respect float
----@param hate float
----@param like float
----@param dislike float
----@param inCar bool
----@param onFoot bool
+---@param maker number
+---@param event number
+---@param taskID number
+---@param respect number
+---@param hate number
+---@param like number
+---@param dislike number
+---@param inCar boolean
+---@param onFoot boolean
 function addGroupDecisionMakerEventResponse(maker, event, taskID, respect, hate, like, dislike, inCar, onFoot) end
 
----@param texture int
----@param x float
----@param y float
----@param scaleX float
----@param scaleY float
----@param angle float
----@param r int
----@param g int
----@param b int
----@param a int
+---@param texture number
+---@param x number
+---@param y number
+---@param scaleX number
+---@param scaleY number
+---@param angle number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function drawSpriteWithRotation(texture, x, y, scaleX, scaleY, angle, r, g, b, a) end
 
 ---@param ped Ped
----@param attractor int
+---@param attractor number
 function taskUseAttractor(ped, attractor) end
 
 ---@param ped Ped
----@param atActor int
----@param timelimit int
+---@param atActor number
+---@param timelimit number
 function taskShootAtChar(ped, atActor, timelimit) end
 
----@param flags int
----@param radius float
----@param pedsToScan int
+---@param flags number
+---@param radius number
+---@param pedsToScan number
 function setInformRespectedFriends(flags, radius, pedsToScan) end
 
 ---@param ped Ped
----@param event int
----@return bool result
+---@param event number
+---@return boolean result
 function isCharRespondingToEvent(ped, event) end
 
 ---@param object Object
----@param visibility bool
+---@param visibility boolean
 function setObjectVisible(object, visibility) end
 
 ---@param ped Ped
----@param fleeFrom int
----@param runDistance float
----@param time int
----@param changeCourse bool
----@param unkTime1 int
----@param unkTime2 int
----@param awayRadius float
+---@param fleeFrom number
+---@param runDistance number
+---@param time number
+---@param changeCourse boolean
+---@param unkTime1 number
+---@param unkTime2 number
+---@param awayRadius number
 function taskFleeCharAnyMeans(ped, fleeFrom, runDistance, time, changeCourse, unkTime1, unkTime2, awayRadius) end
 
 function flushPatrolRoute() end
 
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 ---@param animation string
 ---@param IFPFile string
 function extendPatrolRoute(X, Y, Z, animation, IFPFile) end
@@ -4907,17 +4908,17 @@ function extendPatrolRoute(X, Y, Z, animation, IFPFile) end
 ---@param object Object
 ---@param animation string
 ---@param IFPFile string
----@param framedelta float
----@param lockF bool
----@param loop bool
----@return bool result
+---@param framedelta number
+---@param lockF boolean
+---@param loop boolean
+---@return boolean result
 function playObjectAnim(object, animation, IFPFile, framedelta, lockF, loop) end
 
----@param zoom int
+---@param zoom number
 function setRadarZoom(zoom) end
 
 ---@param marker Marker
----@return bool result
+---@return boolean result
 function doesBlipExist(marker) end
 
 ---@param shopping GxtString
@@ -4926,15 +4927,15 @@ function loadPrices(shopping) end
 ---@param shopping GxtString
 function loadShop(shopping) end
 
----@return int num
+---@return number num
 function getNumberOfItemsInShop() end
 
----@param index int
----@return int item
+---@param index number
+---@return number item
 function getItemInShop(index) end
 
----@param item int
----@return int price
+---@param item number
+---@return number price
 function getPriceOfItem(item) end
 
 ---@param ped Ped
@@ -4944,42 +4945,42 @@ function taskDead(ped) end
 function setCarAsMissionCar(car) end
 
 ---@param zone GxtString
----@param popcycle int
+---@param popcycle number
 function setZonePopulationType(zone, popcycle) end
 
 ---@param zone GxtString
----@param density int
+---@param density number
 function setZoneDealerStrength(zone, density) end
 
 ---@param zone GxtString
----@return int strength
+---@return number strength
 function getZoneDealerStrength(zone) end
 
 ---@param zone GxtString
----@param gang int
----@param density int
+---@param gang number
+---@param density number
 function setZoneGangStrength(zone, gang, density) end
 
 ---@param zone GxtString
----@param gang int
----@return int density
+---@param gang number
+---@return number density
 function getZoneGangStrength(zone, gang) end
 
----@return bool result
+---@return boolean result
 function isMessageBeingDisplayed() end
 
 ---@param ped Ped
----@param targetPriority bool
+---@param targetPriority boolean
 function setCharIsTargetPriority(ped, targetPriority) end
 
 ---@param modelNumplate Model
----@param townTexture int
+---@param townTexture number
 function customPlateDesignForNextCar(modelNumplate, townTexture) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param timeMS int
----@param stopAtDistance float
+---@param timeMS number
+---@param stopAtDistance number
 function taskGotoCar(ped, car, timeMS, stopAtDistance) end
 
 ---@param group string
@@ -4992,71 +4993,71 @@ function removeIpl(group) end
 function removeIplDiscreetly(group) end
 
 ---@param ped Ped
----@param acquaintance int
----@param pedtype int
+---@param acquaintance number
+---@param pedtype number
 function setCharRelationship(ped, acquaintance, pedtype) end
 
 ---@param ped Ped
----@param acquaintance int
----@param pedtype int
+---@param acquaintance number
+---@param pedtype number
 function clearCharRelationship(ped, acquaintance, pedtype) end
 
 ---@param ped Ped
----@param acquaintance int
+---@param acquaintance number
 function clearAllCharRelationships(ped, acquaintance) end
 
 ---@param car Vehicle
----@return float pitch
+---@return number pitch
 function getCarPitch(car) end
 
----@return int interior
+---@return number interior
 function getActiveInterior() end
 
 ---@param heli Vehicle
 ---@param ped Ped
 ---@param car Vehicle
----@param minaltitude float
----@param maxaltitude float
+---@param minaltitude number
+---@param maxaltitude number
 function heliKeepEntityInView(heli, ped, car, minaltitude, maxaltitude) end
 
----@param id int
----@return int model
+---@param id number
+---@return number model
 function getWeapontypeModel(id) end
 
----@param id int
----@return int slot
+---@param id number
+---@return number slot
 function getWeapontypeSlot(id) end
 
----@param item int
----@param flag int
----@return int info
+---@param item number
+---@param flag number
+---@return number info
 function getShoppingExtraInfo(item, flag) end
 
 ---@param player Player
----@param texture int
----@param model int
----@param bodypart int
+---@param texture number
+---@param model number
+---@param bodypart number
 function givePlayerClothes(player, texture, model, bodypart) end
 
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@return int num
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@return number num
 function getNumberOfFiresInArea(x1, y1, z1, x2, y2, z2) end
 
 ---@param heli Vehicle
----@param magnet bool
+---@param magnet boolean
 function attachWinchToHeli(heli, magnet) end
 
 ---@param heli Vehicle
 function releaseEntityFromWinch(heli) end
 
 ---@param train Vehicle
----@param handle int
----@return int carriage
+---@param handle number
+---@return number carriage
 function getTrainCarriage(train, handle) end
 
 ---@param heli Vehicle
@@ -5065,15 +5066,15 @@ function getTrainCarriage(train, handle) end
 ---@return Object objectHandle
 function grabEntityOnWinch(heli) end
 
----@param item int
+---@param item number
 ---@return GxtString name
 function getNameOfItem(item) end
 
 ---@param ped Ped
----@param climb bool
+---@param climb boolean
 function taskClimb(ped, climb) end
 
----@param item int
+---@param item number
 function buyItem(item) end
 
 ---@param ped Ped
@@ -5083,21 +5084,21 @@ function storeClothesState() end
 
 function restoreClothesState() end
 
----@param magnet int
----@return float length
+---@param magnet number
+---@return number length
 function getRopeHeightForObject(magnet) end
 
----@param magnet int
----@param length float
+---@param magnet number
+---@param length number
 function setRopeHeightForObject(magnet, length) end
 
----@param magnet int
+---@param magnet number
 ---@return Vehicle carHandle
 ---@return Ped pedHandle
 ---@return Object objectHandle
 function grabEntityOnRopeForObject(magnet) end
 
----@param magnet int
+---@param magnet number
 function releaseEntityFromRopeForObject(magnet) end
 
 function playerEnteredDockCrane() end
@@ -5107,52 +5108,52 @@ function playerEnteredBuildingsiteCrane() end
 function playerLeftCrane() end
 
 ---@param ped Ped
----@param sequence int
----@param unkProgress1 int
----@param unkProgress2 int
+---@param sequence number
+---@param unkProgress1 number
+---@param unkProgress2 number
 function performSequenceTaskFromProgress(ped, sequence, unkProgress1, unkProgress2) end
 
----@param speed int
+---@param speed number
 function setNextDesiredMoveState(speed) end
 
 ---@param ped Ped
----@param followActor int
----@param minradius float
----@param maxradius float
+---@param followActor number
+---@param minradius number
+---@param maxradius number
 function taskGotoCharAiming(ped, followActor, minradius, maxradius) end
 
 ---@param ped Ped
----@return int unkProgress1
----@return int unkProgress2
+---@return number unkProgress1
+---@return number unkProgress2
 function getSequenceProgressRecursive(ped) end
 
 ---@param ped Ped
----@param attackActor int
----@param time int
+---@param attackActor number
+---@param time number
 function taskKillCharOnFootTimed(ped, attackActor, time) end
 
----@param X float
----@param Y float
----@param Z float
----@return float X
----@return float Y
----@return float Z
+---@param X number
+---@param Y number
+---@param Z number
+---@return number X
+---@return number Y
+---@return number Z
 function getNearestTagPosition(X, Y, Z) end
 
 ---@param ped Ped
 function taskJetpack(ped) end
 
----@param enable bool
+---@param enable boolean
 function setArea51SamSite(enable) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 ---@return Searchlight searchlight
 function isCharInAnySearchlight(ped) end
 
 ---@param trailer Vehicle
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isTrailerAttachedToCab(trailer, car) end
 
 ---@param trailer Vehicle
@@ -5160,32 +5161,32 @@ function isTrailerAttachedToCab(trailer, car) end
 function detachTrailerFromCab(trailer, cab) end
 
 ---@param player Player
----@return int group
+---@return number group
 function getPlayerGroup(player) end
 
 ---@return GxtString shop
 function getLoadedShop() end
 
----@param track int
----@return int int2
----@return int int3
----@return int int4
+---@param track number
+---@return number int2
+---@return number int3
+---@return number int4
 function getBeatProximity(track) end
 
----@param group int
----@param command int
+---@param group number
+---@param command number
 function setGroupDefaultTaskAllocator(group, command) end
 
 ---@param player Player
----@param enabled bool
+---@param enabled boolean
 function setPlayerGroupRecruitment(player, enabled) end
 
 ---@param heli Vehicle
----@param power int
+---@param power number
 function activateHeliSpeedCheat(heli, power) end
 
 ---@param ped Ped
----@param maker int
+---@param maker number
 function taskSetCharDecisionMaker(ped, maker) end
 
 ---@param train Vehicle
@@ -5195,20 +5196,20 @@ function deleteMissionTrain(train) end
 function markMissionTrainAsNoLongerNeeded(train) end
 
 ---@param marker Marker
----@param displayAlways bool
+---@param displayAlways boolean
 function setBlipAlwaysDisplayOnZoomedRadar(marker, displayAlways) end
 
----@param path int
+---@param path number
 function requestCarRecording(path) end
 
----@param path int
----@return bool result
+---@param path number
+---@return boolean result
 function hasCarRecordingBeenLoaded(path) end
 
 ---@param train Vehicle
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setMissionTrainCoordinates(train, X, Y, Z) end
 
 ---@param ped Ped
@@ -5216,155 +5217,155 @@ function setMissionTrainCoordinates(train, X, Y, Z) end
 function taskComplexPickupObject(ped, object) end
 
 ---@param ped Ped
----@param listen bool
+---@param listen boolean
 function listenToPlayerGroupCommands(ped, listen) end
 
 ---@param player Player
----@param can bool
+---@param can boolean
 function setPlayerEnterCarButton(player, can) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param angle float
----@param withinRadius float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param angle number
+---@param withinRadius number
 function taskCharSlideToCoord(ped, toX, toY, toZ, angle, withinRadius) end
 
----@return int weekday
+---@return number weekday
 function getCurrentDayOfWeek() end
 
----@param id int
+---@param id number
 ---@param gxtString GxtString
 function registerScriptBrainForCodeUse(id, gxtString) end
 
 ---@param car Vehicle
----@param vecX float
----@param vecY float
----@param vecZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function applyForceToCar(car, vecX, vecY, vecZ, rotationX, rotationY, rotationZ) end
 
 ---@param car Vehicle
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function addToCarRotationVelocity(car, vecX, vecY, vecZ) end
 
 ---@param car Vehicle
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function setCarRotationVelocity(car, vecX, vecY, vecZ) end
 
 ---@param ped Ped
----@param rate int
+---@param rate number
 function setCharShootRate(ped, rate) end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isModelInCdimage(modelId) end
 
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
 function removeOilPuddlesInArea(x1, y1, x2, y2) end
 
 ---@param marker Marker
----@param type bool
+---@param type boolean
 function setBlipAsFriendly(marker, type) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
+---@param toX number
+---@param toY number
+---@param toZ number
 function taskSwimToCoord(ped, toX, toY, toZ) end
 
 ---@param modelId Model
----@return float x1
----@return float y1
----@return float z1
----@return float x2
----@return float y2
----@return float z2
+---@return number x1
+---@return number y1
+---@return number z1
+---@return number x2
+---@return number y2
+---@return number z2
 function getModelDimensions(modelId) end
 
 ---@param ped Ped
----@return int maker
+---@return number maker
 function copyCharDecisionMaker(ped) end
 
----@param group int
----@return int maker
+---@param group number
+---@return number maker
 function copyGroupDecisionMaker(group) end
 
 ---@param ped Ped
 ---@param car Vehicle
----@param speed float
----@param flag1 int
----@param flag2 int
----@param flag3 int
+---@param speed number
+---@param flag1 number
+---@param flag2 number
+---@param flag3 number
 function taskDrivePointRouteAdvanced(ped, car, speed, flag1, flag2, flag3) end
 
----@param acquaintance int
----@param ofActors int
----@param toActors int
----@return bool result
+---@param acquaintance number
+---@param ofActors number
+---@param toActors number
+---@return boolean result
 function isRelationshipSet(acquaintance, ofActors, toActors) end
 
 ---@param car Vehicle
----@param enable bool
+---@param enable boolean
 function setCarAlwaysCreateSkids(car, enable) end
 
----@param X float
----@param Y float
----@param Z float
----@return int city
+---@param X number
+---@param Y number
+---@param Z number
+---@return number city
 function getCityFromCoords(X, Y, Z) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function hasObjectOfTypeBeenSmashed(X, Y, Z, radius, modelId) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerPerformingWheelie(player) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerPerformingStoppie(player) end
 
 ---@param checkpoint Checkpoint
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setCheckpointCoords(checkpoint, X, Y, Z) end
 
 ---@param car Vehicle
----@param f1 float
----@param f2 float
----@param f3 float
----@param f4 float
+---@param f1 number
+---@param f2 number
+---@param f3 number
+---@param f4 number
 function controlCarHydraulics(car, f1, f2, f3, f4) end
 
----@param group int
----@return int numberOfLeaders
----@return int numberOfMembers
+---@param group number
+---@return number numberOfLeaders
+---@return number numberOfMembers
 function getGroupSize(group) end
 
 ---@param object Object
----@param destructible bool
+---@param destructible boolean
 function setObjectCollisionDamageEffect(object, destructible) end
 
 ---@param car Vehicle
----@param followCar int
----@param radius float
+---@param followCar number
+---@param radius number
 function setCarFollowCar(car, followCar, radius) end
 
 function playerEnteredQuarryCrane() end
@@ -5372,53 +5373,53 @@ function playerEnteredQuarryCrane() end
 function playerEnteredLasVegasCrane() end
 
 ---@param interior GxtString
----@param access bool
+---@param access boolean
 function switchEntryExit(interior, access) end
 
----@param X float
----@param Y float
+---@param X number
+---@param Y number
 ---@param GXT GxtString
----@param value float
----@param flag int
+---@param value number
+---@param flag number
 function displayTextWithFloat(X, Y, GXT, value, flag) end
 
----@param group int
----@return bool result
+---@param group number
+---@return boolean result
 function doesGroupExist(group) end
 
 ---@param ped Ped
----@param fightingStyle int
----@param moves int
+---@param fightingStyle number
+---@param moves number
 function giveMeleeAttackToChar(ped, fightingStyle, moves) end
 
 ---@param car Vehicle
----@param hydraulics bool
+---@param hydraulics boolean
 function setCarHydraulics(car, hydraulics) end
 
----@return bool result
+---@return boolean result
 function is2playerGameGoingOn() end
 
----@return float fov
+---@return number fov
 function getCameraFov() end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function doesCarHaveHydraulics(car) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param angle float
----@param radius float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param angle number
+---@param radius number
 ---@param animation string
----@param ifp1 int
----@param ifp2 float
----@param LA bool
----@param LX bool
----@param LY bool
----@param LF bool
----@param LT int
+---@param ifp1 number
+---@param ifp2 number
+---@param LA boolean
+---@param LX boolean
+---@param LY boolean
+---@param LF boolean
+---@param LT number
 function taskCharSlideToCoordAndPlayAnim(
 	ped,
 	toX,
@@ -5438,29 +5439,29 @@ function taskCharSlideToCoordAndPlayAnim(
 end
 
 ---@param player Player
----@return int number
+---@return number number
 function getTotalNumberOfPedsKilledByPlayer(player) end
 
 ---@param object Object
----@param spoot int
----@return float X
----@return float Y
----@return float Z
+---@param spoot number
+---@return number X
+---@return number Y
+---@return number Z
 function getLevelDesignCoordsForObject(object, spoot) end
 
 ---@param ped Ped
----@return int event
+---@return number event
 function getCharHighestPriorityEvent(ped) end
 
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@return float X
----@return float Y
----@return float Z
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@return number X
+---@return number Y
+---@return number Z
 function getParkingNodeInArea(x1, y1, z1, x2, y2, z2) end
 
 ---@param ped Ped
@@ -5470,30 +5471,30 @@ function getCarCharIsUsing(ped) end
 ---@param ped Ped
 ---@param animation string
 ---@param IFP string
----@param framedelta float
----@param loopA bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
+---@param framedelta number
+---@param loopA boolean
+---@param lockX boolean
+---@param lockY boolean
+---@param lockF boolean
+---@param time number
 function taskPlayAnimNonInterruptable(ped, animation, IFP, framedelta, loopA, lockX, lockY, lockF, time) end
 
----@param startX float
----@param startY float
----@param startZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param goalX float
----@param goalY float
----@param goalZ float
----@param radius2X float
----@param radius2Y float
----@param radius2Z float
----@param cameraX float
----@param cameraY float
----@param cameraZ float
----@param reward int
+---@param startX number
+---@param startY number
+---@param startZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param goalX number
+---@param goalY number
+---@param goalZ number
+---@param radius2X number
+---@param radius2Y number
+---@param radius2Z number
+---@param cameraX number
+---@param cameraY number
+---@param cameraZ number
+---@param reward number
 function addStuntJump(
 	startX,
 	startY,
@@ -5515,318 +5516,318 @@ function addStuntJump(
 end
 
 ---@param object Object
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setObjectCoordinatesAndVelocity(object, X, Y, Z) end
 
 ---@param ped Ped
----@param stay bool
+---@param stay boolean
 function setCharKindaStayInSamePlace(ped, stay) end
 
 ---@param ped Ped
----@param walkMode int
----@param routeMode int
+---@param walkMode number
+---@param routeMode number
 function taskFollowPatrolRoute(ped, walkMode, routeMode) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAir(ped) end
 
 ---@param ped Ped
----@return float height
+---@return number height
 function getCharHeightAboveGround(ped) end
 
 ---@param ped Ped
----@param skill int
+---@param skill number
 function setCharWeaponSkill(ped, skill) end
 
----@param size int
----@param r int
----@param g int
----@param b int
----@param a int
+---@param size number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function setTextEdge(size, r, g, b, a) end
 
 ---@param car Vehicle
----@param broken bool
+---@param broken boolean
 function setCarEngineBroken(car, broken) end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isThisModelABoat(modelId) end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isThisModelAPlane(modelId) end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isThisModelAHeli(modelId) end
 
----@param enable bool
+---@param enable boolean
 function setFirstPersonInCarCameraMode(enable) end
 
 ---@param ped Ped
 ---@param ped2 Ped
----@param unk1 float
----@param unk2 int
+---@param unk1 number
+---@param unk2 number
 function taskGreetPartner(ped, ped2, unk1, unk2) end
 
 ---@param heli Vehicle
 function setHeliBladesFullSpeed(heli) end
 
----@param enable bool
+---@param enable boolean
 function displayHud(enable) end
 
 ---@param object Object
----@param lod int
+---@param lod number
 function connectLods(object, lod) end
 
----@param max int
+---@param max number
 function setMaxFireGenerations(max) end
 
 ---@param ped Ped
 ---@param animation string
 ---@param ifp1 string
----@param ifp2 float
----@param time int
+---@param ifp2 number
+---@param time number
 function taskDieNamedAnim(ped, animation, ifp1, ifp2, time) end
 
 ---@param player Player
----@param able bool
+---@param able boolean
 function setPlayerDuckButton(player, able) end
 
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
 function setPoolTableCoords(x1, y1, z1, x2, y2, z2) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function hasObjectBeenPhotographed(object) end
 
----@param rotationZ float
----@param rotationY float
+---@param rotationZ number
+---@param rotationY number
 function doCameraBump(rotationZ, rotationY) end
 
----@return int day
----@return int month
+---@return number day
+---@return number month
 function getCurrentDate() end
 
 ---@param object Object
 ---@param animation string
----@param speed float
+---@param speed number
 function setObjectAnimSpeed(object, animation, speed) end
 
 ---@param object Object
 ---@param anim string
----@return bool result
+---@return boolean result
 function isObjectPlayingAnim(object, anim) end
 
 ---@param object Object
 ---@param animation string
----@return float progress
+---@return number progress
 function getObjectAnimCurrentTime(object, animation) end
 
 ---@param object Object
 ---@param animation string
----@param progress float
+---@param progress number
 function setObjectAnimCurrentTime(object, animation, progress) end
 
 ---@param ped Ped
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function setCharVelocity(ped, vecX, vecY, vecZ) end
 
 ---@param ped Ped
----@return float vecX
----@return float vecY
----@return float vecZ
+---@return number vecX
+---@return number vecY
+---@return number vecZ
 function getCharVelocity(ped) end
 
 ---@param ped Ped
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function setCharRotation(ped, vecX, vecY, vecZ) end
 
 ---@param car Vehicle
----@return float value
+---@return number value
 function getCarUprightValue(car) end
 
 ---@param car Vehicle
----@param interior int
+---@param interior number
 function setVehicleInterior(car, interior) end
 
 ---@param car Vehicle
----@param gun bool
+---@param gun boolean
 function selectWeaponsForVehicle(car, gun) end
 
 ---@param player Player
----@return int city
+---@return number city
 function getCityPlayerIsIn(player) end
 
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 ---@return GxtString name
 function getNameOfZone(X, Y, Z) end
 
----@param activate bool
+---@param activate boolean
 function activateInteriorPeds(activate) end
 
 ---@param car Vehicle
----@param unk bool
+---@param unk boolean
 function setVehicleCanBeTargetted(car, unk) end
 
 ---@param ped Ped
----@param followActor int
+---@param followActor number
 function taskFollowFootsteps(ped, followActor) end
 
 ---@param ped Ped
----@param health int
----@param affectArmour bool
+---@param health number
+---@param affectArmour boolean
 function damageChar(ped, health, affectArmour) end
 
 ---@param car Vehicle
----@param can bool
+---@param can boolean
 function setCarCanBeVisiblyDamaged(car, can) end
 
 ---@param heli Vehicle
----@param dist int
+---@param dist number
 function setHeliReachedTargetDistance(heli, dist) end
 
 ---@param ped Ped
----@param X float
----@param Y float
----@param Z float
----@return float level
+---@param X number
+---@param Y number
+---@param Z number
+---@return number level
 function getSoundLevelAtCoords(ped, X, Y, Z) end
 
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setCharAllowedToDuck(ped, enable) end
 
 ---@param player Player
----@param toAngle float
----@param rotationSpeed float
+---@param toAngle number
+---@param rotationSpeed number
 function setHeadingForAttachedPlayer(player, toAngle, rotationSpeed) end
 
 ---@param ped Ped
----@param alongisdeActor int
+---@param alongisdeActor number
 function taskWalkAlongsideChar(ped, alongisdeActor) end
 
 ---@param car Model
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function createEmergencyServicesCar(car, X, Y, Z) end
 
 ---@param ped Ped
----@param stay bool
+---@param stay boolean
 function taskKindaStayInSamePlace(ped, stay) end
 
 ---@param car Vehicle
----@param path int
+---@param path number
 function startPlaybackRecordedCarLooped(car, path) end
 
 ---@param ped Ped
----@param interior int
+---@param interior number
 function setCharInterior(ped, interior) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isAttachedPlayerHeadingAchieved(player) end
 
----@param X float
----@param Y float
----@param radius float
----@param access bool
+---@param X number
+---@param Y number
+---@param radius number
+---@param access boolean
 function enableEntryExitPlayerGroupWarping(X, Y, radius, access) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@return Object object
 function getClosestStealableObject(X, Y, Z, radius) end
 
----@param interior int
----@return bool result
+---@param interior number
+---@return boolean result
 function isProceduralInteriorActive(interior) end
 
----@param path int
+---@param path number
 function removeCarRecording(path) end
 
 ---@param zone GxtString
----@param popcycle int
+---@param popcycle number
 function setZonePopulationRace(zone, popcycle) end
 
 ---@param object Object
----@param player bool
+---@param player boolean
 function setObjectOnlyDamagedByPlayer(object, player) end
 
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param flag1 int
----@param flag2 int
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param flag1 number
+---@param flag2 number
 function createBirds(x1, y1, z1, x2, y2, z2, flag1, flag2) end
 
 ---@param car Vehicle
----@param level float
+---@param level number
 function setVehicleDirtLevel(car, level) end
 
----@param enable bool
+---@param enable boolean
 function setGangWarsActive(enable) end
 
----@return bool result
+---@return boolean result
 function isGangWarGoingOn() end
 
 ---@param player Player
 ---@param clothes string
 ---@param model string
----@param bodyPart int
+---@param bodyPart number
 function givePlayerClothesOutsideShop(player, clothes, model, bodyPart) end
 
 function clearLoadedShop() end
 
----@param group int
----@param Aspack int
+---@param group number
+---@param Aspack number
 function setGroupSequence(group, Aspack) end
 
 ---@param ped Ped
----@param droppable bool
+---@param droppable boolean
 function setCharDropsWeaponsWhenDead(ped, droppable) end
 
 ---@param ped Ped
----@param set bool
+---@param set boolean
 function setCharNeverLeavesGroup(ped, set) end
 
 ---@param player Player
----@param able bool
+---@param able boolean
 function setPlayerFireButton(player, able) end
 
 ---@param particle Particle
 ---@param ped Ped
----@param mode int
+---@param mode number
 function attachFxSystemToCharBone(particle, ped, mode) end
 
----@param handle int
+---@param handle number
 ---@param script GxtString
 function registerAttractorScriptBrainForCodeUse(handle, script) end
 
 ---@param ped Ped
----@param orientation int
----@param limit float
+---@param orientation number
+---@param limit number
 function setHeadingLimitForAttachedChar(ped, orientation, limit) end
 
 ---@param ped Ped
@@ -5834,224 +5835,224 @@ function setHeadingLimitForAttachedChar(ped, orientation, limit) end
 function addBlipForDeadChar(ped) end
 
 ---@param ped Ped
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getDeadCharCoordinates(ped) end
 
 ---@param ped Ped
 ---@param animation string
 ---@param ifp string
----@param framedelta float
----@param loopA bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
----@param force bool
----@param lockZ bool
+---@param framedelta number
+---@param loopA boolean
+---@param lockX boolean
+---@param lockY boolean
+---@param lockF boolean
+---@param time number
+---@param force boolean
+---@param lockZ boolean
 function taskPlayAnimWithFlags(ped, animation, ifp, framedelta, loopA, lockX, lockY, lockF, time, force, lockZ) end
 
 ---@param car Vehicle
----@param multiplier float
+---@param multiplier number
 function setVehicleAirResistanceMultiplier(car, multiplier) end
 
 ---@param car Vehicle
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setCarCoordinatesNoOffset(car, X, Y, Z) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@param modelId Model
----@param collisionDetection bool
+---@param collisionDetection boolean
 function setUsesCollisionOfClosestObjectOfType(X, Y, Z, radius, modelId, collisionDetection) end
 
 function setTimeOneDayForward() end
 
 ---@param timer VarId
----@param reach int
+---@param reach number
 function setTimerBeepCountdownTime(timer, reach) end
 
----@param trailer int
----@param cab int
+---@param trailer number
+---@param cab number
 function attachTrailerToCab(trailer, cab) end
 
 ---@param car Vehicle
 ---@param object Object
----@return bool result
+---@return boolean result
 function isVehicleTouchingObject(car, object) end
 
----@param UP bool
----@param DOWN bool
----@param RELEASE bool
+---@param UP boolean
+---@param DOWN boolean
+---@param RELEASE boolean
 function enableCraneControls(UP, DOWN, RELEASE) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isPlayerInPositionForConversation(ped) end
 
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function enableConversation(ped, enable) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@return Ped ped
 function getRandomCharInSphereOnlyDrugsBuyers(X, Y, Z, radius) end
 
 ---@param ped Ped
----@return int pedtype
+---@return number pedtype
 function getPedType(ped) end
 
 ---@param ped Ped
----@param radius float
+---@param radius number
 ---@param nearModel Model
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 ---@param scriptNamed string
----@return bool result
+---@return boolean result
 function taskUseClosestMapAttractor(ped, radius, nearModel, offsetX, offsetY, offsetZ, scriptNamed) end
 
----@param hydra int
+---@param hydra number
 ---@param player Player
----@param radius float
+---@param radius number
 function planeAttackPlayerUsingDogFight(hydra, player, radius) end
 
----@param can bool
+---@param can boolean
 function canTriggerGangWarWhenOnAMission(can) end
 
 ---@param car Vehicle
----@param angle float
+---@param angle number
 function controlMovableVehiclePart(car, angle) end
 
 ---@param car Vehicle
----@param attractive bool
+---@param attractive boolean
 function winchCanPickVehicleUp(car, attractive) end
 
 ---@param car Vehicle
----@param door int
----@param rotation float
+---@param door number
+---@param rotation number
 function openCarDoorABit(car, door, rotation) end
 
 ---@param car Vehicle
----@param door int
----@return bool result
+---@param door number
+---@return boolean result
 function isCarDoorFullyOpen(car, door) end
 
----@param set bool
+---@param set boolean
 function setAlwaysDraw3dMarkers(set) end
 
----@param script int
+---@param script number
 function streamScript(script) end
 
----@param script int
----@return bool result
+---@param script number
+---@return boolean result
 function hasStreamedScriptLoaded(script) end
 
----@param set bool
+---@param set boolean
 function setGangWarsTrainingMission(set) end
 
 ---@param ped Ped
----@param X float
----@param Y float
----@param radius float
+---@param X number
+---@param Y number
+---@param radius number
 function setCharHasUsedEntryExit(ped, X, Y, radius) end
 
 ---@param ped Ped
----@param health int
+---@param health number
 function setCharMaxHealth(ped, health) end
 
----@param enable bool
+---@param enable boolean
 function setNightVision(enable) end
 
----@param enable bool
+---@param enable boolean
 function setInfraredVision(enable) end
 
 ---@param zone GxtString
 function setZoneForGangWarsTraining(zone) end
 
 ---@param ped Ped
----@param can bool
+---@param can boolean
 function setCharCanBeKnockedOffBike(ped, can) end
 
 ---@param ped Ped
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setCharCoordinatesDontWarpGang(ped, X, Y, Z) end
 
----@param item int
----@param price int
+---@param item number
+---@param price number
 function addPriceModifier(item, price) end
 
----@param item int
+---@param item number
 function removePriceModifier(item) end
 
 function initZonePopulationSettings() end
 
 ---@param car Vehicle
----@param shake bool
----@param effect bool
----@param sound bool
+---@param shake boolean
+---@param effect boolean
+---@param sound boolean
 function explodeCarInCutsceneShakeAndBits(car, shake, effect, sound) end
 
----@return bool result
+---@return boolean result
 function isSkipCutsceneButtonPressed() end
 
----@return bool result
----@return float X
----@return float Y
----@return float Z
+---@return boolean result
+---@return number X
+---@return number Y
+---@return number Z
 function getCutsceneOffset() end
 
 ---@param object Object
----@param scale float
+---@param scale number
 function setObjectScale(object, scale) end
 
----@return int popcycle
+---@return number popcycle
 function getCurrentPopulationZoneType() end
 
 ---@param title GxtString
----@param posX float
----@param posY float
----@param width float
----@param columns int
----@param interactive bool
----@param background bool
----@param alignment int
----@return int menu
+---@param posX number
+---@param posY number
+---@param width number
+---@param columns number
+---@param interactive boolean
+---@param background boolean
+---@param alignment number
+---@return number menu
 function createMenu(title, posX, posY, width, columns, interactive, background, alignment) end
 
----@param menu int
----@param column int
----@param alignment int
+---@param menu number
+---@param column number
+---@param alignment number
 function setMenuColumnOrientation(menu, column, alignment) end
 
----@param menu int
----@return int item
+---@param menu number
+---@return number item
 function getMenuItemSelected(menu) end
 
----@param menu int
----@return int item
+---@param menu number
+---@return number item
 function getMenuItemAccepted(menu) end
 
----@param menu int
----@param row int
----@param enable bool
+---@param menu number
+---@param row number
+---@param enable boolean
 function activateMenuItem(menu, row, enable) end
 
----@param menu int
+---@param menu number
 function deleteMenu(menu) end
 
----@param menu int
----@param column int
+---@param menu number
+---@param column number
 ---@param header GxtString
 ---@param data1 GxtString
 ---@param data2 GxtString
@@ -6085,71 +6086,71 @@ function setMenuColumn(
 end
 
 ---@param marker Marker
----@param X float
----@param Y float
----@param radius float
+---@param X number
+---@param Y number
+---@param radius number
 function setBlipEntryExit(marker, X, Y, radius) end
 
----@param lose bool
+---@param lose boolean
 function switchDeathPenalties(lose) end
 
----@param lose bool
+---@param lose boolean
 function switchArrestPenalties(lose) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param angle float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param angle number
 function setExtraHospitalRestartPoint(X, Y, Z, radius, angle) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param angle float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param angle number
 function setExtraPoliceStationRestartPoint(X, Y, Z, radius, angle) end
 
----@return int num
+---@return number num
 function findNumberTagsTagged() end
 
----@return int percentage
+---@return number percentage
 function getTerritoryUnderControlPercentage() end
 
 ---@param object Object
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param radius float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param radius number
+---@param sphere boolean
+---@return boolean result
 function isObjectInAngledArea2d(object, x1, y1, x2, y2, radius, sphere) end
 
 ---@param object Object
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isObjectInAngledArea3d(object, x1, y1, z1, x2, y2, z2, depth, flag) end
 
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@return Ped ped
 function getRandomCharInSphereNoBrain(X, Y, Z, radius) end
 
----@param plane int
----@param set bool
+---@param plane number
+---@param set boolean
 function setPlaneUndercarriageUp(plane, set) end
 
----@param disable bool
+---@param disable boolean
 function disableAllEntryExits(disable) end
 
 ---@param modelId Model
@@ -6157,62 +6158,62 @@ function disableAllEntryExits(disable) end
 function attachAnimsToModel(modelId, externalScript) end
 
 ---@param object Object
----@param liftable bool
+---@param liftable boolean
 function setObjectAsStealable(object, liftable) end
 
----@param enable bool
+---@param enable boolean
 function setCreateRandomGangMembers(enable) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param vecX float
----@param vecY float
----@param vecZ float
----@param density int
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param vecX number
+---@param vecY number
+---@param vecZ number
+---@param density number
 function addSparks(posX, posY, posZ, vecX, vecY, vecZ, density) end
 
 ---@param car Vehicle
----@return int class
+---@return number class
 function getVehicleClass(car) end
 
 ---@param ped Ped
 function clearConversationForChar(ped) end
 
----@param panel int
----@param column int
----@param row int
+---@param panel number
+---@param column number
+---@param row number
 ---@param gxtString GxtString
----@param number int
+---@param number number
 function setMenuItemWithNumber(panel, column, row, gxtString, number) end
 
----@param panel int
----@param column int
----@param row int
+---@param panel number
+---@param column number
+---@param row number
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
+---@param numbers1 number
+---@param numbers2 number
 function setMenuItemWith2Numbers(panel, column, row, gxtString, numbers1, numbers2) end
 
 ---@param cutsceneModel GxtString
 ---@param textureName GxtString
 function setCutsceneModelTexture(cutsceneModel, textureName) end
 
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return GxtString nameB
 function getNameOfInfoZone(atX, atY, atZ) end
 
 ---@param car Vehicle
----@param targetable bool
+---@param targetable boolean
 function vehicleCanBeTargettedByHsMissile(car, targetable) end
 
 ---@param car Vehicle
----@param containsGoodies bool
+---@param containsGoodies boolean
 function setFreebiesInVehicle(car, containsGoodies) end
 
----@param max bool
+---@param max boolean
 function setScriptLimitToGangSize(max) end
 
 function makePlayerGangDisappear() end
@@ -6220,61 +6221,61 @@ function makePlayerGangDisappear() end
 function makePlayerGangReappear() end
 
 ---@param player Player
----@param bodypart int
----@return int textureCRC
----@return int modelCRC
+---@param bodypart number
+---@return number textureCRC
+---@return number modelCRC
 function getClothesItem(player, bodypart) end
 
----@param display bool
+---@param display boolean
 function showUpdateStats(display) end
 
 ---@param checkpoint Checkpoint
----@param type int
+---@param type number
 function setCoordBlipAppearance(checkpoint, type) end
 
----@param enable bool
+---@param enable boolean
 function setHeathazeEffect(enable) end
 
----@return bool result
+---@return boolean result
 function isHelpMessageBeingDisplayed() end
 
 ---@param object Object
----@param type int
----@return bool result
+---@param type number
+---@return boolean result
 function hasObjectBeenDamagedByWeapon(object, type) end
 
 ---@param object Object
 function clearObjectLastWeaponDamage(object) end
 
 ---@param player Player
----@param enable bool
+---@param enable boolean
 function setPlayerJumpButton(player, enable) end
 
----@param interface int
----@return int r
----@return int g
----@return int b
----@return int a
+---@param interface number
+---@return number r
+---@return number g
+---@return number b
+---@return number a
 function getHudColour(interface) end
 
----@param door int
----@param lock bool
+---@param door number
+---@param lock boolean
 function lockDoor(door, lock) end
 
 ---@param object Object
----@param mass float
+---@param mass number
 function setObjectMass(object, mass) end
 
----@param int int
----@return float mass
-function getObjectMass(int) end
+---@param number number
+---@return number mass
+function getObjectMass(number) end
 
 ---@param object Object
----@param turnMass float
+---@param turnMass number
 function setObjectTurnMass(object, turnMass) end
 
 ---@param object Object
----@return float turnMass
+---@return number turnMass
 function getObjectTurnMass(object) end
 
 ---@param zone GxtString
@@ -6282,223 +6283,223 @@ function setSpecificZoneToTriggerGangWar(zone) end
 
 function clearSpecificZonesToTriggerGangWar() end
 
----@param panel int
----@param activeRow int
+---@param panel number
+---@param activeRow number
 function setActiveMenuItem(panel, activeRow) end
 
----@param externalScript int
+---@param externalScript number
 function markStreamedScriptAsNoLongerNeeded(externalScript) end
 
----@param externalScript int
+---@param externalScript number
 function removeStreamedScript(externalScript) end
 
----@param priority bool
----@param leftmargin int
----@param maxwidth int
+---@param priority boolean
+---@param leftmargin number
+---@param maxwidth number
 function setMessageFormatting(priority, leftmargin, maxwidth) end
 
----@param externalScript int
+---@param externalScript number
 ---@param args table
 function startNewStreamedScript(externalScript, args) end
 
 function setWeatherToAppropriateTypeNow() end
 
 ---@param object Object
----@param enable bool
+---@param enable boolean
 function winchCanPickObjectUp(object, enable) end
 
 ---@param zone GxtString
----@param enableSound bool
+---@param enableSound boolean
 function switchAudioZone(zone, enableSound) end
 
 ---@param car Vehicle
----@param on bool
+---@param on boolean
 function setCarEngineOn(car, on) end
 
 ---@param car Vehicle
----@param lights bool
+---@param lights boolean
 function setCarLightsOn(car, lights) end
 
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radius float
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radius number
 ---@param modelId Model
 ---@param externalScriptNamed string
 ---@return Ped ped
 function getUserOfClosestMapAttractor(sphereX, sphereY, sphereZ, radius, modelId, externalScriptNamed) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchRoadsBackToOriginal(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchPedRoadsBackToOriginal(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
----@param plane int
----@return int landingGearStatus
+---@param plane number
+---@return number landingGearStatus
 function getPlaneUndercarriagePosition(plane) end
 
----@param pointX float
----@param pointY float
----@param pointZ float
----@param transverseX float
----@param transverseY float
----@param transverseZ float
----@param time int
----@param smooth bool
+---@param pointX number
+---@param pointY number
+---@param pointZ number
+---@param transverseX number
+---@param transverseY number
+---@param transverseZ number
+---@param time number
+---@param smooth boolean
 function cameraSetVectorTrack(pointX, pointY, pointZ, transverseX, transverseY, transverseZ, time, smooth) end
 
----@param from float
----@param to float
----@param timelimit int
----@param smoothTransition bool
+---@param from number
+---@param to number
+---@param timelimit number
+---@param smoothTransition boolean
 function cameraSetLerpFov(from, to, timelimit, smoothTransition) end
 
----@param enable bool
+---@param enable boolean
 function switchAmbientPlanes(enable) end
 
----@param enable bool
----@param value int
+---@param enable boolean
+---@param value number
 function setDarknessEffect(enable, value) end
 
 function cameraResetNewScriptables() end
 
----@param externalScript int
----@return int value
+---@param externalScript number
+---@return number value
 function getNumberOfInstancesOfStreamedScript(externalScript) end
 
----@param externalScript int
+---@param externalScript number
 ---@param actorModel Model
----@param priority int
+---@param priority number
 function allocateStreamedScriptToRandomPed(externalScript, actorModel, priority) end
 
----@param externalScript int
+---@param externalScript number
 ---@param objectModel Model
----@param priority int
----@param radius float
----@param type int
+---@param priority number
+---@param radius number
+---@param type number
 function allocateStreamedScriptToObject(externalScript, objectModel, priority, radius, type) end
 
----@param group int
----@param member int
----@return int handle
+---@param group number
+---@param member number
+---@return number handle
 function getGroupMember(group, member) end
 
----@param atX float
----@param atY float
----@param ignoreWaves bool
----@return float height
+---@param atX number
+---@param atY number
+---@param ignoreWaves boolean
+---@return number height
 function getWaterHeightAtCoords(atX, atY, ignoreWaves) end
 
----@param lock bool
+---@param lock boolean
 function cameraPersistTrack(lock) end
 
----@param lock bool
+---@param lock boolean
 function cameraPersistPos(lock) end
 
----@param lock bool
+---@param lock boolean
 function cameraPersistFov(lock) end
 
----@return bool result
+---@return boolean result
 function cameraIsVectorMoveRunning() end
 
----@return bool result
+---@return boolean result
 function cameraIsVectorTrackRunning() end
 
----@param cameraX float
----@param cameraY float
----@param cameraZ float
----@param positionX float
----@param positionY float
----@param positionZ float
----@param time int
----@param smoothTransition bool
+---@param cameraX number
+---@param cameraY number
+---@param cameraZ number
+---@param positionX number
+---@param positionY number
+---@param positionZ number
+---@param time number
+---@param smoothTransition boolean
 function cameraSetVectorMove(cameraX, cameraY, cameraZ, positionX, positionY, positionZ, time, smoothTransition) end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
 ---@param gxtString GxtString
----@param style int
+---@param style number
 function drawWindow(cornerAX, cornerAY, cornerBX, cornerBY, gxtString, style) end
 
 ---@param car Vehicle
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachCarToObject(car, object, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---@param garage GxtString
----@param free bool
+---@param free boolean
 function setGarageResprayFree(garage, free) end
 
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setCharBulletproofVest(ped, enable) end
 
----@param lock bool
+---@param lock boolean
 function setCinemaCamera(lock) end
 
 ---@param ped Ped
----@param multiplier float
+---@param multiplier number
 function setCharFireDamageMultiplier(ped, multiplier) end
 
----@param group int
----@param status bool
+---@param group number
+---@param status boolean
 function setGroupFollowStatus(group, status) end
 
 ---@param searchlight Searchlight
----@param flag bool
+---@param flag boolean
 function setSearchlightClipIfColliding(searchlight, flag) end
 
----@param item int
----@return bool result
+---@param item number
+---@return boolean result
 function hasPlayerBoughtItem(item) end
 
 ---@param ped Ped
 function setCameraInFrontOfChar(ped) end
 
 ---@param player Player
----@return int maxArmour
+---@return number maxArmour
 function getPlayerMaxArmour(player) end
 
 ---@param ped Ped
----@param uninterupted bool
+---@param uninterupted boolean
 function setCharUsesUpperbodyDamageAnimsOnly(ped, uninterupted) end
 
 ---@param ped Ped
----@param speech int
----@return int spokenPhrase
+---@param speech number
+---@return number spokenPhrase
 function setCharSayContext(ped, speech) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param type int
----@param cameraShake float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param type number
+---@param cameraShake number
 function addExplosionVariableShake(atX, atY, atZ, type, cameraShake) end
 
----@param id int
+---@param id number
 ---@param ped Ped
 function attachMissionAudioToChar(id, ped) end
 
 ---@param pickup Pickup
----@param cash int
+---@param cash number
 function updatePickupMoneyPerDay(pickup, cash) end
 
 ---@param ped Ped
@@ -6506,138 +6507,138 @@ function updatePickupMoneyPerDay(pickup, cash) end
 function getNameOfEntryExitCharUsed(ped) end
 
 ---@param ped Ped
----@return float coordX
----@return float coordY
----@return float coordZ
----@return int number
+---@return number coordX
+---@return number coordY
+---@return number coordZ
+---@return number number
 function getPositionOfEntryExitCharUsed(ped) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharTalking(ped) end
 
 ---@param ped Ped
----@param disable bool
+---@param disable boolean
 function disableCharSpeech(ped, disable) end
 
 ---@param ped Ped
 function enableCharSpeech(ped) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param angle float
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param angle number
 function setUpSkip(posX, posY, posZ, angle) end
 
 function clearSkip() end
 
----@param soundtrack int
+---@param soundtrack number
 function preloadBeatTrack(soundtrack) end
 
----@return int status
+---@return number status
 function getBeatTrackStatus() end
 
 function playBeatTrack() end
 
 function stopBeatTrack() end
 
----@return int max
+---@return number max
 function findMaxNumberOfGroupMembers() end
 
 ---@param car Vehicle
----@param providesCover bool
+---@param providesCover boolean
 function vehicleDoesProvideCover(car, providesCover) end
 
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Pickup pickup
 function createSnapshotPickup(atX, atY, atZ) end
 
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Pickup pickup
 function createHorseshoePickup(atX, atY, atZ) end
 
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Pickup pickup
 function createOysterPickup(atX, atY, atZ) end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function hasObjectBeenUprooted(object) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param velocityX float
----@param velocityY float
----@param velocityZ float
----@param r int
----@param g int
----@param b int
----@param a int
----@param size float
----@param factor float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param velocityX number
+---@param velocityY number
+---@param velocityZ number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
+---@param size number
+---@param factor number
 function addSmokeParticle(atX, atY, atZ, velocityX, velocityY, velocityZ, r, g, b, a, size, factor) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharStuckUnderCar(ped) end
 
 ---@param car Vehicle
----@param door int
----@param unlatch int
----@param angle float
+---@param door number
+---@param unlatch number
+---@param angle number
 function controlCarDoor(car, door, unlatch, angle) end
 
 ---@param car Vehicle
----@param door int
----@return float angle
+---@param door number
+---@return number angle
 function getDoorAngleRatio(car, door) end
 
 ---@param player Player
----@param display bool
+---@param display boolean
 function setPlayerDisplayVitalStatsButton(player, display) end
 
 ---@param ped Ped
----@param keepTasks bool
+---@param keepTasks boolean
 function setCharKeepTask(ped, keepTasks) end
 
 ---@param gxtString GxtString
----@param positionX int
----@param positionY int
----@param width float
----@param columns int
----@param interactive bool
----@param background bool
----@param alignment int
----@return int id
+---@param positionX number
+---@param positionY number
+---@param width number
+---@param columns number
+---@param interactive boolean
+---@param background boolean
+---@param alignment number
+---@return number id
 function createMenuGrid(gxtString, positionX, positionY, width, columns, interactive, background, alignment) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharSwimming(ped) end
 
 ---@param ped Ped
----@return int status
+---@return number status
 function getCharSwimState(ped) end
 
 ---@param ped Ped
----@param time int
+---@param time number
 function startCharFacialTalk(ped, time) end
 
 ---@param ped Ped
 function stopCharFacialTalk(ped) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isBigVehicle(car) end
 
----@param enable bool
+---@param enable boolean
 function switchPoliceHelis(enable) end
 
 function storeCarModState() end
@@ -6645,16 +6646,16 @@ function storeCarModState() end
 function restoreCarModState() end
 
 ---@param car Vehicle
----@param slot int
+---@param slot number
 ---@return Model modelId
 function getCurrentCarMod(car, slot) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarLowRider(car) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarStreetRacer(car) end
 
 function forceDeathRestart() end
@@ -6662,324 +6663,324 @@ function forceDeathRestart() end
 function syncWater() end
 
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function setCharCoordinatesNoOffset(ped, atX, atY, atZ) end
 
----@param fire int
----@return bool result
+---@param fire number
+---@return boolean result
 function doesScriptFireExist(fire) end
 
 function resetStuffUponResurrection() end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isEmergencyServicesVehicle(car) end
 
 ---@param particle Particle
 function killFxSystemNow(particle) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isObjectWithinBrainActivationRange(player) end
 
----@param from int
----@return int to
+---@param from number
+---@return number to
 function copySharedCharDecisionMaker(from) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param event int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param event number
 function reportMissionAudioEventAtPosition(atX, atY, atZ, event) end
 
----@param at int
----@param event int
+---@param at number
+---@param event number
 function reportMissionAudioEventAtObject(at, event) end
 
----@param id int
+---@param id number
 ---@param object Object
 function attachMissionAudioToObject(id, object) end
 
 ---@param car Vehicle
----@return int colours
+---@return number colours
 function getNumCarColours(car) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
 function extinguishFireAtPoint(atX, atY, atZ, radius) end
 
 ---@param train Vehicle
----@return bool result
+---@return boolean result
 function hasTrainDerailed(train) end
 
 ---@param ped Ped
----@param stayInCarWhenDead bool
+---@param stayInCarWhenDead boolean
 function setCharForceDieInCar(ped, stayInCarWhenDead) end
 
----@param enable bool
+---@param enable boolean
 function setOnlyCreateGangMembers(enable) end
 
 ---@param object Object
 ---@return Model modelId
 function getObjectModel(object) end
 
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radius float
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radius number
 ---@param modelId Model
----@param solid bool
----@param forActor int
+---@param solid boolean
+---@param forActor number
 function setCharUsesCollisionClosestObjectOfType(sphereX, sphereY, sphereZ, radius, modelId, solid, forActor) end
 
 function clearAllScriptFireFlags() end
 
 ---@param car Vehicle
----@return int blockingCar
+---@return number blockingCar
 function getCarBlockingCar(car) end
 
 ---@param car Vehicle
----@return int paintjob
+---@return number paintjob
 function getCurrentVehiclePaintjob(car) end
 
----@param width int
+---@param width number
 function setHelpMessageBoxSize(width) end
 
----@param range float
+---@param range number
 function setGunshotSenseRangeForRiot2(range) end
 
 ---@param car Vehicle
----@return float angle
+---@return number angle
 function getCarMovingComponentOffset(car) end
 
 ---@param interior GxtString
----@param bitmask int
----@param flag bool
+---@param bitmask number
+---@param flag boolean
 function setNamedEntryExitFlag(interior, bitmask, flag) end
 
----@param paused bool
+---@param paused boolean
 function pauseCurrentBeatTrack(paused) end
 
 ---@param player Player
----@param scrollable bool
+---@param scrollable boolean
 function setPlayerWeaponsScrollable(player, scrollable) end
 
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function markRoadNodeAsDontWander(atX, atY, atZ) end
 
 function unmarkAllRoadNodesAsDontWander() end
 
 ---@param checkpoint Checkpoint
----@param angle float
+---@param angle number
 function setCheckpointHeading(checkpoint, angle) end
 
----@param respect int
+---@param respect number
 function setMissionRespectTotal(respect) end
 
----@param respect int
+---@param respect number
 function awardPlayerMissionRespect(respect) end
 
 ---@param car Vehicle
----@param collision bool
+---@param collision boolean
 function setCarCollision(car, collision) end
 
 ---@param car Vehicle
 function changePlaybackToUseAi(car) end
 
----@param type int
----@param timelimit float
----@param intensity float
+---@param type number
+---@param timelimit number
+---@param intensity number
 function cameraSetShakeSimulationSimple(type, timelimit, intensity) end
 
----@return bool result
+---@return boolean result
 function isNightVisionActive() end
 
----@param enable bool
+---@param enable boolean
 function setCreateRandomCops(enable) end
 
 ---@param ped Ped
----@param ignore bool
+---@param ignore boolean
 function taskSetIgnoreWeaponRangeFlag(ped, ignore) end
 
 ---@param ped Ped
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param bone int
----@param int7 int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param bone number
+---@param int7 number
 ---@param animation string
 ---@param file string
----@param time int
+---@param time number
 function taskPickUpSecondObject(ped, object, offsetX, offsetY, offsetZ, bone, int7, animation, file, time) end
 
 ---@param ped Ped
----@param to bool
+---@param to boolean
 function dropSecondObject(ped, to) end
 
 ---@param object Object
 function removeObjectElegantly(object) end
 
----@param draw bool
+---@param draw boolean
 function drawCrosshair(draw) end
 
 ---@param question GxtString
 ---@param answerY GxtString
 ---@param answerN GxtString
----@param questionWav int
----@param answerYWav int
----@param answerNWav int
+---@param questionWav number
+---@param answerYWav number
+---@param answerNWav number
 function setUpConversationNodeWithSpeech(question, answerY, answerN, questionWav, answerYWav, answerNWav) end
 
----@param enable bool
+---@param enable boolean
 function showBlipsOnAllLevels(enable) end
 
 ---@param ped Ped
----@param druggedUp bool
+---@param druggedUp boolean
 function setCharDruggedUp(ped, druggedUp) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharHeadMissing(ped) end
 
 ---@param string string
----@return int CRC32
+---@return number CRC32
 function getHashKey(string) end
 
 ---@param gxtString GxtString
----@param speech int
+---@param speech number
 function setUpConversationEndNodeWithSpeech(gxtString, speech) end
 
----@param passengers int
----@param audioTable int
+---@param passengers number
+---@param audioTable number
 function randomPassengerSay(passengers, audioTable) end
 
----@param hide bool
+---@param hide boolean
 function hideAllFrontendBlips(hide) end
 
----@param mode int
+---@param mode number
 function setPlayerInCarCameraMode(mode) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyTrain(ped) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param angle float
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param angle number
 function setUpSkipAfterMission(posX, posY, posZ, angle) end
 
 ---@param car Vehicle
----@param accessible bool
+---@param accessible boolean
 function setVehicleIsConsideredByPlayer(car, accessible) end
 
----@param unk bool
+---@param unk boolean
 ---@return Model modelId
----@return int class
+---@return number class
 function getRandomCarModelInMemory(unk) end
 
 ---@param car Vehicle
----@return int doorStatus
+---@return number doorStatus
 function getCarDoorLockStatus(car) end
 
----@param atX float
----@param atY float
----@param radius float
----@param bitmask int
----@param flag bool
+---@param atX number
+---@param atY number
+---@param radius number
+---@param bitmask number
+---@param flag boolean
 function setClosestEntryExitFlag(atX, atY, radius, bitmask, flag) end
 
 ---@param ped Ped
----@param signal bool
+---@param signal boolean
 function setCharSignalAfterKill(ped, signal) end
 
 ---@param ped Ped
----@param wanted bool
+---@param wanted boolean
 function setCharWantedByPolice(ped, wanted) end
 
 ---@param zone GxtString
----@param disableCops bool
+---@param disableCops boolean
 function setZoneNoCops(zone, disableCops) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param density int
----@param onActor int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param density number
+---@param onActor number
 function addBlood(atX, atY, atZ, offsetX, offsetY, offsetZ, density, onActor) end
 
----@param show bool
+---@param show boolean
 function displayCarNames(show) end
 
----@param show bool
+---@param show boolean
 function displayZoneNames(show) end
 
 ---@param car Vehicle
----@param door int
----@return bool result
+---@param door number
+---@return boolean result
 function isCarDoorDamaged(car, door) end
 
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function setCharCoordinatesDontWarpGangNoOffset(ped, atX, atY, atZ) end
 
----@param enable bool
+---@param enable boolean
 function setMinigameInProgress(enable) end
 
----@return bool result
+---@return boolean result
 function isMinigameInProgress() end
 
 ---@param modelId Model
 function setForceRandomCarModel(modelId) end
 
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param int6 int
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param int6 number
 ---@return Vehicle car
 function getRandomCarOfTypeInAngledAreaNoSave(x1, y1, x2, y2, angle, int6) end
 
----@param int1 bool
+---@param int1 boolean
 function addNextMessageToPreviousBriefs(int1) end
 
 function failKillFrenzy() end
 
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function isCopVehicleInArea3dNoSave(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---@param car Vehicle
----@param enabled bool
+---@param enabled boolean
 function setPetrolTankWeakpoint(car, enabled) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharUsingMapAttractor(ped) end
 
 ---@param player Player
 ---@param modelId Model
 function setPlayerModel(player, modelId) end
 
----@return bool result
+---@return boolean result
 function areSubtitlesSwitchedOn() end
 
 ---@param ped Ped
@@ -6987,104 +6988,104 @@ function areSubtitlesSwitchedOn() end
 function removeCharFromCarMaintainPosition(ped, car) end
 
 ---@param object Object
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+---@param BP boolean
+---@param FP boolean
+---@param EP boolean
+---@param CP boolean
+---@param MP boolean
 function setObjectProofs(object, BP, FP, EP, CP, MP) end
 
 ---@param car1 Vehicle
 ---@param car2 Vehicle
----@return bool result
+---@return boolean result
 function isCarTouchingCar(car1, car2) end
 
 ---@param object Object
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function doesObjectHaveThisModel(object, modelId) end
 
 ---@param train Vehicle
----@param forced bool
+---@param forced boolean
 function setTrainForcedToSlowDown(train, forced) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isVehicleOnAllWheels(car) end
 
 ---@param pickup Pickup
----@return bool result
+---@return boolean result
 function doesPickupExist(pickup) end
 
----@param enable bool
+---@param enable boolean
 function enableAmbientCrime(enable) end
 
 function clearWantedLevelInGarage() end
 
 ---@param ped Ped
----@param soundslot int
----@param flags1 bool
----@param flags2 bool
----@param flags3 bool
----@return int unk
+---@param soundslot number
+---@param flags1 boolean
+---@param flags2 boolean
+---@param flags3 boolean
+---@return number unk
 function setCharSayContextImportant(ped, soundslot, flags1, flags2, flags3) end
 
 ---@param ped Ped
----@param sound int
----@param flags1 bool
----@param flags2 bool
----@param flags3 bool
+---@param sound number
+---@param flags1 boolean
+---@param flags2 boolean
+---@param flags3 boolean
 function setCharSayScript(ped, sound, flags1, flags2, flags3) end
 
 ---@param player Player
----@param force bool
+---@param force boolean
 function forceInteriorLightingForPlayer(player, force) end
 
 function useDetonator() end
 
----@param atX float
----@param atY float
----@param atZ float
----@return bool result
+---@param atX number
+---@param atY number
+---@param atZ number
+---@return boolean result
 function isMoneyPickupAtCoords(atX, atY, atZ) end
 
----@param panel int
----@param column int
----@param width int
+---@param panel number
+---@param column number
+---@param width number
 function setMenuColumnWidth(panel, column, width) end
 
----@param group int
+---@param group number
 function makeRoomInPlayerGangForMissionPeds(group) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharGettingInToACar(ped) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param angle float
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param angle number
 ---@param car Vehicle
 function setUpSkipForSpecificVehicle(posX, posY, posZ, angle, car) end
 
 ---@param modelId Model
----@return int price
+---@return number price
 function getCarModelValue(modelId) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
 ---@param modelId Model
----@param color1 int
----@param color2 int
----@param forceSpawn bool
----@param alarm int
----@param doorLock int
----@param minDelay int
----@param maxDelay int
+---@param color1 number
+---@param color2 number
+---@param forceSpawn boolean
+---@param alarm number
+---@param doorLock number
+---@param minDelay number
+---@param maxDelay number
 ---@param plate string
----@return int generator
+---@return number generator
 function createCarGeneratorWithPlate(
 	atX,
 	atY,
@@ -7103,189 +7104,189 @@ function createCarGeneratorWithPlate(
 end
 
 ---@param train Vehicle
----@return bool result
+---@return boolean result
 function findTrainDirection(train) end
 
----@param enable bool
+---@param enable boolean
 function setAircraftCarrierSamSite(enable) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param r int
----@param g int
----@param b int
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param r number
+---@param g number
+---@param b number
+---@param radius number
 function drawLightWithRange(atX, atY, atZ, r, g, b, radius) end
 
----@param enable bool
+---@param enable boolean
 function enableBurglaryHouses(enable) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerControlOn(player) end
 
 ---@param ped Ped
----@return int interior
+---@return number interior
 function getCharActiveInterior(ped) end
 
 ---@param car Vehicle
 function giveNonPlayerCarNitro(car) end
 
 ---@param player Player
----@param useAnim bool
+---@param useAnim boolean
 function playerTakeOffGoggles(player, useAnim) end
 
----@param allow bool
+---@param allow boolean
 function allowFixedCameraCollision(allow) end
 
 ---@param ped Ped
 ---@param ped2 Ped
----@return bool result
+---@return boolean result
 function hasCharSpottedCharInFront(ped, ped2) end
 
----@param stayOnScreen bool
+---@param stayOnScreen boolean
 function forceBigMessageAndCounter(stayOnScreen) end
 
 ---@param carModel Model
----@param distance float
----@param altitudeMultiplier float
----@param angleX float
+---@param distance number
+---@param altitudeMultiplier number
+---@param angleX number
 function setVehicleCameraTweak(carModel, distance, altitudeMultiplier, angleX) end
 
 function resetVehicleCameraTweak() end
 
 ---@param ped Ped
----@param event int
+---@param event number
 function reportMissionAudioEventAtChar(ped, event) end
 
----@param maker int
----@return bool result
+---@param maker number
+---@return boolean result
 function doesDecisionMakerExist(maker) end
 
 ---@param ped Ped
----@param ignore bool
+---@param ignore boolean
 function ignoreHeightDifferenceFollowingNodes(ped, ignore) end
 
----@param enable bool
+---@param enable boolean
 function shutAllCharsUp(enable) end
 
 ---@param ped Ped
----@param canGetOut bool
+---@param canGetOut boolean
 function setCharGetOutUpsideDownCar(ped, canGetOut) end
 
 ---@param car Vehicle
----@param event int
+---@param event number
 function reportMissionAudioEventAtCar(car, event) end
 
 function doWeaponStuffAtStartOf2pGame() end
 
----@return bool result
+---@return boolean result
 function hasGameJustReturnedFromFrontend() end
 
----@return int language
+---@return number language
 function getCurrentLanguage() end
 
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectIntersectingWorld(object) end
 
 ---@param gxtString GxtString
----@return int width
+---@return number width
 function getStringWidth(gxtString) end
 
 ---@param car Vehicle
 function resetVehicleHydraulics(car) end
 
----@param posX float
----@param posY float
----@param posZ float
+---@param posX number
+---@param posY number
+---@param posZ number
 function setRespawnPointForDurationOfMission(posX, posY, posZ) end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isThisModelACar(modelId) end
 
 ---@param searchlight Searchlight
----@param lightsThroughObstacles bool
+---@param lightsThroughObstacles boolean
 function switchOnGroundSearchlight(searchlight, lightsThroughObstacles) end
 
----@return bool result
+---@return boolean result
 function isGangWarFightingGoingOn() end
 
 ---@param train Vehicle
----@return bool result
+---@return boolean result
 function isNextStationAllowed(train) end
 
 ---@param train Vehicle
 function skipToNextAllowedStation(train) end
 
 ---@param gxtString GxtString
----@param number int
----@return int width
+---@param number number
+---@return number width
 function getStringWidthWithNumber(gxtString, number) end
 
 ---@param ped Ped
----@param muted bool
+---@param muted boolean
 function shutCharUpForScriptedSpeech(ped, muted) end
 
 ---@param object Object
----@param enable bool
+---@param enable boolean
 function enableDisabledAttractorsOnObject(object, enable) end
 
----@param coordX float
----@param coordY float
----@param coordZ float
----@param angle float
+---@param coordX number
+---@param coordY number
+---@param coordZ number
+---@param angle number
 function loadSceneInDirection(coordX, coordY, coordZ, angle) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerUsingJetpack(player) end
 
----@param style int
+---@param style number
 function clearThisPrintBigNow(style) end
 
----@return bool result
+---@return boolean result
 function hasLanguageChanged() end
 
----@param stat int
----@param value int
+---@param stat number
+---@param value number
 function incrementIntStatNoMessage(stat, value) end
 
 ---@param car Vehicle
----@param tertiaryColor int
----@param quaternaryColor int
+---@param tertiaryColor number
+---@param quaternaryColor number
 function setExtraCarColours(car, tertiaryColor, quaternaryColor) end
 
 ---@param car Vehicle
----@return int tertiaryColor
----@return int quaternaryColor
+---@return number tertiaryColor
+---@return number quaternaryColor
 function getExtraCarColours(car) end
 
 function manageAllPopulation() end
 
----@param enable bool
+---@param enable boolean
 function setNoResprays(enable) end
 
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function hasCarBeenResprayed(car) end
 
----@param audioId int
+---@param audioId number
 ---@param car Vehicle
 function attachMissionAudioToCar(audioId, car) end
 
----@param generator int
----@param owned bool
+---@param generator number
+---@param owned boolean
 function setHasBeenOwnedForCarGenerator(generator, owned) end
 
 ---@param questionGXT GxtString
 ---@param answerYesGXT GxtString
 ---@param answerNoGXT GxtString
----@param questionWAV int
----@param answerYesWAV int
----@param answerNoWAV int
+---@param questionWAV number
+---@param answerYesWAV number
+---@param answerNoWAV number
 function setUpConversationNodeWithScriptedSpeech(
 	questionGXT,
 	answerYesGXT,
@@ -7302,161 +7303,161 @@ function setAreaName(gxtString) end
 ---@param ped Ped
 ---@param animation string
 ---@param IFP string
----@param framedelta float
----@param loopA bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
+---@param framedelta number
+---@param loopA boolean
+---@param lockX boolean
+---@param lockY boolean
+---@param lockF boolean
+---@param time number
 function taskPlayAnimSecondary(ped, animation, IFP, framedelta, loopA, lockX, lockY, lockF, time) end
 
 ---@param ped Ped
 ---@param ped2 Ped
----@return bool result
+---@return boolean result
 function isCharTouchingChar(ped, ped2) end
 
 ---@param helicopter Vehicle
----@param disable bool
+---@param disable boolean
 function disableHeliAudio(helicopter, disable) end
 
 ---@param ped Ped
 ---@param ped2 Ped
 function taskHandGesture(ped, ped2) end
 
----@param unk bool
+---@param unk boolean
 function takePhoto(unk) end
 
----@param stat int
----@param value float
+---@param stat number
+---@param value number
 function incrementFloatStatNoMessage(stat, value) end
 
 ---@param player Player
----@param followAlways bool
+---@param followAlways boolean
 function setPlayerGroupToFollowAlways(player, followAlways) end
 
 ---@param car Vehicle
----@param affectedByCheats bool
+---@param affectedByCheats boolean
 function improveCarByCheating(car, affectedByCheats) end
 
----@param panelID int
+---@param panelID number
 ---@param car Vehicle
----@param colorslot int
----@param activeRow int
+---@param colorslot number
+---@param activeRow number
 function changeCarColourFromMenu(panelID, car, colorslot, activeRow) end
 
----@param panel int
----@param row int
----@param highlight bool
+---@param panel number
+---@param row number
+---@param highlight boolean
 function highlightMenuItem(panel, row, highlight) end
 
----@param disable bool
+---@param disable boolean
 function setDisableMilitaryZones(disable) end
 
----@param xAngle float
----@param zAngle float
+---@param xAngle number
+---@param zAngle number
 function setCameraPositionUnfixed(xAngle, zAngle) end
 
 function setRadioToPlayersFavouriteStation() end
 
 ---@param ped Ped
----@param persist bool
+---@param persist boolean
 function setDeathWeaponsPersist(ped, persist) end
 
 ---@param ped Ped
----@param speed float
+---@param speed number
 function setCharSwimSpeed(ped, speed) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerClimbing(player) end
 
 ---@param gxtString GxtString
----@return bool result
+---@return boolean result
 function isThisHelpMessageBeingDisplayed(gxtString) end
 
----@return bool result
+---@return boolean result
 function isWidescreenOnInOptions() end
 
----@param flag bool
+---@param flag boolean
 function drawSubtitlesBeforeFade(flag) end
 
----@param flag bool
+---@param flag boolean
 function drawOddjobTitleBeforeFade(flag) end
 
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
----@param time int
----@param stopRadius float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
+---@param time number
+---@param stopRadius number
 function taskFollowPathNodesToCoordWithRadius(ped, toX, toY, toZ, mode, time, stopRadius) end
 
----@param firstPersonView bool
+---@param firstPersonView boolean
 function setPhotoCameraEffect(firstPersonView) end
 
 ---@param car Vehicle
 function fixCar(car) end
 
 ---@param player Player
----@param neverFollow bool
+---@param neverFollow boolean
 function setPlayerGroupToFollowNever(player, neverFollow) end
 
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharAttachedToAnyCar(ped) end
 
 ---@param car Vehicle
 ---@return Ped ped
 function storeCarCharIsAttachedToNoSave(car) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param angle float
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param angle number
 ---@param car Vehicle
 function setUpSkipForVehicleFinishedByScript(posX, posY, posZ, angle, car) end
 
----@return bool result
+---@return boolean result
 function isSkipWaitingForScriptToFadeIn() end
 
----@param off bool
+---@param off boolean
 function forceAllVehicleLightsOff(off) end
 
----@return int mode
+---@return number mode
 function getPlayerInCarCameraMode() end
 
 ---@param player Player
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isLastBuildingModelShotByPlayer(player, modelId) end
 
 ---@param player Player
 function clearLastBuildingModelShotByPlayer(player) end
 
 ---@param dialogueGxt GxtString
----@param wav int
+---@param wav number
 function setUpConversationEndNodeWithScriptedSpeech(dialogueGxt, wav) end
 
----@param enable bool
+---@param enable boolean
 function activatePimpCheat(enable) end
 
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
 ---@return Ped ped
 function getRandomCharInAreaOffsetNoSave(sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ) end
 
----@param enable bool
+---@param enable boolean
 function setScriptCoopGame(enable) end
 
----@param atX float
----@param atY float
----@param atZ float
----@param color int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param color number
 ---@return Marker marker
 function createUser3dMarker(atX, atY, atZ, color) end
 
@@ -7465,34 +7466,34 @@ function removeUser3dMarker(marker) end
 
 function getRidOfPlayerProstitute() end
 
----@param display bool
+---@param display boolean
 function displayNonMinigameHelpMessages(display) end
 
----@param tracksFriction float
+---@param tracksFriction number
 function setRailtrackResistanceMult(tracksFriction) end
 
----@param externalScript int
----@param canBeStreamedIn bool
+---@param externalScript number
+---@param canBeStreamedIn boolean
 function switchObjectBrains(externalScript, canBeStreamedIn) end
 
 function finishSettingUpConversationNoSubtitles() end
 
----@param enable bool
+---@param enable boolean
 function allowPauseInWidescreen(enable) end
 
----@return float x
----@return float y
+---@return number x
+---@return number y
 function getPcMouseMovement() end
 
----@return bool result
+---@return boolean result
 function isPcUsingJoypad() end
 
----@return bool result
+---@return boolean result
 function isMouseUsingVerticalInversion() end
 
 ---@param filepath string
 ---@param args table
----@return bool result
+---@return boolean result
 function startNewCustomScript(filepath, args) end
 
 ---@param filepath string
@@ -7500,163 +7501,163 @@ function startNewCustomScript(filepath, args) end
 function launchCustomMission(filepath, args) end
 
 ---@param thread GxtString
----@return int handle
+---@return number handle
 function getScmThreadStructNamed(thread) end
 
----@param var int
----@param value int
+---@param var number
+---@param value number
 function setCleoSharedVar(var, value) end
 
----@param var int
----@return int value
+---@param var number
+---@return number value
 function getCleoSharedVar(var) end
 
 function sampSpawnPlayer() end
 
----@return uint handle
+---@return number handle
 function sampGetBase() end
 
 ---@param text string
----@param color uint
+---@param color number
 function sampAddChatMessage(text, color) end
 
 ---@param text string
 function sampSendChat(text) end
 
----@return bool result
+---@return boolean result
 function isSampAvailable() end
 
----@param class int
+---@param class number
 function sampRequestClass(class) end
 
----@param event int
----@param id int
----@param param1 int
----@param param2 int
+---@param event number
+---@param id number
+---@param param1 number
+---@param param2 number
 function sampSendScmEvent(event, id, param1, param2) end
 
----@param action int
+---@param action number
 function sampSetSpecialAction(action) end
 
----@param playerId int
----@param reason int
+---@param playerId number
+---@param reason number
 function sampSendDeathByPlayer(playerId, reason) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 ---@return Vehicle car
 function sampGetCarHandleBySampVehicleId(id) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 ---@return Ped ped
 function sampGetCharHandleBySampPlayerId(id) end
 
----@return bool result
+---@return boolean result
 function sampIsChatInputActive() end
 
----@param type int
----@param rate int
+---@param type number
+---@param rate number
 function sampSetSendrate(type, rate) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function sampIsPlayerConnected(id) end
 
----@param id int
----@return uint structPtr
+---@param id number
+---@return number structPtr
 function sampGetPlayerStructPtr(id) end
 
----@param id int
----@return int health
+---@param id number
+---@return number health
 function sampGetPlayerHealth(id) end
 
----@param id int
----@return int armor
+---@param id number
+---@return number armor
 function sampGetPlayerArmor(id) end
 
----@param gamestate int
+---@param gamestate number
 function sampSetGamestate(gamestate) end
 
----@param timeout bool
+---@param timeout boolean
 function sampDisconnectWithReason(timeout) end
 
 ---@param name string
 function sampSetLocalPlayerName(name) end
 
----@param id int
----@return int ping
+---@param id number
+---@return number ping
 function sampGetPlayerPing(id) end
 
 ---@param handle Ped
----@return bool result
----@return int id
+---@return boolean result
+---@return number id
 function sampGetPlayerIdByCharHandle(handle) end
 
 ---@param car Vehicle
----@return bool result
----@return int id
+---@return boolean result
+---@return number id
 function sampGetVehicleIdByCarHandle(car) end
 
----@param id int
----@return bool result
----@return float posX
----@return float posY
----@return float posZ
+---@param id number
+---@return boolean result
+---@return number posX
+---@return number posY
+---@return number posZ
 function sampGetStreamedOutPlayerPos(id) end
 
----@param id int
----@param passenger bool
+---@param id number
+---@param passenger boolean
 function sampSendEnterVehicle(id, passenger) end
 
----@param id int
+---@param id number
 function sampSendExitVehicle(id) end
 
 function sampSendSpawn() end
 
 ---@param car Vehicle
----@param panel int
----@param doors int
----@param lights int
----@param tires int
+---@param panel number
+---@param doors number
+---@param lights number
+---@param tires number
 function sampSendDamageVehicle(car, panel, doors, lights, tires) end
 
 ---@param cmd string
 ---@param func function
----@return bool result
+---@return boolean result
 function sampRegisterChatCommand(cmd, func) end
 
----@param id int
+---@param id number
 ---@return string name
 function sampGetPlayerNickname(id) end
 
----@param id int
----@return uint color
+---@param id number
+---@return number color
 function sampGetPlayerColor(id) end
 
 ---@param ip string
----@param port uint
+---@param port number
 function sampConnectToServer(ip, port) end
 
 ---@return string ip
----@return uint port
+---@return number port
 function sampGetCurrentServerAddress() end
 
 ---@return string name
 function sampGetCurrentServerName() end
 
----@param id int
+---@param id number
 ---@param caption string
 ---@param text string
 ---@param button1 string
 ---@param button2 string
----@param style int
+---@param style number
 function sampShowDialog(id, caption, text, button1, button2, style) end
 
----@param id int
----@return bool result
----@return int button
----@return int list
+---@param id number
+---@return boolean result
+---@return number button
+---@return number list
 ---@return string input
 function sampHasDialogRespond(id) end
 
@@ -7670,28 +7671,28 @@ function raknetDeleteBitStream(bs) end
 function raknetResetBitStream(bs) end
 
 ---@param bs Bitstream
----@param value bool
+---@param value boolean
 function raknetBitStreamWriteBool(bs, value) end
 
 ---@param bs Bitstream
----@param value int
+---@param value number
 function raknetBitStreamWriteInt8(bs, value) end
 
 ---@param bs Bitstream
----@param value int
+---@param value number
 function raknetBitStreamWriteInt16(bs, value) end
 
 ---@param bs Bitstream
----@param value int
+---@param value number
 function raknetBitStreamWriteInt32(bs, value) end
 
 ---@param bs Bitstream
----@param value float
+---@param value number
 function raknetBitStreamWriteFloat(bs, value) end
 
 ---@param bs Bitstream
----@param dest uint
----@param size uint
+---@param dest number
+---@param size number
 function raknetBitStreamWriteBuffer(bs, dest, size) end
 
 ---@param bs Bitstream
@@ -7702,46 +7703,46 @@ function raknetBitStreamWriteBitStream(bs, bitStream) end
 ---@param str string
 function raknetBitStreamWriteString(bs, str) end
 
----@param rpc int
+---@param rpc number
 ---@param bs Bitstream
----@param priority int
----@param reliability int
----@param channel int
----@param timestamp bool
+---@param priority number
+---@param reliability number
+---@param channel number
+---@param timestamp boolean
 function raknetSendRpcEx(rpc, bs, priority, reliability, channel, timestamp) end
 
 ---@param bs Bitstream
----@param priority int
----@param reliability int
----@param channel int
+---@param priority number
+---@param reliability number
+---@param channel number
 function raknetSendBitStreamEx(bs, priority, reliability, channel) end
 
 ---@param text string
----@param color uint
----@param posX float
----@param posY float
----@param posZ float
----@param distance float
----@param ignoreWalls bool
----@param playerId int
----@param vehicleId int
----@return int textlabel
+---@param color number
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param distance number
+---@param ignoreWalls boolean
+---@param playerId number
+---@param vehicleId number
+---@return number textlabel
 function sampCreate3dText(text, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId) end
 
----@param textlabel int
+---@param textlabel number
 function sampDestroy3dText(textlabel) end
 
----@param Text3d int
----@return bool result
+---@param Text3d number
+---@return boolean result
 function sampIs3dTextDefined(Text3d) end
 
----@param button int
+---@param button number
 function sampCloseCurrentDialogWithButton(button) end
 
----@return int list
+---@return number list
 function sampGetCurrentDialogListItem() end
 
----@param list int
+---@param list number
 function sampSetCurrentDialogListItem(list) end
 
 ---@return string text
@@ -7750,97 +7751,97 @@ function sampGetCurrentDialogEditboxText() end
 ---@param text string
 function sampSetCurrentDialogEditboxText(text) end
 
----@return bool result
+---@return boolean result
 function sampIsDialogActive() end
 
----@return int type
+---@return number type
 function sampGetCurrentDialogType() end
 
----@return int id
+---@return number id
 function sampGetCurrentDialogId() end
 
----@return int gamestate
+---@return number gamestate
 function sampGetGamestate() end
 
----@param id int
+---@param id number
 ---@return Object object
 function sampGetObjectHandleBySampId(id) end
 
----@param id int
+---@param id number
 ---@return Pickup pickup
 function sampGetPickupHandleBySampId(id) end
 
 ---@param object Object
----@return int objectId
+---@return number objectId
 function sampGetObjectSampIdByHandle(object) end
 
 ---@param pickup Pickup
----@return int pickupId
+---@return number pickupId
 function sampGetPickupSampIdByHandle(pickup) end
 
----@return int count
+---@return number count
 function sampGetListboxItemsCount() end
 
----@param playerId int
----@return int animid
+---@param playerId number
+---@return number animid
 function sampGetPlayerAnimationId(playerId) end
 
----@param animid int
+---@param animid number
 ---@return string name
 ---@return string file
 function sampGetAnimationNameAndFile(animid) end
 
 ---@param name string
 ---@param file string
----@return int id
+---@return number id
 function sampFindAnimationIdByNameAndFile(name, file) end
 
----@return int resX
----@return int resY
+---@return number resX
+---@return number resY
 function getScreenResolution() end
 
----@param item int
+---@param item number
 ---@return string text
 function sampGetListboxItemText(item) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function sampIsPlayerPaused(id) end
 
----@param show bool
+---@param show boolean
 function sampToggleCursor(show) end
 
----@return bool result
+---@return boolean result
 function sampIsLocalPlayerSpawned() end
 
----@param id int
----@return int action
+---@param id number
+---@return number action
 function sampGetPlayerSpecialAction(id) end
 
 ---@param cmd string
----@return bool result
+---@return boolean result
 function sampUnregisterChatCommand(cmd) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function sampIsPlayerNpc(id) end
 
----@param id int
----@return int score
+---@param id number
+---@return number score
 function sampGetPlayerScore(id) end
 
----@param id int
+---@param id number
 ---@param text string
 ---@param prefix string
----@param color uint
----@param pcolor uint
+---@param color number
+---@param pcolor number
 function sampSetChatString(id, text, prefix, color, pcolor) end
 
----@param id int
+---@param id number
 ---@return string text
 ---@return string prefix
----@return uint color
----@return uint pcolor
+---@return number color
+---@return number pcolor
 function sampGetChatString(id) end
 
 ---@param text string
@@ -7852,28 +7853,28 @@ function sampGetChatInputText() end
 ---@param msg string
 function sampfuncsLog(msg) end
 
----@param enabled bool
+---@param enabled boolean
 function sampSetChatInputEnabled(enabled) end
 
----@return uint rakclientPtr
+---@return number rakclientPtr
 function sampGetRakclientInterface() end
 
----@return uint rakpeer
+---@return number rakpeer
 function sampGetRakpeer() end
 
----@param index int
----@return uint address
+---@param index number
+---@return number address
 function sampGetRakclientFuncAddressByIndex(index) end
 
----@param index int
----@return uint callbackAddress
+---@param index number
+---@return number callbackAddress
 function sampGetRpcCallbackByRpcId(index) end
 
----@param index int
----@return uint node
+---@param index number
+---@return number node
 function sampGetRpcNodeByRpcId(index) end
 
----@return uint sampPtr
+---@return number sampPtr
 function sampGetSampInfoPtr() end
 
 ---@param name string
@@ -7881,369 +7882,369 @@ function sampGetSampInfoPtr() end
 function dxutCreateDialog(name) end
 
 ---@param dialog DxutDialog
----@return bool result
----@return int event
----@return int id
+---@return boolean result
+---@return number event
+---@return number id
 function dxutPopEvent(dialog) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 ---@param text string
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddButton(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 ---@param text string
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddCheckbox(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutSetDialogPos(dialog, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
----@return int posX
----@return int posY
----@return int sizeX
----@return int sizeY
+---@return number posX
+---@return number posY
+---@return number sizeX
+---@return number sizeY
 function dxutGetDialogPosAndSize(dialog) end
 
 ---@param dialog DxutDialog
----@param visible bool
+---@param visible boolean
 function dxutSetDialogVisible(dialog, visible) end
 
 ---@param dialog DxutDialog
----@return bool result
+---@return boolean result
 function dxutIsDialogVisible(dialog) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 ---@param text string
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddEditbox(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 ---@return string text
 function dxutGetControlText(dialog, id) end
 
----@param rpc int
+---@param rpc number
 ---@param bs Bitstream
 function raknetSendRpc(rpc, bs) end
 
 ---@param bs Bitstream
 function raknetSendBitStream(bs) end
 
----@return bool result
+---@return boolean result
 function sampIsCursorActive() end
 
----@param mode int
+---@param mode number
 function sampSetCursorMode(mode) end
 
----@return int mode
+---@return number mode
 function sampGetCursorMode() end
 
 ---@param dialog DxutDialog
----@param id int
----@param visible bool
+---@param id number
+---@param visible boolean
 function dxutSetControlVisible(dialog, id, visible) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 ---@param text string
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddStatic(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function dxutIsCheckboxChecked(dialog, id) end
 
 ---@param dialog DxutDialog
----@param color uint
+---@param color number
 function dxutSetDialogBackgroundColor(dialog, color) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 ---@param text string
 function dxutSetControlText(dialog, id, text) end
 
 ---@param dialog DxutDialog
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function dxutControlIsVisible(dialog, id) end
 
 ---@param dialog DxutDialog
----@param id int
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
----@param max int
+---@param id number
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
+---@param max number
 function dxutAddSlider(dialog, id, posX, posY, sizeX, sizeY, max) end
 
 ---@param dialog DxutDialog
----@param id int
----@return int value
+---@param id number
+---@return number value
 function dxutGetSliderValue(dialog, id) end
 
 ---@param dialog DxutDialog
----@param id int
----@param value int
+---@param id number
+---@param value number
 function dxutSetSliderValue(dialog, id, value) end
 
 ---@param dialog DxutDialog
----@param id int
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param id number
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddListbox(dialog, id, posX, posY, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 ---@param element string
----@param data uint
----@param after int
+---@param data number
+---@param after number
 function dxutListboxInsertItem(dialog, id, element, data, after) end
 
 ---@param dialog DxutDialog
----@param id int
----@return int element
----@return int count
+---@param id number
+---@return number element
+---@return number count
 function dxutGetListboxSelectedItemAndCount(dialog, id) end
 
 ---@param dialog DxutDialog
----@param id int
----@param element int
+---@param id number
+---@param element number
 function dxutListboxDeleteItem(dialog, id, element) end
 
 ---@param dialog DxutDialog
----@param id int
----@param element int
+---@param id number
+---@param element number
 ---@return string text
----@return uint data
+---@return number data
 function dxutGetListboxItemTextAndData(dialog, id, element) end
 
 ---@param dialog DxutDialog
----@param id int
----@param checked bool
+---@param id number
+---@param checked boolean
 function dxutCheckboxSetChecked(dialog, id, checked) end
 
 ---@param dialog DxutDialog
----@param enable bool
+---@param enable boolean
 function dxutEnableDialogCaption(dialog, enable) end
 
 ---@param dialog DxutDialog
----@return bool result
+---@return boolean result
 function dxutIsDialogCaptionEnabled(dialog) end
 
 ---@param dialog DxutDialog
----@param minimized bool
+---@param minimized boolean
 function dxutSetDialogMinimized(dialog, minimized) end
 
 ---@param dialog DxutDialog
----@return bool result
+---@return boolean result
 function dxutIsDialogMinimized(dialog) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 function dxutDeleteControl(dialog, id) end
 
 ---@param dialog DxutDialog
 function dxutDeleteDialog(dialog) end
 
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 function dxutSetFocusOnControl(dialog, id) end
 
 ---@param dialog DxutDialog
----@param id int
----@param sizeX int
----@param sizeY int
+---@param id number
+---@param sizeX number
+---@param sizeY number
 function dxutSetControlSize(dialog, id, sizeX, sizeY) end
 
 ---@param dialog DxutDialog
----@param id int
----@return int sizeX
----@return int sizeY
+---@param id number
+---@return number sizeX
+---@return number sizeY
 function dxutGetControlSize(dialog, id) end
 
 ---@param dialog DxutDialog
----@param id int
----@param posX int
----@param posY int
+---@param id number
+---@param posX number
+---@param posY number
 function dxutSetControlPos(dialog, id, posX, posY) end
 
 ---@param dialog DxutDialog
----@param id int
----@return int posX
----@return int posY
+---@param id number
+---@return number posX
+---@return number posY
 function dxutGetControlPos(dialog, id) end
 
 ---@param dialog DxutDialog
----@param id int
----@param color uint
+---@param id number
+---@param color number
 function dxutSetCheckboxColor(dialog, id, color) end
 
 ---@param dialog DxutDialog
----@return bool result
+---@return boolean result
 function dxutIsDialogExists(dialog) end
 
----@return uint settingsPtr
+---@return number settingsPtr
 function sampGetServerSettingsPtr() end
 
----@return uint poolsPtr
+---@return number poolsPtr
 function sampGetSampPoolsPtr() end
 
----@return uint chatPtr
+---@return number chatPtr
 function sampGetChatInfoPtr() end
 
----@return uint inputPtr
+---@return number inputPtr
 function sampGetInputInfoPtr() end
 
----@return uint dialogPtr
+---@return number dialogPtr
 function sampGetDialogInfoPtr() end
 
----@return uint kill
+---@return number kill
 function sampGetKillInfoPtr() end
 
----@return uint miscPtr
+---@return number miscPtr
 function sampGetMiscInfoPtr() end
 
----@return uint tdpoolPtr
+---@return number tdpoolPtr
 function sampGetTextdrawPoolPtr() end
 
----@return int objpoolPtr
+---@return number objpoolPtr
 function sampGetObjectPoolPtr() end
 
----@return uint gzpoolPtr
+---@return number gzpoolPtr
 function sampGetGangzonePoolPtr() end
 
----@return uint tlabelpoolPtr
+---@return number tlabelpoolPtr
 function sampGetTextlabelPoolPtr() end
 
----@return uint playerpoolPtr
+---@return number playerpoolPtr
 function sampGetPlayerPoolPtr() end
 
----@return uint vehpoolPtr
+---@return number vehpoolPtr
 function sampGetVehiclePoolPtr() end
 
----@return uint pickuppoolPtr
+---@return number pickuppoolPtr
 function sampGetPickupPoolPtr() end
 
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerOnfootData(id, dstBuffer) end
 
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerIncarData(id, dstBuffer) end
 
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerPassengerData(id, dstBuffer) end
 
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerTrailerData(id, dstBuffer) end
 
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerAimData(id, dstBuffer) end
 
 ---@param cmd string
 function sampSendRconCommand(cmd) end
 
----@param dataPtr uint
+---@param dataPtr number
 function sampSendOnfootData(dataPtr) end
 
----@param dataPtr uint
+---@param dataPtr number
 function sampSendIncarData(dataPtr) end
 
----@param dataPtr uint
+---@param dataPtr number
 function sampSendPassengerData(dataPtr) end
 
----@param dataPtr uint
+---@param dataPtr number
 function sampSendAimData(dataPtr) end
 
----@param dataPtr uint
+---@param dataPtr number
 function sampSendBulletData(dataPtr) end
 
----@param dataPtr uint
+---@param dataPtr number
 function sampSendTrailerData(dataPtr) end
 
----@param dataPtr uint
+---@param dataPtr number
 function sampSendUnoccupiedData(dataPtr) end
 
----@param dataPtr uint
+---@param dataPtr number
 function sampSendSpectatorData(dataPtr) end
 
----@param id int
----@param source int
+---@param id number
+---@param source number
 function sampSendClickPlayer(id, source) end
 
----@param id int
----@param button int
----@param listitem int
+---@param id number
+---@param button number
+---@param listitem number
 ---@param input string
 function sampSendDialogResponse(id, button, listitem, input) end
 
----@param id int
+---@param id number
 function sampSendClickTextdraw(id) end
 
----@param id int
----@param damage float
----@param weapon int
----@param bodypart int
+---@param id number
+---@param damage number
+---@param weapon number
+---@param bodypart number
 function sampSendGiveDamage(id, damage, weapon, bodypart) end
 
----@param id int
----@param damage float
----@param weapon int
----@param bodypart int
+---@param id number
+---@param damage number
+---@param weapon number
+---@param bodypart number
 function sampSendTakeDamage(id, damage, weapon, bodypart) end
 
----@param playerObject bool
----@param objectId int
----@param response int
----@param posX float
----@param posY float
----@param posZ float
----@param rotX float
----@param rotY float
----@param rotZ float
+---@param playerObject boolean
+---@param objectId number
+---@param response number
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param rotX number
+---@param rotY number
+---@param rotZ number
 function sampSendEditObject(playerObject, objectId, response, posX, posY, posZ, rotX, rotY, rotZ) end
 
----@param response int
----@param index int
----@param model int
----@param bone int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotX float
----@param rotY float
----@param rotZ float
----@param scaleX float
----@param scaleY float
----@param scaleZ float
+---@param response number
+---@param index number
+---@param model number
+---@param bone number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotX number
+---@param rotY number
+---@param rotZ number
+---@param scaleX number
+---@param scaleY number
+---@param scaleZ number
 function sampSendEditAttachedObject(
 	response,
 	index,
@@ -8261,26 +8262,26 @@ function sampSendEditAttachedObject(
 )
 end
 
----@param id int
+---@param id number
 function sampSendInteriorChange(id) end
 
 function sampSendRequestSpawn() end
 
----@param id int
+---@param id number
 function sampSendPickedUpPickup(id) end
 
----@param id int
+---@param id number
 function sampSendMenuSelectRow(id) end
 
 function sampSendMenuQuit() end
 
----@param id int
+---@param id number
 function sampSendVehicleDestroyed(id) end
 
----@return bool result
+---@return boolean result
 function sampIsScoreboardOpen() end
 
----@param show bool
+---@param show boolean
 function sampToggleScoreboard(show) end
 
 ---@return string text
@@ -8289,54 +8290,54 @@ function sampGetDialogText() end
 ---@return string caption
 function sampGetDialogCaption() end
 
----@param clientside bool
+---@param clientside boolean
 function sampSetDialogClientside(clientside) end
 
----@return bool result
+---@return boolean result
 function sampIsDialogClientside() end
 
----@return bool result
+---@return boolean result
 function sampIsChatVisible() end
 
----@return int mode
+---@return number mode
 function sampGetChatDisplayMode() end
 
----@param mode int
+---@param mode number
 function sampSetChatDisplayMode(mode) end
 
----@param thread uint
+---@param thread number
 function pauseScmThread(thread) end
 
----@param thread uint
+---@param thread number
 function resumeScmThread(thread) end
 
 ---@param bs Bitstream
----@return bool value
+---@return boolean value
 function raknetBitStreamReadBool(bs) end
 
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamReadInt8(bs) end
 
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamReadInt16(bs) end
 
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamReadInt32(bs) end
 
 ---@param bs Bitstream
----@return float value
+---@return number value
 function raknetBitStreamReadFloat(bs) end
 
 ---@param bs Bitstream
----@param dest uint
----@param size uint
+---@param dest number
+---@param size number
 function raknetBitStreamReadBuffer(bs, dest, size) end
 
 ---@param bs Bitstream
----@param size uint
+---@param size number
 ---@return string value
 function raknetBitStreamReadString(bs, size) end
 
@@ -8347,43 +8348,43 @@ function raknetBitStreamResetReadPointer(bs) end
 function raknetBitStreamResetWritePointer(bs) end
 
 ---@param bs Bitstream
----@param amount int
+---@param amount number
 function raknetBitStreamIgnoreBits(bs, amount) end
 
 ---@param bs Bitstream
----@param offset int
+---@param offset number
 function raknetBitStreamSetWriteOffset(bs, offset) end
 
 ---@param bs Bitstream
----@param offset int
+---@param offset number
 function raknetBitStreamSetReadOffset(bs, offset) end
 
 ---@param bs Bitstream
----@return uint value
+---@return number value
 function raknetBitStreamGetNumberOfBitsUsed(bs) end
 
 ---@param bs Bitstream
----@return uint value
+---@return number value
 function raknetBitStreamGetNumberOfBytesUsed(bs) end
 
 ---@param bs Bitstream
----@return uint value
+---@return number value
 function raknetBitStreamGetNumberOfUnreadBits(bs) end
 
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamGetWriteOffset(bs) end
 
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamGetReadOffset(bs) end
 
 ---@param bs Bitstream
----@return uint value
+---@return number value
 function raknetBitStreamGetDataPtr(bs) end
 
 ---@param bs Bitstream
----@param size int
+---@param size number
 ---@return string string
 function raknetBitStreamDecodeString(bs, size) end
 
@@ -8391,189 +8392,189 @@ function raknetBitStreamDecodeString(bs, size) end
 ---@param string string
 function raknetBitStreamEncodeString(bs, string) end
 
----@param rpc int
+---@param rpc number
 ---@param bs Bitstream
 function raknetEmulRpcReceiveBitStream(rpc, bs) end
 
----@param packet int
+---@param packet number
 ---@param bs Bitstream
 function raknetEmulPacketReceiveBitStream(packet, bs) end
 
----@param rpc int
+---@param rpc number
 ---@return string name
 function raknetGetRpcName(rpc) end
 
----@param packet int
+---@param packet number
 ---@return string name
 function raknetGetPacketName(packet) end
 
 ---@param var string
----@param value int
----@return bool result
+---@param value number
+---@return boolean result
 function setSampfuncsGlobalVar(var, value) end
 
 ---@param var string
----@return bool result
----@return int value
+---@return boolean result
+---@return number value
 function getSampfuncsGlobalVar(var) end
 
----@param id int
+---@param id number
 ---@param text string
----@param color uint
----@param posX float
----@param posY float
----@param posZ float
----@param distance float
----@param ignoreWalls bool
----@param playerId int
----@param vehicleId int
+---@param color number
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param distance number
+---@param ignoreWalls boolean
+---@param playerId number
+---@param vehicleId number
 function sampCreate3dTextEx(id, text, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId) end
 
----@param id int
+---@param id number
 ---@return string string
----@return uint color
----@return float posX
----@return float posY
----@return float posZ
----@return float distance
----@return bool ignoreWalls
----@return int playerId
----@return int vehicleId
+---@return number color
+---@return number posX
+---@return number posY
+---@return number posZ
+---@return number distance
+---@return boolean ignoreWalls
+---@return number playerId
+---@return number vehicleId
 function sampGet3dTextInfoById(id) end
 
----@param id int
+---@param id number
 ---@param text string
 function sampSet3dTextString(id, text) end
 
----@param id int
+---@param id number
 ---@param text string
----@param posX float
----@param posY float
+---@param posX number
+---@param posY number
 function sampTextdrawCreate(id, text, posX, posY) end
 
----@param id int
----@param box int
----@param color uint
----@param sizeX float
----@param sizeY float
+---@param id number
+---@param box number
+---@param color number
+---@param sizeX number
+---@param sizeY number
 function sampTextdrawSetBoxColorAndSize(id, box, color, sizeX, sizeY) end
 
----@param id int
----@param align int
+---@param id number
+---@param align number
 function sampTextdrawSetAlign(id, align) end
 
----@param id int
----@param proportional int
+---@param id number
+---@param proportional number
 function sampTextdrawSetProportional(id, proportional) end
 
----@param id int
----@param style int
+---@param id number
+---@param style number
 function sampTextdrawSetStyle(id, style) end
 
----@param id int
----@param shadow int
----@param color uint
+---@param id number
+---@param shadow number
+---@param color number
 function sampTextdrawSetShadow(id, shadow, color) end
 
----@param id int
----@param outline int
----@param color uint
+---@param id number
+---@param outline number
+---@param color number
 function sampTextdrawSetOutlineColor(id, outline, color) end
 
----@param id int
----@param model int
----@param rotX float
----@param rotY float
----@param rotZ float
----@param zoom float
----@param clr1 int
----@param clr2 int
+---@param id number
+---@param model number
+---@param rotX number
+---@param rotY number
+---@param rotZ number
+---@param zoom number
+---@param clr1 number
+---@param clr2 number
 function sampTextdrawSetModelRotationZoomVehColor(id, model, rotX, rotY, rotZ, zoom, clr1, clr2) end
 
----@param id int
+---@param id number
 ---@param text string
 function sampTextdrawSetString(id, text) end
 
----@param id int
----@param posX float
----@param posY float
+---@param id number
+---@param posX number
+---@param posY number
 function sampTextdrawSetPos(id, posX, posY) end
 
----@param id int
----@param letSizeX float
----@param letSizeY float
----@param color uint
+---@param id number
+---@param letSizeX number
+---@param letSizeY number
+---@param color number
 function sampTextdrawSetLetterSizeAndColor(id, letSizeX, letSizeY, color) end
 
----@param id int
----@return int box
----@return uint color
----@return float sizeX
----@return float sizeY
+---@param id number
+---@return number box
+---@return number color
+---@return number sizeX
+---@return number sizeY
 function sampTextdrawGetBoxEnabledColorAndSize(id) end
 
----@param id int
----@return int align
+---@param id number
+---@return number align
 function sampTextdrawGetAlign(id) end
 
----@param id int
----@return int prop
+---@param id number
+---@return number prop
 function sampTextdrawGetProportional(id) end
 
----@param id int
----@return int style
+---@param id number
+---@return number style
 function sampTextdrawGetStyle(id) end
 
----@param id int
----@return int shadow
----@return uint color
+---@param id number
+---@return number shadow
+---@return number color
 function sampTextdrawGetShadowColor(id) end
 
----@param id int
----@return int outline
----@return uint color
+---@param id number
+---@return number outline
+---@return number color
 function sampTextdrawGetOutlineColor(id) end
 
----@param id int
----@return int model
----@return float rotX
----@return float rotY
----@return float rotZ
----@return float zoom
----@return int clr1
----@return int clr2
+---@param id number
+---@return number model
+---@return number rotX
+---@return number rotY
+---@return number rotZ
+---@return number zoom
+---@return number clr1
+---@return number clr2
 function sampTextdrawGetModelRotationZoomVehColor(id) end
 
----@param id int
+---@param id number
 ---@return string text
 function sampTextdrawGetString(id) end
 
----@param id int
----@return float posX
----@return float posY
+---@param id number
+---@return number posX
+---@return number posY
 function sampTextdrawGetPos(id) end
 
----@param id int
----@return float letSizeX
----@return float letSizeY
----@return uint color
+---@param id number
+---@return number letSizeX
+---@return number letSizeY
+---@return number color
 function sampTextdrawGetLetterSizeAndColor(id) end
 
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function sampTextdrawIsExists(id) end
 
----@param id int
+---@param id number
 function sampTextdrawDelete(id) end
 
 ---@param var string
----@return bool result
+---@return boolean result
 function isSampfuncsGlobalVarDefined(var) end
 
 ---@param var string
----@param thread uint
----@return bool read
----@return bool write
+---@param thread number
+---@return boolean read
+---@return boolean write
 function getSampfuncsGlobalVarAccessForThread(var, thread) end
 
 ---@param cmd string
@@ -8581,36 +8582,36 @@ function runSampfuncsConsoleCommand(cmd) end
 
 ---@param cmd string
 ---@param func function
----@return bool result
+---@return boolean result
 function sampfuncsRegisterConsoleCommand(cmd, func) end
 
 ---@param cmd string
----@return bool result
+---@return boolean result
 function sampfuncsUnregisterConsoleCommand(cmd) end
 
----@param pointer uint
+---@param pointer number
 ---@param args table
----@return uint thread
+---@return number thread
 function createScmThreadAtPointer(pointer, args) end
 
----@param thread uint
----@param var int
+---@param thread number
+---@param var number
 ---@param value any
 function setScmThreadLocalVar(thread, var, value) end
 
----@param thread uint
----@param var int
----@return int value
+---@param thread number
+---@param var number
+---@return number value
 function getScmThreadLocalVar(thread, var) end
 
----@param thread uint
+---@param thread number
 function destroyScmThread(thread) end
 
----@param thread uint
+---@param thread number
 ---@param args table
 function restartScmThread(thread, args) end
 
----@return bool result
+---@return boolean result
 function isSampfuncsConsoleActive() end
 
 ---@param cmd string
@@ -8621,90 +8622,90 @@ function sampSetClientCommandDescription(cmd, text) end
 ---@param text string
 function setSampfuncsConsoleCommandDescription(cmd, text) end
 
----@param id int
+---@param id number
 function sampForceVehicleSync(id) end
 
----@param id int
----@param seatId int
+---@param id number
+---@param seatId number
 function sampForceUnoccupiedSyncSeatId(id, seatId) end
 
 function sampForceOnfootSync() end
 
 function sampForceAimSync() end
 
----@param id int
+---@param id number
 function sampForceTrailerSync(id) end
 
----@param id int
----@param seatId int
+---@param id number
+---@param seatId number
 function sampForcePassengerSyncSeatId(id, seatId) end
 
 function sampForceStatsSync() end
 
 function sampForceWeaponsSync() end
 
----@param streamed bool
----@return int id
+---@param streamed boolean
+---@return number id
 function sampGetMaxPlayerId(streamed) end
 
----@param streamed bool
----@return int count
+---@param streamed boolean
+---@return number count
 function sampGetPlayerCount(streamed) end
 
 ---@param text string
 function sampProcessChatInput(text) end
 
 ---@param cmd string
----@return bool result
+---@return boolean result
 function sampIsChatCommandDefined(cmd) end
 
 ---@param cmd string
----@return bool result
+---@return boolean result
 function isSampfuncsConsoleCommandDefined(cmd) end
 
----@return int version
+---@return number version
 function getCleoLibraryVersion() end
 
 ---@param object Object
----@return float x
----@return float y
----@return float z
----@return float w
+---@return number x
+---@return number y
+---@return number z
+---@return number w
 function getObjectQuaternion(object) end
 
 ---@param object Object
----@param x float
----@param y float
----@param z float
----@param w float
+---@param x number
+---@param y number
+---@param z number
+---@param w number
 function setObjectQuaternion(object, x, y, z, w) end
 
 ---@param car Vehicle
----@return float x
----@return float y
----@return float z
----@return float w
+---@return number x
+---@return number y
+---@return number z
+---@return number w
 function getVehicleQuaternion(car) end
 
 ---@param car Vehicle
----@param x float
----@param y float
----@param z float
----@param w float
+---@param x number
+---@param y number
+---@param z number
+---@param w number
 function setVehicleQuaternion(car, x, y, z, w) end
 
 ---@param ped Ped
----@return float x
----@return float y
----@return float z
----@return float w
+---@return number x
+---@return number y
+---@return number z
+---@return number w
 function getCharQuaternion(ped) end
 
 ---@param ped Ped
----@param x float
----@param y float
----@param z float
----@param w float
+---@param x number
+---@param y number
+---@param z number
+---@param w number
 function setCharQuaternion(ped, x, y, z, w) end
 
 ---@param audio string
@@ -8712,7 +8713,7 @@ function setCharQuaternion(ped, x, y, z, w) end
 function loadAudioStream(audio) end
 
 ---@param handle AudioStream
----@param state int
+---@param state number
 function setAudioStreamState(handle, state) end
 
 ---@param handle AudioStream
@@ -8723,19 +8724,19 @@ function releaseAudioStream(handle) end
 function getAudioStreamLength(handle) end
 
 ---@param handle AudioStream
----@return int state
+---@return number state
 function getAudioStreamState(handle) end
 
 ---@param audio AudioStream
----@return float volume
+---@return number volume
 function getAudioStreamVolume(audio) end
 
 ---@param audio AudioStream
----@param volume float
+---@param volume number
 function setAudioStreamVolume(audio, volume) end
 
 ---@param audio AudioStream
----@param loop bool
+---@param loop boolean
 function setAudioStreamLooped(audio, loop) end
 
 ---@param audio string
@@ -8743,9 +8744,9 @@ function setAudioStreamLooped(audio, loop) end
 function load3dAudioStream(audio) end
 
 ---@param handle AudioStream
----@param posX float
----@param posY float
----@param posZ float
+---@param posX number
+---@param posY number
+---@param posZ number
 function setPlay3dAudioStreamAtCoordinates(handle, posX, posY, posZ) end
 
 ---@param audio AudioStream
@@ -8760,66 +8761,66 @@ function setPlay3dAudioStreamAtChar(audio, ped) end
 ---@param car Vehicle
 function setPlay3dAudioStreamAtCar(audio, car) end
 
----@param address uint
----@param size uint
+---@param address number
+---@param size number
 ---@return AudioStream handle
 function loadAudioStreamFromMemory(address, size) end
 
----@param address uint
----@param size uint
+---@param address number
+---@param size number
 ---@return AudioStream handle
 function load3dAudioStreamFromMemory(address, size) end
 
----@param pos1X float
----@param pos1Y float
----@param pos2X float
----@param pos2Y float
----@param width float
----@param color uint
+---@param pos1X number
+---@param pos1Y number
+---@param pos2X number
+---@param pos2Y number
+---@param width number
+---@param color number
 function renderDrawLine(pos1X, pos1Y, pos2X, pos2Y, width, color) end
 
----@param posX float
----@param posY float
----@param sizeX float
----@param sizeY float
----@param color uint
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
+---@param color number
 function renderDrawBox(posX, posY, sizeX, sizeY, color) end
 
----@param posX float
----@param posY float
----@param sizeX float
----@param sizeY float
----@param color uint
----@param bsize float
----@param bcolor uint
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
+---@param color number
+---@param bsize number
+---@param bcolor number
 function renderDrawBoxWithBorder(posX, posY, sizeX, sizeY, color, bsize, bcolor) end
 
 ---@param font DxFont
 ---@param text string
----@param ignoreColorTags bool
----@return float length
+---@param ignoreColorTags boolean
+---@return number length
 function renderGetFontDrawTextLength(font, text, ignoreColorTags) end
 
 ---@param font DxFont
----@return float height
+---@return number height
 function renderGetFontDrawHeight(font) end
 
 ---@param font DxFont
 ---@param text string
----@param x float
----@param ignoreColorTags bool
----@return uint index
+---@param x number
+---@param ignoreColorTags boolean
+---@return number index
 function renderGetFontCharIndexAt(font, text, x, ignoreColorTags) end
 
 ---@param font DxFont
----@param char uint
----@return float width
+---@param char number
+---@return number width
 function renderGetFontCharWidth(font, char) end
 
 ---@param font string
----@param height int
----@param flags uint
----@param charset uint
+---@param height number
+---@param flags number
+---@param charset? number
 ---@return DxFont font
 function renderCreateFont(font, height, flags, charset) end
 
@@ -8828,19 +8829,19 @@ function renderReleaseFont(font) end
 
 ---@param font DxFont
 ---@param text string
----@param posX float
----@param posY float
----@param color uint
----@param ignoreColorTags bool
+---@param posX number
+---@param posY number
+---@param color number
+---@param ignoreColorTags boolean
 function renderFontDrawText(font, text, posX, posY, color, ignoreColorTags) end
 
----@param posX float
----@param posY float
----@param sizeX float
----@param sizeY float
----@param corners int
----@param rotation float
----@param color uint
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
+---@param corners number
+---@param rotation number
+---@param color number
 function renderDrawPolygon(posX, posY, sizeX, sizeY, corners, rotation, color) end
 
 ---@param file string
@@ -8851,56 +8852,56 @@ function renderLoadTextureFromFile(file) end
 function renderReleaseTexture(texture) end
 
 ---@param texture DxTexture
----@param posX float
----@param posY float
----@param sizeX float
----@param sizeY float
----@param rotation float
----@param color uint
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
+---@param rotation number
+---@param color number
 function renderDrawTexture(texture, posX, posY, sizeX, sizeY, rotation, color) end
 
----@param type int
+---@param type number
 function renderBegin(type) end
 
 function renderEnd() end
 
----@param color uint
+---@param color number
 function renderColor(color) end
 
----@param vX float
----@param vY float
+---@param vX number
+---@param vY number
 function renderVertex(vX, vY) end
 
----@param posX float
----@param posY float
+---@param posX number
+---@param posY number
 function renderSetTexCoord(posX, posY) end
 
 ---@param texture DxTexture
 function renderBindTexture(texture) end
 
 ---@param texture DxTexture
----@return uint struct
+---@return number struct
 function renderGetTextureStruct(texture) end
 
 ---@param texture DxTexture
----@return uint sprite
+---@return number sprite
 function renderGetTextureSprite(texture) end
 
 ---@param texture DxTexture
----@return uint sizeX
----@return uint sizeY
+---@return number sizeX
+---@return number sizeY
 function renderGetTextureSize(texture) end
 
----@param state int
----@param value uint
+---@param state number
+---@param value number
 function renderSetRenderState(state, value) end
 
----@param pointer uint
----@param size uint
+---@param pointer number
+---@param size number
 ---@return DxTexture texture
 function renderLoadTextureFromFileInMemory(pointer, size) end
 
----@param version int
+---@param version number
 function script_version_number(version) end
 
 ---@param version string
@@ -8921,51 +8922,51 @@ function script_author(author) end
 ---@param name string
 function script_dependencies(name) end
 
----@param version int
+---@param version number
 function script_moonloader(version) end
 
----@param time int
+---@param time number
 function wait(time) end
 
 ---@param value any
 function print(value) end
 
----@param index int
----@return int value
+---@param index number
+---@return number value
 function getGameGlobal(index) end
 
----@param index int
----@param value int
+---@param index number
+---@param value number
 function setGameGlobal(index, value) end
 
----@param index int
----@return uint ptr
+---@param index number
+---@return number ptr
 function getGameGlobalPtr(index) end
 
----@return bool loaded
+---@return boolean loaded
 function isSampfuncsLoaded() end
 
----@return bool loaded
+---@return boolean loaded
 function isCleoLoaded() end
 
----@return bool loaded
+---@return boolean loaded
 function isSampLoaded() end
 
----@param keyId int
----@return bool state
+---@param keyId number
+---@return boolean state
 function isKeyDown(keyId) end
 
 function reloadScripts() end
 
----@return bool status
+---@return boolean status
 function isOpcodesAvailable() end
 
----@param f float
----@return int i
+---@param f number
+---@return number i
 function representFloatAsInt(f) end
 
----@param i int
----@return float i
+---@param i number
+---@return number i
 function representIntAsFloat(i) end
 
 ---@param key string
@@ -8986,23 +8987,23 @@ function getGxtText(key) end
 ---@param key string
 function clearGxtEntry(key) end
 
----@return bool active
+---@return boolean active
 function isPauseMenuActive() end
 
----@return bool foreground
+---@return boolean foreground
 function isGameWindowForeground() end
 
----@return int major
----@return int minor
----@return int majorRev
----@return int minorRev
----@return int game
----@return int region
----@return bool steam
----@return bool cracked
+---@return number major
+---@return number minor
+---@return number majorRev
+---@return number minorRev
+---@return number game
+---@return number region
+---@return boolean steam
+---@return boolean cracked
 function getGameVersion() end
 
----@return int version
+---@return number version
 function getMoonloaderVersion() end
 
 ---@return number time
@@ -9016,58 +9017,58 @@ function getWorkingDirectory() end
 ---@return string path
 function getGameDirectory() end
 
----@param enable bool
+---@param enable boolean
 function useRenderCommands(enable) end
 
----@param address uint
----@param size uint
----@param value int
----@param virtualProtect bool
+---@param address number
+---@param size number
+---@param value number
+---@param virtualProtect boolean
 function writeMemory(address, size, value, virtualProtect) end
 
----@param address uint
----@param size uint
----@param virtualProtect bool
----@return int value
+---@param address number
+---@param size number
+---@param virtualProtect boolean
+---@return number value
 function readMemory(address, size, virtualProtect) end
 
 ---@param library string
----@return bool result
----@return uint handle
+---@return boolean result
+---@return number handle
 function loadDynamicLibrary(library) end
 
----@param handle uint
+---@param handle number
 function freeDynamicLibrary(handle) end
 
 ---@param proc string
----@param handle uint
----@return bool result
----@return uint proc
+---@param handle number
+---@return boolean result
+---@return number proc
 function getDynamicLibraryProcedure(proc, handle) end
 
 ---@param file string
----@return bool result
+---@return boolean result
 function doesFileExist(file) end
 
 ---@param directory string
----@return bool result
+---@return boolean result
 function doesDirectoryExist(directory) end
 
 ---@param directory string
----@return bool result
+---@return boolean result
 function createDirectory(directory) end
 
----@return float val
+---@return number val
 function popFloat() end
 
----@return bool result
+---@return boolean result
 function isGameVersionOriginal() end
 
----@param size uint
----@return uint memory
+---@param size number
+---@return number memory
 function allocateMemory(size) end
 
----@param memory uint
+---@param memory number
 function freeMemory(memory) end
 
 ---@param mask string
@@ -9082,58 +9083,58 @@ function findNextFile(handle) end
 ---@param handle Filesearch
 function findClose(handle) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param radius float
----@param findNext bool
----@param skipDead bool
----@return bool result
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param radius number
+---@param findNext boolean
+---@param skipDead boolean
+---@return boolean result
 ---@return Ped ped
 function findAllRandomCharsInSphere(posX, posY, posZ, radius, findNext, skipDead) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param radius float
----@param findNext bool
----@param skipWrecked bool
----@return bool result
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param radius number
+---@param findNext boolean
+---@param skipWrecked boolean
+---@return boolean result
 ---@return Vehicle car
 function findAllRandomVehiclesInSphere(posX, posY, posZ, radius, findNext, skipWrecked) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param radius float
----@param findNext bool
----@return bool result
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param radius number
+---@param findNext boolean
+---@return boolean result
 ---@return Object object
 function findAllRandomObjectsInSphere(posX, posY, posZ, radius, findNext) end
 
 ---@param ped Ped
----@return uint ptr
+---@return number ptr
 function getCharPointer(ped) end
 
 ---@param car Vehicle
----@return uint ptr
+---@return number ptr
 function getCarPointer(car) end
 
 ---@param object Object
----@return uint struct
+---@return number struct
 function getObjectPointer(object) end
 
----@param address uint
----@param params int
----@param pop int
----@return int returnValue
+---@param address number
+---@param params number
+---@param pop number
+---@return number returnValue
 function callFunction(address, params, pop) end
 
----@param address uint
----@param struct int
----@param params int
----@param pop int
----@return int returnValue
+---@param address number
+---@param struct number
+---@param params number
+---@param pop number
+---@return number returnValue
 function callMethod(address, struct, params, pop) end
 
 ---@param ped Ped
@@ -9142,49 +9143,49 @@ function callMethod(address, struct, params, pop) end
 function storeClosestEntities(ped) end
 
 ---@param car Vehicle
----@param state bool
+---@param state boolean
 function switchCarEngine(car, state) end
 
----@return bool result
----@return float posX
----@return float posY
----@return float posZ
+---@return boolean result
+---@return number posX
+---@return number posY
+---@return number posZ
 function getTargetBlipCoordinates() end
 
 ---@param car Vehicle
----@return int gears
+---@return number gears
 function getCarNumberOfGears(car) end
 
 ---@param car Vehicle
----@return int gear
+---@return number gear
 function getCarCurrentGear(car) end
 
 ---@param car Vehicle
----@return bool state
+---@return boolean state
 function isCarSirenOn(car) end
 
 ---@param car Vehicle
----@return bool state
+---@return boolean state
 function isCarEngineOn(car) end
 
 ---@param text string
 function printHelpString(text) end
 
 ---@param text string
----@param time int
----@param style int
+---@param time number
+---@param style number
 function printStyledString(text, time, style) end
 
 ---@param text string
----@param time int
+---@param time number
 function printString(text, time) end
 
 ---@param text string
----@param time int
+---@param time number
 function printStringNow(text, time) end
 
 ---@param player Player
----@return bool result
+---@return boolean result
 ---@return Ped ped
 function getCharPlayerIsTargeting(player) end
 
@@ -9193,40 +9194,40 @@ function getCharPlayerIsTargeting(player) end
 function getNameOfVehicleModel(modelId) end
 
 ---@param text string
----@return bool result
+---@return boolean result
 function testCheat(text) end
 
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function spawnVehicleByCheating(modelId) end
 
----@param ptr uint
+---@param ptr number
 ---@return Ped handle
 function getCharPointerHandle(ptr) end
 
----@param ptr uint
+---@param ptr number
 ---@return Vehicle handle
 function getVehiclePointerHandle(ptr) end
 
----@param ptr uint
+---@param ptr number
 ---@return Object handle
 function getObjectPointerHandle(ptr) end
 
----@param originX float
----@param originY float
----@param originZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param checkSolid bool
----@param car bool
----@param ped bool
----@param object bool
----@param particle bool
----@param seeThrough bool
----@param ignoreSomeObjects bool
----@param shootThrough bool
----@return bool result
+---@param originX number
+---@param originY number
+---@param originZ number
+---@param targetX number
+---@param targetY number
+---@param targetZ number
+---@param checkSolid boolean
+---@param car boolean
+---@param ped boolean
+---@param object boolean
+---@param particle boolean
+---@param seeThrough boolean
+---@param ignoreSomeObjects boolean
+---@param shootThrough boolean
+---@return boolean result
 ---@return table colPoint
 function processLineOfSight(
 	originX,
@@ -9243,167 +9244,167 @@ function processLineOfSight(
 	seeThrough,
 	ignoreSomeObjects,
 	shootThrough
-) 
+)
 end
 
 ---@param text string
----@return bool result
+---@return boolean result
 function setClipboardText(text) end
 
 ---@return string text
 function getClipboardText() end
 
----@param struct uint
----@param offset int
----@param size uint
----@param unprotect bool
----@return int value
+---@param struct number
+---@param offset number
+---@param size number
+---@param unprotect boolean
+---@return number value
 function getStructElement(struct, offset, size, unprotect) end
 
----@param struct uint
----@param offset int
----@param size uint
----@param value int
----@param unprotect bool
+---@param struct number
+---@param offset number
+---@param size number
+---@param value number
+---@param unprotect boolean
 function setStructElement(struct, offset, size, value, unprotect) end
 
----@param rightX float
----@param rightY float
----@param rightZ float
----@param frontX float
----@param frontY float
----@param frontZ float
----@param upX float
----@param upY float
----@param upZ float
----@return float w
----@return float x
----@return float y
----@return float z
+---@param rightX number
+---@param rightY number
+---@param rightZ number
+---@param frontX number
+---@param frontY number
+---@param frontZ number
+---@param upX number
+---@param upY number
+---@param upZ number
+---@return number w
+---@return number x
+---@return number y
+---@return number z
 function convertMatrixToQuaternion(rightX, rightY, rightZ, frontX, frontY, frontZ, upX, upY, upZ) end
 
----@param w float
----@param x float
----@param y float
----@param z float
----@return float rightX
----@return float rightY
----@return float rightZ
----@return float frontX
----@return float frontY
----@return float frontZ
----@return float upX
----@return float upY
----@return float upZ
+---@param w number
+---@param x number
+---@param y number
+---@param z number
+---@return number rightX
+---@return number rightY
+---@return number rightZ
+---@return number frontX
+---@return number frontY
+---@return number frontZ
+---@return number upX
+---@return number upY
+---@return number upZ
 function convertQuaternionToMatrix(w, x, y, z) end
 
----@param posX float
----@param posY float
----@param posZ float
----@return float wposX
----@return float wposY
+---@param posX number
+---@param posY number
+---@param posZ number
+---@return number wposX
+---@return number wposY
 function convert3DCoordsToScreen(posX, posY, posZ) end
 
----@param key int
----@param state int
+---@param key number
+---@param state number
 function setGameKeyState(key, state) end
 
----@return int posX
----@return int posY
+---@return number posX
+---@return number posY
 function getCursorPos() end
 
----@param wposX float
----@param wposY float
----@return float gposX
----@return float gposY
+---@param wposX number
+---@param wposY number
+---@return number gposX
+---@return number gposY
 function convertWindowScreenCoordsToGameScreenCoords(wposX, wposY) end
 
----@param gposX float
----@param gposY float
----@return float wposX
----@return float wposY
+---@param gposX number
+---@param gposY number
+---@return number wposX
+---@return number wposY
 function convertGameScreenCoordsToWindowScreenCoords(gposX, gposY) end
 
----@param posX float
----@param posY float
----@param depth float
----@return float posX
----@return float posY
----@return float posZ
+---@param posX number
+---@param posY number
+---@param depth number
+---@return number posX
+---@return number posY
+---@return number posZ
 function convertScreenCoordsToWorld3D(posX, posY, depth) end
 
 ---@param module string
----@return uint handle
+---@return number handle
 function getModuleHandle(module) end
 
 ---@param module string
 ---@param proc string
----@return uint address
+---@return number address
 function getModuleProcAddress(module, proc) end
 
----@param vkey int
----@param down bool
+---@param vkey number
+---@param down boolean
 function setVirtualKeyDown(vkey, down) end
 
----@param ckey int
----@param down bool
+---@param ckey number
+---@param down boolean
 function setCharKeyDown(ckey, down) end
 
 ---@param url string
 ---@param file string
 ---@param statusCallback function
----@return int index
+---@return number index
 function downloadUrlToFile(url, file, statusCallback) end
 
----@param key int
----@return bool state
+---@param key number
+---@return boolean state
 function isKeyJustPressed(key) end
 
----@param posX float
----@param posY float
----@param posZ float
----@param checkMin bool
----@param checkMax bool
----@return bool result
----@return float x
----@return float y
----@return float z
----@return float w
----@return float h
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param checkMin boolean
+---@param checkMax boolean
+---@return boolean result
+---@return number x
+---@return number y
+---@return number z
+---@return number w
+---@return number h
 function convert3DCoordsToScreenEx(posX, posY, posZ, checkMin, checkMax) end
 
----@param struct uint
----@param offset int
----@param unprotect bool
----@return float value
+---@param struct number
+---@param offset number
+---@param unprotect boolean
+---@return number value
 function getStructFloatElement(struct, offset, unprotect) end
 
----@param struct uint
----@param offset int
----@param value float
----@param unprotect bool
+---@param struct number
+---@param offset number
+---@param value number
+---@param unprotect boolean
 function setStructFloatElement(struct, offset, value, unprotect) end
 
----@param key int
----@return bool state
+---@param key number
+---@return boolean state
 function wasKeyPressed(key) end
 
----@param key int
----@return bool state
+---@param key number
+---@return boolean state
 function wasKeyReleased(key) end
 
----@return int delta
+---@return number delta
 function getMousewheelDelta() end
 
----@param game bool
----@param scripts bool
+---@param game boolean
+---@param scripts boolean
 function consumeWindowMessage(game, scripts) end
 
 ---@param eventName string
 ---@param callback function
 function addEventHandler(eventName, callback) end
 
----@return bool paused
+---@return boolean paused
 function isGamePaused() end
 
 ---@return number time
@@ -9427,46 +9428,46 @@ function encodeJson(data) end
 ---@return table data
 function decodeJson(json) end
 
----@param show bool
----@param lockControls bool
+---@param show boolean
+---@param lockControls boolean
 function showCursor(show, lockControls) end
 
----@param lock bool
+---@param lock boolean
 function lockPlayerControl(lock) end
 
----@return bool locked
+---@return boolean locked
 function isPlayerControlLocked() end
 
 ---@param blip Marker
----@param x float
----@param y float
----@param z float
----@return bool result
+---@param x number
+---@param y number
+---@param z number
+---@return boolean result
 function setBlipCoordinates(blip, x, y, z) end
 
----@param x float
----@param y float
----@param z float
----@return bool result
+---@param x number
+---@param y number
+---@param z number
+---@return boolean result
 function setTargetBlipCoordinates(x, y, z) end
 
----@param x float
----@param y float
----@param z float
----@return bool result
+---@param x number
+---@param y number
+---@param z number
+---@return boolean result
 function placeWaypoint(x, y, z) end
 
----@return bool result
+---@return boolean result
 function removeWaypoint() end
 
----@param csidl int
+---@param csidl number
 ---@return string path
 function getFolderPath(csidl) end
 
----@return float value
+---@return number value
 function getTimeStepValue() end
 
----@return uint devicePtr
+---@return number devicePtr
 function getD3DDevicePtr() end
 
 ---@return table objects
@@ -9478,116 +9479,117 @@ function getAllChars() end
 ---@return table vehicles
 function getAllVehicles() end
 
----@param index int
----@return float value
+---@param index number
+---@return number value
 function getGameGlobalFloat(index) end
 
----@param index int
----@param value float
+---@param index number
+---@param value number
 function setGameGlobalFloat(index, value) end
 
---- Use 
+--- Use
 ---```lua
 ---local moonloader = require('moonloader')
 ---```
+-- FIXME: moonloader not global value
 moonloader = {
-    TAG = {
-        TYPE_INFO = 1,
-        TYPE_DEBUG = 2,
-        TYPE_ERROR = 3,
-        TYPE_WARN = 4,
-        TYPE_SYSTEM = 5,
-        TYPE_FATAL = 6,
-        TYPE_EXCEPTION = 7
-    },
-    download_status = {
-        STATUS_FINDINGRESOURCE = 1,
-        STATUS_CONNECTING = 2,
-        STATUS_REDIRECTING = 3,
-        STATUS_BEGINDOWNLOADDATA = 4,
-        STATUS_DOWNLOADINGDATA = 5,
-        STATUS_ENDDOWNLOADDATA = 6,
-        STATUS_BEGINDOWNLOADCOMPONENTS = 7,
-        STATUS_INSTALLINGCOMPONENTS = 8,
-        STATUS_ENDDOWNLOADCOMPONENTS = 9,
-        STATUS_USINGCACHEDCOPY = 10,
-        STATUS_SENDINGREQUEST = 11,
-        STATUS_CLASSIDAVAILABLE = 12,
-        STATUS_MIMETYPEAVAILABLE = 13,
-        STATUS_CACHEFILENAMEAVAILABLE = 14,
-        STATUS_BEGINSYNCOPERATION = 15,
-        STATUS_ENDSYNCOPERATION = 16,
-        STATUS_BEGINUPLOADDATA = 17,
-        STATUS_UPLOADINGDATA = 18,
-        STATUS_ENDUPLOADDATA = 19,
-        STATUS_PROTOCOLCLASSID = 20,
-        STATUS_ENCODING = 21,
-        STATUS_VERIFIEDMIMETYPEAVAILABLE = 22,
-        STATUS_CLASSINSTALLLOCATION = 23,
-        STATUS_DECODING = 24,
-        STATUS_LOADINGMIMEHANDLER = 25,
-        STATUS_CONTENTDISPOSITIONATTACH = 26,
-        STATUS_FILTERREPORTMIMETYPE = 27,
-        STATUS_CLSIDCANINSTANTIATE = 28,
-        STATUS_IUNKNOWNAVAILABLE = 29,
-        STATUS_DIRECTBIND = 30,
-        STATUS_RAWMIMETYPE = 31,
-        STATUS_PROXYDETECTING = 32,
-        STATUS_ACCEPTRANGES = 33,
-        STATUS_COOKIE_SENT = 34,
-        STATUS_COMPACT_POLICY_RECEIVED = 35,
-        STATUS_COOKIE_SUPPRESSED = 36,
-        STATUS_COOKIE_STATE_UNKNOWN = 37,
-        STATUS_COOKIE_STATE_ACCEPT = 38,
-        STATUS_COOKIE_STATE_REJECT = 39,
-        STATUS_COOKIE_STATE_PROMPT = 40,
-        STATUS_COOKIE_STATE_LEASH = 41,
-        STATUS_COOKIE_STATE_DOWNGRADE = 42,
-        STATUS_POLICY_HREF = 43,
-        STATUS_P3P_HEADER = 44,
-        STATUS_SESSION_COOKIE_RECEIVED = 45,
-        STATUS_PERSISTENT_COOKIE_RECEIVED = 46,
-        STATUS_SESSION_COOKIES_ALLOWED = 47,
-        STATUS_CACHECONTROL = 48,
-        STATUS_CONTENTDISPOSITIONFILENAME = 49,
-        STATUS_MIMETEXTPLAINMISMATCH = 50,
-        STATUS_PUBLISHERAVAILABLE = 51,
-        STATUS_DISPLAYNAMEAVAILABLE = 52,
-        STATUS_SSLUX_NAVBLOCKED = 53,
-        STATUS_SERVER_MIMETYPEAVAILABLE = 54,
-        STATUS_SNIFFED_CLASSIDAVAILABLE = 55,
-        STATUS_64BIT_PROGRESS = 56,
-        STATUSEX_STARTBINDING = 57,
-        STATUSEX_ENDDOWNLOAD = 58,
-        STATUSEX_LOWRESOURCE = 59,
-        STATUSEX_DATAAVAILABLE = 60,
-    },
-    font_flags = {
-        NONE      = 0x0,
-        BOLD      = 0x1,
-        ITALICS   = 0x2,
-        BORDER    = 0x4,
-        SHADOW    = 0x8,
-        UNDERLINE = 0x10,
-        STRIKEOUT = 0x20
-    },
-    d3d_prim_type = {
-        POINTLIST     = 1,
-        LINELIST      = 2,
-        LINESTRIP     = 3,
-        TRIANGLELIST  = 4,
-        TRIANGLESTRIP = 5,
-        TRIANGLEFAN   = 6
-    },
-    audiostream_state = {
-        STOP   = 0,
-        PLAY   = 1,
-        PAUSE  = 2,
-        RESUME = 3
-    },
-    audiostream_status = {
-        STOPPED = -1,
-        PLAYING =  1,
-        PAUSED  =  2
-    }
+	TAG = {
+		TYPE_INFO = 1,
+		TYPE_DEBUG = 2,
+		TYPE_ERROR = 3,
+		TYPE_WARN = 4,
+		TYPE_SYSTEM = 5,
+		TYPE_FATAL = 6,
+		TYPE_EXCEPTION = 7,
+	},
+	download_status = {
+		STATUS_FINDINGRESOURCE = 1,
+		STATUS_CONNECTING = 2,
+		STATUS_REDIRECTING = 3,
+		STATUS_BEGINDOWNLOADDATA = 4,
+		STATUS_DOWNLOADINGDATA = 5,
+		STATUS_ENDDOWNLOADDATA = 6,
+		STATUS_BEGINDOWNLOADCOMPONENTS = 7,
+		STATUS_INSTALLINGCOMPONENTS = 8,
+		STATUS_ENDDOWNLOADCOMPONENTS = 9,
+		STATUS_USINGCACHEDCOPY = 10,
+		STATUS_SENDINGREQUEST = 11,
+		STATUS_CLASSIDAVAILABLE = 12,
+		STATUS_MIMETYPEAVAILABLE = 13,
+		STATUS_CACHEFILENAMEAVAILABLE = 14,
+		STATUS_BEGINSYNCOPERATION = 15,
+		STATUS_ENDSYNCOPERATION = 16,
+		STATUS_BEGINUPLOADDATA = 17,
+		STATUS_UPLOADINGDATA = 18,
+		STATUS_ENDUPLOADDATA = 19,
+		STATUS_PROTOCOLCLASSID = 20,
+		STATUS_ENCODING = 21,
+		STATUS_VERIFIEDMIMETYPEAVAILABLE = 22,
+		STATUS_CLASSINSTALLLOCATION = 23,
+		STATUS_DECODING = 24,
+		STATUS_LOADINGMIMEHANDLER = 25,
+		STATUS_CONTENTDISPOSITIONATTACH = 26,
+		STATUS_FILTERREPORTMIMETYPE = 27,
+		STATUS_CLSIDCANINSTANTIATE = 28,
+		STATUS_IUNKNOWNAVAILABLE = 29,
+		STATUS_DIRECTBIND = 30,
+		STATUS_RAWMIMETYPE = 31,
+		STATUS_PROXYDETECTING = 32,
+		STATUS_ACCEPTRANGES = 33,
+		STATUS_COOKIE_SENT = 34,
+		STATUS_COMPACT_POLICY_RECEIVED = 35,
+		STATUS_COOKIE_SUPPRESSED = 36,
+		STATUS_COOKIE_STATE_UNKNOWN = 37,
+		STATUS_COOKIE_STATE_ACCEPT = 38,
+		STATUS_COOKIE_STATE_REJECT = 39,
+		STATUS_COOKIE_STATE_PROMPT = 40,
+		STATUS_COOKIE_STATE_LEASH = 41,
+		STATUS_COOKIE_STATE_DOWNGRADE = 42,
+		STATUS_POLICY_HREF = 43,
+		STATUS_P3P_HEADER = 44,
+		STATUS_SESSION_COOKIE_RECEIVED = 45,
+		STATUS_PERSISTENT_COOKIE_RECEIVED = 46,
+		STATUS_SESSION_COOKIES_ALLOWED = 47,
+		STATUS_CACHECONTROL = 48,
+		STATUS_CONTENTDISPOSITIONFILENAME = 49,
+		STATUS_MIMETEXTPLAINMISMATCH = 50,
+		STATUS_PUBLISHERAVAILABLE = 51,
+		STATUS_DISPLAYNAMEAVAILABLE = 52,
+		STATUS_SSLUX_NAVBLOCKED = 53,
+		STATUS_SERVER_MIMETYPEAVAILABLE = 54,
+		STATUS_SNIFFED_CLASSIDAVAILABLE = 55,
+		STATUS_64BIT_PROGRESS = 56,
+		STATUSEX_STARTBINDING = 57,
+		STATUSEX_ENDDOWNLOAD = 58,
+		STATUSEX_LOWRESOURCE = 59,
+		STATUSEX_DATAAVAILABLE = 60,
+	},
+	font_flags = {
+		NONE = 0x0,
+		BOLD = 0x1,
+		ITALICS = 0x2,
+		BORDER = 0x4,
+		SHADOW = 0x8,
+		UNDERLINE = 0x10,
+		STRIKEOUT = 0x20,
+	},
+	d3d_prim_type = {
+		POINTLIST = 1,
+		LINELIST = 2,
+		LINESTRIP = 3,
+		TRIANGLELIST = 4,
+		TRIANGLESTRIP = 5,
+		TRIANGLEFAN = 6,
+	},
+	audiostream_state = {
+		STOP = 0,
+		PLAY = 1,
+		PAUSE = 2,
+		RESUME = 3,
+	},
+	audiostream_status = {
+		STOPPED = -1,
+		PLAYING = 1,
+		PAUSED = 2,
+	},
 }

@@ -8,7 +8,7 @@
 --- @field xml function
 --- @field json function
 
-local requests = { }
+local requests = {}
 
 --- User facing function the make a request use Digest Authentication
 function requests.HTTPDigestAuth(user, password) end

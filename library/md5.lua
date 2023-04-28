@@ -1,5 +1,5 @@
 --- @meta
-local md5 = { }
+local md5 = {}
 
 --- @param k string | number
 --- @return string

@@ -1,6 +1,6 @@
----@name Defenitions for the mimgui library (moonloader) 
 ---@meta
-local imgui = { }
+---@name Defenitions for the mimgui library (moonloader)
+local imgui = {}
 
 ---@class ImGuiTexture
 ---@class ImDrawList
@@ -19,14 +19,14 @@ local ImDrawList = {}
 
 ---@class ImBool
 local ImBool = {
-    ---@type boolean
-    [0] = true
+	---@type boolean
+	[0] = true,
 }
 
 ---@class ImInt
 local ImInt = {
-    ---@type number
-    [0] = 1
+	---@type number
+	[0] = 1,
 }
 
 ---@alias ImFloat table<number, number>
@@ -34,9 +34,9 @@ local ImInt = {
 ---@enum imgui.MouseButton
 imgui.MouseButton = {
 	Left = 0,
-    Right = 1,
-    Middle = 2,
-    COUNT = 5
+	Right = 1,
+	Middle = 2,
+	COUNT = 5,
 }
 ---@enum imgui.WindowFlags
 imgui.WindowFlags = {
@@ -113,110 +113,110 @@ imgui.HoveredFlags = {
 
 ---@enum imgui.Dir
 imgui.Dir = {
-    None = -1,
-    Left = 0,
-    Right = 1,
-    Up = 2,
-    Down = 3,
-    COUNT = 4
+	None = -1,
+	Left = 0,
+	Right = 1,
+	Up = 2,
+	Down = 3,
+	COUNT = 4,
 }
 
 --- @enum imgui.Key
 imgui.Key = {
-	Tab        = 0 + 1,
-	LeftArrow  = 1 + 1,
+	Tab = 0 + 1,
+	LeftArrow = 1 + 1,
 	RightArrow = 2 + 1,
-	UpArrow    = 3 + 1,
-	DownArrow  = 4 + 1,
-	PageUp     = 5 + 1,
-	PageDown   = 6 + 1,
-	Home       = 7 + 1,
-	End        = 8 + 1,
-	Delete     = 9 + 1,
-	Backspace  = 10 + 1,
-	Enter      = 11 + 1,
-	Escape     = 12 + 1,
-	A          = 13 + 1,
-	C          = 14 + 1,
-	V          = 15 + 1,
-	X          = 16 + 1,
-	Y          = 17 + 1,
-	Z          = 18 + 1,
+	UpArrow = 3 + 1,
+	DownArrow = 4 + 1,
+	PageUp = 5 + 1,
+	PageDown = 6 + 1,
+	Home = 7 + 1,
+	End = 8 + 1,
+	Delete = 9 + 1,
+	Backspace = 10 + 1,
+	Enter = 11 + 1,
+	Escape = 12 + 1,
+	A = 13 + 1,
+	C = 14 + 1,
+	V = 15 + 1,
+	X = 16 + 1,
+	Y = 17 + 1,
+	Z = 18 + 1,
 }
 
 --- @enum imgui.Col
 imgui.Col = {
-	Text                    = 0 + 1,
-	TextDisabled            = 1 + 1,
-	WindowBg                = 2 + 1,
-	ChildWindowBg           = 3 + 1,
-	PopupBg                 = 4 + 1,
-	Border                  = 5 + 1,
-	BorderShadow            = 6 + 1,
-	FrameBg                 = 7 + 1,
-	FrameBgHovered          = 8 + 1,
-	FrameBgActive           = 9 + 1,
-	TitleBg                 = 10 + 1,
-	TitleBgActive           = 11 + 1,
-	TitleBgCollapsed        = 12 + 1,
-	MenuBarBg               = 13 + 1,
-	ScrollbarBg             = 14 + 1,
-	ScrollbarGrab           = 15 + 1,
-	ScrollbarGrabHovered    = 16 + 1,
-	ScrollbarGrabActive     = 17 + 1,
-	ComboBg                 = 18 + 1,
-	CheckMark               = 19 + 1,
-	SliderGrab              = 20 + 1,
-	SliderGrabActive        = 21 + 1,
-	Button                  = 22 + 1,
-	ButtonHovered           = 23 + 1,
-	ButtonActive            = 24 + 1,
-	Header                  = 25 + 1,
-	HeaderHovered           = 26 + 1,
-	HeaderActive            = 27 + 1,
-	Separator               = 28 + 1,
-	SeparatorHovered        = 29 + 1,
-	SeparatorActive         = 30 + 1,
-	ResizeGrip              = 31 + 1,
-	ResizeGripHovered       = 32 + 1,
-	ResizeGripActive        = 33 + 1,
-	CloseButton             = 34 + 1,
-	CloseButtonHovered      = 35 + 1,
-	CloseButtonActive       = 36 + 1,
-	PlotLines               = 37 + 1,
-	PlotLinesHovered        = 38 + 1,
-	PlotHistogram           = 39 + 1,
-	PlotHistogramHovered    = 40 + 1,
-	TextSelectedBg          = 41 + 1,
-	ModalWindowDarkening    = 42 + 1,
+	Text = 0 + 1,
+	TextDisabled = 1 + 1,
+	WindowBg = 2 + 1,
+	ChildWindowBg = 3 + 1,
+	PopupBg = 4 + 1,
+	Border = 5 + 1,
+	BorderShadow = 6 + 1,
+	FrameBg = 7 + 1,
+	FrameBgHovered = 8 + 1,
+	FrameBgActive = 9 + 1,
+	TitleBg = 10 + 1,
+	TitleBgActive = 11 + 1,
+	TitleBgCollapsed = 12 + 1,
+	MenuBarBg = 13 + 1,
+	ScrollbarBg = 14 + 1,
+	ScrollbarGrab = 15 + 1,
+	ScrollbarGrabHovered = 16 + 1,
+	ScrollbarGrabActive = 17 + 1,
+	ComboBg = 18 + 1,
+	CheckMark = 19 + 1,
+	SliderGrab = 20 + 1,
+	SliderGrabActive = 21 + 1,
+	Button = 22 + 1,
+	ButtonHovered = 23 + 1,
+	ButtonActive = 24 + 1,
+	Header = 25 + 1,
+	HeaderHovered = 26 + 1,
+	HeaderActive = 27 + 1,
+	Separator = 28 + 1,
+	SeparatorHovered = 29 + 1,
+	SeparatorActive = 30 + 1,
+	ResizeGrip = 31 + 1,
+	ResizeGripHovered = 32 + 1,
+	ResizeGripActive = 33 + 1,
+	CloseButton = 34 + 1,
+	CloseButtonHovered = 35 + 1,
+	CloseButtonActive = 36 + 1,
+	PlotLines = 37 + 1,
+	PlotLinesHovered = 38 + 1,
+	PlotHistogram = 39 + 1,
+	PlotHistogramHovered = 40 + 1,
+	TextSelectedBg = 41 + 1,
+	ModalWindowDarkening = 42 + 1,
 }
 
 --- @enum imgui.StyleVar
 imgui.StyleVar = {
 	Alpha = 0,
-    WindowPadding = 1,
-    WindowRounding = 2,
-    WindowBorderSize = 3,
-    WindowMinSize = 4,
-    WindowTitleAlign = 5,
-    ChildRounding = 6,
-    ChildBorderSize = 7,
-    PopupRounding = 8,
-    PopupBorderSize = 9,
-    FramePadding = 10,
-    FrameRounding = 11,
-    FrameBorderSize = 12,
-    ItemSpacing = 13,
-    ItemInnerSpacing = 14,
-    IndentSpacing = 15,
-    ScrollbarSize = 16,
-    ScrollbarRounding = 17,
-    GrabMinSize = 18,
-    GrabRounding = 19,
-    TabRounding = 20,
-    ButtonTextAlign = 21,
-    SelectableTextAlign = 22,
-    COUNT = 23
+	WindowPadding = 1,
+	WindowRounding = 2,
+	WindowBorderSize = 3,
+	WindowMinSize = 4,
+	WindowTitleAlign = 5,
+	ChildRounding = 6,
+	ChildBorderSize = 7,
+	PopupRounding = 8,
+	PopupBorderSize = 9,
+	FramePadding = 10,
+	FrameRounding = 11,
+	FrameBorderSize = 12,
+	ItemSpacing = 13,
+	ItemInnerSpacing = 14,
+	IndentSpacing = 15,
+	ScrollbarSize = 16,
+	ScrollbarRounding = 17,
+	GrabMinSize = 18,
+	GrabRounding = 19,
+	TabRounding = 20,
+	ButtonTextAlign = 21,
+	SelectableTextAlign = 22,
+	COUNT = 23,
 }
 
 --- @enum imgui.ColorEditFlags
@@ -266,9 +266,6 @@ imgui.Cond = {
 	Appearing = 8,
 }
 
-
-
-
 ---@param x number
 ---@param y number
 ---@return ImVec2
@@ -282,55 +279,54 @@ function imgui.ImVec2(x, y) end
 function imgui.ImVec4(x, y, z, w) end
 
 ---@class imgui.Style
----@field Alpha float;                      // Global alpha applies to everything in Dear ImGui.
----@field DisabledAlpha float;              // Additional alpha multiplier applied by BeginDisabled(). Multiply over current value of Alpha.
+---@field Alpha number;                      // Global alpha applies to everything in Dear ImGui.
+---@field DisabledAlpha number;              // Additional alpha multiplier applied by BeginDisabled(). Multiply over current value of Alpha.
 ---@field WindowPadding ImVec2;              // Padding within a window.
----@field WindowRounding float;             // Radius of window corners rounding. Set to 0.0f to have rectangular windows. Large values tend to lead to variety of artifacts and are not recommended.
----@field WindowBorderSize float;           // Thickness of border around windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
+---@field WindowRounding number;             // Radius of window corners rounding. Set to 0.0f to have rectangular windows. Large values tend to lead to variety of artifacts and are not recommended.
+---@field WindowBorderSize number;           // Thickness of border around windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
 ---@field WindowMinSize ImVec2;              // Minimum window size. This is a global setting. If you want to constrain individual windows, use SetNextWindowSizeConstraints().
 ---@field WindowTitleAlign ImVec2;           // Alignment for title bar text. Defaults to (0.0f,0.5f) for left-aligned,vertically centered.
 ---@field WindowMenuButtonPosition imgui.Dir;   // Side of the collapsing/docking button in the title bar (None/Left/Right). Defaults to ImGuiDir_Left.
----@field ChildRounding float;              // Radius of child window corners rounding. Set to 0.0f to have rectangular windows.
----@field ChildBorderSize float;            // Thickness of border around child windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
----@field PopupRounding float;              // Radius of popup window corners rounding. (Note that tooltip windows use WindowRounding)
----@field PopupBorderSize float;            // Thickness of border around popup/tooltip windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
+---@field ChildRounding number;              // Radius of child window corners rounding. Set to 0.0f to have rectangular windows.
+---@field ChildBorderSize number;            // Thickness of border around child windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
+---@field PopupRounding number;              // Radius of popup window corners rounding. (Note that tooltip windows use WindowRounding)
+---@field PopupBorderSize number;            // Thickness of border around popup/tooltip windows. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
 ---@field FramePadding ImVec2;               // Padding within a framed rectangle (used by most widgets).
----@field FrameRounding float;              // Radius of frame corners rounding. Set to 0.0f to have rectangular frame (used by most widgets).
----@field FrameBorderSize float;            // Thickness of border around frames. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
+---@field FrameRounding number;              // Radius of frame corners rounding. Set to 0.0f to have rectangular frame (used by most widgets).
+---@field FrameBorderSize number;            // Thickness of border around frames. Generally set to 0.0f or 1.0f. (Other values are not well tested and more CPU/GPU costly).
 ---@field ItemSpacing ImVec2;                // Horizontal and vertical spacing between widgets/lines.
 ---@field ItemInnerSpacing ImVec2;           // Horizontal and vertical spacing between within elements of a composed widget (e.g. a slider and its label).
 ---@field CellPadding ImVec2;                // Padding within a table cell
 ---@field TouchExtraPadding ImVec2;          // Expand reactive bounding box for touch-based system where touch position is not accurate enough. Unfortunately we don't sort widgets so priority on overlap will always be given to the first widget. So don't grow this too much!
----@field IndentSpacing float;              // Horizontal indentation when e.g. entering a tree node. Generally == (FontSize + FramePadding.x*2).
----@field ColumnsMinSpacing float;          // Minimum horizontal spacing between two columns. Preferably > (FramePadding.x + 1).
----@field ScrollbarSize float;              // Width of the vertical scrollbar, Height of the horizontal scrollbar.
----@field ScrollbarRounding float;          // Radius of grab corners for scrollbar.
----@field GrabMinSize float;                // Minimum width/height of a grab box for slider/scrollbar.
----@field GrabRounding float;               // Radius of grabs corners rounding. Set to 0.0f to have rectangular slider grabs.
----@field LogSliderDeadzone float;          // The size in pixels of the dead-zone around zero on logarithmic sliders that cross zero.
----@field TabRounding float;                // Radius of upper corners of a tab. Set to 0.0f to have rectangular tabs.
----@field TabBorderSize float;              // Thickness of border around tabs.
----@field TabMinWidthForCloseButton float;  // Minimum width for close button to appear on an unselected tab when hovered. Set to 0.0f to always show when hovering, set to FLT_MAX to never show close button unless selected.
+---@field IndentSpacing number;              // Horizontal indentation when e.g. entering a tree node. Generally == (FontSize + FramePadding.x*2).
+---@field ColumnsMinSpacing number;          // Minimum horizontal spacing between two columns. Preferably > (FramePadding.x + 1).
+---@field ScrollbarSize number;              // Width of the vertical scrollbar, Height of the horizontal scrollbar.
+---@field ScrollbarRounding number;          // Radius of grab corners for scrollbar.
+---@field GrabMinSize number;                // Minimum width/height of a grab box for slider/scrollbar.
+---@field GrabRounding number;               // Radius of grabs corners rounding. Set to 0.0f to have rectangular slider grabs.
+---@field LogSliderDeadzone number;          // The size in pixels of the dead-zone around zero on logarithmic sliders that cross zero.
+---@field TabRounding number;                // Radius of upper corners of a tab. Set to 0.0f to have rectangular tabs.
+---@field TabBorderSize number;              // Thickness of border around tabs.
+---@field TabMinWidthForCloseButton number;  // Minimum width for close button to appear on an unselected tab when hovered. Set to 0.0f to always show when hovering, set to FLT_MAX to never show close button unless selected.
 ---@field ColorButtonPosition imgui.Dir;        // Side of the color button in the ColorEdit4 widget (left/right). Defaults to ImGuiDir_Right.
 ---@field ButtonTextAlign ImVec2;            // Alignment of button text when button is larger than text. Defaults to (0.5f, 0.5f) (centered).
 ---@field SelectableTextAlign ImVec2;        // Alignment of selectable text. Defaults to (0.0f, 0.0f) (top-left aligned). It's generally important to keep this left-aligned if you want to lay multiple items on a same line.
----@field SeparatorTextBorderSize float;    // Thickkness of border in SeparatorText()
+---@field SeparatorTextBorderSize number;    // Thickkness of border in SeparatorText()
 ---@field SeparatorTextAlign ImVec2;         // Alignment of text within the separator. Defaults to (0.0f, 0.5f) (left aligned, center).
 ---@field SeparatorTextPadding ImVec2;       // Horizontal offset of text from each edge of the separator + spacing on other axis. Generally small values. .y is recommended to be == FramePadding.y.
 ---@field DisplayWindowPadding ImVec2;       // Window position are clamped to be visible within the display area or monitors by at least this amount. Only applies to regular windows.
 ---@field DisplaySafeAreaPadding ImVec2;     // If you cannot see the edges of your screen (e.g. on a TV) increase the safe area padding. Apply to popups/tooltips as well regular windows. NB: Prefer configuring your TV sets correctly!
----@field MouseCursorScale float;           // Scale software rendered mouse cursor (when io.MouseDrawCursor is enabled). May be removed later.
----@field AntiAliasedLines bool;           // Enable anti-aliased lines/borders. Disable if you are really tight on CPU/GPU. Latched at the beginning of the frame (copied to ImDrawList).
----@field AntiAliasedLinesUseTex bool;     // Enable anti-aliased lines/borders using textures where possible. Require backend to render with bilinear filtering (NOT point/nearest filtering). Latched at the beginning of the frame (copied to ImDrawList).
----@field AntiAliasedFill bool;            // Enable anti-aliased edges around filled shapes (rounded rectangles, circles, etc.). Disable if you are really tight on CPU/GPU. Latched at the beginning of the frame (copied to ImDrawList).
----@field CurveTessellationTol float;       // Tessellation tolerance when using PathBezierCurveTo() without a specific number of segments. Decrease for highly tessellated curves (higher quality, more polygons), increase to reduce quality.
----@field CircleTessellationMaxError float; // Maximum error (in pixels) allowed when using AddCircle()/AddCircleFilled() or drawing rounded corner rectangles with no explicit segment count specified. Decrease for higher quality but more geometry.
+---@field MouseCursorScale number;           // Scale software rendered mouse cursor (when io.MouseDrawCursor is enabled). May be removed later.
+---@field AntiAliasedLines boolean;           // Enable anti-aliased lines/borders. Disable if you are really tight on CPU/GPU. Latched at the beginning of the frame (copied to ImDrawList).
+---@field AntiAliasedLinesUseTex boolean;     // Enable anti-aliased lines/borders using textures where possible. Require backend to render with bilinear filtering (NOT point/nearest filtering). Latched at the beginning of the frame (copied to ImDrawList).
+---@field AntiAliasedFill boolean;            // Enable anti-aliased edges around filled shapes (rounded rectangles, circles, etc.). Disable if you are really tight on CPU/GPU. Latched at the beginning of the frame (copied to ImDrawList).
+---@field CurveTessellationTol number;       // Tessellation tolerance when using PathBezierCurveTo() without a specific number of segments. Decrease for highly tessellated curves (higher quality, more polygons), increase to reduce quality.
+---@field CircleTessellationMaxError number; // Maximum error (in pixels) allowed when using AddCircle()/AddCircleFilled() or drawing rounded corner rectangles with no explicit segment count specified. Decrease for higher quality but more geometry.
 ---@field Colors imgui.Col;
-
 
 ---@param value boolean
 ---@return ImBool
-function imgui.new.bool(value) end
+function imgui.new.boolean(value) end
 
 ---@param value number
 ---@return ImInt
@@ -384,7 +380,6 @@ function ImDrawList.AddRectFilled(self, a, b, col, rounding, rounding_corners_fl
 --- @param col_bot_left number Left bottom color
 function ImDrawList.AddRectFilledMultiColor(self, a, b, col_upr_left, col_upr_right, col_bot_right, col_bot_left) end
 
-
 function ImDrawList.AddQuad(self, a, b, c, d, col, thickness) end
 function ImDrawList.AddQuadFilled(self, a, b, c, d, col) end
 
@@ -402,13 +397,13 @@ function ImDrawList.AddTriangle(self, a, b, c, col, thickness) end
 function ImDrawList.AddTriangleFilled(self, a, b, c, col) end
 
 --- @param centre ImVec2 Circle center
---- @param radius number Circle radius 
+--- @param radius number Circle radius
 --- @param num_segments number Count of "corners"
 --- @param thickness number Border thickness
 function ImDrawList.AddCircle(self, centre, radius, col, num_segments, thickness) end
 
 --- @param centre ImVec2 Circle center
---- @param radius number Circle radius 
+--- @param radius number Circle radius
 --- @param num_segments number Count of "corners"
 function ImDrawList.AddCircleFilled(self, centre, radius, col, num_segments) end
 
@@ -425,11 +420,18 @@ function imgui.CreateContext(ImFontAtlasshared_font_atlas) end
 function imgui.DestroyContext(ImGuiContextctx) end
 function imgui.GetCurrentContext() end
 function imgui.SetCurrentContext(ImGuiContextctx) end
-function imgui.DebugCheckVersionAndDataLayout(version_str,sz_io,sz_style,sz_vec2,sz_vec4,sz_drawvert,sz_drawidx) end
-
+function imgui.DebugCheckVersionAndDataLayout(
+	version_str,
+	sz_io,
+	sz_style,
+	sz_vec2,
+	sz_vec4,
+	sz_drawvert,
+	sz_drawidx
+)
+end
 
 function imgui.GetIO() end
-
 
 ---@param path string File path
 ---@return ImGuiTexture
@@ -482,8 +484,8 @@ function imgui.End() end
 ---@param showBorder boolean | nil Show child border
 ---@param flags number | nil
 ---@return boolean
-function imgui.BeginChild(str_id,size, showBorder, flags) end
-function imgui.BeginChildID(ImGuiIDid,size,_Boolborder,ImGuiWindowFlagsflags) end
+function imgui.BeginChild(str_id, size, showBorder, flags) end
+function imgui.BeginChildID(ImGuiIDid, size, _Boolborder, ImGuiWindowFlagsflags) end
 
 ---End child
 function imgui.EndChild() end
@@ -497,7 +499,7 @@ function imgui.IsWindowCollapsed() end
 ---@return boolean Is window focused
 function imgui.IsWindowFocused(focusFlags) end
 
----@param hoverFlags imgui.HoveredFlags | nil 
+---@param hoverFlags imgui.HoveredFlags | nil
 ---@return boolean Is window hovered
 function imgui.IsWindowHovered(hoverFlags) end
 
@@ -513,7 +515,7 @@ function imgui.GetWindowWidth() end
 ---Set next window position (use befor `imgui.Begin`)
 ---@param pos ImVec2 Position
 ---@param cond imgui.Cond|nil When?
----@param pivot ImVec2|nil Calc pos (from 0, 0 to 1, 1)  
+---@param pivot ImVec2|nil Calc pos (from 0, 0 to 1, 1)
 function imgui.SetNextWindowPos(pos, cond, pivot) end
 
 ---Set next window size (use befor `imgui.Begin`)
@@ -521,7 +523,7 @@ function imgui.SetNextWindowPos(pos, cond, pivot) end
 ---@param cond imgui.Cond | nil When?
 function imgui.SetNextWindowSize(size, cond) end
 
-function imgui.SetNextWindowSizeraints(size_min,size_max,ImGuiSizeCallbackcustom_callback,custom_callback_data) end
+function imgui.SetNextWindowSizeraints(size_min, size_max, ImGuiSizeCallbackcustom_callback, custom_callback_data) end
 function imgui.SetNextWindowContentSize(size) end
 
 ---Set next window collapsed (use before `imgui.Begin`)
@@ -636,7 +638,7 @@ function imgui.GetStyleColorVec4(ImGuiColidx) end
 function imgui.GetFont() end
 function imgui.GetFontSize() end
 function imgui.GetFontTexUvWhitePixel() end
-function imgui.GetColorU32(ImGuiColidx,floatalpha_mul) end
+function imgui.GetColorU32(ImGuiColidx, floatalpha_mul) end
 function imgui.GetColorU32Vec4(col) end
 function imgui.GetColorU32U32(col) end
 function imgui.PushItemWidth(floatitem_width) end
@@ -694,14 +696,14 @@ function imgui.GetCursorScreenPos() end
 function imgui.SetCursorScreenPos(pos) end
 function imgui.nTextToFramePadding() end
 function imgui.PushIDStr(str_id) end
-function imgui.PushIDRange(str_id_begin,str_id_end) end
+function imgui.PushIDRange(str_id_begin, str_id_end) end
 function imgui.PushIDPtr(ptr_id) end
 function imgui.PushIDInt(int_id) end
 function imgui.PopID() end
 function imgui.GetIDStr(str_id) end
-function imgui.GetIDRange(str_id_begin,str_id_end) end
+function imgui.GetIDRange(str_id_begin, str_id_end) end
 function imgui.GetIDPtr(ptr_id) end
-function imgui.TextUnformatted(text,text_end) end
+function imgui.TextUnformatted(text, text_end) end
 
 ---Text
 ---@param text string
@@ -732,8 +734,8 @@ function imgui.TextWrapped(text) end
 
 ---@param text string
 function imgui.TextWrappedV(text) end
-function imgui.LabelText(label,fmt,...) end
-function imgui.LabelTextV(label,fmt,va_listargs) end
+function imgui.LabelText(label, fmt, ...) end
+function imgui.LabelTextV(label, fmt, va_listargs) end
 
 ---@param text string
 function imgui.BulletText(text) end
@@ -750,12 +752,11 @@ function imgui.SmallButton(label) end
 
 ---@param str_id string
 ---@param size ImVec2|nil
-function imgui.InvisibleButton(str_id,size) end
+function imgui.InvisibleButton(str_id, size) end
 
 ---@param strId string
 ---@param direction imgui.Dir
 function imgui.ArrowButton(strId, direction) end
-
 
 ---@param texture ImGuiTexture
 ---@param size ImVec2
@@ -777,7 +778,7 @@ function imgui.ImageButton(texture, size, uv0, uv1, framePadding, bg_col, tint_c
 ---@param label string
 ---@param checked ImBool
 function imgui.Checkbox(label, checked) end
-function imgui.CheckboxFlags(label,unsignedintflags,unsignedintflags_value) end
+function imgui.CheckboxFlags(label, unsignedintflags, unsignedintflags_value) end
 
 ---@param label string
 ---@param active boolean|nil
@@ -789,11 +790,11 @@ function imgui.RadioButtonIntPtr(label, v, v_button) end
 ---@param overlay string|nil
 function imgui.ProgressBar(fraction, size, overlay) end
 function imgui.Bullet() end
-function imgui.BeginCombo(label,preview_value,ImGuiComboFlagsflags) end
+function imgui.BeginCombo(label, preview_value, ImGuiComboFlagsflags) end
 function imgui.EndCombo() end
-function imgui.Combo(label,current_item,items,items_count,popup_max_height_in_items) end
-function imgui.ComboStr(label,current_item,items_separated_by_zeros,popup_max_height_in_items) end
-function imgui.ComboFnPtr(label,current_item,_Bool,data,items_count,popup_max_height_in_items) end
+function imgui.Combo(label, current_item, items, items_count, popup_max_height_in_items) end
+function imgui.ComboStr(label, current_item, items_separated_by_zeros, popup_max_height_in_items) end
+function imgui.ComboFnPtr(label, current_item, _Bool, data, items_count, popup_max_height_in_items) end
 function imgui.GetContentRegionMax() end
 function imgui.GetContentRegionAvail() end
 function imgui.GetWindowContentRegionMin() end
@@ -836,11 +837,32 @@ function imgui.DragFloat3(label, value, speed, min, max, format, power) end
 ---@param power any
 function imgui.DragFloat4(label, value, speed, min, max, format, power) end
 
-function imgui.DragFloatRange2(label,floatv_current_min,floatv_current_max,floatv_speed,floatv_min,floatv_max,format,format_max,floatpower) end
-function imgui.DragIntRange2(label,v_current_min,v_current_max,floatv_speed,v_min,v_max,format,format_max) end
-function imgui.DragScalar(label,ImGuiDataTypedata_type,v,floatv_speed,v_min,v_max,format,floatpower) end
-function imgui.DragScalarN(label,ImGuiDataTypedata_type,v,components,floatv_speed,v_min,v_max,format,floatpower) end
-
+function imgui.DragFloatRange2(
+	label,
+	floatv_current_min,
+	floatv_current_max,
+	floatv_speed,
+	floatv_min,
+	floatv_max,
+	format,
+	format_max,
+	floatpower
+)
+end
+function imgui.DragIntRange2(label, v_current_min, v_current_max, floatv_speed, v_min, v_max, format, format_max) end
+function imgui.DragScalar(label, ImGuiDataTypedata_type, v, floatv_speed, v_min, v_max, format, floatpower) end
+function imgui.DragScalarN(
+	label,
+	ImGuiDataTypedata_type,
+	v,
+	components,
+	floatv_speed,
+	v_min,
+	v_max,
+	format,
+	floatpower
+)
+end
 
 ---@param label string
 ---@param value ImInt
@@ -848,140 +870,184 @@ function imgui.DragScalarN(label,ImGuiDataTypedata_type,v,components,floatv_spee
 ---@param min number
 ---@param max number
 ---@param format string|nil
-function imgui.DragInt(label, value, speed, min, max,format) end
-function imgui.DragInt2(label, value, speed, min, max,format) end
-function imgui.DragInt3(label, value, speed, min, max,format) end
-function imgui.DragInt4(label, value, speed, min, max,format) end
+function imgui.DragInt(label, value, speed, min, max, format) end
+function imgui.DragInt2(label, value, speed, min, max, format) end
+function imgui.DragInt3(label, value, speed, min, max, format) end
+function imgui.DragInt4(label, value, speed, min, max, format) end
 
-function imgui.SliderFloat(label,floatv,floatv_min,floatv_max,format,floatpower) end
-function imgui.SliderFloat2(label,floatv,floatv_min,floatv_max,format,floatpower) end
-function imgui.SliderFloat3(label,floatv,floatv_min,floatv_max,format,floatpower) end
-function imgui.SliderFloat4(label,floatv,floatv_min,floatv_max,format,floatpower) end
+function imgui.SliderFloat(label, floatv, floatv_min, floatv_max, format, floatpower) end
+function imgui.SliderFloat2(label, floatv, floatv_min, floatv_max, format, floatpower) end
+function imgui.SliderFloat3(label, floatv, floatv_min, floatv_max, format, floatpower) end
+function imgui.SliderFloat4(label, floatv, floatv_min, floatv_max, format, floatpower) end
 
-function imgui.SliderAngle(label,floatv_rad,floatv_degrees_min,floatv_degrees_max,format) end
+function imgui.SliderAngle(label, floatv_rad, floatv_degrees_min, floatv_degrees_max, format) end
 
-function imgui.SliderInt(label,v,v_min,v_max,format) end
-function imgui.SliderInt2(label,v,v_min,v_max,format) end
-function imgui.SliderInt3(label,v,v_min,v_max,format) end
-function imgui.SliderInt4(label,v,v_min,v_max,format) end
+function imgui.SliderInt(label, v, v_min, v_max, format) end
+function imgui.SliderInt2(label, v, v_min, v_max, format) end
+function imgui.SliderInt3(label, v, v_min, v_max, format) end
+function imgui.SliderInt4(label, v, v_min, v_max, format) end
 
-function imgui.SliderScalar(label,ImGuiDataTypedata_type,v,v_min,v_max,format,floatpower) end
-function imgui.SliderScalarN(label,ImGuiDataTypedata_type,v,components,v_min,v_max,format,floatpower) end
-function imgui.VSliderFloat(label,size,floatv,floatv_min,floatv_max,format,floatpower) end
-function imgui.VSliderInt(label,size,v,v_min,v_max,format) end
-function imgui.VSliderScalar(label,size,ImGuiDataTypedata_type,v,v_min,v_max,format,floatpower) end
-function imgui.InputText(label,charbuf,buf_size,flags,ImGuiInputTextCallbackcallback,user_data) end
-function imgui.InputTextMultiline(label,charbuf,buf_size,size,flags,ImGuiInputTextCallbackcallback,user_data) end
-function imgui.InputTextWithHint(label,hint,charbuf,buf_size,flags,ImGuiInputTextCallbackcallback,user_data) end
-function imgui.InputFloat(label,floatv,floatstep,floatstep_fast,format,flags) end
-function imgui.InputFloat2(label,floatv,format,flags) end
-function imgui.InputFloat3(label,floatv,format,flags) end
-function imgui.InputFloat4(label,floatv,format,flags) end
-function imgui.InputInt(label,v,s,step_fast,flags) end
-function imgui.InputInt2(label,v,flags) end
-function imgui.InputInt3(label,v,flags) end
-function imgui.InputInt4(label,v,flags) end
-function imgui.InputDouble(label,doublev,doublestep,doublestep_fast,format,flags) end
-function imgui.InputScalar(label,ImGuiDataTypedata_type,v,step,step_fast,format,flags) end
-function imgui.InputScalarN(label,ImGuiDataTypedata_type,v,components,step,step_fast,format,flags) end
-function imgui.ColorEdit3(label,floatcol,ImGuiColorEditFlagsflags) end
-function imgui.ColorEdit4(label,floatcol,ImGuiColorEditFlagsflags) end
-function imgui.ColorPicker3(label,floatcol,ImGuiColorEditFlagsflags) end
-function imgui.ColorPicker4(label,floatcol,ImGuiColorEditFlagsflags,floatref_col) end
-function imgui.ColorButton(desc_id,col,ImGuiColorEditFlagsflags,size) end
+function imgui.SliderScalar(label, ImGuiDataTypedata_type, v, v_min, v_max, format, floatpower) end
+function imgui.SliderScalarN(label, ImGuiDataTypedata_type, v, components, v_min, v_max, format, floatpower) end
+function imgui.VSliderFloat(label, size, floatv, floatv_min, floatv_max, format, floatpower) end
+function imgui.VSliderInt(label, size, v, v_min, v_max, format) end
+function imgui.VSliderScalar(label, size, ImGuiDataTypedata_type, v, v_min, v_max, format, floatpower) end
+function imgui.InputText(label, charbuf, buf_size, flags, ImGuiInputTextCallbackcallback, user_data) end
+function imgui.InputTextMultiline(label, charbuf, buf_size, size, flags, ImGuiInputTextCallbackcallback, user_data) end
+function imgui.InputTextWithHint(label, hint, charbuf, buf_size, flags, ImGuiInputTextCallbackcallback, user_data) end
+function imgui.InputFloat(label, floatv, floatstep, floatstep_fast, format, flags) end
+function imgui.InputFloat2(label, floatv, format, flags) end
+function imgui.InputFloat3(label, floatv, format, flags) end
+function imgui.InputFloat4(label, floatv, format, flags) end
+function imgui.InputInt(label, v, s, step_fast, flags) end
+function imgui.InputInt2(label, v, flags) end
+function imgui.InputInt3(label, v, flags) end
+function imgui.InputInt4(label, v, flags) end
+function imgui.InputDouble(label, doublev, doublestep, doublestep_fast, format, flags) end
+function imgui.InputScalar(label, ImGuiDataTypedata_type, v, step, step_fast, format, flags) end
+function imgui.InputScalarN(label, ImGuiDataTypedata_type, v, components, step, step_fast, format, flags) end
+function imgui.ColorEdit3(label, floatcol, ImGuiColorEditFlagsflags) end
+function imgui.ColorEdit4(label, floatcol, ImGuiColorEditFlagsflags) end
+function imgui.ColorPicker3(label, floatcol, ImGuiColorEditFlagsflags) end
+function imgui.ColorPicker4(label, floatcol, ImGuiColorEditFlagsflags, floatref_col) end
+function imgui.ColorButton(desc_id, col, ImGuiColorEditFlagsflags, size) end
 function imgui.SetColorEditOptions(ImGuiColorEditFlagsflags) end
 function imgui.TreeNodeStr(label) end
-function imgui.TreeNodeStrStr(str_id,fmt,...) end
-function imgui.TreeNodePtr(ptr_id,fmt,...) end
-function imgui.TreeNodeVStr(str_id,fmt,va_listargs) end
-function imgui.TreeNodeVPtr(ptr_id,fmt,va_listargs) end
-function imgui.TreeNodeExStr(label,ImGuiTreeNodeFlagsflags) end
-function imgui.TreeNodeExStrStr(str_id,ImGuiTreeNodeFlagsflags,fmt,...) end
-function imgui.TreeNodeExPtr(ptr_id,ImGuiTreeNodeFlagsflags,fmt,...) end
-function imgui.TreeNodeExVStr(str_id,ImGuiTreeNodeFlagsflags,fmt,va_listargs) end
-function imgui.TreeNodeExVPtr(ptr_id,ImGuiTreeNodeFlagsflags,fmt,va_listargs) end
+function imgui.TreeNodeStrStr(str_id, fmt, ...) end
+function imgui.TreeNodePtr(ptr_id, fmt, ...) end
+function imgui.TreeNodeVStr(str_id, fmt, va_listargs) end
+function imgui.TreeNodeVPtr(ptr_id, fmt, va_listargs) end
+function imgui.TreeNodeExStr(label, ImGuiTreeNodeFlagsflags) end
+function imgui.TreeNodeExStrStr(str_id, ImGuiTreeNodeFlagsflags, fmt, ...) end
+function imgui.TreeNodeExPtr(ptr_id, ImGuiTreeNodeFlagsflags, fmt, ...) end
+function imgui.TreeNodeExVStr(str_id, ImGuiTreeNodeFlagsflags, fmt, va_listargs) end
+function imgui.TreeNodeExVPtr(ptr_id, ImGuiTreeNodeFlagsflags, fmt, va_listargs) end
 function imgui.TreePushStr(str_id) end
 function imgui.TreePushPtr(ptr_id) end
 function imgui.TreePop() end
 function imgui.GetTreeNodeToLabelSpacing() end
-function imgui.CollapsingHeader(label,ImGuiTreeNodeFlagsflags) end
-function imgui.CollapsingHeaderBoolPtr(label,_Boolp_open,ImGuiTreeNodeFlagsflags) end
-function imgui.SetNextItemOpen(_Boolis_open,ImGuiCondcond) end
-function imgui.Selectable(label,_Boolselected,ImGuiSelectableFlagsflags,size) end
-function imgui.SelectableBoolPtr(label,_Boolp_selected,ImGuiSelectableFlagsflags,size) end
-function imgui.ListBoxStr_arr(label,current_item,items,items_count,height_in_items) end
-function imgui.ListBoxFnPtr(label,current_item,_Bool,data,items_count,height_in_items) end
-function imgui.ListBoxHeaderVec2(label,size) end
-function imgui.ListBoxHeaderInt(label,items_count,height_in_items) end
+function imgui.CollapsingHeader(label, ImGuiTreeNodeFlagsflags) end
+function imgui.CollapsingHeaderBoolPtr(label, _Boolp_open, ImGuiTreeNodeFlagsflags) end
+function imgui.SetNextItemOpen(_Boolis_open, ImGuiCondcond) end
+function imgui.Selectable(label, _Boolselected, ImGuiSelectableFlagsflags, size) end
+function imgui.SelectableBoolPtr(label, _Boolp_selected, ImGuiSelectableFlagsflags, size) end
+function imgui.ListBoxStr_arr(label, current_item, items, items_count, height_in_items) end
+function imgui.ListBoxFnPtr(label, current_item, _Bool, data, items_count, height_in_items) end
+function imgui.ListBoxHeaderVec2(label, size) end
+function imgui.ListBoxHeaderInt(label, items_count, height_in_items) end
 function imgui.ListBoxFooter() end
-function imgui.PlotLines(label,floatvalues,values_count,values_offset,overlay_text,floatscale_min,floatscale_max,graph_size,stride) end
-function imgui.PlotLinesFnPtr(label,float,data,values_count,values_offset,overlay_text,floatscale_min,floatscale_max,graph_size) end
-function imgui.PlotHistogramFloatPtr(label,floatvalues,values_count,values_offset,overlay_text,floatscale_min,floatscale_max,graph_size,stride) end
-function imgui.PlotHistogramFnPtr(label,float,data,values_count,values_offset,overlay_text,floatscale_min,floatscale_max,graph_size) end
-function imgui.ValueBool(prefix,_Boolb) end
-function imgui.ValueInt(prefix,v) end
-function imgui.ValueUint(prefix,unsignedintv) end
-function imgui.ValueFloat(prefix,floatv,float_format) end
+function imgui.PlotLines(
+	label,
+	floatvalues,
+	values_count,
+	values_offset,
+	overlay_text,
+	floatscale_min,
+	floatscale_max,
+	graph_size,
+	stride
+)
+end
+function imgui.PlotLinesFnPtr(
+	label,
+	number,
+	data,
+	values_count,
+	values_offset,
+	overlay_text,
+	floatscale_min,
+	floatscale_max,
+	graph_size
+)
+end
+function imgui.PlotHistogramFloatPtr(
+	label,
+	floatvalues,
+	values_count,
+	values_offset,
+	overlay_text,
+	floatscale_min,
+	floatscale_max,
+	graph_size,
+	stride
+)
+end
+function imgui.PlotHistogramFnPtr(
+	label,
+	number,
+	data,
+	values_count,
+	values_offset,
+	overlay_text,
+	floatscale_min,
+	floatscale_max,
+	graph_size
+)
+end
+function imgui.ValueBool(prefix, _Boolb) end
+function imgui.ValueInt(prefix, v) end
+function imgui.ValueUint(prefix, unsignedintv) end
+function imgui.ValueFloat(prefix, floatv, float_format) end
 function imgui.BeginMainMenuBar() end
 function imgui.EndMainMenuBar() end
 function imgui.BeginMenuBar() end
 function imgui.EndMenuBar() end
-function imgui.BeginMenu(label,_Boolenabled) end
+function imgui.BeginMenu(label, _Boolenabled) end
 function imgui.EndMenu() end
-function imgui.MenuItemBool(label,shortcut,_Boolselected,_Boolenabled) end
-function imgui.MenuItemBoolPtr(label,shortcut,_Boolp_selected,_Boolenabled) end
+function imgui.MenuItemBool(label, shortcut, _Boolselected, _Boolenabled) end
+function imgui.MenuItemBoolPtr(label, shortcut, _Boolp_selected, _Boolenabled) end
 function imgui.BeginTooltip() end
 function imgui.EndTooltip() end
-function imgui.SetTooltip(fmt,...) end
-function imgui.SetTooltipV(fmt,va_listargs) end
+function imgui.SetTooltip(fmt, ...) end
+function imgui.SetTooltipV(fmt, va_listargs) end
 function imgui.OpenPopup(str_id) end
-function imgui.BeginPopup(str_id,ImGuiWindowFlagsflags) end
-function imgui.BeginPopupContextItem(str_id,mouse_button) end
-function imgui.BeginPopupContextWindow(str_id,mouse_button,_Boolalso_over_items) end
-function imgui.BeginPopupContext(str_id,mouse_button) end
-function imgui.BeginPopupModal(name,_Boolp_open,ImGuiWindowFlagsflags) end
+function imgui.BeginPopup(str_id, ImGuiWindowFlagsflags) end
+function imgui.BeginPopupContextItem(str_id, mouse_button) end
+function imgui.BeginPopupContextWindow(str_id, mouse_button, _Boolalso_over_items) end
+function imgui.BeginPopupContext(str_id, mouse_button) end
+function imgui.BeginPopupModal(name, _Boolp_open, ImGuiWindowFlagsflags) end
 function imgui.EndPopup() end
-function imgui.OpenPopupOnItemClick(str_id,mouse_button) end
+function imgui.OpenPopupOnItemClick(str_id, mouse_button) end
 function imgui.IsPopupOpen(str_id) end
 function imgui.CloseCurrentPopup() end
-function imgui.Columns(count,id,_Boolborder) end
+function imgui.Columns(count, id, _Boolborder) end
 function imgui.NextColumn() end
 function imgui.GetColumnIndex() end
 function imgui.GetColumnWidth(column_index) end
-function imgui.SetColumnWidth(column_index,floatwidth) end
+function imgui.SetColumnWidth(column_index, floatwidth) end
 function imgui.GetColumnOffset(column_index) end
-function imgui.SetColumnOffset(column_index,floatoffset_x) end
+function imgui.SetColumnOffset(column_index, floatoffset_x) end
 function imgui.GetColumnsCount() end
-function imgui.BeginTabBar(str_id,ImGuiTabBarFlagsflags) end
+function imgui.BeginTabBar(str_id, ImGuiTabBarFlagsflags) end
 function imgui.EndTabBar() end
-function imgui.BeginTabItem(label,_Boolp_open,ImGuiTabItemFlagsflags) end
+function imgui.BeginTabItem(label, _Boolp_open, ImGuiTabItemFlagsflags) end
 function imgui.EndTabItem() end
 function imgui.SetTabItemClosed(tab_or_docked_window_label) end
 function imgui.LogToTTY(auto_open_depth) end
-function imgui.LogToFile(auto_open_depth,filename) end
+function imgui.LogToFile(auto_open_depth, filename) end
 function imgui.LogToClipboard(auto_open_depth) end
 function imgui.LogFinish() end
 function imgui.LogButtons() end
 function imgui.BeginDragDropSource(ImGuiDragDropFlagsflags) end
-function imgui.SetDragDropPayload(type,data,sz,ImGuiCondcond) end
+function imgui.SetDragDropPayload(type, data, sz, ImGuiCondcond) end
 function imgui.EndDragDropSource() end
 function imgui.BeginDragDropTarget() end
-function imgui.AcceptDragDropPayload(type,ImGuiDragDropFlagsflags) end
+function imgui.AcceptDragDropPayload(type, ImGuiDragDropFlagsflags) end
 function imgui.EndDragDropTarget() end
 function imgui.GetDragDropPayload() end
-function imgui.PushClipRect(clip_rect_min,clip_rect_max,_Boolintersect_with_current_clip_rect) end
+function imgui.PushClipRect(clip_rect_min, clip_rect_max, _Boolintersect_with_current_clip_rect) end
 function imgui.PopClipRect() end
 function imgui.SetItemDefaultFocus() end
 function imgui.SetKeyboardFocusHere(offset) end
 function imgui.LoadIniSettingsFromDisk(ini_filename) end
-function imgui.LoadIniSettingsFromMemory(ini_data,ini_size) end
+function imgui.LoadIniSettingsFromMemory(ini_data, ini_size) end
 function imgui.SaveIniSettingsToDisk(ini_filename) end
 function imgui.SaveIniSettingsToMemory(out_ini_size) end
 function imgui.MemAlloc(size) end
 function imgui.MemFree(ptr) end
 function imgui.LogText(fmt, ...) end
-function imgui.ColorConvertRGBtoHSV(floatr,floatg,floatb,floatout_h,floatout_s,floatout_v) end
-function imgui.ColorConvertHSVtoRGB(floath,floats,floatv,floatout_r,floatout_g,floatout_b) end
+function imgui.ColorConvertRGBtoHSV(floatr, floatg, floatb, floatout_h, floatout_s, floatout_v) end
+function imgui.ColorConvertHSVtoRGB(floath, floats, floatv, floatout_r, floatout_g, floatout_b) end
 function imgui.CaptureKeyboardFromApp(_Boolwant_capture_keyboard_value) end
 function imgui.CaptureMouseFromApp(_Boolwant_capture_mouse_value) end
 function imgui.GetItemRectMin() end
@@ -997,9 +1063,9 @@ function imgui.GetStateStorage() end
 
 ---@param text string text
 ---@return ImVec2
-function imgui.CalcTextSize(text,text_end,_Boolhide_text_after_double_hash,floatwrap_width) end
-function imgui.CalcListClipping(items_count,floatitems_height,out_items_display_start,out_items_display_end) end
-function imgui.BeginChildFrame(ImGuiIDid,size,ImGuiWindowFlagsflags) end
+function imgui.CalcTextSize(text, text_end, _Boolhide_text_after_double_hash, floatwrap_width) end
+function imgui.CalcListClipping(items_count, floatitems_height, out_items_display_start, out_items_display_end) end
+function imgui.BeginChildFrame(ImGuiIDid, size, ImGuiWindowFlagsflags) end
 function imgui.EndChildFrame() end
 function imgui.ColorConvertU32ToFloat4(_in) end
 function imgui.ColorConvertFloat4ToU32(_in) end
@@ -1056,7 +1122,7 @@ function imgui.IsKeyReleased(key) end
 function imgui.IsRectVisible(size) end
 
 ---@return boolean
-function imgui.IsRectVisibleVec2(rect_min,rect_max) end
+function imgui.IsRectVisibleVec2(rect_min, rect_max) end
 
 ---@param flags imgui.HoveredFlags
 ---@return boolean
@@ -1103,7 +1169,7 @@ function imgui.IsMouseDown(button) end
 function imgui.IsAnyMouseDown() end
 
 ---@return boolean
-function imgui.IsMouseClicked(button,_Boolrepeat) end
+function imgui.IsMouseClicked(button, _Boolrepeat) end
 
 ---@return boolean
 function imgui.IsMouseDoubleClicked(button) end
@@ -1112,10 +1178,10 @@ function imgui.IsMouseDoubleClicked(button) end
 function imgui.IsMouseReleased(button) end
 
 ---@return boolean
-function imgui.IsMouseDragging(button,floatlock_threshold) end
+function imgui.IsMouseDragging(button, floatlock_threshold) end
 
 ---@return boolean
-function imgui.IsMouseHoveringRect(r_min,r_max,_Boolclip) end
+function imgui.IsMouseHoveringRect(r_min, r_max, _Boolclip) end
 
 ---@return boolean
 function imgui.IsMousePosValid(mouse_pos) end
