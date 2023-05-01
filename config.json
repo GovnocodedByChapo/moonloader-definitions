@@ -1,4 +1,29 @@
 {
   "$schema": "https://raw.githubusercontent.com/LuaLS/LLS-Addons/main/schemas/addon_config.schema.json",
-  "name":"moonloader"
+  "name": "moonloader",
+  "settings": {
+    "Lua.workspace.checkThirdParty": false,
+    "Lua.runtime.version": "LuaJIT",
+    "Lua.semantic.enable": false,
+    "Lua.diagnostics.disable": [
+      "lowercase-global",
+      "deprecated",
+      "different-requires"
+    ],
+    "Lua.runtime.path": [
+      "lib/?.lua",
+      "lib/?/init.lua",
+      "libstd/?.lua",
+      "libstd/?/init.lua",
+      "?.lua"
+    ],
+    "Lua.workspace.ignoreDir": ["luajit/", "luarocks/"],
+    "[lua]": {
+      "files.encoding": "windows1251",
+      "files.autoGuessEncoding": true,
+      "editor.tabSize": 4,
+      "editor.formatOnSave": true,
+      "editor.defaultFormatter": "JohnnyMorganz.stylua"
+    }
+  }
 }
