@@ -342,6 +342,19 @@ function imgui.new.float(...) end
 ---@return ImBuffer
 function imgui.new.char(value) end
 
+--- @param callback function
+function imgui.OnInitialize(callback) end
+
+---@class FrameParam
+local FrameParam = { LockPlayer = false, HideCursor = false }
+
+---@param cond fun(): boolean
+---@param cbBeforeFrame function
+---@param cbDraw fun(frame: FrameParam)
+---@overload fun(cond: fun(): boolean, cbDraw: fun(frame: FrameParam))
+function imgui.OnFrame(cond, cbBeforeFrame, cbDraw) end
+
+
 --- @return ImDrawList
 function imgui.GetWindowDrawList() end
 
