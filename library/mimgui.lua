@@ -354,7 +354,6 @@ local FrameParam = { LockPlayer = false, HideCursor = false }
 ---@overload fun(cond: fun(): boolean, cbDraw: fun(frame: FrameParam))
 function imgui.OnFrame(cond, cbBeforeFrame, cbDraw) end
 
-
 --- @return ImDrawList
 function imgui.GetWindowDrawList() end
 
