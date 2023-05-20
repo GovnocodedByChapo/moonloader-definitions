@@ -1,6 +1,7 @@
----@meta
+---@meta inicfg
 ---@diagnostic disable: missing-return
-inicfg = {}
+
+local inicfg = {}
 
 ---Usage:
 ---```lua
