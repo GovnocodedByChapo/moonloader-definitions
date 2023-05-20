@@ -1,4 +1,4 @@
----@meta moonloader
+---@meta
 ---@diagnostic disable: lowercase-global, missing-return
 
 ---@alias bool boolean # логический
@@ -113,7 +113,7 @@ function script.find(name) end
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/script/list)
 ---
----@return table list
+---@return LuaScript[] list
 function script.list() end
 
 ---
@@ -133,15 +133,15 @@ function isCursorActive() end
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/getAllPickups)
 ---
----@return table pickups
+---@return Pickup[] pickups
 function getAllPickups() end
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointerHandle)
 ---
----@param pickup Pickup
----@return int handle
-function getPickupPointerHandle(pickup) end
+---@param handle int
+---@return Pickup pickup
+function getPickupPointerHandle(handle) end
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointer)
@@ -1478,19 +1478,19 @@ function getD3DDevicePtr() end
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/getAllObjects)
 ---
----@return table objects
+---@return Object[] objects
 function getAllObjects() end
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/getAllChars)
 ---
----@return table peds
+---@return Ped[] peds
 function getAllChars() end
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/getAllVehicles)
 ---
----@return table vehicles
+---@return Vehicle[] vehicles
 function getAllVehicles() end
 
 ---
