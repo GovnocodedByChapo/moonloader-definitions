@@ -1,2 +1,3 @@
 *.code-workspace
 stylua.exe
+__pycache__
