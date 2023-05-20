@@ -1331,23 +1331,6 @@ function getMousewheelDelta() end
 ---@param scripts bool? Default value is true
 function consumeWindowMessage(game, scripts) end
 
----@alias EventType 
----| '"onExitScript"'
----| '"onQuitGame"'
----| '"onScriptLoad"'
----| '"onScriptTerminate"'
----| '"onSystemInitialized"'
----| '"onScriptMessage"'
----| '"onSystemMessage"'
----| '"onReceivePacket"'
----| '"onReceiveRpc"'
----| '"onSendPacket"'
----| '"onSendRpc"'
----| '"onWindowMessage"'
----| '"onStartNewGame"'
----| '"onLoadGame"'
----| '"onSaveGame"'
-
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/addEventHandler)
 ---
@@ -1382,11 +1365,15 @@ function isGamePaused() end
 ---@return double time
 function gameClock() end
 
+---@alias ScriptProperty
+---| '"work-in-pause"' # Указывает, что скрипт будет продолжать исполнение во время паузы игры (с условием, что игра развёрнута и находится на переднем плане).
+---| '"forced-reloading-only"' # апрещает автоматическую перезагрузку скрипта, оставляя возможность только принудительной перезагрузки.
+
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/script_properties)
 ---
 ---@param property string
----@param ... any
+---@param ... ScriptProperty
 function script_properties(property, ...) end
 
 ---

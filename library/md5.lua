@@ -1,4 +1,4 @@
---- @meta
+---@meta md5
 ---@diagnostic disable: missing-return
 
 local md5 = {}

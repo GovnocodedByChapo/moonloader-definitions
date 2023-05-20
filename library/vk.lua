@@ -1,4 +1,4 @@
----@meta
+---@meta vk
 ---@diagnostic disable: missing-return
 
 VK_LBUTTON = 0x01 ---Left Button

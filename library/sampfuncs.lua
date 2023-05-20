@@ -1,4 +1,4 @@
---- @meta
+---@meta sampfuncs
 ---@diagnostic disable: missing-return
 
 --- Use

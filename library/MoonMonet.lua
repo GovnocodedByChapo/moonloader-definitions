@@ -1,4 +1,4 @@
---- @meta
+---@meta MoonMonet
 ---@diagnostic disable: missing-return
 
 --- @class MoonMonetSubColors

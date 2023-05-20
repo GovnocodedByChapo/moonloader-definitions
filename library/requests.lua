@@ -1,4 +1,4 @@
---- @meta
+---@meta requests
 ---@diagnostic disable: missing-return
 
 --- @class Response
