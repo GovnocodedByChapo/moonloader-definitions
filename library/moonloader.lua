@@ -8,30 +8,27 @@
 ---@alias double number # число с плавающей точкой двойной точности, 8 байт
 ---@alias zstring string # нуль-терминированная строка (в Lua обычная строка)
 
----@alias BaseScriptHandle uint # базовый скриптовый хэндл
----@alias BaseSFHandle uint # базовый SAMPFUNC хэндл
-
----@alias Ped BaseScriptHandle # скриптовый хэндл игрового персонажа
----@alias Marker BaseScriptHandle # скриптовый хэндл маркера
----@alias Pickup BaseScriptHandle # скриптовый хэндл пикапа
----@alias Searchlight BaseScriptHandle # скриптовый хэндл прожектора
----@alias Particle BaseScriptHandle # скриптовый хэндл визуального эффекта
----@alias Checkpoint BaseScriptHandle # скриптовый хэндл чекпоинта
----@alias Vehicle BaseScriptHandle # скриптовый хэндл транспортного средства
----@alias Object BaseScriptHandle # скриптовый хэндл игрового объекта
----@alias Player BaseScriptHandle # идентификатор игрока
+---@class Ped # скриптовый хэндл игрового персонажа
+---@class Marker # скриптовый хэндл маркера
+---@class Pickup # скриптовый хэндл пикапа
+---@class Searchlight # скриптовый хэндл прожектора
+---@class Particle # скриптовый хэндл визуального эффекта
+---@class Checkpoint # скриптовый хэндл чекпоинта
+---@class Vehicle # скриптовый хэндл транспортного средства
+---@class Object # скриптовый хэндл игрового объекта
+---@class Player # идентификатор игрока
 
 ---@alias GxtString string # короткая строка-идентификатор GXT-записи
 ---@alias Model uint # идентификатор игровой модели
 ---@alias Bitstream uint # указатель на объект BitStream
 ---@alias VarId uint # индекс скриптовой глобальной переменной
 
----@alias DxutDialog BaseSFHandle # хэндл DXUT-диалога SAMPFUNCS
+---@class DxutDialog # хэндл DXUT-диалога SAMPFUNCS
 
----@alias DxFont userdata # экземпляр шрифта DirectX
----@alias DxTexture userdata # экземпляр текстуры DirectX
----@alias AudioStream userdata # экземпляр аудиопотока BASS
----@alias Filesearch userdata # хэндл поиска файлов
+---@class DxFont # экземпляр шрифта DirectX
+---@class DxTexture # экземпляр текстуры DirectX
+---@class AudioStream # экземпляр аудиопотока BASS
+---@class Filesearch # хэндл поиска файлов
 
 ---@alias LuaThreadStatus
 ---| '"dead"' # завершён
@@ -48,8 +45,6 @@
 ---@field status fun(): LuaThreadStatus # Возвращает статус потока.
 
 ---@class lua_thread
-
----@type lua_thread
 lua_thread = {}
 
 ---
@@ -89,11 +84,17 @@ function lua_thread.create_suspended(func) end
 ---@field unload fun() # выгружает скрипт
 ---@field reload fun() # перезагружает скрипт
 
----@class script
----@field this LuaScript # Возвращает объект LuaScript текущего скрипта. Является аналогом функции thisScript.
+---
+--- [Open the wiki](https://wiki.blast.hk/moonloader/lua/thisScript)
+---
+---@return LuaScript s
+function thisScript() end
 
----@type script
+---@class script
 script = {}
+
+---@type LuaScript
+script.this = {}
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/script/load)
@@ -585,12 +586,6 @@ function script_dependencies(name, ...) end
 ---
 ---@param version int
 function script_moonloader(version) end
-
----
---- [Open the wiki](https://wiki.blast.hk/moonloader/lua/thisScript)
----
----@return LuaScript s
-function thisScript() end
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/wait)
@@ -1336,12 +1331,44 @@ function getMousewheelDelta() end
 ---@param scripts bool? Default value is true
 function consumeWindowMessage(game, scripts) end
 
+---@alias EventType 
+---| '"onExitScript"'
+---| '"onQuitGame"'
+---| '"onScriptLoad"'
+---| '"onScriptTerminate"'
+---| '"onSystemInitialized"'
+---| '"onScriptMessage"'
+---| '"onSystemMessage"'
+---| '"onReceivePacket"'
+---| '"onReceiveRpc"'
+---| '"onSendPacket"'
+---| '"onSendRpc"'
+---| '"onWindowMessage"'
+---| '"onStartNewGame"'
+---| '"onLoadGame"'
+---| '"onSaveGame"'
+
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/addEventHandler)
 ---
----@param eventName string
----@param callback function
-function addEventHandler(eventName, callback) end
+---@param ... any
+---
+---@overload fun(eventName: '"onExitScript"', callback: fun(quitGame: boolean))
+---@overload fun(eventName: '"onQuitGame"', callback: fun())
+---@overload fun(eventName: '"onScriptLoad"', callback: fun(script: LuaScript))
+---@overload fun(eventName: '"onScriptTerminate"', callback: fun(script: LuaScript, quitGame: boolean))
+---@overload fun(eventName: '"onSystemInitialized"', callback: fun())
+---@overload fun(eventName: '"onScriptMessage"', callback: fun(msg: string, script: LuaScript))
+---@overload fun(eventName: '"onSystemMessage"', callback: fun(msg: string, type: int, script: LuaScript))
+---@overload fun(eventName: '"onReceivePacket"', callback: fun(id: int, bitStream: Bitstream): boolean?, int?, Bitstream?)
+---@overload fun(eventName: '"onReceiveRpc"', callback: fun(id: int, bitStream: Bitstream): boolean?, int?, Bitstream?)
+---@overload fun(eventName: '"onSendPacket"', callback: fun(id: int, bitStream: Bitstream, priority: int, relability: int, orderingChannel: int): boolean?, int?, Bitstream?, int?, int?, int?)
+---@overload fun(eventName: '"onSendRpc"', callback: fun(id: int, bitStream: Bitstream, priority: int, relability: int, orderingChannel: int, shiftTs: boolean): boolean?, int?, Bitstream?, int?, int?, int?, boolean?)
+---@overload fun(eventName: '"onWindowMessage"', callback: fun(msg: uint, wparam: uint, lparam: int))
+---@overload fun(eventName: '"onStartNewGame"', callback: fun(mpack: int))
+---@overload fun(eventName: '"onLoadGame"', callback: fun(saveData: table))
+---@overload fun(eventName: '"onSaveGame"', callback: fun(saveData: table): table?)
+function addEventHandler(...) end
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/isGamePaused)
@@ -15200,22 +15227,22 @@ function onSaveGame(saveData) end
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/PLAYER_PED)
 ---
 ---@type Ped
-PLAYER_PED = 0
+PLAYER_PED = {}
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/PLAYER_HANDLE)
 ---
 ---@type Player
-PLAYER_HANDLE = 0
+PLAYER_HANDLE = {}
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/PLAYER_PED)
 ---
 ---@type Ped
-playerPed = 0
+playerPed = {}
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/PLAYER_HANDLE)
 ---
 ---@type Player
-playerHandle = 0
+playerHandle = {}
