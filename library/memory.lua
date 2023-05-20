@@ -1,4 +1,6 @@
 ---@meta
+---@diagnostic disable: missing-return
+
 local memory = {}
 
 --- @param address number

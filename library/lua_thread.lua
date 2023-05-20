@@ -1,4 +1,5 @@
 ---@meta
+---@diagnostic disable: missing-return
 
 ---@alias status "dead" | "error" | "running" | "suspended" | "yielded"
 

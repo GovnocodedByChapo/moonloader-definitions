@@ -1,4 +1,5 @@
 ---@meta
+---@diagnostic disable: missing-return
 
 ---@class LuaScript
 ---@field name string имя скрипта, заданное функцией 'script_name'. Если имя не задано используется название файла

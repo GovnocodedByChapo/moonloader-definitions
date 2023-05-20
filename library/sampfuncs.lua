@@ -1,4 +1,6 @@
 --- @meta
+---@diagnostic disable: missing-return
+
 --- Use
 ---```lua
 ---local sampfuncs = require('sampfuncs')

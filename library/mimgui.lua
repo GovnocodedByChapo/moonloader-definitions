@@ -1,4 +1,6 @@
 ---@meta
+---@diagnostic disable: missing-return
+
 ---@name Defenitions for the mimgui library (moonloader)
 local imgui = {}
 

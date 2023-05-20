@@ -1,4 +1,6 @@
 ---@meta
+---@diagnostic disable: missing-return
+
 --// by chapo
 -- FIXME: Fix optional types, as is done in renderCreateFont
 
