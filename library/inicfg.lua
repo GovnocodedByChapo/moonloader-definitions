@@ -4,7 +4,8 @@
 local inicfg = {}
 
 ---
----Usage:
+---Usage:  
+---
 ---```lua
 ---local inicfg = require('inicfg')
 ---local iniFileName = 'myFileName.ini'
@@ -17,7 +18,7 @@ local inicfg = {}
 ---}, iniFileName)
 ---inicfg.save(ini, iniFileName)
 ---
------// Change ans save value in .ini file
+-----// Change and save value in .ini file
 ---ini.main.alive = false
 ---inicfg.save(ini, iniFileName)
 ---```
@@ -32,10 +33,12 @@ local inicfg = {}
 function inicfg.load(default, file) end
 
 ---
----Usage:
+---Usage:  
+---
 ---```lua
 ---<ini>.<section>.<key> = <value>
 ---inicfg.save(<ini>, <iniFileName>)
+---```
 ---
 ---@param data table
 ---@param file string
