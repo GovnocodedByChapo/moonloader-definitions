@@ -565,7 +565,7 @@ function script_description(description) end
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/script_authors)
 ---
 ---@param author string
----@param ... any
+---@param ... string
 function script_authors(author, ...) end
 
 ---
@@ -578,7 +578,7 @@ function script_author(author) end
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/script_dependencies)
 ---
 ---@param name string
----@param ... any
+---@param ... string
 function script_dependencies(name, ...) end
 
 ---
@@ -592,13 +592,6 @@ function script_moonloader(version) end
 ---
 ---@param time int
 function wait(time) end
-
----
---- [Open the wiki](https://wiki.blast.hk/moonloader/lua/print)
----
----@param value any
----@param ... any
-function print(value, ...) end
 
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/getGameGlobal)
