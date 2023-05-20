@@ -1,4 +1,4 @@
----@meta
+---@meta mimgui
 ---@diagnostic disable: missing-return
 
 ---@name Defenitions for the mimgui library (moonloader)
@@ -12,6 +12,9 @@ local ImDrawList = {}
 ---@class ImVec2
 ---@field x number
 ---@field y number
+---@operator add(ImVec2): ImVec2
+---@operator sub(ImVec2): ImVec2
+---@operator mul(number): ImVec2
 
 ---@class ImVec4
 ---@field x number
