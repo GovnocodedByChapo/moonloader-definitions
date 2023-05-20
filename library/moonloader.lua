@@ -48,18 +48,26 @@
 lua_thread = {}
 
 ---
---- [Open the wiki](https://wiki.blast.hk/moonloader/lua/lua_thread/create)
+--- Создаёт новый поток и сразу же запускает его с указанными параметрами.  
+--- Для создания потока приостановленным нужно использовать функцию `lua_thread.create_suspended`.  
+--- За примерами и всеми подробностями о потоках обратитесь к статье [Скриптовые потоки](https://wiki.blast.hk/moonloader/scripting/threads).  
 ---
----@param func function
----@param ... any
----@return LuaThread thread
+--- [Open the wiki](https://wiki.blast.hk/moonloader/lua/lua_thread/create)  
+---
+---@param func function функция потока, которая начнёт исполнение сразу после создания потока
+---@param ... any параметры, с которыми будет вызвана функция
+---@return LuaThread thread экземпляр `LuaThread`
 function lua_thread.create(func, ...) end
 
 ---
+--- Создаёт новый поток в состоянии ожидания запуска. Такой поток не начнёт выполнение сразу же после создания, вместо чего будет находиться в ожидании активации функцией lua_thread:run.  
+--- Для создания потока с безотложным запуском нужно использовать функцию lua_thread.create.  
+--- За примерами и всеми подробностями о потоках обратитесь к статье Скриптовые потоки.  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/lua_thread/create_suspended)
 ---
----@param func function
----@return LuaThread thread
+---@param func function функция потока, которая выполнится после вызова `thread:run()`
+---@return LuaThread thread экземпляр `LuaThread`
 function lua_thread.create_suspended(func) end
 
 
@@ -85,29 +93,47 @@ function lua_thread.create_suspended(func) end
 ---@field reload fun() # перезагружает скрипт
 
 ---
+--- Возвращает `LuaScript` скрипта, из которого была вызвана функция.
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/thisScript)
 ---
----@return LuaScript s
+---@return LuaScript s скрипт
 function thisScript() end
 
 ---@class script
 script = {}
 
+---
+--- Статическое свойство. Возвращает объект `LuaScript` текущего скрипта. Является аналогом функции `thisScript`.  
+---
+--- [Open the wiki](https://wiki.blast.hk/moonloader/lua/script/this)
+---
 ---@type LuaScript
 script.this = {}
 
 ---
+--- Загружает скрипт из файла и возвращает объект `LuaScript`.  
+--- Функция пытается загрузить скрипт в следующем порядке путей:
+---  - рабочая директория + путь
+---  - рабочая директория + путь + .lua(c)
+---  - абсолютный путь
+---  - абсолютный путь + .lua(c)
+---
+--- Возвращает `nil`, если скрипт не был загружен.  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/script/load)
 ---
----@param file string
----@return LuaScript s
+---@param file string путь к файлу
+---@return LuaScript s скрипт
 function script.load(file) end
 
 ---
+--- Ищет загруженный скрипт по имени. Возвращает объект `LuaScript`, если скрипт найден, в противном случае возвращает `nil`.  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/script/find)
 ---
----@param name string
----@return LuaScript s
+---@param name string название скрипта
+---@return LuaScript s скрипт
 function script.find(name) end
 
 ---
@@ -13148,28 +13174,38 @@ function getCleoSharedVar(var) end
 function sampSpawnPlayer() end
 
 ---
+--- Возвращает адрес samp.dll  
+--- То же самое, что и `getModuleHandle("samp.dll")`  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetBase)
 ---
----@return uint handle
+---@return uint handle адрес
 function sampGetBase() end
 
+--- 
+--- Добавляет в окно чата SA:MP сообщение заданного цвета  
 ---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampAddChatMessage)
 ---
----@param text zstring
----@param color uint
+---@param text zstring текст сообщения
+---@param color uint цвет
 function sampAddChatMessage(text, color) end
 
 ---
+--- Отправляет на сервер текстовое сообщение или команду, если сообщение начинается с символа '/'  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendChat)
 ---
----@param text zstring
+---@param text zstring текст сообщения
 function sampSendChat(text) end
 
 ---
+--- Проверяет инициализацию структур SA:MP  
+--- Если функция вернула `false`, то использование любых функций, начинающихся на `samp` вызовет ошибку  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/isSampAvailable)
 ---
----@return bool result
+---@return bool result статус
 function isSampAvailable() end
 
 ---
@@ -13188,38 +13224,48 @@ function sampRequestClass(class) end
 function sampSendScmEvent(event, id, param1, param2) end
 
 ---
+--- Устанавливает специальное действие локальному игроку  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetSpecialAction)
 ---
----@param action int
+---@param action int Специальное действие. Подробнее см. [здесь](https://sampwiki.blast.hk/wiki/SpecialActions)
 function sampSetSpecialAction(action) end
 
 ---
+--- Убивает игрока.  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendDeathByPlayer)
 ---
----@param playerId int
----@param reason int
+---@param playerId int ID игрока
+---@param reason int причина смерти
 function sampSendDeathByPlayer(playerId, reason) end
 
 ---
+--- Получает хендл т/с по его иду. Если автомобиля нет в зоне стрима, то возвращает false.  
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCarHandleBySampVehicleId)
 ---
----@param id int
----@return bool result
----@return Vehicle car
+---@param id int ID т/c
+---@return bool result результат
+---@return Vehicle car хендл т/c
 function sampGetCarHandleBySampVehicleId(id) end
 
 ---
+--- Получает хендл игрока по его иду.
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCharHandleBySampPlayerId)
 ---
----@param id int
----@return bool result
----@return Ped ped
+---@param id int ID игрока
+---@return bool result результат
+---@return Ped ped хендл игрока
 function sampGetCharHandleBySampPlayerId(id) end
 
 ---
+--- Проверяет открыт ли инпут чата.
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsChatInputActive)
 ---
----@return bool result
+---@return bool result результат проверки
 function sampIsChatInputActive() end
 
 ---
@@ -13230,10 +13276,12 @@ function sampIsChatInputActive() end
 function sampSetSendrate(type, rate) end
 
 ---
+--- Проверяет подключен ли игрок к серверу.
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsPlayerConnected)
 ---
----@param id int
----@return bool result
+---@param id int ID игрока
+---@return bool result результат выполнения
 function sampIsPlayerConnected(id) end
 
 ---
@@ -13251,10 +13299,12 @@ function sampGetPlayerStructPtr(id) end
 function sampGetPlayerHealth(id) end
 
 ---
+--- Получает уровень здоровья игрока.
+---
 --- [Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerArmor)
 ---
----@param id int
----@return int armor
+---@param id int ИД игрока.
+---@return int armor Уровень здоровья.
 function sampGetPlayerArmor(id) end
 
 ---
