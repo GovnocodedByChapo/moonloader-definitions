@@ -1,6 +1,4 @@
----@meta md5
----@diagnostic disable: missing-return
-
+--- @meta
 local md5 = {}
 
 --- @param k string | number
