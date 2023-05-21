@@ -1,2 +1,5 @@
 *.code-workspace
 stylua.exe
+__pycache__
+test.lua
+build

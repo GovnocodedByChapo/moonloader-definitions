@@ -6,8 +6,6 @@
     "Lua.runtime.version": "LuaJIT",
     "Lua.semantic.enable": false,
     "Lua.diagnostics.disable": [
-      "lowercase-global",
-      "deprecated",
       "different-requires"
     ],
     "Lua.runtime.path": [

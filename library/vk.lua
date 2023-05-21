@@ -1,4 +1,6 @@
----@meta
+---@meta vk
+---@diagnostic disable: missing-return
+
 VK_LBUTTON = 0x01 ---Left Button
 VK_RBUTTON = 0x02 ---Right Button
 VK_CANCEL = 0x03 ---Break

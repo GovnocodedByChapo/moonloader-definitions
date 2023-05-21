@@ -1,4 +1,5 @@
---- @meta
+---@meta requests
+---@diagnostic disable: missing-return
 
 --- @class Response
 --- @field status_code number
