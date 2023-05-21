@@ -1,11 +1,7 @@
----@meta inicfg
----@diagnostic disable: missing-return
+---@meta
+inicfg = {}
 
-local inicfg = {}
-
----
----Usage:  
----
+---Usage:
 ---```lua
 ---local inicfg = require('inicfg')
 ---local iniFileName = 'myFileName.ini'
@@ -18,34 +14,23 @@ local inicfg = {}
 ---}, iniFileName)
 ---inicfg.save(ini, iniFileName)
 ---
------// Change and save value in .ini file
+-----// Change ans save value in .ini file
 ---ini.main.alive = false
 ---inicfg.save(ini, iniFileName)
 ---```
----
----@generic T
----@param default T
----@param file string
----@return T data
----
----@deprecated INI files is deprecated. Better use JSON instead (`decodeJson()`/`encodeJson()`)
----
+--- @generic T
+--- @param default T
+--- @param file string
+--- @return T data
 function inicfg.load(default, file) end
 
----
----Usage:  
----
+---Usage:
 ---```lua
 ---<ini>.<section>.<key> = <value>
 ---inicfg.save(<ini>, <iniFileName>)
----```
----
----@param data table
----@param file string
----@return boolean result
----
----@deprecated INI files is deprecated. Better use JSON instead (`decodeJson()`/`encodeJson()`)
----
+--- @param data table
+--- @param file string
+--- @return boolean result
 function inicfg.save(data, file) end
 
 return inicfg
