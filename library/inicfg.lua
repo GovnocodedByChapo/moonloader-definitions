@@ -1,15 +1,11 @@
 ---@meta
 inicfg = {}
 
-<<<<<<< HEAD
----Usage:
-=======
 local inicfg = {}
 
 ---
 ---Usage:
 ---
->>>>>>> head
 ---```lua
 ---local inicfg = require('inicfg')
 ---local iniFileName = 'myFileName.ini'
@@ -32,13 +28,9 @@ local inicfg = {}
 --- @return T data
 function inicfg.load(default, file) end
 
-<<<<<<< HEAD
----Usage:
-=======
 ---
 ---Usage:
 ---
->>>>>>> head
 ---```lua
 ---<ini>.<section>.<key> = <value>
 ---inicfg.save(<ini>, <iniFileName>)

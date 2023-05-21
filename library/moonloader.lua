@@ -1,50 +1,4 @@
 ---@meta
-<<<<<<< HEAD
---// by chapo
--- FIXME: Fix optional types, as is done in renderCreateFont
-
----@class Ped
----@class Model
----@class Vehicle
----@class AudioStream
----@class DxFont
----@class Checkpoint
----@class Player
----@class Object
----@class VarId
----@class Marker
----@class Particle
----@class Pickup
----@class GxtString
----@class Searchlight
----@class DxutDialog
----@class Filesearch
----@class DxTexture
----@class Bitstream
-
----@type Ped
-PLAYER_PED = nil
----@type Player
-PLAYER_HANDLE = nil
----@deprecated
----@type Ped
-playerPed = nil
----@deprecated
----@type Player
-playerHandle = nil
-
---// FUNCTIONS
-
----@return boolean result
-function isCursorActive() end
-
----@return Pickup[] pickups
-function getAllPickups() end
-
----@return number handle
-function getPickupPointerHandle() end
-
-=======
 ---@diagnostic disable: lowercase-global, missing-return
 
 ---@class Ped # скриптовый хэндл игрового персонажа
@@ -220,350 +174,10 @@ function getPickupPointerHandle(handle) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointer)**
 ---
->>>>>>> head
 ---@param pickup Pickup
 ---@return number pointer
 function getPickupPointer(pickup) end
 
-<<<<<<< HEAD
----@param pickup Pickup
----@return number type
-function getPickupType(pickup) end
-
----@param pickup Pickup
----@return number model
-function getPickupModel(pickup) end
-
----@param shake number
-function shakeCam(shake) end
-
----@param modelId Model
----@param atX number
----@param atY number
----@param atZ number
----@return Player player
-function createPlayer(modelId, atX, atY, atZ) end
-
----asdhttps://wiki.blast.hk/moonloader/lua/getAllPickups
----@param pedtype number
----@param modelId Model
----@param atX number
----@param atY number
----@param atZ number
----@return Ped ped
-function createChar(pedtype, modelId, atX, atY, atZ) end
-
----Lua: https://wiki.blast.hk/moonloader/lua/getAllPickups
----Cleo: https://wiki.blast.hk/gta-sa/opcodes/0001
----@param ped Ped
-function deleteChar(ped) end
-
----@param ped Ped
----@return number positionX
----@return number positionY
----@return number positionZ
-function getCharCoordinates(ped) end
-
----@param ped Ped
----@param posX number
----@param posY number
----@param posZ number
-function setCharCoordinates(ped, posX, posY, posZ) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isCharInArea2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param sphere boolean
----@return boolean result
-function isCharInArea3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
-
----@param modelId Model
----@param atX number
----@param atY number
----@param atZ number
----@return Vehicle car
-function createCar(modelId, atX, atY, atZ) end
-
----@param car Vehicle
-function deleteCar(car) end
-
----@param car Vehicle
----@param driveToX number
----@param driveToY number
----@param driveToZ number
-function carGotoCoordinates(car, driveToX, driveToY, driveToZ) end
-
----@param car Vehicle
-function carWanderRandomly(car) end
-
----@param car Vehicle
-function carSetIdle(car) end
-
----@param car Vehicle
----@return number positionX
----@return number positionY
----@return number positionZ
-function getCarCoordinates(car) end
-
----@param car Vehicle
----@param atX number
----@param atY number
----@param atZ number
-function setCarCoordinates(car, atX, atY, atZ) end
-
----@param car Vehicle
----@param maxSpeed number
-function setCarCruiseSpeed(car, maxSpeed) end
-
----@param car Vehicle
----@param behaviour number
-function setCarDrivingStyle(car, behaviour) end
-
----@param car Vehicle
----@param driverBehaviour number
-function setCarMission(car, driverBehaviour) end
-
----@param car Vehicle
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isCarInArea2d(car, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-
----@param car Vehicle
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param sphere boolean
----@return boolean result
-function isCarInArea3d(car, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
-
----@param gxtString GxtString
----@param time number
----@param style number
-function printBig(gxtString, time, style) end
-
----@param gxtString GxtString
----@param time number
----@param flag number
-function printText(gxtString, time, flag) end
-
----@param gxtString GxtString
----@param time number
----@param flag number
-function printTextNow(gxtString, time, flag) end
-
-function clearPrints() end
-
----@return number hours
----@return number mins
-function getTimeOfDay() end
-
----@param hours number
----@param minutes number
-function setTimeOfDay(hours, minutes) end
-
----@param hours number
----@param minutes number
----@return number minutes
-function getMinutesToTimeOfDay(hours, minutes) end
-
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radius number
----@return boolean result
-function isPointOnScreen(sphereX, sphereY, sphereZ, radius) end
-
----@param ped Ped
----@return Vehicle car
-function storeCarCharIsIn(ped) end
-
----@param ped Ped
----@param car Vehicle
----@return boolean result
-function isCharInCar(ped, car) end
-
----@param ped Ped
----@param carModel Model
----@return boolean result
-function isCharInModel(ped, carModel) end
-
----@param ped Ped
----@return boolean result
-function isCharInAnyCar(ped) end
-
----@param player Player
----@param key number
----@return boolean result
-function isButtonPressed(player, key) end
-
----@param player Player
----@param key number
----@return number state
-function getPadState(player, key) end
-
----@param ped Ped
----@param pointX number
----@param pointY number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCharAnyMeans2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param pointX number
----@param pointY number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCharOnFoot2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param pointX number
----@param pointY number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCharInCar2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param pointX number
----@param pointY number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateStoppedCharAnyMeans2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param pointX number
----@param pointY number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateStoppedCharOnFoot2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param pointX number
----@param pointY number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateStoppedCharInCar2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param nearPed Ped
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCharAnyMeansChar2d(ped, nearPed, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param nearPed Ped
----@param radiusX number
----@param radiusY number
----@param sphere boolean
-function locateCharOnFootChar2d(ped, nearPed, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param nearPed Ped
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCharInCarChar2d(ped, nearPed, radiusX, radiusY, sphere) end
-
----@param ped Ped
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateCharAnyMeans3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
-
----@param ped Ped
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateCharOnFoot3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
-
----@param ped Ped
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateCharInCar3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
-
----@param ped Ped
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateStoppedCharAnyMeans3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
-
----@param ped Ped
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateStoppedCharOnFoot3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
-
----@param ped Ped
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateStoppedCharInCar3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
-=======
 ---
 --- Возвращает указатель на структуру пикапа
 ---
@@ -1223,7 +837,6 @@ function script_name(name) end
 ---
 ---@param description string текст описания
 function script_description(description) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param nearPed Ped
@@ -1252,47 +865,6 @@ function locateCharOnFootChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere)
 ---@return boolean result
 function locateCharInCarChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
 
-<<<<<<< HEAD
----@param modelId Model
----@param atX number
----@param atY number
----@param atZ number
----@return Object object
-function createObject(modelId, atX, atY, atZ) end
-
----@param object Object
-function deleteObject(object) end
-
----@param player Player
----@param money number
-function givePlayerMoney(player, money) end
-
----@param player Player
----@return number money
-function getPlayerMoney(player) end
-
----@param player Player
----@param float2 number
----@param float3 number
----@param float4 number
-function giveRemoteControlledCarToPlayer(player, float2, float3, float4) end
-
----@param player Player
----@param wantedLevel number
-function alterWantedLevel(player, wantedLevel) end
-
----@param player Player
----@param minimumWantedLevel number
-function alterWantedLevelNoDrop(player, minimumWantedLevel) end
-
----@param player Player
----@param level number
----@return boolean result
-function isWantedLevelGreater(player, level) end
-
----@param player Player
-function clearWantedLevel(player) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_moonloader)**
 ---
@@ -1354,24 +926,10 @@ function isSampLoaded() end
 ---@param keyId number
 ---@return boolean state
 function isKeyDown(keyId) end
->>>>>>> head
 
 ---@param value boolean
 function setDeatharrestState(value) end
 
-<<<<<<< HEAD
----@return boolean result
-function hasDeatharrestBeenExecuted() end
-
----@param ped Ped
----@param weapon number
----@param ammo number
-function addAmmoToChar(ped, weapon, ammo) end
-
----@param player Player
----@return boolean result
-function isPlayerDead(player) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isOpcodesAvailable)**
 ---
@@ -1391,7 +949,6 @@ function representFloatAsInt(f) end
 ---@param i number
 ---@return number i
 function representIntAsFloat(i) end
->>>>>>> head
 
 ---@param ped Ped
 ---@return boolean result
@@ -1416,55 +973,6 @@ function createCharInsideCar(car, pedtype, model) end
 ---@return boolean result
 function isCarModel(car, modelId) end
 
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
----@param angle number
----@param modelId Model
----@param color1 number
----@param color2 number
----@param forceSpawn boolean
----@param alarm number
----@param doorLock number
----@param minDelay number
----@param maxDelay number
----@return number carGenerator
-function createCarGenerator(
-	atX,
-	atY,
-	atZ,
-	angle,
-	modelId,
-	color1,
-	color2,
-	forceSpawn,
-	alarm,
-	doorLock,
-	minDelay,
-	maxDelay
-)
-end
-
----@param carGenerator number
----@param carsToGenerate number
-function switchCarGenerator(carGenerator, carsToGenerate) end
-
----@param var VarId
----@param countInDirection boolean
-function displayOnscreenTimer(var, countInDirection) end
-
----@param var VarId
-function clearOnscreenTimer(var) end
-
----@param var VarId
-function clearOnscreenCounter(var) end
-
----@param ped Ped
----@param zoneName GxtString
----@return boolean result
-function isCharInZone(ped, zoneName) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPauseMenuActive)**
 ---
@@ -1506,7 +1014,6 @@ function localClock() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freeTextures)**
 ---
 function freeTextures() end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param mode number
@@ -1518,71 +1025,6 @@ function pointCameraAtCar(car, mode, switchstyle) end
 ---@param switchstyle number
 function pointCameraAtChar(ped, mode, switchstyle) end
 
-<<<<<<< HEAD
-function restoreCamera() end
-
----@param player Player
----@param time number
----@param intensity number
-function shakePad(player, time, intensity) end
-
----@param gamespeed number
-function setTimeScale(gamespeed) end
-
----@param positionX number
----@param positionY number
----@param positionZ number
----@param rotationX number
----@param rotationY number
----@param rotationZ number
-function setFixedCameraPosition(positionX, positionY, positionZ, rotationX, rotationY, rotationZ) end
-
----@param pointAtX number
----@param pointAtY number
----@param pointAtZ number
----@param switchstyle number
-function pointCameraAtPoint(pointAtX, pointAtY, pointAtZ, switchstyle) end
-
----@param car Vehicle
----@param unused number
----@param visibility boolean
----@return Marker marker
-function addBlipForCarOld(car, unused, visibility) end
-
----@param ped Ped
----@param int2 number
----@param int3 number
----@return Marker marker
-function addBlipForCharOld(ped, int2, int3) end
-
----@param marker Marker
-function removeBlip(marker) end
-
----@param marker Marker
----@param color number
-function changeBlipColour(marker, color) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param color number
----@param flag number
----@return Marker marker
-function addBlipForCoordOld(atX, atY, atZ, color, flag) end
-
----@param marker Marker
----@param size number
-function changeBlipScale(marker, size) end
-
----@param r number
----@param g number
----@param b number
-function setFadingColour(r, g, b) end
-
----@param _in boolean
----@param time number
-function doFade(_in, time) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/useRenderCommands)**
 ---
@@ -1679,7 +1121,6 @@ function allocateMemory(size) end
 ---
 ---@param memory number
 function freeMemory(memory) end
->>>>>>> head
 
 ---@return boolean result
 function getFadingStatus() end
@@ -1698,29 +1139,6 @@ function addHospitalRestart(atX, atY, atZ, angle, townNumber) end
 ---@param townNumber number
 function addPoliceRestart(atX, atY, atZ, angle, townNumber) end
 
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
----@param angle number
-function overrideNextRestart(atX, atY, atZ, angle) end
-
----@param particle Particle
----@param atX number
----@param atY number
----@param atZ number
----@param rotationFactor number
----@param size number
----@param intensity number
----@param flags1 number
----@param flags2 number
----@param flags3 number
-function drawShadow(particle, atX, atY, atZ, rotationFactor, size, intensity, flags1, flags2, flags3) end
-
----@param ped Ped
----@return number angle
-function getCharHeading(ped) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findAllRandomCharsInSphere)**
 ---
@@ -1758,40 +1176,16 @@ function findAllRandomVehiclesInSphere(posX, posY, posZ, radius, findNext, skipW
 ---@return boolean result
 ---@return Object object
 function findAllRandomObjectsInSphere(posX, posY, posZ, radius, findNext) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param angle number
-function setCharHeading(ped, angle) end
-=======
 ---@return number ptr
 function getCharPointer(ped) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return number angle
-function getCarHeading(car) end
-
----@param car Vehicle
----@param angle number
-function setCarHeading(car, angle) end
-=======
 ---@return number ptr
 function getCarPointer(car) end
->>>>>>> head
 
 ---@param object Object
-<<<<<<< HEAD
----@return number angle
-function getObjectHeading(object) end
-
----@param object Object
----@param angle number
-function setObjectHeading(object, angle) end
-
-=======
 ---@return number struct
 function getObjectPointer(object) end
 
@@ -1819,21 +1213,11 @@ function callMethod(address, struct, params, pop, ...) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/storeClosestEntities)**
 ---
->>>>>>> head
 ---@param ped Ped
 ---@param object Object
 ---@return boolean result
 function isCharTouchingObject(ped, object) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param weapon number
----@param ammo number
-function setCharAmmo(ped, weapon, ammo) end
-
----@param flag VarId
-function declareMissionFlag(flag) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchCarEngine)**
 ---
@@ -1849,27 +1233,8 @@ function switchCarEngine(car, state) end
 ---@return number posY
 ---@return number posZ
 function getTargetBlipCoordinates() end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return Marker marker
-function addBlipForCar(car) end
-
----@param ped Ped
----@return Marker marker
-function addBlipForChar(ped) end
-
----@param object Object
----@return Marker marker
-function addBlipForObject(object) end
-
----@param atX number
----@param atY number
----@param atZ number
----@return Checkpoint checkpoint
-function addBlipForCoord(atX, atY, atZ) end
-=======
 ---@return number gears
 function getCarNumberOfGears(car) end
 
@@ -1893,33 +1258,11 @@ function isCarSirenOn(car) end
 ---@param car Vehicle
 ---@return boolean state
 function isCarEngineOn(car) end
->>>>>>> head
 
 ---@param marker Marker
 ---@param mode number
 function changeBlipDisplay(marker, mode) end
 
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
----@param sound number
-function addOneOffSound(atX, atY, atZ, sound) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param sound number
----@return number unk
-function addContinuousSound(atX, atY, atZ, sound) end
-
----@param sound number
-function removeSound(sound) end
-
----@param car Vehicle
----@return boolean result
-function isCarStuckOnRoof(car) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printStyledString)**
 ---
@@ -1949,71 +1292,10 @@ function printStringNow(text, time) end
 ---@return boolean result
 ---@return Ped ped
 function getCharPlayerIsTargeting(player) end
->>>>>>> head
 
 ---@param car Vehicle
 function addUpsidedownCarCheck(car) end
 
-<<<<<<< HEAD
----@param car Vehicle
-function removeUpsidedownCarCheck(car) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isCharInAreaOnFoot2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isCharInAreaInCar2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isCharStoppedInArea2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isCharStoppedInAreaOnFoot2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isCharStoppedInAreaInCar2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param sphere boolean
----@return boolean result
-function isCharInAreaOnFoot3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/testCheat)**
 ---
@@ -2092,7 +1374,6 @@ end
 ---@param text string
 ---@return boolean result
 function setClipboardText(text) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param cornerAX number
@@ -2105,173 +1386,6 @@ function setClipboardText(text) end
 ---@return boolean result
 function isCharInAreaInCar3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param sphere boolean
----@return boolean result
-function isCharStoppedInArea3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param sphere boolean
----@return boolean result
-function isCharStoppedInAreaOnFoot3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
-
----@param ped Ped
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param sphere boolean
----@return boolean result
-function isCharStoppedInAreaInCar3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
-
----@param car Vehicle
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isCarStoppedInArea2d(car, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-
----@param car Vehicle
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param sphere boolean
----@return boolean result
-function isCarStoppedInArea3d(car, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
-
----@param car Vehicle
----@param pointX number
----@param pointY number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCar2d(car, pointX, pointY, radiusX, radiusY, sphere) end
-
----@param car Vehicle
----@param pointX number
----@param pointY number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateStoppedCar2d(car, pointX, pointY, radiusX, radiusY, sphere) end
-
----@param car Vehicle
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
-
----@param car Vehicle
----@param sphereX number
----@param sphereY number
----@param sphereZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateStoppedCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
-
----@param ped Ped
----@param weapon number
----@param ammo number
-function giveWeaponToChar(ped, weapon, ammo) end
-
----@param player Player
----@param canMove boolean
----@return boolean result
-function setPlayerControl(player, canMove) end
-
----@param weather number
----@return boolean result
-function forceWeather(weather) end
-
----@param weather number
----@return boolean result
-function forceWeatherNow(weather) end
-
-function releaseWeather() end
-
----@param ped Ped
----@param weapon number
-function setCurrentCharWeapon(ped, weapon) end
-
----@param object Object
----@return boolean result
----@return number positionX
----@return number positionY
----@return number positionZ
-function getObjectCoordinates(object) end
-
----@param object Object
----@param atX number
----@param atY number
----@param atZ number
----@return boolean result
-function setObjectCoordinates(object, atX, atY, atZ) end
-
----@return number timeMs
-function getGameTimer() end
-
----@param player Player
----@return boolean result
----@return number level
-function storeWantedLevel(player) end
-
----@param car Vehicle
----@return boolean result
-function isCarStopped(car) end
-
----@param ped Ped
-function markCharAsNoLongerNeeded(ped) end
-
----@param car Vehicle
-function markCarAsNoLongerNeeded(car) end
-
----@param object Object
-function markObjectAsNoLongerNeeded(object) end
-
----@param ped Ped
-function dontRemoveChar(ped) end
-
----@param object Object
-function dontRemoveObject(object) end
-
----@param car Vehicle
----@param pedtype Model
----@param model number
----@param passengerSeat number
----@return boolean result
----@return Ped ped
-function createCharAsPassenger(car, pedtype, model, passengerSeat) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getStructElement)**
 ---
@@ -2529,7 +1643,6 @@ function gameClock() end
 ---@alias ScriptProperty
 ---| '"work-in-pause"' # Указывает, что скрипт будет продолжать исполнение во время паузы игры (с условием, что игра развёрнута и находится на переднем плане).
 ---| '"forced-reloading-only"' # апрещает автоматическую перезагрузку скрипта, оставляя возможность только принудительной перезагрузки.
->>>>>>> head
 
 ---@param gxtString GxtString
 ---@param number number
@@ -2545,31 +1658,6 @@ function printWithNumberBig(gxtString, number, time, style) end
 ---@return boolean result
 function printWithNumber(gxtString, number, time, flag) end
 
-<<<<<<< HEAD
----@param gxtString GxtString
----@param number number
----@param time number
----@param flag number
----@return boolean result
-function printWithNumberNow(gxtString, number, time, flag) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@return boolean result
-function switchRoadsOn(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
-function switchRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/import)**
 ---
@@ -2662,7 +1750,6 @@ function getTimeStepValue() end
 ---
 ---@return number devicePtr
 function getD3DDevicePtr() end
->>>>>>> head
 
 ---@param car Vehicle
 ---@return boolean result
@@ -2677,26 +1764,6 @@ function getMaximumNumberOfPassengers(car) end
 ---@return boolean result
 function setCarDensityMultiplier(multiplier) end
 
-<<<<<<< HEAD
----@param car Vehicle
----@param heavy boolean
----@return boolean result
-function setCarHeavy(car, heavy) end
-
----@param level number
-function setMaxWantedLevel(level) end
-
----@param car Vehicle
----@return boolean result
-function isCarInAirProper(car) end
-
----@param car Vehicle
----@return boolean result
-function isCarUpsidedown(car) end
-
----@param player Player
----@return boolean result
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGameGlobalFloat)**
 ---
@@ -2735,46 +1802,12 @@ function createPlayer(modelId, atX, atY, atZ) end
 ---@param atX number
 ---@param atY number
 ---@param atZ number
->>>>>>> head
 ---@return Ped ped
 function getPlayerChar(player) end
 
 ---@return boolean result
 function cancelOverrideRestart() end
 
-<<<<<<< HEAD
----@param player Player
----@param ignored boolean
----@return boolean result
-function setPoliceIgnorePlayer(player, ignored) end
-
----@param gxtString GxtString
----@param weapon number
----@param timeLimit number
----@param targets number
----@param targetModels1 Model
----@param targetModels2 Model
----@param targetModels3 Model
----@param targetModels4 Model
----@param completedText boolean
----@return boolean result
-function startKillFrenzy(
-	gxtString,
-	weapon,
-	timeLimit,
-	targets,
-	targetModels1,
-	targetModels2,
-	targetModels3,
-	targetModels4,
-	completedText
-)
-end
-
----@return boolean result
----@return number status
-function readKillFrenzyStatus() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharCoordinates)**
 ---
@@ -2792,11 +1825,8 @@ function getCharCoordinates(ped) end
 ---@param posY number
 ---@param posZ number
 function setCharCoordinates(ped, posX, posY, posZ) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-=======
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerBX number
@@ -2832,7 +1862,6 @@ function createCar(modelId, atX, atY, atZ) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/deleteCar)**
 ---
->>>>>>> head
 ---@param car Vehicle
 ---@param radiusX number
 ---@param radiusY number
@@ -2842,18 +1871,10 @@ function locateCharAnyMeansCar2d(ped, car, radiusX, radiusY, sphere) end
 
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
----@param radiusX number
----@param radiusY number
----@param flag boolean
----@return boolean result
-function locateCharOnFootCar2d(ped, car, radiusX, radiusY, flag) end
-=======
 ---@param driveToX number
 ---@param driveToY number
 ---@param driveToZ number
 function carGotoCoordinates(car, driveToX, driveToY, driveToZ) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
@@ -2874,57 +1895,23 @@ function locateCharAnyMeansCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param flag boolean
----@return boolean result
-function locateCharOnFootCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
-=======
 ---@return number positionX
 ---@return number positionY
 ---@return number positionZ
 function getCarCoordinates(car) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param flag boolean
----@return boolean result
-function locateCharInCarCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
-=======
 ---@param atX number
 ---@param atY number
 ---@param atZ number
 function setCarCoordinates(car, atX, atY, atZ) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param status number
-function lockCarDoors(car, status) end
-=======
 ---@param maxSpeed number
 function setCarCruiseSpeed(car, maxSpeed) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return boolean result
-function explodeCar(car) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param radius number
----@return boolean result
-function addExplosion(atX, atY, atZ, radius) end
-=======
 ---@param behaviour number
 function setCarDrivingStyle(car, behaviour) end
 
@@ -2934,35 +1921,8 @@ function setCarDrivingStyle(car, behaviour) end
 ---@param car Vehicle
 ---@param driverBehaviour number
 function setCarMission(car, driverBehaviour) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return boolean result
-function isCarUpright(car) end
-
----@param modelId Model
----@param type number
----@param atX number
----@param atY number
----@param atZ number
----@return boolean result
----@return Pickup pickup
-function createPickup(modelId, type, atX, atY, atZ) end
-
----@param pickup Pickup
----@return boolean result
-function hasPickupBeenCollected(pickup) end
-
----@param pickup Pickup
----@return boolean result
-function removePickup(pickup) end
-
----@param taxi Vehicle
----@param light boolean
----@return boolean result
-function setTaxiLights(taxi, light) end
-=======
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerBX number
@@ -3045,7 +2005,6 @@ function getMinutesToTimeOfDay(hours, minutes) end
 ---@param radius number
 ---@return boolean result
 function isPointOnScreen(sphereX, sphereY, sphereZ, radius) end
->>>>>>> head
 
 ---@param gxtString GxtString
 ---@param time number
@@ -3056,9 +2015,6 @@ function printBigQ(gxtString, time, style) end
 ---@param garage GxtString
 ---@param car Vehicle
 ---@return boolean result
-<<<<<<< HEAD
-function setTargetCarForMissionGarage(garage, car) end
-=======
 function isCharInCar(ped, car) end
 
 ---
@@ -3083,28 +2039,13 @@ function isCharInAnyCar(ped) end
 ---@param key number
 ---@return boolean result
 function isButtonPressed(player, key) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
----@param apply boolean
----@return boolean result
-function applyBrakesToPlayersCar(player, apply) end
-=======
 ---@param key number
 ---@return number state
 function getPadState(player, key) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param health number
-function setCharHealth(ped, health) end
-
----@param car Vehicle
----@param health number
-function setCarHealth(car, health) end
-=======
 ---@param pointX number
 ---@param pointY number
 ---@param radiusX number
@@ -3124,45 +2065,8 @@ function locateCharAnyMeans2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 ---@param sphere boolean
 ---@return boolean result
 function locateCharOnFoot2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return number health
-function getCharHealth(ped) end
-
----@param car Vehicle
----@return number health
-function getCarHealth(car) end
-
----@param car Vehicle
----@param primaryColor number
----@param secondaryColor number
----@return boolean result
-function changeCarColour(car, primaryColor, secondaryColor) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
-function switchPedRoadsOn(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
-function switchPedRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
-
----@param gang number
----@param weapons1 number
----@param weapons2 number
----@param weapons3 number
-function setGangWeapons(gang, weapons1, weapons2, weapons3) end
-=======
 ---@param pointX number
 ---@param pointY number
 ---@param radiusX number
@@ -3227,31 +2131,8 @@ function locateCharAnyMeansChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 ---@param radiusY number
 ---@param sphere boolean
 function locateCharOnFootChar2d(ped, nearPed, radiusX, radiusY, sphere) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param object Object
----@return boolean result
-function isCharTouchingObjectOnFoot(ped, object) end
-
----@param gxtString GxtString
----@param id number
-function loadSpecialCharacter(gxtString, id) end
-
----@param id number
----@return boolean result
-function hasSpecialCharacterLoaded(id) end
-
----@param player Player
----@return boolean result
-function isPlayerInRemoteMode(player) end
-
----@param posX number
----@param posY number
----@param posZ number
-function setCutsceneOffset(posX, posY, posZ) end
-=======
 ---@param nearPed Ped
 ---@param radiusX number
 ---@param radiusY number
@@ -3342,20 +2223,8 @@ function locateStoppedCharOnFoot3d(ped, sphereX, sphereY, sphereZ, radiusX, radi
 ---@param sphere boolean
 ---@return boolean result
 function locateStoppedCharInCar3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param style string
-function setAnimGroupForChar(ped, style) end
-
----@param modelId Model
-function requestModel(modelId) end
-
----@param modelId Model
----@return boolean result
-function hasModelLoaded(modelId) end
-=======
 ---@param nearPed Ped
 ---@param radiusX number
 ---@param radiusY number
@@ -3387,18 +2256,13 @@ function locateCharOnFootChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere)
 ---@param sphere boolean
 ---@return boolean result
 function locateCharInCarChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
->>>>>>> head
 
 ---@param modelId Model
-<<<<<<< HEAD
-function markModelAsNoLongerNeeded(modelId) end
-=======
 ---@param atX number
 ---@param atY number
 ---@param atZ number
 ---@return Object object
 function createObject(modelId, atX, atY, atZ) end
->>>>>>> head
 
 ---@param atX number
 ---@param atY number
@@ -3411,11 +2275,6 @@ function createObject(modelId, atX, atY, atZ) end
 ---@param b number
 function drawCorona(atX, atY, atZ, radius, type, lensflares, r, g, b) end
 
-<<<<<<< HEAD
-function storeClock() end
-
-function restoreClock() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/givePlayerMoney)**
 ---
@@ -3429,23 +2288,8 @@ function givePlayerMoney(player, money) end
 ---@param player Player
 ---@return number money
 function getPlayerMoney(player) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
----@return boolean result
-function isPlayerPlaying(player) end
-
----@return number mode
-function getControllerMode() end
-
----@param car Vehicle
----@param sprayable boolean
-function setCanResprayCar(car, sprayable) end
-
----@param id number
-function unloadSpecialCharacter(id) end
-=======
 ---@param float2 number
 ---@param float3 number
 ---@param float4 number
@@ -3464,33 +2308,17 @@ function alterWantedLevel(player, wantedLevel) end
 ---@param player Player
 ---@param minimumWantedLevel number
 function alterWantedLevelNoDrop(player, minimumWantedLevel) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
-function resetNumOfModelsKilledByPlayer(player) end
-=======
 ---@param level number
 ---@return boolean result
 function isWantedLevelGreater(player, level) end
->>>>>>> head
 
 ---@param player Player
 ---@param modelId Model
 ---@return number quantity
 function getNumOfModelsKilledByPlayer(player, modelId) end
 
-<<<<<<< HEAD
----@param garage GxtString
-function activateGarage(garage) end
-
----@param modelId Model
----@param atX number
----@param atY number
----@param atZ number
----@return Object object
-function createObjectNoOffset(modelId, atX, atY, atZ) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setDeatharrestState)**
 ---
@@ -3502,34 +2330,8 @@ function setDeatharrestState(value) end
 ---
 ---@return boolean result
 function hasDeatharrestBeenExecuted() end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function isCharStopped(ped) end
-
----@param enable boolean
-function switchWidescreen(enable) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param icon number
----@return Marker marker
-function addSpriteBlipForContactPoint(atX, atY, atZ, icon) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param type number
----@return Marker marker
-function addSpriteBlipForCoord(atX, atY, atZ, type) end
-
----@param ped Ped
----@param enabled boolean
-function setCharOnlyDamagedByPlayer(ped, enabled) end
-=======
 ---@param weapon number
 ---@param ammo number
 function addAmmoToChar(ped, weapon, ammo) end
@@ -3561,43 +2363,14 @@ function isCarDead(car) end
 ---@param player Player
 ---@return boolean result
 function isPlayerPressingHorn(player) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param enabled boolean
-function setCarOnlyDamagedByPlayer(car, enabled) end
-
----@param ped Ped
----@param BP boolean
----@param FP boolean
----@param EP boolean
----@param CP boolean
----@param MP boolean
-function setCharProofs(ped, BP, FP, EP, CP, MP) end
-=======
 ---@param pedtype Model
 ---@param model number
 ---@return Ped ped
 function createCharInsideCar(car, pedtype, model) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param BP boolean
----@param FP boolean
----@param EP boolean
----@param CP boolean
----@param MP boolean
-function setCarProofs(car, BP, FP, EP, CP, MP) end
-
----@param garage GxtString
-function deactivateGarage(garage) end
-
----@param car Vehicle
----@return boolean result
-function isCarInWater(car) end
-=======
 ---@param modelId Model
 ---@return boolean result
 function isCarModel(car, modelId) end
@@ -3647,7 +2420,6 @@ function switchCarGenerator(carGenerator, carsToGenerate) end
 ---@param var VarId
 ---@param countInDirection boolean
 function displayOnscreenTimer(var, countInDirection) end
->>>>>>> head
 
 ---@param closestToX number
 ---@param closestToY number
@@ -3665,13 +2437,6 @@ function getClosestCharNode(closestToX, closestToY, closestToZ) end
 ---@return number nodeZ
 function getClosestCarNode(closestToX, closestToY, closestToZ) end
 
-<<<<<<< HEAD
----@param car Vehicle
----@param toX number
----@param toY number
----@param toZ number
-function carGotoCoordinatesAccurate(car, toX, toY, toZ) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInZone)**
 ---
@@ -3679,60 +2444,21 @@ function carGotoCoordinatesAccurate(car, toX, toY, toZ) end
 ---@param zoneName GxtString
 ---@return boolean result
 function isCharInZone(ped, zoneName) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return boolean result
-function isCarOnScreen(car) end
-=======
 ---@param mode number
 ---@param switchstyle number
 function pointCameraAtCar(car, mode, switchstyle) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function isCharOnScreen(ped) end
-=======
 ---@param mode number
 ---@param switchstyle number
 function pointCameraAtChar(ped, mode, switchstyle) end
->>>>>>> head
 
 ---@param object Object
 ---@return boolean result
 function isObjectOnScreen(object) end
 
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
----@return number z
-function getGroundZFor3dCoord(atX, atY, atZ) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param propagation number
----@param size number
----@return number fire
-function startScriptFire(atX, atY, atZ, propagation, size) end
-
----@param fire number
----@return boolean result
-function isScriptFireExtinguished(fire) end
-
----@param fire number
-function removeScriptFire(fire) end
-
----@param boat Vehicle
----@param toX number
----@param toY number
----@param toZ number
-function boatGotoCoords(boat, toX, toY, toZ) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shakePad)**
 ---
@@ -3766,99 +2492,14 @@ function setFixedCameraPosition(positionX, positionY, positionZ, rotationX, rota
 ---@param pointAtZ number
 ---@param switchstyle number
 function pointCameraAtPoint(pointAtX, pointAtY, pointAtZ, switchstyle) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
-function boatStop(car) end
-=======
 ---@param unused number
 ---@param visibility boolean
 ---@return Marker marker
 function addBlipForCarOld(car, unused, visibility) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param weapon number
----@return boolean result
-function isCharShootingInArea(ped, cornerAX, cornerAY, cornerBX, cornerBY, weapon) end
-
----@param ped Ped
----@param weapon number
----@return boolean result
-function isCurrentCharWeapon(ped, weapon) end
-
----@param boat Vehicle
----@param speed number
-function setBoatCruiseSpeed(boat, speed) end
-
----@param zone GxtString
----@param pedtype boolean
----@param gang boolean
----@param criminal_prostitute boolean
----@return Ped ped
-function getRandomCharInZone(zone, pedtype, gang, criminal_prostitute) end
-
----@param ped Ped
----@return boolean result
-function isCharShooting(ped) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param cash number
----@param permanenceFlag boolean
----@return Pickup pickup
-function createMoneyPickup(atX, atY, atZ, cash, permanenceFlag) end
-
----@param ped Ped
----@param accuracy number
-function setCharAccuracy(ped, accuracy) end
-
----@param car Vehicle
----@return number speed
-function getCarSpeed(car) end
-
----@param cutscene GxtString
-function loadCutscene(cutscene) end
-
----@param modelId Model
----@return Object object
-function createCutsceneObject(modelId) end
-
----@param cutscene number
----@param anim GxtString
-function setCutsceneAnim(cutscene, anim) end
-
-function startCutscene() end
-
----@return number time
-function getCutsceneTime() end
-
----@return boolean result
-function hasCutsceneFinished() end
-
-function clearCutscene() end
-
-function restoreCameraJumpcut() end
-
----@param total number
-function setCollectable1Total(total) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@return boolean result
-function isProjectileInArea(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
-=======
 ---@param int2 number
 ---@param int3 number
 ---@return Marker marker
@@ -4009,18 +2650,11 @@ function setObjectHeading(object, angle) end
 ---@param object Object
 ---@return boolean result
 function isCharTouchingObject(ped, object) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param modelId Model
----@return boolean result
-function isCharModel(ped, modelId) end
-=======
 ---@param weapon number
 ---@param ammo number
 function setCharAmmo(ped, weapon, ammo) end
->>>>>>> head
 
 ---@param modelId Model
 ---@param gxtString GxtString
@@ -4038,54 +2672,6 @@ function getCarForwardY(car) end
 ---@param type number
 function changeGarageType(garage, type) end
 
-<<<<<<< HEAD
----@param gxtString GxtString
----@param numbers1 number
----@param numbers2 number
----@param time number
----@param flag number
-function printWith2NumbersNow(gxtString, numbers1, numbers2, time, flag) end
-
----@param gxtString GxtString
----@param numbers1 number
----@param numbers2 number
----@param numbers3 number
----@param time number
----@param flag number
-function printWith3Numbers(gxtString, numbers1, numbers2, numbers3, time, flag) end
-
----@param gxtString GxtString
----@param numbers1 number
----@param numbers2 number
----@param numbers3 number
----@param numbers4 number
----@param time number
----@param flag number
-function printWith4Numbers(gxtString, numbers1, numbers2, numbers3, numbers4, time, flag) end
-
----@param gxtString GxtString
----@param numbers1 number
----@param numbers2 number
----@param numbers3 number
----@param numbers4 number
----@param time number
----@param flag number
-function printWith4NumbersNow(gxtString, numbers1, numbers2, numbers3, numbers4, time, flag) end
-
----@param gxtString GxtString
----@param numbers1 number
----@param numbers2 number
----@param numbers3 number
----@param numbers4 number
----@param numbers5 number
----@param numbers6 number
----@param time number
----@param flag number
-function printWith6Numbers(gxtString, numbers1, numbers2, numbers3, numbers4, numbers5, numbers6, time, flag) end
-
----@param progress number
-function playerMadeProgress(progress) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addBlipForCoord)**
 ---
@@ -4133,19 +2719,12 @@ function removeSound(sound) end
 ---@param car Vehicle
 ---@return boolean result
 function isCarStuckOnRoof(car) end
->>>>>>> head
 
 ---@param maxProgress number
 function setProgressTotal(maxProgress) end
 
 function registerMissionGiven() end
 
-<<<<<<< HEAD
----@param mission GxtString
-function registerMissionPassed(mission) end
-
-function removeAllScriptFires() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAreaOnFoot2d)**
 ---
@@ -4169,19 +2748,8 @@ function isCharInAreaOnFoot2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, spher
 ---@param sphere boolean
 ---@return boolean result
 function isCharInAreaInCar2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param weapon number
----@return boolean result
-function hasCharBeenDamagedByWeapon(ped, weapon) end
-
----@param car Vehicle
----@param weapon number
----@return boolean result
-function hasCarBeenDamagedByWeapon(car, weapon) end
-=======
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerBX number
@@ -4201,16 +2769,8 @@ function isCharStoppedInArea2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphe
 ---@param sphere boolean
 ---@return boolean result
 function isCharStoppedInAreaOnFoot2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function explodeCharHead(ped) end
-
----@param boat Vehicle
----@param anchor boolean
-function anchorBoat(boat, anchor) end
-=======
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerBX number
@@ -4288,25 +2848,8 @@ function isCharStoppedInAreaOnFoot3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX
 ---@param sphere boolean
 ---@return boolean result
 function isCharStoppedInAreaInCar3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return number fire
-function startCarFire(car) end
-
----@param ped Ped
----@return number fire
-function startCharFire(ped) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param modelId Model
----@return Vehicle car
-function getRandomCarOfTypeInArea(cornerAX, cornerAY, cornerBX, cornerBY, modelId) end
-=======
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerBX number
@@ -4340,29 +2883,8 @@ function isCarStoppedInArea3d(car, cornerAX, cornerAY, cornerAZ, cornerBX, corne
 ---@param sphere boolean
 ---@return boolean result
 function locateCar2d(car, pointX, pointY, radiusX, radiusY, sphere) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return boolean result
-function hasResprayHappened(car) end
-
----@param mode number
-function setCameraZoom(mode) end
-
----@param modelId Model
----@param type number
----@param ammo number
----@param atX number
----@param atY number
----@param atZ number
----@return Pickup pickup
-function createPickupWithAmmo(modelId, type, ammo, atX, atY, atZ) end
-
----@param car1 Vehicle
----@param car2 Vehicle
-function setCarRamCar(car1, car2) end
-=======
 ---@param pointX number
 ---@param pointY number
 ---@param radiusX number
@@ -4406,21 +2928,8 @@ function locateStoppedCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, ra
 ---@param weapon number
 ---@param ammo number
 function giveWeaponToChar(ped, weapon, ammo) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
----@param infiniteRun boolean
-function setPlayerNeverGetsTired(player, infiniteRun) end
-
----@param player Player
----@param fastReload boolean
-function setPlayerFastReload(player, fastReload) end
-
----@param ped Ped
----@param bleeding boolean
-function setCharBleeding(ped, bleeding) end
-=======
 ---@param canMove boolean
 ---@return boolean result
 function setPlayerControl(player, canMove) end
@@ -4438,65 +2947,11 @@ function forceWeather(weather) end
 ---@param weather number
 ---@return boolean result
 function forceWeatherNow(weather) end
->>>>>>> head
 
 ---@param enable boolean
 function setFreeResprays(enable) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param visible boolean
-function setCharVisible(ped, visible) end
-
----@param car Vehicle
----@param visible boolean
-function setCarVisible(car, visible) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param solid boolean
----@param car boolean
----@param actor boolean
----@param object boolean
----@param particle boolean
----@return boolean result
-function isAreaOccupied(
-	cornerAX,
-	cornerAY,
-	cornerAZ,
-	cornerBX,
-	cornerBY,
-	cornerBZ,
-	solid,
-	car,
-	actor,
-	object,
-	particle
-)
-end
-
----@param posX number
----@param posY number
----@param gxtString GxtString
-function displayText(posX, posY, gxtString) end
-
----@param sizeX number
----@param sizeY number
-function setTextScale(sizeX, sizeY) end
-
----@param r number
----@param g number
----@param b number
----@param a number
-function setTextColour(r, g, b, a) end
-
----@param alignJustify boolean
-function setTextJustify(alignJustify) end
-=======
 ---@param weapon number
 function setCurrentCharWeapon(ped, weapon) end
 
@@ -4540,7 +2995,6 @@ function storeWantedLevel(player) end
 ---@param car Vehicle
 ---@return boolean result
 function isCarStopped(car) end
->>>>>>> head
 
 ---@param centered boolean
 function setTextCentre(centered) end
@@ -4554,48 +3008,6 @@ function setTextCentreSize(linewidth) end
 ---@param background boolean
 function setTextBackground(background) end
 
-<<<<<<< HEAD
----@param proportional boolean
-function setTextProportional(proportional) end
-
----@param font number
-function setTextFont(font) end
-
----@param object Object
----@param fromAngle number
----@param toAngle number
----@param flag boolean
----@return boolean result
-function rotateObject(object, fromAngle, toAngle, flag) end
-
----@param object Object
----@param toX number
----@param toY number
----@param toZ number
----@param speedX number
----@param speedY number
----@param speedZ number
----@param collisionCheck boolean
----@return boolean result
-function slideObject(object, toX, toY, toZ, speedX, speedY, speedZ, collisionCheck) end
-
----@param ped Ped
-function removeCharElegantly(ped) end
-
----@param ped Ped
----@param enabled boolean
-function setCharStayInSamePlace(ped, enabled) end
-
----@param explosionType number
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@return boolean result
-function isExplosionInArea(explosionType, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createCharAsPassenger)**
 ---
@@ -4667,53 +3079,9 @@ function switchRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, corner
 ---@return boolean result
 ---@return number passengers
 function getNumberOfPassengers(car) end
->>>>>>> head
 
 ---@param object Object
 ---@param car Vehicle
-<<<<<<< HEAD
----@param offsetX number
----@param offsetY number
----@param offsetZ number
-function placeObjectRelativeToCar(object, car, offsetX, offsetY, offsetZ) end
-
----@param object Object
----@param targetable boolean
-function makeObjectTargettable(object, targetable) end
-
----@param ped Ped
----@param points number
-function addArmourToChar(ped, points) end
-
----@param garage GxtString
-function openGarage(garage) end
-
----@param garage GxtString
-function closeGarage(garage) end
-
----@param ped Ped
----@param placeAtX number
----@param placeAtY number
----@param placeAtZ number
-function warpCharFromCarToCoord(ped, placeAtX, placeAtY, placeAtZ) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param radius number
----@param modelId Model
----@param visibility boolean
-function setVisibilityOfClosestObjectOfType(atX, atY, atZ, radius, modelId, visibility) end
-
----@param ped1 Ped
----@param ped2 Ped
----@return boolean result
-function hasCharSpottedChar(ped1, ped2) end
-
----@param object Object
----@return boolean result
-function hasObjectBeenDamaged(object) end
-=======
 ---@return number maxPassengers
 function getMaximumNumberOfPassengers(car) end
 
@@ -4806,105 +3174,9 @@ end
 ---@return boolean result
 ---@return number status
 function readKillFrenzyStatus() end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
-function warpCharIntoCar(ped, car) end
-
----@param gxtString GxtString
----@param numbers1 number
----@param numbers2 number
----@param time number
----@param style number
-function printWith2NumbersBig(gxtString, numbers1, numbers2, time, style) end
-
-function setCameraBehindPlayer() end
-
----@param atX number
----@param atY number
----@param atZ number
----@return Ped ped
-function createRandomChar(atX, atY, atZ) end
-
----@param float1 number
----@param float2 number
----@param float3 number
----@param float4 number
----@param float5 number
----@param float6 number
----@return boolean result
-function isSniperBulletInArea(float1, float2, float3, float4, float5, float6) end
-
----@param object Object
----@param velocityInDirectionX number
----@param velocityInDirectionY number
----@param velocityInDirectionZ number
-function setObjectVelocity(object, velocityInDirectionX, velocityInDirectionY, velocityInDirectionZ) end
-
----@param object Object
----@param collision boolean
-function setObjectCollision(object, collision) end
-
----@param gxtString GxtString
----@param string GxtString
----@param time1 number
----@param time2 number
-function printStringInStringNow(gxtString, string, time1, time2) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@return boolean result
-function isPointObscuredByAMissionEntity(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
-
-function loadAllModelsNow() end
-
----@param object Object
----@param velocityX number
----@param velocityY number
----@param velocityZ number
-function addToObjectVelocity(object, velocityX, velocityY, velocityZ) end
-
----@param texture number
----@param positionX number
----@param positionY number
----@param width number
----@param height number
----@param r number
----@param g number
----@param b number
----@param a number
-function drawSprite(texture, positionX, positionY, width, height, r, g, b, a) end
-
----@param positionX number
----@param positionY number
----@param width number
----@param height number
----@param r number
----@param g number
----@param b number
----@param a number
-function drawRect(positionX, positionY, width, height, r, g, b, a) end
-
----@param name string
----@return number id
-function loadSprite(name) end
-
----@param txd string
----@return boolean result
-function loadTextureDictionary(txd) end
-
-function removeTextureDictionary() end
-
----@param object Object
----@param moveable boolean
-function setObjectDynamic(object, moveable) end
-=======
 ---@param radiusX number
 ---@param radiusY number
 ---@param sphere boolean
@@ -5058,27 +3330,8 @@ function setTargetCarForMissionGarage(garage, car) end
 ---@param apply boolean
 ---@return boolean result
 function applyBrakesToPlayersCar(player, apply) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param animation string
----@param speed number
-function setCharAnimSpeed(ped, animation, speed) end
-
----@param music number
-function playMissionPassedTune(music) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param radius number
----@param area boolean
-function clearArea(atX, atY, atZ, radius, area) end
-
----@param timer boolean
-function freezeOnscreenTimer(timer) end
-=======
 ---@param health number
 function setCharHealth(ped, health) end
 
@@ -5102,17 +3355,8 @@ function getCharHealth(ped) end
 ---@param car Vehicle
 ---@return number health
 function getCarHealth(car) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param siren boolean
-function switchCarSiren(car, siren) end
-
----@param car Vehicle
----@param watertight boolean
-function setCarWatertight(car, watertight) end
-=======
 ---@param primaryColor number
 ---@param secondaryColor number
 ---@return boolean result
@@ -5148,28 +3392,8 @@ function switchPedRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cor
 ---@param weapons2 number
 ---@param weapons3 number
 function setGangWeapons(gang, weapons1, weapons2, weapons3) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param locked boolean
-function setCharCantBeDraggedOut(ped, locked) end
-
----@param car Vehicle
----@param coordX number
----@param coordY number
-function turnCarToFaceCoord(car, coordX, coordY) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param radius number
-function drawSphere(atX, atY, atZ, radius) end
-
----@param car Vehicle
----@param action number
-function setCarStatus(car, action) end
-=======
 ---@param object Object
 ---@return boolean result
 function isCharTouchingObjectOnFoot(ped, object) end
@@ -5202,7 +3426,6 @@ function isPlayerInRemoteMode(player) end
 ---@param posY number
 ---@param posZ number
 function setCutsceneOffset(posX, posY, posZ) end
->>>>>>> head
 
 ---@param ped Ped
 ---@return boolean result
@@ -5213,26 +3436,16 @@ function isCharMale(ped) end
 ---@param float3 number
 function policeRadioMessage(float1, float2, float3) end
 
-<<<<<<< HEAD
----@param car Vehicle
----@param strong boolean
-function setCarStrong(car, strong) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasModelLoaded)**
 ---
 ---@param modelId Model
 ---@return boolean result
 function hasModelLoaded(modelId) end
->>>>>>> head
 
 ---@param int1 boolean
 function switchRubbish(int1) end
 
-<<<<<<< HEAD
----@param streaming boolean
-function switchStreaming(streaming) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawCorona)**
 ---
@@ -5246,7 +3459,6 @@ function switchStreaming(streaming) end
 ---@param g number
 ---@param b number
 function drawCorona(atX, atY, atZ, radius, type, lensflares, r, g, b) end
->>>>>>> head
 
 ---@param garage GxtString
 ---@return boolean result
@@ -5256,33 +3468,6 @@ function isGarageOpen(garage) end
 ---@return boolean result
 function isGarageClosed(garage) end
 
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
----@param radius number
----@param from Model
----@param to Model
-function swapNearestBuildingModel(atX, atY, atZ, radius, from, to) end
-
----@param cutsceneOnly boolean
-function switchWorldProcessing(cutsceneOnly) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
-function clearAreaOfCars(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param radius number
----@return number sphere
-function addSphere(atX, atY, atZ, radius) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerPlaying)**
 ---
@@ -5308,16 +3493,11 @@ function setCanResprayCar(car, sprayable) end
 ---
 ---@param id number
 function unloadSpecialCharacter(id) end
->>>>>>> head
 
 ---@param sphere number
 function removeSphere(sphere) end
 
 ---@param player Player
-<<<<<<< HEAD
----@param ignored boolean
-function setEveryoneIgnorePlayer(player, ignored) end
-=======
 ---@param modelId Model
 ---@return number quantity
 function getNumOfModelsKilledByPlayer(player, modelId) end
@@ -5337,34 +3517,8 @@ function activateGarage(garage) end
 ---@param atZ number
 ---@return Object object
 function createObjectNoOffset(modelId, atX, atY, atZ) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return Vehicle car
-function storeCarCharIsInNoSave(ped) end
-
----@param timer VarId
----@param type number
----@param gxtString GxtString
-function displayOnscreenTimerWithString(timer, type, gxtString) end
-
----@param var VarId
----@param type boolean
----@param gxtString GxtString
-function displayOnscreenCounterWithString(var, type, gxtString) end
-
----@param coordsX number
----@param coordsY number
----@param coordsZ number
----@param zAngle number
-function createRandomCarForCarPark(coordsX, coordsY, coordsZ, zAngle) end
-
----@param sensitivity number
-function setWantedMultiplier(sensitivity) end
-
-function setCameraInFrontOfPlayer() end
-=======
 ---@return boolean result
 function isCharStopped(ped) end
 
@@ -5400,22 +3554,8 @@ function addSpriteBlipForCoord(atX, atY, atZ, type) end
 ---@param ped Ped
 ---@param enabled boolean
 function setCharOnlyDamagedByPlayer(ped, enabled) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return boolean result
-function isCarVisiblyDamaged(car) end
-
----@param object Object
----@return boolean result
-function doesObjectExist(object) end
-
----@param atX number
----@param atY number
----@param atZ number
-function loadScene(atX, atY, atZ) end
-=======
 ---@param enabled boolean
 function setCarOnlyDamagedByPlayer(car, enabled) end
 
@@ -5429,76 +3569,20 @@ function setCarOnlyDamagedByPlayer(car, enabled) end
 ---@param CP boolean
 ---@param MP boolean
 function setCharProofs(ped, BP, FP, EP, CP, MP) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param stuckCheckDistance number
----@param time number
-function addStuckCarCheck(car, stuckCheckDistance, time) end
-=======
 ---@param BP boolean
 ---@param FP boolean
 ---@param EP boolean
 ---@param CP boolean
 ---@param MP boolean
 function setCarProofs(car, BP, FP, EP, CP, MP) end
->>>>>>> head
 
 ---@param car Vehicle
 function removeStuckCarCheck(car) end
 
 ---@param car Vehicle
 ---@return boolean result
-<<<<<<< HEAD
-function isCarStuck(car) end
-
----@param asId number
----@param name number
-function loadMissionAudio(asId, name) end
-
----@param id number
----@return boolean result
-function hasMissionAudioLoaded(id) end
-
----@param id number
-function playMissionAudio(id) end
-
----@param id number
----@return boolean result
-function hasMissionAudioFinished(id) end
-
----@param X number
----@param Y number
----@param Z number
----@return number nodeX
----@return number nodeY
----@return number nodeZ
----@return number angle
-function getClosestCarNodeWithHeading(X, Y, Z) end
-
----@param int1 number
----@param int2 number
----@return boolean result
-function hasImportGarageSlotBeenFilled(int1, int2) end
-
----@param text GxtString
-function clearThisPrint(text) end
-
----@param text GxtString
-function clearThisBigPrint(text) end
-
----@param id number
----@param locationX number
----@param locationY number
----@param locationZ number
-function setMissionAudioPosition(id, locationX, locationY, locationZ) end
-
-function activateSaveMenu() end
-
----@return boolean result
-function hasSaveGameFinished() end
-=======
 function isCarInWater(car) end
 
 ---
@@ -5594,36 +3678,10 @@ function removeScriptFire(fire) end
 ---@param toY number
 ---@param toZ number
 function boatGotoCoords(boat, toX, toY, toZ) end
->>>>>>> head
 
 ---@param int1 number
 function noSpecialCameraForThisGarage(int1) end
 
-<<<<<<< HEAD
----@param pickup Pickup
----@return Marker marker
-function addBlipForPickup(pickup) end
-
----@param multiplier number
-function setPedDensityMultiplier(multiplier) end
-
----@param int1 boolean
-function setTextDrawBeforeFade(int1) end
-
----@return number collected
-function getCollectable1sCollected() end
-
----@param antialiased boolean
-function setSpritesDrawBeforeFade(antialiased) end
-
----@param alignRight boolean
-function setTextRightJustify(alignRight) end
-
----@param gxtString GxtString
-function printHelp(gxtString) end
-
-function clearHelp() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharShootingInArea)**
 ---
@@ -5692,7 +3750,6 @@ function setCharAccuracy(ped, accuracy) end
 ---@param car Vehicle
 ---@return number speed
 function getCarSpeed(car) end
->>>>>>> head
 
 ---@param hudComponent number
 function flashHudObject(hudComponent) end
@@ -5700,29 +3757,17 @@ function flashHudObject(hudComponent) end
 ---@param int1 boolean
 function setGenerateCarsAroundCamera(int1) end
 
-<<<<<<< HEAD
-function clearSmallPrints() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCutsceneAnim)**
 ---
 ---@param cutscene number
 ---@param anim GxtString
 function setCutsceneAnim(cutscene, anim) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param disableFlippedExplosion boolean
 function setUpsidedownCarNotDamaged(car, disableFlippedExplosion) end
 
-<<<<<<< HEAD
----@param player Player
----@return boolean result
-function isPlayerControllable(player) end
-
----@param player Player
-function makePlayerSafe(player) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCutsceneTime)**
 ---
@@ -5734,7 +3779,6 @@ function getCutsceneTime() end
 ---
 ---@return boolean result
 function hasCutsceneFinished() end
->>>>>>> head
 
 ---@param car Vehicle
 ---@return number primaryColor
@@ -5744,15 +3788,6 @@ function getCarColours(car) end
 ---@param enable boolean
 function setAllCarsCanBeDamaged(enable) end
 
-<<<<<<< HEAD
----@param car Vehicle
----@param enable boolean
-function setCarCanBeDamaged(car, enable) end
-
----@param player Player
----@param handlingResponsiveness number
-function setDrunkInputDelay(player, handlingResponsiveness) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCollectable1Total)**
 ---
@@ -5770,17 +3805,11 @@ function setCollectable1Total(total) end
 ---@param cornerBZ number
 ---@return boolean result
 function isProjectileInArea(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param money number
-function setCharMoney(ped, money) end
-=======
 ---@param modelId Model
 ---@return boolean result
 function isCharModel(ped, modelId) end
->>>>>>> head
 
 ---@param object Object
 ---@param offsetX number
@@ -5792,47 +3821,6 @@ function isCharModel(ped, modelId) end
 function getOffsetFromObjectInWorldCoords(object, offsetX, offsetY, offsetZ) end
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@return number X
----@return number Y
----@return number Z
-function getOffsetFromCarInWorldCoords(car, offsetX, offsetY, offsetZ) end
-
----@param id number
-function clearMissionAudio(id) end
-
----@param player Player
----@param free boolean
-function setFreeHealthCare(player, free) end
-
----@param mission number
-function loadAndLaunchMissionInternal(mission) end
-
----@param object Object
----@param drawLast boolean
-function setObjectDrawLast(object, drawLast) end
-
----@param ped Ped
----@param number number
----@return number ammo
-function getAmmoInCharWeapon(ped, number) end
-
----@param clip number
-function setNearClip(clip) end
-
----@param radioStation number
-function setRadioChannel(radioStation) end
-
----@param car Vehicle
----@param traction number
-function setCarTraction(car, traction) end
-
----@return boolean result
-function areMeasurementsInMetres() end
-=======
 ---@return number forwardX
 function getCarForwardX(car) end
 
@@ -5920,7 +3908,6 @@ function playerMadeProgress(progress) end
 ---
 ---@param maxProgress number
 function setProgressTotal(maxProgress) end
->>>>>>> head
 
 ---@param meters number
 ---@return number feet
@@ -5938,22 +3925,6 @@ function setCarAvoidLevelTransitions(car, avoidLevelTransitions) end
 ---@param cornerBZ number
 function clearAreaOfChars(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
-<<<<<<< HEAD
----@param totalMissions number
-function setTotalNumberOfMissions(totalMissions) end
-
----@param metric number
----@return number imperial
-function convertMetresToFeetInt(metric) end
-
----@param stat number
----@param to number
-function registerFastestTime(stat, to) end
-
----@param int1 number
----@param int2 number
-function registerHighestScore(int1, int2) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCharBeenDamagedByWeapon)**
 ---
@@ -5969,49 +3940,24 @@ function hasCharBeenDamagedByWeapon(ped, weapon) end
 ---@param weapon number
 ---@return boolean result
 function hasCarBeenDamagedByWeapon(car, weapon) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
 ---@param passengerSeat number
 function warpCharIntoCarAsPassenger(ped, car, passengerSeat) end
 
-<<<<<<< HEAD
----@param car Vehicle
----@param seat number
----@return boolean result
-function isCarPassengerSeatFree(car, seat) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/anchorBoat)**
 ---
 ---@param boat Vehicle
 ---@param anchor boolean
 function anchorBoat(boat, anchor) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param seat number
----@return Ped ped
-function getCharInCarPassengerSeat(car, seat) end
-=======
 ---@return number fire
 function startCarFire(car) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param flag boolean
-function setCharIsChrisCriminal(ped, flag) end
-
-function startCredits() end
-
-function stopCredits() end
-
----@return boolean result
-function areCreditsFinished() end
-=======
 ---@return number fire
 function startCharFire(ped) end
 
@@ -6050,19 +3996,10 @@ function setCameraZoom(mode) end
 ---@param atZ number
 ---@return Pickup pickup
 function createPickupWithAmmo(modelId, type, ammo, atX, atY, atZ) end
->>>>>>> head
 
 ---@param enable boolean
 function setMusicDoesFade(enable) end
 
-<<<<<<< HEAD
----@param number number
----@return Model modelId
-function getCarModel(number) end
-
----@return boolean result
-function areAnyCarCheatsActivated() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerNeverGetsTired)**
 ---
@@ -6076,18 +4013,8 @@ function setPlayerNeverGetsTired(player, infiniteRun) end
 ---@param player Player
 ---@param fastReload boolean
 function setPlayerFastReload(player, fastReload) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param enable boolean
-function setCharSuffersCriticalHits(ped, enable) end
-
----@param ped Ped
----@param car Vehicle
----@return boolean result
-function isCharSittingInCar(ped, car) end
-=======
 ---@param bleeding boolean
 function setCharBleeding(ped, bleeding) end
 
@@ -6096,68 +4023,8 @@ function setCharBleeding(ped, bleeding) end
 ---
 ---@param enable boolean
 function setFreeResprays(enable) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function isCharSittingInAnyCar(ped) end
-
----@param ped Ped
----@return boolean result
-function isCharOnFoot(ped) end
-
----@param gxtString GxtString
-function loadSplashScreen(gxtString) end
-
----@param int1 number
-function setJamesCarOnPathToPlayer(int1) end
-
----@param object Object
----@param rotationX number
----@param rotationY number
----@param rotationZ number
-function setObjectRotation(object, rotationX, rotationY, rotationZ) end
-
----@return number X
----@return number Y
----@return number Z
-function getDebugCameraCoordinates() end
-
----@param player Player
----@param ped Ped
----@return boolean result
-function isPlayerTargettingChar(player, ped) end
-
----@param player Player
----@param object Object
----@return boolean result
-function isPlayerTargettingObject(player, object) end
-
----@param x number
----@param y number
----@param gxtString GxtString
----@param number number
-function displayTextWithNumber(x, y, gxtString, number) end
-
----@param x number
----@param y number
----@param gxtString GxtString
----@param numbersX number
----@param numbersY number
-function displayTextWith2Numbers(x, y, gxtString, numbersX, numbersY) end
-
-function failCurrentMission() end
-
----@param delay number
----@param time number
-function setInterpolationParameters(delay, time) end
-
----@return number X
----@return number Y
----@return number Z
-function getDebugCameraPointAt() end
-=======
 ---@param visible boolean
 function setCharVisible(ped, visible) end
 
@@ -6287,7 +4154,6 @@ function rotateObject(object, fromAngle, toAngle, flag) end
 ---@param collisionCheck boolean
 ---@return boolean result
 function slideObject(object, toX, toY, toZ, speedX, speedY, speedZ, collisionCheck) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
@@ -6300,9 +4166,6 @@ function slideObject(object, toX, toY, toZ, speedX, speedY, speedZ, collisionChe
 function attachCharToCar(ped, car, offsetX, offsetY, offsetZ, position, shootingAngleLimit, weapon) end
 
 ---@param ped Ped
-<<<<<<< HEAD
-function detachCharFromCar(ped) end
-=======
 ---@param enabled boolean
 function setCharStayInSamePlace(ped, enabled) end
 
@@ -6318,13 +4181,8 @@ function setCharStayInSamePlace(ped, enabled) end
 ---@param cornerBZ number
 ---@return boolean result
 function isExplosionInArea(explosionType, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param flag boolean
-function setCarStayInFastLane(car, flag) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -6336,12 +4194,8 @@ function placeObjectRelativeToCar(object, car, offsetX, offsetY, offsetZ) end
 ---@param object Object
 ---@param targetable boolean
 function makeObjectTargettable(object, targetable) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function clearCharLastWeaponDamage(ped) end
-=======
 ---@param points number
 function addArmourToChar(ped, points) end
 
@@ -6350,28 +4204,10 @@ function addArmourToChar(ped, points) end
 ---
 ---@param garage GxtString
 function openGarage(garage) end
->>>>>>> head
 
 ---@param car Vehicle
 function clearCarLastWeaponDamage(car) end
 
-<<<<<<< HEAD
----@param float1 number
----@param float2 number
----@param float3 number
----@param float4 number
----@param int5 boolean
----@param int6 boolean
----@param int7 boolean
----@param int8 boolean
----@param int9 boolean
----@return number int10
-function getRandomCopInArea(float1, float2, float3, float4, int5, int6, int7, int8, int9) end
-
----@param car Vehicle
----@return Ped ped
-function getDriverOfCar(car) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/warpCharFromCarToCoord)**
 ---
@@ -6391,21 +4227,8 @@ function warpCharFromCarToCoord(ped, placeAtX, placeAtY, placeAtZ) end
 ---@param modelId Model
 ---@param visibility boolean
 function setVisibilityOfClosestObjectOfType(atX, atY, atZ, radius, modelId, visibility) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return number followers
-function getNumberOfFollowers(ped) end
-
----@param player Player
----@param atX number
----@param atY number
----@param atZ number
----@param angle number
----@param RCModel Model
-function giveRemoteControlledModelToPlayer(player, atX, atY, atZ, angle, RCModel) end
-=======
 ---@param ped2 Ped
 ---@return boolean result
 function hasCharSpottedChar(ped, ped2) end
@@ -6416,13 +4239,8 @@ function hasCharSpottedChar(ped, ped2) end
 ---@param object Object
 ---@return boolean result
 function hasObjectBeenDamaged(object) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return number weapon
-function getCurrentCharWeapon(ped) end
-=======
 ---@param car Vehicle
 function warpCharIntoCar(ped, car) end
 
@@ -6461,32 +4279,16 @@ function createRandomChar(atX, atY, atZ) end
 ---@param float6 number
 ---@return boolean result
 function isSniperBulletInArea(float1, float2, float3, float4, float5, float6) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param object Object
-<<<<<<< HEAD
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCharAnyMeansObject2d(ped, object, radiusX, radiusY, sphere) end
-=======
 ---@param velocityInDirectionX number
 ---@param velocityInDirectionY number
 ---@param velocityInDirectionZ number
 function setObjectVelocity(object, velocityInDirectionX, velocityInDirectionY, velocityInDirectionZ) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param object Object
-<<<<<<< HEAD
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCharOnFootObject2d(ped, object, radiusX, radiusY, sphere) end
-=======
 ---@param collision boolean
 function setObjectCollision(object, collision) end
 
@@ -6515,17 +4317,9 @@ function isPointObscuredByAMissionEntity(cornerAX, cornerAY, cornerAZ, cornerBX,
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadAllModelsNow)**
 ---
 function loadAllModelsNow() end
->>>>>>> head
 
 ---@param ped Ped
 ---@param object Object
-<<<<<<< HEAD
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateCharInCarObject2d(ped, object, radiusX, radiusY, sphere) end
-=======
 ---@param velocityX number
 ---@param velocityY number
 ---@param velocityZ number
@@ -6576,41 +4370,13 @@ function loadTextureDictionary(txd) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeTextureDictionary)**
 ---
 function removeTextureDictionary() end
->>>>>>> head
 
 ---@param ped Ped
 ---@param object Object
-<<<<<<< HEAD
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateCharAnyMeansObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
-=======
 ---@param moveable boolean
 function setObjectDynamic(object, moveable) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param object Object
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateCharOnFootObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
-
----@param ped Ped
----@param object Object
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param sphere boolean
----@return boolean result
-function locateCharInCarObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
-=======
 ---@param animation string
 ---@param speed number
 function setCharAnimSpeed(ped, animation, speed) end
@@ -6636,18 +4402,8 @@ function clearArea(atX, atY, atZ, radius, area) end
 ---
 ---@param timer boolean
 function freezeOnscreenTimer(timer) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param action number
----@param time number
-function setCarTempAction(car, action, time) end
-
----@param ped Ped
----@return boolean result
-function isCharOnAnyBike(ped) end
-=======
 ---@param siren boolean
 function switchCarSiren(car, siren) end
 
@@ -6657,28 +4413,8 @@ function switchCarSiren(car, siren) end
 ---@param car Vehicle
 ---@param watertight boolean
 function setCarWatertight(car, watertight) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param pedtype number
----@return boolean result
-function canCharSeeDeadChar(ped, pedtype) end
-
----@param float1 number
-function setEnterCarRangeMultiplier(float1) end
-
----@param player Player
----@return Vehicle car
-function getRemoteControlledCar(player) end
-
----@return boolean result
-function isPcVersion() end
-
----@param modelId Model
----@return boolean result
-function isModelAvailable(modelId) end
-=======
 ---@param locked boolean
 function setCharCantBeDraggedOut(ped, locked) end
 
@@ -6705,16 +4441,8 @@ function drawSphere(atX, atY, atZ, radius) end
 ---@param car Vehicle
 ---@param action number
 function setCarStatus(car, action) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param muted boolean
-function shutCharUp(ped, muted) end
-
----@param detonation boolean
-function setEnableRcDetonate(detonation) end
-=======
 ---@return boolean result
 function isCharMale(ped) end
 
@@ -6725,59 +4453,8 @@ function isCharMale(ped) end
 ---@param float2 number
 ---@param float3 number
 function policeRadioMessage(float1, float2, float3) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param routeSeed number
-function setCarRandomRouteSeed(car, routeSeed) end
-
----@param pickupX number
----@param pickupY number
----@param pickupZ number
----@return boolean result
-function isAnyPickupAtCoords(pickupX, pickupY, pickupZ) end
-
----@param ped Ped
-function removeAllCharWeapons(ped) end
-
----@param ped Ped
----@param weapon number
----@return boolean result
-function hasCharGotWeapon(ped, weapon) end
-
----@param tank number
----@param detonate boolean
-function setTankDetonateCars(tank, detonate) end
-
----@param joystick number
----@return number offset1
----@return number offset2
----@return number offset3
----@return number offset4
-function getPositionOfAnalogueSticks(joystick) end
-
----@param car Vehicle
----@return boolean result
-function isCarOnFire(car) end
-
----@param car Vehicle
----@param tire number
----@return boolean result
-function isCarTireBurst(car, tire) end
-
----@param int1 number
----@param float2 number
-function initialiseObjectPath(int1, float2) end
-
----@param int1 number
----@param int2 number
-function setObjectPathSpeed(int1, int2) end
-
----@param int1 number
----@param float2 number
-function setObjectPathPosition(int1, float2) end
-=======
 ---@param strong boolean
 function setCarStrong(car, strong) end
 
@@ -6857,38 +4534,10 @@ function removeSphere(sphere) end
 ---@param player Player
 ---@param ignored boolean
 function setEveryoneIgnorePlayer(player, ignored) end
->>>>>>> head
 
 ---@param int1 number
 function clearObjectPath(int1) end
 
-<<<<<<< HEAD
----@param heli Vehicle
----@param toX number
----@param toY number
----@param toZ number
----@param altitudeMin number
----@param altitudeMax number
-function heliGotoCoords(heli, toX, toY, toZ, altitudeMin, altitudeMax) end
-
----@param ped Ped
----@return number coordsX
----@return number coordsY
----@return number coordsZ
-function getDeadCharPickupCoords(ped) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param int4 number
----@param int5 number
----@return Pickup pickup
-function createProtectionPickup(atX, atY, atZ, int4, int5) end
-
----@param ped Ped
----@return boolean result
-function isCharInAnyBoat(ped) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayOnscreenTimerWithString)**
 ---
@@ -6919,42 +4568,11 @@ function createRandomCarForCarPark(coordsX, coordsY, coordsZ, zAngle) end
 ---
 ---@param sensitivity number
 function setWantedMultiplier(sensitivity) end
->>>>>>> head
 
 ---@param ped Ped
 ---@return boolean result
 function isCharInAnyHeli(ped) end
 
-<<<<<<< HEAD
----@param ped Ped
----@return boolean result
-function isCharInAnyPlane(ped) end
-
----@param ped Ped
----@return boolean result
-function isCharInWater(ped) end
-
----@param ped Ped
----@param slot number
----@return number weapon
----@return number ammo
----@return Model modelId
-function getCharWeaponInSlot(ped, slot) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param height number
----@param radius number
----@return number float6
----@return number float7
----@return number float8
----@return number float9
----@return number float10
----@return number float11
----@return number float12
-function getClosestStraightRoad(atX, atY, atZ, height, radius) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarVisiblyDamaged)**
 ---
@@ -6984,7 +4602,6 @@ function loadScene(atX, atY, atZ) end
 ---@param stuckCheckDistance number
 ---@param time number
 function addStuckCarCheck(car, stuckCheckDistance, time) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param speed number
@@ -6994,41 +4611,6 @@ function setCarForwardSpeed(car, speed) end
 function setInteriorVisible(interior) end
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param convoy boolean
-function markCarAsConvoyCar(car, convoy) end
-
----@param int1 number
-function resetHavocCausedByPlayer(int1) end
-
----@param int1 number
----@return number int2
-function getHavocCausedByPlayer(int1) end
-
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param type number
-function createScriptRoadblock(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, type) end
-
-function clearAllScriptRoadblocks() end
-
----@param ped Ped
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@return number X
----@return number Y
----@return number Z
-function getOffsetFromCharInWorldCoords(ped, offsetX, offsetY, offsetZ) end
-
----@param ped Ped
----@return boolean result
-function hasCharBeenPhotographed(ped) end
-=======
 ---@return boolean result
 function isCarStuck(car) end
 
@@ -7078,7 +4660,6 @@ function getClosestCarNodeWithHeading(X, Y, Z) end
 ---@param int2 number
 ---@return boolean result
 function hasImportGarageSlotBeenFilled(int1, int2) end
->>>>>>> head
 
 ---@param int1 boolean
 function switchSecurityCamera(int1) end
@@ -7087,14 +4668,6 @@ function switchSecurityCamera(int1) end
 ---@return boolean result
 function isCharInFlyingVehicle(ped) end
 
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
----@param icon number
----@return Marker marker
-function addShortRangeSpriteBlipForCoord(atX, atY, atZ, icon) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMissionAudioPosition)**
 ---
@@ -7103,24 +4676,11 @@ function addShortRangeSpriteBlipForCoord(atX, atY, atZ, icon) end
 ---@param locationY number
 ---@param locationZ number
 function setMissionAudioPosition(id, locationX, locationY, locationZ) end
->>>>>>> head
 
 ---@param heli Vehicle
 ---@param angle number
 function setHeliOrientation(heli, angle) end
 
-<<<<<<< HEAD
----@param heli Vehicle
-function clearHeliOrientation(heli) end
-
----@param plane number
----@param X number
----@param Y number
----@param Z number
----@param z1 number
----@param z2 number
-function planeGotoCoords(plane, X, Y, Z, z1, z2) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasSaveGameFinished)**
 ---
@@ -7132,7 +4692,6 @@ function hasSaveGameFinished() end
 ---
 ---@param int1 number
 function noSpecialCameraForThisGarage(int1) end
->>>>>>> head
 
 ---@param X number
 ---@param Y number
@@ -7143,33 +4702,6 @@ function noSpecialCameraForThisGarage(int1) end
 ---@return number Z
 function getNthClosestCarNode(X, Y, Z, type) end
 
-<<<<<<< HEAD
----@param X number
----@param Y number
----@param Z number
----@param radius number
----@param type number
----@param flare number
----@param r number
----@param g number
----@param b number
-function drawWeaponshopCorona(X, Y, Z, radius, type, flare, r, g, b) end
-
----@param enable boolean
-function setEnableRcDetonateOnContact(enable) end
-
----@param ped Ped
----@param locked boolean
-function freezeCharPosition(ped, locked) end
-
----@param ped Ped
----@param drowns boolean
-function setCharDrownsInWater(ped, drowns) end
-
----@param object Object
----@param set boolean
-function setObjectRecordsCollisions(object, set) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPedDensityMultiplier)**
 ---
@@ -7199,7 +4731,6 @@ function setSpritesDrawBeforeFade(antialiased) end
 ---
 ---@param alignRight boolean
 function setTextRightJustify(alignRight) end
->>>>>>> head
 
 ---@param object Object
 ---@return boolean result
@@ -7207,15 +4738,6 @@ function hasObjectCollidedWithAnything(object) end
 
 function removeRcBuggy() end
 
-<<<<<<< HEAD
----@param ped Ped
----@return number armour
-function getCharArmour(ped) end
-
----@param heli Vehicle
----@param limiter boolean
-function setHeliStabiliser(heli, limiter) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/flashHudObject)**
 ---
@@ -7227,72 +4749,24 @@ function flashHudObject(hudComponent) end
 ---
 ---@param int1 boolean
 function setGenerateCarsAroundCamera(int1) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param radius number
 function setCarStraightLineDistance(car, radius) end
 
 ---@param car Vehicle
-<<<<<<< HEAD
-function popCarBoot(car) end
-=======
 ---@param disableFlippedExplosion boolean
 function setUpsidedownCarNotDamaged(car, disableFlippedExplosion) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
----@param shut boolean
-function shutPlayerUp(player, shut) end
-=======
 ---@return boolean result
 function isPlayerControllable(player) end
->>>>>>> head
 
 ---@param player Player
 ---@param flag number
 ---@param time number
 function setPlayerMood(player, flag, time) end
 
-<<<<<<< HEAD
----@param X number
----@param Y number
-function requestCollision(X, Y) end
-
----@param object Object
----@param X number
----@param Y number
----@param radiusX number
----@param radiusY number
----@param sphere boolean
----@return boolean result
-function locateObject2d(object, X, Y, radiusX, radiusY, sphere) end
-
----@param object Object
----@param X number
----@param Y number
----@param Z number
----@param radiusX number
----@param radiusY number
----@param radiusZ number
----@param flag boolean
----@return boolean result
-function locateObject3d(object, X, Y, Z, radiusX, radiusY, radiusZ, flag) end
-
----@param object Object
----@return boolean result
-function isObjectInWater(object) end
-
----@param object Object
----@param cornerAX number
----@param cornerAY number
----@param cornerBX number
----@param cornerBY number
----@param sphere boolean
----@return boolean result
-function isObjectInArea2d(object, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarColours)**
 ---
@@ -7327,34 +4801,8 @@ function setDrunkInputDelay(player, handlingResponsiveness) end
 ---@param ped Ped
 ---@param money number
 function setCharMoney(ped, money) end
->>>>>>> head
 
 ---@param object Object
-<<<<<<< HEAD
----@param cornerAX number
----@param cornerAY number
----@param cornerAZ number
----@param cornerBX number
----@param cornerBY number
----@param cornerBZ number
----@param flag boolean
----@return boolean result
-function isObjectInArea3d(object, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, flag) end
-
----@param ped Ped
----@param crouch boolean
-function taskToggleDuck(ped, crouch) end
-
----@param animation string
-function requestAnimation(animation) end
-
----@param animation string
----@return boolean result
-function hasAnimationLoaded(animation) end
-
----@param animation string
-function removeAnimation(animation) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -7400,13 +4848,8 @@ function loadAndLaunchMissionInternal(mission) end
 ---@param object Object
 ---@param drawLast boolean
 function setObjectDrawLast(object, drawLast) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function isCharWaitingForWorldCollision(ped) end
-=======
 ---@param number number
 ---@return number ammo
 function getAmmoInCharWeapon(ped, number) end
@@ -7422,102 +4865,8 @@ function setNearClip(clip) end
 ---
 ---@param radioStation number
 function setRadioChannel(radioStation) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return boolean result
-function isCarWaitingForWorldCollision(car) end
-
----@param ped Ped
----@param object Object
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param orientation number
----@param angle number
----@param lockWeapon number
-function attachCharToObject(ped, object, offsetX, offsetY, offsetZ, orientation, angle, lockWeapon) end
-
----@param text VarId
----@param type number
----@param line number
----@param gxtString GxtString
-function displayNthOnscreenCounterWithString(text, type, line, gxtString) end
-
----@param type number
----@param rectX1 number
----@param rectY1 number
----@param rectX2 number
----@param rectY2 number
----@param spawnAX number
----@param spawnAY number
----@param headedTowards1X number
----@param headedTowards1Y number
----@param spawnBX number
----@param spawnBY number
----@param headedTowards2X number
----@param headedTowards2Y number
-function addSetPiece(
-	type,
-	rectX1,
-	rectY1,
-	rectX2,
-	rectY2,
-	spawnAX,
-	spawnAY,
-	headedTowards1X,
-	headedTowards1Y,
-	spawnBX,
-	spawnBY,
-	headedTowards2X,
-	headedTowards2Y
-)
-end
-
----@param color number
----@param fade boolean
-function setExtraColours(color, fade) end
-
----@param fade boolean
-function clearExtraColours(fade) end
-
----@param player Player
----@return number twowheelstime
----@return number twowheelsdistance
----@return number wheelietime
----@return number wheelieDistance
----@return number stoppieTime
----@return number stoppieDistance
-function getWheelieStats(player) end
-
----@param car Vehicle
----@param tire number
-function burstCarTire(car, tire) end
-
----@param player Player
----@param bodypart string
----@param skin number
----@return boolean result
-function isPlayerWearing(player, bodypart, skin) end
-
----@param player Player
----@param mode boolean
-function setPlayerCanDoDriveBy(player, mode) end
-
----@param pedtype number
----@param modelId Model
----@param X number
----@param Y number
----@param Z number
----@return number handleAs
-function createSwatRope(pedtype, modelId, X, Y, Z) end
-
----@param car Model
----@param variation1 number
----@param variation2 number
-function setCarModelComponents(car, variation1, variation2) end
-=======
 ---@param traction number
 function setCarTraction(car, traction) end
 
@@ -7594,19 +4943,8 @@ function warpCharIntoCarAsPassenger(ped, car, passengerSeat) end
 ---@param seat number
 ---@return boolean result
 function isCarPassengerSeatFree(car, seat) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
-function closeAllCarDoors(car) end
-
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
----@return number distance
-function getDistanceBetweenCoords2d(x1, y1, x2, y2) end
-=======
 ---@param seat number
 ---@return Ped ped
 function getCharInCarPassengerSeat(car, seat) end
@@ -7617,7 +4955,6 @@ function getCharInCarPassengerSeat(car, seat) end
 ---@param ped Ped
 ---@param flag boolean
 function setCharIsChrisCriminal(ped, flag) end
->>>>>>> head
 
 ---@param x1 number
 ---@param y1 number
@@ -7632,13 +4969,6 @@ function getDistanceBetweenCoords3d(x1, y1, z1, x2, y2, z2) end
 ---@param car Vehicle
 function sortOutObjectCollisionWithCar(object, car) end
 
-<<<<<<< HEAD
----@return number level
-function getMaxWantedLevel() end
-
----@param text GxtString
-function printHelpForever(text) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/areCreditsFinished)**
 ---
@@ -7650,28 +4980,11 @@ function areCreditsFinished() end
 ---
 ---@param enable boolean
 function setMusicDoesFade(enable) end
->>>>>>> head
 
 ---@param text GxtString
 ---@param number number
 function printHelpForeverWithNumber(text, number) end
 
-<<<<<<< HEAD
----@param pX number
----@param pY number
----@param pZ number
----@param gxtString GxtString
----@return Pickup pickup
-function createLockedPropertyPickup(pX, pY, pZ, gxtString) end
-
----@param pX number
----@param pY number
----@param pZ number
----@param price number
----@param gxtString GxtString
----@return Pickup pickup
-function createForsalePropertyPickup(pX, pY, pZ, price, gxtString) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/areAnyCarCheatsActivated)**
 ---
@@ -7684,46 +4997,16 @@ function areAnyCarCheatsActivated() end
 ---@param ped Ped
 ---@param enable boolean
 function setCharSuffersCriticalHits(ped, enable) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param locked boolean
-function freezeCarPosition(car, locked) end
-=======
 ---@return boolean result
 function isCharSittingInCar(ped, car) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param byActor Ped
----@return boolean result
-function hasCharBeenDamagedByChar(ped, byActor) end
-=======
 ---@return boolean result
 function isCharSittingInAnyCar(ped) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param byCar Vehicle
----@return boolean result
-function hasCharBeenDamagedByCar(ped, byCar) end
-
----@param car Vehicle
----@param byActor Ped
----@return boolean result
-function hasCarBeenDamagedByChar(car, byActor) end
-
----@param car Vehicle
----@param byCar Vehicle
----@return boolean result
-function hasCarBeenDamagedByCar(car, byCar) end
-
----@return number radio
-function getRadioChannel() end
-=======
 ---@return boolean result
 function isCharOnFoot(ped) end
 
@@ -7755,22 +5038,12 @@ function setObjectRotation(object, rotationX, rotationY, rotationZ) end
 ---@return number Y
 ---@return number Z
 function getDebugCameraCoordinates() end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param stay boolean
-function setCharStayInCarWhenJacked(ped, stay) end
-=======
 ---@return boolean result
 function isPlayerTargettingChar(player, ped) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
----@param drunk number
-function setPlayerDrunkenness(player, drunk) end
-=======
 ---@param object Object
 ---@return boolean result
 function isPlayerTargettingObject(player, object) end
@@ -7793,7 +5066,6 @@ function displayTextWithNumber(x, y, gxtString, number) end
 ---@param numbersX number
 ---@param numbersY number
 function displayTextWith2Numbers(x, y, gxtString, numbersX, numbersY) end
->>>>>>> head
 
 ---@param x1 number
 ---@param y1 number
@@ -7803,14 +5075,6 @@ function displayTextWith2Numbers(x, y, gxtString, numbersX, numbersY) end
 ---@return Vehicle car
 function getRandomCarOfTypeInAreaNoSave(x1, y1, x2, y2, modelId) end
 
-<<<<<<< HEAD
----@param car Vehicle
----@param vulnerability boolean
-function setCanBurstCarTires(car, vulnerability) end
-
----@param car Vehicle
-function fireHunterGun(car) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setInterpolationParameters)**
 ---
@@ -7825,14 +5089,9 @@ function setInterpolationParameters(delay, time) end
 ---@return number Y
 ---@return number Z
 function getDebugCameraPointAt() end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
----@return boolean result
-function isCharTouchingVehicle(ped, car) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -7840,23 +5099,17 @@ function isCharTouchingVehicle(ped, car) end
 ---@param shootingAngleLimit number
 ---@param weapon number
 function attachCharToCar(ped, car, offsetX, offsetY, offsetZ, position, shootingAngleLimit, weapon) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param can boolean
 function setCharCanBeShotInVehicle(ped, can) end
 
-<<<<<<< HEAD
----@param table GxtString
-function loadMissionText(table) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarStayInFastLane)**
 ---
 ---@param car Vehicle
 ---@param flag boolean
 function setCarStayInFastLane(car, flag) end
->>>>>>> head
 
 ---@param ped Ped
 function clearCharLastDamageEntity(ped) end
@@ -7864,27 +5117,6 @@ function clearCharLastDamageEntity(ped) end
 ---@param car Vehicle
 function clearCarLastDamageEntity(car) end
 
-<<<<<<< HEAD
----@param object Object
----@param freeze boolean
-function freezeObjectPosition(object, freeze) end
-
----@param ped Ped
----@param weapon number
-function removeWeaponFromChar(ped, weapon) end
-
----@param player Player
----@param fireproof boolean
-function makePlayerFireProof(player, fireproof) end
-
----@param player Player
----@param increase number
-function increasePlayerMaxHealth(player, increase) end
-
----@param player Player
----@param increase number
-function increasePlayerMaxArmour(player, increase) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCopInArea)**
 ---
@@ -7899,40 +5131,19 @@ function increasePlayerMaxArmour(player, increase) end
 ---@param int9 boolean
 ---@return number int10
 function getRandomCopInArea(float1, float2, float3, float4, int5, int6, int7, int8, int9) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@return Ped ped
 function createRandomCharAsDriver(car) end
 
-<<<<<<< HEAD
----@param car Vehicle
----@param seat number
----@return Ped ped
-function createRandomCharAsPassenger(car, seat) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfFollowers)**
 ---
 ---@param ped Ped
 ---@return number followers
 function getNumberOfFollowers(ped) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
----@param ammo number
-function ensurePlayerHasDriveByWeapon(player, ammo) end
-
----@param heli Vehicle
-function makeHeliComeCrashingDown(heli) end
-
----@param pX number
----@param pY number
----@param pZ number
----@param type number
-function addExplosionNoSound(pX, pY, pZ, type) end
-=======
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -7957,28 +5168,15 @@ function getCurrentCharWeapon(ped) end
 ---@param sphere boolean
 ---@return boolean result
 function locateCharAnyMeansObject2d(ped, object, radiusX, radiusY, sphere) end
->>>>>>> head
 
 ---@param object Object
-<<<<<<< HEAD
----@param interior number
-function linkObjectToInterior(object, interior) end
-=======
 ---@param radiusX number
 ---@param radiusY number
 ---@param sphere boolean
 ---@return boolean result
 function locateCharOnFootObject2d(ped, object, radiusX, radiusY, sphere) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param untargetable boolean
-function setCharNeverTargetted(ped, untargetable) end
-
----@return boolean result
-function wasCutsceneSkipped() end
-=======
 ---@param object Object
 ---@param radiusX number
 ---@param radiusY number
@@ -7997,13 +5195,8 @@ function locateCharInCarObject2d(ped, object, radiusX, radiusY, sphere) end
 ---@param sphere boolean
 ---@return boolean result
 function locateCharAnyMeansObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function isCharInAnyPoliceVehicle(ped) end
-=======
 ---@param object Object
 ---@param radiusX number
 ---@param radiusY number
@@ -8011,13 +5204,8 @@ function isCharInAnyPoliceVehicle(ped) end
 ---@param sphere boolean
 ---@return boolean result
 function locateCharOnFootObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function doesCharExist(ped) end
-=======
 ---@param object Object
 ---@param radiusX number
 ---@param radiusY number
@@ -8025,27 +5213,8 @@ function doesCharExist(ped) end
 ---@param sphere boolean
 ---@return boolean result
 function locateCharInCarObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return boolean result
-function doesVehicleExist(car) end
-
----@param pX number
----@param pY number
----@param pZ number
----@param icon number
----@return Marker blip
-function addShortRangeSpriteBlipForContactPoint(pX, pY, pZ, icon) end
-
----@param toggle boolean
-function setAllTaxisHaveNitro(toggle) end
-
----@param car Vehicle
----@param keep boolean
-function freezeCarPositionAndDontLoadCollision(car, keep) end
-=======
 ---@param action number
 ---@param time number
 function setCarTempAction(car, action, time) end
@@ -8070,28 +5239,11 @@ function canCharSeeDeadChar(ped, pedtype) end
 ---
 ---@param float1 number
 function setEnterCarRangeMultiplier(float1) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param keep boolean
 function freezeCharPositionAndDontLoadCollision(ped, keep) end
 
-<<<<<<< HEAD
----@param set boolean
-function setPlayerIsInStadium(set) end
-
----@param enable boolean
-function displayRadar(enable) end
-
----@param stat number
----@param number number
-function registerBestPosition(stat, number) end
-
----@param player Player
----@param zone GxtString
----@return boolean result
-function isPlayerInInfoZone(player, zone) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPcVersion)**
 ---
@@ -8117,13 +5269,8 @@ function shutCharUp(ped, muted) end
 ---
 ---@param detonation boolean
 function setEnableRcDetonate(detonation) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param enable boolean
-function setLoadCollisionForCarFlag(car, enable) end
-=======
 ---@param routeSeed number
 function setCarRandomRouteSeed(car, routeSeed) end
 
@@ -8141,24 +5288,8 @@ function isAnyPickupAtCoords(pickupX, pickupY, pickupZ) end
 ---
 ---@param ped Ped
 function removeAllCharWeapons(ped) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param enable boolean
-function setLoadCollisionForCharFlag(ped, enable) end
-
----@param fromX number
----@param fromY number
----@param fromZ number
----@param toX number
----@param toY number
----@param toZ number
-function addBigGunFlash(fromX, fromY, fromZ, toX, toY, toZ) end
-
----@return number progress
-function getProgressPercentage() end
-=======
 ---@param weapon number
 ---@return boolean result
 function hasCharGotWeapon(ped, weapon) end
@@ -8179,102 +5310,8 @@ function setTankDetonateCars(tank, detonate) end
 ---@return number offset3
 ---@return number offset4
 function getPositionOfAnalogueSticks(joystick) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param flag number
-function setVehicleToFadeIn(car, flag) end
-
-function registerOddjobMissionPassed() end
-
----@param player Player
----@return boolean result
-function isPlayerInShortcutTaxi(player) end
-
----@param ped Ped
----@return boolean result
-function isCharDucking(ped) end
-
----@param text VarId
----@param flashing boolean
-function setOnscreenCounterFlashWhenFirstDisplayed(text, flashing) end
-
----@param shuffle boolean
-function shuffleCardDecks(shuffle) end
-
----@return number card
-function fetchNextCard() end
-
----@param object Object
----@return number vecX
----@return number vecY
----@return number vecZ
-function getObjectVelocity(object) end
-
----@return boolean result
-function isDebugCameraOn() end
-
----@param object Object
----@param vecX number
----@param vecY number
----@param vecZ number
-function addToObjectRotationVelocity(object, vecX, vecY, vecZ) end
-
----@param object Object
----@param vecX number
----@param vecY number
----@param vecZ number
-function setObjectRotationVelocity(object, vecX, vecY, vecZ) end
-
----@param object Object
----@return boolean result
-function isObjectStatic(object) end
-
----@param vecX number
----@param vecY number
----@param vecX2 number
----@param vecY2 number
----@return number angle
-function getAngleBetween2dVectors(vecX, vecY, vecX2, vecY2) end
-
----@param areaX number
----@param areaY number
----@param scaleX number
----@param scaleY number
----@param overlapareaX number
----@param overlapareaY number
----@param overlapscaleX number
----@param overlapscaleY number
----@return boolean result
-function do2dRectanglesCollide(
-	areaX,
-	areaY,
-	scaleX,
-	scaleY,
-	overlapareaX,
-	overlapareaY,
-	overlapscaleX,
-	overlapscaleY
-)
-end
-
----@param object Object
----@return number axisX
----@return number axisY
----@return number axisZ
-function getObjectRotationVelocity(object) end
-
----@param object Object
----@param vecX number
----@param vecY number
----@param vecZ number
-function addVelocityRelativeToObjectVelocity(object, vecX, vecY, vecZ) end
-
----@param object Object
----@return number speed
-function getObjectSpeed(object) end
-=======
 ---@return boolean result
 function isCarOnFire(car) end
 
@@ -8443,7 +5480,6 @@ function getHavocCausedByPlayer(int1) end
 ---@param cornerBZ number
 ---@param type number
 function createScriptRoadblock(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, type) end
->>>>>>> head
 
 ---@param l1x1 number
 ---@param l1y1 number
@@ -8459,10 +5495,6 @@ function createScriptRoadblock(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY,
 function get2dLinesIntersectPoint(l1x1, l1y1, l1x2, l1y2, l2x1, l2y1, l2x2, l2y2) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param timeMS number
-function taskPause(ped, timeMS) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -8470,13 +5502,8 @@ function taskPause(ped, timeMS) end
 ---@return number Y
 ---@return number Z
 function getOffsetFromCharInWorldCoords(ped, offsetX, offsetY, offsetZ) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param timeMS number
-function taskStandStill(ped, timeMS) end
-=======
 ---@return boolean result
 function hasCharBeenPhotographed(ped) end
 
@@ -8485,18 +5512,8 @@ function hasCharBeenPhotographed(ped) end
 ---
 ---@param int1 boolean
 function switchSecurityCamera(int1) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param int2 boolean
----@param time number
-function taskFallAndGetUp(ped, int2, time) end
-
----@param ped Ped
----@param jump boolean
-function taskJump(ped, jump) end
-=======
 ---@return boolean result
 function isCharInFlyingVehicle(ped) end
 
@@ -8516,30 +5533,11 @@ function addShortRangeSpriteBlipForCoord(atX, atY, atZ, icon) end
 ---@param heli Vehicle
 ---@param angle number
 function setHeliOrientation(heli, angle) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param timeMS number
 function taskTired(ped, timeMS) end
 
-<<<<<<< HEAD
----@param ped Ped
-function taskDie(ped) end
-
----@param ped Ped
----@param lookAt number
----@param timeMS number
-function taskLookAtChar(ped, lookAt, timeMS) end
-
----@param ped Ped
----@param lookAt number
----@param timeMS number
-function taskLookAtVehicle(ped, lookAt, timeMS) end
-
----@param ped Ped
----@param audio number
-function taskSay(ped, audio) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/planeGotoCoords)**
 ---
@@ -8582,28 +5580,12 @@ function drawWeaponshopCorona(X, Y, Z, radius, type, flare, r, g, b) end
 ---
 ---@param enable boolean
 function setEnableRcDetonateOnContact(enable) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function taskShakeFist(ped) end
-=======
 ---@param locked boolean
 function freezeCharPosition(ped, locked) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function taskCower(ped) end
-
----@param ped Ped
----@param timeMS number
-function taskHandsUp(ped, timeMS) end
-
----@param ped Ped
----@param timeMS number
-function taskDuck(ped, timeMS) end
-=======
 ---@param drowns boolean
 function setCharDrownsInWater(ped, drowns) end
 
@@ -8620,19 +5602,11 @@ function setObjectRecordsCollisions(object, set) end
 ---@param object Object
 ---@return boolean result
 function hasObjectCollidedWithAnything(object) end
->>>>>>> head
 
 ---@param ped Ped
 function taskUseAtm(ped) end
 
 ---@param ped Ped
-<<<<<<< HEAD
-function taskScratchHead(ped) end
-
----@param ped Ped
----@param timeMS number
-function taskLookAbout(ped, timeMS) end
-=======
 ---@return number armour
 function getCharArmour(ped) end
 
@@ -8642,72 +5616,17 @@ function getCharArmour(ped) end
 ---@param heli Vehicle
 ---@param limiter boolean
 function setHeliStabiliser(heli, limiter) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
----@param time number
----@param passengerSeat number
-function taskEnterCarAsPassenger(ped, car, time, passengerSeat) end
-=======
 ---@param radius number
 function setCarStraightLineDistance(car, radius) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
 ---@param timeMS number
 function taskEnterCarAsDriver(ped, car, timeMS) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param car Vehicle
-function taskLeaveCar(ped, car) end
-
----@param ped Ped
----@param car Vehicle
----@param X number
----@param Y number
----@param Z number
-function taskLeaveCarAndFlee(ped, car, X, Y, Z) end
-
----@param ped Ped
----@param car Vehicle
----@param toX number
----@param toY number
----@param toZ number
----@param speed number
----@param int7 number
----@param model number
----@param int9 number
-function taskCarDriveToCoord(ped, car, toX, toY, toZ, speed, int7, model, int9) end
-
----@param ped Ped
----@param hijackCar Vehicle
----@param searchRadius number
----@param trafficBehavior number
-function taskCarDriveWander(ped, hijackCar, searchRadius, trafficBehavior) end
-
----@param ped Ped
----@param toX number
----@param toY number
----@param toZ number
----@param mode number
----@param time number
-function taskGoStraightToCoord(ped, toX, toY, toZ, mode, time) end
-
----@param ped Ped
----@param angle number
-function taskAchieveHeading(ped, angle) end
-
-function flushRoute() end
-
----@param pointX number
----@param pointY number
----@param pointZ number
-function extendRoute(pointX, pointY, pointZ) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shutPlayerUp)**
 ---
@@ -8788,20 +5707,8 @@ function isObjectInArea2d(object, cornerAX, cornerAY, cornerBX, cornerBY, sphere
 ---@param flag boolean
 ---@return boolean result
 function isObjectInArea3d(object, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, flag) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param flags1 number
----@param flags2 number
-function taskFollowPointRoute(ped, flags1, flags2) end
-
----@param ped Ped
----@param toActor Ped
----@param timelimit number
----@param stopWithinRadius number
-function taskGotoChar(ped, toActor, timelimit, stopWithinRadius) end
-=======
 ---@param crouch boolean
 function taskToggleDuck(ped, crouch) end
 
@@ -8817,7 +5724,6 @@ function requestAnimation(animation) end
 ---@param animation string
 ---@return boolean result
 function hasAnimationLoaded(animation) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param fromX number
@@ -8828,20 +5734,6 @@ function hasAnimationLoaded(animation) end
 function taskFleePoint(ped, fromX, fromY, fromZ, awayRadius, timelimit) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param fromActor Ped
----@param radius number
----@param timelimit number
-function taskFleeChar(ped, fromActor, radius, timelimit) end
-
----@param ped Ped
----@param fromX number
----@param fromY number
----@param fromZ number
----@param stopAtRadius number
----@param timelimit number
-function taskSmartFleePoint(ped, fromX, fromY, fromZ, stopAtRadius, timelimit) end
-=======
 ---@return boolean result
 function isCharWaitingForWorldCollision(ped) end
 
@@ -8851,29 +5743,8 @@ function isCharWaitingForWorldCollision(ped) end
 ---@param car Vehicle
 ---@return boolean result
 function isCarWaitingForWorldCollision(car) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param fromActor Ped
----@param originRadius number
----@param timelimit number
-function taskSmartFleeChar(ped, fromActor, originRadius, timelimit) end
-
----@param ped Ped
-function taskWanderStandard(ped) end
-
----@param ped Ped
----@param killActor Ped
-function taskKillCharOnFoot(ped, killActor) end
-
----@param car Vehicle
----@param path number
-function startPlaybackRecordedCar(car, path) end
-
----@param car Vehicle
-function stopPlaybackRecordedCar(car) end
-=======
 ---@param object Object
 ---@param offsetX number
 ---@param offsetY number
@@ -8949,27 +5820,8 @@ function clearExtraColours(fade) end
 ---@return number stoppieTime
 ---@return number stoppieDistance
 function getWheelieStats(player) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
-function pausePlaybackRecordedCar(car) end
-
----@param car Vehicle
-function unpausePlaybackRecordedCar(car) end
-
----@param car Vehicle
----@param followCar Vehicle
-function setCarEscortCarLeft(car, followCar) end
-
----@param car Vehicle
----@param followCar Vehicle
-function setCarEscortCarRight(car, followCar) end
-
----@param car Vehicle
----@param followCar Vehicle
-function setCarEscortCarRear(car, followCar) end
-=======
 ---@param tire number
 function burstCarTire(car, tire) end
 
@@ -9007,31 +5859,11 @@ function createSwatRope(pedtype, modelId, X, Y, Z) end
 ---@param variation1 number
 ---@param variation2 number
 function setCarModelComponents(car, variation1, variation2) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param followCar Vehicle
 function setCarEscortCarFront(car, followCar) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param pathX number
----@param pathY number
----@param pathZ number
----@param mode number
----@param time number
-function taskFollowPathNodesToCoord(ped, pathX, pathY, pathZ, mode, time) end
-
----@param ped Ped
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
----@param angle number
----@param sphere boolean
----@return boolean result
-function isCharInAngledArea2d(ped, x1, y1, x2, y2, angle, sphere) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDistanceBetweenCoords2d)**
 ---
@@ -9072,7 +5904,6 @@ function getDistanceBetweenCoords2d(x1, y1, x2, y2) end
 ---@param z2 number координата Z второй точки
 ---@return number distance дистанция
 function getDistanceBetweenCoords3d(x1, y1, z1, x2, y2, z2) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param x1 number
@@ -9084,23 +5915,11 @@ function getDistanceBetweenCoords3d(x1, y1, z1, x2, y2, z2) end
 ---@return boolean result
 function isCharInAngledAreaOnFoot2d(ped, x1, y1, x2, y2, angle, sphere) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
----@param angle number
----@param sphere boolean
----@return boolean result
-function isCharInAngledAreaInCar2d(ped, x1, y1, x2, y2, angle, sphere) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMaxWantedLevel)**
 ---
 ---@return number level
 function getMaxWantedLevel() end
->>>>>>> head
 
 ---@param ped Ped
 ---@param x1 number
@@ -9112,51 +5931,6 @@ function getMaxWantedLevel() end
 ---@return boolean result
 function isCharStoppedInAngledArea2d(ped, x1, y1, x2, y2, height, flag) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
----@param angle number
----@param sphere boolean
----@return boolean result
-function isCharStoppedInAngledAreaOnFoot2d(ped, x1, y1, x2, y2, angle, sphere) end
-
----@param ped Ped
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
----@param height number
----@param flag boolean
----@return boolean result
-function isCharStoppedInAngledAreaInCar2d(ped, x1, y1, x2, y2, height, flag) end
-
----@param ped Ped
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@param angle number
----@param sphere boolean
----@return boolean result
-function isCharInAngledArea3d(ped, x1, y1, z1, x2, y2, z2, angle, sphere) end
-
----@param ped Ped
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@param angle number
----@param sphere boolean
----@return boolean result
-function isCharInAngledAreaOnFoot3d(ped, x1, y1, z1, x2, y2, z2, angle, sphere) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printHelpForeverWithNumber)**
 ---
@@ -9191,67 +5965,13 @@ function createForsalePropertyPickup(pX, pY, pZ, price, gxtString) end
 ---@param car Vehicle
 ---@param locked boolean
 function freezeCarPosition(car, locked) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@param depth number
----@param flag boolean
----@return boolean result
-function isCharInAngledAreaInCar3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
-=======
 ---@param byActor Ped
 ---@return boolean result
 function hasCharBeenDamagedByChar(ped, byActor) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@param depth number
----@param flag boolean
----@return boolean result
-function isCharStoppedInAngledArea3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
-
----@param ped Ped
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@param depth number
----@param flag boolean
----@return boolean result
-function isCharStoppedInAngledAreaOnFoot3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
-
----@param ped Ped
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@param depth number
----@param flag boolean
----@return boolean result
-function isCharStoppedInAngledAreaInCar3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
-
----@param ped Ped
----@return boolean result
-function isCharInTaxi(ped) end
-=======
 ---@param byCar Vehicle
 ---@return boolean result
 function hasCharBeenDamagedByCar(ped, byCar) end
@@ -9277,39 +5997,8 @@ function hasCarBeenDamagedByCar(car, byCar) end
 ---
 ---@return number radio
 function getRadioChannel() end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param toX number
----@param toY number
----@param toZ number
----@param mode number
----@param useCar Vehicle
-function taskGoToCoordAnyMeans(ped, toX, toY, toZ, mode, useCar) end
-
----@param pX number
----@param pY number
----@return number zAngle
-function getHeadingFromVector2d(pX, pY) end
-
----@param ped Ped
----@param animation string
----@param IFP string
----@param framedelta number
----@param loop boolean
----@param lockX boolean
----@param lockY boolean
----@param lockF boolean
----@param time number
-function taskPlayAnim(ped, animation, IFP, framedelta, loop, lockX, lockY, lockF, time) end
-
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
-function loadPathNodesInArea(x1, y1, x2, y2) end
-=======
 ---@param stay boolean
 function setCharStayInCarWhenJacked(ped, stay) end
 
@@ -9337,7 +6026,6 @@ function getRandomCarOfTypeInAreaNoSave(x1, y1, x2, y2, modelId) end
 ---@param car Vehicle
 ---@param vulnerability boolean
 function setCanBurstCarTires(car, vulnerability) end
->>>>>>> head
 
 function releasePathNodes() end
 
@@ -9358,17 +6046,9 @@ function setTextDropshadow(shadow, r, g, b, a) end
 
 ---@param car Vehicle
 ---@return boolean result
-<<<<<<< HEAD
-function isPlaybackGoingOnForCar(car) end
-=======
 function isCharTouchingVehicle(ped, car) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param accuracy number
-function setSenseRange(ped, accuracy) end
-=======
 ---@param can boolean
 function setCharCanBeShotInVehicle(ped, can) end
 
@@ -9377,7 +6057,6 @@ function setCharCanBeShotInVehicle(ped, can) end
 ---
 ---@param table GxtString
 function loadMissionText(table) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param animation string
@@ -9389,36 +6068,14 @@ function isCharPlayingAnim(ped, animation) end
 ---@param flag boolean
 function setCharAnimPlayingFlag(ped, animation, flag) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param animation string
----@return number time
-function getCharAnimCurrentTime(ped, animation) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freezeObjectPosition)**
 ---
 ---@param object Object
 ---@param freeze boolean
 function freezeObjectPosition(object, freeze) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param animation string
----@param time number
-function setCharAnimCurrentTime(ped, animation, time) end
-
----@return number task
-function openSequenceTask() end
-
----@param task number
-function closeSequenceTask(task) end
-
----@param ped Ped
----@param task number
-function performSequenceTask(ped, task) end
-=======
 ---@param weapon number
 function removeWeaponFromChar(ped, weapon) end
 
@@ -9442,21 +6099,11 @@ function increasePlayerMaxHealth(player, increase) end
 ---@param player Player
 ---@param increase number
 function increasePlayerMaxArmour(player, increase) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param enable boolean
 function setCharCollision(ped, enable) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param animation string
----@return number totalTime
-function getCharAnimTotalTime(ped, animation) end
-
----@param task number
-function clearSequenceTask(task) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createRandomCharAsPassenger)**
 ---
@@ -9471,7 +6118,6 @@ function createRandomCharAsPassenger(car, seat) end
 ---@param player Player
 ---@param ammo number
 function ensurePlayerHasDriveByWeapon(player, ammo) end
->>>>>>> head
 
 ---@param originX number
 ---@param originY number
@@ -9482,17 +6128,6 @@ function ensurePlayerHasDriveByWeapon(player, ammo) end
 ---@return number handle
 function addAttractor(originX, originY, originZ, zAngle, unknownAngle, taskSequence) end
 
-<<<<<<< HEAD
----@param handle number
-function clearAttractor(handle) end
-
----@param pedtype number
----@param modelId Model
----@param ASOrigin number
----@param task number
----@return Ped ped
-function createCharAtAttractor(pedtype, modelId, ASOrigin, task) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addExplosionNoSound)**
 ---
@@ -9508,65 +6143,8 @@ function addExplosionNoSound(pX, pY, pZ, type) end
 ---@param object Object
 ---@param interior number
 function linkObjectToInterior(object, interior) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param car Vehicle
-function taskLeaveCarImmediately(ped, car) end
-
----@param stat number
----@param add number
-function incrementIntStat(stat, add) end
-
----@param stat number
----@param add number
-function incrementFloatStat(stat, add) end
-
----@param stat number
----@param number number
-function decrementIntStat(stat, number) end
-
----@param stat number
----@param number number
-function decrementFloatStat(stat, number) end
-
----@param stat number
----@param number number
-function registerIntStat(stat, number) end
-
----@param stat number
----@param value number
-function registerFloatStat(stat, value) end
-
----@param stat number
----@param number number
-function setIntStat(stat, number) end
-
----@param stat number
----@param number number
-function setFloatStat(stat, number) end
-
----@param ped Ped
----@param task number
----@return number status
-function getScriptTaskStatus(ped, task) end
-
----@param type number
----@return number group
-function createGroup(type) end
-
----@param group number
----@param ped Ped
-function setGroupLeader(group, ped) end
-
----@param group number
----@param ped Ped
-function setGroupMember(group, ped) end
-
----@param group number
-function removeGroup(group) end
-=======
 ---@param untargetable boolean
 function setCharNeverTargetted(ped, untargetable) end
 
@@ -9660,34 +6238,8 @@ function isPlayerInInfoZone(player, zone) end
 ---@param car Vehicle
 ---@param enable boolean
 function setLoadCollisionForCarFlag(car, enable) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function taskLeaveAnyCar(ped) end
-
----@param ped Ped
----@param weapon number
----@param flags number
----@param time number
----@param chance number
-function taskKillCharOnFootWhileDucking(ped, weapon, flags, time, chance) end
-
----@param ped Ped
----@param aimAt number
----@param timeMS number
-function taskAimGunAtChar(ped, aimAt, timeMS) end
-
----@param ped Ped
----@param toX number
----@param toY number
----@param toZ number
----@param mode number
----@param turnRadius number
----@param stopRadius number
----@param lookAtActor number
-function taskGoToCoordWhileShooting(ped, toX, toY, toZ, mode, turnRadius, stopRadius, lookAtActor) end
-=======
 ---@param enable boolean
 function setLoadCollisionForCharFlag(ped, enable) end
 
@@ -9714,74 +6266,19 @@ function getProgressPercentage() end
 ---@param car Vehicle
 ---@param flag number
 function setVehicleToFadeIn(car, flag) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param stay boolean
 function taskStayInSamePlace(ped, stay) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param rotateTo number
-function taskTurnCharToFaceChar(ped, rotateTo) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerInShortcutTaxi)**
 ---
 ---@param player Player
 ---@return boolean result
 function isPlayerInShortcutTaxi(player) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param origin number
----@return boolean result
-function isCharAtScriptedAttractor(ped, origin) end
-
----@param pack number
----@param loop boolean
-function setSequenceToRepeat(pack, loop) end
-
----@param ped Ped
----@return number progess
-function getSequenceProgress(ped) end
-
----@param ped Ped
-function clearLookAt(ped) end
-
----@param ped Ped
----@param dist number
-function setFollowNodeThresholdDistance(ped, dist) end
-
----@param particle string
----@param pX number
----@param pY number
----@param pZ number
----@param type number
----@return Particle particle
-function createFxSystem(particle, pX, pY, pZ, type) end
-
----@param particle Particle
-function playFxSystem(particle) end
-
----@param particle Particle
-function stopFxSystem(particle) end
-
----@param particle Particle
-function playAndKillFxSystem(particle) end
-
----@param particle Particle
-function killFxSystem(particle) end
-
----@param stat number
----@return number stat
-function getIntStat(stat) end
-
----@param stat number
----@return number stat
-function getFloatStat(stat) end
-=======
 ---@return boolean result
 function isCharDucking(ped) end
 
@@ -9895,13 +6392,8 @@ function getObjectRotationVelocity(object) end
 ---@param vecY number
 ---@param vecZ number
 function addVelocityRelativeToObjectVelocity(object, vecX, vecY, vecZ) end
->>>>>>> head
 
 ---@param object Object
-<<<<<<< HEAD
----@param fireproof boolean
-function setObjectRenderScorched(object, fireproof) end
-=======
 ---@return number speed
 function getObjectSpeed(object) end
 
@@ -9920,31 +6412,8 @@ function getObjectSpeed(object) end
 ---@return number X
 ---@return number Y
 function get2dLinesIntersectPoint(l1x1, l1y1, l1x2, l1y2, l2x1, l2y1, l2x2, l2y2) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param lookAt number
----@param timeMS number
-function taskLookAtObject(ped, lookAt, timeMS) end
-
----@param angle number
----@return number number
-function limitAngle(angle) end
-
----@param car Vehicle
----@param door number
-function openCarDoor(car, door) end
-
----@param pickup Pickup
----@return number X
----@return number Y
----@return number Z
-function getPickupCoordinates(pickup) end
-
----@param maker number
-function removeDecisionMaker(maker) end
-=======
 ---@param timeMS number
 function taskPause(ped, timeMS) end
 
@@ -9976,51 +6445,25 @@ function taskJump(ped, jump) end
 ---@param ped Ped
 ---@param timeMS number
 function taskTired(ped, timeMS) end
->>>>>>> head
 
 ---@param ped Ped
 ---@return Model modelId
 function getCharModel(ped) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
----@param timeMS number
-function taskAimGunAtCoord(ped, atX, atY, atZ, timeMS) end
-=======
 ---@param lookAt number
 ---@param timeMS number
 function taskLookAtChar(ped, lookAt, timeMS) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
----@param timeMS number
-function taskShootAtCoord(ped, atX, atY, atZ, timeMS) end
-=======
 ---@param lookAt number
 ---@param timeMS number
 function taskLookAtVehicle(ped, lookAt, timeMS) end
->>>>>>> head
 
 ---@param particle string
 ---@param ped Ped
-<<<<<<< HEAD
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param type number
----@return Particle particle
-function createFxSystemOnChar(particle, ped, offsetX, offsetY, offsetZ, type) end
-=======
 ---@param audio number
 function taskSay(ped, audio) end
->>>>>>> head
 
 ---@param particle string
 ---@param ped Ped
@@ -10054,39 +6497,6 @@ end
 ---@return Particle particle
 function createFxSystemOnCar(particle, car, offsetX, offsetY, offsetZ, type) end
 
-<<<<<<< HEAD
----@param particle string
----@param car Vehicle
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param rotationX number
----@param rotationY number
----@param rotationZ number
----@param type number
----@return Particle particle
-function createFxSystemOnCarWithDirection(
-	particle,
-	car,
-	offsetX,
-	offsetY,
-	offsetZ,
-	rotationX,
-	rotationY,
-	rotationZ,
-	type
-)
-end
-
----@param particle string
----@param object Object
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param type number
----@return Particle particle
-function createFxSystemOnObject(particle, object, offsetX, offsetY, offsetZ, type) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskHandsUp)**
 ---
@@ -10100,7 +6510,6 @@ function taskHandsUp(ped, timeMS) end
 ---@param ped Ped
 ---@param timeMS number
 function taskDuck(ped, timeMS) end
->>>>>>> head
 
 ---@param particle string
 ---@param object Object
@@ -10130,16 +6539,6 @@ end
 function taskDestroyCar(ped, car) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param toOffsetX number
----@param toOffsetY number
----@param time number
-function taskDiveAndGetUp(ped, toOffsetX, toOffsetY, time) end
-
----@param modelId Model
----@param numberplate string
-function customPlateForNextCar(modelId, numberplate) end
-=======
 ---@param timeMS number
 function taskLookAbout(ped, timeMS) end
 
@@ -10151,16 +6550,11 @@ function taskLookAbout(ped, timeMS) end
 ---@param time number
 ---@param passengerSeat number
 function taskEnterCarAsPassenger(ped, car, time, passengerSeat) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
-function taskShuffleToNextCarSeat(ped, car) end
-=======
 ---@param timeMS number
 function taskEnterCarAsDriver(ped, car, timeMS) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param withActor number
@@ -10169,33 +6563,12 @@ function taskEnterCarAsDriver(ped, car, timeMS) end
 function taskChatWithChar(ped, withActor, flag, unknownFlag) end
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param rotationX number
----@param rotationY number
----@param rotationZ number
----@param tilt number
----@param switchstyle number
-function attachCameraToVehicle(car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, tilt, switchstyle) end
-=======
 ---@param X number
 ---@param Y number
 ---@param Z number
 function taskLeaveCarAndFlee(ped, car, X, Y, Z) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param toCar number
----@param tilt number
----@param switchstyle number
-function attachCameraToVehicleLookAtVehicle(car, offsetX, offsetY, offsetZ, toCar, tilt, switchstyle) end
-=======
 ---@param toX number
 ---@param toY number
 ---@param toZ number
@@ -10204,109 +6577,33 @@ function attachCameraToVehicleLookAtVehicle(car, offsetX, offsetY, offsetZ, toCa
 ---@param model number
 ---@param int9 number
 function taskCarDriveToCoord(ped, car, toX, toY, toZ, speed, int7, model, int9) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
 ---@param ped Ped
-<<<<<<< HEAD
----@param tilt number
----@param switchstyle number
-function attachCameraToVehicleLookAtChar(car, offsetX, offsetY, offsetZ, ped, tilt, switchstyle) end
-=======
 ---@param hijackCar Vehicle
 ---@param searchRadius number
 ---@param trafficBehavior number
 function taskCarDriveWander(ped, hijackCar, searchRadius, trafficBehavior) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param rotationX number
----@param rotationY number
----@param rotationZ number
----@param tilt number
----@param switchstyle number
-function attachCameraToChar(ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, tilt, switchstyle) end
-=======
 ---@param toX number
 ---@param toY number
 ---@param toZ number
 ---@param mode number
 ---@param time number
 function taskGoStraightToCoord(ped, toX, toY, toZ, mode, time) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param targetActor number
----@param tilt number
----@param switchstyle number
-function attachCameraToCharLookAtChar(ped, offsetX, offsetY, offsetZ, targetActor, tilt, switchstyle) end
-=======
 ---@param angle number
 function taskAchieveHeading(ped, angle) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param lights number
 function forceCarLights(car, lights) end
 
-<<<<<<< HEAD
----@param ASOrigin number
----@param pedtype number
-function addPedtypeAsAttractorUser(ASOrigin, pedtype) end
-
----@param object Object
----@param car Vehicle
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param rotationX number
----@param rotationY number
----@param rotationZ number
-function attachObjectToCar(object, car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
-
----@param object Object
----@param X number
----@param Y number
----@param Z number
----@param collisionDetection boolean
-function detachObject(object, X, Y, Z, collisionDetection) end
-
----@param car Vehicle
----@param toCar number
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param rotationX number
----@param rotationY number
----@param rotationZ number
-function attachCarToCar(car, toCar, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
-
----@param car Vehicle
----@param X number
----@param Y number
----@param Z number
----@param collisionDetection boolean
-function detachCar(car, X, Y, Z, collisionDetection) end
-
----@param object Object
----@return boolean result
-function isObjectAttached(object) end
-
----@param car Vehicle
----@return boolean result
-function isVehicleAttached(car) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/extendRoute)**
 ---
@@ -10371,7 +6668,6 @@ function taskSmartFleePoint(ped, fromX, fromY, fromZ, stopAtRadius, timelimit) e
 ---@param originRadius number
 ---@param timelimit number
 function taskSmartFleeChar(ped, fromActor, originRadius, timelimit) end
->>>>>>> head
 
 ---@param ped Ped
 function clearCharTasks(ped) end
@@ -10383,14 +6679,8 @@ function clearCharTasks(ped) end
 function taskTogglePedThreatScanner(ped, unknownFlag1, unknownFlag2, unknownFlag3) end
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param door number
----@param visible boolean
-function popCarDoor(car, door, visible) end
-=======
 ---@param path number
 function startPlaybackRecordedCar(car, path) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param door number
@@ -10457,94 +6747,6 @@ function getCarSpeedVector(car) end
 function getCarMass(car) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param timeMS number
-function taskDiveFromAttachmentAndGetUp(ped, timeMS) end
-
----@param ped Ped
----@param car Vehicle
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param position number
----@param shootingAngle1 number
----@param shootingAngle2 number
----@param weapon number
-function attachCharToBike(ped, car, offsetX, offsetY, offsetZ, position, shootingAngle1, shootingAngle2, weapon) end
-
----@param ped Ped
----@param toActor number
----@param timelimit number
----@param approachDistance number
----@param approachAngle number
-function taskGotoCharOffset(ped, toActor, timelimit, approachDistance, approachAngle) end
-
----@param ped Ped
----@param toX number
----@param toY number
----@param toZ number
----@param timeMS number
-function taskLookAtCoord(ped, toX, toY, toZ, timeMS) end
-
----@param ped Ped
----@param hide boolean
-function hideCharWeaponForScriptedCutscene(ped, hide) end
-
----@param ped Ped
----@return number speed
-function getCharSpeed(ped) end
-
----@param group number
----@param maker number
-function setGroupDecisionMaker(group, maker) end
-
----@param type number
----@return number maker
-function loadGroupDecisionMaker(type) end
-
----@param player Player
----@param mode boolean
-function disablePlayerSprint(player, mode) end
-
----@param ped Ped
----@param timeMS number
-function taskSitDown(ped, timeMS) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param targetX number
----@param targetY number
----@param targetZ number
----@param radius1 number
----@param radius2 number
----@return Searchlight searchlight
-function createSearchlight(atX, atY, atZ, targetX, targetY, targetZ, radius1, radius2) end
-
----@param searchlight Searchlight
-function deleteSearchlight(searchlight) end
-
----@param searchlight Searchlight
----@return boolean result
-function doesSearchlightExist(searchlight) end
-
----@param searchlight Searchlight
----@param fromX number
----@param fromY number
----@param fromZ number
----@param toX number
----@param toY number
----@param toZ number
----@param speed number
-function moveSearchlightBetweenCoords(searchlight, fromX, fromY, fromZ, toX, toY, toZ, speed) end
-
----@param searchlight Searchlight
----@param toX number
----@param toY number
----@param toZ number
----@param speed number
-function pointSearchlightAtCoord(searchlight, toX, toY, toZ, speed) end
-=======
 ---@param pathX number
 ---@param pathY number
 ---@param pathZ number
@@ -10719,27 +6921,14 @@ function isCharStoppedInAngledAreaOnFoot3d(ped, x1, y1, z1, x2, y2, z2, depth, f
 ---@param flag boolean
 ---@return boolean result
 function isCharStoppedInAngledAreaInCar3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
->>>>>>> head
 
 ---@param searchlight Searchlight
 ---@param ped Ped
-<<<<<<< HEAD
----@param speed number
-function pointSearchlightAtChar(searchlight, ped, speed) end
-=======
 ---@return boolean result
 function isCharInTaxi(ped) end
->>>>>>> head
 
 ---@param searchlight Searchlight
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function isCharInSearchlight(searchlight, ped) end
-
----@return boolean result
-function hasCutsceneLoaded() end
-=======
 ---@param toX number
 ---@param toY number
 ---@param toZ number
@@ -10754,20 +6943,8 @@ function taskGoToCoordAnyMeans(ped, toX, toY, toZ, mode, useCar) end
 ---@param pY number
 ---@return number zAngle
 function getHeadingFromVector2d(pX, pY) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param atX number
----@param atY number
----@param atZ number
-function taskTurnCharToFaceCoord(ped, atX, atY, atZ) end
-
----@param ped Ped
----@param car Vehicle
----@param speed number
-function taskDrivePointRoute(ped, car, speed) end
-=======
 ---@param animation string
 ---@param IFP string
 ---@param framedelta number
@@ -10786,7 +6963,6 @@ function taskPlayAnim(ped, animation, IFP, framedelta, loop, lockX, lockY, lockF
 ---@param x2 number
 ---@param y2 number
 function loadPathNodesInArea(x1, y1, x2, y2) end
->>>>>>> head
 
 ---@param fromX number
 ---@param fromY number
@@ -10797,48 +6973,6 @@ function loadPathNodesInArea(x1, y1, x2, y2) end
 ---@param energy number
 function fireSingleBullet(fromX, fromY, fromZ, targetX, targetY, targetZ, energy) end
 
-<<<<<<< HEAD
----@param fromX number
----@param fromY number
----@param fromZ number
----@param toX number
----@param toY number
----@param toZ number
----@param checkBuildings boolean
----@param checkVehicles boolean
----@param checkActors boolean
----@param checkObjects boolean
----@param checkParticles boolean
----@return boolean result
-function isLineOfSightClear(
-	fromX,
-	fromY,
-	fromZ,
-	toX,
-	toY,
-	toZ,
-	checkBuildings,
-	checkVehicles,
-	checkActors,
-	checkObjects,
-	checkParticles
-)
-end
-
----@param car Vehicle
----@return number roll
-function getCarRoll(car) end
-
----@param searchlight Searchlight
----@param car Vehicle
----@param speed number
-function pointSearchlightAtVehicle(searchlight, car, speed) end
-
----@param number number
----@param car Vehicle
----@return boolean result
-function isVehicleInSearchlight(number, car) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadCharDecisionMaker)**
 ---
@@ -10862,53 +6996,12 @@ function setCharDecisionMaker(ped, maker) end
 ---@param b number
 ---@param a number
 function setTextDropshadow(shadow, r, g, b, a) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param targetX number
----@param targetY number
----@param targetZ number
----@param radius number
----@param radius2 number
----@return Searchlight searchlight
-function createSearchlightOnVehicle(car, offsetX, offsetY, offsetZ, targetX, targetY, targetZ, radius, radius2) end
-=======
 ---@return boolean result
 function isPlaybackGoingOnForCar(car) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param toX number
----@param toY number
----@param toZ number
----@param mode number
----@param turnRadius number
----@param stopRadius number
----@param ped2 Ped
----@param offsetX number
----@param offsetY number
----@param offsetZ number
-function taskGoToCoordWhileAiming(ped, toX, toY, toZ, mode, turnRadius, stopRadius, ped2, offsetX, offsetY, offsetZ) end
-
----@param atX number
----@param atY number
----@param atZ number
----@param radius number
----@return number num
-function getNumberOfFiresInRange(atX, atY, atZ, radius) end
-
----@param searchlight Searchlight
----@return Marker marker
-function addBlipForSearchlight(searchlight) end
-
----@param car Vehicle
-function skipToEndAndStopPlaybackRecordedCar(car) end
-=======
 ---@param accuracy number
 function setSenseRange(ped, accuracy) end
 
@@ -10935,18 +7028,8 @@ function setCharAnimPlayingFlag(ped, animation, flag) end
 ---@param animation string
 ---@return number time
 function getCharAnimCurrentTime(ped, animation) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param car Vehicle
----@param performAction number
----@param timelimit number
-function taskCarTempAction(ped, car, performAction, timelimit) end
-
----@param enable boolean
-function setLaRiots(enable) end
-=======
 ---@param animation string
 ---@param time number
 function setCharAnimCurrentTime(ped, animation, time) end
@@ -10969,41 +7052,8 @@ function closeSequenceTask(task) end
 ---@param ped Ped
 ---@param task number
 function performSequenceTask(ped, task) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function removeCharFromGroup(ped) end
-
----@param searchlight Searchlight
----@param tower number
----@param housing number
----@param bulb number
----@param offsetX number
----@param offsetY number
----@param offsetZ number
-function attachSearchlightToSearchlightObject(searchlight, tower, housing, bulb, offsetX, offsetY, offsetZ) end
-
----@param enable boolean
-function switchEmergencyServices(enable) end
-
----@param type number
----@param atX number
----@param atY number
----@param atZ number
----@param pointX number
----@param pointY number
----@param pointZ number
----@param radius number
----@return Checkpoint checkpoint
-function createCheckpoint(type, atX, atY, atZ, pointX, pointY, pointZ, radius) end
-
----@param checkpoint Checkpoint
-function deleteCheckpoint(checkpoint) end
-
----@param enable boolean
-function switchRandomTrains(enable) end
-=======
 ---@param enable boolean
 function setCharCollision(ped, enable) end
 
@@ -11048,7 +7098,6 @@ function clearAttractor(handle) end
 ---@param task number
 ---@return Ped ped
 function createCharAtAttractor(pedtype, modelId, ASOrigin, task) end
->>>>>>> head
 
 ---@param type number
 ---@param atX number
@@ -11058,31 +7107,6 @@ function createCharAtAttractor(pedtype, modelId, ASOrigin, task) end
 ---@return Vehicle train
 function createMissionTrain(type, atX, atY, atZ, direction) end
 
-<<<<<<< HEAD
-function deleteMissionTrains() end
-
-function markMissionTrainsAsNoLongerNeeded() end
-
-function deleteAllTrains() end
-
----@param train Vehicle
----@param speed number
-function setTrainSpeed(train, speed) end
-
----@param train Vehicle
----@param speed number
-function setTrainCruiseSpeed(train, speed) end
-
----@param train Vehicle
----@return number caboose
-function getTrainCaboose(train) end
-
----@param player Player
-function deletePlayer(player) end
-
----@param mode boolean
-function setTwoPlayerCameraMode(mode) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/incrementIntStat)**
 ---
@@ -11173,7 +7197,6 @@ function setGroupMember(group, ped) end
 ---
 ---@param group number
 function removeGroup(group) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
@@ -11184,24 +7207,13 @@ function removeGroup(group) end
 function taskCarMission(ped, car, targetCar, order, maxSpeed, trafficFlag) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param toObject number
----@param timelimit number
----@param stopWithinRadius number
-function taskGoToObject(ped, toObject, timelimit, stopWithinRadius) end
-=======
 ---@param weapon number
 ---@param flags number
 ---@param time number
 ---@param chance number
 function taskKillCharOnFootWhileDucking(ped, weapon, flags, time, chance) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param roll boolean
-function taskWeaponRoll(ped, roll) end
-=======
 ---@param aimAt number
 ---@param timeMS number
 function taskAimGunAtChar(ped, aimAt, timeMS) end
@@ -11218,31 +7230,8 @@ function taskAimGunAtChar(ped, aimAt, timeMS) end
 ---@param stopRadius number
 ---@param lookAtActor number
 function taskGoToCoordWhileShooting(ped, toX, toY, toZ, mode, turnRadius, stopRadius, lookAtActor) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param bustActor number
-function taskCharArrestChar(ped, bustActor) end
-
----@param car Vehicle
----@param poolIndex number
----@return Model itemID
-function getAvailableVehicleMod(car, poolIndex) end
-
----@param component Model
----@return number type
-function getVehicleModType(component) end
-
----@param car Vehicle
----@param component Model
----@return number componentId
-function addVehicleMod(car, component) end
-
----@param car Vehicle
----@param componentId number
-function removeVehicleMod(car, componentId) end
-=======
 ---@param stay boolean
 function taskStayInSamePlace(ped, stay) end
 
@@ -11274,19 +7263,10 @@ function setSequenceToRepeat(pack, loop) end
 ---@param ped Ped
 ---@return number progess
 function getSequenceProgress(ped) end
->>>>>>> head
 
 ---@param component Model
 function requestVehicleMod(component) end
 
-<<<<<<< HEAD
----@param component Model
----@return boolean result
-function hasVehicleModLoaded(component) end
-
----@param component Model
-function markVehicleModAsNoLongerNeeded(component) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFollowNodeThresholdDistance)**
 ---
@@ -11304,7 +7284,6 @@ function setFollowNodeThresholdDistance(ped, dist) end
 ---@param type number
 ---@return Particle particle
 function createFxSystem(particle, pX, pY, pZ, type) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@return number num
@@ -11324,46 +7303,6 @@ function isGroupMember(ped, group) end
 ---@return boolean result
 function isGroupLeader(ped, group) end
 
-<<<<<<< HEAD
----@param group number
----@param range number
-function setGroupSeparationRange(group, range) end
-
----@param distance number
-function limitTwoPlayerDistance(distance) end
-
-function releaseTwoPlayerDistance() end
-
----@param can boolean
-function setPlayerPlayerTargetting(can) end
-
----@param fire number
----@return number X
----@return number Y
----@return number Z
-function getScriptFireCoords(fire) end
-
----@param forX number
----@param forY number
----@param forZ number
----@param direction number
----@return number X
----@return number Y
----@return number Z
----@return number ZAngle
-function getNthClosestCarNodeWithHeading(forX, forY, forZ, direction) end
-
----@param allow boolean
-function setPlayersCanBeInSeparateCars(allow) end
-
----@param car Vehicle
----@return boolean result
-function doesCarHaveStuckCarCheck(car) end
-
----@param car Vehicle
----@param speed number
-function setPlaybackSpeed(car, speed) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getIntStat)**
 ---
@@ -11430,30 +7369,8 @@ function removeDecisionMaker(maker) end
 ---@param ped Ped хэндл персонажа
 ---@return Model modelId ID скина
 function getCharModel(ped) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param range number
----@return boolean result
-function areAnyCharsNearChar(ped, range) end
-
-function skipCutsceneEnd() end
-
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
----@return number percentage
-function getPercentageTaggedInArea(x1, y1, x2, y2) end
-
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
----@param value boolean
-function setTagStatusInArea(x1, y1, x2, y2, value) end
-=======
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -11507,32 +7424,16 @@ function createFxSystemOnCharWithDirection(
 	type
 )
 end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param toX number
----@param toY number
----@param toZ number
-function carGotoCoordinatesRacing(car, toX, toY, toZ) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
 ---@param type number
 ---@return Particle particle
 function createFxSystemOnCar(particle, car, offsetX, offsetY, offsetZ, type) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param path number
-function startPlaybackRecordedCarUsingAi(car, path) end
-
----@param car Vehicle
----@param path number
-function skipInPlaybackRecordedCar(car, path) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -11565,7 +7466,6 @@ end
 ---@param type number
 ---@return Particle particle
 function createFxSystemOnObject(particle, object, offsetX, offsetY, offsetZ, type) end
->>>>>>> head
 
 ---@param maker number
 ---@param event number
@@ -11587,14 +7487,6 @@ function addCharDecisionMakerEventResponse(maker, event, taskID, respect, hate, 
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
-<<<<<<< HEAD
----@param boneId1 number
----@param boneId2 number
----@param performAnimation string
----@param IFPFile number
----@param time number
-function taskPickUpObject(ped, object, offsetX, offsetY, offsetZ, boneId1, boneId2, performAnimation, IFPFile, time) end
-=======
 ---@param rotationX number
 ---@param rotationY number
 ---@param rotationZ number
@@ -11612,7 +7504,6 @@ function createFxSystemOnObjectWithDirection(
 	flag
 )
 end
->>>>>>> head
 
 ---@param ped Ped
 ---@param object boolean
@@ -11621,10 +7512,6 @@ function dropObject(ped, object) end
 ---@param car Vehicle
 function explodeCarInCutscene(car) end
 
-<<<<<<< HEAD
----@param player Player
-function buildPlayerModel(player) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskDiveAndGetUp)**
 ---
@@ -11633,7 +7520,6 @@ function buildPlayerModel(player) end
 ---@param toOffsetY number
 ---@param time number
 function taskDiveAndGetUp(ped, toOffsetX, toOffsetY, time) end
->>>>>>> head
 
 ---@param hydra number
 ---@param car Vehicle
@@ -11653,18 +7539,6 @@ function planeFlyInDirection(plane, direction, altitudemin, altitudemax) end
 function planeFollowEntity(plane, ped, car, radius) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param drivebyActor number
----@param car Vehicle
----@param pX number
----@param pY number
----@param pZ number
----@param radiusX number
----@param radiusY number
----@param radiusZ boolean
----@param firingRate number
-function taskDriveBy(ped, drivebyActor, car, pX, pY, pZ, radiusX, radiusY, radiusZ, firingRate) end
-=======
 ---@param withActor number
 ---@param flag boolean
 ---@param unknownFlag number
@@ -11683,13 +7557,8 @@ function taskChatWithChar(ped, withActor, flag, unknownFlag) end
 ---@param tilt number
 ---@param switchstyle number
 function attachCameraToVehicle(car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, tilt, switchstyle) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param stay boolean
-function setCarStayInSlowLane(car, stay) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -11697,23 +7566,9 @@ function setCarStayInSlowLane(car, stay) end
 ---@param tilt number
 ---@param switchstyle number
 function attachCameraToVehicleLookAtVehicle(car, offsetX, offsetY, offsetZ, toCar, tilt, switchstyle) end
->>>>>>> head
 
 ---@param player Player
 ---@param car Vehicle
-<<<<<<< HEAD
-function takeRemoteControlOfCar(player, car) end
-
----@param object Model
----@param atX number
----@param atY number
----@param atZ number
----@param radius number
----@param smashed boolean
----@param damaged boolean
----@return boolean result
-function isClosestObjectOfTypeSmashedOrDamaged(object, atX, atY, atZ, radius, smashed, damaged) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -11735,19 +7590,8 @@ function attachCameraToVehicleLookAtChar(car, offsetX, offsetY, offsetZ, ped, ti
 ---@param tilt number
 ---@param switchstyle number
 function attachCameraToChar(ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, tilt, switchstyle) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function startSettingUpConversation(ped) end
-
-function finishSettingUpConversation() end
-
----@param ped Ped
----@param gxtString GxtString
----@return boolean result
-function isConversationAtNode(ped, gxtString) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -11769,13 +7613,8 @@ function forceCarLights(car, lights) end
 ---@param ASOrigin number
 ---@param pedtype number
 function addPedtypeAsAttractorUser(ASOrigin, pedtype) end
->>>>>>> head
 
 ---@param object Object
-<<<<<<< HEAD
----@return number health
-function getObjectHealth(object) end
-=======
 ---@param car Vehicle
 ---@param offsetX number
 ---@param offsetY number
@@ -11784,13 +7623,8 @@ function getObjectHealth(object) end
 ---@param rotationY number
 ---@param rotationZ number
 function attachObjectToCar(object, car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
->>>>>>> head
 
 ---@param object Object
-<<<<<<< HEAD
----@param health number
-function setObjectHealth(object, health) end
-=======
 ---@param X number
 ---@param Y number
 ---@param Z number
@@ -11819,18 +7653,8 @@ function attachCarToCar(car, toCar, offsetX, offsetY, offsetZ, rotationX, rotati
 ---@param Z number
 ---@param collisionDetection boolean
 function detachCar(car, X, Y, Z, collisionDetection) end
->>>>>>> head
 
 ---@param object Object
-<<<<<<< HEAD
----@param intensity number
-function breakObject(object, intensity) end
-
----@param heli Vehicle
----@param player Player
----@param radius number
-function heliAttackPlayer(heli, player, radius) end
-=======
 ---@return boolean result
 function isObjectAttached(object) end
 
@@ -11840,7 +7664,6 @@ function isObjectAttached(object) end
 ---@param car Vehicle
 ---@return boolean result
 function isVehicleAttached(car) end
->>>>>>> head
 
 ---@param heli Vehicle
 ---@param ped Ped
@@ -11850,11 +7673,6 @@ function heliFollowEntity(heli, ped, car, radius) end
 
 ---@param heli Vehicle
 ---@param ped Ped
-<<<<<<< HEAD
----@param car Vehicle
----@param radius number
-function policeHeliChaseEntity(heli, ped, car, radius) end
-=======
 ---@param unknownFlag1 boolean
 ---@param unknownFlag2 boolean
 ---@param unknownFlag3 boolean
@@ -11867,7 +7685,6 @@ function taskTogglePedThreatScanner(ped, unknownFlag1, unknownFlag2, unknownFlag
 ---@param door number
 ---@param visible boolean
 function popCarDoor(car, door, visible) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param hold boolean
@@ -11875,42 +7692,14 @@ function taskUseMobilePhone(ped, hold) end
 
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
-function taskWarpCharIntoCarAsDriver(ped, car) end
-=======
 ---@param door number
 function fixCarDoor(car, door) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param car Vehicle
 ---@param passengerseat number
 function taskWarpCharIntoCarAsPassenger(ped, car, passengerseat) end
 
-<<<<<<< HEAD
----@param generate boolean
-function switchCopsOnBikes(generate) end
-
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
----@param angle number
----@param sphere boolean
----@return boolean result
-function isFlameInAngledArea2d(x1, y1, x2, y2, angle, sphere) end
-
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@param angle number
----@param sphere boolean
----@return boolean result
-function isFlameInAngledArea3d(x1, y1, z1, x2, y2, z2, angle, sphere) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerTargettingAnything)**
 ---
@@ -11933,54 +7722,17 @@ function getActiveCameraCoordinates() end
 ---@return number Y
 ---@return number Z
 function getActiveCameraPointAt() end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param checkDistance number
----@param time number
----@param stuck boolean
----@param flipped boolean
----@param warp boolean
----@param path number
-function addStuckCarCheckWithWarp(car, checkDistance, time, stuck, flipped, warp, path) end
-=======
 ---@param component number
 ---@param effectFlag boolean
 function popCarPanel(car, component, effectFlag) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param door number
-function damageCarPanel(car, door) end
-=======
 ---@param componentB number
 function fixCarPanel(car, componentB) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param roll number
-function setCarRoll(car, roll) end
-
----@param modelId Model
----@return boolean result
-function suppressCarModel(modelId) end
-
----@param modelId Model
-function dontSuppressCarModel(modelId) end
-
-function dontSuppressAnyCarModels() end
-
----@param key number
----@return boolean result
-function isPs2KeyboardKeyPressed(key) end
-
----@param key number
----@return boolean result
-function isPs2KeyboardKeyJustPressed(key) end
-=======
 ---@param tire number
 function fixCarTire(car, tire) end
 
@@ -12032,7 +7784,6 @@ function getCarMass(car) end
 ---@param ped Ped
 ---@param timeMS number
 function taskDiveFromAttachmentAndGetUp(ped, timeMS) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param liftingObject number
@@ -12040,32 +7791,6 @@ function taskDiveFromAttachmentAndGetUp(ped, timeMS) end
 function isCharHoldingObject(ped, liftingObject) end
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param can boolean
-function setCarCanGoAgainstTraffic(car, can) end
-
----@param car Vehicle
----@param door number
-function damageCarDoor(car, door) end
-
----@param X number
----@param Y number
----@param Z number
----@param radius number
----@param model number
----@return Vehicle car
-function getRandomCarInSphereNoSave(X, Y, Z, radius, model) end
-
----@param X number
----@param Y number
----@param Z number
----@param radius number
----@param pedtypeCivilian boolean
----@param gang boolean
----@param prostitute boolean
----@return Ped ped
-function getRandomCharInSphere(X, Y, Z, radius, pedtypeCivilian, gang, prostitute) end
-=======
 ---@param offsetX number
 ---@param offsetY number
 ---@param offsetZ number
@@ -12101,33 +7826,8 @@ function taskLookAtCoord(ped, toX, toY, toZ, timeMS) end
 ---@param ped Ped
 ---@param hide boolean
 function hideCharWeaponForScriptedCutscene(ped, hide) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function hasCharBeenArrested(ped) end
-
----@param plane number
----@param throttle number
-function setPlaneThrottle(plane, throttle) end
-
----@param heli Vehicle
----@param X number
----@param Y number
----@param Z number
----@param minaltitude number
----@param maxaltitude number
-function heliLandAtCoords(heli, X, Y, Z, minaltitude, maxaltitude) end
-
----@param hydra number
-function planeStartsInAir(hydra) end
-
----@param acquaintance number
----@param pedtype number
----@param toPedtype number
-function setRelationship(acquaintance, pedtype, toPedtype) end
-=======
 ---@return number speed
 function getCharSpeed(ped) end
 
@@ -12172,41 +7872,12 @@ function taskSitDown(ped, timeMS) end
 ---@param radius2 number
 ---@return Searchlight searchlight
 function createSearchlight(atX, atY, atZ, targetX, targetY, targetZ, radius1, radius2) end
->>>>>>> head
 
 ---@param acquaintance number
 ---@param pedtype number
 ---@param toPedtype number
 function clearRelationship(acquaintance, pedtype, toPedtype) end
 
-<<<<<<< HEAD
----@param maker number
----@param event number
-function clearGroupDecisionMakerEventResponse(maker, event) end
-
----@param maker number
----@param event number
----@param taskID number
----@param respect number
----@param hate number
----@param like number
----@param dislike number
----@param inCar boolean
----@param onFoot boolean
-function addGroupDecisionMakerEventResponse(maker, event, taskID, respect, hate, like, dislike, inCar, onFoot) end
-
----@param texture number
----@param x number
----@param y number
----@param scaleX number
----@param scaleY number
----@param angle number
----@param r number
----@param g number
----@param b number
----@param a number
-function drawSpriteWithRotation(texture, x, y, scaleX, scaleY, angle, r, g, b, a) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesSearchlightExist)**
 ---
@@ -12236,28 +7907,12 @@ function moveSearchlightBetweenCoords(searchlight, fromX, fromY, fromZ, toX, toY
 ---@param toZ number
 ---@param speed number
 function pointSearchlightAtCoord(searchlight, toX, toY, toZ, speed) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param attractor number
-function taskUseAttractor(ped, attractor) end
-=======
 ---@param speed number
 function pointSearchlightAtChar(searchlight, ped, speed) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param atActor number
----@param timelimit number
-function taskShootAtChar(ped, atActor, timelimit) end
-
----@param flags number
----@param radius number
----@param pedsToScan number
-function setInformRespectedFriends(flags, radius, pedsToScan) end
-=======
 ---@return boolean result
 function isCharInSearchlight(searchlight, ped) end
 
@@ -12266,63 +7921,14 @@ function isCharInSearchlight(searchlight, ped) end
 ---
 ---@return boolean result
 function hasCutsceneLoaded() end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param event number
----@return boolean result
-function isCharRespondingToEvent(ped, event) end
-
----@param object Object
----@param visibility boolean
-function setObjectVisible(object, visibility) end
-=======
 ---@param atX number
 ---@param atY number
 ---@param atZ number
 function taskTurnCharToFaceCoord(ped, atX, atY, atZ) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param fleeFrom number
----@param runDistance number
----@param time number
----@param changeCourse boolean
----@param unkTime1 number
----@param unkTime2 number
----@param awayRadius number
-function taskFleeCharAnyMeans(ped, fleeFrom, runDistance, time, changeCourse, unkTime1, unkTime2, awayRadius) end
-
-function flushPatrolRoute() end
-
----@param X number
----@param Y number
----@param Z number
----@param animation string
----@param IFPFile string
-function extendPatrolRoute(X, Y, Z, animation, IFPFile) end
-
----@param object Object
----@param animation string
----@param IFPFile string
----@param framedelta number
----@param lockF boolean
----@param loop boolean
----@return boolean result
-function playObjectAnim(object, animation, IFPFile, framedelta, lockF, loop) end
-
----@param zoom number
-function setRadarZoom(zoom) end
-
----@param marker Marker
----@return boolean result
-function doesBlipExist(marker) end
-
----@param shopping GxtString
-function loadPrices(shopping) end
-=======
 ---@param car Vehicle
 ---@param speed number
 function taskDrivePointRoute(ped, car, speed) end
@@ -12432,7 +8038,6 @@ function taskGoToCoordWhileAiming(ped, toX, toY, toZ, mode, turnRadius, stopRadi
 ---@param radius number
 ---@return number num
 function getNumberOfFiresInRange(atX, atY, atZ, radius) end
->>>>>>> head
 
 ---@param shopping GxtString
 function loadShop(shopping) end
@@ -12440,15 +8045,6 @@ function loadShop(shopping) end
 ---@return number num
 function getNumberOfItemsInShop() end
 
-<<<<<<< HEAD
----@param index number
----@return number item
-function getItemInShop(index) end
-
----@param item number
----@return number price
-function getPriceOfItem(item) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskCarTempAction)**
 ---
@@ -12463,15 +8059,8 @@ function taskCarTempAction(ped, car, performAction, timelimit) end
 ---
 ---@param enable boolean
 function setLaRiots(enable) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function taskDead(ped) end
-
----@param car Vehicle
-function setCarAsMissionCar(car) end
-=======
 function removeCharFromGroup(ped) end
 
 ---
@@ -12505,21 +8094,11 @@ function switchEmergencyServices(enable) end
 ---@param radius number
 ---@return Checkpoint checkpoint
 function createCheckpoint(type, atX, atY, atZ, pointX, pointY, pointZ, radius) end
->>>>>>> head
 
 ---@param zone GxtString
 ---@param popcycle number
 function setZonePopulationType(zone, popcycle) end
 
-<<<<<<< HEAD
----@param zone GxtString
----@param density number
-function setZoneDealerStrength(zone, density) end
-
----@param zone GxtString
----@return number strength
-function getZoneDealerStrength(zone) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchRandomTrains)**
 ---
@@ -12536,7 +8115,6 @@ function switchRandomTrains(enable) end
 ---@param direction boolean
 ---@return Vehicle train
 function createMissionTrain(type, atX, atY, atZ, direction) end
->>>>>>> head
 
 ---@param zone GxtString
 ---@param gang number
@@ -12551,21 +8129,6 @@ function getZoneGangStrength(zone, gang) end
 ---@return boolean result
 function isMessageBeingDisplayed() end
 
-<<<<<<< HEAD
----@param ped Ped
----@param targetPriority boolean
-function setCharIsTargetPriority(ped, targetPriority) end
-
----@param modelNumplate Model
----@param townTexture number
-function customPlateDesignForNextCar(modelNumplate, townTexture) end
-
----@param ped Ped
----@param car Vehicle
----@param timeMS number
----@param stopAtDistance number
-function taskGotoCar(ped, car, timeMS, stopAtDistance) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTrainSpeed)**
 ---
@@ -12586,18 +8149,10 @@ function setTrainCruiseSpeed(train, speed) end
 ---@param train Vehicle
 ---@return number caboose
 function getTrainCaboose(train) end
->>>>>>> head
 
 ---@param group string
 function requestIpl(group) end
 
-<<<<<<< HEAD
----@param group string
-function removeIpl(group) end
-
----@param group string
-function removeIplDiscreetly(group) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTwoPlayerCameraMode)**
 ---
@@ -12614,47 +8169,22 @@ function setTwoPlayerCameraMode(mode) end
 ---@param maxSpeed number
 ---@param trafficFlag number
 function taskCarMission(ped, car, targetCar, order, maxSpeed, trafficFlag) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param acquaintance number
----@param pedtype number
-function setCharRelationship(ped, acquaintance, pedtype) end
-=======
 ---@param toObject number
 ---@param timelimit number
 ---@param stopWithinRadius number
 function taskGoToObject(ped, toObject, timelimit, stopWithinRadius) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param acquaintance number
----@param pedtype number
-function clearCharRelationship(ped, acquaintance, pedtype) end
-=======
 ---@param roll boolean
 function taskWeaponRoll(ped, roll) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param acquaintance number
-function clearAllCharRelationships(ped, acquaintance) end
-=======
 ---@param bustActor number
 function taskCharArrestChar(ped, bustActor) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@return number pitch
-function getCarPitch(car) end
-
----@return number interior
-function getActiveInterior() end
-=======
 ---@param poolIndex number
 ---@return Model itemID
 function getAvailableVehicleMod(car, poolIndex) end
@@ -12665,20 +8195,10 @@ function getAvailableVehicleMod(car, poolIndex) end
 ---@param component Model
 ---@return number type
 function getVehicleModType(component) end
->>>>>>> head
 
 ---@param heli Vehicle
 ---@param ped Ped
 ---@param car Vehicle
-<<<<<<< HEAD
----@param minaltitude number
----@param maxaltitude number
-function heliKeepEntityInView(heli, ped, car, minaltitude, maxaltitude) end
-
----@param id number
----@return number model
-function getWeapontypeModel(id) end
-=======
 ---@param component Model
 ---@return number componentId
 function addVehicleMod(car, component) end
@@ -12689,25 +8209,17 @@ function addVehicleMod(car, component) end
 ---@param car Vehicle
 ---@param componentId number
 function removeVehicleMod(car, componentId) end
->>>>>>> head
 
 ---@param id number
 ---@return number slot
 function getWeapontypeSlot(id) end
 
-<<<<<<< HEAD
----@param item number
----@param flag number
----@return number info
-function getShoppingExtraInfo(item, flag) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasVehicleModLoaded)**
 ---
 ---@param component Model
 ---@return boolean result
 function hasVehicleModLoaded(component) end
->>>>>>> head
 
 ---@param player Player
 ---@param texture number
@@ -12715,38 +8227,6 @@ function hasVehicleModLoaded(component) end
 ---@param bodypart number
 function givePlayerClothes(player, texture, model, bodypart) end
 
-<<<<<<< HEAD
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@return number num
-function getNumberOfFiresInArea(x1, y1, z1, x2, y2, z2) end
-
----@param heli Vehicle
----@param magnet boolean
-function attachWinchToHeli(heli, magnet) end
-
----@param heli Vehicle
-function releaseEntityFromWinch(heli) end
-
----@param train Vehicle
----@param handle number
----@return number carriage
-function getTrainCarriage(train, handle) end
-
----@param heli Vehicle
----@return Vehicle carHandle
----@return Ped pedHandle
----@return Object objectHandle
-function grabEntityOnWinch(heli) end
-
----@param item number
----@return GxtString name
-function getNameOfItem(item) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumAvailablePaintjobs)**
 ---
@@ -12789,37 +8269,11 @@ function setGroupSeparationRange(group, range) end
 ---
 ---@param distance number
 function limitTwoPlayerDistance(distance) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param climb boolean
 function taskClimb(ped, climb) end
 
-<<<<<<< HEAD
----@param item number
-function buyItem(item) end
-
----@param ped Ped
-function clearCharTasksImmediately(ped) end
-
-function storeClothesState() end
-
-function restoreClothesState() end
-
----@param magnet number
----@return number length
-function getRopeHeightForObject(magnet) end
-
----@param magnet number
----@param length number
-function setRopeHeightForObject(magnet, length) end
-
----@param magnet number
----@return Vehicle carHandle
----@return Ped pedHandle
----@return Object objectHandle
-function grabEntityOnRopeForObject(magnet) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerPlayerTargetting)**
 ---
@@ -12875,38 +8329,10 @@ function setPlaybackSpeed(car, speed) end
 ---@param range number
 ---@return boolean result
 function areAnyCharsNearChar(ped, range) end
->>>>>>> head
 
 ---@param magnet number
 function releaseEntityFromRopeForObject(magnet) end
 
-<<<<<<< HEAD
-function playerEnteredDockCrane() end
-
-function playerEnteredBuildingsiteCrane() end
-
-function playerLeftCrane() end
-
----@param ped Ped
----@param sequence number
----@param unkProgress1 number
----@param unkProgress2 number
-function performSequenceTaskFromProgress(ped, sequence, unkProgress1, unkProgress2) end
-
----@param speed number
-function setNextDesiredMoveState(speed) end
-
----@param ped Ped
----@param followActor number
----@param minradius number
----@param maxradius number
-function taskGotoCharAiming(ped, followActor, minradius, maxradius) end
-
----@param ped Ped
----@return number unkProgress1
----@return number unkProgress2
-function getSequenceProgressRecursive(ped) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPercentageTaggedInArea)**
 ---
@@ -12970,22 +8396,8 @@ function clearCharDecisionMakerEventResponse(maker, event) end
 ---@param inCar boolean
 ---@param onFoot boolean
 function addCharDecisionMakerEventResponse(maker, event, taskID, respect, hate, like, dislike, inCar, onFoot) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param attackActor number
----@param time number
-function taskKillCharOnFootTimed(ped, attackActor, time) end
-
----@param X number
----@param Y number
----@param Z number
----@return number X
----@return number Y
----@return number Z
-function getNearestTagPosition(X, Y, Z) end
-=======
 ---@param object Object
 ---@param offsetX number
 ---@param offsetY number
@@ -12996,15 +8408,10 @@ function getNearestTagPosition(X, Y, Z) end
 ---@param IFPFile number
 ---@param time number
 function taskPickUpObject(ped, object, offsetX, offsetY, offsetZ, boneId1, boneId2, performAnimation, IFPFile, time) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
-function taskJetpack(ped) end
-=======
 ---@param object boolean
 function dropObject(ped, object) end
->>>>>>> head
 
 ---@param enable boolean
 function setArea51SamSite(enable) end
@@ -13014,33 +8421,6 @@ function setArea51SamSite(enable) end
 ---@return Searchlight searchlight
 function isCharInAnySearchlight(ped) end
 
-<<<<<<< HEAD
----@param trailer Vehicle
----@param car Vehicle
----@return boolean result
-function isTrailerAttachedToCab(trailer, car) end
-
----@param trailer Vehicle
----@param cab Vehicle
-function detachTrailerFromCab(trailer, cab) end
-
----@param player Player
----@return number group
-function getPlayerGroup(player) end
-
----@return GxtString shop
-function getLoadedShop() end
-
----@param track number
----@return number int2
----@return number int3
----@return number int4
-function getBeatProximity(track) end
-
----@param group number
----@param command number
-function setGroupDefaultTaskAllocator(group, command) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/planeAttackPlayer)**
 ---
@@ -13088,17 +8468,11 @@ function taskDriveBy(ped, drivebyActor, car, pX, pY, pZ, radiusX, radiusY, radiu
 ---@param car Vehicle
 ---@param stay boolean
 function setCarStayInSlowLane(car, stay) end
->>>>>>> head
 
 ---@param player Player
 ---@param enabled boolean
 function setPlayerGroupRecruitment(player, enabled) end
 
-<<<<<<< HEAD
----@param heli Vehicle
----@param power number
-function activateHeliSpeedCheat(heli, power) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isClosestObjectOfTypeSmashedOrDamaged)**
 ---
@@ -13111,7 +8485,6 @@ function activateHeliSpeedCheat(heli, power) end
 ---@param damaged boolean
 ---@return boolean result
 function isClosestObjectOfTypeSmashedOrDamaged(object, atX, atY, atZ, radius, smashed, damaged) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param maker number
@@ -13120,27 +8493,6 @@ function taskSetCharDecisionMaker(ped, maker) end
 ---@param train Vehicle
 function deleteMissionTrain(train) end
 
-<<<<<<< HEAD
----@param train Vehicle
-function markMissionTrainAsNoLongerNeeded(train) end
-
----@param marker Marker
----@param displayAlways boolean
-function setBlipAlwaysDisplayOnZoomedRadar(marker, displayAlways) end
-
----@param path number
-function requestCarRecording(path) end
-
----@param path number
----@return boolean result
-function hasCarRecordingBeenLoaded(path) end
-
----@param train Vehicle
----@param X number
----@param Y number
----@param Z number
-function setMissionTrainCoordinates(train, X, Y, Z) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isConversationAtNode)**
 ---
@@ -13177,13 +8529,8 @@ function breakObject(object, intensity) end
 ---@param player Player
 ---@param radius number
 function heliAttackPlayer(heli, player, radius) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param object Object
-function taskComplexPickupObject(ped, object) end
-=======
 ---@param car Vehicle
 ---@param radius number
 function heliFollowEntity(heli, ped, car, radius) end
@@ -13196,37 +8543,16 @@ function heliFollowEntity(heli, ped, car, radius) end
 ---@param car Vehicle
 ---@param radius number
 function policeHeliChaseEntity(heli, ped, car, radius) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param listen boolean
-function listenToPlayerGroupCommands(ped, listen) end
-=======
 ---@param hold boolean
 function taskUseMobilePhone(ped, hold) end
->>>>>>> head
 
 ---@param player Player
 ---@param can boolean
 function setPlayerEnterCarButton(player, can) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param toX number
----@param toY number
----@param toZ number
----@param angle number
----@param withinRadius number
-function taskCharSlideToCoord(ped, toX, toY, toZ, angle, withinRadius) end
-
----@return number weekday
-function getCurrentDayOfWeek() end
-
----@param id number
----@param gxtString GxtString
-function registerScriptBrainForCodeUse(id, gxtString) end
-=======
 ---@param car Vehicle
 ---@param passengerseat number
 function taskWarpCharIntoCarAsPassenger(ped, car, passengerseat) end
@@ -13262,18 +8588,8 @@ function isFlameInAngledArea2d(x1, y1, x2, y2, angle, sphere) end
 ---@param sphere boolean
 ---@return boolean result
 function isFlameInAngledArea3d(x1, y1, z1, x2, y2, z2, angle, sphere) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param vecX number
----@param vecY number
----@param vecZ number
----@param rotationX number
----@param rotationY number
----@param rotationZ number
-function applyForceToCar(car, vecX, vecY, vecZ, rotationX, rotationY, rotationZ) end
-=======
 ---@param checkDistance number
 ---@param time number
 ---@param stuck boolean
@@ -13281,30 +8597,12 @@ function applyForceToCar(car, vecX, vecY, vecZ, rotationX, rotationY, rotationZ)
 ---@param warp boolean
 ---@param path number
 function addStuckCarCheckWithWarp(car, checkDistance, time, stuck, flipped, warp, path) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param vecX number
----@param vecY number
----@param vecZ number
-function addToCarRotationVelocity(car, vecX, vecY, vecZ) end
-=======
 ---@param door number
 function damageCarPanel(car, door) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param vecX number
----@param vecY number
----@param vecZ number
-function setCarRotationVelocity(car, vecX, vecY, vecZ) end
-
----@param ped Ped
----@param rate number
-function setCharShootRate(ped, rate) end
-=======
 ---@param roll number
 function setCarRoll(car, roll) end
 
@@ -13314,23 +8612,11 @@ function setCarRoll(car, roll) end
 ---@param modelId Model
 ---@return boolean result
 function suppressCarModel(modelId) end
->>>>>>> head
 
 ---@param modelId Model
 ---@return boolean result
 function isModelInCdimage(modelId) end
 
-<<<<<<< HEAD
----@param x1 number
----@param y1 number
----@param x2 number
----@param y2 number
-function removeOilPuddlesInArea(x1, y1, x2, y2) end
-
----@param marker Marker
----@param type boolean
-function setBlipAsFriendly(marker, type) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPs2KeyboardKeyPressed)**
 ---
@@ -13344,24 +8630,8 @@ function isPs2KeyboardKeyPressed(key) end
 ---@param key number
 ---@return boolean result
 function isPs2KeyboardKeyJustPressed(key) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param toX number
----@param toY number
----@param toZ number
-function taskSwimToCoord(ped, toX, toY, toZ) end
-
----@param modelId Model
----@return number x1
----@return number y1
----@return number z1
----@return number x2
----@return number y2
----@return number z2
-function getModelDimensions(modelId) end
-=======
 ---@param liftingObject number
 ---@return boolean result
 function isCharHoldingObject(ped, liftingObject) end
@@ -13403,63 +8673,8 @@ function getRandomCarInSphereNoSave(X, Y, Z, radius, model) end
 ---@param prostitute boolean
 ---@return Ped ped
 function getRandomCharInSphere(X, Y, Z, radius, pedtypeCivilian, gang, prostitute) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return number maker
-function copyCharDecisionMaker(ped) end
-
----@param group number
----@return number maker
-function copyGroupDecisionMaker(group) end
-
----@param ped Ped
----@param car Vehicle
----@param speed number
----@param flag1 number
----@param flag2 number
----@param flag3 number
-function taskDrivePointRouteAdvanced(ped, car, speed, flag1, flag2, flag3) end
-
----@param acquaintance number
----@param ofActors number
----@param toActors number
----@return boolean result
-function isRelationshipSet(acquaintance, ofActors, toActors) end
-
----@param car Vehicle
----@param enable boolean
-function setCarAlwaysCreateSkids(car, enable) end
-
----@param X number
----@param Y number
----@param Z number
----@return number city
-function getCityFromCoords(X, Y, Z) end
-
----@param X number
----@param Y number
----@param Z number
----@param radius number
----@param modelId Model
----@return boolean result
-function hasObjectOfTypeBeenSmashed(X, Y, Z, radius, modelId) end
-
----@param player Player
----@return boolean result
-function isPlayerPerformingWheelie(player) end
-
----@param player Player
----@return boolean result
-function isPlayerPerformingStoppie(player) end
-
----@param checkpoint Checkpoint
----@param X number
----@param Y number
----@param Z number
-function setCheckpointCoords(checkpoint, X, Y, Z) end
-=======
 ---@return boolean result
 function hasCharBeenArrested(ped) end
 
@@ -13589,7 +8804,6 @@ function setObjectVisible(object, visibility) end
 ---@param unkTime2 number
 ---@param awayRadius number
 function taskFleeCharAnyMeans(ped, fleeFrom, runDistance, time, changeCourse, unkTime1, unkTime2, awayRadius) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param f1 number
@@ -13598,12 +8812,6 @@ function taskFleeCharAnyMeans(ped, fleeFrom, runDistance, time, changeCourse, un
 ---@param f4 number
 function controlCarHydraulics(car, f1, f2, f3, f4) end
 
-<<<<<<< HEAD
----@param group number
----@return number numberOfLeaders
----@return number numberOfMembers
-function getGroupSize(group) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/extendPatrolRoute)**
 ---
@@ -13613,18 +8821,8 @@ function getGroupSize(group) end
 ---@param animation string
 ---@param IFPFile string
 function extendPatrolRoute(X, Y, Z, animation, IFPFile) end
->>>>>>> head
 
 ---@param object Object
-<<<<<<< HEAD
----@param destructible boolean
-function setObjectCollisionDamageEffect(object, destructible) end
-
----@param car Vehicle
----@param followCar number
----@param radius number
-function setCarFollowCar(car, followCar, radius) end
-=======
 ---@param animation string
 ---@param IFPFile string
 ---@param framedelta number
@@ -13645,28 +8843,11 @@ function setRadarZoom(zoom) end
 ---@param marker Marker
 ---@return boolean result
 function doesBlipExist(marker) end
->>>>>>> head
 
 function playerEnteredQuarryCrane() end
 
 function playerEnteredLasVegasCrane() end
 
-<<<<<<< HEAD
----@param interior GxtString
----@param access boolean
-function switchEntryExit(interior, access) end
-
----@param X number
----@param Y number
----@param GXT GxtString
----@param value number
----@param flag number
-function displayTextWithFloat(X, Y, GXT, value, flag) end
-
----@param group number
----@return boolean result
-function doesGroupExist(group) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfItemsInShop)**
 ---
@@ -13686,7 +8867,6 @@ function getItemInShop(index) end
 ---@param item number
 ---@return number price
 function getPriceOfItem(item) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param fightingStyle number
@@ -13697,60 +8877,6 @@ function giveMeleeAttackToChar(ped, fightingStyle, moves) end
 ---@param hydraulics boolean
 function setCarHydraulics(car, hydraulics) end
 
-<<<<<<< HEAD
----@return boolean result
-function is2playerGameGoingOn() end
-
----@return number fov
-function getCameraFov() end
-
----@param car Vehicle
----@return boolean result
-function doesCarHaveHydraulics(car) end
-
----@param ped Ped
----@param toX number
----@param toY number
----@param toZ number
----@param angle number
----@param radius number
----@param animation string
----@param ifp1 number
----@param ifp2 number
----@param LA boolean
----@param LX boolean
----@param LY boolean
----@param LF boolean
----@param LT number
-function taskCharSlideToCoordAndPlayAnim(
-	ped,
-	toX,
-	toY,
-	toZ,
-	angle,
-	radius,
-	animation,
-	ifp1,
-	ifp2,
-	LA,
-	LX,
-	LY,
-	LF,
-	LT
-)
-end
-
----@param player Player
----@return number number
-function getTotalNumberOfPedsKilledByPlayer(player) end
-
----@param object Object
----@param spoot number
----@return number X
----@return number Y
----@return number Z
-function getLevelDesignCoordsForObject(object, spoot) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setZonePopulationType)**
 ---
@@ -13793,24 +8919,8 @@ function getZoneGangStrength(zone, gang) end
 ---
 ---@return boolean result
 function isMessageBeingDisplayed() end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return number event
-function getCharHighestPriorityEvent(ped) end
-
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@return number X
----@return number Y
----@return number Z
-function getParkingNodeInArea(x1, y1, z1, x2, y2, z2) end
-=======
 ---@param targetPriority boolean
 function setCharIsTargetPriority(ped, targetPriority) end
 
@@ -13820,18 +8930,12 @@ function setCharIsTargetPriority(ped, targetPriority) end
 ---@param modelNumplate Model
 ---@param townTexture number
 function customPlateDesignForNextCar(modelNumplate, townTexture) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return Vehicle car
-function getCarCharIsUsing(ped) end
-=======
 ---@param car Vehicle
 ---@param timeMS number
 ---@param stopAtDistance number
 function taskGotoCar(ped, car, timeMS, stopAtDistance) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param animation string
@@ -13887,31 +8991,16 @@ end
 function setObjectCoordinatesAndVelocity(object, X, Y, Z) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param stay boolean
-function setCharKindaStayInSamePlace(ped, stay) end
-=======
 ---@param acquaintance number
 ---@param pedtype number
 function setCharRelationship(ped, acquaintance, pedtype) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param walkMode number
----@param routeMode number
-function taskFollowPatrolRoute(ped, walkMode, routeMode) end
-=======
 ---@param acquaintance number
 ---@param pedtype number
 function clearCharRelationship(ped, acquaintance, pedtype) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return boolean result
-function isCharInAir(ped) end
-=======
 ---@param acquaintance number
 function clearAllCharRelationships(ped, acquaintance) end
 
@@ -13927,40 +9016,8 @@ function getCarPitch(car) end
 ---
 ---@return number interior
 function getActiveInterior() end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return number height
-function getCharHeightAboveGround(ped) end
-
----@param ped Ped
----@param skill number
-function setCharWeaponSkill(ped, skill) end
-
----@param size number
----@param r number
----@param g number
----@param b number
----@param a number
-function setTextEdge(size, r, g, b, a) end
-
----@param car Vehicle
----@param broken boolean
-function setCarEngineBroken(car, broken) end
-
----@param modelId Model
----@return boolean result
-function isThisModelABoat(modelId) end
-
----@param modelId Model
----@return boolean result
-function isThisModelAPlane(modelId) end
-
----@param modelId Model
----@return boolean result
-function isThisModelAHeli(modelId) end
-=======
 ---@param car Vehicle
 ---@param minaltitude number
 ---@param maxaltitude number
@@ -14015,18 +9072,10 @@ function getNumberOfFiresInArea(x1, y1, z1, x2, y2, z2) end
 ---@param heli Vehicle
 ---@param magnet boolean
 function attachWinchToHeli(heli, magnet) end
->>>>>>> head
 
 ---@param enable boolean
 function setFirstPersonInCarCameraMode(enable) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param ped2 Ped
----@param unk1 number
----@param unk2 number
-function taskGreetPartner(ped, ped2, unk1, unk2) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTrainCarriage)**
 ---
@@ -14034,22 +9083,10 @@ function taskGreetPartner(ped, ped2, unk1, unk2) end
 ---@param handle number
 ---@return number carriage
 function getTrainCarriage(train, handle) end
->>>>>>> head
 
 ---@param heli Vehicle
 function setHeliBladesFullSpeed(heli) end
 
-<<<<<<< HEAD
----@param enable boolean
-function displayHud(enable) end
-
----@param object Object
----@param lod number
-function connectLods(object, lod) end
-
----@param max number
-function setMaxFireGenerations(max) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNameOfItem)**
 ---
@@ -14069,7 +9106,6 @@ function taskClimb(ped, climb) end
 ---
 ---@param item number
 function buyItem(item) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param animation string
@@ -14082,27 +9118,6 @@ function taskDieNamedAnim(ped, animation, ifp1, ifp2, time) end
 ---@param able boolean
 function setPlayerDuckButton(player, able) end
 
-<<<<<<< HEAD
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
-function setPoolTableCoords(x1, y1, z1, x2, y2, z2) end
-
----@param object Object
----@return boolean result
-function hasObjectBeenPhotographed(object) end
-
----@param rotationZ number
----@param rotationY number
-function doCameraBump(rotationZ, rotationY) end
-
----@return number day
----@return number month
-function getCurrentDate() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRopeHeightForObject)**
 ---
@@ -14131,29 +9146,12 @@ function grabEntityOnRopeForObject(magnet) end
 ---
 ---@param magnet number
 function releaseEntityFromRopeForObject(magnet) end
->>>>>>> head
 
 ---@param object Object
 ---@param animation string
 ---@param speed number
 function setObjectAnimSpeed(object, animation, speed) end
 
-<<<<<<< HEAD
----@param object Object
----@param anim string
----@return boolean result
-function isObjectPlayingAnim(object, anim) end
-
----@param object Object
----@param animation string
----@return number progress
-function getObjectAnimCurrentTime(object, animation) end
-
----@param object Object
----@param animation string
----@param progress number
-function setObjectAnimCurrentTime(object, animation, progress) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/performSequenceTaskFromProgress)**
 ---
@@ -14177,27 +9175,13 @@ function setNextDesiredMoveState(speed) end
 ---@param minradius number
 ---@param maxradius number
 function taskGotoCharAiming(ped, followActor, minradius, maxradius) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param vecX number
----@param vecY number
----@param vecZ number
-function setCharVelocity(ped, vecX, vecY, vecZ) end
-=======
 ---@return number unkProgress1
 ---@return number unkProgress2
 function getSequenceProgressRecursive(ped) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return number vecX
----@return number vecY
----@return number vecZ
-function getCharVelocity(ped) end
-=======
 ---@param attackActor number
 ---@param time number
 function taskKillCharOnFootTimed(ped, attackActor, time) end
@@ -14212,19 +9196,8 @@ function taskKillCharOnFootTimed(ped, attackActor, time) end
 ---@return number Y
 ---@return number Z
 function getNearestTagPosition(X, Y, Z) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param vecX number
----@param vecY number
----@param vecZ number
-function setCharRotation(ped, vecX, vecY, vecZ) end
-
----@param car Vehicle
----@return number value
-function getCarUprightValue(car) end
-=======
 function taskJetpack(ped) end
 
 ---
@@ -14240,39 +9213,16 @@ function setArea51SamSite(enable) end
 ---@return boolean result
 ---@return Searchlight searchlight
 function isCharInAnySearchlight(ped) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param interior number
-function setVehicleInterior(car, interior) end
-=======
 ---@return boolean result
 function isTrailerAttachedToCab(trailer, car) end
->>>>>>> head
 
 ---@param car Vehicle
 ---@param gun boolean
 function selectWeaponsForVehicle(car, gun) end
 
 ---@param player Player
-<<<<<<< HEAD
----@return number city
-function getCityPlayerIsIn(player) end
-
----@param X number
----@param Y number
----@param Z number
----@return GxtString name
-function getNameOfZone(X, Y, Z) end
-
----@param activate boolean
-function activateInteriorPeds(activate) end
-
----@param car Vehicle
----@param unk boolean
-function setVehicleCanBeTargetted(car, unk) end
-=======
 ---@return number group
 function getPlayerGroup(player) end
 
@@ -14311,26 +9261,8 @@ function setPlayerGroupRecruitment(player, enabled) end
 ---@param heli Vehicle
 ---@param power number
 function activateHeliSpeedCheat(heli, power) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param followActor number
-function taskFollowFootsteps(ped, followActor) end
-
----@param ped Ped
----@param health number
----@param affectArmour boolean
-function damageChar(ped, health, affectArmour) end
-
----@param car Vehicle
----@param can boolean
-function setCarCanBeVisiblyDamaged(car, can) end
-
----@param heli Vehicle
----@param dist number
-function setHeliReachedTargetDistance(heli, dist) end
-=======
 ---@param maker number
 function taskSetCharDecisionMaker(ped, maker) end
 
@@ -14374,7 +9306,6 @@ function hasCarRecordingBeenLoaded(path) end
 ---@param Y number
 ---@param Z number
 function setMissionTrainCoordinates(train, X, Y, Z) end
->>>>>>> head
 
 ---@param ped Ped
 ---@param X number
@@ -14384,39 +9315,14 @@ function setMissionTrainCoordinates(train, X, Y, Z) end
 function getSoundLevelAtCoords(ped, X, Y, Z) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param enable boolean
-function setCharAllowedToDuck(ped, enable) end
-=======
 ---@param listen boolean
 function listenToPlayerGroupCommands(ped, listen) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
----@param toAngle number
----@param rotationSpeed number
-function setHeadingForAttachedPlayer(player, toAngle, rotationSpeed) end
-=======
 ---@param can boolean
 function setPlayerEnterCarButton(player, can) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param alongisdeActor number
-function taskWalkAlongsideChar(ped, alongisdeActor) end
-
----@param car Model
----@param X number
----@param Y number
----@param Z number
-function createEmergencyServicesCar(car, X, Y, Z) end
-
----@param ped Ped
----@param stay boolean
-function taskKindaStayInSamePlace(ped, stay) end
-=======
 ---@param toX number
 ---@param toY number
 ---@param toZ number
@@ -14457,66 +9363,14 @@ function applyForceToCar(car, vecX, vecY, vecZ, rotationX, rotationY, rotationZ)
 ---@param vecY number
 ---@param vecZ number
 function addToCarRotationVelocity(car, vecX, vecY, vecZ) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param path number
-function startPlaybackRecordedCarLooped(car, path) end
-=======
 ---@param vecX number
 ---@param vecY number
 ---@param vecZ number
 function setCarRotationVelocity(car, vecX, vecY, vecZ) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param interior number
-function setCharInterior(ped, interior) end
-
----@param player Player
----@return boolean result
-function isAttachedPlayerHeadingAchieved(player) end
-
----@param X number
----@param Y number
----@param radius number
----@param access boolean
-function enableEntryExitPlayerGroupWarping(X, Y, radius, access) end
-
----@param X number
----@param Y number
----@param Z number
----@param radius number
----@return Object object
-function getClosestStealableObject(X, Y, Z, radius) end
-
----@param interior number
----@return boolean result
-function isProceduralInteriorActive(interior) end
-
----@param path number
-function removeCarRecording(path) end
-
----@param zone GxtString
----@param popcycle number
-function setZonePopulationRace(zone, popcycle) end
-
----@param object Object
----@param player boolean
-function setObjectOnlyDamagedByPlayer(object, player) end
-
----@param x1 number
----@param y1 number
----@param z1 number
----@param x2 number
----@param y2 number
----@param z2 number
----@param flag1 number
----@param flag2 number
-function createBirds(x1, y1, z1, x2, y2, z2, flag1, flag2) end
-=======
 ---@param rate number
 function setCharShootRate(ped, rate) end
 
@@ -14597,19 +9451,8 @@ function taskDrivePointRouteAdvanced(ped, car, speed, flag1, flag2, flag3) end
 ---@param toActors number
 ---@return boolean result
 function isRelationshipSet(acquaintance, ofActors, toActors) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param level number
-function setVehicleDirtLevel(car, level) end
-
----@param enable boolean
-function setGangWarsActive(enable) end
-
----@return boolean result
-function isGangWarGoingOn() end
-=======
 ---@param enable boolean
 function setCarAlwaysCreateSkids(car, enable) end
 
@@ -14639,33 +9482,8 @@ function hasObjectOfTypeBeenSmashed(X, Y, Z, radius, modelId) end
 ---@param player Player
 ---@return boolean result
 function isPlayerPerformingWheelie(player) end
->>>>>>> head
 
 ---@param player Player
-<<<<<<< HEAD
----@param clothes string
----@param model string
----@param bodyPart number
-function givePlayerClothesOutsideShop(player, clothes, model, bodyPart) end
-
-function clearLoadedShop() end
-
----@param group number
----@param Aspack number
-function setGroupSequence(group, Aspack) end
-
----@param ped Ped
----@param droppable boolean
-function setCharDropsWeaponsWhenDead(ped, droppable) end
-
----@param ped Ped
----@param set boolean
-function setCharNeverLeavesGroup(ped, set) end
-
----@param player Player
----@param able boolean
-function setPlayerFireButton(player, able) end
-=======
 ---@return boolean result
 function isPlayerPerformingStoppie(player) end
 
@@ -14710,7 +9528,6 @@ function setObjectCollisionDamageEffect(object, destructible) end
 ---@param followCar number
 ---@param radius number
 function setCarFollowCar(car, followCar, radius) end
->>>>>>> head
 
 ---@param particle Particle
 ---@param ped Ped
@@ -14721,22 +9538,6 @@ function attachFxSystemToCharBone(particle, ped, mode) end
 ---@param script GxtString
 function registerAttractorScriptBrainForCodeUse(handle, script) end
 
-<<<<<<< HEAD
----@param ped Ped
----@param orientation number
----@param limit number
-function setHeadingLimitForAttachedChar(ped, orientation, limit) end
-
----@param ped Ped
----@return Marker blip
-function addBlipForDeadChar(ped) end
-
----@param ped Ped
----@return number X
----@return number Y
----@return number Z
-function getDeadCharCoordinates(ped) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchEntryExit)**
 ---
@@ -14760,66 +9561,13 @@ function displayTextWithFloat(X, Y, GXT, value, flag) end
 ---@param group number
 ---@return boolean result
 function doesGroupExist(group) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param animation string
----@param ifp string
----@param framedelta number
----@param loopA boolean
----@param lockX boolean
----@param lockY boolean
----@param lockF boolean
----@param time number
----@param force boolean
----@param lockZ boolean
-function taskPlayAnimWithFlags(ped, animation, ifp, framedelta, loopA, lockX, lockY, lockF, time, force, lockZ) end
-=======
 ---@param fightingStyle number
 ---@param moves number
 function giveMeleeAttackToChar(ped, fightingStyle, moves) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param multiplier number
-function setVehicleAirResistanceMultiplier(car, multiplier) end
-
----@param car Vehicle
----@param X number
----@param Y number
----@param Z number
-function setCarCoordinatesNoOffset(car, X, Y, Z) end
-
----@param X number
----@param Y number
----@param Z number
----@param radius number
----@param modelId Model
----@param collisionDetection boolean
-function setUsesCollisionOfClosestObjectOfType(X, Y, Z, radius, modelId, collisionDetection) end
-
-function setTimeOneDayForward() end
-
----@param timer VarId
----@param reach number
-function setTimerBeepCountdownTime(timer, reach) end
-
----@param trailer number
----@param cab number
-function attachTrailerToCab(trailer, cab) end
-
----@param car Vehicle
----@param object Object
----@return boolean result
-function isVehicleTouchingObject(car, object) end
-
----@param UP boolean
----@param DOWN boolean
----@param RELEASE boolean
-function enableCraneControls(UP, DOWN, RELEASE) end
-=======
 ---@param hydraulics boolean
 function setCarHydraulics(car, hydraulics) end
 
@@ -14914,24 +9662,12 @@ function getCharHighestPriorityEvent(ped) end
 ---@return number Y
 ---@return number Z
 function getParkingNodeInArea(x1, y1, z1, x2, y2, z2) end
->>>>>>> head
 
 ---@param ped Ped
 ---@return boolean result
 function isPlayerInPositionForConversation(ped) end
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param enable boolean
-function enableConversation(ped, enable) end
-
----@param X number
----@param Y number
----@param Z number
----@param radius number
----@return Ped ped
-function getRandomCharInSphereOnlyDrugsBuyers(X, Y, Z, radius) end
-=======
 ---@param animation string
 ---@param IFP string
 ---@param framedelta number
@@ -14989,44 +9725,12 @@ end
 ---@param Y number
 ---@param Z number
 function setObjectCoordinatesAndVelocity(object, X, Y, Z) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@return number pedtype
-function getPedType(ped) end
-=======
 ---@param stay boolean
 function setCharKindaStayInSamePlace(ped, stay) end
->>>>>>> head
 
 ---@param ped Ped
-<<<<<<< HEAD
----@param radius number
----@param nearModel Model
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param scriptNamed string
----@return boolean result
-function taskUseClosestMapAttractor(ped, radius, nearModel, offsetX, offsetY, offsetZ, scriptNamed) end
-
----@param hydra number
----@param player Player
----@param radius number
-function planeAttackPlayerUsingDogFight(hydra, player, radius) end
-
----@param can boolean
-function canTriggerGangWarWhenOnAMission(can) end
-
----@param car Vehicle
----@param angle number
-function controlMovableVehiclePart(car, angle) end
-
----@param car Vehicle
----@param attractive boolean
-function winchCanPickVehicleUp(car, attractive) end
-=======
 ---@param walkMode number
 ---@param routeMode number
 function taskFollowPatrolRoute(ped, walkMode, routeMode) end
@@ -15061,26 +9765,8 @@ function setCharWeaponSkill(ped, skill) end
 ---@param b number
 ---@param a number
 function setTextEdge(size, r, g, b, a) end
->>>>>>> head
 
 ---@param car Vehicle
-<<<<<<< HEAD
----@param door number
----@param rotation number
-function openCarDoorABit(car, door, rotation) end
-
----@param car Vehicle
----@param door number
----@return boolean result
-function isCarDoorFullyOpen(car, door) end
-
----@param set boolean
-function setAlwaysDraw3dMarkers(set) end
-
----@param script number
-function streamScript(script) end
-
-=======
 ---@param broken boolean
 function setCarEngineBroken(car, broken) end
 
@@ -15741,17 +10427,13 @@ function streamScript(script) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasStreamedScriptLoaded)**
 ---
->>>>>>> head
 ---@param script number
 ---@return boolean result
 function hasStreamedScriptLoaded(script) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGangWarsTrainingMission)**
 ---
->>>>>>> head
 ---@param set boolean
 function setGangWarsTrainingMission(set) end
 
@@ -15765,11 +10447,6 @@ function setCharHasUsedEntryExit(ped, X, Y, radius) end
 ---@param health number
 function setCharMaxHealth(ped, health) end
 
-<<<<<<< HEAD
----@param enable boolean
-function setNightVision(enable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setNightVision)**
 ---
@@ -15779,7 +10456,6 @@ function setNightVision(enable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setInfraredVision)**
 ---
->>>>>>> head
 ---@param enable boolean
 function setInfraredVision(enable) end
 
@@ -15796,22 +10472,16 @@ function setCharCanBeKnockedOffBike(ped, can) end
 ---@param Z number
 function setCharCoordinatesDontWarpGang(ped, X, Y, Z) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addPriceModifier)**
 ---
->>>>>>> head
 ---@param item number
 ---@param price number
 function addPriceModifier(item, price) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removePriceModifier)**
 ---
->>>>>>> head
 ---@param item number
 function removePriceModifier(item) end
 
@@ -15823,11 +10493,6 @@ function initZonePopulationSettings() end
 ---@param sound boolean
 function explodeCarInCutsceneShakeAndBits(car, shake, effect, sound) end
 
-<<<<<<< HEAD
----@return boolean result
-function isSkipCutsceneButtonPressed() end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSkipCutsceneButtonPressed)**
 ---
@@ -15837,7 +10502,6 @@ function isSkipCutsceneButtonPressed() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCutsceneOffset)**
 ---
->>>>>>> head
 ---@return boolean result
 ---@return number X
 ---@return number Y
@@ -15848,12 +10512,9 @@ function getCutsceneOffset() end
 ---@param scale number
 function setObjectScale(object, scale) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentPopulationZoneType)**
 ---
->>>>>>> head
 ---@return number popcycle
 function getCurrentPopulationZoneType() end
 
@@ -15868,53 +10529,36 @@ function getCurrentPopulationZoneType() end
 ---@return number menu
 function createMenu(title, posX, posY, width, columns, interactive, background, alignment) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuColumnOrientation)**
 ---
->>>>>>> head
 ---@param menu number
 ---@param column number
 ---@param alignment number
 function setMenuColumnOrientation(menu, column, alignment) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMenuItemSelected)**
 ---
->>>>>>> head
 ---@param menu number
 ---@return number item
 function getMenuItemSelected(menu) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMenuItemAccepted)**
 ---
->>>>>>> head
 ---@param menu number
 ---@return number item
 function getMenuItemAccepted(menu) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/activateMenuItem)**
 ---
->>>>>>> head
 ---@param menu number
 ---@param row number
 ---@param enable boolean
 function activateMenuItem(menu, row, enable) end
 
-<<<<<<< HEAD
----@param menu number
-function deleteMenu(menu) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/deleteMenu)**
 ---
@@ -15924,7 +10568,6 @@ function deleteMenu(menu) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuColumn)**
 ---
->>>>>>> head
 ---@param menu number
 ---@param column number
 ---@param header GxtString
@@ -15965,14 +10608,6 @@ end
 ---@param radius number
 function setBlipEntryExit(marker, X, Y, radius) end
 
-<<<<<<< HEAD
----@param lose boolean
-function switchDeathPenalties(lose) end
-
----@param lose boolean
-function switchArrestPenalties(lose) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchDeathPenalties)**
 ---
@@ -15988,7 +10623,6 @@ function switchArrestPenalties(lose) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setExtraHospitalRestartPoint)**
 ---
->>>>>>> head
 ---@param X number
 ---@param Y number
 ---@param Z number
@@ -15996,12 +10630,9 @@ function switchArrestPenalties(lose) end
 ---@param angle number
 function setExtraHospitalRestartPoint(X, Y, Z, radius, angle) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setExtraPoliceStationRestartPoint)**
 ---
->>>>>>> head
 ---@param X number
 ---@param Y number
 ---@param Z number
@@ -16009,11 +10640,6 @@ function setExtraHospitalRestartPoint(X, Y, Z, radius, angle) end
 ---@param angle number
 function setExtraPoliceStationRestartPoint(X, Y, Z, radius, angle) end
 
-<<<<<<< HEAD
----@return number num
-function findNumberTagsTagged() end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findNumberTagsTagged)**
 ---
@@ -16023,7 +10649,6 @@ function findNumberTagsTagged() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTerritoryUnderControlPercentage)**
 ---
->>>>>>> head
 ---@return number percentage
 function getTerritoryUnderControlPercentage() end
 
@@ -16049,12 +10674,9 @@ function isObjectInAngledArea2d(object, x1, y1, x2, y2, radius, sphere) end
 ---@return boolean result
 function isObjectInAngledArea3d(object, x1, y1, z1, x2, y2, z2, depth, flag) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCharInSphereNoBrain)**
 ---
->>>>>>> head
 ---@param X number
 ---@param Y number
 ---@param Z number
@@ -16062,22 +10684,16 @@ function isObjectInAngledArea3d(object, x1, y1, z1, x2, y2, z2, depth, flag) end
 ---@return Ped ped
 function getRandomCharInSphereNoBrain(X, Y, Z, radius) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlaneUndercarriageUp)**
 ---
->>>>>>> head
 ---@param plane number
 ---@param set boolean
 function setPlaneUndercarriageUp(plane, set) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/disableAllEntryExits)**
 ---
->>>>>>> head
 ---@param disable boolean
 function disableAllEntryExits(disable) end
 
@@ -16089,11 +10705,6 @@ function attachAnimsToModel(modelId, externalScript) end
 ---@param liftable boolean
 function setObjectAsStealable(object, liftable) end
 
-<<<<<<< HEAD
----@param enable boolean
-function setCreateRandomGangMembers(enable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCreateRandomGangMembers)**
 ---
@@ -16103,7 +10714,6 @@ function setCreateRandomGangMembers(enable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addSparks)**
 ---
->>>>>>> head
 ---@param posX number
 ---@param posY number
 ---@param posZ number
@@ -16120,12 +10730,9 @@ function getVehicleClass(car) end
 ---@param ped Ped
 function clearConversationForChar(ped) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuItemWithNumber)**
 ---
->>>>>>> head
 ---@param panel number
 ---@param column number
 ---@param row number
@@ -16133,12 +10740,9 @@ function clearConversationForChar(ped) end
 ---@param number number
 function setMenuItemWithNumber(panel, column, row, gxtString, number) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuItemWith2Numbers)**
 ---
->>>>>>> head
 ---@param panel number
 ---@param column number
 ---@param row number
@@ -16151,12 +10755,9 @@ function setMenuItemWith2Numbers(panel, column, row, gxtString, numbers1, number
 ---@param textureName GxtString
 function setCutsceneModelTexture(cutsceneModel, textureName) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNameOfInfoZone)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -16171,12 +10772,9 @@ function vehicleCanBeTargettedByHsMissile(car, targetable) end
 ---@param containsGoodies boolean
 function setFreebiesInVehicle(car, containsGoodies) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setScriptLimitToGangSize)**
 ---
->>>>>>> head
 ---@param max boolean
 function setScriptLimitToGangSize(max) end
 
@@ -16190,12 +10788,9 @@ function makePlayerGangReappear() end
 ---@return number modelCRC
 function getClothesItem(player, bodypart) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/showUpdateStats)**
 ---
->>>>>>> head
 ---@param display boolean
 function showUpdateStats(display) end
 
@@ -16203,11 +10798,6 @@ function showUpdateStats(display) end
 ---@param type number
 function setCoordBlipAppearance(checkpoint, type) end
 
-<<<<<<< HEAD
----@param enable boolean
-function setHeathazeEffect(enable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHeathazeEffect)**
 ---
@@ -16217,7 +10807,6 @@ function setHeathazeEffect(enable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isHelpMessageBeingDisplayed)**
 ---
->>>>>>> head
 ---@return boolean result
 function isHelpMessageBeingDisplayed() end
 
@@ -16233,12 +10822,9 @@ function clearObjectLastWeaponDamage(object) end
 ---@param enable boolean
 function setPlayerJumpButton(player, enable) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getHudColour)**
 ---
->>>>>>> head
 ---@param interface number
 ---@return number r
 ---@return number g
@@ -16246,12 +10832,9 @@ function setPlayerJumpButton(player, enable) end
 ---@return number a
 function getHudColour(interface) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/lockDoor)**
 ---
->>>>>>> head
 ---@param door number
 ---@param lock boolean
 function lockDoor(door, lock) end
@@ -16260,12 +10843,9 @@ function lockDoor(door, lock) end
 ---@param mass number
 function setObjectMass(object, mass) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectMass)**
 ---
->>>>>>> head
 ---@param number number
 ---@return number mass
 function getObjectMass(number) end
@@ -16283,24 +10863,13 @@ function setSpecificZoneToTriggerGangWar(zone) end
 
 function clearSpecificZonesToTriggerGangWar() end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setActiveMenuItem)**
 ---
->>>>>>> head
 ---@param panel number
 ---@param activeRow number
 function setActiveMenuItem(panel, activeRow) end
 
-<<<<<<< HEAD
----@param externalScript number
-function markStreamedScriptAsNoLongerNeeded(externalScript) end
-
----@param externalScript number
-function removeStreamedScript(externalScript) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/markStreamedScriptAsNoLongerNeeded)**
 ---
@@ -16316,18 +10885,14 @@ function removeStreamedScript(externalScript) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMessageFormatting)**
 ---
->>>>>>> head
 ---@param priority boolean
 ---@param leftmargin number
 ---@param maxwidth number
 function setMessageFormatting(priority, leftmargin, maxwidth) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startNewStreamedScript)**
 ---
->>>>>>> head
 ---@param externalScript number
 ---@param args table
 function startNewStreamedScript(externalScript, args) end
@@ -16350,12 +10915,9 @@ function setCarEngineOn(car, on) end
 ---@param lights boolean
 function setCarLightsOn(car, lights) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getUserOfClosestMapAttractor)**
 ---
->>>>>>> head
 ---@param sphereX number
 ---@param sphereY number
 ---@param sphereZ number
@@ -16365,12 +10927,9 @@ function setCarLightsOn(car, lights) end
 ---@return Ped ped
 function getUserOfClosestMapAttractor(sphereX, sphereY, sphereZ, radius, modelId, externalScriptNamed) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchRoadsBackToOriginal)**
 ---
->>>>>>> head
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerAZ number
@@ -16379,12 +10938,9 @@ function getUserOfClosestMapAttractor(sphereX, sphereY, sphereZ, radius, modelId
 ---@param cornerBZ number
 function switchRoadsBackToOriginal(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchPedRoadsBackToOriginal)**
 ---
->>>>>>> head
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerAZ number
@@ -16393,22 +10949,16 @@ function switchRoadsBackToOriginal(cornerAX, cornerAY, cornerAZ, cornerBX, corne
 ---@param cornerBZ number
 function switchPedRoadsBackToOriginal(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPlaneUndercarriagePosition)**
 ---
->>>>>>> head
 ---@param plane number
 ---@return number landingGearStatus
 function getPlaneUndercarriagePosition(plane) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraSetVectorTrack)**
 ---
->>>>>>> head
 ---@param pointX number
 ---@param pointY number
 ---@param pointZ number
@@ -16419,23 +10969,15 @@ function getPlaneUndercarriagePosition(plane) end
 ---@param smooth boolean
 function cameraSetVectorTrack(pointX, pointY, pointZ, transverseX, transverseY, transverseZ, time, smooth) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraSetLerpFov)**
 ---
->>>>>>> head
 ---@param from number
 ---@param to number
 ---@param timelimit number
 ---@param smoothTransition boolean
 function cameraSetLerpFov(from, to, timelimit, smoothTransition) end
 
-<<<<<<< HEAD
----@param enable boolean
-function switchAmbientPlanes(enable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchAmbientPlanes)**
 ---
@@ -16445,40 +10987,30 @@ function switchAmbientPlanes(enable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setDarknessEffect)**
 ---
->>>>>>> head
 ---@param enable boolean
 ---@param value number
 function setDarknessEffect(enable, value) end
 
 function cameraResetNewScriptables() end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfInstancesOfStreamedScript)**
 ---
->>>>>>> head
 ---@param externalScript number
 ---@return number value
 function getNumberOfInstancesOfStreamedScript(externalScript) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allocateStreamedScriptToRandomPed)**
 ---
->>>>>>> head
 ---@param externalScript number
 ---@param actorModel Model
 ---@param priority number
 function allocateStreamedScriptToRandomPed(externalScript, actorModel, priority) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allocateStreamedScriptToObject)**
 ---
->>>>>>> head
 ---@param externalScript number
 ---@param objectModel Model
 ---@param priority number
@@ -16486,46 +11018,23 @@ function allocateStreamedScriptToRandomPed(externalScript, actorModel, priority)
 ---@param type number
 function allocateStreamedScriptToObject(externalScript, objectModel, priority, radius, type) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGroupMember)**
 ---
->>>>>>> head
 ---@param group number
 ---@param member number
 ---@return number handle
 function getGroupMember(group, member) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getWaterHeightAtCoords)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param ignoreWaves boolean
 ---@return number height
 function getWaterHeightAtCoords(atX, atY, ignoreWaves) end
 
-<<<<<<< HEAD
----@param lock boolean
-function cameraPersistTrack(lock) end
-
----@param lock boolean
-function cameraPersistPos(lock) end
-
----@param lock boolean
-function cameraPersistFov(lock) end
-
----@return boolean result
-function cameraIsVectorMoveRunning() end
-
----@return boolean result
-function cameraIsVectorTrackRunning() end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraPersistTrack)**
 ---
@@ -16559,7 +11068,6 @@ function cameraIsVectorTrackRunning() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraSetVectorMove)**
 ---
->>>>>>> head
 ---@param cameraX number
 ---@param cameraY number
 ---@param cameraZ number
@@ -16570,12 +11078,9 @@ function cameraIsVectorTrackRunning() end
 ---@param smoothTransition boolean
 function cameraSetVectorMove(cameraX, cameraY, cameraZ, positionX, positionY, positionZ, time, smoothTransition) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawWindow)**
 ---
->>>>>>> head
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerBX number
@@ -16602,12 +11107,9 @@ function setGarageResprayFree(garage, free) end
 ---@param enable boolean
 function setCharBulletproofVest(ped, enable) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCinemaCamera)**
 ---
->>>>>>> head
 ---@param lock boolean
 function setCinemaCamera(lock) end
 
@@ -16615,12 +11117,9 @@ function setCinemaCamera(lock) end
 ---@param multiplier number
 function setCharFireDamageMultiplier(ped, multiplier) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGroupFollowStatus)**
 ---
->>>>>>> head
 ---@param group number
 ---@param status boolean
 function setGroupFollowStatus(group, status) end
@@ -16629,12 +11128,9 @@ function setGroupFollowStatus(group, status) end
 ---@param flag boolean
 function setSearchlightClipIfColliding(searchlight, flag) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasPlayerBoughtItem)**
 ---
->>>>>>> head
 ---@param item number
 ---@return boolean result
 function hasPlayerBoughtItem(item) end
@@ -16655,12 +11151,9 @@ function setCharUsesUpperbodyDamageAnimsOnly(ped, uninterupted) end
 ---@return number spokenPhrase
 function setCharSayContext(ped, speech) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addExplosionVariableShake)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -16668,12 +11161,9 @@ function setCharSayContext(ped, speech) end
 ---@param cameraShake number
 function addExplosionVariableShake(atX, atY, atZ, type, cameraShake) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachMissionAudioToChar)**
 ---
->>>>>>> head
 ---@param id number
 ---@param ped Ped
 function attachMissionAudioToChar(id, ped) end
@@ -16704,12 +11194,9 @@ function disableCharSpeech(ped, disable) end
 ---@param ped Ped
 function enableCharSpeech(ped) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpSkip)**
 ---
->>>>>>> head
 ---@param posX number
 ---@param posY number
 ---@param posZ number
@@ -16718,11 +11205,6 @@ function setUpSkip(posX, posY, posZ, angle) end
 
 function clearSkip() end
 
-<<<<<<< HEAD
----@param soundtrack number
-function preloadBeatTrack(soundtrack) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/preloadBeatTrack)**
 ---
@@ -16732,7 +11214,6 @@ function preloadBeatTrack(soundtrack) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getBeatTrackStatus)**
 ---
->>>>>>> head
 ---@return number status
 function getBeatTrackStatus() end
 
@@ -16740,12 +11221,9 @@ function playBeatTrack() end
 
 function stopBeatTrack() end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findMaxNumberOfGroupMembers)**
 ---
->>>>>>> head
 ---@return number max
 function findMaxNumberOfGroupMembers() end
 
@@ -16753,36 +11231,27 @@ function findMaxNumberOfGroupMembers() end
 ---@param providesCover boolean
 function vehicleDoesProvideCover(car, providesCover) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createSnapshotPickup)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
 ---@return Pickup pickup
 function createSnapshotPickup(atX, atY, atZ) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createHorseshoePickup)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
 ---@return Pickup pickup
 function createHorseshoePickup(atX, atY, atZ) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createOysterPickup)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -16793,12 +11262,9 @@ function createOysterPickup(atX, atY, atZ) end
 ---@return boolean result
 function hasObjectBeenUprooted(object) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addSmokeParticle)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -16866,12 +11332,9 @@ function stopCharFacialTalk(ped) end
 ---@return boolean result
 function isBigVehicle(car) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchPoliceHelis)**
 ---
->>>>>>> head
 ---@param enable boolean
 function switchPoliceHelis(enable) end
 
@@ -16902,12 +11365,9 @@ function syncWater() end
 ---@param atZ number
 function setCharCoordinatesNoOffset(ped, atX, atY, atZ) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesScriptFireExist)**
 ---
->>>>>>> head
 ---@param fire number
 ---@return boolean result
 function doesScriptFireExist(fire) end
@@ -16925,44 +11385,32 @@ function killFxSystemNow(particle) end
 ---@return boolean result
 function isObjectWithinBrainActivationRange(player) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/copySharedCharDecisionMaker)**
 ---
->>>>>>> head
 ---@param from number
 ---@return number to
 function copySharedCharDecisionMaker(from) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/reportMissionAudioEventAtPosition)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
 ---@param event number
 function reportMissionAudioEventAtPosition(atX, atY, atZ, event) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/reportMissionAudioEventAtObject)**
 ---
->>>>>>> head
 ---@param at number
 ---@param event number
 function reportMissionAudioEventAtObject(at, event) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachMissionAudioToObject)**
 ---
->>>>>>> head
 ---@param id number
 ---@param object Object
 function attachMissionAudioToObject(id, object) end
@@ -16971,12 +11419,9 @@ function attachMissionAudioToObject(id, object) end
 ---@return number colours
 function getNumCarColours(car) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/extinguishFireAtPoint)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -16991,12 +11436,9 @@ function hasTrainDerailed(train) end
 ---@param stayInCarWhenDead boolean
 function setCharForceDieInCar(ped, stayInCarWhenDead) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setOnlyCreateGangMembers)**
 ---
->>>>>>> head
 ---@param enable boolean
 function setOnlyCreateGangMembers(enable) end
 
@@ -17004,12 +11446,9 @@ function setOnlyCreateGangMembers(enable) end
 ---@return Model modelId
 function getObjectModel(object) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharUsesCollisionClosestObjectOfType)**
 ---
->>>>>>> head
 ---@param sphereX number
 ---@param sphereY number
 ---@param sphereZ number
@@ -17029,11 +11468,6 @@ function getCarBlockingCar(car) end
 ---@return number paintjob
 function getCurrentVehiclePaintjob(car) end
 
-<<<<<<< HEAD
----@param width number
-function setHelpMessageBoxSize(width) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHelpMessageBoxSize)**
 ---
@@ -17043,7 +11477,6 @@ function setHelpMessageBoxSize(width) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGunshotSenseRangeForRiot2)**
 ---
->>>>>>> head
 ---@param range number
 function setGunshotSenseRangeForRiot2(range) end
 
@@ -17056,12 +11489,9 @@ function getCarMovingComponentOffset(car) end
 ---@param flag boolean
 function setNamedEntryExitFlag(interior, bitmask, flag) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/pauseCurrentBeatTrack)**
 ---
->>>>>>> head
 ---@param paused boolean
 function pauseCurrentBeatTrack(paused) end
 
@@ -17069,12 +11499,9 @@ function pauseCurrentBeatTrack(paused) end
 ---@param scrollable boolean
 function setPlayerWeaponsScrollable(player, scrollable) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/markRoadNodeAsDontWander)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -17086,11 +11513,6 @@ function unmarkAllRoadNodesAsDontWander() end
 ---@param angle number
 function setCheckpointHeading(checkpoint, angle) end
 
-<<<<<<< HEAD
----@param respect number
-function setMissionRespectTotal(respect) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMissionRespectTotal)**
 ---
@@ -17100,7 +11522,6 @@ function setMissionRespectTotal(respect) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/awardPlayerMissionRespect)**
 ---
->>>>>>> head
 ---@param respect number
 function awardPlayerMissionRespect(respect) end
 
@@ -17111,22 +11532,14 @@ function setCarCollision(car, collision) end
 ---@param car Vehicle
 function changePlaybackToUseAi(car) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraSetShakeSimulationSimple)**
 ---
->>>>>>> head
 ---@param type number
 ---@param timelimit number
 ---@param intensity number
 function cameraSetShakeSimulationSimple(type, timelimit, intensity) end
 
-<<<<<<< HEAD
----@return boolean result
-function isNightVisionActive() end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isNightVisionActive)**
 ---
@@ -17136,7 +11549,6 @@ function isNightVisionActive() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCreateRandomCops)**
 ---
->>>>>>> head
 ---@param enable boolean
 function setCreateRandomCops(enable) end
 
@@ -17163,12 +11575,9 @@ function dropSecondObject(ped, to) end
 ---@param object Object
 function removeObjectElegantly(object) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawCrosshair)**
 ---
->>>>>>> head
 ---@param draw boolean
 function drawCrosshair(draw) end
 
@@ -17180,12 +11589,9 @@ function drawCrosshair(draw) end
 ---@param answerNWav number
 function setUpConversationNodeWithSpeech(question, answerY, answerN, questionWav, answerYWav, answerNWav) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/showBlipsOnAllLevels)**
 ---
->>>>>>> head
 ---@param enable boolean
 function showBlipsOnAllLevels(enable) end
 
@@ -17205,21 +11611,13 @@ function getHashKey(string) end
 ---@param speech number
 function setUpConversationEndNodeWithSpeech(gxtString, speech) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/randomPassengerSay)**
 ---
->>>>>>> head
 ---@param passengers number
 ---@param audioTable number
 function randomPassengerSay(passengers, audioTable) end
 
-<<<<<<< HEAD
----@param hide boolean
-function hideAllFrontendBlips(hide) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hideAllFrontendBlips)**
 ---
@@ -17229,7 +11627,6 @@ function hideAllFrontendBlips(hide) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerInCarCameraMode)**
 ---
->>>>>>> head
 ---@param mode number
 function setPlayerInCarCameraMode(mode) end
 
@@ -17237,12 +11634,9 @@ function setPlayerInCarCameraMode(mode) end
 ---@return boolean result
 function isCharInAnyTrain(ped) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpSkipAfterMission)**
 ---
->>>>>>> head
 ---@param posX number
 ---@param posY number
 ---@param posZ number
@@ -17253,12 +11647,9 @@ function setUpSkipAfterMission(posX, posY, posZ, angle) end
 ---@param accessible boolean
 function setVehicleIsConsideredByPlayer(car, accessible) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCarModelInMemory)**
 ---
->>>>>>> head
 ---@param unk boolean
 ---@return Model modelId
 ---@return number class
@@ -17268,12 +11659,9 @@ function getRandomCarModelInMemory(unk) end
 ---@return number doorStatus
 function getCarDoorLockStatus(car) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setClosestEntryExitFlag)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param radius number
@@ -17293,12 +11681,9 @@ function setCharWantedByPolice(ped, wanted) end
 ---@param disableCops boolean
 function setZoneNoCops(zone, disableCops) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addBlood)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -17309,11 +11694,6 @@ function setZoneNoCops(zone, disableCops) end
 ---@param onActor number
 function addBlood(atX, atY, atZ, offsetX, offsetY, offsetZ, density, onActor) end
 
-<<<<<<< HEAD
----@param show boolean
-function displayCarNames(show) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayCarNames)**
 ---
@@ -17323,7 +11703,6 @@ function displayCarNames(show) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayZoneNames)**
 ---
->>>>>>> head
 ---@param show boolean
 function displayZoneNames(show) end
 
@@ -17338,11 +11717,6 @@ function isCarDoorDamaged(car, door) end
 ---@param atZ number
 function setCharCoordinatesDontWarpGangNoOffset(ped, atX, atY, atZ) end
 
-<<<<<<< HEAD
----@param enable boolean
-function setMinigameInProgress(enable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMinigameInProgress)**
 ---
@@ -17352,19 +11726,15 @@ function setMinigameInProgress(enable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isMinigameInProgress)**
 ---
->>>>>>> head
 ---@return boolean result
 function isMinigameInProgress() end
 
 ---@param modelId Model
 function setForceRandomCarModel(modelId) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCarOfTypeInAngledAreaNoSave)**
 ---
->>>>>>> head
 ---@param x1 number
 ---@param y1 number
 ---@param x2 number
@@ -17374,23 +11744,17 @@ function setForceRandomCarModel(modelId) end
 ---@return Vehicle car
 function getRandomCarOfTypeInAngledAreaNoSave(x1, y1, x2, y2, angle, int6) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addNextMessageToPreviousBriefs)**
 ---
->>>>>>> head
 ---@param int1 boolean
 function addNextMessageToPreviousBriefs(int1) end
 
 function failKillFrenzy() end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCopVehicleInArea3dNoSave)**
 ---
->>>>>>> head
 ---@param cornerAX number
 ---@param cornerAY number
 ---@param cornerAZ number
@@ -17412,12 +11776,9 @@ function isCharUsingMapAttractor(ped) end
 ---@param modelId Model
 function setPlayerModel(player, modelId) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/areSubtitlesSwitchedOn)**
 ---
->>>>>>> head
 ---@return boolean result
 function areSubtitlesSwitchedOn() end
 
@@ -17455,12 +11816,9 @@ function isVehicleOnAllWheels(car) end
 ---@return boolean result
 function doesPickupExist(pickup) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/enableAmbientCrime)**
 ---
->>>>>>> head
 ---@param enable boolean
 function enableAmbientCrime(enable) end
 
@@ -17487,35 +11845,26 @@ function forceInteriorLightingForPlayer(player, force) end
 
 function useDetonator() end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isMoneyPickupAtCoords)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
 ---@return boolean result
 function isMoneyPickupAtCoords(atX, atY, atZ) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuColumnWidth)**
 ---
->>>>>>> head
 ---@param panel number
 ---@param column number
 ---@param width number
 function setMenuColumnWidth(panel, column, width) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/makeRoomInPlayerGangForMissionPeds)**
 ---
->>>>>>> head
 ---@param group number
 function makeRoomInPlayerGangForMissionPeds(group) end
 
@@ -17523,12 +11872,9 @@ function makeRoomInPlayerGangForMissionPeds(group) end
 ---@return boolean result
 function isCharGettingInToACar(ped) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpSkipForSpecificVehicle)**
 ---
->>>>>>> head
 ---@param posX number
 ---@param posY number
 ---@param posZ number
@@ -17540,12 +11886,9 @@ function setUpSkipForSpecificVehicle(posX, posY, posZ, angle, car) end
 ---@return number price
 function getCarModelValue(modelId) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createCarGeneratorWithPlate)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -17581,11 +11924,6 @@ end
 ---@return boolean result
 function findTrainDirection(train) end
 
-<<<<<<< HEAD
----@param enable boolean
-function setAircraftCarrierSamSite(enable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAircraftCarrierSamSite)**
 ---
@@ -17595,7 +11933,6 @@ function setAircraftCarrierSamSite(enable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawLightWithRange)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -17605,12 +11942,9 @@ function setAircraftCarrierSamSite(enable) end
 ---@param radius number
 function drawLightWithRange(atX, atY, atZ, r, g, b, radius) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/enableBurglaryHouses)**
 ---
->>>>>>> head
 ---@param enable boolean
 function enableBurglaryHouses(enable) end
 
@@ -17629,12 +11963,9 @@ function giveNonPlayerCarNitro(car) end
 ---@param useAnim boolean
 function playerTakeOffGoggles(player, useAnim) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allowFixedCameraCollision)**
 ---
->>>>>>> head
 ---@param allow boolean
 function allowFixedCameraCollision(allow) end
 
@@ -17643,12 +11974,9 @@ function allowFixedCameraCollision(allow) end
 ---@return boolean result
 function hasCharSpottedCharInFront(ped, ped2) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/forceBigMessageAndCounter)**
 ---
->>>>>>> head
 ---@param stayOnScreen boolean
 function forceBigMessageAndCounter(stayOnScreen) end
 
@@ -17664,12 +11992,9 @@ function resetVehicleCameraTweak() end
 ---@param event number
 function reportMissionAudioEventAtChar(ped, event) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesDecisionMakerExist)**
 ---
->>>>>>> head
 ---@param maker number
 ---@return boolean result
 function doesDecisionMakerExist(maker) end
@@ -17678,12 +12003,9 @@ function doesDecisionMakerExist(maker) end
 ---@param ignore boolean
 function ignoreHeightDifferenceFollowingNodes(ped, ignore) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shutAllCharsUp)**
 ---
->>>>>>> head
 ---@param enable boolean
 function shutAllCharsUp(enable) end
 
@@ -17697,11 +12019,6 @@ function reportMissionAudioEventAtCar(car, event) end
 
 function doWeaponStuffAtStartOf2pGame() end
 
-<<<<<<< HEAD
----@return boolean result
-function hasGameJustReturnedFromFrontend() end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasGameJustReturnedFromFrontend)**
 ---
@@ -17711,7 +12028,6 @@ function hasGameJustReturnedFromFrontend() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentLanguage)**
 ---
->>>>>>> head
 ---@return number language
 function getCurrentLanguage() end
 
@@ -17726,12 +12042,9 @@ function getStringWidth(gxtString) end
 ---@param car Vehicle
 function resetVehicleHydraulics(car) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setRespawnPointForDurationOfMission)**
 ---
->>>>>>> head
 ---@param posX number
 ---@param posY number
 ---@param posZ number
@@ -17745,12 +12058,9 @@ function isThisModelACar(modelId) end
 ---@param lightsThroughObstacles boolean
 function switchOnGroundSearchlight(searchlight, lightsThroughObstacles) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGangWarFightingGoingOn)**
 ---
->>>>>>> head
 ---@return boolean result
 function isGangWarFightingGoingOn() end
 
@@ -17774,12 +12084,9 @@ function shutCharUpForScriptedSpeech(ped, muted) end
 ---@param enable boolean
 function enableDisabledAttractorsOnObject(object, enable) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadSceneInDirection)**
 ---
->>>>>>> head
 ---@param coordX number
 ---@param coordY number
 ---@param coordZ number
@@ -17790,14 +12097,6 @@ function loadSceneInDirection(coordX, coordY, coordZ, angle) end
 ---@return boolean result
 function isPlayerUsingJetpack(player) end
 
-<<<<<<< HEAD
----@param style number
-function clearThisPrintBigNow(style) end
-
----@return boolean result
-function hasLanguageChanged() end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearThisPrintBigNow)**
 ---
@@ -17813,7 +12112,6 @@ function hasLanguageChanged() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/incrementIntStatNoMessage)**
 ---
->>>>>>> head
 ---@param stat number
 ---@param value number
 function incrementIntStatNoMessage(stat, value) end
@@ -17830,12 +12128,9 @@ function getExtraCarColours(car) end
 
 function manageAllPopulation() end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setNoResprays)**
 ---
->>>>>>> head
 ---@param enable boolean
 function setNoResprays(enable) end
 
@@ -17843,22 +12138,16 @@ function setNoResprays(enable) end
 ---@return boolean result
 function hasCarBeenResprayed(car) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachMissionAudioToCar)**
 ---
->>>>>>> head
 ---@param audioId number
 ---@param car Vehicle
 function attachMissionAudioToCar(audioId, car) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHasBeenOwnedForCarGenerator)**
 ---
->>>>>>> head
 ---@param generator number
 ---@param owned boolean
 function setHasBeenOwnedForCarGenerator(generator, owned) end
@@ -17879,12 +12168,9 @@ function setUpConversationNodeWithScriptedSpeech(
 )
 end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAreaName)**
 ---
->>>>>>> head
 ---@param gxtString GxtString
 function setAreaName(gxtString) end
 
@@ -17912,11 +12198,6 @@ function disableHeliAudio(helicopter, disable) end
 ---@param ped2 Ped
 function taskHandGesture(ped, ped2) end
 
-<<<<<<< HEAD
----@param unk boolean
-function takePhoto(unk) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/takePhoto)**
 ---
@@ -17926,7 +12207,6 @@ function takePhoto(unk) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/incrementFloatStatNoMessage)**
 ---
->>>>>>> head
 ---@param stat number
 ---@param value number
 function incrementFloatStatNoMessage(stat, value) end
@@ -17939,34 +12219,23 @@ function setPlayerGroupToFollowAlways(player, followAlways) end
 ---@param affectedByCheats boolean
 function improveCarByCheating(car, affectedByCheats) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/changeCarColourFromMenu)**
 ---
->>>>>>> head
 ---@param panelID number
 ---@param car Vehicle
 ---@param colorslot number
 ---@param activeRow number
 function changeCarColourFromMenu(panelID, car, colorslot, activeRow) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/highlightMenuItem)**
 ---
->>>>>>> head
 ---@param panel number
 ---@param row number
 ---@param highlight boolean
 function highlightMenuItem(panel, row, highlight) end
 
-<<<<<<< HEAD
----@param disable boolean
-function setDisableMilitaryZones(disable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setDisableMilitaryZones)**
 ---
@@ -17976,7 +12245,6 @@ function setDisableMilitaryZones(disable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCameraPositionUnfixed)**
 ---
->>>>>>> head
 ---@param xAngle number
 ---@param zAngle number
 function setCameraPositionUnfixed(xAngle, zAngle) end
@@ -17999,14 +12267,6 @@ function isPlayerClimbing(player) end
 ---@return boolean result
 function isThisHelpMessageBeingDisplayed(gxtString) end
 
-<<<<<<< HEAD
----@return boolean result
-function isWidescreenOnInOptions() end
-
----@param flag boolean
-function drawSubtitlesBeforeFade(flag) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isWidescreenOnInOptions)**
 ---
@@ -18022,7 +12282,6 @@ function drawSubtitlesBeforeFade(flag) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawOddjobTitleBeforeFade)**
 ---
->>>>>>> head
 ---@param flag boolean
 function drawOddjobTitleBeforeFade(flag) end
 
@@ -18035,12 +12294,9 @@ function drawOddjobTitleBeforeFade(flag) end
 ---@param stopRadius number
 function taskFollowPathNodesToCoordWithRadius(ped, toX, toY, toZ, mode, time, stopRadius) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPhotoCameraEffect)**
 ---
->>>>>>> head
 ---@param firstPersonView boolean
 function setPhotoCameraEffect(firstPersonView) end
 
@@ -18059,12 +12315,9 @@ function isCharAttachedToAnyCar(ped) end
 ---@return Ped ped
 function storeCarCharIsAttachedToNoSave(car) end
 
-<<<<<<< HEAD
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpSkipForVehicleFinishedByScript)**
 ---
->>>>>>> head
 ---@param posX number
 ---@param posY number
 ---@param posZ number
@@ -18072,14 +12325,6 @@ function storeCarCharIsAttachedToNoSave(car) end
 ---@param car Vehicle
 function setUpSkipForVehicleFinishedByScript(posX, posY, posZ, angle, car) end
 
-<<<<<<< HEAD
----@return boolean result
-function isSkipWaitingForScriptToFadeIn() end
-
----@param off boolean
-function forceAllVehicleLightsOff(off) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSkipWaitingForScriptToFadeIn)**
 ---
@@ -18095,7 +12340,6 @@ function forceAllVehicleLightsOff(off) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPlayerInCarCameraMode)**
 ---
->>>>>>> head
 ---@return number mode
 function getPlayerInCarCameraMode() end
 
@@ -18111,11 +12355,6 @@ function clearLastBuildingModelShotByPlayer(player) end
 ---@param wav number
 function setUpConversationEndNodeWithScriptedSpeech(dialogueGxt, wav) end
 
-<<<<<<< HEAD
----@param enable boolean
-function activatePimpCheat(enable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/activatePimpCheat)**
 ---
@@ -18125,7 +12364,6 @@ function activatePimpCheat(enable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCharInAreaOffsetNoSave)**
 ---
->>>>>>> head
 ---@param sphereX number
 ---@param sphereY number
 ---@param sphereZ number
@@ -18135,11 +12373,6 @@ function activatePimpCheat(enable) end
 ---@return Ped ped
 function getRandomCharInAreaOffsetNoSave(sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ) end
 
-<<<<<<< HEAD
----@param enable boolean
-function setScriptCoopGame(enable) end
-
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setScriptCoopGame)**
 ---
@@ -18149,7 +12382,6 @@ function setScriptCoopGame(enable) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createUser3dMarker)**
 ---
->>>>>>> head
 ---@param atX number
 ---@param atY number
 ---@param atZ number
@@ -18836,16 +13068,6 @@ function sampGetGangzonePoolPtr() end
 ---@return number tlabelpoolPtr
 function sampGetTextlabelPoolPtr() end
 
-<<<<<<< HEAD
----@return number playerpoolPtr
-function sampGetPlayerPoolPtr() end
-
----@return number vehpoolPtr
-function sampGetVehiclePoolPtr() end
-
----@return number pickuppoolPtr
-function sampGetPickupPoolPtr() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayNonMinigameHelpMessages)**
 ---
@@ -18864,44 +13086,11 @@ function setRailtrackResistanceMult(tracksFriction) end
 ---@param externalScript number
 ---@param canBeStreamedIn boolean
 function switchObjectBrains(externalScript, canBeStreamedIn) end
->>>>>>> head
 
 ---@param id number
 ---@param dstBuffer number
 function sampStorePlayerOnfootData(id, dstBuffer) end
 
-<<<<<<< HEAD
----@param id number
----@param dstBuffer number
-function sampStorePlayerIncarData(id, dstBuffer) end
-
----@param id number
----@param dstBuffer number
-function sampStorePlayerPassengerData(id, dstBuffer) end
-
----@param id number
----@param dstBuffer number
-function sampStorePlayerTrailerData(id, dstBuffer) end
-
----@param id number
----@param dstBuffer number
-function sampStorePlayerAimData(id, dstBuffer) end
-
----@param cmd string
-function sampSendRconCommand(cmd) end
-
----@param dataPtr number
-function sampSendOnfootData(dataPtr) end
-
----@param dataPtr number
-function sampSendIncarData(dataPtr) end
-
----@param dataPtr number
-function sampSendPassengerData(dataPtr) end
-
----@param dataPtr number
-function sampSendAimData(dataPtr) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allowPauseInWidescreen)**
 ---
@@ -18962,133 +13151,10 @@ function setCleoSharedVar(var, value) end
 ---@param var number
 ---@return number value
 function getCleoSharedVar(var) end
->>>>>>> head
 
 ---@param dataPtr number
 function sampSendBulletData(dataPtr) end
 
-<<<<<<< HEAD
----@param dataPtr number
-function sampSendTrailerData(dataPtr) end
-
----@param dataPtr number
-function sampSendUnoccupiedData(dataPtr) end
-
----@param dataPtr number
-function sampSendSpectatorData(dataPtr) end
-
----@param id number
----@param source number
-function sampSendClickPlayer(id, source) end
-
----@param id number
----@param button number
----@param listitem number
----@param input string
-function sampSendDialogResponse(id, button, listitem, input) end
-
----@param id number
-function sampSendClickTextdraw(id) end
-
----@param id number
----@param damage number
----@param weapon number
----@param bodypart number
-function sampSendGiveDamage(id, damage, weapon, bodypart) end
-
----@param id number
----@param damage number
----@param weapon number
----@param bodypart number
-function sampSendTakeDamage(id, damage, weapon, bodypart) end
-
----@param playerObject boolean
----@param objectId number
----@param response number
----@param posX number
----@param posY number
----@param posZ number
----@param rotX number
----@param rotY number
----@param rotZ number
-function sampSendEditObject(playerObject, objectId, response, posX, posY, posZ, rotX, rotY, rotZ) end
-
----@param response number
----@param index number
----@param model number
----@param bone number
----@param offsetX number
----@param offsetY number
----@param offsetZ number
----@param rotX number
----@param rotY number
----@param rotZ number
----@param scaleX number
----@param scaleY number
----@param scaleZ number
-function sampSendEditAttachedObject(
-	response,
-	index,
-	model,
-	bone,
-	offsetX,
-	offsetY,
-	offsetZ,
-	rotX,
-	rotY,
-	rotZ,
-	scaleX,
-	scaleY,
-	scaleZ
-)
-end
-
----@param id number
-function sampSendInteriorChange(id) end
-
-function sampSendRequestSpawn() end
-
----@param id number
-function sampSendPickedUpPickup(id) end
-
----@param id number
-function sampSendMenuSelectRow(id) end
-
-function sampSendMenuQuit() end
-
----@param id number
-function sampSendVehicleDestroyed(id) end
-
----@return boolean result
-function sampIsScoreboardOpen() end
-
----@param show boolean
-function sampToggleScoreboard(show) end
-
----@return string text
-function sampGetDialogText() end
-
----@return string caption
-function sampGetDialogCaption() end
-
----@param clientside boolean
-function sampSetDialogClientside(clientside) end
-
----@return boolean result
-function sampIsDialogClientside() end
-
----@return boolean result
-function sampIsChatVisible() end
-
----@return number mode
-function sampGetChatDisplayMode() end
-
----@param mode number
-function sampSetChatDisplayMode(mode) end
-
----@param thread number
-function pauseScmThread(thread) end
-=======
 ---
 --- Возвращает адрес samp.dll
 --- То же самое, что и `getModuleHandle("samp.dll")`
@@ -19296,48 +13362,10 @@ function sampSendEnterVehicle(id, passenger) end
 ---
 ---@param id number
 function sampSendExitVehicle(id) end
->>>>>>> head
 
 ---@param thread number
 function resumeScmThread(thread) end
 
-<<<<<<< HEAD
----@param bs Bitstream
----@return boolean value
-function raknetBitStreamReadBool(bs) end
-
----@param bs Bitstream
----@return number value
-function raknetBitStreamReadInt8(bs) end
-
----@param bs Bitstream
----@return number value
-function raknetBitStreamReadInt16(bs) end
-
----@param bs Bitstream
----@return number value
-function raknetBitStreamReadInt32(bs) end
-
----@param bs Bitstream
----@return number value
-function raknetBitStreamReadFloat(bs) end
-
----@param bs Bitstream
----@param dest number
----@param size number
-function raknetBitStreamReadBuffer(bs, dest, size) end
-
----@param bs Bitstream
----@param size number
----@return string value
-function raknetBitStreamReadString(bs, size) end
-
----@param bs Bitstream
-function raknetBitStreamResetReadPointer(bs) end
-
----@param bs Bitstream
-function raknetBitStreamResetWritePointer(bs) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendDamageVehicle)**
 ---
@@ -19435,7 +13463,6 @@ function sampShowDialog(id, caption, text, button1, button2, style) end
 ---@return number list
 ---@return string input
 function sampHasDialogRespond(id) end
->>>>>>> head
 
 ---@param bs Bitstream
 ---@param amount number
@@ -19450,59 +13477,29 @@ function raknetBitStreamSetWriteOffset(bs, offset) end
 function raknetBitStreamSetReadOffset(bs, offset) end
 
 ---@param bs Bitstream
-<<<<<<< HEAD
----@return number value
-function raknetBitStreamGetNumberOfBitsUsed(bs) end
-=======
 ---@param value boolean
 function raknetBitStreamWriteBool(bs, value) end
->>>>>>> head
 
 ---@param bs Bitstream
-<<<<<<< HEAD
----@return number value
-function raknetBitStreamGetNumberOfBytesUsed(bs) end
-=======
 ---@param value number
 function raknetBitStreamWriteInt8(bs, value) end
->>>>>>> head
 
 ---@param bs Bitstream
-<<<<<<< HEAD
----@return number value
-function raknetBitStreamGetNumberOfUnreadBits(bs) end
-=======
 ---@param value number
 function raknetBitStreamWriteInt16(bs, value) end
->>>>>>> head
 
 ---@param bs Bitstream
-<<<<<<< HEAD
----@return number value
-function raknetBitStreamGetWriteOffset(bs) end
-=======
 ---@param value number
 function raknetBitStreamWriteInt32(bs, value) end
->>>>>>> head
 
 ---@param bs Bitstream
-<<<<<<< HEAD
----@return number value
-function raknetBitStreamGetReadOffset(bs) end
-=======
 ---@param value number
 function raknetBitStreamWriteFloat(bs, value) end
->>>>>>> head
 
 ---@param bs Bitstream
-<<<<<<< HEAD
----@return number value
-function raknetBitStreamGetDataPtr(bs) end
-=======
 ---@param dest number
 ---@param size number
 function raknetBitStreamWriteBuffer(bs, dest, size) end
->>>>>>> head
 
 ---@param bs Bitstream
 ---@param size number
@@ -19513,11 +13510,6 @@ function raknetBitStreamDecodeString(bs, size) end
 ---@param string string
 function raknetBitStreamEncodeString(bs, string) end
 
-<<<<<<< HEAD
----@param rpc number
----@param bs Bitstream
-function raknetEmulRpcReceiveBitStream(rpc, bs) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetSendRpcEx)**
 ---
@@ -19528,321 +13520,9 @@ function raknetEmulRpcReceiveBitStream(rpc, bs) end
 ---@param channel number
 ---@param timestamp boolean
 function raknetSendRpcEx(rpc, bs, priority, reliability, channel, timestamp) end
->>>>>>> head
 
 ---@param packet number
 ---@param bs Bitstream
-<<<<<<< HEAD
-function raknetEmulPacketReceiveBitStream(packet, bs) end
-
----@param rpc number
----@return string name
-function raknetGetRpcName(rpc) end
-
----@param packet number
----@return string name
-function raknetGetPacketName(packet) end
-
----@param var string
----@param value number
----@return boolean result
-function setSampfuncsGlobalVar(var, value) end
-
----@param var string
----@return boolean result
----@return number value
-function getSampfuncsGlobalVar(var) end
-
----@param id number
----@param text string
----@param color number
----@param posX number
----@param posY number
----@param posZ number
----@param distance number
----@param ignoreWalls boolean
----@param playerId number
----@param vehicleId number
-function sampCreate3dTextEx(id, text, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId) end
-
----@param id number
----@return string string
----@return number color
----@return number posX
----@return number posY
----@return number posZ
----@return number distance
----@return boolean ignoreWalls
----@return number playerId
----@return number vehicleId
-function sampGet3dTextInfoById(id) end
-
----@param id number
----@param text string
-function sampSet3dTextString(id, text) end
-
----@param id number
----@param text string
----@param posX number
----@param posY number
-function sampTextdrawCreate(id, text, posX, posY) end
-
----@param id number
----@param box number
----@param color number
----@param sizeX number
----@param sizeY number
-function sampTextdrawSetBoxColorAndSize(id, box, color, sizeX, sizeY) end
-
----@param id number
----@param align number
-function sampTextdrawSetAlign(id, align) end
-
----@param id number
----@param proportional number
-function sampTextdrawSetProportional(id, proportional) end
-
----@param id number
----@param style number
-function sampTextdrawSetStyle(id, style) end
-
----@param id number
----@param shadow number
----@param color number
-function sampTextdrawSetShadow(id, shadow, color) end
-
----@param id number
----@param outline number
----@param color number
-function sampTextdrawSetOutlineColor(id, outline, color) end
-
----@param id number
----@param model number
----@param rotX number
----@param rotY number
----@param rotZ number
----@param zoom number
----@param clr1 number
----@param clr2 number
-function sampTextdrawSetModelRotationZoomVehColor(id, model, rotX, rotY, rotZ, zoom, clr1, clr2) end
-
----@param id number
----@param text string
-function sampTextdrawSetString(id, text) end
-
----@param id number
----@param posX number
----@param posY number
-function sampTextdrawSetPos(id, posX, posY) end
-
----@param id number
----@param letSizeX number
----@param letSizeY number
----@param color number
-function sampTextdrawSetLetterSizeAndColor(id, letSizeX, letSizeY, color) end
-
----@param id number
----@return number box
----@return number color
----@return number sizeX
----@return number sizeY
-function sampTextdrawGetBoxEnabledColorAndSize(id) end
-
----@param id number
----@return number align
-function sampTextdrawGetAlign(id) end
-
----@param id number
----@return number prop
-function sampTextdrawGetProportional(id) end
-
----@param id number
----@return number style
-function sampTextdrawGetStyle(id) end
-
----@param id number
----@return number shadow
----@return number color
-function sampTextdrawGetShadowColor(id) end
-
----@param id number
----@return number outline
----@return number color
-function sampTextdrawGetOutlineColor(id) end
-
----@param id number
----@return number model
----@return number rotX
----@return number rotY
----@return number rotZ
----@return number zoom
----@return number clr1
----@return number clr2
-function sampTextdrawGetModelRotationZoomVehColor(id) end
-
----@param id number
----@return string text
-function sampTextdrawGetString(id) end
-
----@param id number
----@return number posX
----@return number posY
-function sampTextdrawGetPos(id) end
-
----@param id number
----@return number letSizeX
----@return number letSizeY
----@return number color
-function sampTextdrawGetLetterSizeAndColor(id) end
-
----@param id number
----@return boolean result
-function sampTextdrawIsExists(id) end
-
----@param id number
-function sampTextdrawDelete(id) end
-
----@param var string
----@return boolean result
-function isSampfuncsGlobalVarDefined(var) end
-
----@param var string
----@param thread number
----@return boolean read
----@return boolean write
-function getSampfuncsGlobalVarAccessForThread(var, thread) end
-
----@param cmd string
-function runSampfuncsConsoleCommand(cmd) end
-
----@param cmd string
----@param func function
----@return boolean result
-function sampfuncsRegisterConsoleCommand(cmd, func) end
-
----@param cmd string
----@return boolean result
-function sampfuncsUnregisterConsoleCommand(cmd) end
-
----@param pointer number
----@param args table
----@return number thread
-function createScmThreadAtPointer(pointer, args) end
-
----@param thread number
----@param var number
----@param value any
-function setScmThreadLocalVar(thread, var, value) end
-
----@param thread number
----@param var number
----@return number value
-function getScmThreadLocalVar(thread, var) end
-
----@param thread number
-function destroyScmThread(thread) end
-
----@param thread number
----@param args table
-function restartScmThread(thread, args) end
-
----@return boolean result
-function isSampfuncsConsoleActive() end
-
----@param cmd string
----@param text string
-function sampSetClientCommandDescription(cmd, text) end
-
----@param cmd string
----@param text string
-function setSampfuncsConsoleCommandDescription(cmd, text) end
-
----@param id number
-function sampForceVehicleSync(id) end
-
----@param id number
----@param seatId number
-function sampForceUnoccupiedSyncSeatId(id, seatId) end
-
-function sampForceOnfootSync() end
-
-function sampForceAimSync() end
-
----@param id number
-function sampForceTrailerSync(id) end
-
----@param id number
----@param seatId number
-function sampForcePassengerSyncSeatId(id, seatId) end
-
-function sampForceStatsSync() end
-
-function sampForceWeaponsSync() end
-
----@param streamed boolean
----@return number id
-function sampGetMaxPlayerId(streamed) end
-
----@param streamed boolean
----@return number count
-function sampGetPlayerCount(streamed) end
-
----@param text string
-function sampProcessChatInput(text) end
-
----@param cmd string
----@return boolean result
-function sampIsChatCommandDefined(cmd) end
-
----@param cmd string
----@return boolean result
-function isSampfuncsConsoleCommandDefined(cmd) end
-
----@return number version
-function getCleoLibraryVersion() end
-
----@param object Object
----@return number x
----@return number y
----@return number z
----@return number w
-function getObjectQuaternion(object) end
-
----@param object Object
----@param x number
----@param y number
----@param z number
----@param w number
-function setObjectQuaternion(object, x, y, z, w) end
-
----@param car Vehicle
----@return number x
----@return number y
----@return number z
----@return number w
-function getVehicleQuaternion(car) end
-
----@param car Vehicle
----@param x number
----@param y number
----@param z number
----@param w number
-function setVehicleQuaternion(car, x, y, z, w) end
-
----@param ped Ped
----@return number x
----@return number y
----@return number z
----@return number w
-function getCharQuaternion(ped) end
-
----@param ped Ped
----@param x number
----@param y number
----@param z number
----@param w number
-function setCharQuaternion(ped, x, y, z, w) end
-=======
 ---@param priority number
 ---@param reliability number
 ---@param channel number
@@ -20239,128 +13919,11 @@ function dxutGetControlText(dialog, id) end
 ---@param rpc number
 ---@param bs Bitstream
 function raknetSendRpc(rpc, bs) end
->>>>>>> head
 
 ---@param audio string
 ---@return AudioStream handle
 function loadAudioStream(audio) end
 
-<<<<<<< HEAD
----@param handle AudioStream
----@param state number
-function setAudioStreamState(handle, state) end
-
----@param handle AudioStream
-function releaseAudioStream(handle) end
-
----@param handle AudioStream
----@return number length
-function getAudioStreamLength(handle) end
-
----@param handle AudioStream
----@return number state
-function getAudioStreamState(handle) end
-
----@param audio AudioStream
----@return number volume
-function getAudioStreamVolume(audio) end
-
----@param audio AudioStream
----@param volume number
-function setAudioStreamVolume(audio, volume) end
-
----@param audio AudioStream
----@param loop boolean
-function setAudioStreamLooped(audio, loop) end
-
----@param audio string
----@return AudioStream handle
-function load3dAudioStream(audio) end
-
----@param handle AudioStream
----@param posX number
----@param posY number
----@param posZ number
-function setPlay3dAudioStreamAtCoordinates(handle, posX, posY, posZ) end
-
----@param audio AudioStream
----@param object Object
-function setPlay3dAudioStreamAtObject(audio, object) end
-
----@param audio AudioStream
----@param ped Ped
-function setPlay3dAudioStreamAtChar(audio, ped) end
-
----@param audio AudioStream
----@param car Vehicle
-function setPlay3dAudioStreamAtCar(audio, car) end
-
----@param address number
----@param size number
----@return AudioStream handle
-function loadAudioStreamFromMemory(address, size) end
-
----@param address number
----@param size number
----@return AudioStream handle
-function load3dAudioStreamFromMemory(address, size) end
-
----@param pos1X number
----@param pos1Y number
----@param pos2X number
----@param pos2Y number
----@param width number
----@param color number
-function renderDrawLine(pos1X, pos1Y, pos2X, pos2Y, width, color) end
-
----@param posX number
----@param posY number
----@param sizeX number
----@param sizeY number
----@param color number
-function renderDrawBox(posX, posY, sizeX, sizeY, color) end
-
----@param posX number
----@param posY number
----@param sizeX number
----@param sizeY number
----@param color number
----@param bsize number
----@param bcolor number
-function renderDrawBoxWithBorder(posX, posY, sizeX, sizeY, color, bsize, bcolor) end
-
----@param font DxFont
----@param text string
----@param ignoreColorTags boolean
----@return number length
-function renderGetFontDrawTextLength(font, text, ignoreColorTags) end
-
----@param font DxFont
----@return number height
-function renderGetFontDrawHeight(font) end
-
----@param font DxFont
----@param text string
----@param x number
----@param ignoreColorTags boolean
----@return number index
-function renderGetFontCharIndexAt(font, text, x, ignoreColorTags) end
-
----@param font DxFont
----@param char number
----@return number width
-function renderGetFontCharWidth(font, char) end
-
----@param font string
----@param height number
----@param flags number
----@param charset? number
----@return DxFont font
-function renderCreateFont(font, height, flags, charset) end
-
----@param font DxFont
-function renderReleaseFont(font) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsCursorActive)**
 ---
@@ -20548,7 +14111,6 @@ function dxutIsDialogMinimized(dialog) end
 ---@param dialog DxutDialog
 ---@param id number
 function dxutDeleteControl(dialog, id) end
->>>>>>> head
 
 ---@param font DxFont
 ---@param text string
@@ -20558,162 +14120,6 @@ function dxutDeleteControl(dialog, id) end
 ---@param ignoreColorTags boolean
 function renderFontDrawText(font, text, posX, posY, color, ignoreColorTags) end
 
-<<<<<<< HEAD
----@param posX number
----@param posY number
----@param sizeX number
----@param sizeY number
----@param corners number
----@param rotation number
----@param color number
-function renderDrawPolygon(posX, posY, sizeX, sizeY, corners, rotation, color) end
-
----@param file string
----@return DxTexture texture
-function renderLoadTextureFromFile(file) end
-
----@param texture DxTexture
-function renderReleaseTexture(texture) end
-
----@param texture DxTexture
----@param posX number
----@param posY number
----@param sizeX number
----@param sizeY number
----@param rotation number
----@param color number
-function renderDrawTexture(texture, posX, posY, sizeX, sizeY, rotation, color) end
-
----@param type number
-function renderBegin(type) end
-
-function renderEnd() end
-
----@param color number
-function renderColor(color) end
-
----@param vX number
----@param vY number
-function renderVertex(vX, vY) end
-
----@param posX number
----@param posY number
-function renderSetTexCoord(posX, posY) end
-
----@param texture DxTexture
-function renderBindTexture(texture) end
-
----@param texture DxTexture
----@return number struct
-function renderGetTextureStruct(texture) end
-
----@param texture DxTexture
----@return number sprite
-function renderGetTextureSprite(texture) end
-
----@param texture DxTexture
----@return number sizeX
----@return number sizeY
-function renderGetTextureSize(texture) end
-
----@param state number
----@param value number
-function renderSetRenderState(state, value) end
-
----@param pointer number
----@param size number
----@return DxTexture texture
-function renderLoadTextureFromFileInMemory(pointer, size) end
-
----@param version number
-function script_version_number(version) end
-
----@param version string
-function script_version(version) end
-
----@param name string
-function script_name(name) end
-
----@param description string
-function script_description(description) end
-
----@param author string
-function script_authors(author) end
-
----@param author string
-function script_author(author) end
-
----@param name string
-function script_dependencies(name) end
-
----@param version number
-function script_moonloader(version) end
-
----@param time number
-function wait(time) end
-
----@param value any
-function print(value) end
-
----@param index number
----@return number value
-function getGameGlobal(index) end
-
----@param index number
----@param value number
-function setGameGlobal(index, value) end
-
----@param index number
----@return number ptr
-function getGameGlobalPtr(index) end
-
----@return boolean loaded
-function isSampfuncsLoaded() end
-
----@return boolean loaded
-function isCleoLoaded() end
-
----@return boolean loaded
-function isSampLoaded() end
-
----@param keyId number
----@return boolean state
-function isKeyDown(keyId) end
-
-function reloadScripts() end
-
----@return boolean status
-function isOpcodesAvailable() end
-
----@param f number
----@return number i
-function representFloatAsInt(f) end
-
----@param i number
----@return number i
-function representIntAsFloat(i) end
-
----@param key string
----@param text string
-function setGxtEntry(key, text) end
-
----@param text string
----@return string key
-function setFreeGxtEntry(text) end
-
----@return string key
-function getFreeGxtKey() end
-
----@param key string
----@return string text
-function getGxtText(key) end
-
----@param key string
-function clearGxtEntry(key) end
-
----@return boolean active
-function isPauseMenuActive() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetFocusOnControl)**
 ---
@@ -21037,25 +14443,10 @@ end
 ---
 ---@param id number
 function sampSendInteriorChange(id) end
->>>>>>> head
 
 ---@return boolean foreground
 function isGameWindowForeground() end
 
-<<<<<<< HEAD
----@return number major
----@return number minor
----@return number majorRev
----@return number minorRev
----@return number game
----@return number region
----@return boolean steam
----@return boolean cracked
-function getGameVersion() end
-
----@return number version
-function getMoonloaderVersion() end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendPickedUpPickup)**
 ---
@@ -21067,86 +14458,10 @@ function sampSendPickedUpPickup(id) end
 ---
 ---@param id number
 function sampSendMenuSelectRow(id) end
->>>>>>> head
 
 ---@return number time
 function localClock() end
 
-<<<<<<< HEAD
-function freeTextures() end
-
----@return string path
-function getWorkingDirectory() end
-
----@return string path
-function getGameDirectory() end
-
----@param enable boolean
-function useRenderCommands(enable) end
-
----@param address number
----@param size number
----@param value number
----@param virtualProtect boolean
-function writeMemory(address, size, value, virtualProtect) end
-
----@param address number
----@param size number
----@param virtualProtect boolean
----@return number value
-function readMemory(address, size, virtualProtect) end
-
----@param library string
----@return boolean result
----@return number handle
-function loadDynamicLibrary(library) end
-
----@param handle number
-function freeDynamicLibrary(handle) end
-
----@param proc string
----@param handle number
----@return boolean result
----@return number proc
-function getDynamicLibraryProcedure(proc, handle) end
-
----@param file string
----@return boolean result
-function doesFileExist(file) end
-
----@param directory string
----@return boolean result
-function doesDirectoryExist(directory) end
-
----@param directory string
----@return boolean result
-function createDirectory(directory) end
-
----@return number val
-function popFloat() end
-
----@return boolean result
-function isGameVersionOriginal() end
-
----@param size number
----@return number memory
-function allocateMemory(size) end
-
----@param memory number
-function freeMemory(memory) end
-
----@param mask string
----@return Filesearch handle
----@return string name
-function findFirstFile(mask) end
-
----@param handle Filesearch
----@return string file
-function findNextFile(handle) end
-
----@param handle Filesearch
-function findClose(handle) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendVehicleDestroyed)**
 ---
@@ -21269,7 +14584,6 @@ function raknetBitStreamReadBuffer(bs, dest, size) end
 ---@param size number
 ---@return string value
 function raknetBitStreamReadString(bs, size) end
->>>>>>> head
 
 ---@param posX number
 ---@param posY number
@@ -21291,332 +14605,6 @@ function findAllRandomCharsInSphere(posX, posY, posZ, radius, findNext, skipDead
 ---@return Vehicle car
 function findAllRandomVehiclesInSphere(posX, posY, posZ, radius, findNext, skipWrecked) end
 
-<<<<<<< HEAD
----@param posX number
----@param posY number
----@param posZ number
----@param radius number
----@param findNext boolean
----@return boolean result
----@return Object object
-function findAllRandomObjectsInSphere(posX, posY, posZ, radius, findNext) end
-
----@param ped Ped
----@return number ptr
-function getCharPointer(ped) end
-
----@param car Vehicle
----@return number ptr
-function getCarPointer(car) end
-
----@param object Object
----@return number struct
-function getObjectPointer(object) end
-
----@param address number
----@param params number
----@param pop number
----@return number returnValue
-function callFunction(address, params, pop) end
-
----@param address number
----@param struct number
----@param params number
----@param pop number
----@return number returnValue
-function callMethod(address, struct, params, pop) end
-
----@param ped Ped
----@return Vehicle car
----@return Ped ped
-function storeClosestEntities(ped) end
-
----@param car Vehicle
----@param state boolean
-function switchCarEngine(car, state) end
-
----@return boolean result
----@return number posX
----@return number posY
----@return number posZ
-function getTargetBlipCoordinates() end
-
----@param car Vehicle
----@return number gears
-function getCarNumberOfGears(car) end
-
----@param car Vehicle
----@return number gear
-function getCarCurrentGear(car) end
-
----@param car Vehicle
----@return boolean state
-function isCarSirenOn(car) end
-
----@param car Vehicle
----@return boolean state
-function isCarEngineOn(car) end
-
----@param text string
-function printHelpString(text) end
-
----@param text string
----@param time number
----@param style number
-function printStyledString(text, time, style) end
-
----@param text string
----@param time number
-function printString(text, time) end
-
----@param text string
----@param time number
-function printStringNow(text, time) end
-
----@param player Player
----@return boolean result
----@return Ped ped
-function getCharPlayerIsTargeting(player) end
-
----@param modelId Model
----@return GxtString name
-function getNameOfVehicleModel(modelId) end
-
----@param text string
----@return boolean result
-function testCheat(text) end
-
----@param modelId Model
----@return boolean result
-function spawnVehicleByCheating(modelId) end
-
----@param ptr number
----@return Ped handle
-function getCharPointerHandle(ptr) end
-
----@param ptr number
----@return Vehicle handle
-function getVehiclePointerHandle(ptr) end
-
----@param ptr number
----@return Object handle
-function getObjectPointerHandle(ptr) end
-
----@param originX number
----@param originY number
----@param originZ number
----@param targetX number
----@param targetY number
----@param targetZ number
----@param checkSolid boolean
----@param car boolean
----@param ped boolean
----@param object boolean
----@param particle boolean
----@param seeThrough boolean
----@param ignoreSomeObjects boolean
----@param shootThrough boolean
----@return boolean result
----@return table colPoint
-function processLineOfSight(
-	originX,
-	originY,
-	originZ,
-	targetX,
-	targetY,
-	targetZ,
-	checkSolid,
-	car,
-	ped,
-	object,
-	particle,
-	seeThrough,
-	ignoreSomeObjects,
-	shootThrough
-)
-end
-
----@param text string
----@return boolean result
-function setClipboardText(text) end
-
----@return string text
-function getClipboardText() end
-
----@param struct number
----@param offset number
----@param size number
----@param unprotect boolean
----@return number value
-function getStructElement(struct, offset, size, unprotect) end
-
----@param struct number
----@param offset number
----@param size number
----@param value number
----@param unprotect boolean
-function setStructElement(struct, offset, size, value, unprotect) end
-
----@param rightX number
----@param rightY number
----@param rightZ number
----@param frontX number
----@param frontY number
----@param frontZ number
----@param upX number
----@param upY number
----@param upZ number
----@return number w
----@return number x
----@return number y
----@return number z
-function convertMatrixToQuaternion(rightX, rightY, rightZ, frontX, frontY, frontZ, upX, upY, upZ) end
-
----@param w number
----@param x number
----@param y number
----@param z number
----@return number rightX
----@return number rightY
----@return number rightZ
----@return number frontX
----@return number frontY
----@return number frontZ
----@return number upX
----@return number upY
----@return number upZ
-function convertQuaternionToMatrix(w, x, y, z) end
-
----@param posX number
----@param posY number
----@param posZ number
----@return number wposX
----@return number wposY
-function convert3DCoordsToScreen(posX, posY, posZ) end
-
----@param key number
----@param state number
-function setGameKeyState(key, state) end
-
----@return number posX
----@return number posY
-function getCursorPos() end
-
----@param wposX number
----@param wposY number
----@return number gposX
----@return number gposY
-function convertWindowScreenCoordsToGameScreenCoords(wposX, wposY) end
-
----@param gposX number
----@param gposY number
----@return number wposX
----@return number wposY
-function convertGameScreenCoordsToWindowScreenCoords(gposX, gposY) end
-
----@param posX number
----@param posY number
----@param depth number
----@return number posX
----@return number posY
----@return number posZ
-function convertScreenCoordsToWorld3D(posX, posY, depth) end
-
----@param module string
----@return number handle
-function getModuleHandle(module) end
-
----@param module string
----@param proc string
----@return number address
-function getModuleProcAddress(module, proc) end
-
----@param vkey number
----@param down boolean
-function setVirtualKeyDown(vkey, down) end
-
----@param ckey number
----@param down boolean
-function setCharKeyDown(ckey, down) end
-
----@param url string
----@param file string
----@param statusCallback function
----@return number index
-function downloadUrlToFile(url, file, statusCallback) end
-
----@param key number
----@return boolean state
-function isKeyJustPressed(key) end
-
----@param posX number
----@param posY number
----@param posZ number
----@param checkMin boolean
----@param checkMax boolean
----@return boolean result
----@return number x
----@return number y
----@return number z
----@return number w
----@return number h
-function convert3DCoordsToScreenEx(posX, posY, posZ, checkMin, checkMax) end
-
----@param struct number
----@param offset number
----@param unprotect boolean
----@return number value
-function getStructFloatElement(struct, offset, unprotect) end
-
----@param struct number
----@param offset number
----@param value number
----@param unprotect boolean
-function setStructFloatElement(struct, offset, value, unprotect) end
-
----@param key number
----@return boolean state
-function wasKeyPressed(key) end
-
----@param key number
----@return boolean state
-function wasKeyReleased(key) end
-
----@return number delta
-function getMousewheelDelta() end
-
----@param game boolean
----@param scripts boolean
-function consumeWindowMessage(game, scripts) end
-
----@param eventName string
----@param callback function
-function addEventHandler(eventName, callback) end
-
----@return boolean paused
-function isGamePaused() end
-
----@return number time
-function gameClock() end
-
----@param property string
-function script_properties(property) end
-
----@param url string
-function script_url(url) end
-
----@param filename string
----@return any imports
-function import(filename) end
-
----@param data table
----@return string json
-function encodeJson(data) end
-
----@param json string
----@return table data
-function decodeJson(json) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamIgnoreBits)**
 ---
@@ -22074,7 +15062,6 @@ function sampForceVehicleSync(id) end
 ---@param id number
 ---@param seatId number
 function sampForceUnoccupiedSyncSeatId(id, seatId) end
->>>>>>> head
 
 ---@param show boolean
 ---@param lockControls boolean
@@ -22083,17 +15070,6 @@ function showCursor(show, lockControls) end
 ---@param lock boolean
 function lockPlayerControl(lock) end
 
-<<<<<<< HEAD
----@return boolean locked
-function isPlayerControlLocked() end
-
----@param blip Marker
----@param x number
----@param y number
----@param z number
----@return boolean result
-function setBlipCoordinates(blip, x, y, z) end
-=======
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampForceTrailerSync)**
 ---
@@ -22106,7 +15082,6 @@ function sampForceTrailerSync(id) end
 ---@param id number
 ---@param seatId number
 function sampForcePassengerSyncSeatId(id, seatId) end
->>>>>>> head
 
 ---@param x number
 ---@param y number
@@ -22120,29 +15095,6 @@ function setTargetBlipCoordinates(x, y, z) end
 ---@return boolean result
 function placeWaypoint(x, y, z) end
 
-<<<<<<< HEAD
----@return boolean result
-function removeWaypoint() end
-
----@param csidl number
----@return string path
-function getFolderPath(csidl) end
-
----@return number value
-function getTimeStepValue() end
-
----@return number devicePtr
-function getD3DDevicePtr() end
-
----@return table objects
-function getAllObjects() end
-
----@return table peds
-function getAllChars() end
-
----@return table vehicles
-function getAllVehicles() end
-=======
 ---
 --- Возвращает максимальный SAMP ид игрока на сервере/в зоне прорисовки (стриме)
 ---
@@ -22227,7 +15179,6 @@ function main() end
 ---
 ---@type Ped
 PLAYER_PED = {}
->>>>>>> head
 
 ---@param index number
 ---@return number value

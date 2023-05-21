@@ -428,15 +428,12 @@ function ImDrawList.AddPolyline(self, points, num_points, col, closed, thickness
 function ImDrawList.AddConvexPolyFilled(self, points, num_points, col, anti_aliased) end
 function ImDrawList.AddBezierCurve(self, pos0, cp0, cp1, pos1, col, thickness, num_segments) end
 
-<<<<<<< HEAD
-=======
 ---@param clip_rect_min ImVec2
 ---@param clip_rect_max ImVec2
 ---@param intersect_with_current_clip_rect boolean?
 function ImDrawList.PushClipRect(self, clip_rect_min, clip_rect_max, intersect_with_current_clip_rect) end
 function ImDrawList.PopClipRect(self) end
 
->>>>>>> head
 function imgui.CreateContext(ImFontAtlasshared_font_atlas) end
 function imgui.DestroyContext(ImGuiContextctx) end
 function imgui.GetCurrentContext() end
