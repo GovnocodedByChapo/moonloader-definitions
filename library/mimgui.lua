@@ -274,6 +274,8 @@ imgui.Cond = {
 ---@param x number
 ---@param y number
 ---@return ImVec2
+---@overload fun(other: ImVec2): ImVec2
+---@overload fun(): ImVec2
 function imgui.ImVec2(x, y) end
 
 ---@param x number
@@ -281,6 +283,7 @@ function imgui.ImVec2(x, y) end
 ---@param z number
 ---@param w number
 ---@return ImVec4
+---@overload fun(other: ImVec4): ImVec4
 function imgui.ImVec4(x, y, z, w) end
 
 ---@class imgui.Style
@@ -371,15 +374,15 @@ function imgui.GetForegroundDrawList() end
 --- @param a ImVec2 Start point
 --- @param b ImVec2 End point
 --- @param col number Color (U32)
---- @param thickness number Thickness
+--- @param thickness number? Thickness. default = 1
 function ImDrawList.AddLine(self, a, b, col, thickness) end
 
 --- @param a ImVec2 Start point
 --- @param b ImVec2 End point
 --- @param col number Color (U32)
---- @param rounding number Corner rounding (pixels)
---- @param rounding_corners_flags number
---- @param thickness number Box border thickness
+--- @param rounding number? Corner rounding (pixels). default = 0
+--- @param rounding_corners_flags number? default = 0
+--- @param thickness number? Box border thickness default = 1
 function ImDrawList.AddRect(self, a, b, col, rounding, rounding_corners_flags, thickness) end
 
 --- @param a ImVec2 Start point
@@ -421,7 +424,8 @@ function ImDrawList.AddCircle(self, centre, radius, col, num_segments, thickness
 
 --- @param centre ImVec2 Circle center
 --- @param radius number Circle radius
---- @param num_segments number Count of "corners"
+--- @param col number Color in ARGB
+--- @param num_segments number? Count of "corners". default = 0
 function ImDrawList.AddCircleFilled(self, centre, radius, col, num_segments) end
 
 --- @param pos ImVec2 Position
@@ -432,6 +436,12 @@ function ImDrawList.AddImageQuad(self, user_texture_id, a, b, c, d, uv_a, uv_b, 
 function ImDrawList.AddPolyline(self, points, num_points, col, closed, thickness, anti_aliased) end
 function ImDrawList.AddConvexPolyFilled(self, points, num_points, col, anti_aliased) end
 function ImDrawList.AddBezierCurve(self, pos0, cp0, cp1, pos1, col, thickness, num_segments) end
+
+---@param clip_rect_min ImVec2
+---@param clip_rect_max ImVec2
+---@param intersect_with_current_clip_rect boolean?
+function ImDrawList.PushClipRect(self, clip_rect_min,  clip_rect_max, intersect_with_current_clip_rect) end
+function ImDrawList.PopClipRect(self) end
 
 function imgui.CreateContext(ImFontAtlasshared_font_atlas) end
 function imgui.DestroyContext(ImGuiContextctx) end
@@ -655,8 +665,16 @@ function imgui.GetStyleColorVec4(ImGuiColidx) end
 function imgui.GetFont() end
 function imgui.GetFontSize() end
 function imgui.GetFontTexUvWhitePixel() end
-function imgui.GetColorU32(ImGuiColidx, floatalpha_mul) end
+
+---@param idx imgui.Col
+---@param alpha_mul number? default = 1
+---@return number color
+function imgui.GetColorU32(idx, alpha_mul) end
+
+---@param col ImVec4
+---@return number color
 function imgui.GetColorU32Vec4(col) end
+
 function imgui.GetColorU32U32(col) end
 function imgui.PushItemWidth(floatitem_width) end
 function imgui.PopItemWidth() end
@@ -1141,7 +1159,7 @@ function imgui.IsRectVisible(size) end
 ---@return boolean
 function imgui.IsRectVisibleVec2(rect_min, rect_max) end
 
----@param flags imgui.HoveredFlags
+---@param flags imgui.HoveredFlags? default = 0
 ---@return boolean
 function imgui.IsItemHovered(flags) end
 
@@ -1151,7 +1169,7 @@ function imgui.IsItemActive() end
 ---@return boolean
 function imgui.IsItemFocused() end
 
----@param mouse_button imgui.MouseButton
+---@param mouse_button imgui.MouseButton? default = 0
 ---@return boolean
 function imgui.IsItemClicked(mouse_button) end
 

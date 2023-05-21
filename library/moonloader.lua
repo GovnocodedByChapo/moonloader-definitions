@@ -873,9 +873,13 @@ function script_dependencies(name, ...) end
 function script_moonloader(version) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/wait)**
+--- Приостанавливает выполнение сопрограммы `main` на заданное время в миллисекундах.  
+--- Может быть вызвана только изнутри `main` и скриптовых потоков.  
+--- Если функция вызвана изнутри `main` и значение `time` равно `-1`, то скрипт будет приостановлен на бесконечный период времени, это может быть использовано для прекращения активного исполнения скрипта, но чтобы он продолжал работать и обрабатывать события.  
 ---
----@param time int
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/wait)**  
+---
+---@param time int время в миллисекундах
 function wait(time) end
 
 ---
@@ -1084,10 +1088,12 @@ function freeDynamicLibrary(handle) end
 function getDynamicLibraryProcedure(proc, handle) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesFileExist)**
+--- Проверяет файл на существование.  
 ---
----@param file string
----@return bool result
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesFileExist)**  
+---
+---@param file string путь
+---@return bool result результат выполнения
 function doesFileExist(file) end
 
 ---
@@ -1098,10 +1104,12 @@ function doesFileExist(file) end
 function doesDirectoryExist(directory) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createDirectory)**
+--- Создаёт иерархию директорий для указанного пути.  
 ---
----@param directory string
----@return bool result
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createDirectory)**  
+---
+---@param directory string путь
+---@return bool result результат выполнения
 function createDirectory(directory) end
 
 ---
@@ -1532,13 +1540,18 @@ function setVirtualKeyDown(vkey, down) end
 ---@param down bool
 function setCharKeyDown(ckey, down) end
 
+---@alias DownloadingCallback fun(id: int, status: int, p1: any, p2: any): boolean
+
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/downloadUrlToFile)**
+--- Загружает файл из интернета по URL по протоколу HTTP.  
+--- Процесс загрузки полностью контролируем с помощью обработчика загрузки и может быть отменён.  
 ---
----@param url string
----@param file string
----@param statusCallback function
----@return int index
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/downloadUrlToFile)**  
+---
+---@param url string uRL ресурса
+---@param file string путь к файлу
+---@param statusCallback DownloadingCallback? функция-обработчик статуса загрузки, является необязательным параметром
+---@return int index идентификатор загрузки
 function downloadUrlToFile(url, file, statusCallback) end
 
 ---
@@ -6182,15 +6195,34 @@ function closeAllCarDoors(car) end
 function getDistanceBetweenCoords2d(x1, y1, x2, y2) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDistanceBetweenCoords3d)**
+--- Получение дистанции между двумя точками в игровом мире (3D)  
 ---
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@return float distance
+--- ### Пример использования  
+---
+--- ```lua
+--   function main()
+--     sampRegisterChatCommand('prv', function(id) -- данный код при вводе /prv id получит дистанцию между вами и другим игроком
+--        local res, ped = sampGetCharHandleBySampPlayerId(id)
+--        if res then
+--           local x, y, z = getCharCoordinates(PLAYER_PED)
+--           local mX, mY, mZ = getCharCoordinates(ped)
+--           local dist = getDistanceBetweenCoords3d(x, y, z, mX, mY, mZ)
+--           sampAddChatMessage('Дистанция между вами: '..dist, 0x00DD00)
+--        end
+--     end)
+--     wait(-1) -- не забываем ставить минусовую задержку в конце main, чтобы скрипт не завершал свою работу
+--   end
+--- ```  
+---
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDistanceBetweenCoords3d)**  
+---
+---@param x1 float координата X первой точки
+---@param y1 float координата Y первой точки
+---@param z1 float координата Z первой точки
+---@param x2 float координата X второй точки
+---@param y2 float координата Y второй точки
+---@param z2 float координата Z второй точки
+---@return float distance дистанция
 function getDistanceBetweenCoords3d(x1, y1, z1, x2, y2, z2) end
 
 ---
@@ -7677,10 +7709,12 @@ function getPickupCoordinates(pickup) end
 function removeDecisionMaker(maker) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharModel)**
+--- Возвращает ID скина по хэндлу персонажа.  
 ---
----@param ped Ped
----@return Model modelId
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharModel)**  
+---
+---@param ped Ped хэндл персонажа
+---@return Model modelId ID скина
 function getCharModel(ped) end
 
 ---
@@ -13656,25 +13690,50 @@ function sampSendSpawn() end
 function sampSendDamageVehicle(car, panel, doors, lights, tires) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampRegisterChatCommand)**
+--- Регистрирует новую команду чата SA:MP с возможностью задать ей произвольное поведение.  
 ---
----@param cmd zstring
----@param func function
----@return bool result
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampRegisterChatCommand)**  
+---
+---@param cmd zstring команда без символа '/'
+---@param func fun(argument: string) функция-обработчик
+---@return bool result результат выполнения
 function sampRegisterChatCommand(cmd, func) end
 
 ---
+--- Получает ник игрока по его ID.
+---
+--- ### Пример использования  
+---
+--- ```lua
+---   script_name("Example script")
+---   
+---   function main()
+---     while not isSampAvailable() do wait(100) end
+---     while true do
+---     wait(0)
+---     local result, target = getCharPlayerIsTargeting(playerHandle)
+---     if result then result, playerid = sampGetPlayerIdByCharHandle(target) end
+---       if result and isKeyDown(VK_1) then
+---         name = sampGetPlayerNickname(playerid)
+---         print(name)
+---       end
+---     end
+---   end
+--- ```  
+---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerNickname)**
 ---
----@param id int
----@return zstring name
+---@param id int ID игрока
+---@return zstring name ник
 function sampGetPlayerNickname(id) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerColor)**
+--- Получает цвет игрока из scoreboard'a  
 ---
----@param id int
----@return uint color
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerColor)**  
+---
+---@param id int ИД игрока.
+---@return uint color Цвет(ARGB).
 function sampGetPlayerColor(id) end
 
 ---
@@ -13842,9 +13901,11 @@ function sampDestroy3dText(textlabel) end
 function sampIs3dTextDefined(_3dText) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampCloseCurrentDialogWithButton)**
+--- Закрывает открытый диалог с указанием нажатой кнопки.  
 ---
----@param button int
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampCloseCurrentDialogWithButton)**  
+---
+---@param button int номер кнопки
 function sampCloseCurrentDialogWithButton(button) end
 
 ---
@@ -13872,9 +13933,11 @@ function sampGetCurrentDialogEditboxText() end
 function sampSetCurrentDialogEditboxText(text) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsDialogActive)**
+--- Проверяет, активен ли любой SA:MP-диалог.  
 ---
----@return bool result
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsDialogActive)**  
+---
+---@return bool result статус
 function sampIsDialogActive() end
 
 ---
@@ -13884,9 +13947,11 @@ function sampIsDialogActive() end
 function sampGetCurrentDialogType() end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogId)**
+--- Возвращает ID последнего(открытого) диалогового окна  
 ---
----@return int id
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogId)**  
+---
+---@return int id ID диалогового окна
 function sampGetCurrentDialogId() end
 
 ---
@@ -15025,12 +15090,14 @@ function sampGet3dTextInfoById(id) end
 function sampSet3dTextString(id, text) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawCreate)**
+--- Создает текстдрав c заданными параметрами.  
 ---
----@param id int
----@param text zstring
----@param posX float
----@param posY float
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawCreate)**  
+---
+---@param id int ID текстдрава
+---@param text zstring текст текстдрава
+---@param posX float координата X текстдрава
+---@param posY float координата Y текстдрава
 function sampTextdrawCreate(id, text, posX, posY) end
 
 ---
@@ -15355,10 +15422,12 @@ function sampForceStatsSync() end
 function sampForceWeaponsSync() end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetMaxPlayerId)**
+--- Возвращает максимальный SAMP ид игрока на сервере/в зоне прорисовки (стриме)  
 ---
----@param streamed bool
----@return int id
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetMaxPlayerId)**  
+---
+---@param streamed bool Поиск в стриме
+---@return int id ID игрока
 function sampGetMaxPlayerId(streamed) end
 
 ---
