@@ -1,382 +1,374 @@
 ---@meta
 ---@diagnostic disable: lowercase-global, missing-return
 
----@alias bool boolean # логический
----@alias int number # целочисленный со знаком, 4 байта
----@alias uint number # целочисленный без знака, 4 байта
----@alias float number # число с плавающей точкой, 4 байта
----@alias double number # число с плавающей точкой двойной точности, 8 байт
----@alias zstring string # нуль-терминированная строка (в Lua обычная строка)
+---@class Ped # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РёРіСЂРѕРІРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°
+---@class Marker # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РјР°СЂРєРµСЂР°
+---@class Pickup # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РїРёРєР°РїР°
+---@class Searchlight # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РїСЂРѕР¶РµРєС‚РѕСЂР°
+---@class Particle # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РІРёР·СѓР°Р»СЊРЅРѕРіРѕ СЌС„С„РµРєС‚Р°
+---@class Checkpoint # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» С‡РµРєРїРѕРёРЅС‚Р°
+---@class Vehicle # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРіРѕ СЃСЂРµРґСЃС‚РІР°
+---@class Object # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РёРіСЂРѕРІРѕРіРѕ РѕР±СЉРµРєС‚Р°
+---@class Player # РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РёРіСЂРѕРєР°
 
----@class Ped # скриптовый хэндл игрового персонажа
----@class Marker # скриптовый хэндл маркера
----@class Pickup # скриптовый хэндл пикапа
----@class Searchlight # скриптовый хэндл прожектора
----@class Particle # скриптовый хэндл визуального эффекта
----@class Checkpoint # скриптовый хэндл чекпоинта
----@class Vehicle # скриптовый хэндл транспортного средства
----@class Object # скриптовый хэндл игрового объекта
----@class Player # идентификатор игрока
+---@alias GxtString string # РєРѕСЂРѕС‚РєР°СЏ СЃС‚СЂРѕРєР°-РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ GXT-Р·Р°РїРёСЃРё
+---@alias Model number # РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РёРіСЂРѕРІРѕР№ РјРѕРґРµР»Рё
+---@alias Bitstream number # СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ BitStream
+---@alias VarId number # РёРЅРґРµРєСЃ СЃРєСЂРёРїС‚РѕРІРѕР№ РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№
 
----@alias GxtString string # короткая строка-идентификатор GXT-записи
----@alias Model uint # идентификатор игровой модели
----@alias Bitstream uint # указатель на объект BitStream
----@alias VarId uint # индекс скриптовой глобальной переменной
+---@class DxutDialog # С…СЌРЅРґР» DXUT-РґРёР°Р»РѕРіР° SAMPFUNCS
 
----@class DxutDialog # хэндл DXUT-диалога SAMPFUNCS
-
----@class DxFont # экземпляр шрифта DirectX
----@class DxTexture # экземпляр текстуры DirectX
----@class AudioStream # экземпляр аудиопотока BASS
----@class Filesearch # хэндл поиска файлов
+---@class DxFont # СЌРєР·РµРјРїР»СЏСЂ С€СЂРёС„С‚Р° DirectX
+---@class DxTexture # СЌРєР·РµРјРїР»СЏСЂ С‚РµРєСЃС‚СѓСЂС‹ DirectX
+---@class AudioStream # СЌРєР·РµРјРїР»СЏСЂ Р°СѓРґРёРѕРїРѕС‚РѕРєР° BASS
+---@class Filesearch # С…СЌРЅРґР» РїРѕРёСЃРєР° С„Р°Р№Р»РѕРІ
 
 ---@alias LuaThreadStatus
----| '"dead"' # завершён
----| '"suspended"' # заморожен
----| '"running"' # выполняется
----| '"yielded"' # приостановлен
----| '"error"' # завершён с ошибкой
+---| '"dead"' # Р·Р°РІРµСЂС€С‘РЅ
+---| '"suspended"' # Р·Р°РјРѕСЂРѕР¶РµРЅ
+---| '"running"' # РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ
+---| '"yielded"' # РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅ
+---| '"error"' # Р·Р°РІРµСЂС€С‘РЅ СЃ РѕС€РёР±РєРѕР№
 
----@class LuaThread # экземпляр класса LuaThread
----@field dead boolean # Определяет статус завершённости потока. Только для чтения.
----@field work_in_pause boolean # Определяет исполнение потока во время паузы игры.
----@field run fun(...) # Выполняет замороженный, выполняющийся или завершённый поток с начала. Все параметры вызова передаются в функцию потока в качестве аргументов.
----@field terminate fun() # Принудительно завершает поток.
----@field status fun(): LuaThreadStatus # Возвращает статус потока.
+---@class LuaThread # СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° LuaThread
+---@field dead boolean # РћРїСЂРµРґРµР»СЏРµС‚ СЃС‚Р°С‚СѓСЃ Р·Р°РІРµСЂС€С‘РЅРЅРѕСЃС‚Рё РїРѕС‚РѕРєР°. РўРѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ.
+---@field work_in_pause boolean # РћРїСЂРµРґРµР»СЏРµС‚ РёСЃРїРѕР»РЅРµРЅРёРµ РїРѕС‚РѕРєР° РІРѕ РІСЂРµРјСЏ РїР°СѓР·С‹ РёРіСЂС‹.
+---@field run fun(...) # Р’С‹РїРѕР»РЅСЏРµС‚ Р·Р°РјРѕСЂРѕР¶РµРЅРЅС‹Р№, РІС‹РїРѕР»РЅСЏСЋС‰РёР№СЃСЏ РёР»Рё Р·Р°РІРµСЂС€С‘РЅРЅС‹Р№ РїРѕС‚РѕРє СЃ РЅР°С‡Р°Р»Р°. Р’СЃРµ РїР°СЂР°РјРµС‚СЂС‹ РІС‹Р·РѕРІР° РїРµСЂРµРґР°СЋС‚СЃСЏ РІ С„СѓРЅРєС†РёСЋ РїРѕС‚РѕРєР° РІ РєР°С‡РµСЃС‚РІРµ Р°СЂРіСѓРјРµРЅС‚РѕРІ.
+---@field terminate fun() # РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ Р·Р°РІРµСЂС€Р°РµС‚ РїРѕС‚РѕРє.
+---@field status fun(): LuaThreadStatus # Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃС‚Р°С‚СѓСЃ РїРѕС‚РѕРєР°.
 
 ---@class lua_thread
 lua_thread = {}
 
 ---
---- Создаёт новый поток и сразу же запускает его с указанными параметрами.  
---- Для создания потока приостановленным нужно использовать функцию `lua_thread.create_suspended`.  
---- За примерами и всеми подробностями о потоках обратитесь к статье [Скриптовые потоки](https://wiki.blast.hk/moonloader/scripting/threads).  
+--- РЎРѕР·РґР°С‘С‚ РЅРѕРІС‹Р№ РїРѕС‚РѕРє Рё СЃСЂР°Р·Сѓ Р¶Рµ Р·Р°РїСѓСЃРєР°РµС‚ РµРіРѕ СЃ СѓРєР°Р·Р°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё.
+--- Р”Р»СЏ СЃРѕР·РґР°РЅРёСЏ РїРѕС‚РѕРєР° РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Рј РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С„СѓРЅРєС†РёСЋ `lua_thread.create_suspended`.
+--- Р—Р° РїСЂРёРјРµСЂР°РјРё Рё РІСЃРµРјРё РїРѕРґСЂРѕР±РЅРѕСЃС‚СЏРјРё Рѕ РїРѕС‚РѕРєР°С… РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЃС‚Р°С‚СЊРµ [РЎРєСЂРёРїС‚РѕРІС‹Рµ РїРѕС‚РѕРєРё](https://wiki.blast.hk/moonloader/scripting/threads).
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/lua_thread/create)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/lua_thread/create)**
 ---
----@param func function функция потока, которая начнёт исполнение сразу после создания потока
----@param ... any параметры, с которыми будет вызвана функция
----@return LuaThread thread экземпляр `LuaThread`
+---@param func function С„СѓРЅРєС†РёСЏ РїРѕС‚РѕРєР°, РєРѕС‚РѕСЂР°СЏ РЅР°С‡РЅС‘С‚ РёСЃРїРѕР»РЅРµРЅРёРµ СЃСЂР°Р·Сѓ РїРѕСЃР»Рµ СЃРѕР·РґР°РЅРёСЏ РїРѕС‚РѕРєР°
+---@param ... any РїР°СЂР°РјРµС‚СЂС‹, СЃ РєРѕС‚РѕСЂС‹РјРё Р±СѓРґРµС‚ РІС‹Р·РІР°РЅР° С„СѓРЅРєС†РёСЏ
+---@return LuaThread thread СЌРєР·РµРјРїР»СЏСЂ `LuaThread`
 function lua_thread.create(func, ...) end
 
 ---
---- Создаёт новый поток в состоянии ожидания запуска. Такой поток не начнёт выполнение сразу же после создания, вместо чего будет находиться в ожидании активации функцией lua_thread:run.  
---- Для создания потока с безотложным запуском нужно использовать функцию lua_thread.create.  
---- За примерами и всеми подробностями о потоках обратитесь к статье Скриптовые потоки.  
+--- РЎРѕР·РґР°С‘С‚ РЅРѕРІС‹Р№ РїРѕС‚РѕРє РІ СЃРѕСЃС‚РѕСЏРЅРёРё РѕР¶РёРґР°РЅРёСЏ Р·Р°РїСѓСЃРєР°. РўР°РєРѕР№ РїРѕС‚РѕРє РЅРµ РЅР°С‡РЅС‘С‚ РІС‹РїРѕР»РЅРµРЅРёРµ СЃСЂР°Р·Сѓ Р¶Рµ РїРѕСЃР»Рµ СЃРѕР·РґР°РЅРёСЏ, РІРјРµСЃС‚Рѕ С‡РµРіРѕ Р±СѓРґРµС‚ РЅР°С…РѕРґРёС‚СЊСЃСЏ РІ РѕР¶РёРґР°РЅРёРё Р°РєС‚РёРІР°С†РёРё С„СѓРЅРєС†РёРµР№ lua_thread:run.
+--- Р”Р»СЏ СЃРѕР·РґР°РЅРёСЏ РїРѕС‚РѕРєР° СЃ Р±РµР·РѕС‚Р»РѕР¶РЅС‹Рј Р·Р°РїСѓСЃРєРѕРј РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С„СѓРЅРєС†РёСЋ lua_thread.create.
+--- Р—Р° РїСЂРёРјРµСЂР°РјРё Рё РІСЃРµРјРё РїРѕРґСЂРѕР±РЅРѕСЃС‚СЏРјРё Рѕ РїРѕС‚РѕРєР°С… РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЃС‚Р°С‚СЊРµ РЎРєСЂРёРїС‚РѕРІС‹Рµ РїРѕС‚РѕРєРё.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/lua_thread/create_suspended)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/lua_thread/create_suspended)**
 ---
----@param func function функция потока, которая выполнится после вызова `thread:run()`
----@return LuaThread thread экземпляр `LuaThread`
+---@param func function С„СѓРЅРєС†РёСЏ РїРѕС‚РѕРєР°, РєРѕС‚РѕСЂР°СЏ РІС‹РїРѕР»РЅРёС‚СЃСЏ РїРѕСЃР»Рµ РІС‹Р·РѕРІР° `thread:run()`
+---@return LuaThread thread СЌРєР·РµРјРїР»СЏСЂ `LuaThread`
 function lua_thread.create_suspended(func) end
 
+---@class LuaScript # СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° LuaScript
+---@field name string # РёРјСЏ СЃРєСЂРёРїС‚Р°, Р·Р°РґР°РЅРЅРѕРµ С„СѓРЅРєС†РёРµР№ 'script_name'. Р•СЃР»Рё РёРјСЏ РЅРµ Р·Р°РґР°РЅРѕ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°
+---@field description string # РѕРїРёСЃР°РЅРёРµ СЃРєСЂРёРїС‚Р°, СѓРєР°Р·Р°РЅРЅРѕРµ С„СѓРЅРєС†РёРµР№ 'script_description'. РџСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°, РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅРѕ
+---@field version_num number # С‡РёСЃР»РѕРІР°СЏ РІРµСЂСЃРёСЏ СЃРєСЂРёРїС‚Р°. 0, РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅРѕ
+---@field version string # С‚РµРєСЃС‚РѕРІР°СЏ РІРµСЂСЃРёСЏ СЃРєСЂРёРїС‚Р°. Р‘СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°РЅР° С‡РёСЃР»РѕРІР°СЏ РІРµСЂСЃРёСЏ, РµСЃР»Рё РЅРµ Р·Р°РґР°РЅРѕ
+---@field authors table # СЃРїРёСЃРѕРє Р°РІС‚РѕСЂРѕРІ СЃРєСЂРёРїС‚Р°. РџСѓСЃС‚РѕР№, РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅС‹
+---@field dependencies table # СЃРїРёСЃРѕРє Р·Р°РІРёСЃРёРјРѕСЃС‚РµР№ СЃРєСЂРёРїС‚Р°. РџСѓСЃС‚РѕР№, РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅС‹
+---@field path string # РїРѕР»РЅС‹Р№ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ СЃРєСЂРёРїС‚Р°
+---@field filename string # РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃРєСЂРёРїС‚Р°, РІРєР»СЋС‡Р°СЏ СЂР°СЃС€РёСЂРµРЅРёРµ
+---@field directory string # РїРѕР»РЅС‹Р№ РїСѓС‚СЊ РґРёСЂРµРєС‚РѕСЂРёРё, РёР· РєРѕС‚РѕСЂС‹Р№ Р±С‹Р» Р·Р°РіСЂСѓР¶РµРЅ СЃРєСЂРёРїС‚
+---@field frozen boolean # СЃС‚Р°С‚СѓСЃ Р°РєС‚РёРІРЅРѕСЃС‚Рё РїРѕС‚РѕРєР° (РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅ/Р°РєС‚РёРІРµРЅ)
+---@field dead boolean # СЃС‚Р°С‚СѓСЃ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ РїРѕС‚РѕРєР°. Р•СЃС‚СЊ СЃР»СѓС‡Р°Рё, РєРѕРіРґР° РїРѕС‚РѕРє СѓР¶Рµ Р·Р°РІРµСЂС€С‘РЅ, Р° lua-РѕР±СЉРµРєС‚ СЃРєСЂРёРїС‚Р° РµС‰С‘ СЃСѓС‰РµСЃС‚РІСѓРµС‚. РЎРІРѕР№СЃС‚РІРѕ dead РїСЂРѕРІРµСЂСЏРµС‚ РѕР±СЉРµРєС‚ СЃРєСЂРёРїС‚Р° РЅР° РІР°Р»РёРґРЅРѕСЃС‚СЊ
+---@field exports any # СЌРєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ СЃРєСЂРёРїС‚РѕРј Р·РЅР°С‡РµРЅРёСЏ. РњРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ Рё С„СѓРЅРєС†РёРµР№ import
+---@field id number # СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРєСЂРёРїС‚Р°
+---@field url string # web-Р°РґСЂРµСЃ СЃРєСЂРёРїС‚Р°
+---@field properties table # СЃРїРёСЃРѕРє СЃРІРѕР№СЃС‚РІ, Р·Р°РґР°РЅРЅС‹С… РґРёСЂРµРєС‚РёРІРѕР№ script_properties
+---@field pause fun() # РїСЂРёРѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїРѕС‚РѕРє СЃРєСЂРёРїС‚Р°
+---@field resume fun() # СЃРЅРёРјР°РµС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Р№ РїРѕС‚РѕРє СЃ РїР°СѓР·С‹
+---@field unload fun() # РІС‹РіСЂСѓР¶Р°РµС‚ СЃРєСЂРёРїС‚
+---@field reload fun() # РїРµСЂРµР·Р°РіСЂСѓР¶Р°РµС‚ СЃРєСЂРёРїС‚
 
----@class LuaScript # экземпляр класса LuaScript
----@field name string # имя скрипта, заданное функцией 'script_name'. Если имя не задано используется название файла
----@field description string # описание скрипта, указанное функцией 'script_description'. Пустая строка, если не указано
----@field version_num int # числовая версия скрипта. 0, если не указано
----@field version string # текстовая версия скрипта. Будет использована числовая версия, если не задано
----@field authors table # список авторов скрипта. Пустой, если не указаны
----@field dependencies table # список зависимостей скрипта. Пустой, если не указаны
----@field path string # полный путь к файлу скрипта
----@field filename string # название файла скрипта, включая расширение
----@field directory string # полный путь директории, из который был загружен скрипт
----@field frozen bool # статус активности потока (приостановлен/активен)
----@field dead bool # статус существования потока. Есть случаи, когда поток уже завершён, а lua-объект скрипта ещё существует. Свойство dead проверяет объект скрипта на валидность
----@field exports any # экспортируемые скриптом значения. Можно получить и функцией import
----@field id int # уникальный идентификатор скрипта
----@field url string # web-адрес скрипта
----@field properties table # список свойств, заданных директивой script_properties
----@field pause fun() # приостанавливает поток скрипта
----@field resume fun() # снимает остановленный поток с паузы
----@field unload fun() # выгружает скрипт
----@field reload fun() # перезагружает скрипт
-
 ---
---- Возвращает `LuaScript` скрипта, из которого была вызвана функция.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ `LuaScript` СЃРєСЂРёРїС‚Р°, РёР· РєРѕС‚РѕСЂРѕРіРѕ Р±С‹Р»Р° РІС‹Р·РІР°РЅР° С„СѓРЅРєС†РёСЏ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/thisScript)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/thisScript)**
 ---
----@return LuaScript script скрипт
+---@return LuaScript script СЃРєСЂРёРїС‚
 function thisScript() end
 
 ---@class script
 script = {}
 
 ---
---- Статическое свойство. Возвращает объект `LuaScript` текущего скрипта. Является аналогом функции `thisScript`.  
+--- РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІРѕР№СЃС‚РІРѕ. Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ `LuaScript` С‚РµРєСѓС‰РµРіРѕ СЃРєСЂРёРїС‚Р°. РЇРІР»СЏРµС‚СЃСЏ Р°РЅР°Р»РѕРіРѕРј С„СѓРЅРєС†РёРё `thisScript`.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/this)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/this)**
 ---
 ---@type LuaScript
 script.this = {}
 
 ---
---- Загружает скрипт из файла и возвращает объект `LuaScript`.  
---- Функция пытается загрузить скрипт в следующем порядке путей:
----  - рабочая директория + путь
----  - рабочая директория + путь + .lua(c)
----  - абсолютный путь
----  - абсолютный путь + .lua(c)
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ СЃРєСЂРёРїС‚ РёР· С„Р°Р№Р»Р° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ `LuaScript`.
+--- Р¤СѓРЅРєС†РёСЏ РїС‹С‚Р°РµС‚СЃСЏ Р·Р°РіСЂСѓР·РёС‚СЊ СЃРєСЂРёРїС‚ РІ СЃР»РµРґСѓСЋС‰РµРј РїРѕСЂСЏРґРєРµ РїСѓС‚РµР№:
+---  - СЂР°Р±РѕС‡Р°СЏ РґРёСЂРµРєС‚РѕСЂРёСЏ + РїСѓС‚СЊ
+---  - СЂР°Р±РѕС‡Р°СЏ РґРёСЂРµРєС‚РѕСЂРёСЏ + РїСѓС‚СЊ + .lua(c)
+---  - Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РїСѓС‚СЊ
+---  - Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РїСѓС‚СЊ + .lua(c)
 ---
---- Возвращает `nil`, если скрипт не был загружен.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ `nil`, РµСЃР»Рё СЃРєСЂРёРїС‚ РЅРµ Р±С‹Р» Р·Р°РіСЂСѓР¶РµРЅ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/load)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/load)**
 ---
----@param file string путь к файлу
----@return LuaScript script скрипт
+---@param file string РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+---@return LuaScript script СЃРєСЂРёРїС‚
 function script.load(file) end
 
 ---
---- Ищет загруженный скрипт по имени. Возвращает объект `LuaScript`, если скрипт найден, в противном случае возвращает `nil`.  
+--- РС‰РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ СЃРєСЂРёРїС‚ РїРѕ РёРјРµРЅРё. Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ `LuaScript`, РµСЃР»Рё СЃРєСЂРёРїС‚ РЅР°Р№РґРµРЅ, РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ РІРѕР·РІСЂР°С‰Р°РµС‚ `nil`.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/find)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/find)**
 ---
----@param name string название скрипта
----@return LuaScript script скрипт
+---@param name string РЅР°Р·РІР°РЅРёРµ СЃРєСЂРёРїС‚Р°
+---@return LuaScript script СЃРєСЂРёРїС‚
 function script.find(name) end
 
 ---
---- Возвращает массив загруженных скриптов.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ Р·Р°РіСЂСѓР¶РµРЅРЅС‹С… СЃРєСЂРёРїС‚РѕРІ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/list)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/list)**
 ---
----@return LuaScript[] list массив `LuaScript` загруженных скриптов
+---@return LuaScript[] list РјР°СЃСЃРёРІ `LuaScript` Р·Р°РіСЂСѓР¶РµРЅРЅС‹С… СЃРєСЂРёРїС‚РѕРІ
 function script.list() end
 
---- 
---- Получает загруженный скрипт по его уникальному идентификатору и возвращает объект `LuaScript`.  
---- Возвращает `nil`, если скрипта с таким идентификатором нет.  
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/get)**  
+--- РџРѕР»СѓС‡Р°РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ СЃРєСЂРёРїС‚ РїРѕ РµРіРѕ СѓРЅРёРєР°Р»СЊРЅРѕРјСѓ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ `LuaScript`.
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ `nil`, РµСЃР»Рё СЃРєСЂРёРїС‚Р° СЃ С‚Р°РєРёРј РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј РЅРµС‚.
 ---
----@param scriptId int идентификатор скрипта
----@return LuaScript script скрипт
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script/get)**
+---
+---@param scriptId number РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРєСЂРёРїС‚Р°
+---@return LuaScript script СЃРєСЂРёРїС‚
 function script.get(scriptId) end
 
 ---
---- Проверяет, активен ли курсор  
+--- РџСЂРѕРІРµСЂСЏРµС‚, Р°РєС‚РёРІРµРЅ Р»Рё РєСѓСЂСЃРѕСЂ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCursorActive)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCursorActive)**
 ---
----@return bool result результат
+---@return boolean result СЂРµР·СѓР»СЊС‚Р°С‚
 function isCursorActive() end
 
 ---
---- Возвращает массив со всеми пикапами  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ СЃРѕ РІСЃРµРјРё РїРёРєР°РїР°РјРё
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAllPickups)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAllPickups)**
 ---
----@return Pickup[] pickups пикапы
+---@return Pickup[] pickups РїРёРєР°РїС‹
 function getAllPickups() end
 
 ---
---- Возвращает хэндл пикапа по указателю на экземляр класса `CPickup`.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ С…СЌРЅРґР» РїРёРєР°РїР° РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ РЅР° СЌРєР·РµРјР»СЏСЂ РєР»Р°СЃСЃР° `CPickup`.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointerHandle)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointerHandle)**
 ---
----@param handle int указатель
----@return Pickup pickup хэндл пикапа
+---@param handle number СѓРєР°Р·Р°С‚РµР»СЊ
+---@return Pickup pickup С…СЌРЅРґР» РїРёРєР°РїР°
 function getPickupPointerHandle(handle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointer)**
 ---
 ---@param pickup Pickup
----@return int pointer
+---@return number pointer
 function getPickupPointer(pickup) end
 
 ---
---- Возвращает указатель на структуру пикапа  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂСѓ РїРёРєР°РїР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupType)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupType)**
 ---
----@param pickup Pickup хэндл
----@return int type указатель
+---@param pickup Pickup С…СЌРЅРґР»
+---@return number type СѓРєР°Р·Р°С‚РµР»СЊ
 function getPickupType(pickup) end
 
 ---
---- Возвращает модель пикапа  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РјРѕРґРµР»СЊ РїРёРєР°РїР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupModel)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupModel)**
 ---
----@param pickup Pickup хэндл пикапа
----@return int model модель
+---@param pickup Pickup С…СЌРЅРґР» РїРёРєР°РїР°
+---@return number model РјРѕРґРµР»СЊ
 function getPickupModel(pickup) end
 
 ---
---- Возвращает кватернион вращения объекта  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ РѕР±СЉРµРєС‚Р°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectQuaternion)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectQuaternion)**
 ---
----@param object Object объект
----@return float x
----@return float y
----@return float z
----@return float w
+---@param object Object РѕР±СЉРµРєС‚
+---@return number x
+---@return number y
+---@return number z
+---@return number w
 function getObjectQuaternion(object) end
 
 ---
---- Задаёт кватернион вращения объекта  
+--- Р—Р°РґР°С‘С‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ РѕР±СЉРµРєС‚Р°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectQuaternion)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectQuaternion)**
 ---
----@param object Object объект
----@param x float
----@param y float
----@param z float
----@param w float
+---@param object Object РѕР±СЉРµРєС‚
+---@param x number
+---@param y number
+---@param z number
+---@param w number
 function setObjectQuaternion(object, x, y, z, w) end
 
 ---
---- Возвращает кватернион вращения транспортного средства  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРіРѕ СЃСЂРµРґСЃС‚РІР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getVehicleQuaternion)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getVehicleQuaternion)**
 ---
----@param car Vehicle транспорт
----@return float x
----@return float y
----@return float z
----@return float w
+---@param car Vehicle С‚СЂР°РЅСЃРїРѕСЂС‚
+---@return number x
+---@return number y
+---@return number z
+---@return number w
 function getVehicleQuaternion(car) end
 
 ---
---- Задаёт кватернион вращения транспортного средства  
+--- Р—Р°РґР°С‘С‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРіРѕ СЃСЂРµРґСЃС‚РІР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleQuaternion)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleQuaternion)**
 ---
----@param car Vehicle транспорт
----@param x float
----@param y float
----@param z float
----@param w float
+---@param car Vehicle С‚СЂР°РЅСЃРїРѕСЂС‚
+---@param x number
+---@param y number
+---@param z number
+---@param w number
 function setVehicleQuaternion(car, x, y, z, w) end
 
 ---
---- Возвращает кватернион вращения персонажа  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharQuaternion)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharQuaternion)**
 ---
----@param ped Ped персонаж
----@return float x
----@return float y
----@return float z
----@return float w
+---@param ped Ped РїРµСЂСЃРѕРЅР°Р¶
+---@return number x
+---@return number y
+---@return number z
+---@return number w
 function getCharQuaternion(ped) end
 
 ---
---- Задаёт кватернион вращения персонажа  
+--- Р—Р°РґР°С‘С‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharQuaternion)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharQuaternion)**
 ---
----@param ped Ped персонаж
----@param x float
----@param y float
----@param z float
----@param w float
+---@param ped Ped РїРµСЂСЃРѕРЅР°Р¶
+---@param x number
+---@param y number
+---@param z number
+---@param w number
 function setCharQuaternion(ped, x, y, z, w) end
 
 ---
---- Загружает аудио из файла или по веб-адресу  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ Р°СѓРґРёРѕ РёР· С„Р°Р№Р»Р° РёР»Рё РїРѕ РІРµР±-Р°РґСЂРµСЃСѓ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadAudioStream)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadAudioStream)**
 ---
----@param audio zstring путь к файлу или Web-адрес
----@return AudioStream handle аудиопоток
+---@param audio string РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РёР»Рё Web-Р°РґСЂРµСЃ
+---@return AudioStream handle Р°СѓРґРёРѕРїРѕС‚РѕРє
 function loadAudioStream(audio) end
 
 ---@alias AudioStreamState
----| 0 # Остановлен (закончен)
----| 1 # Играет
----| 2 # Приостановлен
----| 3 # Возобновлён
+---| 0 # РћСЃС‚Р°РЅРѕРІР»РµРЅ (Р·Р°РєРѕРЅС‡РµРЅ)
+---| 1 # РРіСЂР°РµС‚
+---| 2 # РџСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅ
+---| 3 # Р’РѕР·РѕР±РЅРѕРІР»С‘РЅ
 
 ---
---- Задаёт новый статус аудиопотоку  
+--- Р—Р°РґР°С‘С‚ РЅРѕРІС‹Р№ СЃС‚Р°С‚СѓСЃ Р°СѓРґРёРѕРїРѕС‚РѕРєСѓ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAudioStreamState)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAudioStreamState)**
 ---
----@param handle AudioStream аудиопоток
----@param state AudioStreamState состояние
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param state AudioStreamState СЃРѕСЃС‚РѕСЏРЅРёРµ
 function setAudioStreamState(handle, state) end
 
 ---
---- Освобождает загруженный аудиопоток.  
---- Использовать не необходимо, т.к. аудиопотоки освобождаются автоматически сборщиком мусора.  
+--- РћСЃРІРѕР±РѕР¶РґР°РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ Р°СѓРґРёРѕРїРѕС‚РѕРє.
+--- РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РЅРµ РЅРµРѕР±С…РѕРґРёРјРѕ, С‚.Рє. Р°СѓРґРёРѕРїРѕС‚РѕРєРё РѕСЃРІРѕР±РѕР¶РґР°СЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё СЃР±РѕСЂС‰РёРєРѕРј РјСѓСЃРѕСЂР°.
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
----   -- не правильно:
+---   -- РЅРµ РїСЂР°РІРёР»СЊРЅРѕ:
 ---   releaseAudioStream(audiostream)
----   -- правильно:
+---   -- РїСЂР°РІРёР»СЊРЅРѕ:
 ---   audiostream = nil
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/releaseAudioStream)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/releaseAudioStream)**
 ---
----@param handle AudioStream аудиопоток
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
 ---@deprecated
 function releaseAudioStream(handle) end
 
 ---
---- Возвращает длительность аудиопотока в секундах  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р°СѓРґРёРѕРїРѕС‚РѕРєР° РІ СЃРµРєСѓРЅРґР°С…
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAudioStreamLength)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAudioStreamLength)**
 ---
----@param handle AudioStream аудиопоток
----@return double length длительность
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@return number length РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ
 function getAudioStreamLength(handle) end
 
 ---
---- Возвращает статус аудиопотока  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃС‚Р°С‚СѓСЃ Р°СѓРґРёРѕРїРѕС‚РѕРєР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAudioStreamState)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAudioStreamState)**
 ---
----@param handle AudioStream аудиопоток
----@return AudioStreamState state статус
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@return AudioStreamState state СЃС‚Р°С‚СѓСЃ
 function getAudioStreamState(handle) end
 
 ---
---- Возвращает громкость аудиопотока  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РіСЂРѕРјРєРѕСЃС‚СЊ Р°СѓРґРёРѕРїРѕС‚РѕРєР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAudioStreamVolume)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAudioStreamVolume)**
 ---
----@param audio AudioStream аудиопоток
----@return float volume громкость (1.0 - 100%, 0.0 - 0%)
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@return number volume РіСЂРѕРјРєРѕСЃС‚СЊ (1.0 - 100%, 0.0 - 0%)
 function getAudioStreamVolume(audio) end
 
 ---
---- Устанавливает громкость аудиопотока  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РіСЂРѕРјРєРѕСЃС‚СЊ Р°СѓРґРёРѕРїРѕС‚РѕРєР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAudioStreamVolume)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAudioStreamVolume)**
 ---
----@param audio AudioStream аудиопоток
----@param volume float громкость (1.0 - 100%, 0.0 - 0%)
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param volume number РіСЂРѕРјРєРѕСЃС‚СЊ (1.0 - 100%, 0.0 - 0%)
 function setAudioStreamVolume(audio, volume) end
 
 ---
---- Переключает статус зацикленности аудиопотока  
+--- РџРµСЂРµРєР»СЋС‡Р°РµС‚ СЃС‚Р°С‚СѓСЃ Р·Р°С†РёРєР»РµРЅРЅРѕСЃС‚Рё Р°СѓРґРёРѕРїРѕС‚РѕРєР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAudioStreamLooped)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAudioStreamLooped)**
 ---
----@param audio AudioStream аудиопоток
----@param loop bool зациклить
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param loop boolean Р·Р°С†РёРєР»РёС‚СЊ
 function setAudioStreamLooped(audio, loop) end
 
 ---
---- Загружает аудиопоток с поддержкой объёмного (3D) звука  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ Р°СѓРґРёРѕРїРѕС‚РѕРє СЃ РїРѕРґРґРµСЂР¶РєРѕР№ РѕР±СЉС‘РјРЅРѕРіРѕ (3D) Р·РІСѓРєР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/load3dAudioStream)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/load3dAudioStream)**
 ---
----@param audio zstring путь к файлу или веб-адрес
----@return AudioStream handle загруженный аудиопоток
+---@param audio string РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РёР»Рё РІРµР±-Р°РґСЂРµСЃ
+---@return AudioStream handle Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ Р°СѓРґРёРѕРїРѕС‚РѕРє
 function load3dAudioStream(audio) end
 
 ---
---- Устанавливает 3D-аудиопотоку позицию в мире игры  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ 3D-Р°СѓРґРёРѕРїРѕС‚РѕРєСѓ РїРѕР·РёС†РёСЋ РІ РјРёСЂРµ РёРіСЂС‹
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   local as_action = require('moonloader').audiostream_state
@@ -384,127 +376,127 @@ function load3dAudioStream(audio) end
 ---   local x, y, z = getCharCoordinates(PLAYER_PED)
 ---   setPlay3dAudioStreamAtCoordinates(as, x, y, z)
 ---   setAudioStreamState(audio, as_action.PLAY)
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtCoordinates)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtCoordinates)**
 ---
----@param handle AudioStream аудиопоток
----@param posX float
----@param posY float
----@param posZ float
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param posX number
+---@param posY number
+---@param posZ number
 function setPlay3dAudioStreamAtCoordinates(handle, posX, posY, posZ) end
 
 ---
---- Прикрепляет 3D-звук к объекту  
+--- РџСЂРёРєСЂРµРїР»СЏРµС‚ 3D-Р·РІСѓРє Рє РѕР±СЉРµРєС‚Сѓ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtObject)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtObject)**
 ---
----@param audio AudioStream аудиопоток
----@param object Object объект
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param object Object РѕР±СЉРµРєС‚
 function setPlay3dAudioStreamAtObject(audio, object) end
 
 ---
---- Прикрепляет 3D-звук к персонажу  
+--- РџСЂРёРєСЂРµРїР»СЏРµС‚ 3D-Р·РІСѓРє Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtChar)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtChar)**
 ---
----@param audio AudioStream аудиопоток
----@param ped Ped персонаж
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param ped Ped РїРµСЂСЃРѕРЅР°Р¶
 function setPlay3dAudioStreamAtChar(audio, ped) end
 
 ---
---- Прикрепляет 3D-звук к транспортному средству  
+--- РџСЂРёРєСЂРµРїР»СЏРµС‚ 3D-Р·РІСѓРє Рє С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРјСѓ СЃСЂРµРґСЃС‚РІСѓ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtCar)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtCar)**
 ---
----@param audio AudioStream аудиопоток
----@param car Vehicle транспорт
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param car Vehicle С‚СЂР°РЅСЃРїРѕСЂС‚
 function setPlay3dAudioStreamAtCar(audio, car) end
 
 ---
---- Загружает аудиопоток из файла в памяти процесса  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ Р°СѓРґРёРѕРїРѕС‚РѕРє РёР· С„Р°Р№Р»Р° РІ РїР°РјСЏС‚Рё РїСЂРѕС†РµСЃСЃР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadAudioStreamFromMemory)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadAudioStreamFromMemory)**
 ---
----@param address uint адрес памяти
----@param size uint размер файла
----@return AudioStream handle загруженный аудиопоток
+---@param address number Р°РґСЂРµСЃ РїР°РјСЏС‚Рё
+---@param size number СЂР°Р·РјРµСЂ С„Р°Р№Р»Р°
+---@return AudioStream handle Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ Р°СѓРґРёРѕРїРѕС‚РѕРє
 function loadAudioStreamFromMemory(address, size) end
 
 ---
---- Загружает аудиопоток с объёмным звучанием из файла в памяти процесса  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ Р°СѓРґРёРѕРїРѕС‚РѕРє СЃ РѕР±СЉС‘РјРЅС‹Рј Р·РІСѓС‡Р°РЅРёРµРј РёР· С„Р°Р№Р»Р° РІ РїР°РјСЏС‚Рё РїСЂРѕС†РµСЃСЃР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/load3dAudioStreamFromMemory)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/load3dAudioStreamFromMemory)**
 ---
----@param address uint адрес памяти
----@param size uint размер
----@return AudioStream handle загруженный аудиопоток
+---@param address number Р°РґСЂРµСЃ РїР°РјСЏС‚Рё
+---@param size number СЂР°Р·РјРµСЂ
+---@return AudioStream handle Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ Р°СѓРґРёРѕРїРѕС‚РѕРє
 function load3dAudioStreamFromMemory(address, size) end
 
 ---
---- Отображает на экране линию от точки `pos1x, pos1y` до точки `pos2x, pos2y`  
+--- РћС‚РѕР±СЂР°Р¶Р°РµС‚ РЅР° СЌРєСЂР°РЅРµ Р»РёРЅРёСЋ РѕС‚ С‚РѕС‡РєРё `pos1x, pos1y` РґРѕ С‚РѕС‡РєРё `pos2x, pos2y`
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   while true do
----     renderDrawLine(100, 100, 200, 200, 2.0, 0xFFD00000) -- непрозрачный красный цвет
----     wait(0) -- задержка на один кадр
+---     renderDrawLine(100, 100, 200, 200, 2.0, 0xFFD00000) -- РЅРµРїСЂРѕР·СЂР°С‡РЅС‹Р№ РєСЂР°СЃРЅС‹Р№ С†РІРµС‚
+---     wait(0) -- Р·Р°РґРµСЂР¶РєР° РЅР° РѕРґРёРЅ РєР°РґСЂ
 ---   end
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawLine)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawLine)**
 ---
----@param pos1X float координата X первой точки
----@param pos1Y float координата Y первой точки
----@param pos2X float координата X второй точки
----@param pos2Y float координата Y второй точки
----@param width float ширина линии
----@param color uint цвет линии в формате ARGB
+---@param pos1X number РєРѕРѕСЂРґРёРЅР°С‚Р° X РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param pos1Y number РєРѕРѕСЂРґРёРЅР°С‚Р° Y РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param pos2X number РєРѕРѕСЂРґРёРЅР°С‚Р° X РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@param pos2Y number РєРѕРѕСЂРґРёРЅР°С‚Р° Y РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@param width number С€РёСЂРёРЅР° Р»РёРЅРёРё
+---@param color number С†РІРµС‚ Р»РёРЅРёРё РІ С„РѕСЂРјР°С‚Рµ ARGB
 function renderDrawLine(pos1X, pos1Y, pos2X, pos2Y, width, color) end
 
 ---
---- Рисует прямоугольник в указанных координатах с определённым размером  
+--- Р РёСЃСѓРµС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РІ СѓРєР°Р·Р°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… СЃ РѕРїСЂРµРґРµР»С‘РЅРЅС‹Рј СЂР°Р·РјРµСЂРѕРј
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   renderDrawBox(10, 15, 200, 80, 0xAA00CC00)
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawBox)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawBox)**
 ---
----@param posX float координата X
----@param posY float координата Y
----@param sizeX float ширина
----@param sizeY float высота
----@param color uint цвет в ARGB
+---@param posX number РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY number РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param sizeX number С€РёСЂРёРЅР°
+---@param sizeY number РІС‹СЃРѕС‚Р°
+---@param color number С†РІРµС‚ РІ ARGB
 function renderDrawBox(posX, posY, sizeX, sizeY, color) end
 
 ---
---- Рисует прямоугольник с границей  
+--- Р РёСЃСѓРµС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє СЃ РіСЂР°РЅРёС†РµР№
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   renderDrawBoxWithBorder(10, 15, 200, 80, 0xAA00CC00, 3, 0x90000000)
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawBoxWithBorder)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawBoxWithBorder)**
 ---
----@param posX float координата X
----@param posY float координата Y
----@param sizeX float ширина
----@param sizeY float высота
----@param color uint цвет в ARGB
----@param bsize float толщина границы
----@param bcolor uint цвет границы в ARGB
+---@param posX number РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY number РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param sizeX number С€РёСЂРёРЅР°
+---@param sizeY number РІС‹СЃРѕС‚Р°
+---@param color number С†РІРµС‚ РІ ARGB
+---@param bsize number С‚РѕР»С‰РёРЅР° РіСЂР°РЅРёС†С‹
+---@param bcolor number С†РІРµС‚ РіСЂР°РЅРёС†С‹ РІ ARGB
 function renderDrawBoxWithBorder(posX, posY, sizeX, sizeY, color, bsize, bcolor) end
 
 ---
---- Вычисляет ширину заданного текста для загруженного шрифта и возвращает результат в пикселях.  
+--- Р’С‹С‡РёСЃР»СЏРµС‚ С€РёСЂРёРЅСѓ Р·Р°РґР°РЅРЅРѕРіРѕ С‚РµРєСЃС‚Р° РґР»СЏ Р·Р°РіСЂСѓР¶РµРЅРЅРѕРіРѕ С€СЂРёС„С‚Р° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІ РїРёРєСЃРµР»СЏС….
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   local friends = {'Kalcor', 'Jacob', 'Sacky'}
@@ -513,337 +505,337 @@ function renderDrawBoxWithBorder(posX, posY, sizeX, sizeY, color, bsize, bcolor)
 ---     renderFontDrawText(my_font, v, x, 300, 0xFFFFCDCD)
 ---     x = x + 5 + renderGetFontDrawTextLength(my_font, v)
 ---   end
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetFontDrawTextLength)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetFontDrawTextLength)**
 ---
----@param font DxFont шрифт
----@param text zstring текст
----@param ignoreColorTags bool? пропуск цветовых тегов (по умолчанию = `false`)
----@return float length ширина в пикселях
+---@param font DxFont С€СЂРёС„С‚
+---@param text string С‚РµРєСЃС‚
+---@param ignoreColorTags boolean? РїСЂРѕРїСѓСЃРє С†РІРµС‚РѕРІС‹С… С‚РµРіРѕРІ (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = `false`)
+---@return number length С€РёСЂРёРЅР° РІ РїРёРєСЃРµР»СЏС…
 function renderGetFontDrawTextLength(font, text, ignoreColorTags) end
 
 ---
---- Возвращает высоту загруженного шрифта в пикселях  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РІС‹СЃРѕС‚Сѓ Р·Р°РіСЂСѓР¶РµРЅРЅРѕРіРѕ С€СЂРёС„С‚Р° РІ РїРёРєСЃРµР»СЏС…
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetFontDrawHeight)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetFontDrawHeight)**
 ---
----@param font DxFont шрифт
----@return float height высота
+---@param font DxFont С€СЂРёС„С‚
+---@return number height РІС‹СЃРѕС‚Р°
 function renderGetFontDrawHeight(font) end
 
 ---
---- Возвращает индекс символа в тексте по позиции в пикселях  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р° РІ С‚РµРєСЃС‚Рµ РїРѕ РїРѕР·РёС†РёРё РІ РїРёРєСЃРµР»СЏС…
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetFontCharIndexAt)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetFontCharIndexAt)**
 ---
----@param font DxFont шрифт
----@param text string текст
----@param x float смещение в пикселях
----@param ignoreColorTags bool? пропуск цветовых тегов (по умолчанию = `false`)
----@return uint index индекс символа
+---@param font DxFont С€СЂРёС„С‚
+---@param text string С‚РµРєСЃС‚
+---@param x number СЃРјРµС‰РµРЅРёРµ РІ РїРёРєСЃРµР»СЏС…
+---@param ignoreColorTags boolean? РїСЂРѕРїСѓСЃРє С†РІРµС‚РѕРІС‹С… С‚РµРіРѕРІ (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = `false`)
+---@return number index РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р°
 function renderGetFontCharIndexAt(font, text, x, ignoreColorTags) end
 
 ---
---- Получает ширину определённого символа и возвращает результат в пикселях  
+--- РџРѕР»СѓС‡Р°РµС‚ С€РёСЂРёРЅСѓ РѕРїСЂРµРґРµР»С‘РЅРЅРѕРіРѕ СЃРёРјРІРѕР»Р° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІ РїРёРєСЃРµР»СЏС…
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetFontCharWidth)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetFontCharWidth)**
 ---
----@param font DxFont шрифт
----@param char string|uint символ
----@return float width ширина символа
+---@param font DxFont С€СЂРёС„С‚
+---@param char string|number СЃРёРјРІРѕР»
+---@return number width С€РёСЂРёРЅР° СЃРёРјРІРѕР»Р°
 function renderGetFontCharWidth(font, char) end
 
 ---
---- Загружает установленный в системе шрифт по названию. Можно задать стиль шрифта и требуемую кодировку.  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Р№ РІ СЃРёСЃС‚РµРјРµ С€СЂРёС„С‚ РїРѕ РЅР°Р·РІР°РЅРёСЋ. РњРѕР¶РЅРѕ Р·Р°РґР°С‚СЊ СЃС‚РёР»СЊ С€СЂРёС„С‚Р° Рё С‚СЂРµР±СѓРµРјСѓСЋ РєРѕРґРёСЂРѕРІРєСѓ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderCreateFont)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderCreateFont)**
 ---
----@param font zstring название
----@param height int высота
----@param flags uint флаги
----@param charset uint? кодировка
----@return DxFont font шрифт
+---@param font string РЅР°Р·РІР°РЅРёРµ
+---@param height number РІС‹СЃРѕС‚Р°
+---@param flags number С„Р»Р°РіРё
+---@param charset number? РєРѕРґРёСЂРѕРІРєР°
+---@return DxFont font С€СЂРёС„С‚
 function renderCreateFont(font, height, flags, charset) end
 
 ---
---- Освобождает объект шрифта.  
---- Загруженные шрифты выгружаются автоматически сборщиком мусора, так что использование этой функции необязательно, она существует лишь для обеспечения совместимости со старыми версиями.  
+--- РћСЃРІРѕР±РѕР¶РґР°РµС‚ РѕР±СЉРµРєС‚ С€СЂРёС„С‚Р°.
+--- Р—Р°РіСЂСѓР¶РµРЅРЅС‹Рµ С€СЂРёС„С‚С‹ РІС‹РіСЂСѓР¶Р°СЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё СЃР±РѕСЂС‰РёРєРѕРј РјСѓСЃРѕСЂР°, С‚Р°Рє С‡С‚Рѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ СЌС‚РѕР№ С„СѓРЅРєС†РёРё РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ, РѕРЅР° СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»РёС€СЊ РґР»СЏ РѕР±РµСЃРїРµС‡РµРЅРёСЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё СЃРѕ СЃС‚Р°СЂС‹РјРё РІРµСЂСЃРёСЏРјРё.
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   renderReleaseFont(my_font)
----   -- правильнее:
+---   -- РїСЂР°РІРёР»СЊРЅРµРµ:
 ---   my_font = nil
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderReleaseFont)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderReleaseFont)**
 ---
----@param font DxFont шрифт
+---@param font DxFont С€СЂРёС„С‚
 ---@deprecated
 function renderReleaseFont(font) end
 
 ---
---- Отображает текст на экране, используя загруженный шрифт.  
---- Поддерживает цветовые теги в формате `{RRGGBB}` и `{AARRGGBB}`, и символ переноса строки `\n`.  
+--- РћС‚РѕР±СЂР°Р¶Р°РµС‚ С‚РµРєСЃС‚ РЅР° СЌРєСЂР°РЅРµ, РёСЃРїРѕР»СЊР·СѓСЏ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ С€СЂРёС„С‚.
+--- РџРѕРґРґРµСЂР¶РёРІР°РµС‚ С†РІРµС‚РѕРІС‹Рµ С‚РµРіРё РІ С„РѕСЂРјР°С‚Рµ `{RRGGBB}` Рё `{AARRGGBB}`, Рё СЃРёРјРІРѕР» РїРµСЂРµРЅРѕСЃР° СЃС‚СЂРѕРєРё `\n`.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderFontDrawText)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderFontDrawText)**
 ---
----@param font DxFont шрифт
----@param text zstring текст
----@param posX float координата X
----@param posY float координата Y
----@param color uint цвет в ARGB
----@param ignoreColorTags bool? если задано `true`, цветовые теги не станут обрабатываться (по умолчанию = `false`)
+---@param font DxFont С€СЂРёС„С‚
+---@param text string С‚РµРєСЃС‚
+---@param posX number РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY number РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param color number С†РІРµС‚ РІ ARGB
+---@param ignoreColorTags boolean? РµСЃР»Рё Р·Р°РґР°РЅРѕ `true`, С†РІРµС‚РѕРІС‹Рµ С‚РµРіРё РЅРµ СЃС‚Р°РЅСѓС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊСЃСЏ (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = `false`)
 function renderFontDrawText(font, text, posX, posY, color, ignoreColorTags) end
 
 ---
---- Отображает многоугольник в указанных координатах с заданным вращением и количеством углов  
+--- РћС‚РѕР±СЂР°Р¶Р°РµС‚ РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє РІ СѓРєР°Р·Р°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… СЃ Р·Р°РґР°РЅРЅС‹Рј РІСЂР°С‰РµРЅРёРµРј Рё РєРѕР»РёС‡РµСЃС‚РІРѕРј СѓРіР»РѕРІ
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
----   -- пятиугольник по центру экрана
+---   -- РїСЏС‚РёСѓРіРѕР»СЊРЅРёРє РїРѕ С†РµРЅС‚СЂСѓ СЌРєСЂР°РЅР°
 ---   local sx, sy = getScreenResolution()
 ---   renderDrawPolygon(sx / 2, sy / 2, 150, 150, 5, 0.0, 0xFF1166AA)
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawPolygon)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawPolygon)**
 ---
----@param posX float координата X центра
----@param posY float координата Y центра
----@param sizeX float ширина
----@param sizeY float высота
----@param corners int количество вершин
----@param rotation float вращение в градусах
----@param color uint цвет фигуры в формате ARGB
+---@param posX number РєРѕРѕСЂРґРёРЅР°С‚Р° X С†РµРЅС‚СЂР°
+---@param posY number РєРѕРѕСЂРґРёРЅР°С‚Р° Y С†РµРЅС‚СЂР°
+---@param sizeX number С€РёСЂРёРЅР°
+---@param sizeY number РІС‹СЃРѕС‚Р°
+---@param corners number РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ
+---@param rotation number РІСЂР°С‰РµРЅРёРµ РІ РіСЂР°РґСѓСЃР°С…
+---@param color number С†РІРµС‚ С„РёРіСѓСЂС‹ РІ С„РѕСЂРјР°С‚Рµ ARGB
 function renderDrawPolygon(posX, posY, sizeX, sizeY, corners, rotation, color) end
 
 ---
---- Загружает текстуру из файла  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ С‚РµРєСЃС‚СѓСЂСѓ РёР· С„Р°Р№Р»Р°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderLoadTextureFromFile)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderLoadTextureFromFile)**
 ---
----@param file zstring путь к файлу
----@return DxTexture texture текстура
+---@param file string РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+---@return DxTexture texture С‚РµРєСЃС‚СѓСЂР°
 function renderLoadTextureFromFile(file) end
 
 ---
---- Освобождает загруженную текстуру.  
---- Применять необязательно, т.к. все загруженные текстуры освобождаются сборщиком мусора.  
---- Функция оставлена для обеспечения совместимости со старыми версиями.  
+--- РћСЃРІРѕР±РѕР¶РґР°РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ.
+--- РџСЂРёРјРµРЅСЏС‚СЊ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ, С‚.Рє. РІСЃРµ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Рµ С‚РµРєСЃС‚СѓСЂС‹ РѕСЃРІРѕР±РѕР¶РґР°СЋС‚СЃСЏ СЃР±РѕСЂС‰РёРєРѕРј РјСѓСЃРѕСЂР°.
+--- Р¤СѓРЅРєС†РёСЏ РѕСЃС‚Р°РІР»РµРЅР° РґР»СЏ РѕР±РµСЃРїРµС‡РµРЅРёСЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё СЃРѕ СЃС‚Р°СЂС‹РјРё РІРµСЂСЃРёСЏРјРё.
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   renderReleaseTexture(texture )
----   -- правильнее:
+---   -- РїСЂР°РІРёР»СЊРЅРµРµ:
 ---   texture  = nil
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderReleaseTexture)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderReleaseTexture)**
 ---
----@param texture DxTexture текстура
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
 function renderReleaseTexture(texture) end
 
 ---
---- Отображает загруженную текстуру по заданным координатам, с указанным размером и вращением  
+--- РћС‚РѕР±СЂР°Р¶Р°РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ РїРѕ Р·Р°РґР°РЅРЅС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј, СЃ СѓРєР°Р·Р°РЅРЅС‹Рј СЂР°Р·РјРµСЂРѕРј Рё РІСЂР°С‰РµРЅРёРµРј
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawTexture)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderDrawTexture)**
 ---
----@param texture DxTexture текстура
----@param posX float координата X
----@param posY float координата Y
----@param sizeX float ширина
----@param sizeY float высота
----@param rotation float вращение
----@param color uint цвет в ARGB
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
+---@param posX number РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY number РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param sizeX number С€РёСЂРёРЅР°
+---@param sizeY number РІС‹СЃРѕС‚Р°
+---@param rotation number РІСЂР°С‰РµРЅРёРµ
+---@param color number С†РІРµС‚ РІ ARGB
 function renderDrawTexture(texture, posX, posY, sizeX, sizeY, rotation, color) end
 
 ---@alias RenderType
----| 1 # список точек
----| 2 # набор линий
----| 3 # ломаная линия
----| 4 # набор треугольников
----| 5 # серия связанных треугольников (многоугольник)
----| 6 # серия связанных треугольников с единым центром
+---| 1 # СЃРїРёСЃРѕРє С‚РѕС‡РµРє
+---| 2 # РЅР°Р±РѕСЂ Р»РёРЅРёР№
+---| 3 # Р»РѕРјР°РЅР°СЏ Р»РёРЅРёСЏ
+---| 4 # РЅР°Р±РѕСЂ С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ
+---| 5 # СЃРµСЂРёСЏ СЃРІСЏР·Р°РЅРЅС‹С… С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ (РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє)
+---| 6 # СЃРµСЂРёСЏ СЃРІСЏР·Р°РЅРЅС‹С… С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ СЃ РµРґРёРЅС‹Рј С†РµРЅС‚СЂРѕРј
 
 ---
---- Начало рисования фигуры определённым методом.  
---- Подробнее о каждом методе построения примитивов: [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/bb147291(v=vs.85).aspx)  
+--- РќР°С‡Р°Р»Рѕ СЂРёСЃРѕРІР°РЅРёСЏ С„РёРіСѓСЂС‹ РѕРїСЂРµРґРµР»С‘РЅРЅС‹Рј РјРµС‚РѕРґРѕРј.
+--- РџРѕРґСЂРѕР±РЅРµРµ Рѕ РєР°Р¶РґРѕРј РјРµС‚РѕРґРµ РїРѕСЃС‚СЂРѕРµРЅРёСЏ РїСЂРёРјРёС‚РёРІРѕРІ: [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/bb147291(v=vs.85).aspx)
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderBegin)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderBegin)**
 ---
----@param type RenderType метод
+---@param type RenderType РјРµС‚РѕРґ
 function renderBegin(type) end
 
 ---
---- Завершение рисования фигуры.  
+--- Р—Р°РІРµСЂС€РµРЅРёРµ СЂРёСЃРѕРІР°РЅРёСЏ С„РёРіСѓСЂС‹.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderEnd)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderEnd)**
 ---
 function renderEnd() end
 
 ---
---- Задаёт цвет фигуры. Должна быть вызвана перед добавлением вершины  
+--- Р—Р°РґР°С‘С‚ С†РІРµС‚ С„РёРіСѓСЂС‹. Р”РѕР»Р¶РЅР° Р±С‹С‚СЊ РІС‹Р·РІР°РЅР° РїРµСЂРµРґ РґРѕР±Р°РІР»РµРЅРёРµРј РІРµСЂС€РёРЅС‹
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   renderColor(0xFFFF0000)
 ---   renderVertex(10, 100)
 ---   renderColor(0xFF0000FF)
 ---   renderVertex(200, 100)
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderColor)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderColor)**
 ---
----@param color uint цвет в ARGB
+---@param color number С†РІРµС‚ РІ ARGB
 function renderColor(color) end
 
 ---
---- Добавляет вершину в фигуру по абсолютным координатам  
+--- Р”РѕР±Р°РІР»СЏРµС‚ РІРµСЂС€РёРЅСѓ РІ С„РёРіСѓСЂСѓ РїРѕ Р°Р±СЃРѕР»СЋС‚РЅС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderVertex)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderVertex)**
 ---
----@param vX float координата X
----@param vY float координата Y
+---@param vX number РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param vY number РєРѕРѕСЂРґРёРЅР°С‚Р° Y
 function renderVertex(vX, vY) end
 
 ---
---- Указывает, какая точка текстуры будет прикреплена к следующей вершине.  
---- Координаты точки задаются в диапазоне от `0.0` до `1.0`, относительно размеров всей текстуры.  
---- Должна быть вызвана перед каждым добавлением вершины, к которой нужно прикрепить текстуру.  
---- Без вызова `renderBindTexture` не будет иметь эффекта  
+--- РЈРєР°Р·С‹РІР°РµС‚, РєР°РєР°СЏ С‚РѕС‡РєР° С‚РµРєСЃС‚СѓСЂС‹ Р±СѓРґРµС‚ РїСЂРёРєСЂРµРїР»РµРЅР° Рє СЃР»РµРґСѓСЋС‰РµР№ РІРµСЂС€РёРЅРµ.
+--- РљРѕРѕСЂРґРёРЅР°С‚С‹ С‚РѕС‡РєРё Р·Р°РґР°СЋС‚СЃСЏ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ `0.0` РґРѕ `1.0`, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ СЂР°Р·РјРµСЂРѕРІ РІСЃРµР№ С‚РµРєСЃС‚СѓСЂС‹.
+--- Р”РѕР»Р¶РЅР° Р±С‹С‚СЊ РІС‹Р·РІР°РЅР° РїРµСЂРµРґ РєР°Р¶РґС‹Рј РґРѕР±Р°РІР»РµРЅРёРµРј РІРµСЂС€РёРЅС‹, Рє РєРѕС‚РѕСЂРѕР№ РЅСѓР¶РЅРѕ РїСЂРёРєСЂРµРїРёС‚СЊ С‚РµРєСЃС‚СѓСЂСѓ.
+--- Р‘РµР· РІС‹Р·РѕРІР° `renderBindTexture` РЅРµ Р±СѓРґРµС‚ РёРјРµС‚СЊ СЌС„С„РµРєС‚Р°
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   renderColor(0xFFFFFFFF)
 ---   renderBindTexture(tex)
 ---   renderSetTexCoord(0.0, 0.0)
 ---   renderVertex(100, 100)
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderSetTexCoord)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderSetTexCoord)**
 ---
----@param posX float относительные координата X текстуры
----@param posY float относительные координата Y текстуры
+---@param posX number РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚Р° X С‚РµРєСЃС‚СѓСЂС‹
+---@param posY number РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚Р° Y С‚РµРєСЃС‚СѓСЂС‹
 function renderSetTexCoord(posX, posY) end
 
 ---
---- Задаёт фигуре текстуру. Каждой фигуре может быть задана только одна текстура.  
---- Значение `nil` сбросит заданную текстуру.  
---- Эта функция должна быть использована совместно с `renderSetTexCoord`  
+--- Р—Р°РґР°С‘С‚ С„РёРіСѓСЂРµ С‚РµРєСЃС‚СѓСЂСѓ. РљР°Р¶РґРѕР№ С„РёРіСѓСЂРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р·Р°РґР°РЅР° С‚РѕР»СЊРєРѕ РѕРґРЅР° С‚РµРєСЃС‚СѓСЂР°.
+--- Р—РЅР°С‡РµРЅРёРµ `nil` СЃР±СЂРѕСЃРёС‚ Р·Р°РґР°РЅРЅСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ.
+--- Р­С‚Р° С„СѓРЅРєС†РёСЏ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅР° СЃРѕРІРјРµСЃС‚РЅРѕ СЃ `renderSetTexCoord`
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderBindTexture)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderBindTexture)**
 ---
----@param texture DxTexture текстура
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
 function renderBindTexture(texture) end
 
 ---
---- Возвращает указатель на объект `IDirect3DTexture9`, принадлежащий текстуре  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ `IDirect3DTexture9`, РїСЂРёРЅР°РґР»РµР¶Р°С‰РёР№ С‚РµРєСЃС‚СѓСЂРµ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetTextureStruct)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetTextureStruct)**
 ---
----@param texture DxTexture текстура
----@return uint struct указатель
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
+---@return number struct СѓРєР°Р·Р°С‚РµР»СЊ
 function renderGetTextureStruct(texture) end
 
 ---
---- Возвращает указатель на объект ID3DXSprite, принадлежащий текстуре  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ ID3DXSprite, РїСЂРёРЅР°РґР»РµР¶Р°С‰РёР№ С‚РµРєСЃС‚СѓСЂРµ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetTextureSprite)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetTextureSprite)**
 ---
----@param texture DxTexture текстура
----@return uint sprite указатель
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
+---@return number sprite СѓРєР°Р·Р°С‚РµР»СЊ
 function renderGetTextureSprite(texture) end
 
 ---
---- Возвращает размеры изображения  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СЂР°Р·РјРµСЂС‹ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetTextureSize)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderGetTextureSize)**
 ---
----@param texture DxTexture текстура
----@return uint sizeX ширина
----@return uint sizeY высота
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
+---@return number sizeX С€РёСЂРёРЅР°
+---@return number sizeY РІС‹СЃРѕС‚Р°
 function renderGetTextureSize(texture) end
 
 ---
---- Устанавливает значение рендерстейта.  
---- Подробнее о рендерстейтах: [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/bb172599(v=vs.85).aspx)  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РЅР°С‡РµРЅРёРµ СЂРµРЅРґРµСЂСЃС‚РµР№С‚Р°.
+--- РџРѕРґСЂРѕР±РЅРµРµ Рѕ СЂРµРЅРґРµСЂСЃС‚РµР№С‚Р°С…: [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/bb172599(v=vs.85).aspx)
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderSetRenderState)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderSetRenderState)**
 ---
----@param state int тип
----@param value uint новое значение
+---@param state number С‚РёРї
+---@param value number РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ
 function renderSetRenderState(state, value) end
 
 ---
---- Загружает текстуру из файла в памяти процесса  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ С‚РµРєСЃС‚СѓСЂСѓ РёР· С„Р°Р№Р»Р° РІ РїР°РјСЏС‚Рё РїСЂРѕС†РµСЃСЃР°
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   local memory = require 'memory'
----   -- загрузка текстуры вшитой внутрь самого скрипта
+---   -- Р·Р°РіСЂСѓР·РєР° С‚РµРєСЃС‚СѓСЂС‹ РІС€РёС‚РѕР№ РІРЅСѓС‚СЂСЊ СЃР°РјРѕРіРѕ СЃРєСЂРёРїС‚Р°
 ---   function main()
 ---     repeat wait(0) until isSampAvailable()
 ---     texture = renderLoadTextureFromFileInMemory(memory.strptr(texture), #texture)
 ---   end
----   -- сама текстура
+---   -- СЃР°РјР° С‚РµРєСЃС‚СѓСЂР°
 ---   texture = "\x89\x50\x4E\x47\x0D\x0A\x1A\x0A\x00\x00\x00..."
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderLoadTextureFromFileInMemory)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/renderLoadTextureFromFileInMemory)**
 ---
----@param pointer uint адрес памяти
----@param size uint размер файла
----@return DxTexture texture текстура
+---@param pointer number Р°РґСЂРµСЃ РїР°РјСЏС‚Рё
+---@param size number СЂР°Р·РјРµСЂ С„Р°Р№Р»Р°
+---@return DxTexture texture С‚РµРєСЃС‚СѓСЂР°
 function renderLoadTextureFromFileInMemory(pointer, size) end
 
 ---
---- Задаёт числовую версию скрипта. Предназначена преимущественно для системы проверки обновлений.  
+--- Р—Р°РґР°С‘С‚ С‡РёСЃР»РѕРІСѓСЋ РІРµСЂСЃРёСЋ СЃРєСЂРёРїС‚Р°. РџСЂРµРґРЅР°Р·РЅР°С‡РµРЅР° РїСЂРµРёРјСѓС‰РµСЃС‚РІРµРЅРЅРѕ РґР»СЏ СЃРёСЃС‚РµРјС‹ РїСЂРѕРІРµСЂРєРё РѕР±РЅРѕРІР»РµРЅРёР№.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_version_number)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_version_number)**
 ---
----@param version int версия
+---@param version number РІРµСЂСЃРёСЏ
 function script_version_number(version) end
 
 ---
---- Задаёт текстовую версию скрипта.  
+--- Р—Р°РґР°С‘С‚ С‚РµРєСЃС‚РѕРІСѓСЋ РІРµСЂСЃРёСЋ СЃРєСЂРёРїС‚Р°.
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   script_version("0.2.3-beta")
----   
+---
 ---   function main()
 ---     -- ...
 ---   end
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_version)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_version)**
 ---
----@param version string версия
+---@param version string РІРµСЂСЃРёСЏ
 function script_version(version) end
 
 ---
---- Задаёт название скрипта.  
---- Если название не задать, то в качестве названия будет выступать имя файла скрипта.  
+--- Р—Р°РґР°С‘С‚ РЅР°Р·РІР°РЅРёРµ СЃРєСЂРёРїС‚Р°.
+--- Р•СЃР»Рё РЅР°Р·РІР°РЅРёРµ РЅРµ Р·Р°РґР°С‚СЊ, С‚Рѕ РІ РєР°С‡РµСЃС‚РІРµ РЅР°Р·РІР°РЅРёСЏ Р±СѓРґРµС‚ РІС‹СЃС‚СѓРїР°С‚СЊ РёРјСЏ С„Р°Р№Р»Р° СЃРєСЂРёРїС‚Р°.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_name)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_name)**
 ---
----@param name string название
+---@param name string РЅР°Р·РІР°РЅРёРµ
 function script_name(name) end
 
 ---
---- Задаёт описание скрипта.  
+--- Р—Р°РґР°С‘С‚ РѕРїРёСЃР°РЅРёРµ СЃРєСЂРёРїС‚Р°.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_description)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_description)**
 ---
----@param description string текст описания
+---@param description string С‚РµРєСЃС‚ РѕРїРёСЃР°РЅРёСЏ
 function script_description(description) end
 
 ---
@@ -869,63 +861,63 @@ function script_dependencies(name, ...) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_moonloader)**
 ---
----@param version int
+---@param version number
 function script_moonloader(version) end
 
 ---
---- Приостанавливает выполнение сопрограммы `main` на заданное время в миллисекундах.  
---- Может быть вызвана только изнутри `main` и скриптовых потоков.  
---- Если функция вызвана изнутри `main` и значение `time` равно `-1`, то скрипт будет приостановлен на бесконечный период времени, это может быть использовано для прекращения активного исполнения скрипта, но чтобы он продолжал работать и обрабатывать события.  
+--- РџСЂРёРѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РІС‹РїРѕР»РЅРµРЅРёРµ СЃРѕРїСЂРѕРіСЂР°РјРјС‹ `main` РЅР° Р·Р°РґР°РЅРЅРѕРµ РІСЂРµРјСЏ РІ РјРёР»Р»РёСЃРµРєСѓРЅРґР°С….
+--- РњРѕР¶РµС‚ Р±С‹С‚СЊ РІС‹Р·РІР°РЅР° С‚РѕР»СЊРєРѕ РёР·РЅСѓС‚СЂРё `main` Рё СЃРєСЂРёРїС‚РѕРІС‹С… РїРѕС‚РѕРєРѕРІ.
+--- Р•СЃР»Рё С„СѓРЅРєС†РёСЏ РІС‹Р·РІР°РЅР° РёР·РЅСѓС‚СЂРё `main` Рё Р·РЅР°С‡РµРЅРёРµ `time` СЂР°РІРЅРѕ `-1`, С‚Рѕ СЃРєСЂРёРїС‚ Р±СѓРґРµС‚ РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅ РЅР° Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ РїРµСЂРёРѕРґ РІСЂРµРјРµРЅРё, СЌС‚Рѕ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅРѕ РґР»СЏ РїСЂРµРєСЂР°С‰РµРЅРёСЏ Р°РєС‚РёРІРЅРѕРіРѕ РёСЃРїРѕР»РЅРµРЅРёСЏ СЃРєСЂРёРїС‚Р°, РЅРѕ С‡С‚РѕР±С‹ РѕРЅ РїСЂРѕРґРѕР»Р¶Р°Р» СЂР°Р±РѕС‚Р°С‚СЊ Рё РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ СЃРѕР±С‹С‚РёСЏ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/wait)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/wait)**
 ---
----@param time int время в миллисекундах
+---@param time number РІСЂРµРјСЏ РІ РјРёР»Р»РёСЃРµРєСѓРЅРґР°С…
 function wait(time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGameGlobal)**
 ---
----@param index int
----@return int value
+---@param index number
+---@return number value
 function getGameGlobal(index) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGameGlobal)**
 ---
----@param index int
----@param value int
+---@param index number
+---@param value number
 function setGameGlobal(index, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGameGlobalPtr)**
 ---
----@param index int
----@return uint ptr
+---@param index number
+---@return number ptr
 function getGameGlobalPtr(index) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSampfuncsLoaded)**
 ---
----@return bool loaded
+---@return boolean loaded
 function isSampfuncsLoaded() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCleoLoaded)**
 ---
----@return bool loaded
+---@return boolean loaded
 function isCleoLoaded() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSampLoaded)**
 ---
----@return bool loaded
+---@return boolean loaded
 function isSampLoaded() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isKeyDown)**
 ---
----@param keyId int
----@return bool state
+---@param keyId number
+---@return boolean state
 function isKeyDown(keyId) end
 
 ---
@@ -936,21 +928,21 @@ function reloadScripts() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isOpcodesAvailable)**
 ---
----@return bool status
+---@return boolean status
 function isOpcodesAvailable() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/representFloatAsInt)**
 ---
----@param f float
----@return int i
+---@param f number
+---@return number i
 function representFloatAsInt(f) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/representIntAsFloat)**
 ---
----@param i int
----@return float i
+---@param i number
+---@return number i
 function representIntAsFloat(i) end
 
 ---
@@ -989,38 +981,38 @@ function clearGxtEntry(key) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPauseMenuActive)**
 ---
----@return bool active
+---@return boolean active
 function isPauseMenuActive() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGameWindowForeground)**
 ---
----@return bool foreground
+---@return boolean foreground
 function isGameWindowForeground() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGameVersion)**
 ---
----@return int major
----@return int minor
----@return int majorRev
----@return int minorRev
----@return int game
----@return int region
----@return bool steam
----@return bool cracked
+---@return number major
+---@return number minor
+---@return number majorRev
+---@return number minorRev
+---@return number game
+---@return number region
+---@return boolean steam
+---@return boolean cracked
 function getGameVersion() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMoonloaderVersion)**
 ---
----@return int version
+---@return number version
 function getMoonloaderVersion() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/localClock)**
 ---
----@return double time
+---@return number time
 function localClock() end
 
 ---
@@ -1043,98 +1035,98 @@ function getGameDirectory() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/useRenderCommands)**
 ---
----@param enable bool
+---@param enable boolean
 function useRenderCommands(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/writeMemory)**
 ---
----@param address uint
----@param size uint
----@param value int
----@param virtualProtect bool
+---@param address number
+---@param size number
+---@param value number
+---@param virtualProtect boolean
 function writeMemory(address, size, value, virtualProtect) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/readMemory)**
 ---
----@param address uint
----@param size uint
----@param virtualProtect bool
----@return int value
+---@param address number
+---@param size number
+---@param virtualProtect boolean
+---@return number value
 function readMemory(address, size, virtualProtect) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadDynamicLibrary)**
 ---
 ---@param library string
----@return bool result
----@return uint handle
+---@return boolean result
+---@return number handle
 function loadDynamicLibrary(library) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freeDynamicLibrary)**
 ---
----@param handle uint
+---@param handle number
 function freeDynamicLibrary(handle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDynamicLibraryProcedure)**
 ---
 ---@param proc string
----@param handle uint
----@return bool result
----@return uint proc
+---@param handle number
+---@return boolean result
+---@return number proc
 function getDynamicLibraryProcedure(proc, handle) end
 
 ---
---- Проверяет файл на существование.  
+--- РџСЂРѕРІРµСЂСЏРµС‚ С„Р°Р№Р» РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesFileExist)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesFileExist)**
 ---
----@param file string путь
----@return bool result результат выполнения
+---@param file string РїСѓС‚СЊ
+---@return boolean result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 function doesFileExist(file) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesDirectoryExist)**
 ---
 ---@param directory string
----@return bool result
+---@return boolean result
 function doesDirectoryExist(directory) end
 
 ---
---- Создаёт иерархию директорий для указанного пути.  
+--- РЎРѕР·РґР°С‘С‚ РёРµСЂР°СЂС…РёСЋ РґРёСЂРµРєС‚РѕСЂРёР№ РґР»СЏ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїСѓС‚Рё.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createDirectory)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createDirectory)**
 ---
----@param directory string путь
----@return bool result результат выполнения
+---@param directory string РїСѓС‚СЊ
+---@return boolean result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 function createDirectory(directory) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/popFloat)**
 ---
----@return float val
+---@return number val
 function popFloat() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGameVersionOriginal)**
 ---
----@return bool result
+---@return boolean result
 function isGameVersionOriginal() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allocateMemory)**
 ---
----@param size uint
----@return uint memory
+---@param size number
+---@return number memory
 function allocateMemory(size) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freeMemory)**
 ---
----@param memory uint
+---@param memory number
 function freeMemory(memory) end
 
 ---
@@ -1161,38 +1153,38 @@ function findClose(handle) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findAllRandomCharsInSphere)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param radius float
----@param findNext bool
----@param skipDead bool
----@return bool result
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param radius number
+---@param findNext boolean
+---@param skipDead boolean
+---@return boolean result
 ---@return Ped ped
 function findAllRandomCharsInSphere(posX, posY, posZ, radius, findNext, skipDead) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findAllRandomVehiclesInSphere)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param radius float
----@param findNext bool
----@param skipWrecked bool
----@return bool result
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param radius number
+---@param findNext boolean
+---@param skipWrecked boolean
+---@return boolean result
 ---@return Vehicle car
 function findAllRandomVehiclesInSphere(posX, posY, posZ, radius, findNext, skipWrecked) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findAllRandomObjectsInSphere)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param radius float
----@param findNext bool
----@return bool result
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param radius number
+---@param findNext boolean
+---@return boolean result
 ---@return Object object
 function findAllRandomObjectsInSphere(posX, posY, posZ, radius, findNext) end
 
@@ -1200,42 +1192,42 @@ function findAllRandomObjectsInSphere(posX, posY, posZ, radius, findNext) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharPointer)**
 ---
 ---@param ped Ped
----@return uint ptr
+---@return number ptr
 function getCharPointer(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarPointer)**
 ---
 ---@param car Vehicle
----@return uint ptr
+---@return number ptr
 function getCarPointer(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectPointer)**
 ---
 ---@param object Object
----@return uint struct
+---@return number struct
 function getObjectPointer(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/callFunction)**
 ---
----@param address uint
----@param params int
----@param pop int
+---@param address number
+---@param params number
+---@param pop number
 ---@param ... any
----@return int returnValue
+---@return number returnValue
 function callFunction(address, params, pop, ...) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/callMethod)**
 ---
----@param address uint
----@param struct int
----@param params int
----@param pop int
+---@param address number
+---@param struct number
+---@param params number
+---@param pop number
 ---@param ... any
----@return int returnValue
+---@return number returnValue
 function callMethod(address, struct, params, pop, ...) end
 
 ---
@@ -1250,44 +1242,44 @@ function storeClosestEntities(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchCarEngine)**
 ---
 ---@param car Vehicle
----@param state bool
+---@param state boolean
 function switchCarEngine(car, state) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTargetBlipCoordinates)**
 ---
----@return bool result
----@return float posX
----@return float posY
----@return float posZ
+---@return boolean result
+---@return number posX
+---@return number posY
+---@return number posZ
 function getTargetBlipCoordinates() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarNumberOfGears)**
 ---
 ---@param car Vehicle
----@return int gears
+---@return number gears
 function getCarNumberOfGears(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarCurrentGear)**
 ---
 ---@param car Vehicle
----@return int gear
+---@return number gear
 function getCarCurrentGear(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarSirenOn)**
 ---
 ---@param car Vehicle
----@return bool state
+---@return boolean state
 function isCarSirenOn(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarEngineOn)**
 ---
 ---@param car Vehicle
----@return bool state
+---@return boolean state
 function isCarEngineOn(car) end
 
 ---
@@ -1300,29 +1292,29 @@ function printHelpString(text) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printStyledString)**
 ---
 ---@param text string
----@param time int
----@param style int
+---@param time number
+---@param style number
 function printStyledString(text, time, style) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printString)**
 ---
 ---@param text string
----@param time int
+---@param time number
 function printString(text, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printStringNow)**
 ---
 ---@param text string
----@param time int
+---@param time number
 function printStringNow(text, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharPlayerIsTargeting)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 ---@return Ped ped
 function getCharPlayerIsTargeting(player) end
 
@@ -1337,63 +1329,79 @@ function getNameOfVehicleModel(modelId) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/testCheat)**
 ---
 ---@param text string
----@return bool result
+---@return boolean result
 function testCheat(text) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/spawnVehicleByCheating)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function spawnVehicleByCheating(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharPointerHandle)**
 ---
----@param ptr uint
+---@param ptr number
 ---@return Ped handle
 function getCharPointerHandle(ptr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getVehiclePointerHandle)**
 ---
----@param ptr uint
+---@param ptr number
 ---@return Vehicle handle
 function getVehiclePointerHandle(ptr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectPointerHandle)**
 ---
----@param ptr uint
+---@param ptr number
 ---@return Object handle
 function getObjectPointerHandle(ptr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/processLineOfSight)**
 ---
----@param originX float
----@param originY float
----@param originZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param checkSolid bool? Default value is true
----@param car bool? Default value is false
----@param ped bool? Default value is false
----@param object bool? Default value is false
----@param particle bool? Default value is false
----@param seeThrough bool? Default value is false
----@param ignoreSomeObjects bool? Default value is false
----@param shootThrough bool? Default value is false
----@return bool result
+---@param originX number
+---@param originY number
+---@param originZ number
+---@param targetX number
+---@param targetY number
+---@param targetZ number
+---@param checkSolid boolean? Default value is true
+---@param car boolean? Default value is false
+---@param ped boolean? Default value is false
+---@param object boolean? Default value is false
+---@param particle boolean? Default value is false
+---@param seeThrough boolean? Default value is false
+---@param ignoreSomeObjects boolean? Default value is false
+---@param shootThrough boolean? Default value is false
+---@return boolean result
 ---@return table colPoint
-function processLineOfSight(originX, originY, originZ, targetX, targetY, targetZ, checkSolid, car, ped, object, particle, seeThrough, ignoreSomeObjects, shootThrough) end
+function processLineOfSight(
+	originX,
+	originY,
+	originZ,
+	targetX,
+	targetY,
+	targetZ,
+	checkSolid,
+	car,
+	ped,
+	object,
+	particle,
+	seeThrough,
+	ignoreSomeObjects,
+	shootThrough
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setClipboardText)**
 ---
 ---@param text string
----@return bool result
+---@return boolean result
 function setClipboardText(text) end
 
 ---
@@ -1405,117 +1413,117 @@ function getClipboardText() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getStructElement)**
 ---
----@param struct uint
----@param offset int
----@param size uint
----@param unprotect bool? Default value is false
----@return int value
+---@param struct number
+---@param offset number
+---@param size number
+---@param unprotect boolean? Default value is false
+---@return number value
 function getStructElement(struct, offset, size, unprotect) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setStructElement)**
 ---
----@param struct uint
----@param offset int
----@param size uint
----@param value int
----@param unprotect bool? Default value is false
+---@param struct number
+---@param offset number
+---@param size number
+---@param value number
+---@param unprotect boolean? Default value is false
 function setStructElement(struct, offset, size, value, unprotect) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convertMatrixToQuaternion)**
 ---
----@param rightX float
----@param rightY float
----@param rightZ float
----@param frontX float
----@param frontY float
----@param frontZ float
----@param upX float
----@param upY float
----@param upZ float
----@return float w
----@return float x
----@return float y
----@return float z
+---@param rightX number
+---@param rightY number
+---@param rightZ number
+---@param frontX number
+---@param frontY number
+---@param frontZ number
+---@param upX number
+---@param upY number
+---@param upZ number
+---@return number w
+---@return number x
+---@return number y
+---@return number z
 function convertMatrixToQuaternion(rightX, rightY, rightZ, frontX, frontY, frontZ, upX, upY, upZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convertQuaternionToMatrix)**
 ---
----@param w float
----@param x float
----@param y float
----@param z float
----@return float rightX
----@return float rightY
----@return float rightZ
----@return float frontX
----@return float frontY
----@return float frontZ
----@return float upX
----@return float upY
----@return float upZ
+---@param w number
+---@param x number
+---@param y number
+---@param z number
+---@return number rightX
+---@return number rightY
+---@return number rightZ
+---@return number frontX
+---@return number frontY
+---@return number frontZ
+---@return number upX
+---@return number upY
+---@return number upZ
 function convertQuaternionToMatrix(w, x, y, z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convert3DCoordsToScreen)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@return float wposX
----@return float wposY
+---@param posX number
+---@param posY number
+---@param posZ number
+---@return number wposX
+---@return number wposY
 function convert3DCoordsToScreen(posX, posY, posZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGameKeyState)**
 ---
----@param key int
----@param state int
+---@param key number
+---@param state number
 function setGameKeyState(key, state) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCursorPos)**
 ---
----@return int posX
----@return int posY
+---@return number posX
+---@return number posY
 function getCursorPos() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convertWindowScreenCoordsToGameScreenCoords)**
 ---
----@param wposX float
----@param wposY float
----@return float gposX
----@return float gposY
+---@param wposX number
+---@param wposY number
+---@return number gposX
+---@return number gposY
 function convertWindowScreenCoordsToGameScreenCoords(wposX, wposY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convertGameScreenCoordsToWindowScreenCoords)**
 ---
----@param gposX float
----@param gposY float
----@return float wposX
----@return float wposY
+---@param gposX number
+---@param gposY number
+---@return number wposX
+---@return number wposY
 function convertGameScreenCoordsToWindowScreenCoords(gposX, gposY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convertScreenCoordsToWorld3D)**
 ---
----@param posX float
----@param posY float
----@param depth float
----@return float posX
----@return float posY
----@return float posZ
+---@param posX number
+---@param posY number
+---@param depth number
+---@return number posX
+---@return number posY
+---@return number posZ
 function convertScreenCoordsToWorld3D(posX, posY, depth) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getModuleHandle)**
 ---
 ---@param module string
----@return uint handle
+---@return number handle
 function getModuleHandle(module) end
 
 ---
@@ -1523,103 +1531,103 @@ function getModuleHandle(module) end
 ---
 ---@param module string
 ---@param proc string
----@return uint address
+---@return number address
 function getModuleProcAddress(module, proc) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVirtualKeyDown)**
 ---
----@param vkey int
----@param down bool
+---@param vkey number
+---@param down boolean
 function setVirtualKeyDown(vkey, down) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharKeyDown)**
 ---
----@param ckey int
----@param down bool
+---@param ckey number
+---@param down boolean
 function setCharKeyDown(ckey, down) end
 
----@alias DownloadingCallback fun(id: int, status: int, p1: any, p2: any): boolean
+---@alias DownloadingCallback fun(id: number, status: number, p1: any, p2: any): boolean
 
 ---
---- Загружает файл из интернета по URL по протоколу HTTP.  
---- Процесс загрузки полностью контролируем с помощью обработчика загрузки и может быть отменён.  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ С„Р°Р№Р» РёР· РёРЅС‚РµСЂРЅРµС‚Р° РїРѕ URL РїРѕ РїСЂРѕС‚РѕРєРѕР»Сѓ HTTP.
+--- РџСЂРѕС†РµСЃСЃ Р·Р°РіСЂСѓР·РєРё РїРѕР»РЅРѕСЃС‚СЊСЋ РєРѕРЅС‚СЂРѕР»РёСЂСѓРµРј СЃ РїРѕРјРѕС‰СЊСЋ РѕР±СЂР°Р±РѕС‚С‡РёРєР° Р·Р°РіСЂСѓР·РєРё Рё РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РјРµРЅС‘РЅ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/downloadUrlToFile)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/downloadUrlToFile)**
 ---
----@param url string uRL ресурса
----@param file string путь к файлу
----@param statusCallback DownloadingCallback? функция-обработчик статуса загрузки, является необязательным параметром
----@return int index идентификатор загрузки
+---@param url string uRL СЂРµСЃСѓСЂСЃР°
+---@param file string РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+---@param statusCallback DownloadingCallback? С„СѓРЅРєС†РёСЏ-РѕР±СЂР°Р±РѕС‚С‡РёРє СЃС‚Р°С‚СѓСЃР° Р·Р°РіСЂСѓР·РєРё, СЏРІР»СЏРµС‚СЃСЏ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рј РїР°СЂР°РјРµС‚СЂРѕРј
+---@return number index РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РіСЂСѓР·РєРё
 function downloadUrlToFile(url, file, statusCallback) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isKeyJustPressed)**
 ---
----@param key int
----@return bool state
+---@param key number
+---@return boolean state
 function isKeyJustPressed(key) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convert3DCoordsToScreenEx)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param checkMin bool? Default value is false
----@param checkMax bool? Default value is false
----@return bool result
----@return float x
----@return float y
----@return float z
----@return float w
----@return float h
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param checkMin boolean? Default value is false
+---@param checkMax boolean? Default value is false
+---@return boolean result
+---@return number x
+---@return number y
+---@return number z
+---@return number w
+---@return number h
 function convert3DCoordsToScreenEx(posX, posY, posZ, checkMin, checkMax) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getStructFloatElement)**
 ---
----@param struct uint
----@param offset int
----@param unprotect bool? Default value is false
----@return float value
+---@param struct number
+---@param offset number
+---@param unprotect boolean? Default value is false
+---@return number value
 function getStructFloatElement(struct, offset, unprotect) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setStructFloatElement)**
 ---
----@param struct uint
----@param offset int
----@param value float
----@param unprotect bool? Default value is false
+---@param struct number
+---@param offset number
+---@param value number
+---@param unprotect boolean? Default value is false
 function setStructFloatElement(struct, offset, value, unprotect) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/wasKeyPressed)**
 ---
----@param key int
----@return bool state
+---@param key number
+---@return boolean state
 function wasKeyPressed(key) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/wasKeyReleased)**
 ---
----@param key int
----@return bool state
+---@param key number
+---@return boolean state
 function wasKeyReleased(key) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMousewheelDelta)**
 ---
----@return int delta
+---@return number delta
 function getMousewheelDelta() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/consumeWindowMessage)**
 ---
----@param game bool? Default value is true
----@param scripts bool? Default value is true
+---@param game boolean? Default value is true
+---@param scripts boolean? Default value is true
 function consumeWindowMessage(game, scripts) end
 
 ---
@@ -1633,13 +1641,13 @@ function consumeWindowMessage(game, scripts) end
 ---@overload fun(eventName: '"onScriptTerminate"', callback: fun(script: LuaScript, quitGame: boolean))
 ---@overload fun(eventName: '"onSystemInitialized"', callback: fun())
 ---@overload fun(eventName: '"onScriptMessage"', callback: fun(msg: string, script: LuaScript))
----@overload fun(eventName: '"onSystemMessage"', callback: fun(msg: string, type: int, script: LuaScript))
----@overload fun(eventName: '"onReceivePacket"', callback: fun(id: int, bitStream: Bitstream): boolean?, int?, Bitstream?)
----@overload fun(eventName: '"onReceiveRpc"', callback: fun(id: int, bitStream: Bitstream): boolean?, int?, Bitstream?)
----@overload fun(eventName: '"onSendPacket"', callback: fun(id: int, bitStream: Bitstream, priority: int, relability: int, orderingChannel: int): boolean?, int?, Bitstream?, int?, int?, int?)
----@overload fun(eventName: '"onSendRpc"', callback: fun(id: int, bitStream: Bitstream, priority: int, relability: int, orderingChannel: int, shiftTs: boolean): boolean?, int?, Bitstream?, int?, int?, int?, boolean?)
----@overload fun(eventName: '"onWindowMessage"', callback: fun(msg: uint, wparam: uint, lparam: int))
----@overload fun(eventName: '"onStartNewGame"', callback: fun(mpack: int))
+---@overload fun(eventName: '"onSystemMessage"', callback: fun(msg: string, type: number, script: LuaScript))
+---@overload fun(eventName: '"onReceivePacket"', callback: fun(id: number, bitStream: Bitstream): boolean?, number?, Bitstream?)
+---@overload fun(eventName: '"onReceiveRpc"', callback: fun(id: number, bitStream: Bitstream): boolean?, number?, Bitstream?)
+---@overload fun(eventName: '"onSendPacket"', callback: fun(id: number, bitStream: Bitstream, priority: number, relability: number, orderingChannel: number): boolean?, number?, Bitstream?, number?, number?, number?)
+---@overload fun(eventName: '"onSendRpc"', callback: fun(id: number, bitStream: Bitstream, priority: number, relability: number, orderingChannel: number, shiftTs: boolean): boolean?, number?, Bitstream?, number?, number?, number?, boolean?)
+---@overload fun(eventName: '"onWindowMessage"', callback: fun(msg: number, wparam: number, lparam: number))
+---@overload fun(eventName: '"onStartNewGame"', callback: fun(mpack: number))
 ---@overload fun(eventName: '"onLoadGame"', callback: fun(saveData: table))
 ---@overload fun(eventName: '"onSaveGame"', callback: fun(saveData: table): table?)
 function addEventHandler(...) end
@@ -1647,18 +1655,18 @@ function addEventHandler(...) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGamePaused)**
 ---
----@return bool paused
+---@return boolean paused
 function isGamePaused() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/gameClock)**
 ---
----@return double time
+---@return number time
 function gameClock() end
 
 ---@alias ScriptProperty
----| '"work-in-pause"' # Указывает, что скрипт будет продолжать исполнение во время паузы игры (с условием, что игра развёрнута и находится на переднем плане).
----| '"forced-reloading-only"' # апрещает автоматическую перезагрузку скрипта, оставляя возможность только принудительной перезагрузки.
+---| '"work-in-pause"' # РЈРєР°Р·С‹РІР°РµС‚, С‡С‚Рѕ СЃРєСЂРёРїС‚ Р±СѓРґРµС‚ РїСЂРѕРґРѕР»Р¶Р°С‚СЊ РёСЃРїРѕР»РЅРµРЅРёРµ РІРѕ РІСЂРµРјСЏ РїР°СѓР·С‹ РёРіСЂС‹ (СЃ СѓСЃР»РѕРІРёРµРј, С‡С‚Рѕ РёРіСЂР° СЂР°Р·РІС‘СЂРЅСѓС‚Р° Рё РЅР°С…РѕРґРёС‚СЃСЏ РЅР° РїРµСЂРµРґРЅРµРј РїР»Р°РЅРµ).
+---| '"forced-reloading-only"' # Р°РїСЂРµС‰Р°РµС‚ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєСѓСЋ РїРµСЂРµР·Р°РіСЂСѓР·РєСѓ СЃРєСЂРёРїС‚Р°, РѕСЃС‚Р°РІР»СЏСЏ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ С‚РѕР»СЊРєРѕ РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕР№ РїРµСЂРµР·Р°РіСЂСѓР·РєРё.
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/script_properties)**
@@ -1697,73 +1705,73 @@ function decodeJson(json) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/showCursor)**
 ---
----@param show bool
----@param lockControls bool? Default value is nil
+---@param show boolean
+---@param lockControls boolean? Default value is nil
 function showCursor(show, lockControls) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/lockPlayerControl)**
 ---
----@param lock bool
+---@param lock boolean
 function lockPlayerControl(lock) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerControlLocked)**
 ---
----@return bool locked
+---@return boolean locked
 function isPlayerControlLocked() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setBlipCoordinates)**
 ---
 ---@param blip Marker
----@param x float
----@param y float
----@param z float
----@return bool result
+---@param x number
+---@param y number
+---@param z number
+---@return boolean result
 function setBlipCoordinates(blip, x, y, z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTargetBlipCoordinates)**
 ---
----@param x float
----@param y float
----@param z float
----@return bool result
+---@param x number
+---@param y number
+---@param z number
+---@return boolean result
 function setTargetBlipCoordinates(x, y, z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/placeWaypoint)**
 ---
----@param x float
----@param y float
----@param z float
----@return bool result
+---@param x number
+---@param y number
+---@param z number
+---@return boolean result
 function placeWaypoint(x, y, z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeWaypoint)**
 ---
----@return bool result
+---@return boolean result
 function removeWaypoint() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getFolderPath)**
 ---
----@param csidl int
+---@param csidl number
 ---@return string path
 function getFolderPath(csidl) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTimeStepValue)**
 ---
----@return float value
+---@return number value
 function getTimeStepValue() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getD3DDevicePtr)**
 ---
----@return uint devicePtr
+---@return number devicePtr
 function getD3DDevicePtr() end
 
 ---
@@ -1787,41 +1795,41 @@ function getAllVehicles() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGameGlobalFloat)**
 ---
----@param index int
----@return float value
+---@param index number
+---@return number value
 function getGameGlobalFloat(index) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGameGlobalFloat)**
 ---
----@param index int
----@param value float
+---@param index number
+---@param value number
 function setGameGlobalFloat(index, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shakeCam)**
 ---
----@param shake int
+---@param shake number
 function shakeCam(shake) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createPlayer)**
 ---
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Player player
 function createPlayer(modelId, atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createChar)**
 ---
----@param pedtype int
+---@param pedtype number
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Ped ped
 function createChar(pedtype, modelId, atX, atY, atZ) end
 
@@ -1835,53 +1843,53 @@ function deleteChar(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharCoordinates)**
 ---
 ---@param ped Ped
----@return float positionX
----@return float positionY
----@return float positionZ
+---@return number positionX
+---@return number positionY
+---@return number positionZ
 function getCharCoordinates(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharCoordinates)**
 ---
 ---@param ped Ped
----@param posX float
----@param posY float
----@param posZ float
+---@param posX number
+---@param posY number
+---@param posZ number
 function setCharCoordinates(ped, posX, posY, posZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInArea2d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharInArea2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInArea3d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharInArea3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createCar)**
 ---
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Vehicle car
 function createCar(modelId, atX, atY, atZ) end
 
@@ -1895,9 +1903,9 @@ function deleteCar(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/carGotoCoordinates)**
 ---
 ---@param car Vehicle
----@param driveToX float
----@param driveToY float
----@param driveToZ float
+---@param driveToX number
+---@param driveToY number
+---@param driveToZ number
 function carGotoCoordinates(car, driveToX, driveToY, driveToZ) end
 
 ---
@@ -1916,89 +1924,89 @@ function carSetIdle(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarCoordinates)**
 ---
 ---@param car Vehicle
----@return float positionX
----@return float positionY
----@return float positionZ
+---@return number positionX
+---@return number positionY
+---@return number positionZ
 function getCarCoordinates(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarCoordinates)**
 ---
 ---@param car Vehicle
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function setCarCoordinates(car, atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarCruiseSpeed)**
 ---
 ---@param car Vehicle
----@param maxSpeed float
+---@param maxSpeed number
 function setCarCruiseSpeed(car, maxSpeed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarDrivingStyle)**
 ---
 ---@param car Vehicle
----@param behaviour int
+---@param behaviour number
 function setCarDrivingStyle(car, behaviour) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarMission)**
 ---
 ---@param car Vehicle
----@param driverBehaviour int
+---@param driverBehaviour number
 function setCarMission(car, driverBehaviour) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarInArea2d)**
 ---
 ---@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCarInArea2d(car, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarInArea3d)**
 ---
 ---@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCarInArea3d(car, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printBig)**
 ---
 ---@param gxtString GxtString
----@param time int
----@param style int
+---@param time number
+---@param style number
 function printBig(gxtString, time, style) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printText)**
 ---
 ---@param gxtString GxtString
----@param time int
----@param flag int
+---@param time number
+---@param flag number
 function printText(gxtString, time, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printTextNow)**
 ---
 ---@param gxtString GxtString
----@param time int
----@param flag int
+---@param time number
+---@param flag number
 function printTextNow(gxtString, time, flag) end
 
 ---
@@ -2009,33 +2017,33 @@ function clearPrints() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTimeOfDay)**
 ---
----@return int hours
----@return int mins
+---@return number hours
+---@return number mins
 function getTimeOfDay() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTimeOfDay)**
 ---
----@param hours int
----@param minutes int
+---@param hours number
+---@param minutes number
 function setTimeOfDay(hours, minutes) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMinutesToTimeOfDay)**
 ---
----@param hours int
----@param minutes int
----@return int minutes
+---@param hours number
+---@param minutes number
+---@return number minutes
 function getMinutesToTimeOfDay(hours, minutes) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPointOnScreen)**
 ---
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radius float
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radius number
+---@return boolean result
 function isPointOnScreen(sphereX, sphereY, sphereZ, radius) end
 
 ---
@@ -2050,7 +2058,7 @@ function storeCarCharIsIn(ped) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCharInCar(ped, car) end
 
 ---
@@ -2058,102 +2066,102 @@ function isCharInCar(ped, car) end
 ---
 ---@param ped Ped
 ---@param carModel Model
----@return bool result
+---@return boolean result
 function isCharInModel(ped, carModel) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAnyCar)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyCar(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isButtonPressed)**
 ---
 ---@param player Player
----@param key int
----@return bool result
+---@param key number
+---@return boolean result
 function isButtonPressed(player, key) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPadState)**
 ---
 ---@param player Player
----@param key int
----@return int state
+---@param key number
+---@return number state
 function getPadState(player, key) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateCharAnyMeans2d)**
 ---
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeans2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateCharOnFoot2d)**
 ---
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFoot2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateCharInCar2d)**
 ---
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCar2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateStoppedCharAnyMeans2d)**
 ---
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharAnyMeans2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateStoppedCharOnFoot2d)**
 ---
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharOnFoot2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateStoppedCharInCar2d)**
 ---
 ---@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharInCar2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
@@ -2161,10 +2169,10 @@ function locateStoppedCharInCar2d(ped, pointX, pointY, radiusX, radiusY, sphere)
 ---
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 
 ---
@@ -2172,9 +2180,9 @@ function locateCharAnyMeansChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 ---
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param sphere bool
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
 function locateCharOnFootChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 
 ---
@@ -2182,94 +2190,94 @@ function locateCharOnFootChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 ---
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarChar2d(ped, nearPed, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateCharAnyMeans3d)**
 ---
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeans3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateCharOnFoot3d)**
 ---
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFoot3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateCharInCar3d)**
 ---
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCar3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateStoppedCharAnyMeans3d)**
 ---
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharAnyMeans3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateStoppedCharOnFoot3d)**
 ---
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharOnFoot3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateStoppedCharInCar3d)**
 ---
 ---@param ped Ped
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCharInCar3d(ped, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
@@ -2277,11 +2285,11 @@ function locateStoppedCharInCar3d(ped, sphereX, sphereY, sphereZ, radiusX, radiu
 ---
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
 
 ---
@@ -2289,11 +2297,11 @@ function locateCharAnyMeansChar3d(ped, nearPed, radiusX, radiusY, radiusZ, spher
 ---
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFootChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
 
 ---
@@ -2301,20 +2309,20 @@ function locateCharOnFootChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere)
 ---
 ---@param ped Ped
 ---@param nearPed Ped
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createObject)**
 ---
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Object object
 function createObject(modelId, atX, atY, atZ) end
 
@@ -2328,45 +2336,45 @@ function deleteObject(object) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/givePlayerMoney)**
 ---
 ---@param player Player
----@param money int
+---@param money number
 function givePlayerMoney(player, money) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPlayerMoney)**
 ---
 ---@param player Player
----@return int money
+---@return number money
 function getPlayerMoney(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/giveRemoteControlledCarToPlayer)**
 ---
 ---@param player Player
----@param float2 float
----@param float3 float
----@param float4 float
+---@param float2 number
+---@param float3 number
+---@param float4 number
 function giveRemoteControlledCarToPlayer(player, float2, float3, float4) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/alterWantedLevel)**
 ---
 ---@param player Player
----@param wantedLevel int
+---@param wantedLevel number
 function alterWantedLevel(player, wantedLevel) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/alterWantedLevelNoDrop)**
 ---
 ---@param player Player
----@param minimumWantedLevel int
+---@param minimumWantedLevel number
 function alterWantedLevelNoDrop(player, minimumWantedLevel) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isWantedLevelGreater)**
 ---
 ---@param player Player
----@param level int
----@return bool result
+---@param level number
+---@return boolean result
 function isWantedLevelGreater(player, level) end
 
 ---
@@ -2378,49 +2386,49 @@ function clearWantedLevel(player) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setDeatharrestState)**
 ---
----@param value bool
+---@param value boolean
 function setDeatharrestState(value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasDeatharrestBeenExecuted)**
 ---
----@return bool result
+---@return boolean result
 function hasDeatharrestBeenExecuted() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addAmmoToChar)**
 ---
 ---@param ped Ped
----@param weapon int
----@param ammo int
+---@param weapon number
+---@param ammo number
 function addAmmoToChar(ped, weapon, ammo) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerDead)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerDead(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharDead)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharDead(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarDead)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarDead(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerPressingHorn)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerPressingHorn(player) end
 
 ---
@@ -2428,7 +2436,7 @@ function isPlayerPressingHorn(player) end
 ---
 ---@param car Vehicle
 ---@param pedtype Model
----@param model int
+---@param model number
 ---@return Ped ped
 function createCharInsideCar(car, pedtype, model) end
 
@@ -2437,39 +2445,53 @@ function createCharInsideCar(car, pedtype, model) end
 ---
 ---@param car Vehicle
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isCarModel(car, modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createCarGenerator)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
 ---@param modelId Model
----@param color1 int
----@param color2 int
----@param forceSpawn bool
----@param alarm int
----@param doorLock int
----@param minDelay int
----@param maxDelay int
----@return int carGenerator
-function createCarGenerator(atX, atY, atZ, angle, modelId, color1, color2, forceSpawn, alarm, doorLock, minDelay, maxDelay) end
+---@param color1 number
+---@param color2 number
+---@param forceSpawn boolean
+---@param alarm number
+---@param doorLock number
+---@param minDelay number
+---@param maxDelay number
+---@return number carGenerator
+function createCarGenerator(
+	atX,
+	atY,
+	atZ,
+	angle,
+	modelId,
+	color1,
+	color2,
+	forceSpawn,
+	alarm,
+	doorLock,
+	minDelay,
+	maxDelay
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchCarGenerator)**
 ---
----@param carGenerator int
----@param carsToGenerate int
+---@param carGenerator number
+---@param carsToGenerate number
 function switchCarGenerator(carGenerator, carsToGenerate) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayOnscreenTimer)**
 ---
 ---@param var VarId
----@param countInDirection bool
+---@param countInDirection boolean
 function displayOnscreenTimer(var, countInDirection) end
 
 ---
@@ -2489,23 +2511,23 @@ function clearOnscreenCounter(var) end
 ---
 ---@param ped Ped
 ---@param zoneName GxtString
----@return bool result
+---@return boolean result
 function isCharInZone(ped, zoneName) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/pointCameraAtCar)**
 ---
 ---@param car Vehicle
----@param mode int
----@param switchstyle int
+---@param mode number
+---@param switchstyle number
 function pointCameraAtCar(car, mode, switchstyle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/pointCameraAtChar)**
 ---
 ---@param ped Ped
----@param mode int
----@param switchstyle int
+---@param mode number
+---@param switchstyle number
 function pointCameraAtChar(ped, mode, switchstyle) end
 
 ---
@@ -2517,42 +2539,42 @@ function restoreCamera() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shakePad)**
 ---
 ---@param player Player
----@param time int
----@param intensity int
+---@param time number
+---@param intensity number
 function shakePad(player, time, intensity) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTimeScale)**
 ---
----@param gamespeed float
+---@param gamespeed number
 function setTimeScale(gamespeed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFixedCameraPosition)**
 ---
----@param positionX float
----@param positionY float
----@param positionZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param positionX number
+---@param positionY number
+---@param positionZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function setFixedCameraPosition(positionX, positionY, positionZ, rotationX, rotationY, rotationZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/pointCameraAtPoint)**
 ---
----@param pointAtX float
----@param pointAtY float
----@param pointAtZ float
----@param switchstyle int
+---@param pointAtX number
+---@param pointAtY number
+---@param pointAtZ number
+---@param switchstyle number
 function pointCameraAtPoint(pointAtX, pointAtY, pointAtZ, switchstyle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addBlipForCarOld)**
 ---
 ---@param car Vehicle
----@param unused int
----@param visibility bool
+---@param unused number
+---@param visibility boolean
 ---@return Marker marker
 function addBlipForCarOld(car, unused, visibility) end
 
@@ -2560,8 +2582,8 @@ function addBlipForCarOld(car, unused, visibility) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addBlipForCharOld)**
 ---
 ---@param ped Ped
----@param int2 int
----@param int3 int
+---@param int2 number
+---@param int3 number
 ---@return Marker marker
 function addBlipForCharOld(ped, int2, int3) end
 
@@ -2575,17 +2597,17 @@ function removeBlip(marker) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/changeBlipColour)**
 ---
 ---@param marker Marker
----@param color int
+---@param color number
 function changeBlipColour(marker, color) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addBlipForCoordOld)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param color int
----@param flag int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param color number
+---@param flag number
 ---@return Marker marker
 function addBlipForCoordOld(atX, atY, atZ, color, flag) end
 
@@ -2593,114 +2615,114 @@ function addBlipForCoordOld(atX, atY, atZ, color, flag) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/changeBlipScale)**
 ---
 ---@param marker Marker
----@param size int
+---@param size number
 function changeBlipScale(marker, size) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFadingColour)**
 ---
----@param r int
----@param g int
----@param b int
+---@param r number
+---@param g number
+---@param b number
 function setFadingColour(r, g, b) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doFade)**
 ---
----@param _in bool
----@param time int
+---@param _in boolean
+---@param time number
 function doFade(_in, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getFadingStatus)**
 ---
----@return bool result
+---@return boolean result
 function getFadingStatus() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addHospitalRestart)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
----@param townNumber int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
+---@param townNumber number
 function addHospitalRestart(atX, atY, atZ, angle, townNumber) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addPoliceRestart)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
----@param townNumber int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
+---@param townNumber number
 function addPoliceRestart(atX, atY, atZ, angle, townNumber) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/overrideNextRestart)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
 function overrideNextRestart(atX, atY, atZ, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawShadow)**
 ---
 ---@param particle Particle
----@param atX float
----@param atY float
----@param atZ float
----@param rotationFactor float
----@param size float
----@param intensity int
----@param flags1 int
----@param flags2 int
----@param flags3 int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param rotationFactor number
+---@param size number
+---@param intensity number
+---@param flags1 number
+---@param flags2 number
+---@param flags3 number
 function drawShadow(particle, atX, atY, atZ, rotationFactor, size, intensity, flags1, flags2, flags3) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharHeading)**
 ---
 ---@param ped Ped
----@return float angle
+---@return number angle
 function getCharHeading(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharHeading)**
 ---
 ---@param ped Ped
----@param angle float
+---@param angle number
 function setCharHeading(ped, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarHeading)**
 ---
 ---@param car Vehicle
----@return float angle
+---@return number angle
 function getCarHeading(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarHeading)**
 ---
 ---@param car Vehicle
----@param angle float
+---@param angle number
 function setCarHeading(car, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectHeading)**
 ---
 ---@param object Object
----@return float angle
+---@return number angle
 function getObjectHeading(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectHeading)**
 ---
 ---@param object Object
----@param angle float
+---@param angle number
 function setObjectHeading(object, angle) end
 
 ---
@@ -2708,15 +2730,15 @@ function setObjectHeading(object, angle) end
 ---
 ---@param ped Ped
 ---@param object Object
----@return bool result
+---@return boolean result
 function isCharTouchingObject(ped, object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharAmmo)**
 ---
 ---@param ped Ped
----@param weapon int
----@param ammo int
+---@param weapon number
+---@param ammo number
 function setCharAmmo(ped, weapon, ammo) end
 
 ---
@@ -2749,9 +2771,9 @@ function addBlipForObject(object) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addBlipForCoord)**
 ---
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Checkpoint checkpoint
 function addBlipForCoord(atX, atY, atZ) end
 
@@ -2759,39 +2781,39 @@ function addBlipForCoord(atX, atY, atZ) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/changeBlipDisplay)**
 ---
 ---@param marker Marker
----@param mode int
+---@param mode number
 function changeBlipDisplay(marker, mode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addOneOffSound)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param sound int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param sound number
 function addOneOffSound(atX, atY, atZ, sound) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addContinuousSound)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param sound int
----@return int unk
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param sound number
+---@return number unk
 function addContinuousSound(atX, atY, atZ, sound) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeSound)**
 ---
----@param sound int
+---@param sound number
 function removeSound(sound) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarStuckOnRoof)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarStuckOnRoof(car) end
 
 ---
@@ -2810,238 +2832,238 @@ function removeUpsidedownCarCheck(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAreaOnFoot2d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharInAreaOnFoot2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAreaInCar2d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharInAreaInCar2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInArea2d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInArea2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAreaOnFoot2d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAreaOnFoot2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAreaInCar2d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAreaInCar2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAreaOnFoot3d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharInAreaOnFoot3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAreaInCar3d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharInAreaInCar3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInArea3d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInArea3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAreaOnFoot3d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAreaOnFoot3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAreaInCar3d)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAreaInCar3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarStoppedInArea2d)**
 ---
 ---@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isCarStoppedInArea2d(car, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarStoppedInArea3d)**
 ---
 ---@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param sphere boolean
+---@return boolean result
 function isCarStoppedInArea3d(car, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateCar2d)**
 ---
 ---@param car Vehicle
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCar2d(car, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateStoppedCar2d)**
 ---
 ---@param car Vehicle
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param pointX number
+---@param pointY number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCar2d(car, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateCar3d)**
 ---
 ---@param car Vehicle
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateStoppedCar3d)**
 ---
 ---@param car Vehicle
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateStoppedCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/giveWeaponToChar)**
 ---
 ---@param ped Ped
----@param weapon int
----@param ammo int
+---@param weapon number
+---@param ammo number
 function giveWeaponToChar(ped, weapon, ammo) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerControl)**
 ---
 ---@param player Player
----@param canMove bool
----@return bool result
+---@param canMove boolean
+---@return boolean result
 function setPlayerControl(player, canMove) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/forceWeather)**
 ---
----@param weather int
----@return bool result
+---@param weather number
+---@return boolean result
 function forceWeather(weather) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/forceWeatherNow)**
 ---
----@param weather int
----@return bool result
+---@param weather number
+---@return boolean result
 function forceWeatherNow(weather) end
 
 ---
@@ -3053,48 +3075,48 @@ function releaseWeather() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCurrentCharWeapon)**
 ---
 ---@param ped Ped
----@param weapon int
+---@param weapon number
 function setCurrentCharWeapon(ped, weapon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectCoordinates)**
 ---
 ---@param object Object
----@return bool result
----@return float positionX
----@return float positionY
----@return float positionZ
+---@return boolean result
+---@return number positionX
+---@return number positionY
+---@return number positionZ
 function getObjectCoordinates(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectCoordinates)**
 ---
 ---@param object Object
----@param atX float
----@param atY float
----@param atZ float
----@return bool result
+---@param atX number
+---@param atY number
+---@param atZ number
+---@return boolean result
 function setObjectCoordinates(object, atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGameTimer)**
 ---
----@return int timeMs
+---@return number timeMs
 function getGameTimer() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/storeWantedLevel)**
 ---
 ---@param player Player
----@return bool result
----@return int level
+---@return boolean result
+---@return number level
 function storeWantedLevel(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarStopped)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarStopped(car) end
 
 ---
@@ -3132,9 +3154,9 @@ function dontRemoveObject(object) end
 ---
 ---@param car Vehicle
 ---@param pedtype Model
----@param model int
----@param passengerSeat int
----@return bool result
+---@param model number
+---@param passengerSeat number
+---@return boolean result
 ---@return Ped ped
 function createCharAsPassenger(car, pedtype, model, passengerSeat) end
 
@@ -3142,147 +3164,158 @@ function createCharAsPassenger(car, pedtype, model, passengerSeat) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWithNumberBig)**
 ---
 ---@param gxtString GxtString
----@param number int
----@param time int
----@param style int
----@return bool result
+---@param number number
+---@param time number
+---@param style number
+---@return boolean result
 function printWithNumberBig(gxtString, number, time, style) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWithNumber)**
 ---
 ---@param gxtString GxtString
----@param number int
----@param time int
----@param flag int
----@return bool result
+---@param number number
+---@param time number
+---@param flag number
+---@return boolean result
 function printWithNumber(gxtString, number, time, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWithNumberNow)**
 ---
 ---@param gxtString GxtString
----@param number int
----@param time int
----@param flag int
----@return bool result
+---@param number number
+---@param time number
+---@param flag number
+---@return boolean result
 function printWithNumberNow(gxtString, number, time, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchRoadsOn)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function switchRoadsOn(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchRoadsOff)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfPassengers)**
 ---
 ---@param car Vehicle
----@return bool result
----@return int passengers
+---@return boolean result
+---@return number passengers
 function getNumberOfPassengers(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMaximumNumberOfPassengers)**
 ---
 ---@param car Vehicle
----@return int maxPassengers
+---@return number maxPassengers
 function getMaximumNumberOfPassengers(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarDensityMultiplier)**
 ---
----@param multiplier float
----@return bool result
+---@param multiplier number
+---@return boolean result
 function setCarDensityMultiplier(multiplier) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarHeavy)**
 ---
 ---@param car Vehicle
----@param heavy bool
----@return bool result
+---@param heavy boolean
+---@return boolean result
 function setCarHeavy(car, heavy) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMaxWantedLevel)**
 ---
----@param level int
+---@param level number
 function setMaxWantedLevel(level) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarInAirProper)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarInAirProper(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarUpsidedown)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarUpsidedown(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPlayerChar)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 ---@return Ped ped
 function getPlayerChar(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cancelOverrideRestart)**
 ---
----@return bool result
+---@return boolean result
 function cancelOverrideRestart() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPoliceIgnorePlayer)**
 ---
 ---@param player Player
----@param ignored bool
----@return bool result
+---@param ignored boolean
+---@return boolean result
 function setPoliceIgnorePlayer(player, ignored) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startKillFrenzy)**
 ---
 ---@param gxtString GxtString
----@param weapon int
----@param timeLimit int
----@param targets int
+---@param weapon number
+---@param timeLimit number
+---@param targets number
 ---@param targetModels1 Model
 ---@param targetModels2 Model
 ---@param targetModels3 Model
 ---@param targetModels4 Model
----@param completedText bool
----@return bool result
-function startKillFrenzy(gxtString, weapon, timeLimit, targets, targetModels1, targetModels2, targetModels3, targetModels4, completedText) end
+---@param completedText boolean
+---@return boolean result
+function startKillFrenzy(
+	gxtString,
+	weapon,
+	timeLimit,
+	targets,
+	targetModels1,
+	targetModels2,
+	targetModels3,
+	targetModels4,
+	completedText
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/readKillFrenzyStatus)**
 ---
----@return bool result
----@return int status
+---@return boolean result
+---@return number status
 function readKillFrenzyStatus() end
 
 ---
@@ -3290,10 +3323,10 @@ function readKillFrenzyStatus() end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansCar2d(ped, car, radiusX, radiusY, sphere) end
 
 ---
@@ -3301,10 +3334,10 @@ function locateCharAnyMeansCar2d(ped, car, radiusX, radiusY, sphere) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param flag bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param flag boolean
+---@return boolean result
 function locateCharOnFootCar2d(ped, car, radiusX, radiusY, flag) end
 
 ---
@@ -3312,10 +3345,10 @@ function locateCharOnFootCar2d(ped, car, radiusX, radiusY, flag) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarCar2d(ped, car, radiusX, radiusY, sphere) end
 
 ---
@@ -3323,11 +3356,11 @@ function locateCharInCarCar2d(ped, car, radiusX, radiusY, sphere) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param flag boolean
+---@return boolean result
 function locateCharAnyMeansCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 
 ---
@@ -3335,11 +3368,11 @@ function locateCharAnyMeansCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param flag boolean
+---@return boolean result
 function locateCharOnFootCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 
 ---
@@ -3347,53 +3380,53 @@ function locateCharOnFootCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param flag boolean
+---@return boolean result
 function locateCharInCarCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/lockCarDoors)**
 ---
 ---@param car Vehicle
----@param status int
+---@param status number
 function lockCarDoors(car, status) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/explodeCar)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function explodeCar(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addExplosion)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius int
----@return bool result
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@return boolean result
 function addExplosion(atX, atY, atZ, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarUpright)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarUpright(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createPickup)**
 ---
 ---@param modelId Model
----@param type int
----@param atX float
----@param atY float
----@param atZ float
----@return bool result
+---@param type number
+---@param atX number
+---@param atY number
+---@param atZ number
+---@return boolean result
 ---@return Pickup pickup
 function createPickup(modelId, type, atX, atY, atZ) end
 
@@ -3401,31 +3434,31 @@ function createPickup(modelId, type, atX, atY, atZ) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasPickupBeenCollected)**
 ---
 ---@param pickup Pickup
----@return bool result
+---@return boolean result
 function hasPickupBeenCollected(pickup) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removePickup)**
 ---
 ---@param pickup Pickup
----@return bool result
+---@return boolean result
 function removePickup(pickup) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTaxiLights)**
 ---
 ---@param taxi Vehicle
----@param light bool
----@return bool result
+---@param light boolean
+---@return boolean result
 function setTaxiLights(taxi, light) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printBigQ)**
 ---
 ---@param gxtString GxtString
----@param time int
----@param style int
----@return bool result
+---@param time number
+---@param style number
+---@return boolean result
 function printBigQ(gxtString, time, style) end
 
 ---
@@ -3433,83 +3466,83 @@ function printBigQ(gxtString, time, style) end
 ---
 ---@param garage GxtString
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function setTargetCarForMissionGarage(garage, car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/applyBrakesToPlayersCar)**
 ---
 ---@param player Player
----@param apply bool
----@return bool result
+---@param apply boolean
+---@return boolean result
 function applyBrakesToPlayersCar(player, apply) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharHealth)**
 ---
 ---@param ped Ped
----@param health int
+---@param health number
 function setCharHealth(ped, health) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarHealth)**
 ---
 ---@param car Vehicle
----@param health int
+---@param health number
 function setCarHealth(car, health) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharHealth)**
 ---
 ---@param ped Ped
----@return int health
+---@return number health
 function getCharHealth(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarHealth)**
 ---
 ---@param car Vehicle
----@return int health
+---@return number health
 function getCarHealth(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/changeCarColour)**
 ---
 ---@param car Vehicle
----@param primaryColor int
----@param secondaryColor int
----@return bool result
+---@param primaryColor number
+---@param secondaryColor number
+---@return boolean result
 function changeCarColour(car, primaryColor, secondaryColor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchPedRoadsOn)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchPedRoadsOn(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchPedRoadsOff)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchPedRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGangWeapons)**
 ---
----@param gang int
----@param weapons1 int
----@param weapons2 int
----@param weapons3 int
+---@param gang number
+---@param weapons1 number
+---@param weapons2 number
+---@param weapons3 number
 function setGangWeapons(gang, weapons1, weapons2, weapons3) end
 
 ---
@@ -3517,36 +3550,36 @@ function setGangWeapons(gang, weapons1, weapons2, weapons3) end
 ---
 ---@param ped Ped
 ---@param object Object
----@return bool result
+---@return boolean result
 function isCharTouchingObjectOnFoot(ped, object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadSpecialCharacter)**
 ---
 ---@param gxtString GxtString
----@param id int
+---@param id number
 function loadSpecialCharacter(gxtString, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasSpecialCharacterLoaded)**
 ---
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function hasSpecialCharacterLoaded(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerInRemoteMode)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerInRemoteMode(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCutsceneOffset)**
 ---
----@param posX float
----@param posY float
----@param posZ float
+---@param posX number
+---@param posY number
+---@param posZ number
 function setCutsceneOffset(posX, posY, posZ) end
 
 ---
@@ -3566,7 +3599,7 @@ function requestModel(modelId) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasModelLoaded)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function hasModelLoaded(modelId) end
 
 ---
@@ -3578,15 +3611,15 @@ function markModelAsNoLongerNeeded(modelId) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawCorona)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@param type int
----@param lensflares bool
----@param r int
----@param g int
----@param b int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@param type number
+---@param lensflares boolean
+---@param r number
+---@param g number
+---@param b number
 function drawCorona(atX, atY, atZ, radius, type, lensflares, r, g, b) end
 
 ---
@@ -3603,26 +3636,26 @@ function restoreClock() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerPlaying)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerPlaying(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getControllerMode)**
 ---
----@return int mode
+---@return number mode
 function getControllerMode() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCanResprayCar)**
 ---
 ---@param car Vehicle
----@param sprayable bool
+---@param sprayable boolean
 function setCanResprayCar(car, sprayable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/unloadSpecialCharacter)**
 ---
----@param id int
+---@param id number
 function unloadSpecialCharacter(id) end
 
 ---
@@ -3636,7 +3669,7 @@ function resetNumOfModelsKilledByPlayer(player) end
 ---
 ---@param player Player
 ---@param modelId Model
----@return int quantity
+---@return number quantity
 function getNumOfModelsKilledByPlayer(player, modelId) end
 
 ---
@@ -3649,9 +3682,9 @@ function activateGarage(garage) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createObjectNoOffset)**
 ---
 ---@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Object object
 function createObjectNoOffset(modelId, atX, atY, atZ) end
 
@@ -3659,32 +3692,32 @@ function createObjectNoOffset(modelId, atX, atY, atZ) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStopped)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharStopped(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchWidescreen)**
 ---
----@param enable bool
+---@param enable boolean
 function switchWidescreen(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addSpriteBlipForContactPoint)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param icon int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param icon number
 ---@return Marker marker
 function addSpriteBlipForContactPoint(atX, atY, atZ, icon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addSpriteBlipForCoord)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param type int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param type number
 ---@return Marker marker
 function addSpriteBlipForCoord(atX, atY, atZ, type) end
 
@@ -3692,36 +3725,36 @@ function addSpriteBlipForCoord(atX, atY, atZ, type) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharOnlyDamagedByPlayer)**
 ---
 ---@param ped Ped
----@param enabled bool
+---@param enabled boolean
 function setCharOnlyDamagedByPlayer(ped, enabled) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarOnlyDamagedByPlayer)**
 ---
 ---@param car Vehicle
----@param enabled bool
+---@param enabled boolean
 function setCarOnlyDamagedByPlayer(car, enabled) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharProofs)**
 ---
 ---@param ped Ped
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+---@param BP boolean
+---@param FP boolean
+---@param EP boolean
+---@param CP boolean
+---@param MP boolean
 function setCharProofs(ped, BP, FP, EP, CP, MP) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarProofs)**
 ---
 ---@param car Vehicle
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+---@param BP boolean
+---@param FP boolean
+---@param EP boolean
+---@param CP boolean
+---@param MP boolean
 function setCarProofs(car, BP, FP, EP, CP, MP) end
 
 ---
@@ -3734,101 +3767,101 @@ function deactivateGarage(garage) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarInWater)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarInWater(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getClosestCharNode)**
 ---
----@param closestToX float
----@param closestToY float
----@param closestToZ float
----@return float nodeX
----@return float nodeY
----@return float nodeZ
+---@param closestToX number
+---@param closestToY number
+---@param closestToZ number
+---@return number nodeX
+---@return number nodeY
+---@return number nodeZ
 function getClosestCharNode(closestToX, closestToY, closestToZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getClosestCarNode)**
 ---
----@param closestToX float
----@param closestToY float
----@param closestToZ float
----@return float nodeX
----@return float nodeY
----@return float nodeZ
+---@param closestToX number
+---@param closestToY number
+---@param closestToZ number
+---@return number nodeX
+---@return number nodeY
+---@return number nodeZ
 function getClosestCarNode(closestToX, closestToY, closestToZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/carGotoCoordinatesAccurate)**
 ---
 ---@param car Vehicle
----@param toX float
----@param toY float
----@param toZ float
+---@param toX number
+---@param toY number
+---@param toZ number
 function carGotoCoordinatesAccurate(car, toX, toY, toZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarOnScreen)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarOnScreen(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharOnScreen)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharOnScreen(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectOnScreen)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectOnScreen(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGroundZFor3dCoord)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@return float z
+---@param atX number
+---@param atY number
+---@param atZ number
+---@return number z
 function getGroundZFor3dCoord(atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startScriptFire)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param propagation int
----@param size int
----@return int fire
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param propagation number
+---@param size number
+---@return number fire
 function startScriptFire(atX, atY, atZ, propagation, size) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isScriptFireExtinguished)**
 ---
----@param fire int
----@return bool result
+---@param fire number
+---@return boolean result
 function isScriptFireExtinguished(fire) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeScriptFire)**
 ---
----@param fire int
+---@param fire number
 function removeScriptFire(fire) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/boatGotoCoords)**
 ---
 ---@param boat Vehicle
----@param toX float
----@param toY float
----@param toZ float
+---@param toX number
+---@param toY number
+---@param toZ number
 function boatGotoCoords(boat, toX, toY, toZ) end
 
 ---
@@ -3841,36 +3874,36 @@ function boatStop(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharShootingInArea)**
 ---
 ---@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param weapon int
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param weapon number
+---@return boolean result
 function isCharShootingInArea(ped, cornerAX, cornerAY, cornerBX, cornerBY, weapon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCurrentCharWeapon)**
 ---
 ---@param ped Ped
----@param weapon int
----@return bool result
+---@param weapon number
+---@return boolean result
 function isCurrentCharWeapon(ped, weapon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setBoatCruiseSpeed)**
 ---
 ---@param boat Vehicle
----@param speed float
+---@param speed number
 function setBoatCruiseSpeed(boat, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCharInZone)**
 ---
 ---@param zone GxtString
----@param pedtype bool
----@param gang bool
----@param criminal_prostitute bool
+---@param pedtype boolean
+---@param gang boolean
+---@param criminal_prostitute boolean
 ---@return Ped ped
 function getRandomCharInZone(zone, pedtype, gang, criminal_prostitute) end
 
@@ -3878,17 +3911,17 @@ function getRandomCharInZone(zone, pedtype, gang, criminal_prostitute) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharShooting)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharShooting(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createMoneyPickup)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param cash int
----@param permanenceFlag bool
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param cash number
+---@param permanenceFlag boolean
 ---@return Pickup pickup
 function createMoneyPickup(atX, atY, atZ, cash, permanenceFlag) end
 
@@ -3896,14 +3929,14 @@ function createMoneyPickup(atX, atY, atZ, cash, permanenceFlag) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharAccuracy)**
 ---
 ---@param ped Ped
----@param accuracy int
+---@param accuracy number
 function setCharAccuracy(ped, accuracy) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarSpeed)**
 ---
 ---@param car Vehicle
----@return float speed
+---@return number speed
 function getCarSpeed(car) end
 
 ---
@@ -3922,7 +3955,7 @@ function createCutsceneObject(modelId) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCutsceneAnim)**
 ---
----@param cutscene int
+---@param cutscene number
 ---@param anim GxtString
 function setCutsceneAnim(cutscene, anim) end
 
@@ -3934,13 +3967,13 @@ function startCutscene() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCutsceneTime)**
 ---
----@return int time
+---@return number time
 function getCutsceneTime() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCutsceneFinished)**
 ---
----@return bool result
+---@return boolean result
 function hasCutsceneFinished() end
 
 ---
@@ -3956,19 +3989,19 @@ function restoreCameraJumpcut() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCollectable1Total)**
 ---
----@param total int
+---@param total number
 function setCollectable1Total(total) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isProjectileInArea)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function isProjectileInArea(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
@@ -3976,7 +4009,7 @@ function isProjectileInArea(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, co
 ---
 ---@param ped Ped
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isCharModel(ped, modelId) end
 
 ---
@@ -3990,92 +4023,92 @@ function loadSpecialModel(modelId, gxtString) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarForwardX)**
 ---
 ---@param car Vehicle
----@return float forwardX
+---@return number forwardX
 function getCarForwardX(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarForwardY)**
 ---
 ---@param car Vehicle
----@return float forwardY
+---@return number forwardY
 function getCarForwardY(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/changeGarageType)**
 ---
 ---@param garage GxtString
----@param type int
+---@param type number
 function changeGarageType(garage, type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWith2NumbersNow)**
 ---
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param time number
+---@param flag number
 function printWith2NumbersNow(gxtString, numbers1, numbers2, time, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWith3Numbers)**
 ---
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param numbers3 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param numbers3 number
+---@param time number
+---@param flag number
 function printWith3Numbers(gxtString, numbers1, numbers2, numbers3, time, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWith4Numbers)**
 ---
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param numbers3 int
----@param numbers4 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param numbers3 number
+---@param numbers4 number
+---@param time number
+---@param flag number
 function printWith4Numbers(gxtString, numbers1, numbers2, numbers3, numbers4, time, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWith4NumbersNow)**
 ---
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param numbers3 int
----@param numbers4 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param numbers3 number
+---@param numbers4 number
+---@param time number
+---@param flag number
 function printWith4NumbersNow(gxtString, numbers1, numbers2, numbers3, numbers4, time, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWith6Numbers)**
 ---
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param numbers3 int
----@param numbers4 int
----@param numbers5 int
----@param numbers6 int
----@param time int
----@param flag int
+---@param numbers1 number
+---@param numbers2 number
+---@param numbers3 number
+---@param numbers4 number
+---@param numbers5 number
+---@param numbers6 number
+---@param time number
+---@param flag number
 function printWith6Numbers(gxtString, numbers1, numbers2, numbers3, numbers4, numbers5, numbers6, time, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/playerMadeProgress)**
 ---
----@param progress int
+---@param progress number
 function playerMadeProgress(progress) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setProgressTotal)**
 ---
----@param maxProgress int
+---@param maxProgress number
 function setProgressTotal(maxProgress) end
 
 ---
@@ -4098,16 +4131,16 @@ function removeAllScriptFires() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCharBeenDamagedByWeapon)**
 ---
 ---@param ped Ped
----@param weapon int
----@return bool result
+---@param weapon number
+---@return boolean result
 function hasCharBeenDamagedByWeapon(ped, weapon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCarBeenDamagedByWeapon)**
 ---
 ---@param car Vehicle
----@param weapon int
----@return bool result
+---@param weapon number
+---@return boolean result
 function hasCarBeenDamagedByWeapon(car, weapon) end
 
 ---
@@ -4120,30 +4153,30 @@ function explodeCharHead(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/anchorBoat)**
 ---
 ---@param boat Vehicle
----@param anchor bool
+---@param anchor boolean
 function anchorBoat(boat, anchor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startCarFire)**
 ---
 ---@param car Vehicle
----@return int fire
+---@return number fire
 function startCarFire(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startCharFire)**
 ---
 ---@param ped Ped
----@return int fire
+---@return number fire
 function startCharFire(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCarOfTypeInArea)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
 ---@param modelId Model
 ---@return Vehicle car
 function getRandomCarOfTypeInArea(cornerAX, cornerAY, cornerBX, cornerBY, modelId) end
@@ -4152,24 +4185,24 @@ function getRandomCarOfTypeInArea(cornerAX, cornerAY, cornerBX, cornerBY, modelI
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasResprayHappened)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function hasResprayHappened(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCameraZoom)**
 ---
----@param mode int
+---@param mode number
 function setCameraZoom(mode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createPickupWithAmmo)**
 ---
 ---@param modelId Model
----@param type int
----@param ammo int
----@param atX float
----@param atY float
----@param atZ float
+---@param type number
+---@param ammo number
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Pickup pickup
 function createPickupWithAmmo(modelId, type, ammo, atX, atY, atZ) end
 
@@ -4184,148 +4217,161 @@ function setCarRamCar(car, car2) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerNeverGetsTired)**
 ---
 ---@param player Player
----@param infiniteRun bool
+---@param infiniteRun boolean
 function setPlayerNeverGetsTired(player, infiniteRun) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerFastReload)**
 ---
 ---@param player Player
----@param fastReload bool
+---@param fastReload boolean
 function setPlayerFastReload(player, fastReload) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharBleeding)**
 ---
 ---@param ped Ped
----@param bleeding bool
+---@param bleeding boolean
 function setCharBleeding(ped, bleeding) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFreeResprays)**
 ---
----@param enable bool
+---@param enable boolean
 function setFreeResprays(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharVisible)**
 ---
 ---@param ped Ped
----@param visible bool
+---@param visible boolean
 function setCharVisible(ped, visible) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarVisible)**
 ---
 ---@param car Vehicle
----@param visible bool
+---@param visible boolean
 function setCarVisible(car, visible) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isAreaOccupied)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param solid bool
----@param car bool
----@param actor bool
----@param object bool
----@param particle bool
----@return bool result
-function isAreaOccupied(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, solid, car, actor, object, particle) end
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param solid boolean
+---@param car boolean
+---@param actor boolean
+---@param object boolean
+---@param particle boolean
+---@return boolean result
+function isAreaOccupied(
+	cornerAX,
+	cornerAY,
+	cornerAZ,
+	cornerBX,
+	cornerBY,
+	cornerBZ,
+	solid,
+	car,
+	actor,
+	object,
+	particle
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayText)**
 ---
----@param posX float
----@param posY float
+---@param posX number
+---@param posY number
 ---@param gxtString GxtString
 function displayText(posX, posY, gxtString) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextScale)**
 ---
----@param sizeX float
----@param sizeY float
+---@param sizeX number
+---@param sizeY number
 function setTextScale(sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextColour)**
 ---
----@param r int
----@param g int
----@param b int
----@param a int
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function setTextColour(r, g, b, a) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextJustify)**
 ---
----@param alignJustify bool
+---@param alignJustify boolean
 function setTextJustify(alignJustify) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextCentre)**
 ---
----@param centered bool
+---@param centered boolean
 function setTextCentre(centered) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextWrapx)**
 ---
----@param linewidth float
+---@param linewidth number
 function setTextWrapx(linewidth) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextCentreSize)**
 ---
----@param linewidth float
+---@param linewidth number
 function setTextCentreSize(linewidth) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextBackground)**
 ---
----@param background bool
+---@param background boolean
 function setTextBackground(background) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextProportional)**
 ---
----@param proportional bool
+---@param proportional boolean
 function setTextProportional(proportional) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextFont)**
 ---
----@param font int
+---@param font number
 function setTextFont(font) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/rotateObject)**
 ---
 ---@param object Object
----@param fromAngle float
----@param toAngle float
----@param flag bool
----@return bool result
+---@param fromAngle number
+---@param toAngle number
+---@param flag boolean
+---@return boolean result
 function rotateObject(object, fromAngle, toAngle, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/slideObject)**
 ---
 ---@param object Object
----@param toX float
----@param toY float
----@param toZ float
----@param speedX float
----@param speedY float
----@param speedZ float
----@param collisionCheck bool
----@return bool result
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param speedX number
+---@param speedY number
+---@param speedZ number
+---@param collisionCheck boolean
+---@return boolean result
 function slideObject(object, toX, toY, toZ, speedX, speedY, speedZ, collisionCheck) end
 
 ---
@@ -4338,20 +4384,20 @@ function removeCharElegantly(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharStayInSamePlace)**
 ---
 ---@param ped Ped
----@param enabled bool
+---@param enabled boolean
 function setCharStayInSamePlace(ped, enabled) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isExplosionInArea)**
 ---
----@param explosionType int
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param explosionType number
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function isExplosionInArea(explosionType, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
@@ -4359,23 +4405,23 @@ function isExplosionInArea(explosionType, cornerAX, cornerAY, cornerAZ, cornerBX
 ---
 ---@param object Object
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 function placeObjectRelativeToCar(object, car, offsetX, offsetY, offsetZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/makeObjectTargettable)**
 ---
 ---@param object Object
----@param targetable bool
+---@param targetable boolean
 function makeObjectTargettable(object, targetable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addArmourToChar)**
 ---
 ---@param ped Ped
----@param points int
+---@param points number
 function addArmourToChar(ped, points) end
 
 ---
@@ -4394,20 +4440,20 @@ function closeGarage(garage) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/warpCharFromCarToCoord)**
 ---
 ---@param ped Ped
----@param placeAtX float
----@param placeAtY float
----@param placeAtZ float
+---@param placeAtX number
+---@param placeAtY number
+---@param placeAtZ number
 function warpCharFromCarToCoord(ped, placeAtX, placeAtY, placeAtZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVisibilityOfClosestObjectOfType)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
 ---@param modelId Model
----@param visibility bool
+---@param visibility boolean
 function setVisibilityOfClosestObjectOfType(atX, atY, atZ, radius, modelId, visibility) end
 
 ---
@@ -4415,14 +4461,14 @@ function setVisibilityOfClosestObjectOfType(atX, atY, atZ, radius, modelId, visi
 ---
 ---@param ped Ped
 ---@param ped2 Ped
----@return bool result
+---@return boolean result
 function hasCharSpottedChar(ped, ped2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasObjectBeenDamaged)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function hasObjectBeenDamaged(object) end
 
 ---
@@ -4436,10 +4482,10 @@ function warpCharIntoCar(ped, car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printWith2NumbersBig)**
 ---
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
----@param time int
----@param style int
+---@param numbers1 number
+---@param numbers2 number
+---@param time number
+---@param style number
 function printWith2NumbersBig(gxtString, numbers1, numbers2, time, style) end
 
 ---
@@ -4450,38 +4496,38 @@ function setCameraBehindPlayer() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createRandomChar)**
 ---
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Ped ped
 function createRandomChar(atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSniperBulletInArea)**
 ---
----@param float1 float
----@param float2 float
----@param float3 float
----@param float4 float
----@param float5 float
----@param float6 float
----@return bool result
+---@param float1 number
+---@param float2 number
+---@param float3 number
+---@param float4 number
+---@param float5 number
+---@param float6 number
+---@return boolean result
 function isSniperBulletInArea(float1, float2, float3, float4, float5, float6) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectVelocity)**
 ---
 ---@param object Object
----@param velocityInDirectionX float
----@param velocityInDirectionY float
----@param velocityInDirectionZ float
+---@param velocityInDirectionX number
+---@param velocityInDirectionY number
+---@param velocityInDirectionZ number
 function setObjectVelocity(object, velocityInDirectionX, velocityInDirectionY, velocityInDirectionZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectCollision)**
 ---
 ---@param object Object
----@param collision bool
+---@param collision boolean
 function setObjectCollision(object, collision) end
 
 ---
@@ -4489,20 +4535,20 @@ function setObjectCollision(object, collision) end
 ---
 ---@param gxtString GxtString
 ---@param string GxtString
----@param time1 int
----@param time2 int
+---@param time1 number
+---@param time2 number
 function printStringInStringNow(gxtString, string, time1, time2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPointObscuredByAMissionEntity)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function isPointObscuredByAMissionEntity(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
@@ -4514,50 +4560,50 @@ function loadAllModelsNow() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addToObjectVelocity)**
 ---
 ---@param object Object
----@param velocityX float
----@param velocityY float
----@param velocityZ float
+---@param velocityX number
+---@param velocityY number
+---@param velocityZ number
 function addToObjectVelocity(object, velocityX, velocityY, velocityZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawSprite)**
 ---
----@param texture int
----@param positionX float
----@param positionY float
----@param width float
----@param height float
----@param r int
----@param g int
----@param b int
----@param a int
+---@param texture number
+---@param positionX number
+---@param positionY number
+---@param width number
+---@param height number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function drawSprite(texture, positionX, positionY, width, height, r, g, b, a) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawRect)**
 ---
----@param positionX float
----@param positionY float
----@param width float
----@param height float
----@param r int
----@param g int
----@param b int
----@param a int
+---@param positionX number
+---@param positionY number
+---@param width number
+---@param height number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function drawRect(positionX, positionY, width, height, r, g, b, a) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadSprite)**
 ---
 ---@param name string
----@return int id
+---@return number id
 function loadSprite(name) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadTextureDictionary)**
 ---
----@param txd zstring
----@return bool result
+---@param txd string
+---@return boolean result
 function loadTextureDictionary(txd) end
 
 ---
@@ -4569,7 +4615,7 @@ function removeTextureDictionary() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectDynamic)**
 ---
 ---@param object Object
----@param moveable bool
+---@param moveable boolean
 function setObjectDynamic(object, moveable) end
 
 ---
@@ -4577,131 +4623,131 @@ function setObjectDynamic(object, moveable) end
 ---
 ---@param ped Ped
 ---@param animation string
----@param speed float
+---@param speed number
 function setCharAnimSpeed(ped, animation, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/playMissionPassedTune)**
 ---
----@param music int
+---@param music number
 function playMissionPassedTune(music) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearArea)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@param area bool
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@param area boolean
 function clearArea(atX, atY, atZ, radius, area) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freezeOnscreenTimer)**
 ---
----@param timer bool
+---@param timer boolean
 function freezeOnscreenTimer(timer) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchCarSiren)**
 ---
 ---@param car Vehicle
----@param siren bool
+---@param siren boolean
 function switchCarSiren(car, siren) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarWatertight)**
 ---
 ---@param car Vehicle
----@param watertight bool
+---@param watertight boolean
 function setCarWatertight(car, watertight) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharCantBeDraggedOut)**
 ---
 ---@param ped Ped
----@param locked bool
+---@param locked boolean
 function setCharCantBeDraggedOut(ped, locked) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/turnCarToFaceCoord)**
 ---
 ---@param car Vehicle
----@param coordX float
----@param coordY float
+---@param coordX number
+---@param coordY number
 function turnCarToFaceCoord(car, coordX, coordY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawSphere)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
 function drawSphere(atX, atY, atZ, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarStatus)**
 ---
 ---@param car Vehicle
----@param action int
+---@param action number
 function setCarStatus(car, action) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharMale)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharMale(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/policeRadioMessage)**
 ---
----@param float1 float
----@param float2 float
----@param float3 float
+---@param float1 number
+---@param float2 number
+---@param float3 number
 function policeRadioMessage(float1, float2, float3) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarStrong)**
 ---
 ---@param car Vehicle
----@param strong bool
+---@param strong boolean
 function setCarStrong(car, strong) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchRubbish)**
 ---
----@param int1 bool
+---@param int1 boolean
 function switchRubbish(int1) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchStreaming)**
 ---
----@param streaming bool
+---@param streaming boolean
 function switchStreaming(streaming) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGarageOpen)**
 ---
 ---@param garage GxtString
----@return bool result
+---@return boolean result
 function isGarageOpen(garage) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGarageClosed)**
 ---
 ---@param garage GxtString
----@return bool result
+---@return boolean result
 function isGarageClosed(garage) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/swapNearestBuildingModel)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
 ---@param from Model
 ---@param to Model
 function swapNearestBuildingModel(atX, atY, atZ, radius, from, to) end
@@ -4709,41 +4755,41 @@ function swapNearestBuildingModel(atX, atY, atZ, radius, from, to) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchWorldProcessing)**
 ---
----@param cutsceneOnly bool
+---@param cutsceneOnly boolean
 function switchWorldProcessing(cutsceneOnly) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearAreaOfCars)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function clearAreaOfCars(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addSphere)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@return int sphere
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@return number sphere
 function addSphere(atX, atY, atZ, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeSphere)**
 ---
----@param sphere int
+---@param sphere number
 function removeSphere(sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setEveryoneIgnorePlayer)**
 ---
 ---@param player Player
----@param ignored bool
+---@param ignored boolean
 function setEveryoneIgnorePlayer(player, ignored) end
 
 ---
@@ -4757,7 +4803,7 @@ function storeCarCharIsInNoSave(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayOnscreenTimerWithString)**
 ---
 ---@param timer VarId
----@param type int
+---@param type number
 ---@param gxtString GxtString
 function displayOnscreenTimerWithString(timer, type, gxtString) end
 
@@ -4765,23 +4811,23 @@ function displayOnscreenTimerWithString(timer, type, gxtString) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayOnscreenCounterWithString)**
 ---
 ---@param var VarId
----@param type bool
+---@param type boolean
 ---@param gxtString GxtString
 function displayOnscreenCounterWithString(var, type, gxtString) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createRandomCarForCarPark)**
 ---
----@param coordsX float
----@param coordsY float
----@param coordsZ float
----@param zAngle float
+---@param coordsX number
+---@param coordsY number
+---@param coordsZ number
+---@param zAngle number
 function createRandomCarForCarPark(coordsX, coordsY, coordsZ, zAngle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setWantedMultiplier)**
 ---
----@param sensitivity float
+---@param sensitivity number
 function setWantedMultiplier(sensitivity) end
 
 ---
@@ -4793,30 +4839,30 @@ function setCameraInFrontOfPlayer() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarVisiblyDamaged)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarVisiblyDamaged(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesObjectExist)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function doesObjectExist(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadScene)**
 ---
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function loadScene(atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addStuckCarCheck)**
 ---
 ---@param car Vehicle
----@param stuckCheckDistance float
----@param time int
+---@param stuckCheckDistance number
+---@param time number
 function addStuckCarCheck(car, stuckCheckDistance, time) end
 
 ---
@@ -4829,54 +4875,54 @@ function removeStuckCarCheck(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarStuck)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarStuck(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadMissionAudio)**
 ---
----@param asId int
----@param name int
+---@param asId number
+---@param name number
 function loadMissionAudio(asId, name) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasMissionAudioLoaded)**
 ---
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function hasMissionAudioLoaded(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/playMissionAudio)**
 ---
----@param id int
+---@param id number
 function playMissionAudio(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasMissionAudioFinished)**
 ---
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function hasMissionAudioFinished(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getClosestCarNodeWithHeading)**
 ---
----@param X float
----@param Y float
----@param Z float
----@return float nodeX
----@return float nodeY
----@return float nodeZ
----@return float angle
+---@param X number
+---@param Y number
+---@param Z number
+---@return number nodeX
+---@return number nodeY
+---@return number nodeZ
+---@return number angle
 function getClosestCarNodeWithHeading(X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasImportGarageSlotBeenFilled)**
 ---
----@param int1 int
----@param int2 int
----@return bool result
+---@param int1 number
+---@param int2 number
+---@return boolean result
 function hasImportGarageSlotBeenFilled(int1, int2) end
 
 ---
@@ -4894,10 +4940,10 @@ function clearThisBigPrint(text) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMissionAudioPosition)**
 ---
----@param id int
----@param locationX float
----@param locationY float
----@param locationZ float
+---@param id number
+---@param locationX number
+---@param locationY number
+---@param locationZ number
 function setMissionAudioPosition(id, locationX, locationY, locationZ) end
 
 ---
@@ -4908,13 +4954,13 @@ function activateSaveMenu() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasSaveGameFinished)**
 ---
----@return bool result
+---@return boolean result
 function hasSaveGameFinished() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/noSpecialCameraForThisGarage)**
 ---
----@param int1 int
+---@param int1 number
 function noSpecialCameraForThisGarage(int1) end
 
 ---
@@ -4927,31 +4973,31 @@ function addBlipForPickup(pickup) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPedDensityMultiplier)**
 ---
----@param multiplier float
+---@param multiplier number
 function setPedDensityMultiplier(multiplier) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextDrawBeforeFade)**
 ---
----@param int1 bool
+---@param int1 boolean
 function setTextDrawBeforeFade(int1) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCollectable1sCollected)**
 ---
----@return int collected
+---@return number collected
 function getCollectable1sCollected() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setSpritesDrawBeforeFade)**
 ---
----@param antialiased bool
+---@param antialiased boolean
 function setSpritesDrawBeforeFade(antialiased) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextRightJustify)**
 ---
----@param alignRight bool
+---@param alignRight boolean
 function setTextRightJustify(alignRight) end
 
 ---
@@ -4968,13 +5014,13 @@ function clearHelp() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/flashHudObject)**
 ---
----@param hudComponent int
+---@param hudComponent number
 function flashHudObject(hudComponent) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGenerateCarsAroundCamera)**
 ---
----@param int1 bool
+---@param int1 boolean
 function setGenerateCarsAroundCamera(int1) end
 
 ---
@@ -4986,14 +5032,14 @@ function clearSmallPrints() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpsidedownCarNotDamaged)**
 ---
 ---@param car Vehicle
----@param disableFlippedExplosion bool
+---@param disableFlippedExplosion boolean
 function setUpsidedownCarNotDamaged(car, disableFlippedExplosion) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerControllable)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerControllable(player) end
 
 ---
@@ -5006,170 +5052,170 @@ function makePlayerSafe(player) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarColours)**
 ---
 ---@param car Vehicle
----@return int primaryColor
----@return int secondaryColor
+---@return number primaryColor
+---@return number secondaryColor
 function getCarColours(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAllCarsCanBeDamaged)**
 ---
----@param enable bool
+---@param enable boolean
 function setAllCarsCanBeDamaged(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarCanBeDamaged)**
 ---
 ---@param car Vehicle
----@param enable bool
+---@param enable boolean
 function setCarCanBeDamaged(car, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setDrunkInputDelay)**
 ---
 ---@param player Player
----@param handlingResponsiveness int
+---@param handlingResponsiveness number
 function setDrunkInputDelay(player, handlingResponsiveness) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharMoney)**
 ---
 ---@param ped Ped
----@param money int
+---@param money number
 function setCharMoney(ped, money) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getOffsetFromObjectInWorldCoords)**
 ---
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@return float X
----@return float Y
----@return float Z
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@return number X
+---@return number Y
+---@return number Z
 function getOffsetFromObjectInWorldCoords(object, offsetX, offsetY, offsetZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getOffsetFromCarInWorldCoords)**
 ---
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@return float X
----@return float Y
----@return float Z
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@return number X
+---@return number Y
+---@return number Z
 function getOffsetFromCarInWorldCoords(car, offsetX, offsetY, offsetZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearMissionAudio)**
 ---
----@param id int
+---@param id number
 function clearMissionAudio(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFreeHealthCare)**
 ---
 ---@param player Player
----@param free bool
+---@param free boolean
 function setFreeHealthCare(player, free) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadAndLaunchMissionInternal)**
 ---
----@param mission int
+---@param mission number
 function loadAndLaunchMissionInternal(mission) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectDrawLast)**
 ---
 ---@param object Object
----@param drawLast bool
+---@param drawLast boolean
 function setObjectDrawLast(object, drawLast) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAmmoInCharWeapon)**
 ---
 ---@param ped Ped
----@param int int
----@return int ammo
-function getAmmoInCharWeapon(ped, int) end
+---@param number number
+---@return number ammo
+function getAmmoInCharWeapon(ped, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setNearClip)**
 ---
----@param clip float
+---@param clip number
 function setNearClip(clip) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setRadioChannel)**
 ---
----@param radioStation int
+---@param radioStation number
 function setRadioChannel(radioStation) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarTraction)**
 ---
 ---@param car Vehicle
----@param traction float
+---@param traction number
 function setCarTraction(car, traction) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/areMeasurementsInMetres)**
 ---
----@return bool result
+---@return boolean result
 function areMeasurementsInMetres() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convertMetresToFeet)**
 ---
----@param meters float
----@return float feet
+---@param meters number
+---@return number feet
 function convertMetresToFeet(meters) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarAvoidLevelTransitions)**
 ---
 ---@param car Vehicle
----@param avoidLevelTransitions bool
+---@param avoidLevelTransitions boolean
 function setCarAvoidLevelTransitions(car, avoidLevelTransitions) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearAreaOfChars)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function clearAreaOfChars(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTotalNumberOfMissions)**
 ---
----@param totalMissions int
+---@param totalMissions number
 function setTotalNumberOfMissions(totalMissions) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/convertMetresToFeetInt)**
 ---
----@param metric int
----@return int imperial
+---@param metric number
+---@return number imperial
 function convertMetresToFeetInt(metric) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/registerFastestTime)**
 ---
----@param stat int
----@param to int
+---@param stat number
+---@param to number
 function registerFastestTime(stat, to) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/registerHighestScore)**
 ---
----@param int1 int
----@param int2 int
+---@param int1 number
+---@param int2 number
 function registerHighestScore(int1, int2) end
 
 ---
@@ -5177,22 +5223,22 @@ function registerHighestScore(int1, int2) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param passengerSeat int
+---@param passengerSeat number
 function warpCharIntoCarAsPassenger(ped, car, passengerSeat) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarPassengerSeatFree)**
 ---
 ---@param car Vehicle
----@param seat int
----@return bool result
+---@param seat number
+---@return boolean result
 function isCarPassengerSeatFree(car, seat) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharInCarPassengerSeat)**
 ---
 ---@param car Vehicle
----@param seat int
+---@param seat number
 ---@return Ped ped
 function getCharInCarPassengerSeat(car, seat) end
 
@@ -5200,7 +5246,7 @@ function getCharInCarPassengerSeat(car, seat) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharIsChrisCriminal)**
 ---
 ---@param ped Ped
----@param flag bool
+---@param flag boolean
 function setCharIsChrisCriminal(ped, flag) end
 
 ---
@@ -5216,13 +5262,13 @@ function stopCredits() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/areCreditsFinished)**
 ---
----@return bool result
+---@return boolean result
 function areCreditsFinished() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMusicDoesFade)**
 ---
----@param enable bool
+---@param enable boolean
 function setMusicDoesFade(enable) end
 
 ---
@@ -5235,14 +5281,14 @@ function getCarModel(veh) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/areAnyCarCheatsActivated)**
 ---
----@return bool result
+---@return boolean result
 function areAnyCarCheatsActivated() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharSuffersCriticalHits)**
 ---
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setCharSuffersCriticalHits(ped, enable) end
 
 ---
@@ -5250,21 +5296,21 @@ function setCharSuffersCriticalHits(ped, enable) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCharSittingInCar(ped, car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharSittingInAnyCar)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharSittingInAnyCar(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharOnFoot)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharOnFoot(ped) end
 
 ---
@@ -5276,24 +5322,24 @@ function loadSplashScreen(gxtString) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setJamesCarOnPathToPlayer)**
 ---
----@param int1 int
+---@param int1 number
 function setJamesCarOnPathToPlayer(int1) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectRotation)**
 ---
 ---@param object Object
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function setObjectRotation(object, rotationX, rotationY, rotationZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDebugCameraCoordinates)**
 ---
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getDebugCameraCoordinates() end
 
 ---
@@ -5301,7 +5347,7 @@ function getDebugCameraCoordinates() end
 ---
 ---@param player Player
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isPlayerTargettingChar(player, ped) end
 
 ---
@@ -5309,26 +5355,26 @@ function isPlayerTargettingChar(player, ped) end
 ---
 ---@param player Player
 ---@param object Object
----@return bool result
+---@return boolean result
 function isPlayerTargettingObject(player, object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayTextWithNumber)**
 ---
----@param x float
----@param y float
+---@param x number
+---@param y number
 ---@param gxtString GxtString
----@param number int
+---@param number number
 function displayTextWithNumber(x, y, gxtString, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayTextWith2Numbers)**
 ---
----@param x float
----@param y float
+---@param x number
+---@param y number
 ---@param gxtString GxtString
----@param numbersX int
----@param numbersY int
+---@param numbersX number
+---@param numbersY number
 function displayTextWith2Numbers(x, y, gxtString, numbersX, numbersY) end
 
 ---
@@ -5339,16 +5385,16 @@ function failCurrentMission() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setInterpolationParameters)**
 ---
----@param delay float
----@param time int
+---@param delay number
+---@param time number
 function setInterpolationParameters(delay, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDebugCameraPointAt)**
 ---
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getDebugCameraPointAt() end
 
 ---
@@ -5356,12 +5402,12 @@ function getDebugCameraPointAt() end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param position int
----@param shootingAngleLimit float
----@param weapon int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param position number
+---@param shootingAngleLimit number
+---@param weapon number
 function attachCharToCar(ped, car, offsetX, offsetY, offsetZ, position, shootingAngleLimit, weapon) end
 
 ---
@@ -5374,7 +5420,7 @@ function detachCharFromCar(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarStayInFastLane)**
 ---
 ---@param car Vehicle
----@param flag bool
+---@param flag boolean
 function setCarStayInFastLane(car, flag) end
 
 ---
@@ -5392,16 +5438,16 @@ function clearCarLastWeaponDamage(car) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCopInArea)**
 ---
----@param float1 float
----@param float2 float
----@param float3 float
----@param float4 float
----@param int5 bool
----@param int6 bool
----@param int7 bool
----@param int8 bool
----@param int9 bool
----@return int int10
+---@param float1 number
+---@param float2 number
+---@param float3 number
+---@param float4 number
+---@param int5 boolean
+---@param int6 boolean
+---@param int7 boolean
+---@param int8 boolean
+---@param int9 boolean
+---@return number int10
 function getRandomCopInArea(float1, float2, float3, float4, int5, int6, int7, int8, int9) end
 
 ---
@@ -5415,17 +5461,17 @@ function getDriverOfCar(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfFollowers)**
 ---
 ---@param ped Ped
----@return int followers
+---@return number followers
 function getNumberOfFollowers(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/giveRemoteControlledModelToPlayer)**
 ---
 ---@param player Player
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
 ---@param RCModel Model
 function giveRemoteControlledModelToPlayer(player, atX, atY, atZ, angle, RCModel) end
 
@@ -5433,7 +5479,7 @@ function giveRemoteControlledModelToPlayer(player, atX, atY, atZ, angle, RCModel
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentCharWeapon)**
 ---
 ---@param ped Ped
----@return int weapon
+---@return number weapon
 function getCurrentCharWeapon(ped) end
 
 ---
@@ -5441,10 +5487,10 @@ function getCurrentCharWeapon(ped) end
 ---
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansObject2d(ped, object, radiusX, radiusY, sphere) end
 
 ---
@@ -5452,10 +5498,10 @@ function locateCharAnyMeansObject2d(ped, object, radiusX, radiusY, sphere) end
 ---
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFootObject2d(ped, object, radiusX, radiusY, sphere) end
 
 ---
@@ -5463,10 +5509,10 @@ function locateCharOnFootObject2d(ped, object, radiusX, radiusY, sphere) end
 ---
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarObject2d(ped, object, radiusX, radiusY, sphere) end
 
 ---
@@ -5474,11 +5520,11 @@ function locateCharInCarObject2d(ped, object, radiusX, radiusY, sphere) end
 ---
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharAnyMeansObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
 
 ---
@@ -5486,11 +5532,11 @@ function locateCharAnyMeansObject3d(ped, object, radiusX, radiusY, radiusZ, sphe
 ---
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharOnFootObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
 
 ---
@@ -5498,40 +5544,40 @@ function locateCharOnFootObject3d(ped, object, radiusX, radiusY, radiusZ, sphere
 ---
 ---@param ped Ped
 ---@param object Object
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param sphere bool
----@return bool result
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param sphere boolean
+---@return boolean result
 function locateCharInCarObject3d(ped, object, radiusX, radiusY, radiusZ, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarTempAction)**
 ---
 ---@param car Vehicle
----@param action int
----@param time int
+---@param action number
+---@param time number
 function setCarTempAction(car, action, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharOnAnyBike)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharOnAnyBike(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/canCharSeeDeadChar)**
 ---
 ---@param ped Ped
----@param pedtype int
----@return bool result
+---@param pedtype number
+---@return boolean result
 function canCharSeeDeadChar(ped, pedtype) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setEnterCarRangeMultiplier)**
 ---
----@param float1 float
+---@param float1 number
 function setEnterCarRangeMultiplier(float1) end
 
 ---
@@ -5544,43 +5590,43 @@ function getRemoteControlledCar(player) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPcVersion)**
 ---
----@return bool result
+---@return boolean result
 function isPcVersion() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isModelAvailable)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isModelAvailable(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shutCharUp)**
 ---
 ---@param ped Ped
----@param muted bool
+---@param muted boolean
 function shutCharUp(ped, muted) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setEnableRcDetonate)**
 ---
----@param detonation bool
+---@param detonation boolean
 function setEnableRcDetonate(detonation) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarRandomRouteSeed)**
 ---
 ---@param car Vehicle
----@param routeSeed int
+---@param routeSeed number
 function setCarRandomRouteSeed(car, routeSeed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isAnyPickupAtCoords)**
 ---
----@param pickupX float
----@param pickupY float
----@param pickupZ float
----@return bool result
+---@param pickupX number
+---@param pickupY number
+---@param pickupZ number
+---@return boolean result
 function isAnyPickupAtCoords(pickupX, pickupY, pickupZ) end
 
 ---
@@ -5593,97 +5639,97 @@ function removeAllCharWeapons(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCharGotWeapon)**
 ---
 ---@param ped Ped
----@param weapon int
----@return bool result
+---@param weapon number
+---@return boolean result
 function hasCharGotWeapon(ped, weapon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTankDetonateCars)**
 ---
----@param tank int
----@param detonate bool
+---@param tank number
+---@param detonate boolean
 function setTankDetonateCars(tank, detonate) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPositionOfAnalogueSticks)**
 ---
----@param joystick int
----@return int offset1
----@return int offset2
----@return int offset3
----@return int offset4
+---@param joystick number
+---@return number offset1
+---@return number offset2
+---@return number offset3
+---@return number offset4
 function getPositionOfAnalogueSticks(joystick) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarOnFire)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarOnFire(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarTireBurst)**
 ---
 ---@param car Vehicle
----@param tire int
----@return bool result
+---@param tire number
+---@return boolean result
 function isCarTireBurst(car, tire) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/initialiseObjectPath)**
 ---
----@param int1 int
----@param float2 float
+---@param int1 number
+---@param float2 number
 function initialiseObjectPath(int1, float2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectPathSpeed)**
 ---
----@param int1 int
----@param int2 int
+---@param int1 number
+---@param int2 number
 function setObjectPathSpeed(int1, int2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectPathPosition)**
 ---
----@param int1 int
----@param float2 float
+---@param int1 number
+---@param float2 number
 function setObjectPathPosition(int1, float2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearObjectPath)**
 ---
----@param int1 int
+---@param int1 number
 function clearObjectPath(int1) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/heliGotoCoords)**
 ---
 ---@param heli Vehicle
----@param toX float
----@param toY float
----@param toZ float
----@param altitudeMin float
----@param altitudeMax float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param altitudeMin number
+---@param altitudeMax number
 function heliGotoCoords(heli, toX, toY, toZ, altitudeMin, altitudeMax) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDeadCharPickupCoords)**
 ---
 ---@param ped Ped
----@return float coordsX
----@return float coordsY
----@return float coordsZ
+---@return number coordsX
+---@return number coordsY
+---@return number coordsZ
 function getDeadCharPickupCoords(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createProtectionPickup)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param int4 int
----@param int5 int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param int4 number
+---@param int5 number
 ---@return Pickup pickup
 function createProtectionPickup(atX, atY, atZ, int4, int5) end
 
@@ -5691,100 +5737,100 @@ function createProtectionPickup(atX, atY, atZ, int4, int5) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAnyBoat)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyBoat(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAnyHeli)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyHeli(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAnyPlane)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyPlane(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInWater)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInWater(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharWeaponInSlot)**
 ---
 ---@param ped Ped
----@param slot int
----@return int weapon
----@return int ammo
+---@param slot number
+---@return number weapon
+---@return number ammo
 ---@return Model modelId
 function getCharWeaponInSlot(ped, slot) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getClosestStraightRoad)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param height float
----@param radius float
----@return float float6
----@return float float7
----@return float float8
----@return float float9
----@return float float10
----@return float float11
----@return float float12
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param height number
+---@param radius number
+---@return number float6
+---@return number float7
+---@return number float8
+---@return number float9
+---@return number float10
+---@return number float11
+---@return number float12
 function getClosestStraightRoad(atX, atY, atZ, height, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarForwardSpeed)**
 ---
 ---@param car Vehicle
----@param speed float
+---@param speed number
 function setCarForwardSpeed(car, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setInteriorVisible)**
 ---
----@param interior int
+---@param interior number
 function setInteriorVisible(interior) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/markCarAsConvoyCar)**
 ---
 ---@param car Vehicle
----@param convoy bool
+---@param convoy boolean
 function markCarAsConvoyCar(car, convoy) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/resetHavocCausedByPlayer)**
 ---
----@param int1 int
+---@param int1 number
 function resetHavocCausedByPlayer(int1) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getHavocCausedByPlayer)**
 ---
----@param int1 int
----@return int int2
+---@param int1 number
+---@return number int2
 function getHavocCausedByPlayer(int1) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createScriptRoadblock)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param type int
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param type number
 function createScriptRoadblock(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, type) end
 
 ---
@@ -5796,41 +5842,41 @@ function clearAllScriptRoadblocks() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getOffsetFromCharInWorldCoords)**
 ---
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@return float X
----@return float Y
----@return float Z
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@return number X
+---@return number Y
+---@return number Z
 function getOffsetFromCharInWorldCoords(ped, offsetX, offsetY, offsetZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCharBeenPhotographed)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function hasCharBeenPhotographed(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchSecurityCamera)**
 ---
----@param int1 bool
+---@param int1 boolean
 function switchSecurityCamera(int1) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInFlyingVehicle)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInFlyingVehicle(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addShortRangeSpriteBlipForCoord)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param icon int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param icon number
 ---@return Marker marker
 function addShortRangeSpriteBlipForCoord(atX, atY, atZ, icon) end
 
@@ -5838,7 +5884,7 @@ function addShortRangeSpriteBlipForCoord(atX, atY, atZ, icon) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHeliOrientation)**
 ---
 ---@param heli Vehicle
----@param angle float
+---@param angle number
 function setHeliOrientation(heli, angle) end
 
 ---
@@ -5850,72 +5896,72 @@ function clearHeliOrientation(heli) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/planeGotoCoords)**
 ---
----@param plane int
----@param X float
----@param Y float
----@param Z float
----@param z1 float
----@param z2 float
+---@param plane number
+---@param X number
+---@param Y number
+---@param Z number
+---@param z1 number
+---@param z2 number
 function planeGotoCoords(plane, X, Y, Z, z1, z2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNthClosestCarNode)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param type int
----@return float X
----@return float Y
----@return float Z
+---@param X number
+---@param Y number
+---@param Z number
+---@param type number
+---@return number X
+---@return number Y
+---@return number Z
 function getNthClosestCarNode(X, Y, Z, type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawWeaponshopCorona)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param type int
----@param flare int
----@param r int
----@param g int
----@param b int
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param type number
+---@param flare number
+---@param r number
+---@param g number
+---@param b number
 function drawWeaponshopCorona(X, Y, Z, radius, type, flare, r, g, b) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setEnableRcDetonateOnContact)**
 ---
----@param enable bool
+---@param enable boolean
 function setEnableRcDetonateOnContact(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freezeCharPosition)**
 ---
 ---@param ped Ped
----@param locked bool
+---@param locked boolean
 function freezeCharPosition(ped, locked) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharDrownsInWater)**
 ---
 ---@param ped Ped
----@param drowns bool
+---@param drowns boolean
 function setCharDrownsInWater(ped, drowns) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectRecordsCollisions)**
 ---
 ---@param object Object
----@param set bool
+---@param set boolean
 function setObjectRecordsCollisions(object, set) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasObjectCollidedWithAnything)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function hasObjectCollidedWithAnything(object) end
 
 ---
@@ -5927,21 +5973,21 @@ function removeRcBuggy() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharArmour)**
 ---
 ---@param ped Ped
----@return int armour
+---@return number armour
 function getCharArmour(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHeliStabiliser)**
 ---
 ---@param heli Vehicle
----@param limiter bool
+---@param limiter boolean
 function setHeliStabiliser(heli, limiter) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarStraightLineDistance)**
 ---
 ---@param car Vehicle
----@param radius int
+---@param radius number
 function setCarStraightLineDistance(car, radius) end
 
 ---
@@ -5954,88 +6000,88 @@ function popCarBoot(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shutPlayerUp)**
 ---
 ---@param player Player
----@param shut bool
+---@param shut boolean
 function shutPlayerUp(player, shut) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerMood)**
 ---
 ---@param player Player
----@param flag int
----@param time int
+---@param flag number
+---@param time number
 function setPlayerMood(player, flag, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/requestCollision)**
 ---
----@param X float
----@param Y float
+---@param X number
+---@param Y number
 function requestCollision(X, Y) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateObject2d)**
 ---
 ---@param object Object
----@param X float
----@param Y float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+---@param X number
+---@param Y number
+---@param radiusX number
+---@param radiusY number
+---@param sphere boolean
+---@return boolean result
 function locateObject2d(object, X, Y, radiusX, radiusY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/locateObject3d)**
 ---
 ---@param object Object
----@param X float
----@param Y float
----@param Z float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
----@return bool result
+---@param X number
+---@param Y number
+---@param Z number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param flag boolean
+---@return boolean result
 function locateObject3d(object, X, Y, Z, radiusX, radiusY, radiusZ, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectInWater)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectInWater(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectInArea2d)**
 ---
 ---@param object Object
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
+---@param sphere boolean
+---@return boolean result
 function isObjectInArea2d(object, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectInArea3d)**
 ---
 ---@param object Object
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param flag bool
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@param flag boolean
+---@return boolean result
 function isObjectInArea3d(object, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskToggleDuck)**
 ---
 ---@param ped Ped
----@param crouch bool
+---@param crouch boolean
 function taskToggleDuck(ped, crouch) end
 
 ---
@@ -6048,7 +6094,7 @@ function requestAnimation(animation) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasAnimationLoaded)**
 ---
 ---@param animation string
----@return bool result
+---@return boolean result
 function hasAnimationLoaded(animation) end
 
 ---
@@ -6061,14 +6107,14 @@ function removeAnimation(animation) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharWaitingForWorldCollision)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharWaitingForWorldCollision(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarWaitingForWorldCollision)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarWaitingForWorldCollision(car) end
 
 ---
@@ -6076,71 +6122,86 @@ function isCarWaitingForWorldCollision(car) end
 ---
 ---@param ped Ped
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param orientation int
----@param angle float
----@param lockWeapon int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param orientation number
+---@param angle number
+---@param lockWeapon number
 function attachCharToObject(ped, object, offsetX, offsetY, offsetZ, orientation, angle, lockWeapon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayNthOnscreenCounterWithString)**
 ---
 ---@param text VarId
----@param type int
----@param line int
+---@param type number
+---@param line number
 ---@param gxtString GxtString
 function displayNthOnscreenCounterWithString(text, type, line, gxtString) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addSetPiece)**
 ---
----@param type int
----@param rectX1 float
----@param rectY1 float
----@param rectX2 float
----@param rectY2 float
----@param spawnAX float
----@param spawnAY float
----@param headedTowards1X float
----@param headedTowards1Y float
----@param spawnBX float
----@param spawnBY float
----@param headedTowards2X float
----@param headedTowards2Y float
-function addSetPiece(type, rectX1, rectY1, rectX2, rectY2, spawnAX, spawnAY, headedTowards1X, headedTowards1Y, spawnBX, spawnBY, headedTowards2X, headedTowards2Y) end
+---@param type number
+---@param rectX1 number
+---@param rectY1 number
+---@param rectX2 number
+---@param rectY2 number
+---@param spawnAX number
+---@param spawnAY number
+---@param headedTowards1X number
+---@param headedTowards1Y number
+---@param spawnBX number
+---@param spawnBY number
+---@param headedTowards2X number
+---@param headedTowards2Y number
+function addSetPiece(
+	type,
+	rectX1,
+	rectY1,
+	rectX2,
+	rectY2,
+	spawnAX,
+	spawnAY,
+	headedTowards1X,
+	headedTowards1Y,
+	spawnBX,
+	spawnBY,
+	headedTowards2X,
+	headedTowards2Y
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setExtraColours)**
 ---
----@param color int
----@param fade bool
+---@param color number
+---@param fade boolean
 function setExtraColours(color, fade) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearExtraColours)**
 ---
----@param fade bool
+---@param fade boolean
 function clearExtraColours(fade) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getWheelieStats)**
 ---
 ---@param player Player
----@return int twowheelstime
----@return float twowheelsdistance
----@return int wheelietime
----@return float wheelieDistance
----@return int stoppieTime
----@return float stoppieDistance
+---@return number twowheelstime
+---@return number twowheelsdistance
+---@return number wheelietime
+---@return number wheelieDistance
+---@return number stoppieTime
+---@return number stoppieDistance
 function getWheelieStats(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/burstCarTire)**
 ---
 ---@param car Vehicle
----@param tire int
+---@param tire number
 function burstCarTire(car, tire) end
 
 ---
@@ -6148,34 +6209,34 @@ function burstCarTire(car, tire) end
 ---
 ---@param player Player
 ---@param bodypart string
----@param skin int
----@return bool result
+---@param skin number
+---@return boolean result
 function isPlayerWearing(player, bodypart, skin) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerCanDoDriveBy)**
 ---
 ---@param player Player
----@param mode bool
+---@param mode boolean
 function setPlayerCanDoDriveBy(player, mode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createSwatRope)**
 ---
----@param pedtype int
+---@param pedtype number
 ---@param modelId Model
----@param X float
----@param Y float
----@param Z float
----@return int handleAs
+---@param X number
+---@param Y number
+---@param Z number
+---@return number handleAs
 function createSwatRope(pedtype, modelId, X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarModelComponents)**
 ---
 ---@param car Model
----@param variation1 int
----@param variation2 int
+---@param variation1 number
+---@param variation2 number
 function setCarModelComponents(car, variation1, variation2) end
 
 ---
@@ -6187,42 +6248,42 @@ function closeAllCarDoors(car) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDistanceBetweenCoords2d)**
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@return float distance
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@return number distance
 function getDistanceBetweenCoords2d(x1, y1, x2, y2) end
 
 ---
---- Получение дистанции между двумя точками в игровом мире (3D)  
+--- РџРѕР»СѓС‡РµРЅРёРµ РґРёСЃС‚Р°РЅС†РёРё РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё РІ РёРіСЂРѕРІРѕРј РјРёСЂРµ (3D)
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 --   function main()
---     sampRegisterChatCommand('prv', function(id) -- данный код при вводе /prv id получит дистанцию между вами и другим игроком
+--     sampRegisterChatCommand('prv', function(id) -- РґР°РЅРЅС‹Р№ РєРѕРґ РїСЂРё РІРІРѕРґРµ /prv id РїРѕР»СѓС‡РёС‚ РґРёСЃС‚Р°РЅС†РёСЋ РјРµР¶РґСѓ РІР°РјРё Рё РґСЂСѓРіРёРј РёРіСЂРѕРєРѕРј
 --        local res, ped = sampGetCharHandleBySampPlayerId(id)
 --        if res then
 --           local x, y, z = getCharCoordinates(PLAYER_PED)
 --           local mX, mY, mZ = getCharCoordinates(ped)
 --           local dist = getDistanceBetweenCoords3d(x, y, z, mX, mY, mZ)
---           sampAddChatMessage('Дистанция между вами: '..dist, 0x00DD00)
+--           sampAddChatMessage('Р”РёСЃС‚Р°РЅС†РёСЏ РјРµР¶РґСѓ РІР°РјРё: '..dist, 0x00DD00)
 --        end
 --     end)
---     wait(-1) -- не забываем ставить минусовую задержку в конце main, чтобы скрипт не завершал свою работу
+--     wait(-1) -- РЅРµ Р·Р°Р±С‹РІР°РµРј СЃС‚Р°РІРёС‚СЊ РјРёРЅСѓСЃРѕРІСѓСЋ Р·Р°РґРµСЂР¶РєСѓ РІ РєРѕРЅС†Рµ main, С‡С‚РѕР±С‹ СЃРєСЂРёРїС‚ РЅРµ Р·Р°РІРµСЂС€Р°Р» СЃРІРѕСЋ СЂР°Р±РѕС‚Сѓ
 --   end
---- ```  
+--- ```
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDistanceBetweenCoords3d)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDistanceBetweenCoords3d)**
 ---
----@param x1 float координата X первой точки
----@param y1 float координата Y первой точки
----@param z1 float координата Z первой точки
----@param x2 float координата X второй точки
----@param y2 float координата Y второй точки
----@param z2 float координата Z второй точки
----@return float distance дистанция
+---@param x1 number РєРѕРѕСЂРґРёРЅР°С‚Р° X РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param y1 number РєРѕРѕСЂРґРёРЅР°С‚Р° Y РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param z1 number РєРѕРѕСЂРґРёРЅР°С‚Р° Z РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param x2 number РєРѕРѕСЂРґРёРЅР°С‚Р° X РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@param y2 number РєРѕРѕСЂРґРёРЅР°С‚Р° Y РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@param z2 number РєРѕРѕСЂРґРёРЅР°С‚Р° Z РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@return number distance РґРёСЃС‚Р°РЅС†РёСЏ
 function getDistanceBetweenCoords3d(x1, y1, z1, x2, y2, z2) end
 
 ---
@@ -6235,7 +6296,7 @@ function sortOutObjectCollisionWithCar(object, car) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMaxWantedLevel)**
 ---
----@return int level
+---@return number level
 function getMaxWantedLevel() end
 
 ---
@@ -6248,15 +6309,15 @@ function printHelpForever(text) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/printHelpForeverWithNumber)**
 ---
 ---@param text GxtString
----@param number int
+---@param number number
 function printHelpForeverWithNumber(text, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createLockedPropertyPickup)**
 ---
----@param pX float
----@param pY float
----@param pZ float
+---@param pX number
+---@param pY number
+---@param pZ number
 ---@param gxtString GxtString
 ---@return Pickup pickup
 function createLockedPropertyPickup(pX, pY, pZ, gxtString) end
@@ -6264,10 +6325,10 @@ function createLockedPropertyPickup(pX, pY, pZ, gxtString) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createForsalePropertyPickup)**
 ---
----@param pX float
----@param pY float
----@param pZ float
----@param price int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param price number
 ---@param gxtString GxtString
 ---@return Pickup pickup
 function createForsalePropertyPickup(pX, pY, pZ, price, gxtString) end
@@ -6276,7 +6337,7 @@ function createForsalePropertyPickup(pX, pY, pZ, price, gxtString) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freezeCarPosition)**
 ---
 ---@param car Vehicle
----@param locked bool
+---@param locked boolean
 function freezeCarPosition(car, locked) end
 
 ---
@@ -6284,7 +6345,7 @@ function freezeCarPosition(car, locked) end
 ---
 ---@param ped Ped
 ---@param byActor Ped
----@return bool result
+---@return boolean result
 function hasCharBeenDamagedByChar(ped, byActor) end
 
 ---
@@ -6292,7 +6353,7 @@ function hasCharBeenDamagedByChar(ped, byActor) end
 ---
 ---@param ped Ped
 ---@param byCar Vehicle
----@return bool result
+---@return boolean result
 function hasCharBeenDamagedByCar(ped, byCar) end
 
 ---
@@ -6300,7 +6361,7 @@ function hasCharBeenDamagedByCar(ped, byCar) end
 ---
 ---@param car Vehicle
 ---@param byActor Ped
----@return bool result
+---@return boolean result
 function hasCarBeenDamagedByChar(car, byActor) end
 
 ---
@@ -6308,36 +6369,36 @@ function hasCarBeenDamagedByChar(car, byActor) end
 ---
 ---@param car Vehicle
 ---@param byCar Vehicle
----@return bool result
+---@return boolean result
 function hasCarBeenDamagedByCar(car, byCar) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRadioChannel)**
 ---
----@return int radio
+---@return number radio
 function getRadioChannel() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharStayInCarWhenJacked)**
 ---
 ---@param ped Ped
----@param stay bool
+---@param stay boolean
 function setCharStayInCarWhenJacked(ped, stay) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerDrunkenness)**
 ---
 ---@param player Player
----@param drunk int
+---@param drunk number
 function setPlayerDrunkenness(player, drunk) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCarOfTypeInAreaNoSave)**
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
 ---@param modelId Model
 ---@return Vehicle car
 function getRandomCarOfTypeInAreaNoSave(x1, y1, x2, y2, modelId) end
@@ -6346,7 +6407,7 @@ function getRandomCarOfTypeInAreaNoSave(x1, y1, x2, y2, modelId) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCanBurstCarTires)**
 ---
 ---@param car Vehicle
----@param vulnerability bool
+---@param vulnerability boolean
 function setCanBurstCarTires(car, vulnerability) end
 
 ---
@@ -6360,14 +6421,14 @@ function fireHunterGun(car) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCharTouchingVehicle(ped, car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharCanBeShotInVehicle)**
 ---
 ---@param ped Ped
----@param can bool
+---@param can boolean
 function setCharCanBeShotInVehicle(ped, can) end
 
 ---
@@ -6392,35 +6453,35 @@ function clearCarLastDamageEntity(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freezeObjectPosition)**
 ---
 ---@param object Object
----@param freeze bool
+---@param freeze boolean
 function freezeObjectPosition(object, freeze) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeWeaponFromChar)**
 ---
 ---@param ped Ped
----@param weapon int
+---@param weapon number
 function removeWeaponFromChar(ped, weapon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/makePlayerFireProof)**
 ---
 ---@param player Player
----@param fireproof bool
+---@param fireproof boolean
 function makePlayerFireProof(player, fireproof) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/increasePlayerMaxHealth)**
 ---
 ---@param player Player
----@param increase int
+---@param increase number
 function increasePlayerMaxHealth(player, increase) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/increasePlayerMaxArmour)**
 ---
 ---@param player Player
----@param increase int
+---@param increase number
 function increasePlayerMaxArmour(player, increase) end
 
 ---
@@ -6434,7 +6495,7 @@ function createRandomCharAsDriver(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createRandomCharAsPassenger)**
 ---
 ---@param car Vehicle
----@param seat int
+---@param seat number
 ---@return Ped ped
 function createRandomCharAsPassenger(car, seat) end
 
@@ -6442,7 +6503,7 @@ function createRandomCharAsPassenger(car, seat) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/ensurePlayerHasDriveByWeapon)**
 ---
 ---@param player Player
----@param ammo int
+---@param ammo number
 function ensurePlayerHasDriveByWeapon(player, ammo) end
 
 ---
@@ -6454,146 +6515,146 @@ function makeHeliComeCrashingDown(heli) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addExplosionNoSound)**
 ---
----@param pX float
----@param pY float
----@param pZ float
----@param type int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param type number
 function addExplosionNoSound(pX, pY, pZ, type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/linkObjectToInterior)**
 ---
 ---@param object Object
----@param interior int
+---@param interior number
 function linkObjectToInterior(object, interior) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharNeverTargetted)**
 ---
 ---@param ped Ped
----@param untargetable bool
+---@param untargetable boolean
 function setCharNeverTargetted(ped, untargetable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/wasCutsceneSkipped)**
 ---
----@return bool result
+---@return boolean result
 function wasCutsceneSkipped() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAnyPoliceVehicle)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyPoliceVehicle(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesCharExist)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function doesCharExist(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesVehicleExist)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function doesVehicleExist(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addShortRangeSpriteBlipForContactPoint)**
 ---
----@param pX float
----@param pY float
----@param pZ float
----@param icon int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param icon number
 ---@return Marker blip
 function addShortRangeSpriteBlipForContactPoint(pX, pY, pZ, icon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAllTaxisHaveNitro)**
 ---
----@param toggle bool
+---@param toggle boolean
 function setAllTaxisHaveNitro(toggle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freezeCarPositionAndDontLoadCollision)**
 ---
 ---@param car Vehicle
----@param keep bool
+---@param keep boolean
 function freezeCarPositionAndDontLoadCollision(car, keep) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/freezeCharPositionAndDontLoadCollision)**
 ---
 ---@param ped Ped
----@param keep bool
+---@param keep boolean
 function freezeCharPositionAndDontLoadCollision(ped, keep) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerIsInStadium)**
 ---
----@param set bool
+---@param set boolean
 function setPlayerIsInStadium(set) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayRadar)**
 ---
----@param enable bool
+---@param enable boolean
 function displayRadar(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/registerBestPosition)**
 ---
----@param stat int
----@param float float
-function registerBestPosition(stat, float) end
+---@param stat number
+---@param number number
+function registerBestPosition(stat, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerInInfoZone)**
 ---
 ---@param player Player
 ---@param zone GxtString
----@return bool result
+---@return boolean result
 function isPlayerInInfoZone(player, zone) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setLoadCollisionForCarFlag)**
 ---
 ---@param car Vehicle
----@param enable bool
+---@param enable boolean
 function setLoadCollisionForCarFlag(car, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setLoadCollisionForCharFlag)**
 ---
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setLoadCollisionForCharFlag(ped, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addBigGunFlash)**
 ---
----@param fromX float
----@param fromY float
----@param fromZ float
----@param toX float
----@param toY float
----@param toZ float
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param toX number
+---@param toY number
+---@param toZ number
 function addBigGunFlash(fromX, fromY, fromZ, toX, toY, toZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getProgressPercentage)**
 ---
----@return float progress
+---@return number progress
 function getProgressPercentage() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleToFadeIn)**
 ---
 ---@param car Vehicle
----@param flag int
+---@param flag number
 function setVehicleToFadeIn(car, flag) end
 
 ---
@@ -6605,174 +6666,184 @@ function registerOddjobMissionPassed() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerInShortcutTaxi)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerInShortcutTaxi(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharDucking)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharDucking(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setOnscreenCounterFlashWhenFirstDisplayed)**
 ---
 ---@param text VarId
----@param flashing bool
+---@param flashing boolean
 function setOnscreenCounterFlashWhenFirstDisplayed(text, flashing) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shuffleCardDecks)**
 ---
----@param shuffle bool
+---@param shuffle boolean
 function shuffleCardDecks(shuffle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/fetchNextCard)**
 ---
----@return int card
+---@return number card
 function fetchNextCard() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectVelocity)**
 ---
 ---@param object Object
----@return float vecX
----@return float vecY
----@return float vecZ
+---@return number vecX
+---@return number vecY
+---@return number vecZ
 function getObjectVelocity(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isDebugCameraOn)**
 ---
----@return bool result
+---@return boolean result
 function isDebugCameraOn() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addToObjectRotationVelocity)**
 ---
 ---@param object Object
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function addToObjectRotationVelocity(object, vecX, vecY, vecZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectRotationVelocity)**
 ---
 ---@param object Object
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function setObjectRotationVelocity(object, vecX, vecY, vecZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectStatic)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectStatic(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAngleBetween2dVectors)**
 ---
----@param vecX float
----@param vecY float
----@param vecX2 float
----@param vecY2 float
----@return float angle
+---@param vecX number
+---@param vecY number
+---@param vecX2 number
+---@param vecY2 number
+---@return number angle
 function getAngleBetween2dVectors(vecX, vecY, vecX2, vecY2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/do2dRectanglesCollide)**
 ---
----@param areaX float
----@param areaY float
----@param scaleX float
----@param scaleY float
----@param overlapareaX float
----@param overlapareaY float
----@param overlapscaleX float
----@param overlapscaleY float
----@return bool result
-function do2dRectanglesCollide(areaX, areaY, scaleX, scaleY, overlapareaX, overlapareaY, overlapscaleX, overlapscaleY) end
+---@param areaX number
+---@param areaY number
+---@param scaleX number
+---@param scaleY number
+---@param overlapareaX number
+---@param overlapareaY number
+---@param overlapscaleX number
+---@param overlapscaleY number
+---@return boolean result
+function do2dRectanglesCollide(
+	areaX,
+	areaY,
+	scaleX,
+	scaleY,
+	overlapareaX,
+	overlapareaY,
+	overlapscaleX,
+	overlapscaleY
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectRotationVelocity)**
 ---
 ---@param object Object
----@return float axisX
----@return float axisY
----@return float axisZ
+---@return number axisX
+---@return number axisY
+---@return number axisZ
 function getObjectRotationVelocity(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addVelocityRelativeToObjectVelocity)**
 ---
 ---@param object Object
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function addVelocityRelativeToObjectVelocity(object, vecX, vecY, vecZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectSpeed)**
 ---
 ---@param object Object
----@return float speed
+---@return number speed
 function getObjectSpeed(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/get2dLinesIntersectPoint)**
 ---
----@param l1x1 float
----@param l1y1 float
----@param l1x2 float
----@param l1y2 float
----@param l2x1 float
----@param l2y1 float
----@param l2x2 float
----@param l2y2 float
----@return bool result
----@return float X
----@return float Y
+---@param l1x1 number
+---@param l1y1 number
+---@param l1x2 number
+---@param l1y2 number
+---@param l2x1 number
+---@param l2y1 number
+---@param l2x2 number
+---@param l2y2 number
+---@return boolean result
+---@return number X
+---@return number Y
 function get2dLinesIntersectPoint(l1x1, l1y1, l1x2, l1y2, l2x1, l2y1, l2x2, l2y2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskPause)**
 ---
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskPause(ped, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskStandStill)**
 ---
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskStandStill(ped, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskFallAndGetUp)**
 ---
 ---@param ped Ped
----@param int2 bool
----@param time int
+---@param int2 boolean
+---@param time number
 function taskFallAndGetUp(ped, int2, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskJump)**
 ---
 ---@param ped Ped
----@param jump bool
+---@param jump boolean
 function taskJump(ped, jump) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskTired)**
 ---
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskTired(ped, timeMS) end
 
 ---
@@ -6785,23 +6856,23 @@ function taskDie(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskLookAtChar)**
 ---
 ---@param ped Ped
----@param lookAt int
----@param timeMS int
+---@param lookAt number
+---@param timeMS number
 function taskLookAtChar(ped, lookAt, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskLookAtVehicle)**
 ---
 ---@param ped Ped
----@param lookAt int
----@param timeMS int
+---@param lookAt number
+---@param timeMS number
 function taskLookAtVehicle(ped, lookAt, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskSay)**
 ---
 ---@param ped Ped
----@param audio int
+---@param audio number
 function taskSay(ped, audio) end
 
 ---
@@ -6820,14 +6891,14 @@ function taskCower(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskHandsUp)**
 ---
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskHandsUp(ped, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskDuck)**
 ---
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskDuck(ped, timeMS) end
 
 ---
@@ -6846,7 +6917,7 @@ function taskScratchHead(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskLookAbout)**
 ---
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskLookAbout(ped, timeMS) end
 
 ---
@@ -6854,8 +6925,8 @@ function taskLookAbout(ped, timeMS) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param time int
----@param passengerSeat int
+---@param time number
+---@param passengerSeat number
 function taskEnterCarAsPassenger(ped, car, time, passengerSeat) end
 
 ---
@@ -6863,7 +6934,7 @@ function taskEnterCarAsPassenger(ped, car, time, passengerSeat) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param timeMS int
+---@param timeMS number
 function taskEnterCarAsDriver(ped, car, timeMS) end
 
 ---
@@ -6878,9 +6949,9 @@ function taskLeaveCar(ped, car) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function taskLeaveCarAndFlee(ped, car, X, Y, Z) end
 
 ---
@@ -6888,13 +6959,13 @@ function taskLeaveCarAndFlee(ped, car, X, Y, Z) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param toX float
----@param toY float
----@param toZ float
----@param speed float
----@param int7 int
----@param model int
----@param int9 int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param speed number
+---@param int7 number
+---@param model number
+---@param int9 number
 function taskCarDriveToCoord(ped, car, toX, toY, toZ, speed, int7, model, int9) end
 
 ---
@@ -6902,26 +6973,26 @@ function taskCarDriveToCoord(ped, car, toX, toY, toZ, speed, int7, model, int9) 
 ---
 ---@param ped Ped
 ---@param hijackCar Vehicle
----@param searchRadius float
----@param trafficBehavior int
+---@param searchRadius number
+---@param trafficBehavior number
 function taskCarDriveWander(ped, hijackCar, searchRadius, trafficBehavior) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskGoStraightToCoord)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
----@param time int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
+---@param time number
 function taskGoStraightToCoord(ped, toX, toY, toZ, mode, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskAchieveHeading)**
 ---
 ---@param ped Ped
----@param angle float
+---@param angle number
 function taskAchieveHeading(ped, angle) end
 
 ---
@@ -6932,17 +7003,17 @@ function flushRoute() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/extendRoute)**
 ---
----@param pointX float
----@param pointY float
----@param pointZ float
+---@param pointX number
+---@param pointY number
+---@param pointZ number
 function extendRoute(pointX, pointY, pointZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskFollowPointRoute)**
 ---
 ---@param ped Ped
----@param flags1 int
----@param flags2 int
+---@param flags1 number
+---@param flags2 number
 function taskFollowPointRoute(ped, flags1, flags2) end
 
 ---
@@ -6950,19 +7021,19 @@ function taskFollowPointRoute(ped, flags1, flags2) end
 ---
 ---@param ped Ped
 ---@param toActor Ped
----@param timelimit int
----@param stopWithinRadius float
+---@param timelimit number
+---@param stopWithinRadius number
 function taskGotoChar(ped, toActor, timelimit, stopWithinRadius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskFleePoint)**
 ---
 ---@param ped Ped
----@param fromX float
----@param fromY float
----@param fromZ float
----@param awayRadius float
----@param timelimit int
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param awayRadius number
+---@param timelimit number
 function taskFleePoint(ped, fromX, fromY, fromZ, awayRadius, timelimit) end
 
 ---
@@ -6970,19 +7041,19 @@ function taskFleePoint(ped, fromX, fromY, fromZ, awayRadius, timelimit) end
 ---
 ---@param ped Ped
 ---@param fromActor Ped
----@param radius float
----@param timelimit int
+---@param radius number
+---@param timelimit number
 function taskFleeChar(ped, fromActor, radius, timelimit) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskSmartFleePoint)**
 ---
 ---@param ped Ped
----@param fromX float
----@param fromY float
----@param fromZ float
----@param stopAtRadius float
----@param timelimit int
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param stopAtRadius number
+---@param timelimit number
 function taskSmartFleePoint(ped, fromX, fromY, fromZ, stopAtRadius, timelimit) end
 
 ---
@@ -6990,8 +7061,8 @@ function taskSmartFleePoint(ped, fromX, fromY, fromZ, stopAtRadius, timelimit) e
 ---
 ---@param ped Ped
 ---@param fromActor Ped
----@param originRadius float
----@param timelimit int
+---@param originRadius number
+---@param timelimit number
 function taskSmartFleeChar(ped, fromActor, originRadius, timelimit) end
 
 ---
@@ -7011,7 +7082,7 @@ function taskKillCharOnFoot(ped, killActor) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startPlaybackRecordedCar)**
 ---
 ---@param car Vehicle
----@param path int
+---@param path number
 function startPlaybackRecordedCar(car, path) end
 
 ---
@@ -7064,205 +7135,205 @@ function setCarEscortCarFront(car, followCar) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskFollowPathNodesToCoord)**
 ---
 ---@param ped Ped
----@param pathX float
----@param pathY float
----@param pathZ float
----@param mode int
----@param time int
+---@param pathX number
+---@param pathY number
+---@param pathZ number
+---@param mode number
+---@param time number
 function taskFollowPathNodesToCoord(ped, pathX, pathY, pathZ, mode, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAngledArea2d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledArea2d(ped, x1, y1, x2, y2, angle, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAngledAreaOnFoot2d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledAreaOnFoot2d(ped, x1, y1, x2, y2, angle, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAngledAreaInCar2d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledAreaInCar2d(ped, x1, y1, x2, y2, angle, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAngledArea2d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param height float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param height number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledArea2d(ped, x1, y1, x2, y2, height, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAngledAreaOnFoot2d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharStoppedInAngledAreaOnFoot2d(ped, x1, y1, x2, y2, angle, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAngledAreaInCar2d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param height float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param height number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledAreaInCar2d(ped, x1, y1, x2, y2, height, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAngledArea3d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledArea3d(ped, x1, y1, z1, x2, y2, z2, angle, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAngledAreaOnFoot3d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isCharInAngledAreaOnFoot3d(ped, x1, y1, z1, x2, y2, z2, angle, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAngledAreaInCar3d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isCharInAngledAreaInCar3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAngledArea3d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledArea3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAngledAreaOnFoot3d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledAreaOnFoot3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStoppedInAngledAreaInCar3d)**
 ---
 ---@param ped Ped
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isCharStoppedInAngledAreaInCar3d(ped, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInTaxi)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInTaxi(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskGoToCoordAnyMeans)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
 ---@param useCar Vehicle
 function taskGoToCoordAnyMeans(ped, toX, toY, toZ, mode, useCar) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getHeadingFromVector2d)**
 ---
----@param pX float
----@param pY float
----@return float zAngle
+---@param pX number
+---@param pY number
+---@return number zAngle
 function getHeadingFromVector2d(pX, pY) end
 
 ---
@@ -7271,21 +7342,21 @@ function getHeadingFromVector2d(pX, pY) end
 ---@param ped Ped
 ---@param animation string
 ---@param IFP string
----@param framedelta float
----@param loop bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
+---@param framedelta number
+---@param loop boolean
+---@param lockX boolean
+---@param lockY boolean
+---@param lockF boolean
+---@param time number
 function taskPlayAnim(ped, animation, IFP, framedelta, loop, lockX, lockY, lockF, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadPathNodesInArea)**
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
 function loadPathNodesInArea(x1, y1, x2, y2) end
 
 ---
@@ -7296,39 +7367,39 @@ function releasePathNodes() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadCharDecisionMaker)**
 ---
----@param type int
----@return int maker
+---@param type number
+---@return number maker
 function loadCharDecisionMaker(type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharDecisionMaker)**
 ---
 ---@param ped Ped
----@param maker int
+---@param maker number
 function setCharDecisionMaker(ped, maker) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextDropshadow)**
 ---
----@param shadow int
----@param r int
----@param g int
----@param b int
----@param a int
+---@param shadow number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function setTextDropshadow(shadow, r, g, b, a) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlaybackGoingOnForCar)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isPlaybackGoingOnForCar(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setSenseRange)**
 ---
 ---@param ped Ped
----@param accuracy float
+---@param accuracy number
 function setSenseRange(ped, accuracy) end
 
 ---
@@ -7336,7 +7407,7 @@ function setSenseRange(ped, accuracy) end
 ---
 ---@param ped Ped
 ---@param animation string
----@return bool result
+---@return boolean result
 function isCharPlayingAnim(ped, animation) end
 
 ---
@@ -7344,7 +7415,7 @@ function isCharPlayingAnim(ped, animation) end
 ---
 ---@param ped Ped
 ---@param animation string
----@param flag bool
+---@param flag boolean
 function setCharAnimPlayingFlag(ped, animation, flag) end
 
 ---
@@ -7352,7 +7423,7 @@ function setCharAnimPlayingFlag(ped, animation, flag) end
 ---
 ---@param ped Ped
 ---@param animation string
----@return float time
+---@return number time
 function getCharAnimCurrentTime(ped, animation) end
 
 ---
@@ -7360,33 +7431,33 @@ function getCharAnimCurrentTime(ped, animation) end
 ---
 ---@param ped Ped
 ---@param animation string
----@param time float
+---@param time number
 function setCharAnimCurrentTime(ped, animation, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/openSequenceTask)**
 ---
----@return int task
+---@return number task
 function openSequenceTask() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/closeSequenceTask)**
 ---
----@param task int
+---@param task number
 function closeSequenceTask(task) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/performSequenceTask)**
 ---
 ---@param ped Ped
----@param task int
+---@param task number
 function performSequenceTask(ped, task) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharCollision)**
 ---
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setCharCollision(ped, enable) end
 
 ---
@@ -7394,40 +7465,40 @@ function setCharCollision(ped, enable) end
 ---
 ---@param ped Ped
 ---@param animation string
----@return float totalTime
+---@return number totalTime
 function getCharAnimTotalTime(ped, animation) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearSequenceTask)**
 ---
----@param task int
+---@param task number
 function clearSequenceTask(task) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addAttractor)**
 ---
----@param originX float
----@param originY float
----@param originZ float
----@param zAngle float
----@param unknownAngle float
----@param taskSequence int
----@return int handle
+---@param originX number
+---@param originY number
+---@param originZ number
+---@param zAngle number
+---@param unknownAngle number
+---@param taskSequence number
+---@return number handle
 function addAttractor(originX, originY, originZ, zAngle, unknownAngle, taskSequence) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearAttractor)**
 ---
----@param handle int
+---@param handle number
 function clearAttractor(handle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createCharAtAttractor)**
 ---
----@param pedtype int
+---@param pedtype number
 ---@param modelId Model
----@param ASOrigin int
----@param task int
+---@param ASOrigin number
+---@param task number
 ---@return Ped ped
 function createCharAtAttractor(pedtype, modelId, ASOrigin, task) end
 
@@ -7441,92 +7512,92 @@ function taskLeaveCarImmediately(ped, car) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/incrementIntStat)**
 ---
----@param stat int
----@param add int
+---@param stat number
+---@param add number
 function incrementIntStat(stat, add) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/incrementFloatStat)**
 ---
----@param stat int
----@param add float
+---@param stat number
+---@param add number
 function incrementFloatStat(stat, add) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/decrementIntStat)**
 ---
----@param stat int
----@param int int
-function decrementIntStat(stat, int) end
+---@param stat number
+---@param number number
+function decrementIntStat(stat, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/decrementFloatStat)**
 ---
----@param stat int
----@param float float
-function decrementFloatStat(stat, float) end
+---@param stat number
+---@param number number
+function decrementFloatStat(stat, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/registerIntStat)**
 ---
----@param stat int
----@param int int
-function registerIntStat(stat, int) end
+---@param stat number
+---@param number number
+function registerIntStat(stat, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/registerFloatStat)**
 ---
----@param stat int
----@param value float
+---@param stat number
+---@param value number
 function registerFloatStat(stat, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setIntStat)**
 ---
----@param stat int
----@param int int
-function setIntStat(stat, int) end
+---@param stat number
+---@param number number
+function setIntStat(stat, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFloatStat)**
 ---
----@param stat int
----@param float float
-function setFloatStat(stat, float) end
+---@param stat number
+---@param number number
+function setFloatStat(stat, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getScriptTaskStatus)**
 ---
 ---@param ped Ped
----@param task int
----@return int status
+---@param task number
+---@return number status
 function getScriptTaskStatus(ped, task) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createGroup)**
 ---
----@param type int
----@return int group
+---@param type number
+---@return number group
 function createGroup(type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGroupLeader)**
 ---
----@param group int
+---@param group number
 ---@param ped Ped
 function setGroupLeader(group, ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGroupMember)**
 ---
----@param group int
+---@param group number
 ---@param ped Ped
 function setGroupMember(group, ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeGroup)**
 ---
----@param group int
+---@param group number
 function removeGroup(group) end
 
 ---
@@ -7539,67 +7610,67 @@ function taskLeaveAnyCar(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskKillCharOnFootWhileDucking)**
 ---
 ---@param ped Ped
----@param weapon int
----@param flags int
----@param time int
----@param chance int
+---@param weapon number
+---@param flags number
+---@param time number
+---@param chance number
 function taskKillCharOnFootWhileDucking(ped, weapon, flags, time, chance) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskAimGunAtChar)**
 ---
 ---@param ped Ped
----@param aimAt int
----@param timeMS int
+---@param aimAt number
+---@param timeMS number
 function taskAimGunAtChar(ped, aimAt, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskGoToCoordWhileShooting)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
----@param turnRadius float
----@param stopRadius float
----@param lookAtActor int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
+---@param turnRadius number
+---@param stopRadius number
+---@param lookAtActor number
 function taskGoToCoordWhileShooting(ped, toX, toY, toZ, mode, turnRadius, stopRadius, lookAtActor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskStayInSamePlace)**
 ---
 ---@param ped Ped
----@param stay bool
+---@param stay boolean
 function taskStayInSamePlace(ped, stay) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskTurnCharToFaceChar)**
 ---
 ---@param ped Ped
----@param rotateTo int
+---@param rotateTo number
 function taskTurnCharToFaceChar(ped, rotateTo) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharAtScriptedAttractor)**
 ---
 ---@param ped Ped
----@param origin int
----@return bool result
+---@param origin number
+---@return boolean result
 function isCharAtScriptedAttractor(ped, origin) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setSequenceToRepeat)**
 ---
----@param pack int
----@param loop bool
+---@param pack number
+---@param loop boolean
 function setSequenceToRepeat(pack, loop) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getSequenceProgress)**
 ---
 ---@param ped Ped
----@return int progess
+---@return number progess
 function getSequenceProgress(ped) end
 
 ---
@@ -7612,17 +7683,17 @@ function clearLookAt(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFollowNodeThresholdDistance)**
 ---
 ---@param ped Ped
----@param dist float
+---@param dist number
 function setFollowNodeThresholdDistance(ped, dist) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createFxSystem)**
 ---
 ---@param particle string
----@param pX float
----@param pY float
----@param pZ float
----@param type int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param type number
 ---@return Particle particle
 function createFxSystem(particle, pX, pY, pZ, type) end
 
@@ -7653,88 +7724,88 @@ function killFxSystem(particle) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getIntStat)**
 ---
----@param stat int
----@return int stat
+---@param stat number
+---@return number stat
 function getIntStat(stat) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getFloatStat)**
 ---
----@param stat int
----@return float stat
+---@param stat number
+---@return number stat
 function getFloatStat(stat) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectRenderScorched)**
 ---
 ---@param object Object
----@param fireproof bool
+---@param fireproof boolean
 function setObjectRenderScorched(object, fireproof) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskLookAtObject)**
 ---
 ---@param ped Ped
----@param lookAt int
----@param timeMS int
+---@param lookAt number
+---@param timeMS number
 function taskLookAtObject(ped, lookAt, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/limitAngle)**
 ---
----@param angle float
----@return float float
+---@param angle number
+---@return number number
 function limitAngle(angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/openCarDoor)**
 ---
 ---@param car Vehicle
----@param door int
+---@param door number
 function openCarDoor(car, door) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupCoordinates)**
 ---
 ---@param pickup Pickup
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getPickupCoordinates(pickup) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeDecisionMaker)**
 ---
----@param maker int
+---@param maker number
 function removeDecisionMaker(maker) end
 
 ---
---- Возвращает ID скина по хэндлу персонажа.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ ID СЃРєРёРЅР° РїРѕ С…СЌРЅРґР»Сѓ РїРµСЂСЃРѕРЅР°Р¶Р°.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharModel)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharModel)**
 ---
----@param ped Ped хэндл персонажа
----@return Model modelId ID скина
+---@param ped Ped С…СЌРЅРґР» РїРµСЂСЃРѕРЅР°Р¶Р°
+---@return Model modelId ID СЃРєРёРЅР°
 function getCharModel(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskAimGunAtCoord)**
 ---
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
----@param timeMS int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param timeMS number
 function taskAimGunAtCoord(ped, atX, atY, atZ, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskShootAtCoord)**
 ---
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
----@param timeMS int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param timeMS number
 function taskShootAtCoord(ped, atX, atY, atZ, timeMS) end
 
 ---
@@ -7742,10 +7813,10 @@ function taskShootAtCoord(ped, atX, atY, atZ, timeMS) end
 ---
 ---@param particle string
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param type number
 ---@return Particle particle
 function createFxSystemOnChar(particle, ped, offsetX, offsetY, offsetZ, type) end
 
@@ -7754,25 +7825,36 @@ function createFxSystemOnChar(particle, ped, offsetX, offsetY, offsetZ, type) en
 ---
 ---@param particle string
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param type number
 ---@return Particle particle
-function createFxSystemOnCharWithDirection(particle, ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, type) end
+function createFxSystemOnCharWithDirection(
+	particle,
+	ped,
+	offsetX,
+	offsetY,
+	offsetZ,
+	rotationX,
+	rotationY,
+	rotationZ,
+	type
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createFxSystemOnCar)**
 ---
 ---@param particle string
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param type number
 ---@return Particle particle
 function createFxSystemOnCar(particle, car, offsetX, offsetY, offsetZ, type) end
 
@@ -7781,25 +7863,36 @@ function createFxSystemOnCar(particle, car, offsetX, offsetY, offsetZ, type) end
 ---
 ---@param particle string
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param type number
 ---@return Particle particle
-function createFxSystemOnCarWithDirection(particle, car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, type) end
+function createFxSystemOnCarWithDirection(
+	particle,
+	car,
+	offsetX,
+	offsetY,
+	offsetZ,
+	rotationX,
+	rotationY,
+	rotationZ,
+	type
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createFxSystemOnObject)**
 ---
 ---@param particle string
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param type int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param type number
 ---@return Particle particle
 function createFxSystemOnObject(particle, object, offsetX, offsetY, offsetZ, type) end
 
@@ -7808,15 +7901,26 @@ function createFxSystemOnObject(particle, object, offsetX, offsetY, offsetZ, typ
 ---
 ---@param particle string
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param flag int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param flag number
 ---@return Particle particle
-function createFxSystemOnObjectWithDirection(particle, object, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, flag) end
+function createFxSystemOnObjectWithDirection(
+	particle,
+	object,
+	offsetX,
+	offsetY,
+	offsetZ,
+	rotationX,
+	rotationY,
+	rotationZ,
+	flag
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskDestroyCar)**
@@ -7829,9 +7933,9 @@ function taskDestroyCar(ped, car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskDiveAndGetUp)**
 ---
 ---@param ped Ped
----@param toOffsetX float
----@param toOffsetY float
----@param time int
+---@param toOffsetX number
+---@param toOffsetY number
+---@param time number
 function taskDiveAndGetUp(ped, toOffsetX, toOffsetY, time) end
 
 ---
@@ -7852,87 +7956,87 @@ function taskShuffleToNextCarSeat(ped, car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskChatWithChar)**
 ---
 ---@param ped Ped
----@param withActor int
----@param flag bool
----@param unknownFlag int
+---@param withActor number
+---@param flag boolean
+---@param unknownFlag number
 function taskChatWithChar(ped, withActor, flag, unknownFlag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachCameraToVehicle)**
 ---
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param tilt float
----@param switchstyle int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param tilt number
+---@param switchstyle number
 function attachCameraToVehicle(car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, tilt, switchstyle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachCameraToVehicleLookAtVehicle)**
 ---
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param toCar int
----@param tilt float
----@param switchstyle int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param toCar number
+---@param tilt number
+---@param switchstyle number
 function attachCameraToVehicleLookAtVehicle(car, offsetX, offsetY, offsetZ, toCar, tilt, switchstyle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachCameraToVehicleLookAtChar)**
 ---
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 ---@param ped Ped
----@param tilt float
----@param switchstyle int
+---@param tilt number
+---@param switchstyle number
 function attachCameraToVehicleLookAtChar(car, offsetX, offsetY, offsetZ, ped, tilt, switchstyle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachCameraToChar)**
 ---
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
----@param tilt float
----@param switchstyle int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
+---@param tilt number
+---@param switchstyle number
 function attachCameraToChar(ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, tilt, switchstyle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachCameraToCharLookAtChar)**
 ---
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param targetActor int
----@param tilt float
----@param switchstyle int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param targetActor number
+---@param tilt number
+---@param switchstyle number
 function attachCameraToCharLookAtChar(ped, offsetX, offsetY, offsetZ, targetActor, tilt, switchstyle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/forceCarLights)**
 ---
 ---@param car Vehicle
----@param lights int
+---@param lights number
 function forceCarLights(car, lights) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addPedtypeAsAttractorUser)**
 ---
----@param ASOrigin int
----@param pedtype int
+---@param ASOrigin number
+---@param pedtype number
 function addPedtypeAsAttractorUser(ASOrigin, pedtype) end
 
 ---
@@ -7940,59 +8044,59 @@ function addPedtypeAsAttractorUser(ASOrigin, pedtype) end
 ---
 ---@param object Object
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachObjectToCar(object, car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/detachObject)**
 ---
 ---@param object Object
----@param X float
----@param Y float
----@param Z float
----@param collisionDetection bool
+---@param X number
+---@param Y number
+---@param Z number
+---@param collisionDetection boolean
 function detachObject(object, X, Y, Z, collisionDetection) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachCarToCar)**
 ---
 ---@param car Vehicle
----@param toCar int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param toCar number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachCarToCar(car, toCar, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/detachCar)**
 ---
 ---@param car Vehicle
----@param X float
----@param Y float
----@param Z float
----@param collisionDetection bool
+---@param X number
+---@param Y number
+---@param Z number
+---@param collisionDetection boolean
 function detachCar(car, X, Y, Z, collisionDetection) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectAttached)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectAttached(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isVehicleAttached)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isVehicleAttached(car) end
 
 ---
@@ -8005,24 +8109,24 @@ function clearCharTasks(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskTogglePedThreatScanner)**
 ---
 ---@param ped Ped
----@param unknownFlag1 bool
----@param unknownFlag2 bool
----@param unknownFlag3 bool
+---@param unknownFlag1 boolean
+---@param unknownFlag2 boolean
+---@param unknownFlag3 boolean
 function taskTogglePedThreatScanner(ped, unknownFlag1, unknownFlag2, unknownFlag3) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/popCarDoor)**
 ---
 ---@param car Vehicle
----@param door int
----@param visible bool
+---@param door number
+---@param visible boolean
 function popCarDoor(car, door, visible) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/fixCarDoor)**
 ---
 ---@param car Vehicle
----@param door int
+---@param door number
 function fixCarDoor(car, door) end
 
 ---
@@ -8035,58 +8139,58 @@ function taskEveryoneLeaveCar(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerTargettingAnything)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerTargettingAnything(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getActiveCameraCoordinates)**
 ---
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getActiveCameraCoordinates() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getActiveCameraPointAt)**
 ---
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getActiveCameraPointAt() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/popCarPanel)**
 ---
 ---@param car Vehicle
----@param component int
----@param effectFlag bool
+---@param component number
+---@param effectFlag boolean
 function popCarPanel(car, component, effectFlag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/fixCarPanel)**
 ---
 ---@param car Vehicle
----@param componentB int
+---@param componentB number
 function fixCarPanel(car, componentB) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/fixCarTire)**
 ---
 ---@param car Vehicle
----@param tire int
+---@param tire number
 function fixCarTire(car, tire) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachObjectToObject)**
 ---
 ---@param object Object
----@param toObject int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param toObject number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachObjectToObject(object, toObject, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---
@@ -8094,35 +8198,35 @@ function attachObjectToObject(object, toObject, offsetX, offsetY, offsetZ, rotat
 ---
 ---@param object Object
 ---@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachObjectToChar(object, ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarSpeedVector)**
 ---
 ---@param car Vehicle
----@return float vecX
----@return float vecY
----@return float vecZ
+---@return number vecX
+---@return number vecY
+---@return number vecZ
 function getCarSpeedVector(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarMass)**
 ---
 ---@param car Vehicle
----@return float mass
+---@return number mass
 function getCarMass(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskDiveFromAttachmentAndGetUp)**
 ---
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskDiveFromAttachmentAndGetUp(ped, timeMS) end
 
 ---
@@ -8130,88 +8234,88 @@ function taskDiveFromAttachmentAndGetUp(ped, timeMS) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param position int
----@param shootingAngle1 float
----@param shootingAngle2 float
----@param weapon int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param position number
+---@param shootingAngle1 number
+---@param shootingAngle2 number
+---@param weapon number
 function attachCharToBike(ped, car, offsetX, offsetY, offsetZ, position, shootingAngle1, shootingAngle2, weapon) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskGotoCharOffset)**
 ---
 ---@param ped Ped
----@param toActor int
----@param timelimit int
----@param approachDistance float
----@param approachAngle float
+---@param toActor number
+---@param timelimit number
+---@param approachDistance number
+---@param approachAngle number
 function taskGotoCharOffset(ped, toActor, timelimit, approachDistance, approachAngle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskLookAtCoord)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param timeMS int
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param timeMS number
 function taskLookAtCoord(ped, toX, toY, toZ, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hideCharWeaponForScriptedCutscene)**
 ---
 ---@param ped Ped
----@param hide bool
+---@param hide boolean
 function hideCharWeaponForScriptedCutscene(ped, hide) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharSpeed)**
 ---
 ---@param ped Ped
----@return float speed
+---@return number speed
 function getCharSpeed(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGroupDecisionMaker)**
 ---
----@param group int
----@param maker int
+---@param group number
+---@param maker number
 function setGroupDecisionMaker(group, maker) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadGroupDecisionMaker)**
 ---
----@param type int
----@return int maker
+---@param type number
+---@return number maker
 function loadGroupDecisionMaker(type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/disablePlayerSprint)**
 ---
 ---@param player Player
----@param mode bool
+---@param mode boolean
 function disablePlayerSprint(player, mode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskSitDown)**
 ---
 ---@param ped Ped
----@param timeMS int
+---@param timeMS number
 function taskSitDown(ped, timeMS) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createSearchlight)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param radius1 float
----@param radius2 float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param targetX number
+---@param targetY number
+---@param targetZ number
+---@param radius1 number
+---@param radius2 number
 ---@return Searchlight searchlight
 function createSearchlight(atX, atY, atZ, targetX, targetY, targetZ, radius1, radius2) end
 
@@ -8225,30 +8329,30 @@ function deleteSearchlight(searchlight) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesSearchlightExist)**
 ---
 ---@param searchlight Searchlight
----@return bool result
+---@return boolean result
 function doesSearchlightExist(searchlight) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/moveSearchlightBetweenCoords)**
 ---
 ---@param searchlight Searchlight
----@param fromX float
----@param fromY float
----@param fromZ float
----@param toX float
----@param toY float
----@param toZ float
----@param speed float
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param speed number
 function moveSearchlightBetweenCoords(searchlight, fromX, fromY, fromZ, toX, toY, toZ, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/pointSearchlightAtCoord)**
 ---
 ---@param searchlight Searchlight
----@param toX float
----@param toY float
----@param toZ float
----@param speed float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param speed number
 function pointSearchlightAtCoord(searchlight, toX, toY, toZ, speed) end
 
 ---
@@ -8256,7 +8360,7 @@ function pointSearchlightAtCoord(searchlight, toX, toY, toZ, speed) end
 ---
 ---@param searchlight Searchlight
 ---@param ped Ped
----@param speed float
+---@param speed number
 function pointSearchlightAtChar(searchlight, ped, speed) end
 
 ---
@@ -8264,22 +8368,22 @@ function pointSearchlightAtChar(searchlight, ped, speed) end
 ---
 ---@param searchlight Searchlight
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInSearchlight(searchlight, ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCutsceneLoaded)**
 ---
----@return bool result
+---@return boolean result
 function hasCutsceneLoaded() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskTurnCharToFaceCoord)**
 ---
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function taskTurnCharToFaceCoord(ped, atX, atY, atZ) end
 
 ---
@@ -8287,43 +8391,56 @@ function taskTurnCharToFaceCoord(ped, atX, atY, atZ) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param speed float
+---@param speed number
 function taskDrivePointRoute(ped, car, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/fireSingleBullet)**
 ---
----@param fromX float
----@param fromY float
----@param fromZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param energy int
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param targetX number
+---@param targetY number
+---@param targetZ number
+---@param energy number
 function fireSingleBullet(fromX, fromY, fromZ, targetX, targetY, targetZ, energy) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isLineOfSightClear)**
 ---
----@param fromX float
----@param fromY float
----@param fromZ float
----@param toX float
----@param toY float
----@param toZ float
----@param checkBuildings bool
----@param checkVehicles bool
----@param checkActors bool
----@param checkObjects bool
----@param checkParticles bool
----@return bool result
-function isLineOfSightClear(fromX, fromY, fromZ, toX, toY, toZ, checkBuildings, checkVehicles, checkActors, checkObjects, checkParticles) end
+---@param fromX number
+---@param fromY number
+---@param fromZ number
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param checkBuildings boolean
+---@param checkVehicles boolean
+---@param checkActors boolean
+---@param checkObjects boolean
+---@param checkParticles boolean
+---@return boolean result
+function isLineOfSightClear(
+	fromX,
+	fromY,
+	fromZ,
+	toX,
+	toY,
+	toZ,
+	checkBuildings,
+	checkVehicles,
+	checkActors,
+	checkObjects,
+	checkParticles
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarRoll)**
 ---
 ---@param car Vehicle
----@return float roll
+---@return number roll
 function getCarRoll(car) end
 
 ---
@@ -8331,29 +8448,29 @@ function getCarRoll(car) end
 ---
 ---@param searchlight Searchlight
 ---@param car Vehicle
----@param speed float
+---@param speed number
 function pointSearchlightAtVehicle(searchlight, car, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isVehicleInSearchlight)**
 ---
----@param int int
+---@param number number
 ---@param car Vehicle
----@return bool result
-function isVehicleInSearchlight(int, car) end
+---@return boolean result
+function isVehicleInSearchlight(number, car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createSearchlightOnVehicle)**
 ---
 ---@param car Vehicle
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param radius float
----@param radius2 float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param targetX number
+---@param targetY number
+---@param targetZ number
+---@param radius number
+---@param radius2 number
 ---@return Searchlight searchlight
 function createSearchlightOnVehicle(car, offsetX, offsetY, offsetZ, targetX, targetY, targetZ, radius, radius2) end
 
@@ -8361,26 +8478,26 @@ function createSearchlightOnVehicle(car, offsetX, offsetY, offsetZ, targetX, tar
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskGoToCoordWhileAiming)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
----@param turnRadius float
----@param stopRadius float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
+---@param turnRadius number
+---@param stopRadius number
 ---@param ped2 Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 function taskGoToCoordWhileAiming(ped, toX, toY, toZ, mode, turnRadius, stopRadius, ped2, offsetX, offsetY, offsetZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfFiresInRange)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@return int num
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@return number num
 function getNumberOfFiresInRange(atX, atY, atZ, radius) end
 
 ---
@@ -8401,14 +8518,14 @@ function skipToEndAndStopPlaybackRecordedCar(car) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param performAction int
----@param timelimit int
+---@param performAction number
+---@param timelimit number
 function taskCarTempAction(ped, car, performAction, timelimit) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setLaRiots)**
 ---
----@param enable bool
+---@param enable boolean
 function setLaRiots(enable) end
 
 ---
@@ -8421,31 +8538,31 @@ function removeCharFromGroup(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachSearchlightToSearchlightObject)**
 ---
 ---@param searchlight Searchlight
----@param tower int
----@param housing int
----@param bulb int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param tower number
+---@param housing number
+---@param bulb number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 function attachSearchlightToSearchlightObject(searchlight, tower, housing, bulb, offsetX, offsetY, offsetZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchEmergencyServices)**
 ---
----@param enable bool
+---@param enable boolean
 function switchEmergencyServices(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createCheckpoint)**
 ---
----@param type int
----@param atX float
----@param atY float
----@param atZ float
----@param pointX float
----@param pointY float
----@param pointZ float
----@param radius float
+---@param type number
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param pointX number
+---@param pointY number
+---@param pointZ number
+---@param radius number
 ---@return Checkpoint checkpoint
 function createCheckpoint(type, atX, atY, atZ, pointX, pointY, pointZ, radius) end
 
@@ -8458,17 +8575,17 @@ function deleteCheckpoint(checkpoint) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchRandomTrains)**
 ---
----@param enable bool
+---@param enable boolean
 function switchRandomTrains(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createMissionTrain)**
 ---
----@param type int
----@param atX float
----@param atY float
----@param atZ float
----@param direction bool
+---@param type number
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param direction boolean
 ---@return Vehicle train
 function createMissionTrain(type, atX, atY, atZ, direction) end
 
@@ -8491,21 +8608,21 @@ function deleteAllTrains() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTrainSpeed)**
 ---
 ---@param train Vehicle
----@param speed float
+---@param speed number
 function setTrainSpeed(train, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTrainCruiseSpeed)**
 ---
 ---@param train Vehicle
----@param speed float
+---@param speed number
 function setTrainCruiseSpeed(train, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTrainCaboose)**
 ---
 ---@param train Vehicle
----@return int caboose
+---@return number caboose
 function getTrainCaboose(train) end
 
 ---
@@ -8517,7 +8634,7 @@ function deletePlayer(player) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTwoPlayerCameraMode)**
 ---
----@param mode bool
+---@param mode boolean
 function setTwoPlayerCameraMode(mode) end
 
 ---
@@ -8525,40 +8642,40 @@ function setTwoPlayerCameraMode(mode) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param targetCar int
----@param order int
----@param maxSpeed float
----@param trafficFlag int
+---@param targetCar number
+---@param order number
+---@param maxSpeed number
+---@param trafficFlag number
 function taskCarMission(ped, car, targetCar, order, maxSpeed, trafficFlag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskGoToObject)**
 ---
 ---@param ped Ped
----@param toObject int
----@param timelimit int
----@param stopWithinRadius float
+---@param toObject number
+---@param timelimit number
+---@param stopWithinRadius number
 function taskGoToObject(ped, toObject, timelimit, stopWithinRadius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskWeaponRoll)**
 ---
 ---@param ped Ped
----@param roll bool
+---@param roll boolean
 function taskWeaponRoll(ped, roll) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskCharArrestChar)**
 ---
 ---@param ped Ped
----@param bustActor int
+---@param bustActor number
 function taskCharArrestChar(ped, bustActor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getAvailableVehicleMod)**
 ---
 ---@param car Vehicle
----@param poolIndex int
+---@param poolIndex number
 ---@return Model itemID
 function getAvailableVehicleMod(car, poolIndex) end
 
@@ -8566,7 +8683,7 @@ function getAvailableVehicleMod(car, poolIndex) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getVehicleModType)**
 ---
 ---@param component Model
----@return int type
+---@return number type
 function getVehicleModType(component) end
 
 ---
@@ -8574,14 +8691,14 @@ function getVehicleModType(component) end
 ---
 ---@param car Vehicle
 ---@param component Model
----@return int componentId
+---@return number componentId
 function addVehicleMod(car, component) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeVehicleMod)**
 ---
 ---@param car Vehicle
----@param componentId int
+---@param componentId number
 function removeVehicleMod(car, componentId) end
 
 ---
@@ -8594,7 +8711,7 @@ function requestVehicleMod(component) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasVehicleModLoaded)**
 ---
 ---@param component Model
----@return bool result
+---@return boolean result
 function hasVehicleModLoaded(component) end
 
 ---
@@ -8607,43 +8724,43 @@ function markVehicleModAsNoLongerNeeded(component) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumAvailablePaintjobs)**
 ---
 ---@param car Vehicle
----@return int num
+---@return number num
 function getNumAvailablePaintjobs(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/giveVehiclePaintjob)**
 ---
----@param set int
----@param paintjob int
+---@param set number
+---@param paintjob number
 function giveVehiclePaintjob(set, paintjob) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGroupMember)**
 ---
 ---@param ped Ped
----@param group int
----@return bool result
+---@param group number
+---@return boolean result
 function isGroupMember(ped, group) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGroupLeader)**
 ---
 ---@param ped Ped
----@param group int
----@return bool result
+---@param group number
+---@return boolean result
 function isGroupLeader(ped, group) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGroupSeparationRange)**
 ---
----@param group int
----@param range float
+---@param group number
+---@param range number
 function setGroupSeparationRange(group, range) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/limitTwoPlayerDistance)**
 ---
----@param distance float
+---@param distance number
 function limitTwoPlayerDistance(distance) end
 
 ---
@@ -8654,57 +8771,57 @@ function releaseTwoPlayerDistance() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerPlayerTargetting)**
 ---
----@param can bool
+---@param can boolean
 function setPlayerPlayerTargetting(can) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getScriptFireCoords)**
 ---
----@param fire int
----@return float X
----@return float Y
----@return float Z
+---@param fire number
+---@return number X
+---@return number Y
+---@return number Z
 function getScriptFireCoords(fire) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNthClosestCarNodeWithHeading)**
 ---
----@param forX float
----@param forY float
----@param forZ float
----@param direction int
----@return float X
----@return float Y
----@return float Z
----@return float ZAngle
+---@param forX number
+---@param forY number
+---@param forZ number
+---@param direction number
+---@return number X
+---@return number Y
+---@return number Z
+---@return number ZAngle
 function getNthClosestCarNodeWithHeading(forX, forY, forZ, direction) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayersCanBeInSeparateCars)**
 ---
----@param allow bool
+---@param allow boolean
 function setPlayersCanBeInSeparateCars(allow) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesCarHaveStuckCarCheck)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function doesCarHaveStuckCarCheck(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlaybackSpeed)**
 ---
 ---@param car Vehicle
----@param speed float
+---@param speed number
 function setPlaybackSpeed(car, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/areAnyCharsNearChar)**
 ---
 ---@param ped Ped
----@param range float
----@return bool result
+---@param range number
+---@return boolean result
 function areAnyCharsNearChar(ped, range) end
 
 ---
@@ -8715,65 +8832,65 @@ function skipCutsceneEnd() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPercentageTaggedInArea)**
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@return int percentage
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@return number percentage
 function getPercentageTaggedInArea(x1, y1, x2, y2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTagStatusInArea)**
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param value bool
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param value boolean
 function setTagStatusInArea(x1, y1, x2, y2, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/carGotoCoordinatesRacing)**
 ---
 ---@param car Vehicle
----@param toX float
----@param toY float
----@param toZ float
+---@param toX number
+---@param toY number
+---@param toZ number
 function carGotoCoordinatesRacing(car, toX, toY, toZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startPlaybackRecordedCarUsingAi)**
 ---
 ---@param car Vehicle
----@param path int
+---@param path number
 function startPlaybackRecordedCarUsingAi(car, path) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/skipInPlaybackRecordedCar)**
 ---
 ---@param car Vehicle
----@param path float
+---@param path number
 function skipInPlaybackRecordedCar(car, path) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearCharDecisionMakerEventResponse)**
 ---
----@param maker int
----@param event int
+---@param maker number
+---@param event number
 function clearCharDecisionMakerEventResponse(maker, event) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addCharDecisionMakerEventResponse)**
 ---
----@param maker int
----@param event int
----@param taskID int
----@param respect float
----@param hate float
----@param like float
----@param dislike float
----@param inCar bool
----@param onFoot bool
+---@param maker number
+---@param event number
+---@param taskID number
+---@param respect number
+---@param hate number
+---@param like number
+---@param dislike number
+---@param inCar boolean
+---@param onFoot boolean
 function addCharDecisionMakerEventResponse(maker, event, taskID, respect, hate, like, dislike, inCar, onFoot) end
 
 ---
@@ -8781,21 +8898,21 @@ function addCharDecisionMakerEventResponse(maker, event, taskID, respect, hate, 
 ---
 ---@param ped Ped
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param boneId1 int
----@param boneId2 int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param boneId1 number
+---@param boneId2 number
 ---@param performAnimation string
----@param IFPFile int
----@param time int
+---@param IFPFile number
+---@param time number
 function taskPickUpObject(ped, object, offsetX, offsetY, offsetZ, boneId1, boneId2, performAnimation, IFPFile, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dropObject)**
 ---
 ---@param ped Ped
----@param object bool
+---@param object boolean
 function dropObject(ped, object) end
 
 ---
@@ -8813,49 +8930,49 @@ function buildPlayerModel(player) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/planeAttackPlayer)**
 ---
----@param hydra int
+---@param hydra number
 ---@param car Vehicle
----@param radius float
+---@param radius number
 function planeAttackPlayer(hydra, car, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/planeFlyInDirection)**
 ---
----@param plane int
----@param direction float
----@param altitudemin float
----@param altitudemax float
+---@param plane number
+---@param direction number
+---@param altitudemin number
+---@param altitudemax number
 function planeFlyInDirection(plane, direction, altitudemin, altitudemax) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/planeFollowEntity)**
 ---
----@param plane int
+---@param plane number
 ---@param ped Ped
 ---@param car Vehicle
----@param radius float
+---@param radius number
 function planeFollowEntity(plane, ped, car, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskDriveBy)**
 ---
 ---@param ped Ped
----@param drivebyActor int
+---@param drivebyActor number
 ---@param car Vehicle
----@param pX float
----@param pY float
----@param pZ float
----@param radiusX float
----@param radiusY int
----@param radiusZ bool
----@param firingRate int
+---@param pX number
+---@param pY number
+---@param pZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ boolean
+---@param firingRate number
 function taskDriveBy(ped, drivebyActor, car, pX, pY, pZ, radiusX, radiusY, radiusZ, firingRate) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarStayInSlowLane)**
 ---
 ---@param car Vehicle
----@param stay bool
+---@param stay boolean
 function setCarStayInSlowLane(car, stay) end
 
 ---
@@ -8869,13 +8986,13 @@ function takeRemoteControlOfCar(player, car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isClosestObjectOfTypeSmashedOrDamaged)**
 ---
 ---@param object Model
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
----@param smashed bool
----@param damaged bool
----@return bool result
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
+---@param smashed boolean
+---@param damaged boolean
+---@return boolean result
 function isClosestObjectOfTypeSmashedOrDamaged(object, atX, atY, atZ, radius, smashed, damaged) end
 
 ---
@@ -8894,28 +9011,28 @@ function finishSettingUpConversation() end
 ---
 ---@param ped Ped
 ---@param gxtString GxtString
----@return bool result
+---@return boolean result
 function isConversationAtNode(ped, gxtString) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectHealth)**
 ---
 ---@param object Object
----@return int health
+---@return number health
 function getObjectHealth(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectHealth)**
 ---
 ---@param object Object
----@param health int
+---@param health number
 function setObjectHealth(object, health) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/breakObject)**
 ---
 ---@param object Object
----@param intensity int
+---@param intensity number
 function breakObject(object, intensity) end
 
 ---
@@ -8923,7 +9040,7 @@ function breakObject(object, intensity) end
 ---
 ---@param heli Vehicle
 ---@param player Player
----@param radius float
+---@param radius number
 function heliAttackPlayer(heli, player, radius) end
 
 ---
@@ -8932,7 +9049,7 @@ function heliAttackPlayer(heli, player, radius) end
 ---@param heli Vehicle
 ---@param ped Ped
 ---@param car Vehicle
----@param radius float
+---@param radius number
 function heliFollowEntity(heli, ped, car, radius) end
 
 ---
@@ -8941,14 +9058,14 @@ function heliFollowEntity(heli, ped, car, radius) end
 ---@param heli Vehicle
 ---@param ped Ped
 ---@param car Vehicle
----@param radius float
+---@param radius number
 function policeHeliChaseEntity(heli, ped, car, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskUseMobilePhone)**
 ---
 ---@param ped Ped
----@param hold bool
+---@param hold boolean
 function taskUseMobilePhone(ped, hold) end
 
 ---
@@ -8963,72 +9080,72 @@ function taskWarpCharIntoCarAsDriver(ped, car) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param passengerseat int
+---@param passengerseat number
 function taskWarpCharIntoCarAsPassenger(ped, car, passengerseat) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchCopsOnBikes)**
 ---
----@param generate bool
+---@param generate boolean
 function switchCopsOnBikes(generate) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isFlameInAngledArea2d)**
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isFlameInAngledArea2d(x1, y1, x2, y2, angle, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isFlameInAngledArea3d)**
 ---
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param angle float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param angle number
+---@param sphere boolean
+---@return boolean result
 function isFlameInAngledArea3d(x1, y1, z1, x2, y2, z2, angle, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addStuckCarCheckWithWarp)**
 ---
 ---@param car Vehicle
----@param checkDistance float
----@param time int
----@param stuck bool
----@param flipped bool
----@param warp bool
----@param path int
+---@param checkDistance number
+---@param time number
+---@param stuck boolean
+---@param flipped boolean
+---@param warp boolean
+---@param path number
 function addStuckCarCheckWithWarp(car, checkDistance, time, stuck, flipped, warp, path) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/damageCarPanel)**
 ---
 ---@param car Vehicle
----@param door int
+---@param door number
 function damageCarPanel(car, door) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarRoll)**
 ---
 ---@param car Vehicle
----@param roll float
+---@param roll number
 function setCarRoll(car, roll) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/suppressCarModel)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function suppressCarModel(modelId) end
 
 ---
@@ -9045,60 +9162,60 @@ function dontSuppressAnyCarModels() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPs2KeyboardKeyPressed)**
 ---
----@param key int
----@return bool result
+---@param key number
+---@return boolean result
 function isPs2KeyboardKeyPressed(key) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPs2KeyboardKeyJustPressed)**
 ---
----@param key int
----@return bool result
+---@param key number
+---@return boolean result
 function isPs2KeyboardKeyJustPressed(key) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharHoldingObject)**
 ---
 ---@param ped Ped
----@param liftingObject int
----@return bool result
+---@param liftingObject number
+---@return boolean result
 function isCharHoldingObject(ped, liftingObject) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarCanGoAgainstTraffic)**
 ---
 ---@param car Vehicle
----@param can bool
+---@param can boolean
 function setCarCanGoAgainstTraffic(car, can) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/damageCarDoor)**
 ---
 ---@param car Vehicle
----@param door int
+---@param door number
 function damageCarDoor(car, door) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCarInSphereNoSave)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param model int
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param model number
 ---@return Vehicle car
 function getRandomCarInSphereNoSave(X, Y, Z, radius, model) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCharInSphere)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param pedtypeCivilian bool
----@param gang bool
----@param prostitute bool
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param pedtypeCivilian boolean
+---@param gang boolean
+---@param prostitute boolean
 ---@return Ped ped
 function getRandomCharInSphere(X, Y, Z, radius, pedtypeCivilian, gang, prostitute) end
 
@@ -9106,134 +9223,134 @@ function getRandomCharInSphere(X, Y, Z, radius, pedtypeCivilian, gang, prostitut
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCharBeenArrested)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function hasCharBeenArrested(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlaneThrottle)**
 ---
----@param plane int
----@param throttle float
+---@param plane number
+---@param throttle number
 function setPlaneThrottle(plane, throttle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/heliLandAtCoords)**
 ---
 ---@param heli Vehicle
----@param X float
----@param Y float
----@param Z float
----@param minaltitude float
----@param maxaltitude float
+---@param X number
+---@param Y number
+---@param Z number
+---@param minaltitude number
+---@param maxaltitude number
 function heliLandAtCoords(heli, X, Y, Z, minaltitude, maxaltitude) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/planeStartsInAir)**
 ---
----@param hydra int
+---@param hydra number
 function planeStartsInAir(hydra) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setRelationship)**
 ---
----@param acquaintance int
----@param pedtype int
----@param toPedtype int
+---@param acquaintance number
+---@param pedtype number
+---@param toPedtype number
 function setRelationship(acquaintance, pedtype, toPedtype) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearRelationship)**
 ---
----@param acquaintance int
----@param pedtype int
----@param toPedtype int
+---@param acquaintance number
+---@param pedtype number
+---@param toPedtype number
 function clearRelationship(acquaintance, pedtype, toPedtype) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearGroupDecisionMakerEventResponse)**
 ---
----@param maker int
----@param event int
+---@param maker number
+---@param event number
 function clearGroupDecisionMakerEventResponse(maker, event) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addGroupDecisionMakerEventResponse)**
 ---
----@param maker int
----@param event int
----@param taskID int
----@param respect float
----@param hate float
----@param like float
----@param dislike float
----@param inCar bool
----@param onFoot bool
+---@param maker number
+---@param event number
+---@param taskID number
+---@param respect number
+---@param hate number
+---@param like number
+---@param dislike number
+---@param inCar boolean
+---@param onFoot boolean
 function addGroupDecisionMakerEventResponse(maker, event, taskID, respect, hate, like, dislike, inCar, onFoot) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawSpriteWithRotation)**
 ---
----@param texture int
----@param x float
----@param y float
----@param scaleX float
----@param scaleY float
----@param angle float
----@param r int
----@param g int
----@param b int
----@param a int
+---@param texture number
+---@param x number
+---@param y number
+---@param scaleX number
+---@param scaleY number
+---@param angle number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function drawSpriteWithRotation(texture, x, y, scaleX, scaleY, angle, r, g, b, a) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskUseAttractor)**
 ---
 ---@param ped Ped
----@param attractor int
+---@param attractor number
 function taskUseAttractor(ped, attractor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskShootAtChar)**
 ---
 ---@param ped Ped
----@param atActor int
----@param timelimit int
+---@param atActor number
+---@param timelimit number
 function taskShootAtChar(ped, atActor, timelimit) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setInformRespectedFriends)**
 ---
----@param flags int
----@param radius float
----@param pedsToScan int
+---@param flags number
+---@param radius number
+---@param pedsToScan number
 function setInformRespectedFriends(flags, radius, pedsToScan) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharRespondingToEvent)**
 ---
 ---@param ped Ped
----@param event int
----@return bool result
+---@param event number
+---@return boolean result
 function isCharRespondingToEvent(ped, event) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectVisible)**
 ---
 ---@param object Object
----@param visibility bool
+---@param visibility boolean
 function setObjectVisible(object, visibility) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskFleeCharAnyMeans)**
 ---
 ---@param ped Ped
----@param fleeFrom int
----@param runDistance float
----@param time int
----@param changeCourse bool
----@param unkTime1 int
----@param unkTime2 int
----@param awayRadius float
+---@param fleeFrom number
+---@param runDistance number
+---@param time number
+---@param changeCourse boolean
+---@param unkTime1 number
+---@param unkTime2 number
+---@param awayRadius number
 function taskFleeCharAnyMeans(ped, fleeFrom, runDistance, time, changeCourse, unkTime1, unkTime2, awayRadius) end
 
 ---
@@ -9244,9 +9361,9 @@ function flushPatrolRoute() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/extendPatrolRoute)**
 ---
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 ---@param animation string
 ---@param IFPFile string
 function extendPatrolRoute(X, Y, Z, animation, IFPFile) end
@@ -9257,23 +9374,23 @@ function extendPatrolRoute(X, Y, Z, animation, IFPFile) end
 ---@param object Object
 ---@param animation string
 ---@param IFPFile string
----@param framedelta float
----@param lockF bool
----@param loop bool
----@return bool result
+---@param framedelta number
+---@param lockF boolean
+---@param loop boolean
+---@return boolean result
 function playObjectAnim(object, animation, IFPFile, framedelta, lockF, loop) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setRadarZoom)**
 ---
----@param zoom int
+---@param zoom number
 function setRadarZoom(zoom) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesBlipExist)**
 ---
 ---@param marker Marker
----@return bool result
+---@return boolean result
 function doesBlipExist(marker) end
 
 ---
@@ -9291,21 +9408,21 @@ function loadShop(shopping) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfItemsInShop)**
 ---
----@return int num
+---@return number num
 function getNumberOfItemsInShop() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getItemInShop)**
 ---
----@param index int
----@return int item
+---@param index number
+---@return number item
 function getItemInShop(index) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPriceOfItem)**
 ---
----@param item int
----@return int price
+---@param item number
+---@return number price
 function getPriceOfItem(item) end
 
 ---
@@ -9324,57 +9441,57 @@ function setCarAsMissionCar(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setZonePopulationType)**
 ---
 ---@param zone GxtString
----@param popcycle int
+---@param popcycle number
 function setZonePopulationType(zone, popcycle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setZoneDealerStrength)**
 ---
 ---@param zone GxtString
----@param density int
+---@param density number
 function setZoneDealerStrength(zone, density) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getZoneDealerStrength)**
 ---
 ---@param zone GxtString
----@return int strength
+---@return number strength
 function getZoneDealerStrength(zone) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setZoneGangStrength)**
 ---
 ---@param zone GxtString
----@param gang int
----@param density int
+---@param gang number
+---@param density number
 function setZoneGangStrength(zone, gang, density) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getZoneGangStrength)**
 ---
 ---@param zone GxtString
----@param gang int
----@return int density
+---@param gang number
+---@return number density
 function getZoneGangStrength(zone, gang) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isMessageBeingDisplayed)**
 ---
----@return bool result
+---@return boolean result
 function isMessageBeingDisplayed() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharIsTargetPriority)**
 ---
 ---@param ped Ped
----@param targetPriority bool
+---@param targetPriority boolean
 function setCharIsTargetPriority(ped, targetPriority) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/customPlateDesignForNextCar)**
 ---
 ---@param modelNumplate Model
----@param townTexture int
+---@param townTexture number
 function customPlateDesignForNextCar(modelNumplate, townTexture) end
 
 ---
@@ -9382,8 +9499,8 @@ function customPlateDesignForNextCar(modelNumplate, townTexture) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param timeMS int
----@param stopAtDistance float
+---@param timeMS number
+---@param stopAtDistance number
 function taskGotoCar(ped, car, timeMS, stopAtDistance) end
 
 ---
@@ -9408,36 +9525,36 @@ function removeIplDiscreetly(group) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharRelationship)**
 ---
 ---@param ped Ped
----@param acquaintance int
----@param pedtype int
+---@param acquaintance number
+---@param pedtype number
 function setCharRelationship(ped, acquaintance, pedtype) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearCharRelationship)**
 ---
 ---@param ped Ped
----@param acquaintance int
----@param pedtype int
+---@param acquaintance number
+---@param pedtype number
 function clearCharRelationship(ped, acquaintance, pedtype) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearAllCharRelationships)**
 ---
 ---@param ped Ped
----@param acquaintance int
+---@param acquaintance number
 function clearAllCharRelationships(ped, acquaintance) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarPitch)**
 ---
 ---@param car Vehicle
----@return float pitch
+---@return number pitch
 function getCarPitch(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getActiveInterior)**
 ---
----@return int interior
+---@return number interior
 function getActiveInterior() end
 
 ---
@@ -9446,58 +9563,58 @@ function getActiveInterior() end
 ---@param heli Vehicle
 ---@param ped Ped
 ---@param car Vehicle
----@param minaltitude float
----@param maxaltitude float
+---@param minaltitude number
+---@param maxaltitude number
 function heliKeepEntityInView(heli, ped, car, minaltitude, maxaltitude) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getWeapontypeModel)**
 ---
----@param id int
----@return int model
+---@param id number
+---@return number model
 function getWeapontypeModel(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getWeapontypeSlot)**
 ---
----@param id int
----@return int slot
+---@param id number
+---@return number slot
 function getWeapontypeSlot(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getShoppingExtraInfo)**
 ---
----@param item int
----@param flag int
----@return int info
+---@param item number
+---@param flag number
+---@return number info
 function getShoppingExtraInfo(item, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/givePlayerClothes)**
 ---
 ---@param player Player
----@param texture int
----@param model int
----@param bodypart int
+---@param texture number
+---@param model number
+---@param bodypart number
 function givePlayerClothes(player, texture, model, bodypart) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfFiresInArea)**
 ---
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@return int num
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@return number num
 function getNumberOfFiresInArea(x1, y1, z1, x2, y2, z2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachWinchToHeli)**
 ---
 ---@param heli Vehicle
----@param magnet bool
+---@param magnet boolean
 function attachWinchToHeli(heli, magnet) end
 
 ---
@@ -9510,8 +9627,8 @@ function releaseEntityFromWinch(heli) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTrainCarriage)**
 ---
 ---@param train Vehicle
----@param handle int
----@return int carriage
+---@param handle number
+---@return number carriage
 function getTrainCarriage(train, handle) end
 
 ---
@@ -9526,7 +9643,7 @@ function grabEntityOnWinch(heli) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNameOfItem)**
 ---
----@param item int
+---@param item number
 ---@return GxtString name
 function getNameOfItem(item) end
 
@@ -9534,13 +9651,13 @@ function getNameOfItem(item) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskClimb)**
 ---
 ---@param ped Ped
----@param climb bool
+---@param climb boolean
 function taskClimb(ped, climb) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/buyItem)**
 ---
----@param item int
+---@param item number
 function buyItem(item) end
 
 ---
@@ -9562,21 +9679,21 @@ function restoreClothesState() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRopeHeightForObject)**
 ---
----@param magnet int
----@return float length
+---@param magnet number
+---@return number length
 function getRopeHeightForObject(magnet) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setRopeHeightForObject)**
 ---
----@param magnet int
----@param length float
+---@param magnet number
+---@param length number
 function setRopeHeightForObject(magnet, length) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/grabEntityOnRopeForObject)**
 ---
----@param magnet int
+---@param magnet number
 ---@return Vehicle carHandle
 ---@return Ped pedHandle
 ---@return Object objectHandle
@@ -9585,7 +9702,7 @@ function grabEntityOnRopeForObject(magnet) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/releaseEntityFromRopeForObject)**
 ---
----@param magnet int
+---@param magnet number
 function releaseEntityFromRopeForObject(magnet) end
 
 ---
@@ -9607,51 +9724,51 @@ function playerLeftCrane() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/performSequenceTaskFromProgress)**
 ---
 ---@param ped Ped
----@param sequence int
----@param unkProgress1 int
----@param unkProgress2 int
+---@param sequence number
+---@param unkProgress1 number
+---@param unkProgress2 number
 function performSequenceTaskFromProgress(ped, sequence, unkProgress1, unkProgress2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setNextDesiredMoveState)**
 ---
----@param speed int
+---@param speed number
 function setNextDesiredMoveState(speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskGotoCharAiming)**
 ---
 ---@param ped Ped
----@param followActor int
----@param minradius float
----@param maxradius float
+---@param followActor number
+---@param minradius number
+---@param maxradius number
 function taskGotoCharAiming(ped, followActor, minradius, maxradius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getSequenceProgressRecursive)**
 ---
 ---@param ped Ped
----@return int unkProgress1
----@return int unkProgress2
+---@return number unkProgress1
+---@return number unkProgress2
 function getSequenceProgressRecursive(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskKillCharOnFootTimed)**
 ---
 ---@param ped Ped
----@param attackActor int
----@param time int
+---@param attackActor number
+---@param time number
 function taskKillCharOnFootTimed(ped, attackActor, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNearestTagPosition)**
 ---
----@param X float
----@param Y float
----@param Z float
----@return float X
----@return float Y
----@return float Z
+---@param X number
+---@param Y number
+---@param Z number
+---@return number X
+---@return number Y
+---@return number Z
 function getNearestTagPosition(X, Y, Z) end
 
 ---
@@ -9663,14 +9780,14 @@ function taskJetpack(ped) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setArea51SamSite)**
 ---
----@param enable bool
+---@param enable boolean
 function setArea51SamSite(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAnySearchlight)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 ---@return Searchlight searchlight
 function isCharInAnySearchlight(ped) end
 
@@ -9679,7 +9796,7 @@ function isCharInAnySearchlight(ped) end
 ---
 ---@param trailer Vehicle
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isTrailerAttachedToCab(trailer, car) end
 
 ---
@@ -9693,7 +9810,7 @@ function detachTrailerFromCab(trailer, cab) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPlayerGroup)**
 ---
 ---@param player Player
----@return int group
+---@return number group
 function getPlayerGroup(player) end
 
 ---
@@ -9705,38 +9822,38 @@ function getLoadedShop() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getBeatProximity)**
 ---
----@param track int
----@return int int2
----@return int int3
----@return int int4
+---@param track number
+---@return number int2
+---@return number int3
+---@return number int4
 function getBeatProximity(track) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGroupDefaultTaskAllocator)**
 ---
----@param group int
----@param command int
+---@param group number
+---@param command number
 function setGroupDefaultTaskAllocator(group, command) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerGroupRecruitment)**
 ---
 ---@param player Player
----@param enabled bool
+---@param enabled boolean
 function setPlayerGroupRecruitment(player, enabled) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/activateHeliSpeedCheat)**
 ---
 ---@param heli Vehicle
----@param power int
+---@param power number
 function activateHeliSpeedCheat(heli, power) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskSetCharDecisionMaker)**
 ---
 ---@param ped Ped
----@param maker int
+---@param maker number
 function taskSetCharDecisionMaker(ped, maker) end
 
 ---
@@ -9755,29 +9872,29 @@ function markMissionTrainAsNoLongerNeeded(train) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setBlipAlwaysDisplayOnZoomedRadar)**
 ---
 ---@param marker Marker
----@param displayAlways bool
+---@param displayAlways boolean
 function setBlipAlwaysDisplayOnZoomedRadar(marker, displayAlways) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/requestCarRecording)**
 ---
----@param path int
+---@param path number
 function requestCarRecording(path) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCarRecordingBeenLoaded)**
 ---
----@param path int
----@return bool result
+---@param path number
+---@return boolean result
 function hasCarRecordingBeenLoaded(path) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMissionTrainCoordinates)**
 ---
 ---@param train Vehicle
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setMissionTrainCoordinates(train, X, Y, Z) end
 
 ---
@@ -9791,37 +9908,37 @@ function taskComplexPickupObject(ped, object) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/listenToPlayerGroupCommands)**
 ---
 ---@param ped Ped
----@param listen bool
+---@param listen boolean
 function listenToPlayerGroupCommands(ped, listen) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerEnterCarButton)**
 ---
 ---@param player Player
----@param can bool
+---@param can boolean
 function setPlayerEnterCarButton(player, can) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskCharSlideToCoord)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param angle float
----@param withinRadius float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param angle number
+---@param withinRadius number
 function taskCharSlideToCoord(ped, toX, toY, toZ, angle, withinRadius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentDayOfWeek)**
 ---
----@return int weekday
+---@return number weekday
 function getCurrentDayOfWeek() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/registerScriptBrainForCodeUse)**
 ---
----@param id int
+---@param id number
 ---@param gxtString GxtString
 function registerScriptBrainForCodeUse(id, gxtString) end
 
@@ -9829,95 +9946,95 @@ function registerScriptBrainForCodeUse(id, gxtString) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/applyForceToCar)**
 ---
 ---@param car Vehicle
----@param vecX float
----@param vecY float
----@param vecZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function applyForceToCar(car, vecX, vecY, vecZ, rotationX, rotationY, rotationZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addToCarRotationVelocity)**
 ---
 ---@param car Vehicle
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function addToCarRotationVelocity(car, vecX, vecY, vecZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarRotationVelocity)**
 ---
 ---@param car Vehicle
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function setCarRotationVelocity(car, vecX, vecY, vecZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharShootRate)**
 ---
 ---@param ped Ped
----@param rate int
+---@param rate number
 function setCharShootRate(ped, rate) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isModelInCdimage)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isModelInCdimage(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeOilPuddlesInArea)**
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
 function removeOilPuddlesInArea(x1, y1, x2, y2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setBlipAsFriendly)**
 ---
 ---@param marker Marker
----@param type bool
+---@param type boolean
 function setBlipAsFriendly(marker, type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskSwimToCoord)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
+---@param toX number
+---@param toY number
+---@param toZ number
 function taskSwimToCoord(ped, toX, toY, toZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getModelDimensions)**
 ---
 ---@param modelId Model
----@return float x1
----@return float y1
----@return float z1
----@return float x2
----@return float y2
----@return float z2
+---@return number x1
+---@return number y1
+---@return number z1
+---@return number x2
+---@return number y2
+---@return number z2
 function getModelDimensions(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/copyCharDecisionMaker)**
 ---
 ---@param ped Ped
----@return int maker
+---@return number maker
 function copyCharDecisionMaker(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/copyGroupDecisionMaker)**
 ---
----@param group int
----@return int maker
+---@param group number
+---@return number maker
 function copyGroupDecisionMaker(group) end
 
 ---
@@ -9925,102 +10042,102 @@ function copyGroupDecisionMaker(group) end
 ---
 ---@param ped Ped
 ---@param car Vehicle
----@param speed float
----@param flag1 int
----@param flag2 int
----@param flag3 int
+---@param speed number
+---@param flag1 number
+---@param flag2 number
+---@param flag3 number
 function taskDrivePointRouteAdvanced(ped, car, speed, flag1, flag2, flag3) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isRelationshipSet)**
 ---
----@param acquaintance int
----@param ofActors int
----@param toActors int
----@return bool result
+---@param acquaintance number
+---@param ofActors number
+---@param toActors number
+---@return boolean result
 function isRelationshipSet(acquaintance, ofActors, toActors) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarAlwaysCreateSkids)**
 ---
 ---@param car Vehicle
----@param enable bool
+---@param enable boolean
 function setCarAlwaysCreateSkids(car, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCityFromCoords)**
 ---
----@param X float
----@param Y float
----@param Z float
----@return int city
+---@param X number
+---@param Y number
+---@param Z number
+---@return number city
 function getCityFromCoords(X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasObjectOfTypeBeenSmashed)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function hasObjectOfTypeBeenSmashed(X, Y, Z, radius, modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerPerformingWheelie)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerPerformingWheelie(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerPerformingStoppie)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerPerformingStoppie(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCheckpointCoords)**
 ---
 ---@param checkpoint Checkpoint
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setCheckpointCoords(checkpoint, X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/controlCarHydraulics)**
 ---
 ---@param car Vehicle
----@param f1 float
----@param f2 float
----@param f3 float
----@param f4 float
+---@param f1 number
+---@param f2 number
+---@param f3 number
+---@param f4 number
 function controlCarHydraulics(car, f1, f2, f3, f4) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGroupSize)**
 ---
----@param group int
----@return int numberOfLeaders
----@return int numberOfMembers
+---@param group number
+---@return number numberOfLeaders
+---@return number numberOfMembers
 function getGroupSize(group) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectCollisionDamageEffect)**
 ---
 ---@param object Object
----@param destructible bool
+---@param destructible boolean
 function setObjectCollisionDamageEffect(object, destructible) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarFollowCar)**
 ---
 ---@param car Vehicle
----@param followCar int
----@param radius float
+---@param followCar number
+---@param radius number
 function setCarFollowCar(car, followCar, radius) end
 
 ---
@@ -10037,115 +10154,131 @@ function playerEnteredLasVegasCrane() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchEntryExit)**
 ---
 ---@param interior GxtString
----@param access bool
+---@param access boolean
 function switchEntryExit(interior, access) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayTextWithFloat)**
 ---
----@param X float
----@param Y float
+---@param X number
+---@param Y number
 ---@param GXT GxtString
----@param value float
----@param flag int
+---@param value number
+---@param flag number
 function displayTextWithFloat(X, Y, GXT, value, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesGroupExist)**
 ---
----@param group int
----@return bool result
+---@param group number
+---@return boolean result
 function doesGroupExist(group) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/giveMeleeAttackToChar)**
 ---
 ---@param ped Ped
----@param fightingStyle int
----@param moves int
+---@param fightingStyle number
+---@param moves number
 function giveMeleeAttackToChar(ped, fightingStyle, moves) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarHydraulics)**
 ---
 ---@param car Vehicle
----@param hydraulics bool
+---@param hydraulics boolean
 function setCarHydraulics(car, hydraulics) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/is2playerGameGoingOn)**
 ---
----@return bool result
+---@return boolean result
 function is2playerGameGoingOn() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCameraFov)**
 ---
----@return float fov
+---@return number fov
 function getCameraFov() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesCarHaveHydraulics)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function doesCarHaveHydraulics(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskCharSlideToCoordAndPlayAnim)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param angle float
----@param radius float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param angle number
+---@param radius number
 ---@param animation string
----@param ifp1 int
----@param ifp2 float
----@param LA bool
----@param LX bool
----@param LY bool
----@param LF bool
----@param LT int
-function taskCharSlideToCoordAndPlayAnim(ped, toX, toY, toZ, angle, radius, animation, ifp1, ifp2, LA, LX, LY, LF, LT) end
+---@param ifp1 number
+---@param ifp2 number
+---@param LA boolean
+---@param LX boolean
+---@param LY boolean
+---@param LF boolean
+---@param LT number
+function taskCharSlideToCoordAndPlayAnim(
+	ped,
+	toX,
+	toY,
+	toZ,
+	angle,
+	radius,
+	animation,
+	ifp1,
+	ifp2,
+	LA,
+	LX,
+	LY,
+	LF,
+	LT
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTotalNumberOfPedsKilledByPlayer)**
 ---
 ---@param player Player
----@return int number
+---@return number number
 function getTotalNumberOfPedsKilledByPlayer(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getLevelDesignCoordsForObject)**
 ---
 ---@param object Object
----@param spoot int
----@return float X
----@return float Y
----@return float Z
+---@param spoot number
+---@return number X
+---@return number Y
+---@return number Z
 function getLevelDesignCoordsForObject(object, spoot) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharHighestPriorityEvent)**
 ---
 ---@param ped Ped
----@return int event
+---@return number event
 function getCharHighestPriorityEvent(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getParkingNodeInArea)**
 ---
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@return float X
----@return float Y
----@return float Z
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@return number X
+---@return number Y
+---@return number Z
 function getParkingNodeInArea(x1, y1, z1, x2, y2, z2) end
 
 ---
@@ -10161,122 +10294,140 @@ function getCarCharIsUsing(ped) end
 ---@param ped Ped
 ---@param animation string
 ---@param IFP string
----@param framedelta float
----@param loopA bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
+---@param framedelta number
+---@param loopA boolean
+---@param lockX boolean
+---@param lockY boolean
+---@param lockF boolean
+---@param time number
 function taskPlayAnimNonInterruptable(ped, animation, IFP, framedelta, loopA, lockX, lockY, lockF, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addStuntJump)**
 ---
----@param startX float
----@param startY float
----@param startZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param goalX float
----@param goalY float
----@param goalZ float
----@param radius2X float
----@param radius2Y float
----@param radius2Z float
----@param cameraX float
----@param cameraY float
----@param cameraZ float
----@param reward int
-function addStuntJump(startX, startY, startZ, radiusX, radiusY, radiusZ, goalX, goalY, goalZ, radius2X, radius2Y, radius2Z, cameraX, cameraY, cameraZ, reward) end
+---@param startX number
+---@param startY number
+---@param startZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
+---@param goalX number
+---@param goalY number
+---@param goalZ number
+---@param radius2X number
+---@param radius2Y number
+---@param radius2Z number
+---@param cameraX number
+---@param cameraY number
+---@param cameraZ number
+---@param reward number
+function addStuntJump(
+	startX,
+	startY,
+	startZ,
+	radiusX,
+	radiusY,
+	radiusZ,
+	goalX,
+	goalY,
+	goalZ,
+	radius2X,
+	radius2Y,
+	radius2Z,
+	cameraX,
+	cameraY,
+	cameraZ,
+	reward
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectCoordinatesAndVelocity)**
 ---
 ---@param object Object
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setObjectCoordinatesAndVelocity(object, X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharKindaStayInSamePlace)**
 ---
 ---@param ped Ped
----@param stay bool
+---@param stay boolean
 function setCharKindaStayInSamePlace(ped, stay) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskFollowPatrolRoute)**
 ---
 ---@param ped Ped
----@param walkMode int
----@param routeMode int
+---@param walkMode number
+---@param routeMode number
 function taskFollowPatrolRoute(ped, walkMode, routeMode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAir)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAir(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharHeightAboveGround)**
 ---
 ---@param ped Ped
----@return float height
+---@return number height
 function getCharHeightAboveGround(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharWeaponSkill)**
 ---
 ---@param ped Ped
----@param skill int
+---@param skill number
 function setCharWeaponSkill(ped, skill) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTextEdge)**
 ---
----@param size int
----@param r int
----@param g int
----@param b int
----@param a int
+---@param size number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
 function setTextEdge(size, r, g, b, a) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarEngineBroken)**
 ---
 ---@param car Vehicle
----@param broken bool
+---@param broken boolean
 function setCarEngineBroken(car, broken) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isThisModelABoat)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isThisModelABoat(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isThisModelAPlane)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isThisModelAPlane(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isThisModelAHeli)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isThisModelAHeli(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFirstPersonInCarCameraMode)**
 ---
----@param enable bool
+---@param enable boolean
 function setFirstPersonInCarCameraMode(enable) end
 
 ---
@@ -10284,8 +10435,8 @@ function setFirstPersonInCarCameraMode(enable) end
 ---
 ---@param ped Ped
 ---@param ped2 Ped
----@param unk1 float
----@param unk2 int
+---@param unk1 number
+---@param unk2 number
 function taskGreetPartner(ped, ped2, unk1, unk2) end
 
 ---
@@ -10297,20 +10448,20 @@ function setHeliBladesFullSpeed(heli) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayHud)**
 ---
----@param enable bool
+---@param enable boolean
 function displayHud(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/connectLods)**
 ---
 ---@param object Object
----@param lod int
+---@param lod number
 function connectLods(object, lod) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMaxFireGenerations)**
 ---
----@param max int
+---@param max number
 function setMaxFireGenerations(max) end
 
 ---
@@ -10319,47 +10470,47 @@ function setMaxFireGenerations(max) end
 ---@param ped Ped
 ---@param animation string
 ---@param ifp1 string
----@param ifp2 float
----@param time int
+---@param ifp2 number
+---@param time number
 function taskDieNamedAnim(ped, animation, ifp1, ifp2, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerDuckButton)**
 ---
 ---@param player Player
----@param able bool
+---@param able boolean
 function setPlayerDuckButton(player, able) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPoolTableCoords)**
 ---
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
 function setPoolTableCoords(x1, y1, z1, x2, y2, z2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasObjectBeenPhotographed)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function hasObjectBeenPhotographed(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doCameraBump)**
 ---
----@param rotationZ float
----@param rotationY float
+---@param rotationZ number
+---@param rotationY number
 function doCameraBump(rotationZ, rotationY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentDate)**
 ---
----@return int day
----@return int month
+---@return number day
+---@return number month
 function getCurrentDate() end
 
 ---
@@ -10367,7 +10518,7 @@ function getCurrentDate() end
 ---
 ---@param object Object
 ---@param animation string
----@param speed float
+---@param speed number
 function setObjectAnimSpeed(object, animation, speed) end
 
 ---
@@ -10375,7 +10526,7 @@ function setObjectAnimSpeed(object, animation, speed) end
 ---
 ---@param object Object
 ---@param anim string
----@return bool result
+---@return boolean result
 function isObjectPlayingAnim(object, anim) end
 
 ---
@@ -10383,7 +10534,7 @@ function isObjectPlayingAnim(object, anim) end
 ---
 ---@param object Object
 ---@param animation string
----@return float progress
+---@return number progress
 function getObjectAnimCurrentTime(object, animation) end
 
 ---
@@ -10391,260 +10542,260 @@ function getObjectAnimCurrentTime(object, animation) end
 ---
 ---@param object Object
 ---@param animation string
----@param progress float
+---@param progress number
 function setObjectAnimCurrentTime(object, animation, progress) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharVelocity)**
 ---
 ---@param ped Ped
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function setCharVelocity(ped, vecX, vecY, vecZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharVelocity)**
 ---
 ---@param ped Ped
----@return float vecX
----@return float vecY
----@return float vecZ
+---@return number vecX
+---@return number vecY
+---@return number vecZ
 function getCharVelocity(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharRotation)**
 ---
 ---@param ped Ped
----@param vecX float
----@param vecY float
----@param vecZ float
+---@param vecX number
+---@param vecY number
+---@param vecZ number
 function setCharRotation(ped, vecX, vecY, vecZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarUprightValue)**
 ---
 ---@param car Vehicle
----@return float value
+---@return number value
 function getCarUprightValue(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleInterior)**
 ---
 ---@param car Vehicle
----@param interior int
+---@param interior number
 function setVehicleInterior(car, interior) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/selectWeaponsForVehicle)**
 ---
 ---@param car Vehicle
----@param gun bool
+---@param gun boolean
 function selectWeaponsForVehicle(car, gun) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCityPlayerIsIn)**
 ---
 ---@param player Player
----@return int city
+---@return number city
 function getCityPlayerIsIn(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNameOfZone)**
 ---
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 ---@return GxtString name
 function getNameOfZone(X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/activateInteriorPeds)**
 ---
----@param activate bool
+---@param activate boolean
 function activateInteriorPeds(activate) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleCanBeTargetted)**
 ---
 ---@param car Vehicle
----@param unk bool
+---@param unk boolean
 function setVehicleCanBeTargetted(car, unk) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskFollowFootsteps)**
 ---
 ---@param ped Ped
----@param followActor int
+---@param followActor number
 function taskFollowFootsteps(ped, followActor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/damageChar)**
 ---
 ---@param ped Ped
----@param health int
----@param affectArmour bool
+---@param health number
+---@param affectArmour boolean
 function damageChar(ped, health, affectArmour) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarCanBeVisiblyDamaged)**
 ---
 ---@param car Vehicle
----@param can bool
+---@param can boolean
 function setCarCanBeVisiblyDamaged(car, can) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHeliReachedTargetDistance)**
 ---
 ---@param heli Vehicle
----@param dist int
+---@param dist number
 function setHeliReachedTargetDistance(heli, dist) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getSoundLevelAtCoords)**
 ---
 ---@param ped Ped
----@param X float
----@param Y float
----@param Z float
----@return float level
+---@param X number
+---@param Y number
+---@param Z number
+---@return number level
 function getSoundLevelAtCoords(ped, X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharAllowedToDuck)**
 ---
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setCharAllowedToDuck(ped, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHeadingForAttachedPlayer)**
 ---
 ---@param player Player
----@param toAngle float
----@param rotationSpeed float
+---@param toAngle number
+---@param rotationSpeed number
 function setHeadingForAttachedPlayer(player, toAngle, rotationSpeed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskWalkAlongsideChar)**
 ---
 ---@param ped Ped
----@param alongisdeActor int
+---@param alongisdeActor number
 function taskWalkAlongsideChar(ped, alongisdeActor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createEmergencyServicesCar)**
 ---
 ---@param car Model
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function createEmergencyServicesCar(car, X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskKindaStayInSamePlace)**
 ---
 ---@param ped Ped
----@param stay bool
+---@param stay boolean
 function taskKindaStayInSamePlace(ped, stay) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startPlaybackRecordedCarLooped)**
 ---
 ---@param car Vehicle
----@param path int
+---@param path number
 function startPlaybackRecordedCarLooped(car, path) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharInterior)**
 ---
 ---@param ped Ped
----@param interior int
+---@param interior number
 function setCharInterior(ped, interior) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isAttachedPlayerHeadingAchieved)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isAttachedPlayerHeadingAchieved(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/enableEntryExitPlayerGroupWarping)**
 ---
----@param X float
----@param Y float
----@param radius float
----@param access bool
+---@param X number
+---@param Y number
+---@param radius number
+---@param access boolean
 function enableEntryExitPlayerGroupWarping(X, Y, radius, access) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getClosestStealableObject)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@return Object object
 function getClosestStealableObject(X, Y, Z, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isProceduralInteriorActive)**
 ---
----@param interior int
----@return bool result
+---@param interior number
+---@return boolean result
 function isProceduralInteriorActive(interior) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeCarRecording)**
 ---
----@param path int
+---@param path number
 function removeCarRecording(path) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setZonePopulationRace)**
 ---
 ---@param zone GxtString
----@param popcycle int
+---@param popcycle number
 function setZonePopulationRace(zone, popcycle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectOnlyDamagedByPlayer)**
 ---
 ---@param object Object
----@param player bool
+---@param player boolean
 function setObjectOnlyDamagedByPlayer(object, player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createBirds)**
 ---
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param flag1 int
----@param flag2 int
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param flag1 number
+---@param flag2 number
 function createBirds(x1, y1, z1, x2, y2, z2, flag1, flag2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleDirtLevel)**
 ---
 ---@param car Vehicle
----@param level float
+---@param level number
 function setVehicleDirtLevel(car, level) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGangWarsActive)**
 ---
----@param enable bool
+---@param enable boolean
 function setGangWarsActive(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGangWarGoingOn)**
 ---
----@return bool result
+---@return boolean result
 function isGangWarGoingOn() end
 
 ---
@@ -10653,7 +10804,7 @@ function isGangWarGoingOn() end
 ---@param player Player
 ---@param clothes string
 ---@param model string
----@param bodyPart int
+---@param bodyPart number
 function givePlayerClothesOutsideShop(player, clothes, model, bodyPart) end
 
 ---
@@ -10664,29 +10815,29 @@ function clearLoadedShop() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGroupSequence)**
 ---
----@param group int
----@param Aspack int
+---@param group number
+---@param Aspack number
 function setGroupSequence(group, Aspack) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharDropsWeaponsWhenDead)**
 ---
 ---@param ped Ped
----@param droppable bool
+---@param droppable boolean
 function setCharDropsWeaponsWhenDead(ped, droppable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharNeverLeavesGroup)**
 ---
 ---@param ped Ped
----@param set bool
+---@param set boolean
 function setCharNeverLeavesGroup(ped, set) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerFireButton)**
 ---
 ---@param player Player
----@param able bool
+---@param able boolean
 function setPlayerFireButton(player, able) end
 
 ---
@@ -10694,13 +10845,13 @@ function setPlayerFireButton(player, able) end
 ---
 ---@param particle Particle
 ---@param ped Ped
----@param mode int
+---@param mode number
 function attachFxSystemToCharBone(particle, ped, mode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/registerAttractorScriptBrainForCodeUse)**
 ---
----@param handle int
+---@param handle number
 ---@param script GxtString
 function registerAttractorScriptBrainForCodeUse(handle, script) end
 
@@ -10708,8 +10859,8 @@ function registerAttractorScriptBrainForCodeUse(handle, script) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHeadingLimitForAttachedChar)**
 ---
 ---@param ped Ped
----@param orientation int
----@param limit float
+---@param orientation number
+---@param limit number
 function setHeadingLimitForAttachedChar(ped, orientation, limit) end
 
 ---
@@ -10723,9 +10874,9 @@ function addBlipForDeadChar(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDeadCharCoordinates)**
 ---
 ---@param ped Ped
----@return float X
----@return float Y
----@return float Z
+---@return number X
+---@return number Y
+---@return number Z
 function getDeadCharCoordinates(ped) end
 
 ---
@@ -10734,41 +10885,41 @@ function getDeadCharCoordinates(ped) end
 ---@param ped Ped
 ---@param animation string
 ---@param ifp string
----@param framedelta float
----@param loopA bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
----@param force bool
----@param lockZ bool
+---@param framedelta number
+---@param loopA boolean
+---@param lockX boolean
+---@param lockY boolean
+---@param lockF boolean
+---@param time number
+---@param force boolean
+---@param lockZ boolean
 function taskPlayAnimWithFlags(ped, animation, ifp, framedelta, loopA, lockX, lockY, lockF, time, force, lockZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleAirResistanceMultiplier)**
 ---
 ---@param car Vehicle
----@param multiplier float
+---@param multiplier number
 function setVehicleAirResistanceMultiplier(car, multiplier) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarCoordinatesNoOffset)**
 ---
 ---@param car Vehicle
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setCarCoordinatesNoOffset(car, X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUsesCollisionOfClosestObjectOfType)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@param modelId Model
----@param collisionDetection bool
+---@param collisionDetection boolean
 function setUsesCollisionOfClosestObjectOfType(X, Y, Z, radius, modelId, collisionDetection) end
 
 ---
@@ -10780,14 +10931,14 @@ function setTimeOneDayForward() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTimerBeepCountdownTime)**
 ---
 ---@param timer VarId
----@param reach int
+---@param reach number
 function setTimerBeepCountdownTime(timer, reach) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachTrailerToCab)**
 ---
----@param trailer int
----@param cab int
+---@param trailer number
+---@param cab number
 function attachTrailerToCab(trailer, cab) end
 
 ---
@@ -10795,38 +10946,38 @@ function attachTrailerToCab(trailer, cab) end
 ---
 ---@param car Vehicle
 ---@param object Object
----@return bool result
+---@return boolean result
 function isVehicleTouchingObject(car, object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/enableCraneControls)**
 ---
----@param UP bool
----@param DOWN bool
----@param RELEASE bool
+---@param UP boolean
+---@param DOWN boolean
+---@param RELEASE boolean
 function enableCraneControls(UP, DOWN, RELEASE) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerInPositionForConversation)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isPlayerInPositionForConversation(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/enableConversation)**
 ---
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function enableConversation(ped, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCharInSphereOnlyDrugsBuyers)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@return Ped ped
 function getRandomCharInSphereOnlyDrugsBuyers(X, Y, Z, radius) end
 
@@ -10834,117 +10985,117 @@ function getRandomCharInSphereOnlyDrugsBuyers(X, Y, Z, radius) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPedType)**
 ---
 ---@param ped Ped
----@return int pedtype
+---@return number pedtype
 function getPedType(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskUseClosestMapAttractor)**
 ---
 ---@param ped Ped
----@param radius float
+---@param radius number
 ---@param nearModel Model
----@param offsetX float
----@param offsetY float
----@param offsetZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
 ---@param scriptNamed string
----@return bool result
+---@return boolean result
 function taskUseClosestMapAttractor(ped, radius, nearModel, offsetX, offsetY, offsetZ, scriptNamed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/planeAttackPlayerUsingDogFight)**
 ---
----@param hydra int
+---@param hydra number
 ---@param player Player
----@param radius float
+---@param radius number
 function planeAttackPlayerUsingDogFight(hydra, player, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/canTriggerGangWarWhenOnAMission)**
 ---
----@param can bool
+---@param can boolean
 function canTriggerGangWarWhenOnAMission(can) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/controlMovableVehiclePart)**
 ---
 ---@param car Vehicle
----@param angle float
+---@param angle number
 function controlMovableVehiclePart(car, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/winchCanPickVehicleUp)**
 ---
 ---@param car Vehicle
----@param attractive bool
+---@param attractive boolean
 function winchCanPickVehicleUp(car, attractive) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/openCarDoorABit)**
 ---
 ---@param car Vehicle
----@param door int
----@param rotation float
+---@param door number
+---@param rotation number
 function openCarDoorABit(car, door, rotation) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarDoorFullyOpen)**
 ---
 ---@param car Vehicle
----@param door int
----@return bool result
+---@param door number
+---@return boolean result
 function isCarDoorFullyOpen(car, door) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAlwaysDraw3dMarkers)**
 ---
----@param set bool
+---@param set boolean
 function setAlwaysDraw3dMarkers(set) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/streamScript)**
 ---
----@param script int
+---@param script number
 function streamScript(script) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasStreamedScriptLoaded)**
 ---
----@param script int
----@return bool result
+---@param script number
+---@return boolean result
 function hasStreamedScriptLoaded(script) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGangWarsTrainingMission)**
 ---
----@param set bool
+---@param set boolean
 function setGangWarsTrainingMission(set) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharHasUsedEntryExit)**
 ---
 ---@param ped Ped
----@param X float
----@param Y float
----@param radius float
+---@param X number
+---@param Y number
+---@param radius number
 function setCharHasUsedEntryExit(ped, X, Y, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharMaxHealth)**
 ---
 ---@param ped Ped
----@param health int
+---@param health number
 function setCharMaxHealth(ped, health) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setNightVision)**
 ---
----@param enable bool
+---@param enable boolean
 function setNightVision(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setInfraredVision)**
 ---
----@param enable bool
+---@param enable boolean
 function setInfraredVision(enable) end
 
 ---
@@ -10957,29 +11108,29 @@ function setZoneForGangWarsTraining(zone) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharCanBeKnockedOffBike)**
 ---
 ---@param ped Ped
----@param can bool
+---@param can boolean
 function setCharCanBeKnockedOffBike(ped, can) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharCoordinatesDontWarpGang)**
 ---
 ---@param ped Ped
----@param X float
----@param Y float
----@param Z float
+---@param X number
+---@param Y number
+---@param Z number
 function setCharCoordinatesDontWarpGang(ped, X, Y, Z) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addPriceModifier)**
 ---
----@param item int
----@param price int
+---@param item number
+---@param price number
 function addPriceModifier(item, price) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removePriceModifier)**
 ---
----@param item int
+---@param item number
 function removePriceModifier(item) end
 
 ---
@@ -10991,94 +11142,94 @@ function initZonePopulationSettings() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/explodeCarInCutsceneShakeAndBits)**
 ---
 ---@param car Vehicle
----@param shake bool
----@param effect bool
----@param sound bool
+---@param shake boolean
+---@param effect boolean
+---@param sound boolean
 function explodeCarInCutsceneShakeAndBits(car, shake, effect, sound) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSkipCutsceneButtonPressed)**
 ---
----@return bool result
+---@return boolean result
 function isSkipCutsceneButtonPressed() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCutsceneOffset)**
 ---
----@return bool result
----@return float X
----@return float Y
----@return float Z
+---@return boolean result
+---@return number X
+---@return number Y
+---@return number Z
 function getCutsceneOffset() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectScale)**
 ---
 ---@param object Object
----@param scale float
+---@param scale number
 function setObjectScale(object, scale) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentPopulationZoneType)**
 ---
----@return int popcycle
+---@return number popcycle
 function getCurrentPopulationZoneType() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createMenu)**
 ---
 ---@param title GxtString
----@param posX float
----@param posY float
----@param width float
----@param columns int
----@param interactive bool
----@param background bool
----@param alignment int
----@return int menu
+---@param posX number
+---@param posY number
+---@param width number
+---@param columns number
+---@param interactive boolean
+---@param background boolean
+---@param alignment number
+---@return number menu
 function createMenu(title, posX, posY, width, columns, interactive, background, alignment) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuColumnOrientation)**
 ---
----@param menu int
----@param column int
----@param alignment int
+---@param menu number
+---@param column number
+---@param alignment number
 function setMenuColumnOrientation(menu, column, alignment) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMenuItemSelected)**
 ---
----@param menu int
----@return int item
+---@param menu number
+---@return number item
 function getMenuItemSelected(menu) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getMenuItemAccepted)**
 ---
----@param menu int
----@return int item
+---@param menu number
+---@return number item
 function getMenuItemAccepted(menu) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/activateMenuItem)**
 ---
----@param menu int
----@param row int
----@param enable bool
+---@param menu number
+---@param row number
+---@param enable boolean
 function activateMenuItem(menu, row, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/deleteMenu)**
 ---
----@param menu int
+---@param menu number
 function deleteMenu(menu) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuColumn)**
 ---
----@param menu int
----@param column int
+---@param menu number
+---@param column number
 ---@param header GxtString
 ---@param data1 GxtString
 ---@param data2 GxtString
@@ -11092,110 +11243,127 @@ function deleteMenu(menu) end
 ---@param data10 GxtString
 ---@param data11 GxtString
 ---@param data12 GxtString
-function setMenuColumn(menu, column, header, data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12) end
+function setMenuColumn(
+	menu,
+	column,
+	header,
+	data1,
+	data2,
+	data3,
+	data4,
+	data5,
+	data6,
+	data7,
+	data8,
+	data9,
+	data10,
+	data11,
+	data12
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setBlipEntryExit)**
 ---
 ---@param marker Marker
----@param X float
----@param Y float
----@param radius float
+---@param X number
+---@param Y number
+---@param radius number
 function setBlipEntryExit(marker, X, Y, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchDeathPenalties)**
 ---
----@param lose bool
+---@param lose boolean
 function switchDeathPenalties(lose) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchArrestPenalties)**
 ---
----@param lose bool
+---@param lose boolean
 function switchArrestPenalties(lose) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setExtraHospitalRestartPoint)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param angle float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param angle number
 function setExtraHospitalRestartPoint(X, Y, Z, radius, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setExtraPoliceStationRestartPoint)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
----@param angle float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
+---@param angle number
 function setExtraPoliceStationRestartPoint(X, Y, Z, radius, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findNumberTagsTagged)**
 ---
----@return int num
+---@return number num
 function findNumberTagsTagged() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getTerritoryUnderControlPercentage)**
 ---
----@return int percentage
+---@return number percentage
 function getTerritoryUnderControlPercentage() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectInAngledArea2d)**
 ---
 ---@param object Object
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param radius float
----@param sphere bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param radius number
+---@param sphere boolean
+---@return boolean result
 function isObjectInAngledArea2d(object, x1, y1, x2, y2, radius, sphere) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectInAngledArea3d)**
 ---
 ---@param object Object
----@param x1 float
----@param y1 float
----@param z1 float
----@param x2 float
----@param y2 float
----@param z2 float
----@param depth float
----@param flag bool
----@return bool result
+---@param x1 number
+---@param y1 number
+---@param z1 number
+---@param x2 number
+---@param y2 number
+---@param z2 number
+---@param depth number
+---@param flag boolean
+---@return boolean result
 function isObjectInAngledArea3d(object, x1, y1, z1, x2, y2, z2, depth, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCharInSphereNoBrain)**
 ---
----@param X float
----@param Y float
----@param Z float
----@param radius float
+---@param X number
+---@param Y number
+---@param Z number
+---@param radius number
 ---@return Ped ped
 function getRandomCharInSphereNoBrain(X, Y, Z, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlaneUndercarriageUp)**
 ---
----@param plane int
----@param set bool
+---@param plane number
+---@param set boolean
 function setPlaneUndercarriageUp(plane, set) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/disableAllEntryExits)**
 ---
----@param disable bool
+---@param disable boolean
 function disableAllEntryExits(disable) end
 
 ---
@@ -11209,32 +11377,32 @@ function attachAnimsToModel(modelId, externalScript) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectAsStealable)**
 ---
 ---@param object Object
----@param liftable bool
+---@param liftable boolean
 function setObjectAsStealable(object, liftable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCreateRandomGangMembers)**
 ---
----@param enable bool
+---@param enable boolean
 function setCreateRandomGangMembers(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addSparks)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param vecX float
----@param vecY float
----@param vecZ float
----@param density int
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param vecX number
+---@param vecY number
+---@param vecZ number
+---@param density number
 function addSparks(posX, posY, posZ, vecX, vecY, vecZ, density) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getVehicleClass)**
 ---
 ---@param car Vehicle
----@return int class
+---@return number class
 function getVehicleClass(car) end
 
 ---
@@ -11246,22 +11414,22 @@ function clearConversationForChar(ped) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuItemWithNumber)**
 ---
----@param panel int
----@param column int
----@param row int
+---@param panel number
+---@param column number
+---@param row number
 ---@param gxtString GxtString
----@param number int
+---@param number number
 function setMenuItemWithNumber(panel, column, row, gxtString, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuItemWith2Numbers)**
 ---
----@param panel int
----@param column int
----@param row int
+---@param panel number
+---@param column number
+---@param row number
 ---@param gxtString GxtString
----@param numbers1 int
----@param numbers2 int
+---@param numbers1 number
+---@param numbers2 number
 function setMenuItemWith2Numbers(panel, column, row, gxtString, numbers1, numbers2) end
 
 ---
@@ -11274,9 +11442,9 @@ function setCutsceneModelTexture(cutsceneModel, textureName) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNameOfInfoZone)**
 ---
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return GxtString nameB
 function getNameOfInfoZone(atX, atY, atZ) end
 
@@ -11284,20 +11452,20 @@ function getNameOfInfoZone(atX, atY, atZ) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/vehicleCanBeTargettedByHsMissile)**
 ---
 ---@param car Vehicle
----@param targetable bool
+---@param targetable boolean
 function vehicleCanBeTargettedByHsMissile(car, targetable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setFreebiesInVehicle)**
 ---
 ---@param car Vehicle
----@param containsGoodies bool
+---@param containsGoodies boolean
 function setFreebiesInVehicle(car, containsGoodies) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setScriptLimitToGangSize)**
 ---
----@param max bool
+---@param max boolean
 function setScriptLimitToGangSize(max) end
 
 ---
@@ -11314,42 +11482,42 @@ function makePlayerGangReappear() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getClothesItem)**
 ---
 ---@param player Player
----@param bodypart int
----@return int textureCRC
----@return int modelCRC
+---@param bodypart number
+---@return number textureCRC
+---@return number modelCRC
 function getClothesItem(player, bodypart) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/showUpdateStats)**
 ---
----@param display bool
+---@param display boolean
 function showUpdateStats(display) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCoordBlipAppearance)**
 ---
 ---@param checkpoint Checkpoint
----@param type int
+---@param type number
 function setCoordBlipAppearance(checkpoint, type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHeathazeEffect)**
 ---
----@param enable bool
+---@param enable boolean
 function setHeathazeEffect(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isHelpMessageBeingDisplayed)**
 ---
----@return bool result
+---@return boolean result
 function isHelpMessageBeingDisplayed() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasObjectBeenDamagedByWeapon)**
 ---
 ---@param object Object
----@param type int
----@return bool result
+---@param type number
+---@return boolean result
 function hasObjectBeenDamagedByWeapon(object, type) end
 
 ---
@@ -11362,52 +11530,52 @@ function clearObjectLastWeaponDamage(object) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerJumpButton)**
 ---
 ---@param player Player
----@param enable bool
+---@param enable boolean
 function setPlayerJumpButton(player, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getHudColour)**
 ---
----@param interface int
----@return int r
----@return int g
----@return int b
----@return int a
+---@param interface number
+---@return number r
+---@return number g
+---@return number b
+---@return number a
 function getHudColour(interface) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/lockDoor)**
 ---
----@param door int
----@param lock bool
+---@param door number
+---@param lock boolean
 function lockDoor(door, lock) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectMass)**
 ---
 ---@param object Object
----@param mass float
+---@param mass number
 function setObjectMass(object, mass) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectMass)**
 ---
----@param int int
----@return float mass
-function getObjectMass(int) end
+---@param number number
+---@return number mass
+function getObjectMass(number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectTurnMass)**
 ---
 ---@param object Object
----@param turnMass float
+---@param turnMass number
 function setObjectTurnMass(object, turnMass) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getObjectTurnMass)**
 ---
 ---@param object Object
----@return float turnMass
+---@return number turnMass
 function getObjectTurnMass(object) end
 
 ---
@@ -11424,34 +11592,34 @@ function clearSpecificZonesToTriggerGangWar() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setActiveMenuItem)**
 ---
----@param panel int
----@param activeRow int
+---@param panel number
+---@param activeRow number
 function setActiveMenuItem(panel, activeRow) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/markStreamedScriptAsNoLongerNeeded)**
 ---
----@param externalScript int
+---@param externalScript number
 function markStreamedScriptAsNoLongerNeeded(externalScript) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/removeStreamedScript)**
 ---
----@param externalScript int
+---@param externalScript number
 function removeStreamedScript(externalScript) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMessageFormatting)**
 ---
----@param priority bool
----@param leftmargin int
----@param maxwidth int
+---@param priority boolean
+---@param leftmargin number
+---@param maxwidth number
 function setMessageFormatting(priority, leftmargin, maxwidth) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startNewStreamedScript)**
 ---
----@param externalScript int
+---@param externalScript number
 ---@param args table
 function startNewStreamedScript(externalScript, args) end
 
@@ -11464,37 +11632,37 @@ function setWeatherToAppropriateTypeNow() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/winchCanPickObjectUp)**
 ---
 ---@param object Object
----@param enable bool
+---@param enable boolean
 function winchCanPickObjectUp(object, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchAudioZone)**
 ---
 ---@param zone GxtString
----@param enableSound bool
+---@param enableSound boolean
 function switchAudioZone(zone, enableSound) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarEngineOn)**
 ---
 ---@param car Vehicle
----@param on bool
+---@param on boolean
 function setCarEngineOn(car, on) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarLightsOn)**
 ---
 ---@param car Vehicle
----@param lights bool
+---@param lights boolean
 function setCarLightsOn(car, lights) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getUserOfClosestMapAttractor)**
 ---
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radius float
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radius number
 ---@param modelId Model
 ---@param externalScriptNamed string
 ---@return Ped ped
@@ -11503,65 +11671,65 @@ function getUserOfClosestMapAttractor(sphereX, sphereY, sphereZ, radius, modelId
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchRoadsBackToOriginal)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchRoadsBackToOriginal(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchPedRoadsBackToOriginal)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
 function switchPedRoadsBackToOriginal(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPlaneUndercarriagePosition)**
 ---
----@param plane int
----@return int landingGearStatus
+---@param plane number
+---@return number landingGearStatus
 function getPlaneUndercarriagePosition(plane) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraSetVectorTrack)**
 ---
----@param pointX float
----@param pointY float
----@param pointZ float
----@param transverseX float
----@param transverseY float
----@param transverseZ float
----@param time int
----@param smooth bool
+---@param pointX number
+---@param pointY number
+---@param pointZ number
+---@param transverseX number
+---@param transverseY number
+---@param transverseZ number
+---@param time number
+---@param smooth boolean
 function cameraSetVectorTrack(pointX, pointY, pointZ, transverseX, transverseY, transverseZ, time, smooth) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraSetLerpFov)**
 ---
----@param from float
----@param to float
----@param timelimit int
----@param smoothTransition bool
+---@param from number
+---@param to number
+---@param timelimit number
+---@param smoothTransition boolean
 function cameraSetLerpFov(from, to, timelimit, smoothTransition) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchAmbientPlanes)**
 ---
----@param enable bool
+---@param enable boolean
 function switchAmbientPlanes(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setDarknessEffect)**
 ---
----@param enable bool
----@param value int
+---@param enable boolean
+---@param value number
 function setDarknessEffect(enable, value) end
 
 ---
@@ -11572,97 +11740,97 @@ function cameraResetNewScriptables() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumberOfInstancesOfStreamedScript)**
 ---
----@param externalScript int
----@return int value
+---@param externalScript number
+---@return number value
 function getNumberOfInstancesOfStreamedScript(externalScript) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allocateStreamedScriptToRandomPed)**
 ---
----@param externalScript int
+---@param externalScript number
 ---@param actorModel Model
----@param priority int
+---@param priority number
 function allocateStreamedScriptToRandomPed(externalScript, actorModel, priority) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allocateStreamedScriptToObject)**
 ---
----@param externalScript int
+---@param externalScript number
 ---@param objectModel Model
----@param priority int
----@param radius float
----@param type int
+---@param priority number
+---@param radius number
+---@param type number
 function allocateStreamedScriptToObject(externalScript, objectModel, priority, radius, type) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getGroupMember)**
 ---
----@param group int
----@param member int
----@return int handle
+---@param group number
+---@param member number
+---@return number handle
 function getGroupMember(group, member) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getWaterHeightAtCoords)**
 ---
----@param atX float
----@param atY float
----@param ignoreWaves bool
----@return float height
+---@param atX number
+---@param atY number
+---@param ignoreWaves boolean
+---@return number height
 function getWaterHeightAtCoords(atX, atY, ignoreWaves) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraPersistTrack)**
 ---
----@param lock bool
+---@param lock boolean
 function cameraPersistTrack(lock) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraPersistPos)**
 ---
----@param lock bool
+---@param lock boolean
 function cameraPersistPos(lock) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraPersistFov)**
 ---
----@param lock bool
+---@param lock boolean
 function cameraPersistFov(lock) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraIsVectorMoveRunning)**
 ---
----@return bool result
+---@return boolean result
 function cameraIsVectorMoveRunning() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraIsVectorTrackRunning)**
 ---
----@return bool result
+---@return boolean result
 function cameraIsVectorTrackRunning() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraSetVectorMove)**
 ---
----@param cameraX float
----@param cameraY float
----@param cameraZ float
----@param positionX float
----@param positionY float
----@param positionZ float
----@param time int
----@param smoothTransition bool
+---@param cameraX number
+---@param cameraY number
+---@param cameraZ number
+---@param positionX number
+---@param positionY number
+---@param positionZ number
+---@param time number
+---@param smoothTransition boolean
 function cameraSetVectorMove(cameraX, cameraY, cameraZ, positionX, positionY, positionZ, time, smoothTransition) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawWindow)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerBX number
+---@param cornerBY number
 ---@param gxtString GxtString
----@param style int
+---@param style number
 function drawWindow(cornerAX, cornerAY, cornerBX, cornerBY, gxtString, style) end
 
 ---
@@ -11670,60 +11838,60 @@ function drawWindow(cornerAX, cornerAY, cornerBX, cornerBY, gxtString, style) en
 ---
 ---@param car Vehicle
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotationX float
----@param rotationY float
----@param rotationZ float
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotationX number
+---@param rotationY number
+---@param rotationZ number
 function attachCarToObject(car, object, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGarageResprayFree)**
 ---
 ---@param garage GxtString
----@param free bool
+---@param free boolean
 function setGarageResprayFree(garage, free) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharBulletproofVest)**
 ---
 ---@param ped Ped
----@param enable bool
+---@param enable boolean
 function setCharBulletproofVest(ped, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCinemaCamera)**
 ---
----@param lock bool
+---@param lock boolean
 function setCinemaCamera(lock) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharFireDamageMultiplier)**
 ---
 ---@param ped Ped
----@param multiplier float
+---@param multiplier number
 function setCharFireDamageMultiplier(ped, multiplier) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGroupFollowStatus)**
 ---
----@param group int
----@param status bool
+---@param group number
+---@param status boolean
 function setGroupFollowStatus(group, status) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setSearchlightClipIfColliding)**
 ---
 ---@param searchlight Searchlight
----@param flag bool
+---@param flag boolean
 function setSearchlightClipIfColliding(searchlight, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasPlayerBoughtItem)**
 ---
----@param item int
----@return bool result
+---@param item number
+---@return boolean result
 function hasPlayerBoughtItem(item) end
 
 ---
@@ -11736,38 +11904,38 @@ function setCameraInFrontOfChar(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPlayerMaxArmour)**
 ---
 ---@param player Player
----@return int maxArmour
+---@return number maxArmour
 function getPlayerMaxArmour(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharUsesUpperbodyDamageAnimsOnly)**
 ---
 ---@param ped Ped
----@param uninterupted bool
+---@param uninterupted boolean
 function setCharUsesUpperbodyDamageAnimsOnly(ped, uninterupted) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharSayContext)**
 ---
 ---@param ped Ped
----@param speech int
----@return int spokenPhrase
+---@param speech number
+---@return number spokenPhrase
 function setCharSayContext(ped, speech) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addExplosionVariableShake)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param type int
----@param cameraShake float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param type number
+---@param cameraShake number
 function addExplosionVariableShake(atX, atY, atZ, type, cameraShake) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachMissionAudioToChar)**
 ---
----@param id int
+---@param id number
 ---@param ped Ped
 function attachMissionAudioToChar(id, ped) end
 
@@ -11775,7 +11943,7 @@ function attachMissionAudioToChar(id, ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/updatePickupMoneyPerDay)**
 ---
 ---@param pickup Pickup
----@param cash int
+---@param cash number
 function updatePickupMoneyPerDay(pickup, cash) end
 
 ---
@@ -11789,24 +11957,24 @@ function getNameOfEntryExitCharUsed(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPositionOfEntryExitCharUsed)**
 ---
 ---@param ped Ped
----@return float coordX
----@return float coordY
----@return float coordZ
----@return int number
+---@return number coordX
+---@return number coordY
+---@return number coordZ
+---@return number number
 function getPositionOfEntryExitCharUsed(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharTalking)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharTalking(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/disableCharSpeech)**
 ---
 ---@param ped Ped
----@param disable bool
+---@param disable boolean
 function disableCharSpeech(ped, disable) end
 
 ---
@@ -11818,10 +11986,10 @@ function enableCharSpeech(ped) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpSkip)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param angle float
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param angle number
 function setUpSkip(posX, posY, posZ, angle) end
 
 ---
@@ -11832,13 +12000,13 @@ function clearSkip() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/preloadBeatTrack)**
 ---
----@param soundtrack int
+---@param soundtrack number
 function preloadBeatTrack(soundtrack) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getBeatTrackStatus)**
 ---
----@return int status
+---@return number status
 function getBeatTrackStatus() end
 
 ---
@@ -11854,40 +12022,40 @@ function stopBeatTrack() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findMaxNumberOfGroupMembers)**
 ---
----@return int max
+---@return number max
 function findMaxNumberOfGroupMembers() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/vehicleDoesProvideCover)**
 ---
 ---@param car Vehicle
----@param providesCover bool
+---@param providesCover boolean
 function vehicleDoesProvideCover(car, providesCover) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createSnapshotPickup)**
 ---
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Pickup pickup
 function createSnapshotPickup(atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createHorseshoePickup)**
 ---
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Pickup pickup
 function createHorseshoePickup(atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createOysterPickup)**
 ---
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 ---@return Pickup pickup
 function createOysterPickup(atX, atY, atZ) end
 
@@ -11895,97 +12063,97 @@ function createOysterPickup(atX, atY, atZ) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasObjectBeenUprooted)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function hasObjectBeenUprooted(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addSmokeParticle)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param velocityX float
----@param velocityY float
----@param velocityZ float
----@param r int
----@param g int
----@param b int
----@param a int
----@param size float
----@param factor float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param velocityX number
+---@param velocityY number
+---@param velocityZ number
+---@param r number
+---@param g number
+---@param b number
+---@param a number
+---@param size number
+---@param factor number
 function addSmokeParticle(atX, atY, atZ, velocityX, velocityY, velocityZ, r, g, b, a, size, factor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharStuckUnderCar)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharStuckUnderCar(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/controlCarDoor)**
 ---
 ---@param car Vehicle
----@param door int
----@param unlatch int
----@param angle float
+---@param door number
+---@param unlatch number
+---@param angle number
 function controlCarDoor(car, door, unlatch, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getDoorAngleRatio)**
 ---
 ---@param car Vehicle
----@param door int
----@return float angle
+---@param door number
+---@return number angle
 function getDoorAngleRatio(car, door) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerDisplayVitalStatsButton)**
 ---
 ---@param player Player
----@param display bool
+---@param display boolean
 function setPlayerDisplayVitalStatsButton(player, display) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharKeepTask)**
 ---
 ---@param ped Ped
----@param keepTasks bool
+---@param keepTasks boolean
 function setCharKeepTask(ped, keepTasks) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createMenuGrid)**
 ---
 ---@param gxtString GxtString
----@param positionX int
----@param positionY int
----@param width float
----@param columns int
----@param interactive bool
----@param background bool
----@param alignment int
----@return int id
+---@param positionX number
+---@param positionY number
+---@param width number
+---@param columns number
+---@param interactive boolean
+---@param background boolean
+---@param alignment number
+---@return number id
 function createMenuGrid(gxtString, positionX, positionY, width, columns, interactive, background, alignment) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharSwimming)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharSwimming(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharSwimState)**
 ---
 ---@param ped Ped
----@return int status
+---@return number status
 function getCharSwimState(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startCharFacialTalk)**
 ---
 ---@param ped Ped
----@param time int
+---@param time number
 function startCharFacialTalk(ped, time) end
 
 ---
@@ -11998,13 +12166,13 @@ function stopCharFacialTalk(ped) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isBigVehicle)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isBigVehicle(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchPoliceHelis)**
 ---
----@param enable bool
+---@param enable boolean
 function switchPoliceHelis(enable) end
 
 ---
@@ -12021,7 +12189,7 @@ function restoreCarModState() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentCarMod)**
 ---
 ---@param car Vehicle
----@param slot int
+---@param slot number
 ---@return Model modelId
 function getCurrentCarMod(car, slot) end
 
@@ -12029,14 +12197,14 @@ function getCurrentCarMod(car, slot) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarLowRider)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarLowRider(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarStreetRacer)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isCarStreetRacer(car) end
 
 ---
@@ -12053,16 +12221,16 @@ function syncWater() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharCoordinatesNoOffset)**
 ---
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function setCharCoordinatesNoOffset(ped, atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesScriptFireExist)**
 ---
----@param fire int
----@return bool result
+---@param fire number
+---@return boolean result
 function doesScriptFireExist(fire) end
 
 ---
@@ -12074,7 +12242,7 @@ function resetStuffUponResurrection() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isEmergencyServicesVehicle)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isEmergencyServicesVehicle(car) end
 
 ---
@@ -12087,36 +12255,36 @@ function killFxSystemNow(particle) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectWithinBrainActivationRange)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isObjectWithinBrainActivationRange(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/copySharedCharDecisionMaker)**
 ---
----@param from int
----@return int to
+---@param from number
+---@return number to
 function copySharedCharDecisionMaker(from) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/reportMissionAudioEventAtPosition)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param event int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param event number
 function reportMissionAudioEventAtPosition(atX, atY, atZ, event) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/reportMissionAudioEventAtObject)**
 ---
----@param at int
----@param event int
+---@param at number
+---@param event number
 function reportMissionAudioEventAtObject(at, event) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachMissionAudioToObject)**
 ---
----@param id int
+---@param id number
 ---@param object Object
 function attachMissionAudioToObject(id, object) end
 
@@ -12124,36 +12292,36 @@ function attachMissionAudioToObject(id, object) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getNumCarColours)**
 ---
 ---@param car Vehicle
----@return int colours
+---@return number colours
 function getNumCarColours(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/extinguishFireAtPoint)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param radius number
 function extinguishFireAtPoint(atX, atY, atZ, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasTrainDerailed)**
 ---
 ---@param train Vehicle
----@return bool result
+---@return boolean result
 function hasTrainDerailed(train) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharForceDieInCar)**
 ---
 ---@param ped Ped
----@param stayInCarWhenDead bool
+---@param stayInCarWhenDead boolean
 function setCharForceDieInCar(ped, stayInCarWhenDead) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setOnlyCreateGangMembers)**
 ---
----@param enable bool
+---@param enable boolean
 function setOnlyCreateGangMembers(enable) end
 
 ---
@@ -12166,13 +12334,13 @@ function getObjectModel(object) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharUsesCollisionClosestObjectOfType)**
 ---
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radius float
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radius number
 ---@param modelId Model
----@param solid bool
----@param forActor int
+---@param solid boolean
+---@param forActor number
 function setCharUsesCollisionClosestObjectOfType(sphereX, sphereY, sphereZ, radius, modelId, solid, forActor) end
 
 ---
@@ -12184,62 +12352,62 @@ function clearAllScriptFireFlags() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarBlockingCar)**
 ---
 ---@param car Vehicle
----@return int blockingCar
+---@return number blockingCar
 function getCarBlockingCar(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentVehiclePaintjob)**
 ---
 ---@param car Vehicle
----@return int paintjob
+---@return number paintjob
 function getCurrentVehiclePaintjob(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHelpMessageBoxSize)**
 ---
----@param width int
+---@param width number
 function setHelpMessageBoxSize(width) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setGunshotSenseRangeForRiot2)**
 ---
----@param range float
+---@param range number
 function setGunshotSenseRangeForRiot2(range) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarMovingComponentOffset)**
 ---
 ---@param car Vehicle
----@return float angle
+---@return number angle
 function getCarMovingComponentOffset(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setNamedEntryExitFlag)**
 ---
 ---@param interior GxtString
----@param bitmask int
----@param flag bool
+---@param bitmask number
+---@param flag boolean
 function setNamedEntryExitFlag(interior, bitmask, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/pauseCurrentBeatTrack)**
 ---
----@param paused bool
+---@param paused boolean
 function pauseCurrentBeatTrack(paused) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerWeaponsScrollable)**
 ---
 ---@param player Player
----@param scrollable bool
+---@param scrollable boolean
 function setPlayerWeaponsScrollable(player, scrollable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/markRoadNodeAsDontWander)**
 ---
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function markRoadNodeAsDontWander(atX, atY, atZ) end
 
 ---
@@ -12251,26 +12419,26 @@ function unmarkAllRoadNodesAsDontWander() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCheckpointHeading)**
 ---
 ---@param checkpoint Checkpoint
----@param angle float
+---@param angle number
 function setCheckpointHeading(checkpoint, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMissionRespectTotal)**
 ---
----@param respect int
+---@param respect number
 function setMissionRespectTotal(respect) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/awardPlayerMissionRespect)**
 ---
----@param respect int
+---@param respect number
 function awardPlayerMissionRespect(respect) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCarCollision)**
 ---
 ---@param car Vehicle
----@param collision bool
+---@param collision boolean
 function setCarCollision(car, collision) end
 
 ---
@@ -12282,28 +12450,28 @@ function changePlaybackToUseAi(car) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/cameraSetShakeSimulationSimple)**
 ---
----@param type int
----@param timelimit float
----@param intensity float
+---@param type number
+---@param timelimit number
+---@param intensity number
 function cameraSetShakeSimulationSimple(type, timelimit, intensity) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isNightVisionActive)**
 ---
----@return bool result
+---@return boolean result
 function isNightVisionActive() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCreateRandomCops)**
 ---
----@param enable bool
+---@param enable boolean
 function setCreateRandomCops(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskSetIgnoreWeaponRangeFlag)**
 ---
 ---@param ped Ped
----@param ignore bool
+---@param ignore boolean
 function taskSetIgnoreWeaponRangeFlag(ped, ignore) end
 
 ---
@@ -12311,21 +12479,21 @@ function taskSetIgnoreWeaponRangeFlag(ped, ignore) end
 ---
 ---@param ped Ped
 ---@param object Object
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param bone int
----@param int7 int
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param bone number
+---@param int7 number
 ---@param animation string
 ---@param file string
----@param time int
+---@param time number
 function taskPickUpSecondObject(ped, object, offsetX, offsetY, offsetZ, bone, int7, animation, file, time) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dropSecondObject)**
 ---
 ---@param ped Ped
----@param to bool
+---@param to boolean
 function dropSecondObject(ped, to) end
 
 ---
@@ -12337,7 +12505,7 @@ function removeObjectElegantly(object) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawCrosshair)**
 ---
----@param draw bool
+---@param draw boolean
 function drawCrosshair(draw) end
 
 ---
@@ -12346,185 +12514,185 @@ function drawCrosshair(draw) end
 ---@param question GxtString
 ---@param answerY GxtString
 ---@param answerN GxtString
----@param questionWav int
----@param answerYWav int
----@param answerNWav int
+---@param questionWav number
+---@param answerYWav number
+---@param answerNWav number
 function setUpConversationNodeWithSpeech(question, answerY, answerN, questionWav, answerYWav, answerNWav) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/showBlipsOnAllLevels)**
 ---
----@param enable bool
+---@param enable boolean
 function showBlipsOnAllLevels(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharDruggedUp)**
 ---
 ---@param ped Ped
----@param druggedUp bool
+---@param druggedUp boolean
 function setCharDruggedUp(ped, druggedUp) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharHeadMissing)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharHeadMissing(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getHashKey)**
 ---
 ---@param string string
----@return int CRC32
+---@return number CRC32
 function getHashKey(string) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpConversationEndNodeWithSpeech)**
 ---
 ---@param gxtString GxtString
----@param speech int
+---@param speech number
 function setUpConversationEndNodeWithSpeech(gxtString, speech) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/randomPassengerSay)**
 ---
----@param passengers int
----@param audioTable int
+---@param passengers number
+---@param audioTable number
 function randomPassengerSay(passengers, audioTable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hideAllFrontendBlips)**
 ---
----@param hide bool
+---@param hide boolean
 function hideAllFrontendBlips(hide) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerInCarCameraMode)**
 ---
----@param mode int
+---@param mode number
 function setPlayerInCarCameraMode(mode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharInAnyTrain)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharInAnyTrain(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpSkipAfterMission)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param angle float
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param angle number
 function setUpSkipAfterMission(posX, posY, posZ, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleIsConsideredByPlayer)**
 ---
 ---@param car Vehicle
----@param accessible bool
+---@param accessible boolean
 function setVehicleIsConsideredByPlayer(car, accessible) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCarModelInMemory)**
 ---
----@param unk bool
+---@param unk boolean
 ---@return Model modelId
----@return int class
+---@return number class
 function getRandomCarModelInMemory(unk) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarDoorLockStatus)**
 ---
 ---@param car Vehicle
----@return int doorStatus
+---@return number doorStatus
 function getCarDoorLockStatus(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setClosestEntryExitFlag)**
 ---
----@param atX float
----@param atY float
----@param radius float
----@param bitmask int
----@param flag bool
+---@param atX number
+---@param atY number
+---@param radius number
+---@param bitmask number
+---@param flag boolean
 function setClosestEntryExitFlag(atX, atY, radius, bitmask, flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharSignalAfterKill)**
 ---
 ---@param ped Ped
----@param signal bool
+---@param signal boolean
 function setCharSignalAfterKill(ped, signal) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharWantedByPolice)**
 ---
 ---@param ped Ped
----@param wanted bool
+---@param wanted boolean
 function setCharWantedByPolice(ped, wanted) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setZoneNoCops)**
 ---
 ---@param zone GxtString
----@param disableCops bool
+---@param disableCops boolean
 function setZoneNoCops(zone, disableCops) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addBlood)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param density int
----@param onActor int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param density number
+---@param onActor number
 function addBlood(atX, atY, atZ, offsetX, offsetY, offsetZ, density, onActor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayCarNames)**
 ---
----@param show bool
+---@param show boolean
 function displayCarNames(show) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayZoneNames)**
 ---
----@param show bool
+---@param show boolean
 function displayZoneNames(show) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCarDoorDamaged)**
 ---
 ---@param car Vehicle
----@param door int
----@return bool result
+---@param door number
+---@return boolean result
 function isCarDoorDamaged(car, door) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharCoordinatesDontWarpGangNoOffset)**
 ---
 ---@param ped Ped
----@param atX float
----@param atY float
----@param atZ float
+---@param atX number
+---@param atY number
+---@param atZ number
 function setCharCoordinatesDontWarpGangNoOffset(ped, atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMinigameInProgress)**
 ---
----@param enable bool
+---@param enable boolean
 function setMinigameInProgress(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isMinigameInProgress)**
 ---
----@return bool result
+---@return boolean result
 function isMinigameInProgress() end
 
 ---
@@ -12536,19 +12704,19 @@ function setForceRandomCarModel(modelId) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCarOfTypeInAngledAreaNoSave)**
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
----@param angle float
----@param int6 int
+---@param x1 number
+---@param y1 number
+---@param x2 number
+---@param y2 number
+---@param angle number
+---@param int6 number
 ---@return Vehicle car
 function getRandomCarOfTypeInAngledAreaNoSave(x1, y1, x2, y2, angle, int6) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/addNextMessageToPreviousBriefs)**
 ---
----@param int1 bool
+---@param int1 boolean
 function addNextMessageToPreviousBriefs(int1) end
 
 ---
@@ -12559,27 +12727,27 @@ function failKillFrenzy() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCopVehicleInArea3dNoSave)**
 ---
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@return bool result
+---@param cornerAX number
+---@param cornerAY number
+---@param cornerAZ number
+---@param cornerBX number
+---@param cornerBY number
+---@param cornerBZ number
+---@return boolean result
 function isCopVehicleInArea3dNoSave(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPetrolTankWeakpoint)**
 ---
 ---@param car Vehicle
----@param enabled bool
+---@param enabled boolean
 function setPetrolTankWeakpoint(car, enabled) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharUsingMapAttractor)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharUsingMapAttractor(ped) end
 
 ---
@@ -12592,7 +12760,7 @@ function setPlayerModel(player, modelId) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/areSubtitlesSwitchedOn)**
 ---
----@return bool result
+---@return boolean result
 function areSubtitlesSwitchedOn() end
 
 ---
@@ -12606,11 +12774,11 @@ function removeCharFromCarMaintainPosition(ped, car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setObjectProofs)**
 ---
 ---@param object Object
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+---@param BP boolean
+---@param FP boolean
+---@param EP boolean
+---@param CP boolean
+---@param MP boolean
 function setObjectProofs(object, BP, FP, EP, CP, MP) end
 
 ---
@@ -12618,7 +12786,7 @@ function setObjectProofs(object, BP, FP, EP, CP, MP) end
 ---
 ---@param car1 Vehicle
 ---@param car2 Vehicle
----@return bool result
+---@return boolean result
 function isCarTouchingCar(car1, car2) end
 
 ---
@@ -12626,34 +12794,34 @@ function isCarTouchingCar(car1, car2) end
 ---
 ---@param object Object
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function doesObjectHaveThisModel(object, modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setTrainForcedToSlowDown)**
 ---
 ---@param train Vehicle
----@param forced bool
+---@param forced boolean
 function setTrainForcedToSlowDown(train, forced) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isVehicleOnAllWheels)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function isVehicleOnAllWheels(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesPickupExist)**
 ---
 ---@param pickup Pickup
----@return bool result
+---@return boolean result
 function doesPickupExist(pickup) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/enableAmbientCrime)**
 ---
----@param enable bool
+---@param enable boolean
 function enableAmbientCrime(enable) end
 
 ---
@@ -12665,28 +12833,28 @@ function clearWantedLevelInGarage() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharSayContextImportant)**
 ---
 ---@param ped Ped
----@param soundslot int
----@param flags1 bool
----@param flags2 bool
----@param flags3 bool
----@return int unk
+---@param soundslot number
+---@param flags1 boolean
+---@param flags2 boolean
+---@param flags3 boolean
+---@return number unk
 function setCharSayContextImportant(ped, soundslot, flags1, flags2, flags3) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharSayScript)**
 ---
 ---@param ped Ped
----@param sound int
----@param flags1 bool
----@param flags2 bool
----@param flags3 bool
+---@param sound number
+---@param flags1 boolean
+---@param flags2 boolean
+---@param flags3 boolean
 function setCharSayScript(ped, sound, flags1, flags2, flags3) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/forceInteriorLightingForPlayer)**
 ---
 ---@param player Player
----@param force bool
+---@param force boolean
 function forceInteriorLightingForPlayer(player, force) end
 
 ---
@@ -12697,40 +12865,40 @@ function useDetonator() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isMoneyPickupAtCoords)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@return bool result
+---@param atX number
+---@param atY number
+---@param atZ number
+---@return boolean result
 function isMoneyPickupAtCoords(atX, atY, atZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setMenuColumnWidth)**
 ---
----@param panel int
----@param column int
----@param width int
+---@param panel number
+---@param column number
+---@param width number
 function setMenuColumnWidth(panel, column, width) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/makeRoomInPlayerGangForMissionPeds)**
 ---
----@param group int
+---@param group number
 function makeRoomInPlayerGangForMissionPeds(group) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharGettingInToACar)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharGettingInToACar(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpSkipForSpecificVehicle)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param angle float
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param angle number
 ---@param car Vehicle
 function setUpSkipForSpecificVehicle(posX, posY, posZ, angle, car) end
 
@@ -12738,71 +12906,86 @@ function setUpSkipForSpecificVehicle(posX, posY, posZ, angle, car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCarModelValue)**
 ---
 ---@param modelId Model
----@return int price
+---@return number price
 function getCarModelValue(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createCarGeneratorWithPlate)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param angle float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param angle number
 ---@param modelId Model
----@param color1 int
----@param color2 int
----@param forceSpawn bool
----@param alarm int
----@param doorLock int
----@param minDelay int
----@param maxDelay int
+---@param color1 number
+---@param color2 number
+---@param forceSpawn boolean
+---@param alarm number
+---@param doorLock number
+---@param minDelay number
+---@param maxDelay number
 ---@param plate string
----@return int generator
-function createCarGeneratorWithPlate(atX, atY, atZ, angle, modelId, color1, color2, forceSpawn, alarm, doorLock, minDelay, maxDelay, plate) end
+---@return number generator
+function createCarGeneratorWithPlate(
+	atX,
+	atY,
+	atZ,
+	angle,
+	modelId,
+	color1,
+	color2,
+	forceSpawn,
+	alarm,
+	doorLock,
+	minDelay,
+	maxDelay,
+	plate
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/findTrainDirection)**
 ---
 ---@param train Vehicle
----@return bool result
+---@return boolean result
 function findTrainDirection(train) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAircraftCarrierSamSite)**
 ---
----@param enable bool
+---@param enable boolean
 function setAircraftCarrierSamSite(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawLightWithRange)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param r int
----@param g int
----@param b int
----@param radius float
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param r number
+---@param g number
+---@param b number
+---@param radius number
 function drawLightWithRange(atX, atY, atZ, r, g, b, radius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/enableBurglaryHouses)**
 ---
----@param enable bool
+---@param enable boolean
 function enableBurglaryHouses(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerControlOn)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerControlOn(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCharActiveInterior)**
 ---
 ---@param ped Ped
----@return int interior
+---@return number interior
 function getCharActiveInterior(ped) end
 
 ---
@@ -12815,13 +12998,13 @@ function giveNonPlayerCarNitro(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/playerTakeOffGoggles)**
 ---
 ---@param player Player
----@param useAnim bool
+---@param useAnim boolean
 function playerTakeOffGoggles(player, useAnim) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allowFixedCameraCollision)**
 ---
----@param allow bool
+---@param allow boolean
 function allowFixedCameraCollision(allow) end
 
 ---
@@ -12829,22 +13012,22 @@ function allowFixedCameraCollision(allow) end
 ---
 ---@param ped Ped
 ---@param ped2 Ped
----@return bool result
+---@return boolean result
 function hasCharSpottedCharInFront(ped, ped2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/forceBigMessageAndCounter)**
 ---
----@param stayOnScreen bool
+---@param stayOnScreen boolean
 function forceBigMessageAndCounter(stayOnScreen) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setVehicleCameraTweak)**
 ---
 ---@param carModel Model
----@param distance float
----@param altitudeMultiplier float
----@param angleX float
+---@param distance number
+---@param altitudeMultiplier number
+---@param angleX number
 function setVehicleCameraTweak(carModel, distance, altitudeMultiplier, angleX) end
 
 ---
@@ -12856,41 +13039,41 @@ function resetVehicleCameraTweak() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/reportMissionAudioEventAtChar)**
 ---
 ---@param ped Ped
----@param event int
+---@param event number
 function reportMissionAudioEventAtChar(ped, event) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/doesDecisionMakerExist)**
 ---
----@param maker int
----@return bool result
+---@param maker number
+---@return boolean result
 function doesDecisionMakerExist(maker) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/ignoreHeightDifferenceFollowingNodes)**
 ---
 ---@param ped Ped
----@param ignore bool
+---@param ignore boolean
 function ignoreHeightDifferenceFollowingNodes(ped, ignore) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shutAllCharsUp)**
 ---
----@param enable bool
+---@param enable boolean
 function shutAllCharsUp(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharGetOutUpsideDownCar)**
 ---
 ---@param ped Ped
----@param canGetOut bool
+---@param canGetOut boolean
 function setCharGetOutUpsideDownCar(ped, canGetOut) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/reportMissionAudioEventAtCar)**
 ---
 ---@param car Vehicle
----@param event int
+---@param event number
 function reportMissionAudioEventAtCar(car, event) end
 
 ---
@@ -12901,27 +13084,27 @@ function doWeaponStuffAtStartOf2pGame() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasGameJustReturnedFromFrontend)**
 ---
----@return bool result
+---@return boolean result
 function hasGameJustReturnedFromFrontend() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCurrentLanguage)**
 ---
----@return int language
+---@return number language
 function getCurrentLanguage() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isObjectIntersectingWorld)**
 ---
 ---@param object Object
----@return bool result
+---@return boolean result
 function isObjectIntersectingWorld(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getStringWidth)**
 ---
 ---@param gxtString GxtString
----@return int width
+---@return number width
 function getStringWidth(gxtString) end
 
 ---
@@ -12933,36 +13116,36 @@ function resetVehicleHydraulics(car) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setRespawnPointForDurationOfMission)**
 ---
----@param posX float
----@param posY float
----@param posZ float
+---@param posX number
+---@param posY number
+---@param posZ number
 function setRespawnPointForDurationOfMission(posX, posY, posZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isThisModelACar)**
 ---
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isThisModelACar(modelId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchOnGroundSearchlight)**
 ---
 ---@param searchlight Searchlight
----@param lightsThroughObstacles bool
+---@param lightsThroughObstacles boolean
 function switchOnGroundSearchlight(searchlight, lightsThroughObstacles) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isGangWarFightingGoingOn)**
 ---
----@return bool result
+---@return boolean result
 function isGangWarFightingGoingOn() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isNextStationAllowed)**
 ---
 ---@param train Vehicle
----@return bool result
+---@return boolean result
 function isNextStationAllowed(train) end
 
 ---
@@ -12975,73 +13158,73 @@ function skipToNextAllowedStation(train) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getStringWidthWithNumber)**
 ---
 ---@param gxtString GxtString
----@param number int
----@return int width
+---@param number number
+---@return number width
 function getStringWidthWithNumber(gxtString, number) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/shutCharUpForScriptedSpeech)**
 ---
 ---@param ped Ped
----@param muted bool
+---@param muted boolean
 function shutCharUpForScriptedSpeech(ped, muted) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/enableDisabledAttractorsOnObject)**
 ---
 ---@param object Object
----@param enable bool
+---@param enable boolean
 function enableDisabledAttractorsOnObject(object, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/loadSceneInDirection)**
 ---
----@param coordX float
----@param coordY float
----@param coordZ float
----@param angle float
+---@param coordX number
+---@param coordY number
+---@param coordZ number
+---@param angle number
 function loadSceneInDirection(coordX, coordY, coordZ, angle) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerUsingJetpack)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerUsingJetpack(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/clearThisPrintBigNow)**
 ---
----@param style int
+---@param style number
 function clearThisPrintBigNow(style) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasLanguageChanged)**
 ---
----@return bool result
+---@return boolean result
 function hasLanguageChanged() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/incrementIntStatNoMessage)**
 ---
----@param stat int
----@param value int
+---@param stat number
+---@param value number
 function incrementIntStatNoMessage(stat, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setExtraCarColours)**
 ---
 ---@param car Vehicle
----@param tertiaryColor int
----@param quaternaryColor int
+---@param tertiaryColor number
+---@param quaternaryColor number
 function setExtraCarColours(car, tertiaryColor, quaternaryColor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getExtraCarColours)**
 ---
 ---@param car Vehicle
----@return int tertiaryColor
----@return int quaternaryColor
+---@return number tertiaryColor
+---@return number quaternaryColor
 function getExtraCarColours(car) end
 
 ---
@@ -13052,28 +13235,28 @@ function manageAllPopulation() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setNoResprays)**
 ---
----@param enable bool
+---@param enable boolean
 function setNoResprays(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/hasCarBeenResprayed)**
 ---
 ---@param car Vehicle
----@return bool result
+---@return boolean result
 function hasCarBeenResprayed(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/attachMissionAudioToCar)**
 ---
----@param audioId int
+---@param audioId number
 ---@param car Vehicle
 function attachMissionAudioToCar(audioId, car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setHasBeenOwnedForCarGenerator)**
 ---
----@param generator int
----@param owned bool
+---@param generator number
+---@param owned boolean
 function setHasBeenOwnedForCarGenerator(generator, owned) end
 
 ---
@@ -13082,10 +13265,18 @@ function setHasBeenOwnedForCarGenerator(generator, owned) end
 ---@param questionGXT GxtString
 ---@param answerYesGXT GxtString
 ---@param answerNoGXT GxtString
----@param questionWAV int
----@param answerYesWAV int
----@param answerNoWAV int
-function setUpConversationNodeWithScriptedSpeech(questionGXT, answerYesGXT, answerNoGXT, questionWAV, answerYesWAV, answerNoWAV) end
+---@param questionWAV number
+---@param answerYesWAV number
+---@param answerNoWAV number
+function setUpConversationNodeWithScriptedSpeech(
+	questionGXT,
+	answerYesGXT,
+	answerNoGXT,
+	questionWAV,
+	answerYesWAV,
+	answerNoWAV
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setAreaName)**
@@ -13099,12 +13290,12 @@ function setAreaName(gxtString) end
 ---@param ped Ped
 ---@param animation string
 ---@param IFP string
----@param framedelta float
----@param loopA bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
+---@param framedelta number
+---@param loopA boolean
+---@param lockX boolean
+---@param lockY boolean
+---@param lockF boolean
+---@param time number
 function taskPlayAnimSecondary(ped, animation, IFP, framedelta, loopA, lockX, lockY, lockF, time) end
 
 ---
@@ -13112,14 +13303,14 @@ function taskPlayAnimSecondary(ped, animation, IFP, framedelta, loopA, lockX, lo
 ---
 ---@param ped Ped
 ---@param ped2 Ped
----@return bool result
+---@return boolean result
 function isCharTouchingChar(ped, ped2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/disableHeliAudio)**
 ---
 ---@param helicopter Vehicle
----@param disable bool
+---@param disable boolean
 function disableHeliAudio(helicopter, disable) end
 
 ---
@@ -13132,58 +13323,58 @@ function taskHandGesture(ped, ped2) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/takePhoto)**
 ---
----@param unk bool
+---@param unk boolean
 function takePhoto(unk) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/incrementFloatStatNoMessage)**
 ---
----@param stat int
----@param value float
+---@param stat number
+---@param value number
 function incrementFloatStatNoMessage(stat, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerGroupToFollowAlways)**
 ---
 ---@param player Player
----@param followAlways bool
+---@param followAlways boolean
 function setPlayerGroupToFollowAlways(player, followAlways) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/improveCarByCheating)**
 ---
 ---@param car Vehicle
----@param affectedByCheats bool
+---@param affectedByCheats boolean
 function improveCarByCheating(car, affectedByCheats) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/changeCarColourFromMenu)**
 ---
----@param panelID int
+---@param panelID number
 ---@param car Vehicle
----@param colorslot int
----@param activeRow int
+---@param colorslot number
+---@param activeRow number
 function changeCarColourFromMenu(panelID, car, colorslot, activeRow) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/highlightMenuItem)**
 ---
----@param panel int
----@param row int
----@param highlight bool
+---@param panel number
+---@param row number
+---@param highlight boolean
 function highlightMenuItem(panel, row, highlight) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setDisableMilitaryZones)**
 ---
----@param disable bool
+---@param disable boolean
 function setDisableMilitaryZones(disable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCameraPositionUnfixed)**
 ---
----@param xAngle float
----@param zAngle float
+---@param xAngle number
+---@param zAngle number
 function setCameraPositionUnfixed(xAngle, zAngle) end
 
 ---
@@ -13195,64 +13386,64 @@ function setRadioToPlayersFavouriteStation() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setDeathWeaponsPersist)**
 ---
 ---@param ped Ped
----@param persist bool
+---@param persist boolean
 function setDeathWeaponsPersist(ped, persist) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCharSwimSpeed)**
 ---
 ---@param ped Ped
----@param speed float
+---@param speed number
 function setCharSwimSpeed(ped, speed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPlayerClimbing)**
 ---
 ---@param player Player
----@return bool result
+---@return boolean result
 function isPlayerClimbing(player) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isThisHelpMessageBeingDisplayed)**
 ---
 ---@param gxtString GxtString
----@return bool result
+---@return boolean result
 function isThisHelpMessageBeingDisplayed(gxtString) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isWidescreenOnInOptions)**
 ---
----@return bool result
+---@return boolean result
 function isWidescreenOnInOptions() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawSubtitlesBeforeFade)**
 ---
----@param flag bool
+---@param flag boolean
 function drawSubtitlesBeforeFade(flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/drawOddjobTitleBeforeFade)**
 ---
----@param flag bool
+---@param flag boolean
 function drawOddjobTitleBeforeFade(flag) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/taskFollowPathNodesToCoordWithRadius)**
 ---
 ---@param ped Ped
----@param toX float
----@param toY float
----@param toZ float
----@param mode int
----@param time int
----@param stopRadius float
+---@param toX number
+---@param toY number
+---@param toZ number
+---@param mode number
+---@param time number
+---@param stopRadius number
 function taskFollowPathNodesToCoordWithRadius(ped, toX, toY, toZ, mode, time, stopRadius) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPhotoCameraEffect)**
 ---
----@param firstPersonView bool
+---@param firstPersonView boolean
 function setPhotoCameraEffect(firstPersonView) end
 
 ---
@@ -13265,14 +13456,14 @@ function fixCar(car) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setPlayerGroupToFollowNever)**
 ---
 ---@param player Player
----@param neverFollow bool
+---@param neverFollow boolean
 function setPlayerGroupToFollowNever(player, neverFollow) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isCharAttachedToAnyCar)**
 ---
 ---@param ped Ped
----@return bool result
+---@return boolean result
 function isCharAttachedToAnyCar(ped) end
 
 ---
@@ -13285,29 +13476,29 @@ function storeCarCharIsAttachedToNoSave(car) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpSkipForVehicleFinishedByScript)**
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param angle float
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param angle number
 ---@param car Vehicle
 function setUpSkipForVehicleFinishedByScript(posX, posY, posZ, angle, car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSkipWaitingForScriptToFadeIn)**
 ---
----@return bool result
+---@return boolean result
 function isSkipWaitingForScriptToFadeIn() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/forceAllVehicleLightsOff)**
 ---
----@param off bool
+---@param off boolean
 function forceAllVehicleLightsOff(off) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPlayerInCarCameraMode)**
 ---
----@return int mode
+---@return number mode
 function getPlayerInCarCameraMode() end
 
 ---
@@ -13315,7 +13506,7 @@ function getPlayerInCarCameraMode() end
 ---
 ---@param player Player
 ---@param modelId Model
----@return bool result
+---@return boolean result
 function isLastBuildingModelShotByPlayer(player, modelId) end
 
 ---
@@ -13328,40 +13519,40 @@ function clearLastBuildingModelShotByPlayer(player) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setUpConversationEndNodeWithScriptedSpeech)**
 ---
 ---@param dialogueGxt GxtString
----@param wav int
+---@param wav number
 function setUpConversationEndNodeWithScriptedSpeech(dialogueGxt, wav) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/activatePimpCheat)**
 ---
----@param enable bool
+---@param enable boolean
 function activatePimpCheat(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getRandomCharInAreaOffsetNoSave)**
 ---
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
+---@param sphereX number
+---@param sphereY number
+---@param sphereZ number
+---@param radiusX number
+---@param radiusY number
+---@param radiusZ number
 ---@return Ped ped
 function getRandomCharInAreaOffsetNoSave(sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setScriptCoopGame)**
 ---
----@param enable bool
+---@param enable boolean
 function setScriptCoopGame(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createUser3dMarker)**
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param color int
+---@param atX number
+---@param atY number
+---@param atZ number
+---@param color number
 ---@return Marker marker
 function createUser3dMarker(atX, atY, atZ, color) end
 
@@ -13379,20 +13570,20 @@ function getRidOfPlayerProstitute() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/displayNonMinigameHelpMessages)**
 ---
----@param display bool
+---@param display boolean
 function displayNonMinigameHelpMessages(display) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setRailtrackResistanceMult)**
 ---
----@param tracksFriction float
+---@param tracksFriction number
 function setRailtrackResistanceMult(tracksFriction) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/switchObjectBrains)**
 ---
----@param externalScript int
----@param canBeStreamedIn bool
+---@param externalScript number
+---@param canBeStreamedIn boolean
 function switchObjectBrains(externalScript, canBeStreamedIn) end
 
 ---
@@ -13403,40 +13594,40 @@ function finishSettingUpConversationNoSubtitles() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/allowPauseInWidescreen)**
 ---
----@param enable bool
+---@param enable boolean
 function allowPauseInWidescreen(enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPcMouseMovement)**
 ---
----@return float x
----@return float y
+---@return number x
+---@return number y
 function getPcMouseMovement() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isPcUsingJoypad)**
 ---
----@return bool result
+---@return boolean result
 function isPcUsingJoypad() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isMouseUsingVerticalInversion)**
 ---
----@return bool result
+---@return boolean result
 function isMouseUsingVerticalInversion() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/startNewCustomScript)**
 ---
----@param filepath zstring
+---@param filepath string
 ---@param args table
----@return bool result
+---@return boolean result
 function startNewCustomScript(filepath, args) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/launchCustomMission)**
 ---
----@param filepath zstring
+---@param filepath string
 ---@param args table
 function launchCustomMission(filepath, args) end
 
@@ -13444,21 +13635,21 @@ function launchCustomMission(filepath, args) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getScmThreadStructNamed)**
 ---
 ---@param thread GxtString
----@return int handle
+---@return number handle
 function getScmThreadStructNamed(thread) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setCleoSharedVar)**
 ---
----@param var int
----@param value int
+---@param var number
+---@param value number
 function setCleoSharedVar(var, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCleoSharedVar)**
 ---
----@param var int
----@return int value
+---@param var number
+---@return number value
 function getCleoSharedVar(var) end
 
 ---
@@ -13467,211 +13658,211 @@ function getCleoSharedVar(var) end
 function sampSpawnPlayer() end
 
 ---
---- Возвращает адрес samp.dll  
---- То же самое, что и `getModuleHandle("samp.dll")`  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ Р°РґСЂРµСЃ samp.dll
+--- РўРѕ Р¶Рµ СЃР°РјРѕРµ, С‡С‚Рѕ Рё `getModuleHandle("samp.dll")`
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetBase)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetBase)**
 ---
----@return uint handle адрес
+---@return number handle Р°РґСЂРµСЃ
 function sampGetBase() end
 
---- 
---- Добавляет в окно чата SA:MP сообщение заданного цвета  
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampAddChatMessage)**  
+--- Р”РѕР±Р°РІР»СЏРµС‚ РІ РѕРєРЅРѕ С‡Р°С‚Р° SA:MP СЃРѕРѕР±С‰РµРЅРёРµ Р·Р°РґР°РЅРЅРѕРіРѕ С†РІРµС‚Р°
 ---
----@param text zstring текст сообщения
----@param color uint цвет
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampAddChatMessage)**
+---
+---@param text string С‚РµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ
+---@param color number С†РІРµС‚
 function sampAddChatMessage(text, color) end
 
 ---
---- Отправляет на сервер текстовое сообщение или команду, если сообщение начинается с символа '/'  
+--- РћС‚РїСЂР°РІР»СЏРµС‚ РЅР° СЃРµСЂРІРµСЂ С‚РµРєСЃС‚РѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РёР»Рё РєРѕРјР°РЅРґСѓ, РµСЃР»Рё СЃРѕРѕР±С‰РµРЅРёРµ РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ СЃРёРјРІРѕР»Р° '/'
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendChat)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendChat)**
 ---
----@param text zstring текст сообщения
+---@param text string С‚РµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ
 function sampSendChat(text) end
 
 ---
---- Проверяет инициализацию структур SA:MP  
---- Если функция вернула `false`, то использование любых функций, начинающихся на `samp` вызовет ошибку  
+--- РџСЂРѕРІРµСЂСЏРµС‚ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ СЃС‚СЂСѓРєС‚СѓСЂ SA:MP
+--- Р•СЃР»Рё С„СѓРЅРєС†РёСЏ РІРµСЂРЅСѓР»Р° `false`, С‚Рѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Р»СЋР±С‹С… С„СѓРЅРєС†РёР№, РЅР°С‡РёРЅР°СЋС‰РёС…СЃСЏ РЅР° `samp` РІС‹Р·РѕРІРµС‚ РѕС€РёР±РєСѓ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSampAvailable)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSampAvailable)**
 ---
----@return bool result статус
+---@return boolean result СЃС‚Р°С‚СѓСЃ
 function isSampAvailable() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampRequestClass)**
 ---
----@param class int
+---@param class number
 function sampRequestClass(class) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendScmEvent)**
 ---
----@param event int
----@param id int
----@param param1 int
----@param param2 int
+---@param event number
+---@param id number
+---@param param1 number
+---@param param2 number
 function sampSendScmEvent(event, id, param1, param2) end
 
 ---
---- Устанавливает специальное действие локальному игроку  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЃРїРµС†РёР°Р»СЊРЅРѕРµ РґРµР№СЃС‚РІРёРµ Р»РѕРєР°Р»СЊРЅРѕРјСѓ РёРіСЂРѕРєСѓ
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetSpecialAction)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetSpecialAction)**
 ---
----@param action int Специальное действие. Подробнее см. [здесь](https://sampwiki.blast.hk/wiki/SpecialActions)
+---@param action number РЎРїРµС†РёР°Р»СЊРЅРѕРµ РґРµР№СЃС‚РІРёРµ. РџРѕРґСЂРѕР±РЅРµРµ СЃРј. [Р·РґРµСЃСЊ](https://sampwiki.blast.hk/wiki/SpecialActions)
 function sampSetSpecialAction(action) end
 
 ---
---- Убивает игрока.  
+--- РЈР±РёРІР°РµС‚ РёРіСЂРѕРєР°.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendDeathByPlayer)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendDeathByPlayer)**
 ---
----@param playerId int ID игрока
----@param reason int причина смерти
+---@param playerId number ID РёРіСЂРѕРєР°
+---@param reason number РїСЂРёС‡РёРЅР° СЃРјРµСЂС‚Рё
 function sampSendDeathByPlayer(playerId, reason) end
 
 ---
---- Получает хендл т/с по его иду. Если автомобиля нет в зоне стрима, то возвращает false.  
+--- РџРѕР»СѓС‡Р°РµС‚ С…РµРЅРґР» С‚/СЃ РїРѕ РµРіРѕ РёРґСѓ. Р•СЃР»Рё Р°РІС‚РѕРјРѕР±РёР»СЏ РЅРµС‚ РІ Р·РѕРЅРµ СЃС‚СЂРёРјР°, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµС‚ false.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCarHandleBySampVehicleId)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCarHandleBySampVehicleId)**
 ---
----@param id int ID т/c
----@return bool result результат
----@return Vehicle car хендл т/c
+---@param id number ID С‚/c
+---@return boolean result СЂРµР·СѓР»СЊС‚Р°С‚
+---@return Vehicle car С…РµРЅРґР» С‚/c
 function sampGetCarHandleBySampVehicleId(id) end
 
 ---
---- Получает хендл игрока по его иду.
+--- РџРѕР»СѓС‡Р°РµС‚ С…РµРЅРґР» РёРіСЂРѕРєР° РїРѕ РµРіРѕ РёРґСѓ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCharHandleBySampPlayerId)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCharHandleBySampPlayerId)**
 ---
----@param id int ID игрока
----@return bool result результат
----@return Ped ped хендл игрока
+---@param id number ID РёРіСЂРѕРєР°
+---@return boolean result СЂРµР·СѓР»СЊС‚Р°С‚
+---@return Ped ped С…РµРЅРґР» РёРіСЂРѕРєР°
 function sampGetCharHandleBySampPlayerId(id) end
 
 ---
---- Проверяет открыт ли инпут чата.
+--- РџСЂРѕРІРµСЂСЏРµС‚ РѕС‚РєСЂС‹С‚ Р»Рё РёРЅРїСѓС‚ С‡Р°С‚Р°.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsChatInputActive)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsChatInputActive)**
 ---
----@return bool result результат проверки
+---@return boolean result СЂРµР·СѓР»СЊС‚Р°С‚ РїСЂРѕРІРµСЂРєРё
 function sampIsChatInputActive() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetSendrate)**
 ---
----@param type int
----@param rate int
+---@param type number
+---@param rate number
 function sampSetSendrate(type, rate) end
 
 ---
---- Проверяет подключен ли игрок к серверу.
+--- РџСЂРѕРІРµСЂСЏРµС‚ РїРѕРґРєР»СЋС‡РµРЅ Р»Рё РёРіСЂРѕРє Рє СЃРµСЂРІРµСЂСѓ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsPlayerConnected)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsPlayerConnected)**
 ---
----@param id int ID игрока
----@return bool result результат выполнения
+---@param id number ID РёРіСЂРѕРєР°
+---@return boolean result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 function sampIsPlayerConnected(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerStructPtr)**
 ---
----@param id int
----@return uint structPtr
+---@param id number
+---@return number structPtr
 function sampGetPlayerStructPtr(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerHealth)**
 ---
----@param id int
----@return int health
+---@param id number
+---@return number health
 function sampGetPlayerHealth(id) end
 
 ---
---- Получает уровень здоровья игрока.
+--- РџРѕР»СѓС‡Р°РµС‚ СѓСЂРѕРІРµРЅСЊ Р·РґРѕСЂРѕРІСЊСЏ РёРіСЂРѕРєР°.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerArmor)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerArmor)**
 ---
----@param id int ИД игрока.
----@return int armor Уровень здоровья.
+---@param id number РР” РёРіСЂРѕРєР°.
+---@return number armor РЈСЂРѕРІРµРЅСЊ Р·РґРѕСЂРѕРІСЊСЏ.
 function sampGetPlayerArmor(id) end
 
 ---@alias GameState
----| 0 # GAMESTATE_NONE (ничего)
----| 1 # GAMESTATE_WAIT_CONNECT (установка соедения с сервером)
----| 2 # GAMESTATE_AWAIT_JOIN (соеденение установление, подключение)
----| 3 # GAMESTATE_CONNECTED (подключёно к серверу)
----| 4 # GAMESTATE_RESTARTING (сервер перезагружается)
----| 5 # GAMESTATE_DISCONNECTED (сервер закрыл соеденение)
+---| 0 # GAMESTATE_NONE (РЅРёС‡РµРіРѕ)
+---| 1 # GAMESTATE_WAIT_CONNECT (СѓСЃС‚Р°РЅРѕРІРєР° СЃРѕРµРґРµРЅРёСЏ СЃ СЃРµСЂРІРµСЂРѕРј)
+---| 2 # GAMESTATE_AWAIT_JOIN (СЃРѕРµРґРµРЅРµРЅРёРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ, РїРѕРґРєР»СЋС‡РµРЅРёРµ)
+---| 3 # GAMESTATE_CONNECTED (РїРѕРґРєР»СЋС‡С‘РЅРѕ Рє СЃРµСЂРІРµСЂСѓ)
+---| 4 # GAMESTATE_RESTARTING (СЃРµСЂРІРµСЂ РїРµСЂРµР·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ)
+---| 5 # GAMESTATE_DISCONNECTED (СЃРµСЂРІРµСЂ Р·Р°РєСЂС‹Р» СЃРѕРµРґРµРЅРµРЅРёРµ)
 
 ---
---- Устанавливает статус подключения к серверу.  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЃС‚Р°С‚СѓСЃ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє СЃРµСЂРІРµСЂСѓ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetGamestate)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetGamestate)**
 ---
----@param gamestate GameState статус
+---@param gamestate GameState СЃС‚Р°С‚СѓСЃ
 function sampSetGamestate(gamestate) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampDisconnectWithReason)**
 ---
----@param timeout bool
+---@param timeout boolean
 function sampDisconnectWithReason(timeout) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetLocalPlayerName)**
 ---
----@param name zstring
+---@param name string
 function sampSetLocalPlayerName(name) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerPing)**
 ---
----@param id int
----@return int ping
+---@param id number
+---@return number ping
 function sampGetPlayerPing(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerIdByCharHandle)**
 ---
 ---@param ped Ped
----@return bool result
----@return int id
+---@return boolean result
+---@return number id
 function sampGetPlayerIdByCharHandle(ped) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetVehicleIdByCarHandle)**
 ---
 ---@param car Vehicle
----@return bool result
----@return int id
+---@return boolean result
+---@return number id
 function sampGetVehicleIdByCarHandle(car) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetStreamedOutPlayerPos)**
 ---
----@param id int
----@return bool result
----@return float posX
----@return float posY
----@return float posZ
+---@param id number
+---@return boolean result
+---@return number posX
+---@return number posY
+---@return number posZ
 function sampGetStreamedOutPlayerPos(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendEnterVehicle)**
 ---
----@param id int
----@param passenger bool
+---@param id number
+---@param passenger boolean
 function sampSendEnterVehicle(id, passenger) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendExitVehicle)**
 ---
----@param id int
+---@param id number
 function sampSendExitVehicle(id) end
 
 ---
@@ -13683,30 +13874,30 @@ function sampSendSpawn() end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendDamageVehicle)**
 ---
 ---@param car Vehicle
----@param panel int
----@param doors int
----@param lights int
----@param tires int
+---@param panel number
+---@param doors number
+---@param lights number
+---@param tires number
 function sampSendDamageVehicle(car, panel, doors, lights, tires) end
 
 ---
---- Регистрирует новую команду чата SA:MP с возможностью задать ей произвольное поведение.  
+--- Р РµРіРёСЃС‚СЂРёСЂСѓРµС‚ РЅРѕРІСѓСЋ РєРѕРјР°РЅРґСѓ С‡Р°С‚Р° SA:MP СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ Р·Р°РґР°С‚СЊ РµР№ РїСЂРѕРёР·РІРѕР»СЊРЅРѕРµ РїРѕРІРµРґРµРЅРёРµ.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampRegisterChatCommand)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampRegisterChatCommand)**
 ---
----@param cmd zstring команда без символа '/'
----@param func fun(argument: string) функция-обработчик
----@return bool result результат выполнения
+---@param cmd string РєРѕРјР°РЅРґР° Р±РµР· СЃРёРјРІРѕР»Р° '/'
+---@param func fun(argument: string) С„СѓРЅРєС†РёСЏ-РѕР±СЂР°Р±РѕС‚С‡РёРє
+---@return boolean result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 function sampRegisterChatCommand(cmd, func) end
 
 ---
---- Получает ник игрока по его ID.
+--- РџРѕР»СѓС‡Р°РµС‚ РЅРёРє РёРіСЂРѕРєР° РїРѕ РµРіРѕ ID.
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ
 ---
 --- ```lua
 ---   script_name("Example script")
----   
+---
 ---   function main()
 ---     while not isSampAvailable() do wait(100) end
 ---     while true do
@@ -13719,62 +13910,62 @@ function sampRegisterChatCommand(cmd, func) end
 ---       end
 ---     end
 ---   end
---- ```  
+--- ```
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerNickname)**
 ---
----@param id int ID игрока
----@return zstring name ник
+---@param id number ID РёРіСЂРѕРєР°
+---@return string name РЅРёРє
 function sampGetPlayerNickname(id) end
 
 ---
---- Получает цвет игрока из scoreboard'a  
+--- РџРѕР»СѓС‡Р°РµС‚ С†РІРµС‚ РёРіСЂРѕРєР° РёР· scoreboard'a
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerColor)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerColor)**
 ---
----@param id int ИД игрока.
----@return uint color Цвет(ARGB).
+---@param id number РР” РёРіСЂРѕРєР°.
+---@return number color Р¦РІРµС‚(ARGB).
 function sampGetPlayerColor(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampConnectToServer)**
 ---
----@param ip zstring
----@param port uint
+---@param ip string
+---@param port number
 function sampConnectToServer(ip, port) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentServerAddress)**
 ---
----@return zstring ip
----@return uint port
+---@return string ip
+---@return number port
 function sampGetCurrentServerAddress() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentServerName)**
 ---
----@return zstring name
+---@return string name
 function sampGetCurrentServerName() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampShowDialog)**
 ---
----@param id int
----@param caption zstring
----@param text zstring
----@param button1 zstring
----@param button2 zstring
----@param style int
+---@param id number
+---@param caption string
+---@param text string
+---@param button1 string
+---@param button2 string
+---@param style number
 function sampShowDialog(id, caption, text, button1, button2, style) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampHasDialogRespond)**
 ---
----@param id int
----@return bool result
----@return int button
----@return int list
----@return zstring input
+---@param id number
+---@return boolean result
+---@return number button
+---@return number list
+---@return string input
 function sampHasDialogRespond(id) end
 
 ---
@@ -13799,43 +13990,43 @@ function raknetResetBitStream(bs) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteBool)**
 ---
 ---@param bs Bitstream
----@param value bool
+---@param value boolean
 function raknetBitStreamWriteBool(bs, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt8)**
 ---
 ---@param bs Bitstream
----@param value int
+---@param value number
 function raknetBitStreamWriteInt8(bs, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt16)**
 ---
 ---@param bs Bitstream
----@param value int
+---@param value number
 function raknetBitStreamWriteInt16(bs, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt32)**
 ---
 ---@param bs Bitstream
----@param value int
+---@param value number
 function raknetBitStreamWriteInt32(bs, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteFloat)**
 ---
 ---@param bs Bitstream
----@param value float
+---@param value number
 function raknetBitStreamWriteFloat(bs, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteBuffer)**
 ---
 ---@param bs Bitstream
----@param dest uint
----@param size uint
+---@param dest number
+---@param size number
 function raknetBitStreamWriteBuffer(bs, dest, size) end
 
 ---
@@ -13855,109 +14046,109 @@ function raknetBitStreamWriteString(bs, str) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetSendRpcEx)**
 ---
----@param rpc int
+---@param rpc number
 ---@param bs Bitstream
----@param priority int
----@param reliability int
----@param channel int
----@param timestamp bool
+---@param priority number
+---@param reliability number
+---@param channel number
+---@param timestamp boolean
 function raknetSendRpcEx(rpc, bs, priority, reliability, channel, timestamp) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetSendBitStreamEx)**
 ---
 ---@param bs Bitstream
----@param priority int
----@param reliability int
----@param channel int
+---@param priority number
+---@param reliability number
+---@param channel number
 function raknetSendBitStreamEx(bs, priority, reliability, channel) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampCreate3dText)**
 ---
----@param text zstring
----@param color uint
----@param posX float
----@param posY float
----@param posZ float
----@param distance float
----@param ignoreWalls bool
----@param playerId int
----@param vehicleId int
----@return int textlabel
+---@param text string
+---@param color number
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param distance number
+---@param ignoreWalls boolean
+---@param playerId number
+---@param vehicleId number
+---@return number textlabel
 function sampCreate3dText(text, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampDestroy3dText)**
 ---
----@param textlabel int
+---@param textlabel number
 function sampDestroy3dText(textlabel) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIs3dTextDefined)**
 ---
----@param _3dText int
----@return bool result
+---@param _3dText number
+---@return boolean result
 function sampIs3dTextDefined(_3dText) end
 
 ---
---- Закрывает открытый диалог с указанием нажатой кнопки.  
+--- Р—Р°РєСЂС‹РІР°РµС‚ РѕС‚РєСЂС‹С‚С‹Р№ РґРёР°Р»РѕРі СЃ СѓРєР°Р·Р°РЅРёРµРј РЅР°Р¶Р°С‚РѕР№ РєРЅРѕРїРєРё.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampCloseCurrentDialogWithButton)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampCloseCurrentDialogWithButton)**
 ---
----@param button int номер кнопки
+---@param button number РЅРѕРјРµСЂ РєРЅРѕРїРєРё
 function sampCloseCurrentDialogWithButton(button) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogListItem)**
 ---
----@return int list
+---@return number list
 function sampGetCurrentDialogListItem() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetCurrentDialogListItem)**
 ---
----@param list int
+---@param list number
 function sampSetCurrentDialogListItem(list) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogEditboxText)**
 ---
----@return zstring text
+---@return string text
 function sampGetCurrentDialogEditboxText() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetCurrentDialogEditboxText)**
 ---
----@param text zstring
+---@param text string
 function sampSetCurrentDialogEditboxText(text) end
 
 ---
---- Проверяет, активен ли любой SA:MP-диалог.  
+--- РџСЂРѕРІРµСЂСЏРµС‚, Р°РєС‚РёРІРµРЅ Р»Рё Р»СЋР±РѕР№ SA:MP-РґРёР°Р»РѕРі.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsDialogActive)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsDialogActive)**
 ---
----@return bool result статус
+---@return boolean result СЃС‚Р°С‚СѓСЃ
 function sampIsDialogActive() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogType)**
 ---
----@return int type
+---@return number type
 function sampGetCurrentDialogType() end
 
 ---
---- Возвращает ID последнего(открытого) диалогового окна  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ ID РїРѕСЃР»РµРґРЅРµРіРѕ(РѕС‚РєСЂС‹С‚РѕРіРѕ) РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogId)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogId)**
 ---
----@return int id ID диалогового окна
+---@return number id ID РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°
 function sampGetCurrentDialogId() end
 
 ---
---- Возвращает текущий gamestate.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰РёР№ gamestate.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetGamestate)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetGamestate)**
 ---
 ---@return GameState gamestate ID gamestate
 function sampGetGamestate() end
@@ -13965,14 +14156,14 @@ function sampGetGamestate() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetObjectHandleBySampId)**
 ---
----@param id int
+---@param id number
 ---@return Object object
 function sampGetObjectHandleBySampId(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPickupHandleBySampId)**
 ---
----@param id int
+---@param id number
 ---@return Pickup pickup
 function sampGetPickupHandleBySampId(id) end
 
@@ -13980,193 +14171,193 @@ function sampGetPickupHandleBySampId(id) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetObjectSampIdByHandle)**
 ---
 ---@param object Object
----@return int objectId
+---@return number objectId
 function sampGetObjectSampIdByHandle(object) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPickupSampIdByHandle)**
 ---
 ---@param pickup Pickup
----@return int pickupId
+---@return number pickupId
 function sampGetPickupSampIdByHandle(pickup) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetListboxItemsCount)**
 ---
----@return int count
+---@return number count
 function sampGetListboxItemsCount() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerAnimationId)**
 ---
----@param playerId int
----@return int animid
+---@param playerId number
+---@return number animid
 function sampGetPlayerAnimationId(playerId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetAnimationNameAndFile)**
 ---
----@param animid int
----@return zstring file
----@return zstring name
+---@param animid number
+---@return string file
+---@return string name
 function sampGetAnimationNameAndFile(animid) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampFindAnimationIdByNameAndFile)**
 ---
----@param name zstring
----@param file zstring
----@return int id
+---@param name string
+---@param file string
+---@return number id
 function sampFindAnimationIdByNameAndFile(name, file) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getScreenResolution)**
 ---
----@return int resX
----@return int resY
+---@return number resX
+---@return number resY
 function getScreenResolution() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetListboxItemText)**
 ---
----@param item int
----@return zstring text
+---@param item number
+---@return string text
 function sampGetListboxItemText(item) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsPlayerPaused)**
 ---
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function sampIsPlayerPaused(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampToggleCursor)**
 ---
----@param show bool
+---@param show boolean
 function sampToggleCursor(show) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsLocalPlayerSpawned)**
 ---
----@return bool result
+---@return boolean result
 function sampIsLocalPlayerSpawned() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerSpecialAction)**
 ---
----@param id int
----@return int action
+---@param id number
+---@return number action
 function sampGetPlayerSpecialAction(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampUnregisterChatCommand)**
 ---
----@param cmd zstring
----@return bool result
+---@param cmd string
+---@return boolean result
 function sampUnregisterChatCommand(cmd) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsPlayerNpc)**
 ---
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function sampIsPlayerNpc(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerScore)**
 ---
----@param id int
----@return int score
+---@param id number
+---@return number score
 function sampGetPlayerScore(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetChatString)**
 ---
----@param id int
----@param text zstring
----@param prefix zstring
----@param color uint
----@param pcolor uint
+---@param id number
+---@param text string
+---@param prefix string
+---@param color number
+---@param pcolor number
 function sampSetChatString(id, text, prefix, color, pcolor) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetChatString)**
 ---
----@param id int
----@return zstring text
----@return zstring prefix
----@return uint color
----@return uint pcolor
+---@param id number
+---@return string text
+---@return string prefix
+---@return number color
+---@return number pcolor
 function sampGetChatString(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetChatInputText)**
 ---
----@param text zstring
+---@param text string
 function sampSetChatInputText(text) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetChatInputText)**
 ---
----@return zstring text
+---@return string text
 function sampGetChatInputText() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampfuncsLog)**
 ---
----@param msg zstring
+---@param msg string
 function sampfuncsLog(msg) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetChatInputEnabled)**
 ---
----@param enabled bool
+---@param enabled boolean
 function sampSetChatInputEnabled(enabled) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetRakclientInterface)**
 ---
----@return uint rakclientPtr
+---@return number rakclientPtr
 function sampGetRakclientInterface() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetRakpeer)**
 ---
----@return uint rakpeer
+---@return number rakpeer
 function sampGetRakpeer() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetRakclientFuncAddressByIndex)**
 ---
----@param index int
----@return uint address
+---@param index number
+---@return number address
 function sampGetRakclientFuncAddressByIndex(index) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetRpcCallbackByRpcId)**
 ---
----@param index int
----@return uint callbackAddress
+---@param index number
+---@return number callbackAddress
 function sampGetRpcCallbackByRpcId(index) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetRpcNodeByRpcId)**
 ---
----@param index int
----@return uint node
+---@param index number
+---@return number node
 function sampGetRpcNodeByRpcId(index) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetSampInfoPtr)**
 ---
----@return uint sampPtr
+---@return number sampPtr
 function sampGetSampInfoPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutCreateDialog)**
 ---
----@param name zstring
+---@param name string
 ---@return DxutDialog dialog
 function dxutCreateDialog(name) end
 
@@ -14174,93 +14365,93 @@ function dxutCreateDialog(name) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutPopEvent)**
 ---
 ---@param dialog DxutDialog
----@return bool result
----@return int event
----@return int id
+---@return boolean result
+---@return number event
+---@return number id
 function dxutPopEvent(dialog) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutAddButton)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param text zstring
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param id number
+---@param text string
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddButton(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutAddCheckbox)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param text zstring
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param id number
+---@param text string
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddCheckbox(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetDialogPos)**
 ---
 ---@param dialog DxutDialog
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutSetDialogPos(dialog, posX, posY, sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutGetDialogPosAndSize)**
 ---
 ---@param dialog DxutDialog
----@return int posX
----@return int posY
----@return int sizeX
----@return int sizeY
+---@return number posX
+---@return number posY
+---@return number sizeX
+---@return number sizeY
 function dxutGetDialogPosAndSize(dialog) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetDialogVisible)**
 ---
 ---@param dialog DxutDialog
----@param visible bool
+---@param visible boolean
 function dxutSetDialogVisible(dialog, visible) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutIsDialogVisible)**
 ---
 ---@param dialog DxutDialog
----@return bool result
+---@return boolean result
 function dxutIsDialogVisible(dialog) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutAddEditbox)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param text zstring
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param id number
+---@param text string
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddEditbox(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutGetControlText)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@return zstring text
+---@param id number
+---@return string text
 function dxutGetControlText(dialog, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetSendRpc)**
 ---
----@param rpc int
+---@param rpc number
 ---@param bs Bitstream
 function raknetSendRpc(rpc, bs) end
 
@@ -14273,189 +14464,189 @@ function raknetSendBitStream(bs) end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsCursorActive)**
 ---
----@return bool result
+---@return boolean result
 function sampIsCursorActive() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetCursorMode)**
 ---
----@param mode int
+---@param mode number
 function sampSetCursorMode(mode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetCursorMode)**
 ---
----@return int mode
+---@return number mode
 function sampGetCursorMode() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetControlVisible)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param visible bool
+---@param id number
+---@param visible boolean
 function dxutSetControlVisible(dialog, id, visible) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutAddStatic)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param text zstring
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param id number
+---@param text string
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddStatic(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutIsCheckboxChecked)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function dxutIsCheckboxChecked(dialog, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetDialogBackgroundColor)**
 ---
 ---@param dialog DxutDialog
----@param color uint
+---@param color number
 function dxutSetDialogBackgroundColor(dialog, color) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetControlText)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param text zstring
+---@param id number
+---@param text string
 function dxutSetControlText(dialog, id, text) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutControlIsVisible)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function dxutControlIsVisible(dialog, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutAddSlider)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
----@param max int
+---@param id number
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
+---@param max number
 function dxutAddSlider(dialog, id, posX, posY, sizeX, sizeY, max) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutGetSliderValue)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@return int value
+---@param id number
+---@return number value
 function dxutGetSliderValue(dialog, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetSliderValue)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param value int
+---@param id number
+---@param value number
 function dxutSetSliderValue(dialog, id, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutAddListbox)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+---@param id number
+---@param posX number
+---@param posY number
+---@param sizeX number
+---@param sizeY number
 function dxutAddListbox(dialog, id, posX, posY, sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutListboxInsertItem)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param element zstring
----@param data uint
----@param after int
+---@param id number
+---@param element string
+---@param data number
+---@param after number
 function dxutListboxInsertItem(dialog, id, element, data, after) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutGetListboxSelectedItemAndCount)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@return int element
----@return int count
+---@param id number
+---@return number element
+---@return number count
 function dxutGetListboxSelectedItemAndCount(dialog, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutListboxDeleteItem)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param element int
+---@param id number
+---@param element number
 function dxutListboxDeleteItem(dialog, id, element) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutGetListboxItemTextAndData)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param element int
----@return zstring text
----@return uint data
+---@param id number
+---@param element number
+---@return string text
+---@return number data
 function dxutGetListboxItemTextAndData(dialog, id, element) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutCheckboxSetChecked)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param checked bool
+---@param id number
+---@param checked boolean
 function dxutCheckboxSetChecked(dialog, id, checked) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutEnableDialogCaption)**
 ---
 ---@param dialog DxutDialog
----@param enable bool
+---@param enable boolean
 function dxutEnableDialogCaption(dialog, enable) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutIsDialogCaptionEnabled)**
 ---
 ---@param dialog DxutDialog
----@return bool result
+---@return boolean result
 function dxutIsDialogCaptionEnabled(dialog) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetDialogMinimized)**
 ---
 ---@param dialog DxutDialog
----@param minimized bool
+---@param minimized boolean
 function dxutSetDialogMinimized(dialog, minimized) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutIsDialogMinimized)**
 ---
 ---@param dialog DxutDialog
----@return bool result
+---@return boolean result
 function dxutIsDialogMinimized(dialog) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutDeleteControl)**
 ---
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 function dxutDeleteControl(dialog, id) end
 
 ---
@@ -14468,309 +14659,324 @@ function dxutDeleteDialog(dialog) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetFocusOnControl)**
 ---
 ---@param dialog DxutDialog
----@param id int
+---@param id number
 function dxutSetFocusOnControl(dialog, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetControlSize)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param sizeX int
----@param sizeY int
+---@param id number
+---@param sizeX number
+---@param sizeY number
 function dxutSetControlSize(dialog, id, sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutGetControlSize)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@return int sizeX
----@return int sizeY
+---@param id number
+---@return number sizeX
+---@return number sizeY
 function dxutGetControlSize(dialog, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetControlPos)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param posX int
----@param posY int
+---@param id number
+---@param posX number
+---@param posY number
 function dxutSetControlPos(dialog, id, posX, posY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutGetControlPos)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@return int posX
----@return int posY
+---@param id number
+---@return number posX
+---@return number posY
 function dxutGetControlPos(dialog, id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutSetCheckboxColor)**
 ---
 ---@param dialog DxutDialog
----@param id int
----@param color uint
+---@param id number
+---@param color number
 function dxutSetCheckboxColor(dialog, id, color) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/dxutIsDialogExists)**
 ---
 ---@param dialog DxutDialog
----@return bool result
+---@return boolean result
 function dxutIsDialogExists(dialog) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetServerSettingsPtr)**
 ---
----@return uint settingsPtr
+---@return number settingsPtr
 function sampGetServerSettingsPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetSampPoolsPtr)**
 ---
----@return uint poolsPtr
+---@return number poolsPtr
 function sampGetSampPoolsPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetChatInfoPtr)**
 ---
----@return uint chatPtr
+---@return number chatPtr
 function sampGetChatInfoPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetInputInfoPtr)**
 ---
----@return uint inputPtr
+---@return number inputPtr
 function sampGetInputInfoPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetDialogInfoPtr)**
 ---
----@return uint dialogPtr
+---@return number dialogPtr
 function sampGetDialogInfoPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetKillInfoPtr)**
 ---
----@return uint kill
+---@return number kill
 function sampGetKillInfoPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetMiscInfoPtr)**
 ---
----@return uint miscPtr
+---@return number miscPtr
 function sampGetMiscInfoPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetTextdrawPoolPtr)**
 ---
----@return uint tdpoolPtr
+---@return number tdpoolPtr
 function sampGetTextdrawPoolPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetObjectPoolPtr)**
 ---
----@return int objpoolPtr
+---@return number objpoolPtr
 function sampGetObjectPoolPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetGangzonePoolPtr)**
 ---
----@return uint gzpoolPtr
+---@return number gzpoolPtr
 function sampGetGangzonePoolPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetTextlabelPoolPtr)**
 ---
----@return uint tlabelpoolPtr
+---@return number tlabelpoolPtr
 function sampGetTextlabelPoolPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerPoolPtr)**
 ---
----@return uint playerpoolPtr
+---@return number playerpoolPtr
 function sampGetPlayerPoolPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetVehiclePoolPtr)**
 ---
----@return uint vehpoolPtr
+---@return number vehpoolPtr
 function sampGetVehiclePoolPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPickupPoolPtr)**
 ---
----@return uint pickuppoolPtr
+---@return number pickuppoolPtr
 function sampGetPickupPoolPtr() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampStorePlayerOnfootData)**
 ---
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerOnfootData(id, dstBuffer) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampStorePlayerIncarData)**
 ---
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerIncarData(id, dstBuffer) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampStorePlayerPassengerData)**
 ---
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerPassengerData(id, dstBuffer) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampStorePlayerTrailerData)**
 ---
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerTrailerData(id, dstBuffer) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampStorePlayerAimData)**
 ---
----@param id int
----@param dstBuffer uint
+---@param id number
+---@param dstBuffer number
 function sampStorePlayerAimData(id, dstBuffer) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendRconCommand)**
 ---
----@param cmd zstring
+---@param cmd string
 function sampSendRconCommand(cmd) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendOnfootData)**
 ---
----@param dataPtr uint
+---@param dataPtr number
 function sampSendOnfootData(dataPtr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendIncarData)**
 ---
----@param dataPtr uint
+---@param dataPtr number
 function sampSendIncarData(dataPtr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendPassengerData)**
 ---
----@param dataPtr uint
+---@param dataPtr number
 function sampSendPassengerData(dataPtr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendAimData)**
 ---
----@param dataPtr uint
+---@param dataPtr number
 function sampSendAimData(dataPtr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendBulletData)**
 ---
----@param dataPtr uint
+---@param dataPtr number
 function sampSendBulletData(dataPtr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendTrailerData)**
 ---
----@param dataPtr uint
+---@param dataPtr number
 function sampSendTrailerData(dataPtr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendUnoccupiedData)**
 ---
----@param dataPtr uint
+---@param dataPtr number
 function sampSendUnoccupiedData(dataPtr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendSpectatorData)**
 ---
----@param dataPtr uint
+---@param dataPtr number
 function sampSendSpectatorData(dataPtr) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendClickPlayer)**
 ---
----@param id int
----@param source int
+---@param id number
+---@param source number
 function sampSendClickPlayer(id, source) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendDialogResponse)**
 ---
----@param id int
----@param button int
----@param listitem int
----@param input zstring
+---@param id number
+---@param button number
+---@param listitem number
+---@param input string
 function sampSendDialogResponse(id, button, listitem, input) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendClickTextdraw)**
 ---
----@param id int
+---@param id number
 function sampSendClickTextdraw(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendGiveDamage)**
 ---
----@param id int
----@param damage float
----@param weapon int
----@param bodypart int
+---@param id number
+---@param damage number
+---@param weapon number
+---@param bodypart number
 function sampSendGiveDamage(id, damage, weapon, bodypart) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendTakeDamage)**
 ---
----@param id int
----@param damage float
----@param weapon int
----@param bodypart int
+---@param id number
+---@param damage number
+---@param weapon number
+---@param bodypart number
 function sampSendTakeDamage(id, damage, weapon, bodypart) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendEditObject)**
 ---
----@param playerObject bool
----@param objectId int
----@param response int
----@param posX float
----@param posY float
----@param posZ float
----@param rotX float
----@param rotY float
----@param rotZ float
+---@param playerObject boolean
+---@param objectId number
+---@param response number
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param rotX number
+---@param rotY number
+---@param rotZ number
 function sampSendEditObject(playerObject, objectId, response, posX, posY, posZ, rotX, rotY, rotZ) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendEditAttachedObject)**
 ---
----@param response int
----@param index int
----@param model int
----@param bone int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotX float
----@param rotY float
----@param rotZ float
----@param scaleX float
----@param scaleY float
----@param scaleZ float
-function sampSendEditAttachedObject(response, index, model, bone, offsetX, offsetY, offsetZ, rotX, rotY, rotZ, scaleX, scaleY, scaleZ) end
+---@param response number
+---@param index number
+---@param model number
+---@param bone number
+---@param offsetX number
+---@param offsetY number
+---@param offsetZ number
+---@param rotX number
+---@param rotY number
+---@param rotZ number
+---@param scaleX number
+---@param scaleY number
+---@param scaleZ number
+function sampSendEditAttachedObject(
+	response,
+	index,
+	model,
+	bone,
+	offsetX,
+	offsetY,
+	offsetZ,
+	rotX,
+	rotY,
+	rotZ,
+	scaleX,
+	scaleY,
+	scaleZ
+)
+end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendInteriorChange)**
 ---
----@param id int
+---@param id number
 function sampSendInteriorChange(id) end
 
 ---
@@ -14781,13 +14987,13 @@ function sampSendRequestSpawn() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendPickedUpPickup)**
 ---
----@param id int
+---@param id number
 function sampSendPickedUpPickup(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendMenuSelectRow)**
 ---
----@param id int
+---@param id number
 function sampSendMenuSelectRow(id) end
 
 ---
@@ -14798,123 +15004,123 @@ function sampSendMenuQuit() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSendVehicleDestroyed)**
 ---
----@param id int
+---@param id number
 function sampSendVehicleDestroyed(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsScoreboardOpen)**
 ---
----@return bool result
+---@return boolean result
 function sampIsScoreboardOpen() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampToggleScoreboard)**
 ---
----@param show bool
+---@param show boolean
 function sampToggleScoreboard(show) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetDialogText)**
 ---
----@return zstring text
+---@return string text
 function sampGetDialogText() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetDialogCaption)**
 ---
----@return zstring caption
+---@return string caption
 function sampGetDialogCaption() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetDialogClientside)**
 ---
----@param clientside bool
+---@param clientside boolean
 function sampSetDialogClientside(clientside) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsDialogClientside)**
 ---
----@return bool result
+---@return boolean result
 function sampIsDialogClientside() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsChatVisible)**
 ---
----@return bool result
+---@return boolean result
 function sampIsChatVisible() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetChatDisplayMode)**
 ---
----@return int mode
+---@return number mode
 function sampGetChatDisplayMode() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetChatDisplayMode)**
 ---
----@param mode int
+---@param mode number
 function sampSetChatDisplayMode(mode) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/pauseScmThread)**
 ---
----@param thread uint
+---@param thread number
 function pauseScmThread(thread) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/resumeScmThread)**
 ---
----@param thread uint
+---@param thread number
 function resumeScmThread(thread) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadBool)**
 ---
 ---@param bs Bitstream
----@return bool value
+---@return boolean value
 function raknetBitStreamReadBool(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt8)**
 ---
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamReadInt8(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt16)**
 ---
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamReadInt16(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt32)**
 ---
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamReadInt32(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadFloat)**
 ---
 ---@param bs Bitstream
----@return float value
+---@return number value
 function raknetBitStreamReadFloat(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadBuffer)**
 ---
 ---@param bs Bitstream
----@param dest uint
----@param size uint
+---@param dest number
+---@param size number
 function raknetBitStreamReadBuffer(bs, dest, size) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadString)**
 ---
 ---@param bs Bitstream
----@param size uint
+---@param size number
 ---@return string value
 function raknetBitStreamReadString(bs, size) end
 
@@ -14934,458 +15140,458 @@ function raknetBitStreamResetWritePointer(bs) end
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamIgnoreBits)**
 ---
 ---@param bs Bitstream
----@param amount int
+---@param amount number
 function raknetBitStreamIgnoreBits(bs, amount) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamSetWriteOffset)**
 ---
 ---@param bs Bitstream
----@param offset int
+---@param offset number
 function raknetBitStreamSetWriteOffset(bs, offset) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamSetReadOffset)**
 ---
 ---@param bs Bitstream
----@param offset int
+---@param offset number
 function raknetBitStreamSetReadOffset(bs, offset) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfBitsUsed)**
 ---
 ---@param bs Bitstream
----@return uint value
+---@return number value
 function raknetBitStreamGetNumberOfBitsUsed(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfBytesUsed)**
 ---
 ---@param bs Bitstream
----@return uint value
+---@return number value
 function raknetBitStreamGetNumberOfBytesUsed(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfUnreadBits)**
 ---
 ---@param bs Bitstream
----@return uint value
+---@return number value
 function raknetBitStreamGetNumberOfUnreadBits(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetWriteOffset)**
 ---
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamGetWriteOffset(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetReadOffset)**
 ---
 ---@param bs Bitstream
----@return int value
+---@return number value
 function raknetBitStreamGetReadOffset(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetDataPtr)**
 ---
 ---@param bs Bitstream
----@return uint value
+---@return number value
 function raknetBitStreamGetDataPtr(bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamDecodeString)**
 ---
 ---@param bs Bitstream
----@param size int
----@return zstring string
+---@param size number
+---@return string string
 function raknetBitStreamDecodeString(bs, size) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetBitStreamEncodeString)**
 ---
 ---@param bs Bitstream
----@param string zstring
+---@param string string
 function raknetBitStreamEncodeString(bs, string) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetEmulRpcReceiveBitStream)**
 ---
----@param rpc int
+---@param rpc number
 ---@param bs Bitstream
 function raknetEmulRpcReceiveBitStream(rpc, bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetEmulPacketReceiveBitStream)**
 ---
----@param packet int
+---@param packet number
 ---@param bs Bitstream
 function raknetEmulPacketReceiveBitStream(packet, bs) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetGetRpcName)**
 ---
----@param rpc int
----@return zstring name
+---@param rpc number
+---@return string name
 function raknetGetRpcName(rpc) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/raknetGetPacketName)**
 ---
----@param packet int
----@return zstring name
+---@param packet number
+---@return string name
 function raknetGetPacketName(packet) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setSampfuncsGlobalVar)**
 ---
----@param var zstring
----@param value int
----@return bool result
+---@param var string
+---@param value number
+---@return boolean result
 function setSampfuncsGlobalVar(var, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getSampfuncsGlobalVar)**
 ---
----@param var zstring
----@return bool result
----@return int value
+---@param var string
+---@return boolean result
+---@return number value
 function getSampfuncsGlobalVar(var) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampCreate3dTextEx)**
 ---
----@param id int
----@param text zstring
----@param color uint
----@param posX float
----@param posY float
----@param posZ float
----@param distance float
----@param ignoreWalls bool
----@param playerId int
----@param vehicleId int
+---@param id number
+---@param text string
+---@param color number
+---@param posX number
+---@param posY number
+---@param posZ number
+---@param distance number
+---@param ignoreWalls boolean
+---@param playerId number
+---@param vehicleId number
 function sampCreate3dTextEx(id, text, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGet3dTextInfoById)**
 ---
----@param id int
----@return zstring string
----@return uint color
----@return float posX
----@return float posY
----@return float posZ
----@return float distance
----@return bool ignoreWalls
----@return int playerId
----@return int vehicleId
+---@param id number
+---@return string string
+---@return number color
+---@return number posX
+---@return number posY
+---@return number posZ
+---@return number distance
+---@return boolean ignoreWalls
+---@return number playerId
+---@return number vehicleId
 function sampGet3dTextInfoById(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSet3dTextString)**
 ---
----@param id int
----@param text zstring
+---@param id number
+---@param text string
 function sampSet3dTextString(id, text) end
 
 ---
---- Создает текстдрав c заданными параметрами.  
+--- РЎРѕР·РґР°РµС‚ С‚РµРєСЃС‚РґСЂР°РІ c Р·Р°РґР°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё.
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawCreate)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawCreate)**
 ---
----@param id int ID текстдрава
----@param text zstring текст текстдрава
----@param posX float координата X текстдрава
----@param posY float координата Y текстдрава
+---@param id number ID С‚РµРєСЃС‚РґСЂР°РІР°
+---@param text string С‚РµРєСЃС‚ С‚РµРєСЃС‚РґСЂР°РІР°
+---@param posX number РєРѕРѕСЂРґРёРЅР°С‚Р° X С‚РµРєСЃС‚РґСЂР°РІР°
+---@param posY number РєРѕРѕСЂРґРёРЅР°С‚Р° Y С‚РµРєСЃС‚РґСЂР°РІР°
 function sampTextdrawCreate(id, text, posX, posY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetBoxColorAndSize)**
 ---
----@param id int
----@param box int
----@param color uint
----@param sizeX float
----@param sizeY float
+---@param id number
+---@param box number
+---@param color number
+---@param sizeX number
+---@param sizeY number
 function sampTextdrawSetBoxColorAndSize(id, box, color, sizeX, sizeY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetAlign)**
 ---
----@param id int
----@param align int
+---@param id number
+---@param align number
 function sampTextdrawSetAlign(id, align) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetProportional)**
 ---
----@param id int
----@param proportional int
+---@param id number
+---@param proportional number
 function sampTextdrawSetProportional(id, proportional) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetStyle)**
 ---
----@param id int
----@param style int
+---@param id number
+---@param style number
 function sampTextdrawSetStyle(id, style) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetShadow)**
 ---
----@param id int
----@param shadow int
----@param color uint
+---@param id number
+---@param shadow number
+---@param color number
 function sampTextdrawSetShadow(id, shadow, color) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetOutlineColor)**
 ---
----@param id int
----@param outline int
----@param color uint
+---@param id number
+---@param outline number
+---@param color number
 function sampTextdrawSetOutlineColor(id, outline, color) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetModelRotationZoomVehColor)**
 ---
----@param id int
----@param model int
----@param rotX float
----@param rotY float
----@param rotZ float
----@param zoom float
----@param clr1 int
----@param clr2 int
+---@param id number
+---@param model number
+---@param rotX number
+---@param rotY number
+---@param rotZ number
+---@param zoom number
+---@param clr1 number
+---@param clr2 number
 function sampTextdrawSetModelRotationZoomVehColor(id, model, rotX, rotY, rotZ, zoom, clr1, clr2) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetString)**
 ---
----@param id int
----@param text zstring
+---@param id number
+---@param text string
 function sampTextdrawSetString(id, text) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetPos)**
 ---
----@param id int
----@param posX float
----@param posY float
+---@param id number
+---@param posX number
+---@param posY number
 function sampTextdrawSetPos(id, posX, posY) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawSetLetterSizeAndColor)**
 ---
----@param id int
----@param letSizeX float
----@param letSizeY float
----@param color uint
+---@param id number
+---@param letSizeX number
+---@param letSizeY number
+---@param color number
 function sampTextdrawSetLetterSizeAndColor(id, letSizeX, letSizeY, color) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetBoxEnabledColorAndSize)**
 ---
----@param id int
----@return int box
----@return uint color
----@return float sizeX
----@return float sizeY
+---@param id number
+---@return number box
+---@return number color
+---@return number sizeX
+---@return number sizeY
 function sampTextdrawGetBoxEnabledColorAndSize(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetAlign)**
 ---
----@param id int
----@return int align
+---@param id number
+---@return number align
 function sampTextdrawGetAlign(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetProportional)**
 ---
----@param id int
----@return int prop
+---@param id number
+---@return number prop
 function sampTextdrawGetProportional(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetStyle)**
 ---
----@param id int
----@return int style
+---@param id number
+---@return number style
 function sampTextdrawGetStyle(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetShadowColor)**
 ---
----@param id int
----@return int shadow
----@return uint color
+---@param id number
+---@return number shadow
+---@return number color
 function sampTextdrawGetShadowColor(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetOutlineColor)**
 ---
----@param id int
----@return int outline
----@return uint color
+---@param id number
+---@return number outline
+---@return number color
 function sampTextdrawGetOutlineColor(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetModelRotationZoomVehColor)**
 ---
----@param id int
----@return int model
----@return float rotX
----@return float rotY
----@return float rotZ
----@return float zoom
----@return int clr1
----@return int clr2
+---@param id number
+---@return number model
+---@return number rotX
+---@return number rotY
+---@return number rotZ
+---@return number zoom
+---@return number clr1
+---@return number clr2
 function sampTextdrawGetModelRotationZoomVehColor(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetString)**
 ---
----@param id int
----@return zstring text
+---@param id number
+---@return string text
 function sampTextdrawGetString(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetPos)**
 ---
----@param id int
----@return float posX
----@return float posY
+---@param id number
+---@return number posX
+---@return number posY
 function sampTextdrawGetPos(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawGetLetterSizeAndColor)**
 ---
----@param id int
----@return float letSizeX
----@return float letSizeY
----@return uint color
+---@param id number
+---@return number letSizeX
+---@return number letSizeY
+---@return number color
 function sampTextdrawGetLetterSizeAndColor(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawIsExists)**
 ---
----@param id int
----@return bool result
+---@param id number
+---@return boolean result
 function sampTextdrawIsExists(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampTextdrawDelete)**
 ---
----@param id int
+---@param id number
 function sampTextdrawDelete(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSampfuncsGlobalVarDefined)**
 ---
----@param var zstring
----@return bool result
+---@param var string
+---@return boolean result
 function isSampfuncsGlobalVarDefined(var) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getSampfuncsGlobalVarAccessForThread)**
 ---
----@param var zstring
----@param thread uint
----@return bool read
----@return bool write
+---@param var string
+---@param thread number
+---@return boolean read
+---@return boolean write
 function getSampfuncsGlobalVarAccessForThread(var, thread) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/runSampfuncsConsoleCommand)**
 ---
----@param cmd zstring
+---@param cmd string
 function runSampfuncsConsoleCommand(cmd) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampfuncsRegisterConsoleCommand)**
 ---
----@param cmd zstring
+---@param cmd string
 ---@param func function
----@return bool result
+---@return boolean result
 function sampfuncsRegisterConsoleCommand(cmd, func) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampfuncsUnregisterConsoleCommand)**
 ---
----@param cmd zstring
----@return bool result
+---@param cmd string
+---@return boolean result
 function sampfuncsUnregisterConsoleCommand(cmd) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/createScmThreadAtPointer)**
 ---
----@param pointer uint
+---@param pointer number
 ---@param args table
----@return uint thread
+---@return number thread
 function createScmThreadAtPointer(pointer, args) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setScmThreadLocalVar)**
 ---
----@param thread uint
----@param var int
+---@param thread number
+---@param var number
 ---@param value any
 function setScmThreadLocalVar(thread, var, value) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getScmThreadLocalVar)**
 ---
----@param thread uint
----@param var int
----@return int value
+---@param thread number
+---@param var number
+---@return number value
 function getScmThreadLocalVar(thread, var) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/destroyScmThread)**
 ---
----@param thread uint
+---@param thread number
 function destroyScmThread(thread) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/restartScmThread)**
 ---
----@param thread uint
+---@param thread number
 ---@param args table
 function restartScmThread(thread, args) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSampfuncsConsoleActive)**
 ---
----@return bool result
+---@return boolean result
 function isSampfuncsConsoleActive() end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampSetClientCommandDescription)**
 ---
----@param cmd zstring
----@param text zstring
+---@param cmd string
+---@param text string
 function sampSetClientCommandDescription(cmd, text) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/setSampfuncsConsoleCommandDescription)**
 ---
----@param cmd zstring
----@param text zstring
+---@param cmd string
+---@param text string
 function setSampfuncsConsoleCommandDescription(cmd, text) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampForceVehicleSync)**
 ---
----@param id int
+---@param id number
 function sampForceVehicleSync(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampForceUnoccupiedSyncSeatId)**
 ---
----@param id int
----@param seatId int
+---@param id number
+---@param seatId number
 function sampForceUnoccupiedSyncSeatId(id, seatId) end
 
 ---
@@ -15401,14 +15607,14 @@ function sampForceAimSync() end
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampForceTrailerSync)**
 ---
----@param id int
+---@param id number
 function sampForceTrailerSync(id) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampForcePassengerSyncSeatId)**
 ---
----@param id int
----@param seatId int
+---@param id number
+---@param seatId number
 function sampForcePassengerSyncSeatId(id, seatId) end
 
 ---
@@ -15422,67 +15628,67 @@ function sampForceStatsSync() end
 function sampForceWeaponsSync() end
 
 ---
---- Возвращает максимальный SAMP ид игрока на сервере/в зоне прорисовки (стриме)  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ SAMP РёРґ РёРіСЂРѕРєР° РЅР° СЃРµСЂРІРµСЂРµ/РІ Р·РѕРЅРµ РїСЂРѕСЂРёСЃРѕРІРєРё (СЃС‚СЂРёРјРµ)
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetMaxPlayerId)**  
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetMaxPlayerId)**
 ---
----@param streamed bool Поиск в стриме
----@return int id ID игрока
+---@param streamed boolean РџРѕРёСЃРє РІ СЃС‚СЂРёРјРµ
+---@return number id ID РёРіСЂРѕРєР°
 function sampGetMaxPlayerId(streamed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampGetPlayerCount)**
 ---
----@param streamed bool
----@return int count
+---@param streamed boolean
+---@return number count
 function sampGetPlayerCount(streamed) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampProcessChatInput)**
 ---
----@param text zstring
+---@param text string
 function sampProcessChatInput(text) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/sampIsChatCommandDefined)**
 ---
----@param cmd zstring
----@return bool result
+---@param cmd string
+---@return boolean result
 function sampIsChatCommandDefined(cmd) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/isSampfuncsConsoleCommandDefined)**
 ---
----@param cmd zstring
----@return bool result
+---@param cmd string
+---@return boolean result
 function isSampfuncsConsoleCommandDefined(cmd) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getCleoLibraryVersion)**
 ---
----@return int version
+---@return number version
 function getCleoLibraryVersion() end
 
 ---
---- Основная функция, вызывается единожды за запуск скрипта.  
---- В ней можно использовать задержки `wait` и бесконечные циклы, при этом не нарушая работу игры.  
---- Вдействительности событие `main` является не событием, а сопрограммой, выполняющейся в отдельном Lua-потоке.  
---- Это и даёт возможность прерывать её выполнение на какой-то промежуток времени и затем продолжать работу с того же места без каких-либо негативных последствий.  
+--- РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ, РІС‹Р·С‹РІР°РµС‚СЃСЏ РµРґРёРЅРѕР¶РґС‹ Р·Р° Р·Р°РїСѓСЃРє СЃРєСЂРёРїС‚Р°.
+--- Р’ РЅРµР№ РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Р·Р°РґРµСЂР¶РєРё `wait` Рё Р±РµСЃРєРѕРЅРµС‡РЅС‹Рµ С†РёРєР»С‹, РїСЂРё СЌС‚РѕРј РЅРµ РЅР°СЂСѓС€Р°СЏ СЂР°Р±РѕС‚Сѓ РёРіСЂС‹.
+--- Р’РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕСЃС‚Рё СЃРѕР±С‹С‚РёРµ `main` СЏРІР»СЏРµС‚СЃСЏ РЅРµ СЃРѕР±С‹С‚РёРµРј, Р° СЃРѕРїСЂРѕРіСЂР°РјРјРѕР№, РІС‹РїРѕР»РЅСЏСЋС‰РµР№СЃСЏ РІ РѕС‚РґРµР»СЊРЅРѕРј Lua-РїРѕС‚РѕРєРµ.
+--- Р­С‚Рѕ Рё РґР°С‘С‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїСЂРµСЂС‹РІР°С‚СЊ РµС‘ РІС‹РїРѕР»РЅРµРЅРёРµ РЅР° РєР°РєРѕР№-С‚Рѕ РїСЂРѕРјРµР¶СѓС‚РѕРє РІСЂРµРјРµРЅРё Рё Р·Р°С‚РµРј РїСЂРѕРґРѕР»Р¶Р°С‚СЊ СЂР°Р±РѕС‚Сѓ СЃ С‚РѕРіРѕ Р¶Рµ РјРµСЃС‚Р° Р±РµР· РєР°РєРёС…-Р»РёР±Рѕ РЅРµРіР°С‚РёРІРЅС‹С… РїРѕСЃР»РµРґСЃС‚РІРёР№.
 ---
---- ### Пример  
+--- ### РџСЂРёРјРµСЂ
 ---
 --- ```lua
 ---   function main()
----     -- загрузим что-нибудь перед тем, как запустить бесконечный цикл
+---     -- Р·Р°РіСЂСѓР·РёРј С‡С‚Рѕ-РЅРёР±СѓРґСЊ РїРµСЂРµРґ С‚РµРј, РєР°Рє Р·Р°РїСѓСЃС‚РёС‚СЊ Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР»
 ---     loadStuff()
 ---     key1_timesPressed = 0
----   
----     -- бесконечный цикл - в данном примере именно в нём реализована основная часть скрипта
+---
+---     -- Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» - РІ РґР°РЅРЅРѕРј РїСЂРёРјРµСЂРµ РёРјРµРЅРЅРѕ РІ РЅС‘Рј СЂРµР°Р»РёР·РѕРІР°РЅР° РѕСЃРЅРѕРІРЅР°СЏ С‡Р°СЃС‚СЊ СЃРєСЂРёРїС‚Р°
 ---     while true do
----       -- в нём обязательно должна присутствовать хотя-бы нулевая задержка, иначе игра попросту зависнет
----       -- объясняется это тем, что весь процесс игры выполняется последовательно, в том числе и скрипты MoonLoader-а
----       -- и поэтому периодически игре нужно давать возможность обработаться, делая паузу в каждом бесконечном цикле любого скрипта
----       -- нулевая задержка приостановит выполнение скрипта ровно на один кадр (задержка в main не оказывает влияния на выполнение остальных событий)
+---       -- РІ РЅС‘Рј РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РґРѕР»Р¶РЅР° РїСЂРёСЃСѓС‚СЃС‚РІРѕРІР°С‚СЊ С…РѕС‚СЏ-Р±С‹ РЅСѓР»РµРІР°СЏ Р·Р°РґРµСЂР¶РєР°, РёРЅР°С‡Рµ РёРіСЂР° РїРѕРїСЂРѕСЃС‚Сѓ Р·Р°РІРёСЃРЅРµС‚
+---       -- РѕР±СЉСЏСЃРЅСЏРµС‚СЃСЏ СЌС‚Рѕ С‚РµРј, С‡С‚Рѕ РІРµСЃСЊ РїСЂРѕС†РµСЃСЃ РёРіСЂС‹ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕ, РІ С‚РѕРј С‡РёСЃР»Рµ Рё СЃРєСЂРёРїС‚С‹ MoonLoader-Р°
+---       -- Рё РїРѕСЌС‚РѕРјСѓ РїРµСЂРёРѕРґРёС‡РµСЃРєРё РёРіСЂРµ РЅСѓР¶РЅРѕ РґР°РІР°С‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РѕР±СЂР°Р±РѕС‚Р°С‚СЊСЃСЏ, РґРµР»Р°СЏ РїР°СѓР·Сѓ РІ РєР°Р¶РґРѕРј Р±РµСЃРєРѕРЅРµС‡РЅРѕРј С†РёРєР»Рµ Р»СЋР±РѕРіРѕ СЃРєСЂРёРїС‚Р°
+---       -- РЅСѓР»РµРІР°СЏ Р·Р°РґРµСЂР¶РєР° РїСЂРёРѕСЃС‚Р°РЅРѕРІРёС‚ РІС‹РїРѕР»РЅРµРЅРёРµ СЃРєСЂРёРїС‚Р° СЂРѕРІРЅРѕ РЅР° РѕРґРёРЅ РєР°РґСЂ (Р·Р°РґРµСЂР¶РєР° РІ main РЅРµ РѕРєР°Р·С‹РІР°РµС‚ РІР»РёСЏРЅРёСЏ РЅР° РІС‹РїРѕР»РЅРµРЅРёРµ РѕСЃС‚Р°Р»СЊРЅС‹С… СЃРѕР±С‹С‚РёР№)
 ---       wait(0)
 ---       if isPlayerPlaying(playerHandle) then
 ---         if isKeyDown(0x31) then
@@ -15494,7 +15700,7 @@ function getCleoLibraryVersion() end
 ---       end
 ---     end
 ---   end
---- ```  
+--- ```
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/main)**
 ---

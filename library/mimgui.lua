@@ -334,7 +334,7 @@ function imgui.ImVec4(x, y, z, w) end
 
 ---@param value boolean
 ---@return ImBool
-function imgui.new.boolean(value) end
+function imgui.new.bool(value) end
 
 ---@param value number
 ---@return ImInt
@@ -440,7 +440,7 @@ function ImDrawList.AddBezierCurve(self, pos0, cp0, cp1, pos1, col, thickness, n
 ---@param clip_rect_min ImVec2
 ---@param clip_rect_max ImVec2
 ---@param intersect_with_current_clip_rect boolean?
-function ImDrawList.PushClipRect(self, clip_rect_min,  clip_rect_max, intersect_with_current_clip_rect) end
+function ImDrawList.PushClipRect(self, clip_rect_min, clip_rect_max, intersect_with_current_clip_rect) end
 function ImDrawList.PopClipRect(self) end
 
 function imgui.CreateContext(ImFontAtlasshared_font_atlas) end
