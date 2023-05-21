@@ -15395,134 +15395,41 @@ function isSampfuncsConsoleCommandDefined(cmd) end
 function getCleoLibraryVersion() end
 
 ---
+--- Основная функция, вызывается единожды за запуск скрипта.  
+--- В ней можно использовать задержки `wait` и бесконечные циклы, при этом не нарушая работу игры.  
+--- Вдействительности событие `main` является не событием, а сопрограммой, выполняющейся в отдельном Lua-потоке.  
+--- Это и даёт возможность прерывать её выполнение на какой-то промежуток времени и затем продолжать работу с того же места без каких-либо негативных последствий.  
+---
+--- ### Пример  
+---
+--- ```lua
+---   function main()
+---     -- загрузим что-нибудь перед тем, как запустить бесконечный цикл
+---     loadStuff()
+---     key1_timesPressed = 0
+---   
+---     -- бесконечный цикл - в данном примере именно в нём реализована основная часть скрипта
+---     while true do
+---       -- в нём обязательно должна присутствовать хотя-бы нулевая задержка, иначе игра попросту зависнет
+---       -- объясняется это тем, что весь процесс игры выполняется последовательно, в том числе и скрипты MoonLoader-а
+---       -- и поэтому периодически игре нужно давать возможность обработаться, делая паузу в каждом бесконечном цикле любого скрипта
+---       -- нулевая задержка приостановит выполнение скрипта ровно на один кадр (задержка в main не оказывает влияния на выполнение остальных событий)
+---       wait(0)
+---       if isPlayerPlaying(playerHandle) then
+---         if isKeyDown(0x31) then
+---           key1_timesPressed = key1_timesPressed + 1
+---           print("Key 1 pressed " .. key1_timesPressed .. " times.")
+---           wait(500)
+---         end
+---         doCoolStuff()
+---       end
+---     end
+---   end
+--- ```  
+---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/main)**
 ---
 function main() end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onExitScript)**
----
----@param quitGame bool
-function onExitScript(quitGame) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onQuitGame)**
----
-function onQuitGame() end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onScriptLoad)**
----
----@param script LuaScript
-function onScriptLoad(script) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onScriptTerminate)**
----
----@param script LuaScript
----@param quitGame bool
-function onScriptTerminate(script, quitGame) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onSystemInitialized)**
----
-function onSystemInitialized() end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onScriptMessage)**
----
----@param msg string
----@param script LuaScript
-function onScriptMessage(msg, script) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onSystemMessage)**
----
----@param msg string
----@param type int
----@param script LuaScript
-function onSystemMessage(msg, type, script) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onReceivePacket)**
----
----@param id int
----@param bitStream Bitstream
----@return bool process
----@return int id
----@return Bitstream bitStream
-function onReceivePacket(id, bitStream) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onReceiveRpc)**
----
----@param id int
----@param bitStream Bitstream
----@return bool process
----@return int id
----@return Bitstream bitStream
-function onReceiveRpc(id, bitStream) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onSendPacket)**
----
----@param id int
----@param bitStream Bitstream
----@param priority int
----@param reliability int
----@param orderingChannel int
----@return bool process
----@return int id
----@return Bitstream bitStream
----@return int priority
----@return int reliability
----@return int orderingChannel
-function onSendPacket(id, bitStream, priority, reliability, orderingChannel) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onSendRpc)**
----
----@param id int
----@param bitStream Bitstream
----@param priority int
----@param reliability int
----@param orderingChannel int
----@param shiftTs bool
----@return bool process
----@return int id
----@return Bitstream bitStream
----@return int priority
----@return int reliability
----@return int orderingChannel
----@return bool shiftTs
-function onSendRpc(id, bitStream, priority, reliability, orderingChannel, shiftTs) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onWindowMessage)**
----
----@param msg uint
----@param wparam uint
----@param lparam int
-function onWindowMessage(msg, wparam, lparam) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onStartNewGame)**
----
----@param mpack int
-function onStartNewGame(mpack) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onLoadGame)**
----
----@param saveData table
-function onLoadGame(saveData) end
-
----
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/onSaveGame)**
----
----@param saveData table
----@return table newSaveData
-function onSaveGame(saveData) end
 
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/PLAYER_PED)**
