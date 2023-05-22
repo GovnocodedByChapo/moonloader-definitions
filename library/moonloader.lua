@@ -1,110 +1,110 @@
 ---@meta
 ---@diagnostic disable: lowercase-global, missing-return
 
----@alias bool boolean # логический
----@alias int number # целочисленный со знаком, 4 байта
----@alias uint number # целочисленный без знака, 4 байта
----@alias float number # число с плавающей точкой, 4 байта
----@alias double number # число с плавающей точкой двойной точности, 8 байт
----@alias zstring string # нуль-терминированная строка (в Lua обычная строка)
+---@alias bool boolean # Р»РѕРіРёС‡РµСЃРєРёР№
+---@alias int number # С†РµР»РѕС‡РёСЃР»РµРЅРЅС‹Р№ СЃРѕ Р·РЅР°РєРѕРј, 4 Р±Р°Р№С‚Р°
+---@alias uint number # С†РµР»РѕС‡РёСЃР»РµРЅРЅС‹Р№ Р±РµР· Р·РЅР°РєР°, 4 Р±Р°Р№С‚Р°
+---@alias float number # С‡РёСЃР»Рѕ СЃ РїР»Р°РІР°СЋС‰РµР№ С‚РѕС‡РєРѕР№, 4 Р±Р°Р№С‚Р°
+---@alias double number # С‡РёСЃР»Рѕ СЃ РїР»Р°РІР°СЋС‰РµР№ С‚РѕС‡РєРѕР№ РґРІРѕР№РЅРѕР№ С‚РѕС‡РЅРѕСЃС‚Рё, 8 Р±Р°Р№С‚
+---@alias zstring string # РЅСѓР»СЊ-С‚РµСЂРјРёРЅРёСЂРѕРІР°РЅРЅР°СЏ СЃС‚СЂРѕРєР° (РІ Lua РѕР±С‹С‡РЅР°СЏ СЃС‚СЂРѕРєР°)
 
----@class Ped # скриптовый хэндл игрового персонажа
----@class Marker # скриптовый хэндл маркера
----@class Pickup # скриптовый хэндл пикапа
----@class Searchlight # скриптовый хэндл прожектора
----@class Particle # скриптовый хэндл визуального эффекта
----@class Checkpoint # скриптовый хэндл чекпоинта
----@class Vehicle # скриптовый хэндл транспортного средства
----@class Object # скриптовый хэндл игрового объекта
----@class Player # идентификатор игрока
+---@class Ped # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РёРіСЂРѕРІРѕРіРѕ РїРµСЂСЃРѕРЅР°Р¶Р°
+---@class Marker # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РјР°СЂРєРµСЂР°
+---@class Pickup # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РїРёРєР°РїР°
+---@class Searchlight # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РїСЂРѕР¶РµРєС‚РѕСЂР°
+---@class Particle # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РІРёР·СѓР°Р»СЊРЅРѕРіРѕ СЌС„С„РµРєС‚Р°
+---@class Checkpoint # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» С‡РµРєРїРѕРёРЅС‚Р°
+---@class Vehicle # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРіРѕ СЃСЂРµРґСЃС‚РІР°
+---@class Object # СЃРєСЂРёРїС‚РѕРІС‹Р№ С…СЌРЅРґР» РёРіСЂРѕРІРѕРіРѕ РѕР±СЉРµРєС‚Р°
+---@class Player # РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РёРіСЂРѕРєР°
 
----@alias GxtString string # короткая строка-идентификатор GXT-записи
----@alias Model uint # идентификатор игровой модели
----@alias Bitstream uint # указатель на объект BitStream
----@alias VarId uint # индекс скриптовой глобальной переменной
+---@alias GxtString string # РєРѕСЂРѕС‚РєР°СЏ СЃС‚СЂРѕРєР°-РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ GXT-Р·Р°РїРёСЃРё
+---@alias Model uint # РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РёРіСЂРѕРІРѕР№ РјРѕРґРµР»Рё
+---@alias Bitstream uint # СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ BitStream
+---@alias VarId uint # РёРЅРґРµРєСЃ СЃРєСЂРёРїС‚РѕРІРѕР№ РіР»РѕР±Р°Р»СЊРЅРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№
 
----@class DxutDialog # хэндл DXUT-диалога SAMPFUNCS
+---@class DxutDialog # С…СЌРЅРґР» DXUT-РґРёР°Р»РѕРіР° SAMPFUNCS
 
----@class DxFont # экземпляр шрифта DirectX
----@class DxTexture # экземпляр текстуры DirectX
----@class AudioStream # экземпляр аудиопотока BASS
----@class Filesearch # хэндл поиска файлов
+---@class DxFont # СЌРєР·РµРјРїР»СЏСЂ С€СЂРёС„С‚Р° DirectX
+---@class DxTexture # СЌРєР·РµРјРїР»СЏСЂ С‚РµРєСЃС‚СѓСЂС‹ DirectX
+---@class AudioStream # СЌРєР·РµРјРїР»СЏСЂ Р°СѓРґРёРѕРїРѕС‚РѕРєР° BASS
+---@class Filesearch # С…СЌРЅРґР» РїРѕРёСЃРєР° С„Р°Р№Р»РѕРІ
 
 ---@alias LuaThreadStatus
----| '"dead"' # завершён
----| '"suspended"' # заморожен
----| '"running"' # выполняется
----| '"yielded"' # приостановлен
----| '"error"' # завершён с ошибкой
+---| '"dead"' # Р·Р°РІРµСЂС€С‘РЅ
+---| '"suspended"' # Р·Р°РјРѕСЂРѕР¶РµРЅ
+---| '"running"' # РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ
+---| '"yielded"' # РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅ
+---| '"error"' # Р·Р°РІРµСЂС€С‘РЅ СЃ РѕС€РёР±РєРѕР№
 
----@class LuaThread # экземпляр класса LuaThread
----@field dead boolean # Определяет статус завершённости потока. Только для чтения.
----@field work_in_pause boolean # Определяет исполнение потока во время паузы игры.
----@field run fun(...) # Выполняет замороженный, выполняющийся или завершённый поток с начала. Все параметры вызова передаются в функцию потока в качестве аргументов.
----@field terminate fun() # Принудительно завершает поток.
----@field status fun(): LuaThreadStatus # Возвращает статус потока.
+---@class LuaThread # СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° LuaThread
+---@field dead boolean # РћРїСЂРµРґРµР»СЏРµС‚ СЃС‚Р°С‚СѓСЃ Р·Р°РІРµСЂС€С‘РЅРЅРѕСЃС‚Рё РїРѕС‚РѕРєР°. РўРѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ.
+---@field work_in_pause boolean # РћРїСЂРµРґРµР»СЏРµС‚ РёСЃРїРѕР»РЅРµРЅРёРµ РїРѕС‚РѕРєР° РІРѕ РІСЂРµРјСЏ РїР°СѓР·С‹ РёРіСЂС‹.
+---@field run fun(...) # Р’С‹РїРѕР»РЅСЏРµС‚ Р·Р°РјРѕСЂРѕР¶РµРЅРЅС‹Р№, РІС‹РїРѕР»РЅСЏСЋС‰РёР№СЃСЏ РёР»Рё Р·Р°РІРµСЂС€С‘РЅРЅС‹Р№ РїРѕС‚РѕРє СЃ РЅР°С‡Р°Р»Р°. Р’СЃРµ РїР°СЂР°РјРµС‚СЂС‹ РІС‹Р·РѕРІР° РїРµСЂРµРґР°СЋС‚СЃСЏ РІ С„СѓРЅРєС†РёСЋ РїРѕС‚РѕРєР° РІ РєР°С‡РµСЃС‚РІРµ Р°СЂРіСѓРјРµРЅС‚РѕРІ.
+---@field terminate fun() # РџСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕ Р·Р°РІРµСЂС€Р°РµС‚ РїРѕС‚РѕРє.
+---@field status fun(): LuaThreadStatus # Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃС‚Р°С‚СѓСЃ РїРѕС‚РѕРєР°.
 
 ---@class lua_thread
 lua_thread = {}
 
 ---
---- Создаёт новый поток и сразу же запускает его с указанными параметрами.  
---- Для создания потока приостановленным нужно использовать функцию `lua_thread.create_suspended`.  
---- За примерами и всеми подробностями о потоках обратитесь к статье <a href="Скриптовые потоки">https://wiki.blast.hk/moonloader/scripting/threads</a>.  
+--- РЎРѕР·РґР°С‘С‚ РЅРѕРІС‹Р№ РїРѕС‚РѕРє Рё СЃСЂР°Р·Сѓ Р¶Рµ Р·Р°РїСѓСЃРєР°РµС‚ РµРіРѕ СЃ СѓРєР°Р·Р°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё.  
+--- Р”Р»СЏ СЃРѕР·РґР°РЅРёСЏ РїРѕС‚РѕРєР° РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Рј РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С„СѓРЅРєС†РёСЋ `lua_thread.create_suspended`.  
+--- Р—Р° РїСЂРёРјРµСЂР°РјРё Рё РІСЃРµРјРё РїРѕРґСЂРѕР±РЅРѕСЃС‚СЏРјРё Рѕ РїРѕС‚РѕРєР°С… РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЃС‚Р°С‚СЊРµ <a href="РЎРєСЂРёРїС‚РѕРІС‹Рµ РїРѕС‚РѕРєРё">https://wiki.blast.hk/moonloader/scripting/threads</a>.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/lua_thread/create">Open the wiki</a></b>  
 ---
----@param func function функция потока, которая начнёт исполнение сразу после создания потока
----@param ... any параметры, с которыми будет вызвана функция
----@return LuaThread thread экземпляр `LuaThread`
+---@param func function С„СѓРЅРєС†РёСЏ РїРѕС‚РѕРєР°, РєРѕС‚РѕСЂР°СЏ РЅР°С‡РЅС‘С‚ РёСЃРїРѕР»РЅРµРЅРёРµ СЃСЂР°Р·Сѓ РїРѕСЃР»Рµ СЃРѕР·РґР°РЅРёСЏ РїРѕС‚РѕРєР°
+---@param ... any РїР°СЂР°РјРµС‚СЂС‹, СЃ РєРѕС‚РѕСЂС‹РјРё Р±СѓРґРµС‚ РІС‹Р·РІР°РЅР° С„СѓРЅРєС†РёСЏ
+---@return LuaThread thread СЌРєР·РµРјРїР»СЏСЂ `LuaThread`
 function lua_thread.create(func, ...) end
 
 ---
---- Создаёт новый поток в состоянии ожидания запуска. Такой поток не начнёт выполнение сразу же после создания, вместо чего будет находиться в ожидании активации функцией lua_thread:run.  
---- Для создания потока с безотложным запуском нужно использовать функцию lua_thread.create.  
---- За примерами и всеми подробностями о потоках обратитесь к статье Скриптовые потоки.  
+--- РЎРѕР·РґР°С‘С‚ РЅРѕРІС‹Р№ РїРѕС‚РѕРє РІ СЃРѕСЃС‚РѕСЏРЅРёРё РѕР¶РёРґР°РЅРёСЏ Р·Р°РїСѓСЃРєР°. РўР°РєРѕР№ РїРѕС‚РѕРє РЅРµ РЅР°С‡РЅС‘С‚ РІС‹РїРѕР»РЅРµРЅРёРµ СЃСЂР°Р·Сѓ Р¶Рµ РїРѕСЃР»Рµ СЃРѕР·РґР°РЅРёСЏ, РІРјРµСЃС‚Рѕ С‡РµРіРѕ Р±СѓРґРµС‚ РЅР°С…РѕРґРёС‚СЊСЃСЏ РІ РѕР¶РёРґР°РЅРёРё Р°РєС‚РёРІР°С†РёРё С„СѓРЅРєС†РёРµР№ lua_thread:run.  
+--- Р”Р»СЏ СЃРѕР·РґР°РЅРёСЏ РїРѕС‚РѕРєР° СЃ Р±РµР·РѕС‚Р»РѕР¶РЅС‹Рј Р·Р°РїСѓСЃРєРѕРј РЅСѓР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ С„СѓРЅРєС†РёСЋ lua_thread.create.  
+--- Р—Р° РїСЂРёРјРµСЂР°РјРё Рё РІСЃРµРјРё РїРѕРґСЂРѕР±РЅРѕСЃС‚СЏРјРё Рѕ РїРѕС‚РѕРєР°С… РѕР±СЂР°С‚РёС‚РµСЃСЊ Рє СЃС‚Р°С‚СЊРµ РЎРєСЂРёРїС‚РѕРІС‹Рµ РїРѕС‚РѕРєРё.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/lua_thread/create_suspended">Open the wiki</a></b>  
 ---
----@param func function функция потока, которая выполнится после вызова `thread:run()`
----@return LuaThread thread экземпляр `LuaThread`
+---@param func function С„СѓРЅРєС†РёСЏ РїРѕС‚РѕРєР°, РєРѕС‚РѕСЂР°СЏ РІС‹РїРѕР»РЅРёС‚СЃСЏ РїРѕСЃР»Рµ РІС‹Р·РѕРІР° `thread:run()`
+---@return LuaThread thread СЌРєР·РµРјРїР»СЏСЂ `LuaThread`
 function lua_thread.create_suspended(func) end
 
 
----@class LuaScript # экземпляр класса LuaScript
----@field name string # имя скрипта, заданное функцией 'script_name'. Если имя не задано используется название файла
----@field description string # описание скрипта, указанное функцией 'script_description'. Пустая строка, если не указано
----@field version_num int # числовая версия скрипта. 0, если не указано
----@field version string # текстовая версия скрипта. Будет использована числовая версия, если не задано
----@field authors table # список авторов скрипта. Пустой, если не указаны
----@field dependencies table # список зависимостей скрипта. Пустой, если не указаны
----@field path string # полный путь к файлу скрипта
----@field filename string # название файла скрипта, включая расширение
----@field directory string # полный путь директории, из который был загружен скрипт
----@field frozen bool # статус активности потока (приостановлен/активен)
----@field dead bool # статус существования потока. Есть случаи, когда поток уже завершён, а lua-объект скрипта ещё существует. Свойство dead проверяет объект скрипта на валидность
----@field exports any # экспортируемые скриптом значения. Можно получить и функцией import
----@field id int # уникальный идентификатор скрипта
----@field url string # web-адрес скрипта
----@field properties table # список свойств, заданных директивой script_properties
----@field pause fun() # приостанавливает поток скрипта
----@field resume fun() # снимает остановленный поток с паузы
----@field unload fun() # выгружает скрипт
----@field reload fun() # перезагружает скрипт
+---@class LuaScript # СЌРєР·РµРјРїР»СЏСЂ РєР»Р°СЃСЃР° LuaScript
+---@field name string # РёРјСЏ СЃРєСЂРёРїС‚Р°, Р·Р°РґР°РЅРЅРѕРµ С„СѓРЅРєС†РёРµР№ 'script_name'. Р•СЃР»Рё РёРјСЏ РЅРµ Р·Р°РґР°РЅРѕ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р°
+---@field description string # РѕРїРёСЃР°РЅРёРµ СЃРєСЂРёРїС‚Р°, СѓРєР°Р·Р°РЅРЅРѕРµ С„СѓРЅРєС†РёРµР№ 'script_description'. РџСѓСЃС‚Р°СЏ СЃС‚СЂРѕРєР°, РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅРѕ
+---@field version_num int # С‡РёСЃР»РѕРІР°СЏ РІРµСЂСЃРёСЏ СЃРєСЂРёРїС‚Р°. 0, РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅРѕ
+---@field version string # С‚РµРєСЃС‚РѕРІР°СЏ РІРµСЂСЃРёСЏ СЃРєСЂРёРїС‚Р°. Р‘СѓРґРµС‚ РёСЃРїРѕР»СЊР·РѕРІР°РЅР° С‡РёСЃР»РѕРІР°СЏ РІРµСЂСЃРёСЏ, РµСЃР»Рё РЅРµ Р·Р°РґР°РЅРѕ
+---@field authors table # СЃРїРёСЃРѕРє Р°РІС‚РѕСЂРѕРІ СЃРєСЂРёРїС‚Р°. РџСѓСЃС‚РѕР№, РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅС‹
+---@field dependencies table # СЃРїРёСЃРѕРє Р·Р°РІРёСЃРёРјРѕСЃС‚РµР№ СЃРєСЂРёРїС‚Р°. РџСѓСЃС‚РѕР№, РµСЃР»Рё РЅРµ СѓРєР°Р·Р°РЅС‹
+---@field path string # РїРѕР»РЅС‹Р№ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ СЃРєСЂРёРїС‚Р°
+---@field filename string # РЅР°Р·РІР°РЅРёРµ С„Р°Р№Р»Р° СЃРєСЂРёРїС‚Р°, РІРєР»СЋС‡Р°СЏ СЂР°СЃС€РёСЂРµРЅРёРµ
+---@field directory string # РїРѕР»РЅС‹Р№ РїСѓС‚СЊ РґРёСЂРµРєС‚РѕСЂРёРё, РёР· РєРѕС‚РѕСЂС‹Р№ Р±С‹Р» Р·Р°РіСЂСѓР¶РµРЅ СЃРєСЂРёРїС‚
+---@field frozen bool # СЃС‚Р°С‚СѓСЃ Р°РєС‚РёРІРЅРѕСЃС‚Рё РїРѕС‚РѕРєР° (РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅ/Р°РєС‚РёРІРµРЅ)
+---@field dead bool # СЃС‚Р°С‚СѓСЃ СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ РїРѕС‚РѕРєР°. Р•СЃС‚СЊ СЃР»СѓС‡Р°Рё, РєРѕРіРґР° РїРѕС‚РѕРє СѓР¶Рµ Р·Р°РІРµСЂС€С‘РЅ, Р° lua-РѕР±СЉРµРєС‚ СЃРєСЂРёРїС‚Р° РµС‰С‘ СЃСѓС‰РµСЃС‚РІСѓРµС‚. РЎРІРѕР№СЃС‚РІРѕ dead РїСЂРѕРІРµСЂСЏРµС‚ РѕР±СЉРµРєС‚ СЃРєСЂРёРїС‚Р° РЅР° РІР°Р»РёРґРЅРѕСЃС‚СЊ
+---@field exports any # СЌРєСЃРїРѕСЂС‚РёСЂСѓРµРјС‹Рµ СЃРєСЂРёРїС‚РѕРј Р·РЅР°С‡РµРЅРёСЏ. РњРѕР¶РЅРѕ РїРѕР»СѓС‡РёС‚СЊ Рё С„СѓРЅРєС†РёРµР№ import
+---@field id int # СѓРЅРёРєР°Р»СЊРЅС‹Р№ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРєСЂРёРїС‚Р°
+---@field url string # web-Р°РґСЂРµСЃ СЃРєСЂРёРїС‚Р°
+---@field properties table # СЃРїРёСЃРѕРє СЃРІРѕР№СЃС‚РІ, Р·Р°РґР°РЅРЅС‹С… РґРёСЂРµРєС‚РёРІРѕР№ script_properties
+---@field pause fun() # РїСЂРёРѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РїРѕС‚РѕРє СЃРєСЂРёРїС‚Р°
+---@field resume fun() # СЃРЅРёРјР°РµС‚ РѕСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Р№ РїРѕС‚РѕРє СЃ РїР°СѓР·С‹
+---@field unload fun() # РІС‹РіСЂСѓР¶Р°РµС‚ СЃРєСЂРёРїС‚
+---@field reload fun() # РїРµСЂРµР·Р°РіСЂСѓР¶Р°РµС‚ СЃРєСЂРёРїС‚
 
 ---
---- Возвращает `LuaScript` скрипта, из которого была вызвана функция.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ `LuaScript` СЃРєСЂРёРїС‚Р°, РёР· РєРѕС‚РѕСЂРѕРіРѕ Р±С‹Р»Р° РІС‹Р·РІР°РЅР° С„СѓРЅРєС†РёСЏ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/thisScript">Open the wiki</a></b>  
 ---
----@return LuaScript script скрипт
+---@return LuaScript script СЃРєСЂРёРїС‚
 function thisScript() end
 
 ---@class script
 script = {}
 
 ---
---- Статическое свойство. Возвращает объект `LuaScript` текущего скрипта. Является аналогом функции `thisScript`.  
+--- РЎС‚Р°С‚РёС‡РµСЃРєРѕРµ СЃРІРѕР№СЃС‚РІРѕ. Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ `LuaScript` С‚РµРєСѓС‰РµРіРѕ СЃРєСЂРёРїС‚Р°. РЇРІР»СЏРµС‚СЃСЏ Р°РЅР°Р»РѕРіРѕРј С„СѓРЅРєС†РёРё `thisScript`.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script/this">Open the wiki</a></b>  
 ---
@@ -112,123 +112,123 @@ script = {}
 script.this = {}
 
 ---
---- Загружает скрипт из файла и возвращает объект `LuaScript`.  
---- Функция пытается загрузить скрипт в следующем порядке путей:
----  - рабочая директория + путь
----  - рабочая директория + путь + .lua(c)
----  - абсолютный путь
----  - абсолютный путь + .lua(c)
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ СЃРєСЂРёРїС‚ РёР· С„Р°Р№Р»Р° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ `LuaScript`.  
+--- Р¤СѓРЅРєС†РёСЏ РїС‹С‚Р°РµС‚СЃСЏ Р·Р°РіСЂСѓР·РёС‚СЊ СЃРєСЂРёРїС‚ РІ СЃР»РµРґСѓСЋС‰РµРј РїРѕСЂСЏРґРєРµ РїСѓС‚РµР№:
+---  - СЂР°Р±РѕС‡Р°СЏ РґРёСЂРµРєС‚РѕСЂРёСЏ + РїСѓС‚СЊ
+---  - СЂР°Р±РѕС‡Р°СЏ РґРёСЂРµРєС‚РѕСЂРёСЏ + РїСѓС‚СЊ + .lua(c)
+---  - Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РїСѓС‚СЊ
+---  - Р°Р±СЃРѕР»СЋС‚РЅС‹Р№ РїСѓС‚СЊ + .lua(c)
 ---
---- Возвращает `nil`, если скрипт не был загружен.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ `nil`, РµСЃР»Рё СЃРєСЂРёРїС‚ РЅРµ Р±С‹Р» Р·Р°РіСЂСѓР¶РµРЅ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script/load">Open the wiki</a></b>  
 ---
----@param file string путь к файлу
----@return LuaScript script скрипт
+---@param file string РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+---@return LuaScript script СЃРєСЂРёРїС‚
 function script.load(file) end
 
 ---
---- Ищет загруженный скрипт по имени. Возвращает объект `LuaScript`, если скрипт найден, в противном случае возвращает `nil`.  
+--- РС‰РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ СЃРєСЂРёРїС‚ РїРѕ РёРјРµРЅРё. Р’РѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ `LuaScript`, РµСЃР»Рё СЃРєСЂРёРїС‚ РЅР°Р№РґРµРЅ, РІ РїСЂРѕС‚РёРІРЅРѕРј СЃР»СѓС‡Р°Рµ РІРѕР·РІСЂР°С‰Р°РµС‚ `nil`.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script/find">Open the wiki</a></b>  
 ---
----@param name string название скрипта
----@return LuaScript script скрипт
+---@param name string РЅР°Р·РІР°РЅРёРµ СЃРєСЂРёРїС‚Р°
+---@return LuaScript script СЃРєСЂРёРїС‚
 function script.find(name) end
 
 ---
---- Возвращает массив загруженных скриптов.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ Р·Р°РіСЂСѓР¶РµРЅРЅС‹С… СЃРєСЂРёРїС‚РѕРІ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script/list">Open the wiki</a></b>  
 ---
----@return LuaScript[] list массив `LuaScript` загруженных скриптов
+---@return LuaScript[] list РјР°СЃСЃРёРІ `LuaScript` Р·Р°РіСЂСѓР¶РµРЅРЅС‹С… СЃРєСЂРёРїС‚РѕРІ
 function script.list() end
 
 --- 
---- Получает загруженный скрипт по его уникальному идентификатору и возвращает объект `LuaScript`.  
---- Возвращает `nil`, если скрипта с таким идентификатором нет.  
+--- РџРѕР»СѓС‡Р°РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ СЃРєСЂРёРїС‚ РїРѕ РµРіРѕ СѓРЅРёРєР°Р»СЊРЅРѕРјСѓ РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂСѓ Рё РІРѕР·РІСЂР°С‰Р°РµС‚ РѕР±СЉРµРєС‚ `LuaScript`.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ `nil`, РµСЃР»Рё СЃРєСЂРёРїС‚Р° СЃ С‚Р°РєРёРј РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂРѕРј РЅРµС‚.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script/get">Open the wiki</a></b>  
 ---
----@param scriptId int идентификатор скрипта
----@return LuaScript script скрипт
+---@param scriptId int РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ СЃРєСЂРёРїС‚Р°
+---@return LuaScript script СЃРєСЂРёРїС‚
 function script.get(scriptId) end
 
 ---
---- Проверяет, активен ли курсор  
+--- РџСЂРѕРІРµСЂСЏРµС‚, Р°РєС‚РёРІРµРЅ Р»Рё РєСѓСЂСЃРѕСЂ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/isCursorActive">Open the wiki</a></b>  
 ---
----@return bool result результат
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚
 function isCursorActive() end
 
 ---
---- Возвращает массив со всеми пикапами  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°СЃСЃРёРІ СЃРѕ РІСЃРµРјРё РїРёРєР°РїР°РјРё  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getAllPickups">Open the wiki</a></b>  
 ---
----@return Pickup[] pickups пикапы
+---@return Pickup[] pickups РїРёРєР°РїС‹
 function getAllPickups() end
 
 ---
---- Возвращает хэндл пикапа по указателю на экземляр класса CPickup.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ С…СЌРЅРґР» РїРёРєР°РїР° РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ РЅР° СЌРєР·РµРјР»СЏСЂ РєР»Р°СЃСЃР° CPickup.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getPickupPointerHandle">Open the wiki</a></b>  
 ---
----@param handle int указатель
----@return Pickup pickup хэндл пикапа
+---@param handle int СѓРєР°Р·Р°С‚РµР»СЊ
+---@return Pickup pickup С…СЌРЅРґР» РїРёРєР°РїР°
 function getPickupPointerHandle(handle) end
 
 ---
---- Возвращает указатель на структуру пикапа  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂСѓ РїРёРєР°РїР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getPickupPointer">Open the wiki</a></b>  
 ---
----@param pickup Pickup хэндл
----@return int pointer указатель
+---@param pickup Pickup С…СЌРЅРґР»
+---@return int pointer СѓРєР°Р·Р°С‚РµР»СЊ
 function getPickupPointer(pickup) end
 
 ---@alias PickupType
----| 0 # Отображается не всегда. Не может быть подобран.
----| 1 # Отображается всегда.
----| 2 # Проподает после поднятия, появляется через 30 секунд, если игрок находится на дистанции хотя бы 15 метров от пикапа.
----| 3 # Пропадает после поднятия, появляется после смерти.
----| 4 # Пропадает через 15-20 секунд. Появляется после смерти.
----| 8 # Пропадает после поднятия.
----| 11 # Взрывается через несколько секунд после создания (бомбы?)
----| 12 # Взрывается через несколько секунд после создания.
----| 13 # Невидимый. Издаёт звук чекпоинта, когда подобран на автомобиле.
----| 14 # Пропадает после поднятия, но может быть подобран только на автомобиле. Издоаёт звук чекпоинта.
----| 15 # Тоже самое, что и тип 2.
----| 18 # Похож на тип 1. Нажатие `TAB` заставит его пропасть.
----| 19 # Пропадаёт после поднятия, но не появляется вновь. Издаёт звук поднятия денег.
----| 20 # Похож на тип 1. Пропадает, когда ты его фотографируешь (используя фотоаппарат).
----| 22 # Тоже самое, что и тип 3.
+---| 0 # РћС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РЅРµ РІСЃРµРіРґР°. РќРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРѕРґРѕР±СЂР°РЅ.
+---| 1 # РћС‚РѕР±СЂР°Р¶Р°РµС‚СЃСЏ РІСЃРµРіРґР°.
+---| 2 # РџСЂРѕРїРѕРґР°РµС‚ РїРѕСЃР»Рµ РїРѕРґРЅСЏС‚РёСЏ, РїРѕСЏРІР»СЏРµС‚СЃСЏ С‡РµСЂРµР· 30 СЃРµРєСѓРЅРґ, РµСЃР»Рё РёРіСЂРѕРє РЅР°С…РѕРґРёС‚СЃСЏ РЅР° РґРёСЃС‚Р°РЅС†РёРё С…РѕС‚СЏ Р±С‹ 15 РјРµС‚СЂРѕРІ РѕС‚ РїРёРєР°РїР°.
+---| 3 # РџСЂРѕРїР°РґР°РµС‚ РїРѕСЃР»Рµ РїРѕРґРЅСЏС‚РёСЏ, РїРѕСЏРІР»СЏРµС‚СЃСЏ РїРѕСЃР»Рµ СЃРјРµСЂС‚Рё.
+---| 4 # РџСЂРѕРїР°РґР°РµС‚ С‡РµСЂРµР· 15-20 СЃРµРєСѓРЅРґ. РџРѕСЏРІР»СЏРµС‚СЃСЏ РїРѕСЃР»Рµ СЃРјРµСЂС‚Рё.
+---| 8 # РџСЂРѕРїР°РґР°РµС‚ РїРѕСЃР»Рµ РїРѕРґРЅСЏС‚РёСЏ.
+---| 11 # Р’Р·СЂС‹РІР°РµС‚СЃСЏ С‡РµСЂРµР· РЅРµСЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ РїРѕСЃР»Рµ СЃРѕР·РґР°РЅРёСЏ (Р±РѕРјР±С‹?)
+---| 12 # Р’Р·СЂС‹РІР°РµС‚СЃСЏ С‡РµСЂРµР· РЅРµСЃРєРѕР»СЊРєРѕ СЃРµРєСѓРЅРґ РїРѕСЃР»Рµ СЃРѕР·РґР°РЅРёСЏ.
+---| 13 # РќРµРІРёРґРёРјС‹Р№. РР·РґР°С‘С‚ Р·РІСѓРє С‡РµРєРїРѕРёРЅС‚Р°, РєРѕРіРґР° РїРѕРґРѕР±СЂР°РЅ РЅР° Р°РІС‚РѕРјРѕР±РёР»Рµ.
+---| 14 # РџСЂРѕРїР°РґР°РµС‚ РїРѕСЃР»Рµ РїРѕРґРЅСЏС‚РёСЏ, РЅРѕ РјРѕР¶РµС‚ Р±С‹С‚СЊ РїРѕРґРѕР±СЂР°РЅ С‚РѕР»СЊРєРѕ РЅР° Р°РІС‚РѕРјРѕР±РёР»Рµ. РР·РґРѕР°С‘С‚ Р·РІСѓРє С‡РµРєРїРѕРёРЅС‚Р°.
+---| 15 # РўРѕР¶Рµ СЃР°РјРѕРµ, С‡С‚Рѕ Рё С‚РёРї 2.
+---| 18 # РџРѕС…РѕР¶ РЅР° С‚РёРї 1. РќР°Р¶Р°С‚РёРµ `TAB` Р·Р°СЃС‚Р°РІРёС‚ РµРіРѕ РїСЂРѕРїР°СЃС‚СЊ.
+---| 19 # РџСЂРѕРїР°РґР°С‘С‚ РїРѕСЃР»Рµ РїРѕРґРЅСЏС‚РёСЏ, РЅРѕ РЅРµ РїРѕСЏРІР»СЏРµС‚СЃСЏ РІРЅРѕРІСЊ. РР·РґР°С‘С‚ Р·РІСѓРє РїРѕРґРЅСЏС‚РёСЏ РґРµРЅРµРі.
+---| 20 # РџРѕС…РѕР¶ РЅР° С‚РёРї 1. РџСЂРѕРїР°РґР°РµС‚, РєРѕРіРґР° С‚С‹ РµРіРѕ С„РѕС‚РѕРіСЂР°С„РёСЂСѓРµС€СЊ (РёСЃРїРѕР»СЊР·СѓСЏ С„РѕС‚РѕР°РїРїР°СЂР°С‚).
+---| 22 # РўРѕР¶Рµ СЃР°РјРѕРµ, С‡С‚Рѕ Рё С‚РёРї 3.
 
 ---
---- Возвращает тип пикапа  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РёРї РїРёРєР°РїР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getPickupType">Open the wiki</a></b>  
 ---
----@param pickup Pickup хэндл пикапа
----@return PickupType type тип пикапа
+---@param pickup Pickup С…СЌРЅРґР» РїРёРєР°РїР°
+---@return PickupType type С‚РёРї РїРёРєР°РїР°
 function getPickupType(pickup) end
 
 ---
---- Возвращает модель пикапа  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РјРѕРґРµР»СЊ РїРёРєР°РїР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getPickupModel">Open the wiki</a></b>  
 ---
----@param pickup Pickup хэндл пикапа
----@return int model модель
+---@param pickup Pickup С…СЌРЅРґР» РїРёРєР°РїР°
+---@return int model РјРѕРґРµР»СЊ
 function getPickupModel(pickup) end
 
 ---
---- Возвращает кватернион вращения объекта  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ РѕР±СЉРµРєС‚Р°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getObjectQuaternion">Open the wiki</a></b>  
 ---
----@param object Object объект
+---@param object Object РѕР±СЉРµРєС‚
 ---@return float x
 ---@return float y
 ---@return float z
@@ -236,11 +236,11 @@ function getPickupModel(pickup) end
 function getObjectQuaternion(object) end
 
 ---
---- Задаёт кватернион вращения объекта  
+--- Р—Р°РґР°С‘С‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ РѕР±СЉРµРєС‚Р°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setObjectQuaternion">Open the wiki</a></b>  
 ---
----@param object Object объект
+---@param object Object РѕР±СЉРµРєС‚
 ---@param x float
 ---@param y float
 ---@param z float
@@ -248,11 +248,11 @@ function getObjectQuaternion(object) end
 function setObjectQuaternion(object, x, y, z, w) end
 
 ---
---- Возвращает кватернион вращения транспортного средства  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРіРѕ СЃСЂРµРґСЃС‚РІР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getVehicleQuaternion">Open the wiki</a></b>  
 ---
----@param car Vehicle транспорт
+---@param car Vehicle С‚СЂР°РЅСЃРїРѕСЂС‚
 ---@return float x
 ---@return float y
 ---@return float z
@@ -260,11 +260,11 @@ function setObjectQuaternion(object, x, y, z, w) end
 function getVehicleQuaternion(car) end
 
 ---
---- Задаёт кватернион вращения транспортного средства  
+--- Р—Р°РґР°С‘С‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРіРѕ СЃСЂРµРґСЃС‚РІР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setVehicleQuaternion">Open the wiki</a></b>  
 ---
----@param car Vehicle транспорт
+---@param car Vehicle С‚СЂР°РЅСЃРїРѕСЂС‚
 ---@param x float
 ---@param y float
 ---@param z float
@@ -272,11 +272,11 @@ function getVehicleQuaternion(car) end
 function setVehicleQuaternion(car, x, y, z, w) end
 
 ---
---- Возвращает кватернион вращения персонажа  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharQuaternion">Open the wiki</a></b>  
 ---
----@param ped Ped персонаж
+---@param ped Ped РїРµСЂСЃРѕРЅР°Р¶
 ---@return float x
 ---@return float y
 ---@return float z
@@ -284,11 +284,11 @@ function setVehicleQuaternion(car, x, y, z, w) end
 function getCharQuaternion(ped) end
 
 ---
---- Задаёт кватернион вращения персонажа  
+--- Р—Р°РґР°С‘С‚ РєРІР°С‚РµСЂРЅРёРѕРЅ РІСЂР°С‰РµРЅРёСЏ РїРµСЂСЃРѕРЅР°Р¶Р°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharQuaternion">Open the wiki</a></b>  
 ---
----@param ped Ped персонаж
+---@param ped Ped РїРµСЂСЃРѕРЅР°Р¶
 ---@param x float
 ---@param y float
 ---@param z float
@@ -296,106 +296,106 @@ function getCharQuaternion(ped) end
 function setCharQuaternion(ped, x, y, z, w) end
 
 ---
---- Загружает аудио из файла или по веб-адресу  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ Р°СѓРґРёРѕ РёР· С„Р°Р№Р»Р° РёР»Рё РїРѕ РІРµР±-Р°РґСЂРµСЃСѓ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/loadAudioStream">Open the wiki</a></b>  
 ---
----@param audio zstring путь к файлу или Web-адрес
----@return AudioStream handle аудиопоток
+---@param audio zstring РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РёР»Рё Web-Р°РґСЂРµСЃ
+---@return AudioStream handle Р°СѓРґРёРѕРїРѕС‚РѕРє
 function loadAudioStream(audio) end
 
 ---@alias AudioStreamState
----| 0 # Остановлен (закончен)
----| 1 # Играет
----| 2 # Приостановлен
----| 3 # Возобновлён
+---| 0 # РћСЃС‚Р°РЅРѕРІР»РµРЅ (Р·Р°РєРѕРЅС‡РµРЅ)
+---| 1 # РРіСЂР°РµС‚
+---| 2 # РџСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅ
+---| 3 # Р’РѕР·РѕР±РЅРѕРІР»С‘РЅ
 
 ---
---- Задаёт новый статус аудиопотоку  
+--- Р—Р°РґР°С‘С‚ РЅРѕРІС‹Р№ СЃС‚Р°С‚СѓСЃ Р°СѓРґРёРѕРїРѕС‚РѕРєСѓ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setAudioStreamState">Open the wiki</a></b>  
 ---
----@param handle AudioStream аудиопоток
----@param state AudioStreamState состояние
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param state AudioStreamState СЃРѕСЃС‚РѕСЏРЅРёРµ
 function setAudioStreamState(handle, state) end
 
 ---
---- Освобождает загруженный аудиопоток.  
---- Использовать не необходимо, т.к. аудиопотоки освобождаются автоматически сборщиком мусора.  
+--- РћСЃРІРѕР±РѕР¶РґР°РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ Р°СѓРґРёРѕРїРѕС‚РѕРє.  
+--- РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РЅРµ РЅРµРѕР±С…РѕРґРёРјРѕ, С‚.Рє. Р°СѓРґРёРѕРїРѕС‚РѕРєРё РѕСЃРІРѕР±РѕР¶РґР°СЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё СЃР±РѕСЂС‰РёРєРѕРј РјСѓСЃРѕСЂР°.  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
----   -- не правильно:
+---   -- РЅРµ РїСЂР°РІРёР»СЊРЅРѕ:
 ---   releaseAudioStream(audiostream)
----   -- правильно:
+---   -- РїСЂР°РІРёР»СЊРЅРѕ:
 ---   audiostream = nil
 --- ```  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/releaseAudioStream">Open the wiki</a></b>  
 ---
----@param handle AudioStream аудиопоток
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
 ---@deprecated
 function releaseAudioStream(handle) end
 
 ---
---- Возвращает длительность аудиопотока в секундах  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ Р°СѓРґРёРѕРїРѕС‚РѕРєР° РІ СЃРµРєСѓРЅРґР°С…  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getAudioStreamLength">Open the wiki</a></b>  
 ---
----@param handle AudioStream аудиопоток
----@return double length длительность
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@return double length РґР»РёС‚РµР»СЊРЅРѕСЃС‚СЊ
 function getAudioStreamLength(handle) end
 
 ---
---- Возвращает статус аудиопотока  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СЃС‚Р°С‚СѓСЃ Р°СѓРґРёРѕРїРѕС‚РѕРєР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getAudioStreamState">Open the wiki</a></b>  
 ---
----@param handle AudioStream аудиопоток
----@return AudioStreamState state статус
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@return AudioStreamState state СЃС‚Р°С‚СѓСЃ
 function getAudioStreamState(handle) end
 
 ---
---- Возвращает громкость аудиопотока  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РіСЂРѕРјРєРѕСЃС‚СЊ Р°СѓРґРёРѕРїРѕС‚РѕРєР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getAudioStreamVolume">Open the wiki</a></b>  
 ---
----@param audio AudioStream аудиопоток
----@return float volume громкость (1.0 - 100%, 0.0 - 0%)
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@return float volume РіСЂРѕРјРєРѕСЃС‚СЊ (1.0 - 100%, 0.0 - 0%)
 function getAudioStreamVolume(audio) end
 
 ---
---- Устанавливает громкость аудиопотока  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РіСЂРѕРјРєРѕСЃС‚СЊ Р°СѓРґРёРѕРїРѕС‚РѕРєР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setAudioStreamVolume">Open the wiki</a></b>  
 ---
----@param audio AudioStream аудиопоток
----@param volume float громкость (1.0 - 100%, 0.0 - 0%)
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param volume float РіСЂРѕРјРєРѕСЃС‚СЊ (1.0 - 100%, 0.0 - 0%)
 function setAudioStreamVolume(audio, volume) end
 
 ---
---- Переключает статус зацикленности аудиопотока  
+--- РџРµСЂРµРєР»СЋС‡Р°РµС‚ СЃС‚Р°С‚СѓСЃ Р·Р°С†РёРєР»РµРЅРЅРѕСЃС‚Рё Р°СѓРґРёРѕРїРѕС‚РѕРєР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setAudioStreamLooped">Open the wiki</a></b>  
 ---
----@param audio AudioStream аудиопоток
----@param loop bool зациклить
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param loop bool Р·Р°С†РёРєР»РёС‚СЊ
 function setAudioStreamLooped(audio, loop) end
 
 ---
---- Загружает аудиопоток с поддержкой объёмного (3D) звука  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ Р°СѓРґРёРѕРїРѕС‚РѕРє СЃ РїРѕРґРґРµСЂР¶РєРѕР№ РѕР±СЉС‘РјРЅРѕРіРѕ (3D) Р·РІСѓРєР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/load3dAudioStream">Open the wiki</a></b>  
 ---
----@param audio zstring путь к файлу или веб-адрес
----@return AudioStream handle загруженный аудиопоток
+---@param audio zstring РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ РёР»Рё РІРµР±-Р°РґСЂРµСЃ
+---@return AudioStream handle Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ Р°СѓРґРёРѕРїРѕС‚РѕРє
 function load3dAudioStream(audio) end
 
 ---
---- Устанавливает 3D-аудиопотоку позицию в мире игры  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ 3D-Р°СѓРґРёРѕРїРѕС‚РѕРєСѓ РїРѕР·РёС†РёСЋ РІ РјРёСЂРµ РёРіСЂС‹  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   local as_action = require('moonloader').audiostream_state
@@ -407,85 +407,85 @@ function load3dAudioStream(audio) end
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtCoordinates">Open the wiki</a></b>  
 ---
----@param handle AudioStream аудиопоток
+---@param handle AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
 ---@param posX float
 ---@param posY float
 ---@param posZ float
 function setPlay3dAudioStreamAtCoordinates(handle, posX, posY, posZ) end
 
 ---
---- Прикрепляет 3D-звук к объекту  
+--- РџСЂРёРєСЂРµРїР»СЏРµС‚ 3D-Р·РІСѓРє Рє РѕР±СЉРµРєС‚Сѓ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtObject">Open the wiki</a></b>  
 ---
----@param audio AudioStream аудиопоток
----@param object Object объект
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param object Object РѕР±СЉРµРєС‚
 function setPlay3dAudioStreamAtObject(audio, object) end
 
 ---
---- Прикрепляет 3D-звук к персонажу  
+--- РџСЂРёРєСЂРµРїР»СЏРµС‚ 3D-Р·РІСѓРє Рє РїРµСЂСЃРѕРЅР°Р¶Сѓ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtChar">Open the wiki</a></b>  
 ---
----@param audio AudioStream аудиопоток
----@param ped Ped персонаж
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param ped Ped РїРµСЂСЃРѕРЅР°Р¶
 function setPlay3dAudioStreamAtChar(audio, ped) end
 
 ---
---- Прикрепляет 3D-звук к транспортному средству  
+--- РџСЂРёРєСЂРµРїР»СЏРµС‚ 3D-Р·РІСѓРє Рє С‚СЂР°РЅСЃРїРѕСЂС‚РЅРѕРјСѓ СЃСЂРµРґСЃС‚РІСѓ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setPlay3dAudioStreamAtCar">Open the wiki</a></b>  
 ---
----@param audio AudioStream аудиопоток
----@param car Vehicle транспорт
+---@param audio AudioStream Р°СѓРґРёРѕРїРѕС‚РѕРє
+---@param car Vehicle С‚СЂР°РЅСЃРїРѕСЂС‚
 function setPlay3dAudioStreamAtCar(audio, car) end
 
 ---
---- Загружает аудиопоток из файла в памяти процесса  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ Р°СѓРґРёРѕРїРѕС‚РѕРє РёР· С„Р°Р№Р»Р° РІ РїР°РјСЏС‚Рё РїСЂРѕС†РµСЃСЃР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/loadAudioStreamFromMemory">Open the wiki</a></b>  
 ---
----@param address uint адрес памяти
----@param size uint размер файла
----@return AudioStream handle загруженный аудиопоток
+---@param address uint Р°РґСЂРµСЃ РїР°РјСЏС‚Рё
+---@param size uint СЂР°Р·РјРµСЂ С„Р°Р№Р»Р°
+---@return AudioStream handle Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ Р°СѓРґРёРѕРїРѕС‚РѕРє
 function loadAudioStreamFromMemory(address, size) end
 
 ---
---- Загружает аудиопоток с объёмным звучанием из файла в памяти процесса  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ Р°СѓРґРёРѕРїРѕС‚РѕРє СЃ РѕР±СЉС‘РјРЅС‹Рј Р·РІСѓС‡Р°РЅРёРµРј РёР· С„Р°Р№Р»Р° РІ РїР°РјСЏС‚Рё РїСЂРѕС†РµСЃСЃР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/load3dAudioStreamFromMemory">Open the wiki</a></b>  
 ---
----@param address uint адрес памяти
----@param size uint размер
----@return AudioStream handle загруженный аудиопоток
+---@param address uint Р°РґСЂРµСЃ РїР°РјСЏС‚Рё
+---@param size uint СЂР°Р·РјРµСЂ
+---@return AudioStream handle Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ Р°СѓРґРёРѕРїРѕС‚РѕРє
 function load3dAudioStreamFromMemory(address, size) end
 
 ---
---- Отображает на экране линию от точки `pos1x, pos1y` до точки `pos2x, pos2y`  
+--- РћС‚РѕР±СЂР°Р¶Р°РµС‚ РЅР° СЌРєСЂР°РЅРµ Р»РёРЅРёСЋ РѕС‚ С‚РѕС‡РєРё `pos1x, pos1y` РґРѕ С‚РѕС‡РєРё `pos2x, pos2y`  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   while true do
----     renderDrawLine(100, 100, 200, 200, 2.0, 0xFFD00000) -- непрозрачный красный цвет
----     wait(0) -- задержка на один кадр
+---     renderDrawLine(100, 100, 200, 200, 2.0, 0xFFD00000) -- РЅРµРїСЂРѕР·СЂР°С‡РЅС‹Р№ РєСЂР°СЃРЅС‹Р№ С†РІРµС‚
+---     wait(0) -- Р·Р°РґРµСЂР¶РєР° РЅР° РѕРґРёРЅ РєР°РґСЂ
 ---   end
 --- ```  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderDrawLine">Open the wiki</a></b>  
 ---
----@param pos1X float координата X первой точки
----@param pos1Y float координата Y первой точки
----@param pos2X float координата X второй точки
----@param pos2Y float координата Y второй точки
----@param width float ширина линии
----@param color uint цвет линии в формате ARGB
+---@param pos1X float РєРѕРѕСЂРґРёРЅР°С‚Р° X РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param pos1Y float РєРѕРѕСЂРґРёРЅР°С‚Р° Y РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param pos2X float РєРѕРѕСЂРґРёРЅР°С‚Р° X РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@param pos2Y float РєРѕРѕСЂРґРёРЅР°С‚Р° Y РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@param width float С€РёСЂРёРЅР° Р»РёРЅРёРё
+---@param color uint С†РІРµС‚ Р»РёРЅРёРё РІ С„РѕСЂРјР°С‚Рµ ARGB
 function renderDrawLine(pos1X, pos1Y, pos2X, pos2Y, width, color) end
 
 ---
---- Рисует прямоугольник в указанных координатах с определённым размером  
+--- Р РёСЃСѓРµС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє РІ СѓРєР°Р·Р°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… СЃ РѕРїСЂРµРґРµР»С‘РЅРЅС‹Рј СЂР°Р·РјРµСЂРѕРј  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   renderDrawBox(10, 15, 200, 80, 0xAA00CC00)
@@ -493,17 +493,17 @@ function renderDrawLine(pos1X, pos1Y, pos2X, pos2Y, width, color) end
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderDrawBox">Open the wiki</a></b>  
 ---
----@param posX float координата X
----@param posY float координата Y
----@param sizeX float ширина
----@param sizeY float высота
----@param color uint цвет в ARGB
+---@param posX float РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY float РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param sizeX float С€РёСЂРёРЅР°
+---@param sizeY float РІС‹СЃРѕС‚Р°
+---@param color uint С†РІРµС‚ РІ ARGB
 function renderDrawBox(posX, posY, sizeX, sizeY, color) end
 
 ---
---- Рисует прямоугольник с границей  
+--- Р РёСЃСѓРµС‚ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРє СЃ РіСЂР°РЅРёС†РµР№  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   renderDrawBoxWithBorder(10, 15, 200, 80, 0xAA00CC00, 3, 0x90000000)
@@ -511,19 +511,19 @@ function renderDrawBox(posX, posY, sizeX, sizeY, color) end
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderDrawBoxWithBorder">Open the wiki</a></b>  
 ---
----@param posX float координата X
----@param posY float координата Y
----@param sizeX float ширина
----@param sizeY float высота
----@param color uint цвет в ARGB
----@param bsize float толщина границы
----@param bcolor uint цвет границы в ARGB
+---@param posX float РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY float РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param sizeX float С€РёСЂРёРЅР°
+---@param sizeY float РІС‹СЃРѕС‚Р°
+---@param color uint С†РІРµС‚ РІ ARGB
+---@param bsize float С‚РѕР»С‰РёРЅР° РіСЂР°РЅРёС†С‹
+---@param bcolor uint С†РІРµС‚ РіСЂР°РЅРёС†С‹ РІ ARGB
 function renderDrawBoxWithBorder(posX, posY, sizeX, sizeY, color, bsize, bcolor) end
 
 ---
---- Вычисляет ширину заданного текста для загруженного шрифта и возвращает результат в пикселях.  
+--- Р’С‹С‡РёСЃР»СЏРµС‚ С€РёСЂРёРЅСѓ Р·Р°РґР°РЅРЅРѕРіРѕ С‚РµРєСЃС‚Р° РґР»СЏ Р·Р°РіСЂСѓР¶РµРЅРЅРѕРіРѕ С€СЂРёС„С‚Р° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІ РїРёРєСЃРµР»СЏС….  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   local friends = {'Kalcor', 'Jacob', 'Sacky'}
@@ -536,178 +536,178 @@ function renderDrawBoxWithBorder(posX, posY, sizeX, sizeY, color, bsize, bcolor)
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderGetFontDrawTextLength">Open the wiki</a></b>  
 ---
----@param font DxFont шрифт
----@param text zstring текст
----@param ignoreColorTags bool? пропуск цветовых тегов (по умолчанию = `false`)
----@return float length ширина в пикселях
+---@param font DxFont С€СЂРёС„С‚
+---@param text zstring С‚РµРєСЃС‚
+---@param ignoreColorTags bool? РїСЂРѕРїСѓСЃРє С†РІРµС‚РѕРІС‹С… С‚РµРіРѕРІ (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = `false`)
+---@return float length С€РёСЂРёРЅР° РІ РїРёРєСЃРµР»СЏС…
 function renderGetFontDrawTextLength(font, text, ignoreColorTags) end
 
 ---
---- Возвращает высоту загруженного шрифта в пикселях  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РІС‹СЃРѕС‚Сѓ Р·Р°РіСЂСѓР¶РµРЅРЅРѕРіРѕ С€СЂРёС„С‚Р° РІ РїРёРєСЃРµР»СЏС…  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderGetFontDrawHeight">Open the wiki</a></b>  
 ---
----@param font DxFont шрифт
----@return float height высота
+---@param font DxFont С€СЂРёС„С‚
+---@return float height РІС‹СЃРѕС‚Р°
 function renderGetFontDrawHeight(font) end
 
 ---
---- Возвращает индекс символа в тексте по позиции в пикселях  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р° РІ С‚РµРєСЃС‚Рµ РїРѕ РїРѕР·РёС†РёРё РІ РїРёРєСЃРµР»СЏС…  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderGetFontCharIndexAt">Open the wiki</a></b>  
 ---
----@param font DxFont шрифт
----@param text string текст
----@param x float смещение в пикселях
----@param ignoreColorTags bool? пропуск цветовых тегов (по умолчанию = `false`)
----@return uint index индекс символа
+---@param font DxFont С€СЂРёС„С‚
+---@param text string С‚РµРєСЃС‚
+---@param x float СЃРјРµС‰РµРЅРёРµ РІ РїРёРєСЃРµР»СЏС…
+---@param ignoreColorTags bool? РїСЂРѕРїСѓСЃРє С†РІРµС‚РѕРІС‹С… С‚РµРіРѕРІ (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = `false`)
+---@return uint index РёРЅРґРµРєСЃ СЃРёРјРІРѕР»Р°
 function renderGetFontCharIndexAt(font, text, x, ignoreColorTags) end
 
 ---
---- Получает ширину определённого символа и возвращает результат в пикселях  
+--- РџРѕР»СѓС‡Р°РµС‚ С€РёСЂРёРЅСѓ РѕРїСЂРµРґРµР»С‘РЅРЅРѕРіРѕ СЃРёРјРІРѕР»Р° Рё РІРѕР·РІСЂР°С‰Р°РµС‚ СЂРµР·СѓР»СЊС‚Р°С‚ РІ РїРёРєСЃРµР»СЏС…  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderGetFontCharWidth">Open the wiki</a></b>  
 ---
----@param font DxFont шрифт
----@param char string|uint символ
----@return float width ширина символа
+---@param font DxFont С€СЂРёС„С‚
+---@param char string|uint СЃРёРјРІРѕР»
+---@return float width С€РёСЂРёРЅР° СЃРёРјРІРѕР»Р°
 function renderGetFontCharWidth(font, char) end
 
 ---
---- Загружает установленный в системе шрифт по названию. Можно задать стиль шрифта и требуемую кодировку.  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ СѓСЃС‚Р°РЅРѕРІР»РµРЅРЅС‹Р№ РІ СЃРёСЃС‚РµРјРµ С€СЂРёС„С‚ РїРѕ РЅР°Р·РІР°РЅРёСЋ. РњРѕР¶РЅРѕ Р·Р°РґР°С‚СЊ СЃС‚РёР»СЊ С€СЂРёС„С‚Р° Рё С‚СЂРµР±СѓРµРјСѓСЋ РєРѕРґРёСЂРѕРІРєСѓ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderCreateFont">Open the wiki</a></b>  
 ---
----@param font zstring название
----@param height int высота
----@param flags uint флаги
----@param charset uint? кодировка
----@return DxFont font шрифт
+---@param font zstring РЅР°Р·РІР°РЅРёРµ
+---@param height int РІС‹СЃРѕС‚Р°
+---@param flags uint С„Р»Р°РіРё
+---@param charset uint? РєРѕРґРёСЂРѕРІРєР°
+---@return DxFont font С€СЂРёС„С‚
 function renderCreateFont(font, height, flags, charset) end
 
 ---
---- Освобождает объект шрифта.  
---- Загруженные шрифты выгружаются автоматически сборщиком мусора, так что использование этой функции необязательно, она существует лишь для обеспечения совместимости со старыми версиями.  
+--- РћСЃРІРѕР±РѕР¶РґР°РµС‚ РѕР±СЉРµРєС‚ С€СЂРёС„С‚Р°.  
+--- Р—Р°РіСЂСѓР¶РµРЅРЅС‹Рµ С€СЂРёС„С‚С‹ РІС‹РіСЂСѓР¶Р°СЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё СЃР±РѕСЂС‰РёРєРѕРј РјСѓСЃРѕСЂР°, С‚Р°Рє С‡С‚Рѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ СЌС‚РѕР№ С„СѓРЅРєС†РёРё РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ, РѕРЅР° СЃСѓС‰РµСЃС‚РІСѓРµС‚ Р»РёС€СЊ РґР»СЏ РѕР±РµСЃРїРµС‡РµРЅРёСЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё СЃРѕ СЃС‚Р°СЂС‹РјРё РІРµСЂСЃРёСЏРјРё.  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   renderReleaseFont(my_font)
----   -- правильнее:
+---   -- РїСЂР°РІРёР»СЊРЅРµРµ:
 ---   my_font = nil
 --- ```  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderReleaseFont">Open the wiki</a></b>  
 ---
----@param font DxFont шрифт
+---@param font DxFont С€СЂРёС„С‚
 ---@deprecated
 function renderReleaseFont(font) end
 
 ---
---- Отображает текст на экране, используя загруженный шрифт.  
---- Поддерживает цветовые теги в формате `{RRGGBB}` и `{AARRGGBB}`, и символ переноса строки `\n`.  
+--- РћС‚РѕР±СЂР°Р¶Р°РµС‚ С‚РµРєСЃС‚ РЅР° СЌРєСЂР°РЅРµ, РёСЃРїРѕР»СЊР·СѓСЏ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Р№ С€СЂРёС„С‚.  
+--- РџРѕРґРґРµСЂР¶РёРІР°РµС‚ С†РІРµС‚РѕРІС‹Рµ С‚РµРіРё РІ С„РѕСЂРјР°С‚Рµ `{RRGGBB}` Рё `{AARRGGBB}`, Рё СЃРёРјРІРѕР» РїРµСЂРµРЅРѕСЃР° СЃС‚СЂРѕРєРё `\n`.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderFontDrawText">Open the wiki</a></b>  
 ---
----@param font DxFont шрифт
----@param text zstring текст
----@param posX float координата X
----@param posY float координата Y
----@param color uint цвет в ARGB
----@param ignoreColorTags bool? если задано `true`, цветовые теги не станут обрабатываться (по умолчанию = `false`)
+---@param font DxFont С€СЂРёС„С‚
+---@param text zstring С‚РµРєСЃС‚
+---@param posX float РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY float РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param color uint С†РІРµС‚ РІ ARGB
+---@param ignoreColorTags bool? РµСЃР»Рё Р·Р°РґР°РЅРѕ `true`, С†РІРµС‚РѕРІС‹Рµ С‚РµРіРё РЅРµ СЃС‚Р°РЅСѓС‚ РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊСЃСЏ (РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ = `false`)
 function renderFontDrawText(font, text, posX, posY, color, ignoreColorTags) end
 
 ---
---- Отображает многоугольник в указанных координатах с заданным вращением и количеством углов  
+--- РћС‚РѕР±СЂР°Р¶Р°РµС‚ РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє РІ СѓРєР°Р·Р°РЅРЅС‹С… РєРѕРѕСЂРґРёРЅР°С‚Р°С… СЃ Р·Р°РґР°РЅРЅС‹Рј РІСЂР°С‰РµРЅРёРµРј Рё РєРѕР»РёС‡РµСЃС‚РІРѕРј СѓРіР»РѕРІ  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
----   -- пятиугольник по центру экрана
+---   -- РїСЏС‚РёСѓРіРѕР»СЊРЅРёРє РїРѕ С†РµРЅС‚СЂСѓ СЌРєСЂР°РЅР°
 ---   local sx, sy = getScreenResolution()
 ---   renderDrawPolygon(sx / 2, sy / 2, 150, 150, 5, 0.0, 0xFF1166AA)
 --- ```  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderDrawPolygon">Open the wiki</a></b>  
 ---
----@param posX float координата X центра
----@param posY float координата Y центра
----@param sizeX float ширина
----@param sizeY float высота
----@param corners int количество вершин
----@param rotation float вращение в градусах
----@param color uint цвет фигуры в формате ARGB
+---@param posX float РєРѕРѕСЂРґРёРЅР°С‚Р° X С†РµРЅС‚СЂР°
+---@param posY float РєРѕРѕСЂРґРёРЅР°С‚Р° Y С†РµРЅС‚СЂР°
+---@param sizeX float С€РёСЂРёРЅР°
+---@param sizeY float РІС‹СЃРѕС‚Р°
+---@param corners int РєРѕР»РёС‡РµСЃС‚РІРѕ РІРµСЂС€РёРЅ
+---@param rotation float РІСЂР°С‰РµРЅРёРµ РІ РіСЂР°РґСѓСЃР°С…
+---@param color uint С†РІРµС‚ С„РёРіСѓСЂС‹ РІ С„РѕСЂРјР°С‚Рµ ARGB
 function renderDrawPolygon(posX, posY, sizeX, sizeY, corners, rotation, color) end
 
 ---
---- Загружает текстуру из файла  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ С‚РµРєСЃС‚СѓСЂСѓ РёР· С„Р°Р№Р»Р°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderLoadTextureFromFile">Open the wiki</a></b>  
 ---
----@param file zstring путь к файлу
----@return DxTexture texture текстура
+---@param file zstring РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+---@return DxTexture texture С‚РµРєСЃС‚СѓСЂР°
 function renderLoadTextureFromFile(file) end
 
 ---
---- Освобождает загруженную текстуру.  
---- Применять необязательно, т.к. все загруженные текстуры освобождаются сборщиком мусора.  
---- Функция оставлена для обеспечения совместимости со старыми версиями.  
+--- РћСЃРІРѕР±РѕР¶РґР°РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ.  
+--- РџСЂРёРјРµРЅСЏС‚СЊ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅРѕ, С‚.Рє. РІСЃРµ Р·Р°РіСЂСѓР¶РµРЅРЅС‹Рµ С‚РµРєСЃС‚СѓСЂС‹ РѕСЃРІРѕР±РѕР¶РґР°СЋС‚СЃСЏ СЃР±РѕСЂС‰РёРєРѕРј РјСѓСЃРѕСЂР°.  
+--- Р¤СѓРЅРєС†РёСЏ РѕСЃС‚Р°РІР»РµРЅР° РґР»СЏ РѕР±РµСЃРїРµС‡РµРЅРёСЏ СЃРѕРІРјРµСЃС‚РёРјРѕСЃС‚Рё СЃРѕ СЃС‚Р°СЂС‹РјРё РІРµСЂСЃРёСЏРјРё.  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   renderReleaseTexture(texture )
----   -- правильнее:
+---   -- РїСЂР°РІРёР»СЊРЅРµРµ:
 ---   texture  = nil
 --- ```  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderReleaseTexture">Open the wiki</a></b>  
 ---
----@param texture DxTexture текстура
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
 function renderReleaseTexture(texture) end
 
 ---
---- Отображает загруженную текстуру по заданным координатам, с указанным размером и вращением  
+--- РћС‚РѕР±СЂР°Р¶Р°РµС‚ Р·Р°РіСЂСѓР¶РµРЅРЅСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ РїРѕ Р·Р°РґР°РЅРЅС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј, СЃ СѓРєР°Р·Р°РЅРЅС‹Рј СЂР°Р·РјРµСЂРѕРј Рё РІСЂР°С‰РµРЅРёРµРј  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderDrawTexture">Open the wiki</a></b>  
 ---
----@param texture DxTexture текстура
----@param posX float координата X
----@param posY float координата Y
----@param sizeX float ширина
----@param sizeY float высота
----@param rotation float вращение
----@param color uint цвет в ARGB
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
+---@param posX float РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY float РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param sizeX float С€РёСЂРёРЅР°
+---@param sizeY float РІС‹СЃРѕС‚Р°
+---@param rotation float РІСЂР°С‰РµРЅРёРµ
+---@param color uint С†РІРµС‚ РІ ARGB
 function renderDrawTexture(texture, posX, posY, sizeX, sizeY, rotation, color) end
 
 ---@alias RenderType
----| 1 # список точек
----| 2 # набор линий
----| 3 # ломаная линия
----| 4 # набор треугольников
----| 5 # серия связанных треугольников (многоугольник)
----| 6 # серия связанных треугольников с единым центром
+---| 1 # СЃРїРёСЃРѕРє С‚РѕС‡РµРє
+---| 2 # РЅР°Р±РѕСЂ Р»РёРЅРёР№
+---| 3 # Р»РѕРјР°РЅР°СЏ Р»РёРЅРёСЏ
+---| 4 # РЅР°Р±РѕСЂ С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ
+---| 5 # СЃРµСЂРёСЏ СЃРІСЏР·Р°РЅРЅС‹С… С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ (РјРЅРѕРіРѕСѓРіРѕР»СЊРЅРёРє)
+---| 6 # СЃРµСЂРёСЏ СЃРІСЏР·Р°РЅРЅС‹С… С‚СЂРµСѓРіРѕР»СЊРЅРёРєРѕРІ СЃ РµРґРёРЅС‹Рј С†РµРЅС‚СЂРѕРј
 
 ---
---- Начало рисования фигуры определённым методом.  
---- Подробнее о каждом методе построения примитивов: <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb147291(v=vs.85).aspx">MSDN</a>  
+--- РќР°С‡Р°Р»Рѕ СЂРёСЃРѕРІР°РЅРёСЏ С„РёРіСѓСЂС‹ РѕРїСЂРµРґРµР»С‘РЅРЅС‹Рј РјРµС‚РѕРґРѕРј.  
+--- РџРѕРґСЂРѕР±РЅРµРµ Рѕ РєР°Р¶РґРѕРј РјРµС‚РѕРґРµ РїРѕСЃС‚СЂРѕРµРЅРёСЏ РїСЂРёРјРёС‚РёРІРѕРІ: <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb147291(v=vs.85).aspx">MSDN</a>  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderBegin">Open the wiki</a></b>  
 ---
----@param type RenderType метод
+---@param type RenderType РјРµС‚РѕРґ
 function renderBegin(type) end
 
 ---
---- Завершение рисования фигуры.  
+--- Р—Р°РІРµСЂС€РµРЅРёРµ СЂРёСЃРѕРІР°РЅРёСЏ С„РёРіСѓСЂС‹.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderEnd">Open the wiki</a></b>  
 ---
 function renderEnd() end
 
 ---
---- Задаёт цвет фигуры. Должна быть вызвана перед добавлением вершины  
+--- Р—Р°РґР°С‘С‚ С†РІРµС‚ С„РёРіСѓСЂС‹. Р”РѕР»Р¶РЅР° Р±С‹С‚СЊ РІС‹Р·РІР°РЅР° РїРµСЂРµРґ РґРѕР±Р°РІР»РµРЅРёРµРј РІРµСЂС€РёРЅС‹  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   renderColor(0xFFFF0000)
@@ -718,25 +718,25 @@ function renderEnd() end
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderColor">Open the wiki</a></b>  
 ---
----@param color uint цвет в ARGB
+---@param color uint С†РІРµС‚ РІ ARGB
 function renderColor(color) end
 
 ---
---- Добавляет вершину в фигуру по абсолютным координатам  
+--- Р”РѕР±Р°РІР»СЏРµС‚ РІРµСЂС€РёРЅСѓ РІ С„РёРіСѓСЂСѓ РїРѕ Р°Р±СЃРѕР»СЋС‚РЅС‹Рј РєРѕРѕСЂРґРёРЅР°С‚Р°Рј  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderVertex">Open the wiki</a></b>  
 ---
----@param vX float координата X
----@param vY float координата Y
+---@param vX float РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param vY float РєРѕРѕСЂРґРёРЅР°С‚Р° Y
 function renderVertex(vX, vY) end
 
 ---
---- Указывает, какая точка текстуры будет прикреплена к следующей вершине.  
---- Координаты точки задаются в диапазоне от `0.0` до `1.0`, относительно размеров всей текстуры.  
---- Должна быть вызвана перед каждым добавлением вершины, к которой нужно прикрепить текстуру.  
---- Без вызова `renderBindTexture` не будет иметь эффекта  
+--- РЈРєР°Р·С‹РІР°РµС‚, РєР°РєР°СЏ С‚РѕС‡РєР° С‚РµРєСЃС‚СѓСЂС‹ Р±СѓРґРµС‚ РїСЂРёРєСЂРµРїР»РµРЅР° Рє СЃР»РµРґСѓСЋС‰РµР№ РІРµСЂС€РёРЅРµ.  
+--- РљРѕРѕСЂРґРёРЅР°С‚С‹ С‚РѕС‡РєРё Р·Р°РґР°СЋС‚СЃСЏ РІ РґРёР°РїР°Р·РѕРЅРµ РѕС‚ `0.0` РґРѕ `1.0`, РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ СЂР°Р·РјРµСЂРѕРІ РІСЃРµР№ С‚РµРєСЃС‚СѓСЂС‹.  
+--- Р”РѕР»Р¶РЅР° Р±С‹С‚СЊ РІС‹Р·РІР°РЅР° РїРµСЂРµРґ РєР°Р¶РґС‹Рј РґРѕР±Р°РІР»РµРЅРёРµРј РІРµСЂС€РёРЅС‹, Рє РєРѕС‚РѕСЂРѕР№ РЅСѓР¶РЅРѕ РїСЂРёРєСЂРµРїРёС‚СЊ С‚РµРєСЃС‚СѓСЂСѓ.  
+--- Р‘РµР· РІС‹Р·РѕРІР° `renderBindTexture` РЅРµ Р±СѓРґРµС‚ РёРјРµС‚СЊ СЌС„С„РµРєС‚Р°  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   renderColor(0xFFFFFFFF)
@@ -747,93 +747,93 @@ function renderVertex(vX, vY) end
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderSetTexCoord">Open the wiki</a></b>  
 ---
----@param posX float относительные координата X текстуры
----@param posY float относительные координата Y текстуры
+---@param posX float РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚Р° X С‚РµРєСЃС‚СѓСЂС‹
+---@param posY float РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚Р° Y С‚РµРєСЃС‚СѓСЂС‹
 function renderSetTexCoord(posX, posY) end
 
 ---
---- Задаёт фигуре текстуру. Каждой фигуре может быть задана только одна текстура.  
---- Значение `nil` сбросит заданную текстуру.  
---- Эта функция должна быть использована совместно с `renderSetTexCoord`  
+--- Р—Р°РґР°С‘С‚ С„РёРіСѓСЂРµ С‚РµРєСЃС‚СѓСЂСѓ. РљР°Р¶РґРѕР№ С„РёРіСѓСЂРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р·Р°РґР°РЅР° С‚РѕР»СЊРєРѕ РѕРґРЅР° С‚РµРєСЃС‚СѓСЂР°.  
+--- Р—РЅР°С‡РµРЅРёРµ `nil` СЃР±СЂРѕСЃРёС‚ Р·Р°РґР°РЅРЅСѓСЋ С‚РµРєСЃС‚СѓСЂСѓ.  
+--- Р­С‚Р° С„СѓРЅРєС†РёСЏ РґРѕР»Р¶РЅР° Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅР° СЃРѕРІРјРµСЃС‚РЅРѕ СЃ `renderSetTexCoord`  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderBindTexture">Open the wiki</a></b>  
 ---
----@param texture DxTexture текстура
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
 function renderBindTexture(texture) end
 
 ---
---- Возвращает указатель на объект `IDirect3DTexture9`, принадлежащий текстуре  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ `IDirect3DTexture9`, РїСЂРёРЅР°РґР»РµР¶Р°С‰РёР№ С‚РµРєСЃС‚СѓСЂРµ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderGetTextureStruct">Open the wiki</a></b>  
 ---
----@param texture DxTexture текстура
----@return uint struct указатель
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
+---@return uint struct СѓРєР°Р·Р°С‚РµР»СЊ
 function renderGetTextureStruct(texture) end
 
 ---
---- Возвращает указатель на объект ID3DXSprite, принадлежащий текстуре  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ ID3DXSprite, РїСЂРёРЅР°РґР»РµР¶Р°С‰РёР№ С‚РµРєСЃС‚СѓСЂРµ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderGetTextureSprite">Open the wiki</a></b>  
 ---
----@param texture DxTexture текстура
----@return uint sprite указатель
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
+---@return uint sprite СѓРєР°Р·Р°С‚РµР»СЊ
 function renderGetTextureSprite(texture) end
 
 ---
---- Возвращает размеры изображения  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ СЂР°Р·РјРµСЂС‹ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderGetTextureSize">Open the wiki</a></b>  
 ---
----@param texture DxTexture текстура
----@return uint sizeX ширина
----@return uint sizeY высота
+---@param texture DxTexture С‚РµРєСЃС‚СѓСЂР°
+---@return uint sizeX С€РёСЂРёРЅР°
+---@return uint sizeY РІС‹СЃРѕС‚Р°
 function renderGetTextureSize(texture) end
 
 ---
---- Устанавливает значение рендерстейта.  
---- Подробнее о рендерстейтах: <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb172599(v=vs.85).aspx">MSDN</a>  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ Р·РЅР°С‡РµРЅРёРµ СЂРµРЅРґРµСЂСЃС‚РµР№С‚Р°.  
+--- РџРѕРґСЂРѕР±РЅРµРµ Рѕ СЂРµРЅРґРµСЂСЃС‚РµР№С‚Р°С…: <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/bb172599(v=vs.85).aspx">MSDN</a>  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderSetRenderState">Open the wiki</a></b>  
 ---
----@param state int тип
----@param value uint новое значение
+---@param state int С‚РёРї
+---@param value uint РЅРѕРІРѕРµ Р·РЅР°С‡РµРЅРёРµ
 function renderSetRenderState(state, value) end
 
 ---
---- Загружает текстуру из файла в памяти процесса  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ С‚РµРєСЃС‚СѓСЂСѓ РёР· С„Р°Р№Р»Р° РІ РїР°РјСЏС‚Рё РїСЂРѕС†РµСЃСЃР°  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   local memory = require 'memory'
----   -- загрузка текстуры вшитой внутрь самого скрипта
+---   -- Р·Р°РіСЂСѓР·РєР° С‚РµРєСЃС‚СѓСЂС‹ РІС€РёС‚РѕР№ РІРЅСѓС‚СЂСЊ СЃР°РјРѕРіРѕ СЃРєСЂРёРїС‚Р°
 ---   function main()
 ---     repeat wait(0) until isSampAvailable()
 ---     texture = renderLoadTextureFromFileInMemory(memory.strptr(texture), #texture)
 ---   end
----   -- сама текстура
+---   -- СЃР°РјР° С‚РµРєСЃС‚СѓСЂР°
 ---   texture = "\x89\x50\x4E\x47\x0D\x0A\x1A\x0A\x00\x00\x00..."
 --- ```  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/renderLoadTextureFromFileInMemory">Open the wiki</a></b>  
 ---
----@param pointer uint адрес памяти
----@param size uint размер файла
----@return DxTexture texture текстура
+---@param pointer uint Р°РґСЂРµСЃ РїР°РјСЏС‚Рё
+---@param size uint СЂР°Р·РјРµСЂ С„Р°Р№Р»Р°
+---@return DxTexture texture С‚РµРєСЃС‚СѓСЂР°
 function renderLoadTextureFromFileInMemory(pointer, size) end
 
 ---
---- Задаёт числовую версию скрипта. Предназначена преимущественно для системы проверки обновлений.  
+--- Р—Р°РґР°С‘С‚ С‡РёСЃР»РѕРІСѓСЋ РІРµСЂСЃРёСЋ СЃРєСЂРёРїС‚Р°. РџСЂРµРґРЅР°Р·РЅР°С‡РµРЅР° РїСЂРµРёРјСѓС‰РµСЃС‚РІРµРЅРЅРѕ РґР»СЏ СЃРёСЃС‚РµРјС‹ РїСЂРѕРІРµСЂРєРё РѕР±РЅРѕРІР»РµРЅРёР№.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script_version_number">Open the wiki</a></b>  
 ---
----@param version int версия
+---@param version int РІРµСЂСЃРёСЏ
 function script_version_number(version) end
 
 ---
---- Задаёт текстовую версию скрипта.  
+--- Р—Р°РґР°С‘С‚ С‚РµРєСЃС‚РѕРІСѓСЋ РІРµСЂСЃРёСЋ СЃРєСЂРёРїС‚Р°.  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   script_version("0.2.3-beta")
@@ -845,31 +845,34 @@ function script_version_number(version) end
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script_version">Open the wiki</a></b>  
 ---
----@param version string версия
+---@param version string РІРµСЂСЃРёСЏ
 function script_version(version) end
 
 ---
---- Задаёт название скрипта.  
---- Если название не задать, то в качестве названия будет выступать имя файла скрипта.  
+--- Р—Р°РґР°С‘С‚ РЅР°Р·РІР°РЅРёРµ СЃРєСЂРёРїС‚Р°.  
+--- Р•СЃР»Рё РЅР°Р·РІР°РЅРёРµ РЅРµ Р·Р°РґР°С‚СЊ, С‚Рѕ РІ РєР°С‡РµСЃС‚РІРµ РЅР°Р·РІР°РЅРёСЏ Р±СѓРґРµС‚ РІС‹СЃС‚СѓРїР°С‚СЊ РёРјСЏ С„Р°Р№Р»Р° СЃРєСЂРёРїС‚Р°.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script_name">Open the wiki</a></b>  
 ---
----@param name string название
+---@param name string РЅР°Р·РІР°РЅРёРµ
 function script_name(name) end
 
 ---
---- Задаёт описание скрипта.  
+--- Р—Р°РґР°С‘С‚ РѕРїРёСЃР°РЅРёРµ СЃРєСЂРёРїС‚Р°.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/script_description">Open the wiki</a></b>  
 ---
----@param description string текст описания
+---@param description string С‚РµРєСЃС‚ РѕРїРёСЃР°РЅРёСЏ
 function script_description(description) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/script_authors">Open the wiki</a></b>
+--- Р—Р°РґР°С‘С‚ РЅРµСЃРєРѕР»СЊРєРёС… Р°РІС‚РѕСЂРѕРІ СЃРєСЂРёРїС‚Р°.  
+--- РРјРµРµС‚ Р°РЅР°Р»РѕРі СЃ Р±РѕР»РµРµ РїРѕРґС…РѕРґСЏС‰РёРј РЅР°Р·РІР°РЅРёРµРј РґР»СЏ СѓРєР°Р·Р°РЅРёСЏ РѕРґРЅРѕРіРѕ Р°РІС‚РѕСЂР° - `script_author`.  
 ---
----@param author string
----@param ... string
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/script_authors">Open the wiki</a></b>  
+---
+---@param author string РїРµСЂРІС‹Р№ Р°РІС‚РѕСЂ СЃРєСЂРёРїС‚Р°
+---@param ... string Р°РІС‚РѕСЂС‹ СЃРєСЂРёРїС‚Р°
 function script_authors(author, ...) end
 
 ---
@@ -879,10 +882,14 @@ function script_authors(author, ...) end
 function script_author(author) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/script_dependencies">Open the wiki</a></b>
+--- Р—Р°РґР°С‘С‚ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё СЃРєСЂРёРїС‚Р°.  
+--- РќР° С‚РµРєСѓС‰РёР№ РјРѕРјРµРЅС‚ РїСЂРµРґРЅР°Р·РЅР°С‡РµРЅ С‚РѕР»СЊРєРѕ РґР»СЏ РІС‹РІРѕРґР°.  
+--- Р’ Р±СѓРґСѓС‰РµРј РїРѕР»СѓС‡РёС‚ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕСЃС‚СЊ.  
 ---
----@param name string
----@param ... string
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/script_dependencies">Open the wiki</a></b>  
+---
+---@param name string РїРµСЂРІР°СЏ Р·Р°РІРёСЃРёРјРѕСЃС‚СЊ
+---@param ... string Р·Р°РІРёСЃРёРјРѕСЃС‚Рё
 function script_dependencies(name, ...) end
 
 ---
@@ -892,13 +899,13 @@ function script_dependencies(name, ...) end
 function script_moonloader(version) end
 
 ---
---- Приостанавливает выполнение сопрограммы `main` на заданное время в миллисекундах.  
---- Может быть вызвана только изнутри `main` и скриптовых потоков.  
---- Если функция вызвана изнутри `main` и значение `time` равно `-1`, то скрипт будет приостановлен на бесконечный период времени, это может быть использовано для прекращения активного исполнения скрипта, но чтобы он продолжал работать и обрабатывать события.  
+--- РџСЂРёРѕСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ РІС‹РїРѕР»РЅРµРЅРёРµ СЃРѕРїСЂРѕРіСЂР°РјРјС‹ `main` РЅР° Р·Р°РґР°РЅРЅРѕРµ РІСЂРµРјСЏ РІ РјРёР»Р»РёСЃРµРєСѓРЅРґР°С….  
+--- РњРѕР¶РµС‚ Р±С‹С‚СЊ РІС‹Р·РІР°РЅР° С‚РѕР»СЊРєРѕ РёР·РЅСѓС‚СЂРё `main` Рё СЃРєСЂРёРїС‚РѕРІС‹С… РїРѕС‚РѕРєРѕРІ.  
+--- Р•СЃР»Рё С„СѓРЅРєС†РёСЏ РІС‹Р·РІР°РЅР° РёР·РЅСѓС‚СЂРё `main` Рё Р·РЅР°С‡РµРЅРёРµ `time` СЂР°РІРЅРѕ `-1`, С‚Рѕ СЃРєСЂРёРїС‚ Р±СѓРґРµС‚ РїСЂРёРѕСЃС‚Р°РЅРѕРІР»РµРЅ РЅР° Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ РїРµСЂРёРѕРґ РІСЂРµРјРµРЅРё, СЌС‚Рѕ РјРѕР¶РµС‚ Р±С‹С‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РЅРѕ РґР»СЏ РїСЂРµРєСЂР°С‰РµРЅРёСЏ Р°РєС‚РёРІРЅРѕРіРѕ РёСЃРїРѕР»РЅРµРЅРёСЏ СЃРєСЂРёРїС‚Р°, РЅРѕ С‡С‚РѕР±С‹ РѕРЅ РїСЂРѕРґРѕР»Р¶Р°Р» СЂР°Р±РѕС‚Р°С‚СЊ Рё РѕР±СЂР°Р±Р°С‚С‹РІР°С‚СЊ СЃРѕР±С‹С‚РёСЏ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/wait">Open the wiki</a></b>  
 ---
----@param time int время в миллисекундах
+---@param time int РІСЂРµРјСЏ РІ РјРёР»Р»РёСЃРµРєСѓРЅРґР°С…
 function wait(time) end
 
 ---
@@ -1107,12 +1114,12 @@ function freeDynamicLibrary(handle) end
 function getDynamicLibraryProcedure(proc, handle) end
 
 ---
---- Проверяет файл на существование.  
+--- РџСЂРѕРІРµСЂСЏРµС‚ С„Р°Р№Р» РЅР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёРµ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/doesFileExist">Open the wiki</a></b>  
 ---
----@param file string путь
----@return bool result результат выполнения
+---@param file string РїСѓС‚СЊ
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 function doesFileExist(file) end
 
 ---
@@ -1123,12 +1130,12 @@ function doesFileExist(file) end
 function doesDirectoryExist(directory) end
 
 ---
---- Создаёт иерархию директорий для указанного пути.  
+--- РЎРѕР·РґР°С‘С‚ РёРµСЂР°СЂС…РёСЋ РґРёСЂРµРєС‚РѕСЂРёР№ РґР»СЏ СѓРєР°Р·Р°РЅРЅРѕРіРѕ РїСѓС‚Рё.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/createDirectory">Open the wiki</a></b>  
 ---
----@param directory string путь
----@return bool result результат выполнения
+---@param directory string РїСѓС‚СЊ
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 function createDirectory(directory) end
 
 ---
@@ -1237,24 +1244,32 @@ function getCarPointer(car) end
 function getObjectPointer(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/callFunction">Open the wiki</a></b>
+--- РџСЂРѕРёР·РІРѕРґРёС‚ РІС‹Р·РѕРІ С„СѓРЅРєС†РёСЋ РїРѕ Р°РґСЂРµСЃСѓ. Р’СЃРµ Р°СЂРіСѓРјРµРЅС‚С‹ С„СѓРЅРєС†РёРё РїРµСЂРµРґР°СЋС‚СЃСЏ РїРѕСЃР»Рµ РїР°СЂР°РјРµС‚СЂР° `pop`.  
+--- Р—РЅР°С‡РµРЅРёСЏ, Р·Р°РЅРµСЃС‘РЅРЅС‹Рµ РІ С‚Р°Р±Р»РёС†Сѓ, Р±СѓРґСѓС‚ РїРµСЂРµРґР°РЅС‹ РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ.  
+--- РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РІ РєСЂРёС‚РёС‡РЅС‹С… РґР»СЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё РјРµСЃС‚Р°С… РЅРµ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ, РІ С‚Р°РєРёС… СЃР»СѓС‡Р°СЏС… РІРјРµСЃС‚Рѕ СЌС‚РѕР№ С„СѓРЅРєС†РёРё Р»СѓС‡С€Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ FFI.  
 ---
----@param address uint
----@param params int
----@param pop int
----@param ... any
----@return int returnValue
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/callFunction">Open the wiki</a></b>  
+---
+---@param address uint Р°РґСЂРµСЃ С„СѓРЅРєС†РёРё
+---@param params int РєРѕР»РёС‡РµСЃС‚РІРѕ РїР°СЂР°РјРµС‚СЂРѕРІ
+---@param pop int РІС‹СЂР°РІРЅРёРІР°РЅРёРµ СЃС‚РµРєР° (РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ Р»РёР±Рѕ 0, РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІРёРґР° С„СѓРЅРєС†РёРё)
+---@param ... any Р°СЂРіСѓРјРµРЅС‚С‹
+---@return int returnValue РІРѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ С„СѓРЅРєС†РёРё
 function callFunction(address, params, pop, ...) end
 
 ---
+--- РџСЂРѕРёР·РІРѕРґРёС‚ РІС‹Р·РѕРІ РјРµС‚РѕРґР° РєР»Р°СЃСЃР° РїРѕ Р°РґСЂРµСЃСѓ. Р’СЃРµ Р°СЂРіСѓРјРµРЅС‚С‹ С„СѓРЅРєС†РёРё РїРµСЂРµРґР°СЋС‚СЃСЏ РїРѕСЃР»Рµ РїР°СЂР°РјРµС‚СЂР° `pop`.  
+--- Р—РЅР°С‡РµРЅРёСЏ, Р·Р°РЅРµСЃС‘РЅРЅС‹Рµ РІ С‚Р°Р±Р»РёС†Сѓ, Р±СѓРґСѓС‚ РїРµСЂРµРґР°РЅС‹ РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ.  
+--- РСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РІ РєСЂРёС‚РёС‡РЅС‹С… РґР»СЏ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё РјРµСЃС‚Р°С… РЅРµ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ, РІ С‚Р°РєРёС… СЃР»СѓС‡Р°СЏС… РІРјРµСЃС‚Рѕ СЌС‚РѕР№ С„СѓРЅРєС†РёРё Р»СѓС‡С€Рµ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ FFI.  
+---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/callMethod">Open the wiki</a></b>
 ---
----@param address uint
----@param struct int
----@param params int
----@param pop int
----@param ... any
----@return int returnValue
+---@param address uint Р°РґСЂРµСЃ С„СѓРЅРєС†РёРё
+---@param struct int СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚
+---@param params int РєРѕР»РёС‡РµСЃС‚РІРѕ РїР°СЂР°РјРµС‚СЂРѕРІ
+---@param pop int РІС‹СЂР°РІРЅРёРІР°РЅРёРµ СЃС‚РµРєР° (РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ Р»РёР±Рѕ 0, РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РІРёРґР° С„СѓРЅРєС†РёРё)
+---@param ... any Р°СЂРіСѓРјРµРЅС‚С‹
+---@return int returnValue РІРѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ С„СѓРЅРєС†РёРё
 function callMethod(address, struct, params, pop, ...) end
 
 ---
@@ -1388,37 +1403,37 @@ function getVehiclePointerHandle(ptr) end
 function getObjectPointerHandle(ptr) end
 
 ---@class CollisionPointData
----@field pos float[] позиция точки соприкосновения XYZ
----@field normal float[] вектор нормали к поверхности соприкосновения
----@field surfaceType int[] типы поверхности
----@field pieceType int[] типы детали
----@field depth float какая-то глубина чего-то
----@field entity int указатель на объект сущности, с которой произошло столкновение
----@field entityType int тип сущности
+---@field pos float[] РїРѕР·РёС†РёСЏ С‚РѕС‡РєРё СЃРѕРїСЂРёРєРѕСЃРЅРѕРІРµРЅРёСЏ XYZ
+---@field normal float[] РІРµРєС‚РѕСЂ РЅРѕСЂРјР°Р»Рё Рє РїРѕРІРµСЂС…РЅРѕСЃС‚Рё СЃРѕРїСЂРёРєРѕСЃРЅРѕРІРµРЅРёСЏ
+---@field surfaceType int[] С‚РёРїС‹ РїРѕРІРµСЂС…РЅРѕСЃС‚Рё
+---@field pieceType int[] С‚РёРїС‹ РґРµС‚Р°Р»Рё
+---@field depth float РєР°РєР°СЏ-С‚Рѕ РіР»СѓР±РёРЅР° С‡РµРіРѕ-С‚Рѕ
+---@field entity int СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РѕР±СЉРµРєС‚ СЃСѓС‰РЅРѕСЃС‚Рё, СЃ РєРѕС‚РѕСЂРѕР№ РїСЂРѕРёР·РѕС€Р»Рѕ СЃС‚РѕР»РєРЅРѕРІРµРЅРёРµ
+---@field entityType int С‚РёРї СЃСѓС‰РЅРѕСЃС‚Рё
 
 ---
---- Ищет точку соприкосновения в трёхмерном пространстве между двумя координатами, по направлению прямой из позиции `origin` к `target`.  
---- Имеет флаги, определяющие, какие типы объектов нужно проверять на столкновение.  
---- Возвращает таблицу с информацией о точке соприкосновения.  
+--- РС‰РµС‚ С‚РѕС‡РєСѓ СЃРѕРїСЂРёРєРѕСЃРЅРѕРІРµРЅРёСЏ РІ С‚СЂС‘С…РјРµСЂРЅРѕРј РїСЂРѕСЃС‚СЂР°РЅСЃС‚РІРµ РјРµР¶РґСѓ РґРІСѓРјСЏ РєРѕРѕСЂРґРёРЅР°С‚Р°РјРё, РїРѕ РЅР°РїСЂР°РІР»РµРЅРёСЋ РїСЂСЏРјРѕР№ РёР· РїРѕР·РёС†РёРё `origin` Рє `target`.  
+--- РРјРµРµС‚ С„Р»Р°РіРё, РѕРїСЂРµРґРµР»СЏСЋС‰РёРµ, РєР°РєРёРµ С‚РёРїС‹ РѕР±СЉРµРєС‚РѕРІ РЅСѓР¶РЅРѕ РїСЂРѕРІРµСЂСЏС‚СЊ РЅР° СЃС‚РѕР»РєРЅРѕРІРµРЅРёРµ.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚Р°Р±Р»РёС†Сѓ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ С‚РѕС‡РєРµ СЃРѕРїСЂРёРєРѕСЃРЅРѕРІРµРЅРёСЏ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/processLineOfSight">Open the wiki</a></b>  
 ---
----@param originX float начальная позиция X
----@param originY float начальная позиция Y
----@param originZ float начальная позиция Z
----@param targetX float конечная позиция X
----@param targetY float конечная позиция Y
----@param targetZ float конечная позиция Z
----@param checkSolid bool? статичные объекты (напр. любые постройки). По стандарту = `true`
----@param car bool? транспорт. По стандарту = `false`
----@param ped bool? персонажи. По стандарту = `false`
----@param object bool? динамические объекты. По стандарту = `false`
----@param particle bool? визуальные эффекты. По стандарту = `false`
----@param seeThrough bool? учитывать прозрачные объекты. По стандарту = `false`
----@param ignoreSomeObjects bool? игнорировать некоторые динамические объекты. По стандарту = `false`
----@param shootThrough bool? учитывать объекты, простреливаемые насквозь. По стандарту = `false`
----@return bool result результат выполнения
----@return CollisionPointData colPoint информация о точке соприкосновения
+---@param originX float РЅР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ X
+---@param originY float РЅР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ Y
+---@param originZ float РЅР°С‡Р°Р»СЊРЅР°СЏ РїРѕР·РёС†РёСЏ Z
+---@param targetX float РєРѕРЅРµС‡РЅР°СЏ РїРѕР·РёС†РёСЏ X
+---@param targetY float РєРѕРЅРµС‡РЅР°СЏ РїРѕР·РёС†РёСЏ Y
+---@param targetZ float РєРѕРЅРµС‡РЅР°СЏ РїРѕР·РёС†РёСЏ Z
+---@param checkSolid bool? СЃС‚Р°С‚РёС‡РЅС‹Рµ РѕР±СЉРµРєС‚С‹ (РЅР°РїСЂ. Р»СЋР±С‹Рµ РїРѕСЃС‚СЂРѕР№РєРё). РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `true`
+---@param car bool? С‚СЂР°РЅСЃРїРѕСЂС‚. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@param ped bool? РїРµСЂСЃРѕРЅР°Р¶Рё. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@param object bool? РґРёРЅР°РјРёС‡РµСЃРєРёРµ РѕР±СЉРµРєС‚С‹. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@param particle bool? РІРёР·СѓР°Р»СЊРЅС‹Рµ СЌС„С„РµРєС‚С‹. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@param seeThrough bool? СѓС‡РёС‚С‹РІР°С‚СЊ РїСЂРѕР·СЂР°С‡РЅС‹Рµ РѕР±СЉРµРєС‚С‹. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@param ignoreSomeObjects bool? РёРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ РЅРµРєРѕС‚РѕСЂС‹Рµ РґРёРЅР°РјРёС‡РµСЃРєРёРµ РѕР±СЉРµРєС‚С‹. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@param shootThrough bool? СѓС‡РёС‚С‹РІР°С‚СЊ РѕР±СЉРµРєС‚С‹, РїСЂРѕСЃС‚СЂРµР»РёРІР°РµРјС‹Рµ РЅР°СЃРєРІРѕР·СЊ. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
+---@return CollisionPointData colPoint РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ С‚РѕС‡РєРµ СЃРѕРїСЂРёРєРѕСЃРЅРѕРІРµРЅРёСЏ
 function processLineOfSight(originX, originY, originZ, targetX, targetY, targetZ, checkSolid, car, ped, object, particle, seeThrough, ignoreSomeObjects, shootThrough) end
 
 ---
@@ -1435,29 +1450,29 @@ function setClipboardText(text) end
 function getClipboardText() end
 
 ---
---- Читает значение целого из памяти по адресу и указанному оффсету размером от 1-го до 4-х байт.  
---- Для чтения числа с плавающей точкой используйте `getStructFloatElement` либо `representIntAsFloat`.  
+--- Р§РёС‚Р°РµС‚ Р·РЅР°С‡РµРЅРёРµ С†РµР»РѕРіРѕ РёР· РїР°РјСЏС‚Рё РїРѕ Р°РґСЂРµСЃСѓ Рё СѓРєР°Р·Р°РЅРЅРѕРјСѓ РѕС„С„СЃРµС‚Сѓ СЂР°Р·РјРµСЂРѕРј РѕС‚ 1-РіРѕ РґРѕ 4-С… Р±Р°Р№С‚.  
+--- Р”Р»СЏ С‡С‚РµРЅРёСЏ С‡РёСЃР»Р° СЃ РїР»Р°РІР°СЋС‰РµР№ С‚РѕС‡РєРѕР№ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ `getStructFloatElement` Р»РёР±Рѕ `representIntAsFloat`.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getStructElement">Open the wiki</a></b>  
 ---
----@param struct uint указатель на начало структуры
----@param offset int оффсет
----@param size uint размер
----@param unprotect bool? снять защиту памяти. По стандарту = `false`
----@return int value значение
+---@param struct uint СѓРєР°Р·Р°С‚РµР»СЊ РЅР° РЅР°С‡Р°Р»Рѕ СЃС‚СЂСѓРєС‚СѓСЂС‹
+---@param offset int РѕС„С„СЃРµС‚
+---@param size uint СЂР°Р·РјРµСЂ
+---@param unprotect bool? СЃРЅСЏС‚СЊ Р·Р°С‰РёС‚Сѓ РїР°РјСЏС‚Рё. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@return int value Р·РЅР°С‡РµРЅРёРµ
 function getStructElement(struct, offset, size, unprotect) end
 
 ---
---- Записывает значение целого в память по адресу и указанному оффсету размером от 1-го до 4-х байт.  
---- Для записи числа с плавающей точкой используйте `setStructFloatElement` либо `representFloatAsInt`.  
+--- Р—Р°РїРёСЃС‹РІР°РµС‚ Р·РЅР°С‡РµРЅРёРµ С†РµР»РѕРіРѕ РІ РїР°РјСЏС‚СЊ РїРѕ Р°РґСЂРµСЃСѓ Рё СѓРєР°Р·Р°РЅРЅРѕРјСѓ РѕС„С„СЃРµС‚Сѓ СЂР°Р·РјРµСЂРѕРј РѕС‚ 1-РіРѕ РґРѕ 4-С… Р±Р°Р№С‚.  
+--- Р”Р»СЏ Р·Р°РїРёСЃРё С‡РёСЃР»Р° СЃ РїР»Р°РІР°СЋС‰РµР№ С‚РѕС‡РєРѕР№ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ `setStructFloatElement` Р»РёР±Рѕ `representFloatAsInt`.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setStructElement">Open the wiki</a></b>  
 ---
----@param struct uint указатель на структуру
----@param offset int оффсет
----@param size uint размер
----@param value int значение
----@param unprotect bool? снять защиту памяти. По стандарту = `false`
+---@param struct uint СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂСѓРєС‚СѓСЂСѓ
+---@param offset int РѕС„С„СЃРµС‚
+---@param size uint СЂР°Р·РјРµСЂ
+---@param value int Р·РЅР°С‡РµРЅРёРµ
+---@param unprotect bool? СЃРЅСЏС‚СЊ Р·Р°С‰РёС‚Сѓ РїР°РјСЏС‚Рё. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
 function setStructElement(struct, offset, size, value, unprotect) end
 
 ---
@@ -1581,15 +1596,15 @@ function setCharKeyDown(ckey, down) end
 ---@alias DownloadingCallback fun(id: int, status: int, p1: any, p2: any): boolean
 
 ---
---- Загружает файл из интернета по URL по протоколу HTTP.  
---- Процесс загрузки полностью контролируем с помощью обработчика загрузки и может быть отменён.  
+--- Р—Р°РіСЂСѓР¶Р°РµС‚ С„Р°Р№Р» РёР· РёРЅС‚РµСЂРЅРµС‚Р° РїРѕ URL РїРѕ РїСЂРѕС‚РѕРєРѕР»Сѓ HTTP.  
+--- РџСЂРѕС†РµСЃСЃ Р·Р°РіСЂСѓР·РєРё РїРѕР»РЅРѕСЃС‚СЊСЋ РєРѕРЅС‚СЂРѕР»РёСЂСѓРµРј СЃ РїРѕРјРѕС‰СЊСЋ РѕР±СЂР°Р±РѕС‚С‡РёРєР° Р·Р°РіСЂСѓР·РєРё Рё РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РјРµРЅС‘РЅ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/downloadUrlToFile">Open the wiki</a></b>  
 ---
----@param url string uRL ресурса
----@param file string путь к файлу
----@param statusCallback DownloadingCallback? функция-обработчик статуса загрузки, является необязательным параметром
----@return int index идентификатор загрузки
+---@param url string uRL СЂРµСЃСѓСЂСЃР°
+---@param file string РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ
+---@param statusCallback DownloadingCallback? С„СѓРЅРєС†РёСЏ-РѕР±СЂР°Р±РѕС‚С‡РёРє СЃС‚Р°С‚СѓСЃР° Р·Р°РіСЂСѓР·РєРё, СЏРІР»СЏРµС‚СЃСЏ РЅРµРѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рј РїР°СЂР°РјРµС‚СЂРѕРј
+---@return int index РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ Р·Р°РіСЂСѓР·РєРё
 function downloadUrlToFile(url, file, statusCallback) end
 
 ---
@@ -1600,46 +1615,46 @@ function downloadUrlToFile(url, file, statusCallback) end
 function isKeyJustPressed(key) end
 
 ---
---- Конвертирует мировые 3D-координаты в экранные. Расширенный вариант функции `convert3DCoordsToScreen`,
---- имеет дополнительные аргументы и возвращаемые значения.  
+--- РљРѕРЅРІРµСЂС‚РёСЂСѓРµС‚ РјРёСЂРѕРІС‹Рµ 3D-РєРѕРѕСЂРґРёРЅР°С‚С‹ РІ СЌРєСЂР°РЅРЅС‹Рµ. Р Р°СЃС€РёСЂРµРЅРЅС‹Р№ РІР°СЂРёР°РЅС‚ С„СѓРЅРєС†РёРё `convert3DCoordsToScreen`,
+--- РёРјРµРµС‚ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Рµ Р°СЂРіСѓРјРµРЅС‚С‹ Рё РІРѕР·РІСЂР°С‰Р°РµРјС‹Рµ Р·РЅР°С‡РµРЅРёСЏ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/convert3DCoordsToScreenEx">Open the wiki</a></b>  
 ---
----@param posX float мировые координата X
----@param posY float мировые координата Y
----@param posZ float мировые координата Z
----@param checkMin bool? проверять минимальное расстояние до камеры. По стандарту = `false`
----@param checkMax bool? проверять максимальное расстояние до камеры. По стандарту = `false`
----@return bool result результат преобразования
----@return float x экранная координата X в пикселях
----@return float y экранная координата Y в пикселях
----@return float z неизвестно
----@return float w неизвестно
----@return float h неизвестно
+---@param posX float РјРёСЂРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚Р° X
+---@param posY float РјРёСЂРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚Р° Y
+---@param posZ float РјРёСЂРѕРІС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚Р° Z
+---@param checkMin bool? РїСЂРѕРІРµСЂСЏС‚СЊ РјРёРЅРёРјР°Р»СЊРЅРѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ РєР°РјРµСЂС‹. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@param checkMax bool? РїСЂРѕРІРµСЂСЏС‚СЊ РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ СЂР°СЃСЃС‚РѕСЏРЅРёРµ РґРѕ РєР°РјРµСЂС‹. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёСЏ
+---@return float x СЌРєСЂР°РЅРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° X РІ РїРёРєСЃРµР»СЏС…
+---@return float y СЌРєСЂР°РЅРЅР°СЏ РєРѕРѕСЂРґРёРЅР°С‚Р° Y РІ РїРёРєСЃРµР»СЏС…
+---@return float z РЅРµРёР·РІРµСЃС‚РЅРѕ
+---@return float w РЅРµРёР·РІРµСЃС‚РЅРѕ
+---@return float h РЅРµРёР·РІРµСЃС‚РЅРѕ
 function convert3DCoordsToScreenEx(posX, posY, posZ, checkMin, checkMax) end
 
 ---
---- Читает число с плавающей точкой из памяти по адресу и указанному оффсету размером в 4 байта.  
---- Для чтения целого используйте функцию `getStructElement`.  
+--- Р§РёС‚Р°РµС‚ С‡РёСЃР»Рѕ СЃ РїР»Р°РІР°СЋС‰РµР№ С‚РѕС‡РєРѕР№ РёР· РїР°РјСЏС‚Рё РїРѕ Р°РґСЂРµСЃСѓ Рё СѓРєР°Р·Р°РЅРЅРѕРјСѓ РѕС„С„СЃРµС‚Сѓ СЂР°Р·РјРµСЂРѕРј РІ 4 Р±Р°Р№С‚Р°.  
+--- Р”Р»СЏ С‡С‚РµРЅРёСЏ С†РµР»РѕРіРѕ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ С„СѓРЅРєС†РёСЋ `getStructElement`.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getStructFloatElement">Open the wiki</a></b>  
 ---
----@param struct uint адрес начала структуры
----@param offset int оффсет
----@param unprotect bool? снять защиту памяти. По стандарту = `false`
----@return float value прочитанное значение
+---@param struct uint Р°РґСЂРµСЃ РЅР°С‡Р°Р»Р° СЃС‚СЂСѓРєС‚СѓСЂС‹
+---@param offset int РѕС„С„СЃРµС‚
+---@param unprotect bool? СЃРЅСЏС‚СЊ Р·Р°С‰РёС‚Сѓ РїР°РјСЏС‚Рё. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
+---@return float value РїСЂРѕС‡РёС‚Р°РЅРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ
 function getStructFloatElement(struct, offset, unprotect) end
 
 ---
---- Записывает число с плавающей точкой в память по адресу и указанному оффсету.  
---- Для записи целого используйте функцию `setStructElement`.  
+--- Р—Р°РїРёСЃС‹РІР°РµС‚ С‡РёСЃР»Рѕ СЃ РїР»Р°РІР°СЋС‰РµР№ С‚РѕС‡РєРѕР№ РІ РїР°РјСЏС‚СЊ РїРѕ Р°РґСЂРµСЃСѓ Рё СѓРєР°Р·Р°РЅРЅРѕРјСѓ РѕС„С„СЃРµС‚Сѓ.  
+--- Р”Р»СЏ Р·Р°РїРёСЃРё С†РµР»РѕРіРѕ РёСЃРїРѕР»СЊР·СѓР№С‚Рµ С„СѓРЅРєС†РёСЋ `setStructElement`.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setStructFloatElement">Open the wiki</a></b>  
 ---
----@param struct uint адрес начала структуры
----@param offset int оффсет
----@param value float значение
----@param unprotect bool? снять защиту памяти. По стандарту = `false`
+---@param struct uint Р°РґСЂРµСЃ РЅР°С‡Р°Р»Р° СЃС‚СЂСѓРєС‚СѓСЂС‹
+---@param offset int РѕС„С„СЃРµС‚
+---@param value float Р·РЅР°С‡РµРЅРёРµ
+---@param unprotect bool? СЃРЅСЏС‚СЊ Р·Р°С‰РёС‚Сѓ РїР°РјСЏС‚Рё. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
 function setStructFloatElement(struct, offset, value, unprotect) end
 
 ---
@@ -1663,20 +1678,23 @@ function wasKeyReleased(key) end
 function getMousewheelDelta() end
 
 ---
---- Помечает текущее обрабатываемое оконное сообщение для игнорирования.  
---- Игнорирование сообщения может быть отменено вызовом функции с параметрами `false`.  
---- Предназначена для использования только изнутри события `onWindowMessage`.  
+--- РџРѕРјРµС‡Р°РµС‚ С‚РµРєСѓС‰РµРµ РѕР±СЂР°Р±Р°С‚С‹РІР°РµРјРѕРµ РѕРєРѕРЅРЅРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РёРіРЅРѕСЂРёСЂРѕРІР°РЅРёСЏ.  
+--- РРіРЅРѕСЂРёСЂРѕРІР°РЅРёРµ СЃРѕРѕР±С‰РµРЅРёСЏ РјРѕР¶РµС‚ Р±С‹С‚СЊ РѕС‚РјРµРЅРµРЅРѕ РІС‹Р·РѕРІРѕРј С„СѓРЅРєС†РёРё СЃ РїР°СЂР°РјРµС‚СЂР°РјРё `false`.  
+--- РџСЂРµРґРЅР°Р·РЅР°С‡РµРЅР° РґР»СЏ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ С‚РѕР»СЊРєРѕ РёР·РЅСѓС‚СЂРё СЃРѕР±С‹С‚РёСЏ `onWindowMessage`.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/consumeWindowMessage">Open the wiki</a></b>  
 ---
----@param game bool? игнорировать сообщение для игры (оно не будет передано игре, но будет передано Lua скриптам). По стандарту = `true`
----@param scripts bool? игнорировать сообщение для Lua скриптов. По стандарту = `true`
+---@param game bool? РёРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ РёРіСЂС‹ (РѕРЅРѕ РЅРµ Р±СѓРґРµС‚ РїРµСЂРµРґР°РЅРѕ РёРіСЂРµ, РЅРѕ Р±СѓРґРµС‚ РїРµСЂРµРґР°РЅРѕ Lua СЃРєСЂРёРїС‚Р°Рј). РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `true`
+---@param scripts bool? РёРіРЅРѕСЂРёСЂРѕРІР°С‚СЊ СЃРѕРѕР±С‰РµРЅРёРµ РґР»СЏ Lua СЃРєСЂРёРїС‚РѕРІ. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `true`
 function consumeWindowMessage(game, scripts) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addEventHandler">Open the wiki</a></b>
+--- Р”РѕР±Р°РІР»СЏРµС‚ РѕР±СЂР°Р±РѕС‚С‡РёРє <a href="https://wiki.blast.hk/moonloader/events">СЃРѕР±С‹С‚РёСЏ</a> РїРѕ РЅР°Р·РІР°РЅРёСЋ.  
 ---
----@param ... any
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/addEventHandler">Open the wiki</a></b>  
+---
+---@param eventName string РЅР°Р·РІР°РЅРёРµ СЃРѕР±С‹С‚РёСЏ
+---@param callback function С„СѓРЅРєС†РёСЏ-РѕР±СЂР°Р±РѕС‚С‡РёРє
 ---
 ---@overload fun(eventName: '"onExitScript"', callback: fun(quitGame: boolean))
 ---@overload fun(eventName: '"onQuitGame"', callback: fun())
@@ -1693,7 +1711,7 @@ function consumeWindowMessage(game, scripts) end
 ---@overload fun(eventName: '"onStartNewGame"', callback: fun(mpack: int))
 ---@overload fun(eventName: '"onLoadGame"', callback: fun(saveData: table))
 ---@overload fun(eventName: '"onSaveGame"', callback: fun(saveData: table): table?)
-function addEventHandler(...) end
+function addEventHandler(eventName, callback) end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/isGamePaused">Open the wiki</a></b>
@@ -1708,14 +1726,17 @@ function isGamePaused() end
 function gameClock() end
 
 ---@alias ScriptProperty
----| '"work-in-pause"' # Указывает, что скрипт будет продолжать исполнение во время паузы игры (с условием, что игра развёрнута и находится на переднем плане).
----| '"forced-reloading-only"' # апрещает автоматическую перезагрузку скрипта, оставляя возможность только принудительной перезагрузки.
+---| '"work-in-pause"' # РЈРєР°Р·С‹РІР°РµС‚, С‡С‚Рѕ СЃРєСЂРёРїС‚ Р±СѓРґРµС‚ РїСЂРѕРґРѕР»Р¶Р°С‚СЊ РёСЃРїРѕР»РЅРµРЅРёРµ РІРѕ РІСЂРµРјСЏ РїР°СѓР·С‹ РёРіСЂС‹ (СЃ СѓСЃР»РѕРІРёРµРј, С‡С‚Рѕ РёРіСЂР° СЂР°Р·РІС‘СЂРЅСѓС‚Р° Рё РЅР°С…РѕРґРёС‚СЃСЏ РЅР° РїРµСЂРµРґРЅРµРј РїР»Р°РЅРµ).
+---| '"forced-reloading-only"' # Р°РїСЂРµС‰Р°РµС‚ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєСѓСЋ РїРµСЂРµР·Р°РіСЂСѓР·РєСѓ СЃРєСЂРёРїС‚Р°, РѕСЃС‚Р°РІР»СЏСЏ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ С‚РѕР»СЊРєРѕ РїСЂРёРЅСѓРґРёС‚РµР»СЊРЅРѕР№ РїРµСЂРµР·Р°РіСЂСѓР·РєРё.
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/script_properties">Open the wiki</a></b>
+--- Р¤СѓРЅРєС†РёСЏ Р·Р°РґР°С‘С‚ СЂР°Р·Р»РёС‡РЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё РїРѕРІРµРґРµРЅРёСЏ СЃРєСЂРёРїС‚Р°.  
+--- РљР°Р¶РґРѕРµ СЃРІРѕР№СЃС‚РІРѕ Р·Р°РґР°С‘С‚СЃСЏ РёСЃС…РѕРґСЏ РёР· РµРіРѕ РЅР°Р·РІР°РЅРёСЏ, РїРµСЂРµРґР°РЅРЅРѕРіРѕ РІ РІРёРґРµ СЃС‚СЂРѕРєРё РІ РєР°С‡РµСЃС‚РІРµ Р°СЂРіСѓРјРµРЅС‚Р° С„СѓРЅРєС†РёРё.  
 ---
----@param property string
----@param ... ScriptProperty
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/script_properties">Open the wiki</a></b>  
+---
+---@param property string РїРµСЂРІРѕРµ СЃРІРѕР№СЃС‚РІРѕ
+---@param ... ScriptProperty СЃРІРѕР№СЃС‚РІР°
 function script_properties(property, ...) end
 
 ---
@@ -1746,12 +1767,12 @@ function encodeJson(data) end
 function decodeJson(json) end
 
 ---
---- Показывает или скрывает системный курсор, блокируя вращение камеры и управление игроком (опционально).  
+--- РџРѕРєР°Р·С‹РІР°РµС‚ РёР»Рё СЃРєСЂС‹РІР°РµС‚ СЃРёСЃС‚РµРјРЅС‹Р№ РєСѓСЂСЃРѕСЂ, Р±Р»РѕРєРёСЂСѓСЏ РІСЂР°С‰РµРЅРёРµ РєР°РјРµСЂС‹ Рё СѓРїСЂР°РІР»РµРЅРёРµ РёРіСЂРѕРєРѕРј (РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ).  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/showCursor">Open the wiki</a></b>  
 ---
----@param show bool активировать/деактивировать
----@param lockControls bool? заблокировать управление игроком. По стандарту = `false`
+---@param show bool Р°РєС‚РёРІРёСЂРѕРІР°С‚СЊ/РґРµР°РєС‚РёРІРёСЂРѕРІР°С‚СЊ
+---@param lockControls bool? Р·Р°Р±Р»РѕРєРёСЂРѕРІР°С‚СЊ СѓРїСЂР°РІР»РµРЅРёРµ РёРіСЂРѕРєРѕРј. РџРѕ СЃС‚Р°РЅРґР°СЂС‚Сѓ = `false`
 function showCursor(show, lockControls) end
 
 ---
@@ -6248,34 +6269,34 @@ function closeAllCarDoors(car) end
 function getDistanceBetweenCoords2d(x1, y1, x2, y2) end
 
 ---
---- Получение дистанции между двумя точками в игровом мире (3D)  
+--- РџРѕР»СѓС‡РµРЅРёРµ РґРёСЃС‚Р°РЅС†РёРё РјРµР¶РґСѓ РґРІСѓРјСЏ С‚РѕС‡РєР°РјРё РІ РёРіСЂРѕРІРѕРј РјРёСЂРµ (3D)  
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 --   function main()
---     sampRegisterChatCommand('prv', function(id) -- данный код при вводе /prv id получит дистанцию между вами и другим игроком
+--     sampRegisterChatCommand('prv', function(id) -- РґР°РЅРЅС‹Р№ РєРѕРґ РїСЂРё РІРІРѕРґРµ /prv id РїРѕР»СѓС‡РёС‚ РґРёСЃС‚Р°РЅС†РёСЋ РјРµР¶РґСѓ РІР°РјРё Рё РґСЂСѓРіРёРј РёРіСЂРѕРєРѕРј
 --        local res, ped = sampGetCharHandleBySampPlayerId(id)
 --        if res then
 --           local x, y, z = getCharCoordinates(PLAYER_PED)
 --           local mX, mY, mZ = getCharCoordinates(ped)
 --           local dist = getDistanceBetweenCoords3d(x, y, z, mX, mY, mZ)
---           sampAddChatMessage('Дистанция между вами: '..dist, 0x00DD00)
+--           sampAddChatMessage('Р”РёСЃС‚Р°РЅС†РёСЏ РјРµР¶РґСѓ РІР°РјРё: '..dist, 0x00DD00)
 --        end
 --     end)
---     wait(-1) -- не забываем ставить минусовую задержку в конце main, чтобы скрипт не завершал свою работу
+--     wait(-1) -- РЅРµ Р·Р°Р±С‹РІР°РµРј СЃС‚Р°РІРёС‚СЊ РјРёРЅСѓСЃРѕРІСѓСЋ Р·Р°РґРµСЂР¶РєСѓ РІ РєРѕРЅС†Рµ main, С‡С‚РѕР±С‹ СЃРєСЂРёРїС‚ РЅРµ Р·Р°РІРµСЂС€Р°Р» СЃРІРѕСЋ СЂР°Р±РѕС‚Сѓ
 --   end
 --- ```  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getDistanceBetweenCoords3d">Open the wiki</a></b>  
 ---
----@param x1 float координата X первой точки
----@param y1 float координата Y первой точки
----@param z1 float координата Z первой точки
----@param x2 float координата X второй точки
----@param y2 float координата Y второй точки
----@param z2 float координата Z второй точки
----@return float distance дистанция
+---@param x1 float РєРѕРѕСЂРґРёРЅР°С‚Р° X РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param y1 float РєРѕРѕСЂРґРёРЅР°С‚Р° Y РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param z1 float РєРѕРѕСЂРґРёРЅР°С‚Р° Z РїРµСЂРІРѕР№ С‚РѕС‡РєРё
+---@param x2 float РєРѕРѕСЂРґРёРЅР°С‚Р° X РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@param y2 float РєРѕРѕСЂРґРёРЅР°С‚Р° Y РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@param z2 float РєРѕРѕСЂРґРёРЅР°С‚Р° Z РІС‚РѕСЂРѕР№ С‚РѕС‡РєРё
+---@return float distance РґРёСЃС‚Р°РЅС†РёСЏ
 function getDistanceBetweenCoords3d(x1, y1, z1, x2, y2, z2) end
 
 ---
@@ -7762,12 +7783,12 @@ function getPickupCoordinates(pickup) end
 function removeDecisionMaker(maker) end
 
 ---
---- Возвращает ID скина по хэндлу персонажа.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ ID СЃРєРёРЅР° РїРѕ С…СЌРЅРґР»Сѓ РїРµСЂСЃРѕРЅР°Р¶Р°.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharModel">Open the wiki</a></b>  
 ---
----@param ped Ped хэндл персонажа
----@return Model modelId ID скина
+---@param ped Ped С…СЌРЅРґР» РїРµСЂСЃРѕРЅР°Р¶Р°
+---@return Model modelId ID СЃРєРёРЅР°
 function getCharModel(ped) end
 
 ---
@@ -13520,38 +13541,38 @@ function getCleoSharedVar(var) end
 function sampSpawnPlayer() end
 
 ---
---- Возвращает адрес samp.dll  
---- То же самое, что и `getModuleHandle("samp.dll")`  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ Р°РґСЂРµСЃ samp.dll  
+--- РўРѕ Р¶Рµ СЃР°РјРѕРµ, С‡С‚Рѕ Рё `getModuleHandle("samp.dll")`  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetBase">Open the wiki</a></b>  
 ---
----@return uint handle адрес
+---@return uint handle Р°РґСЂРµСЃ
 function sampGetBase() end
 
 --- 
---- Добавляет в окно чата SA:MP сообщение заданного цвета  
+--- Р”РѕР±Р°РІР»СЏРµС‚ РІ РѕРєРЅРѕ С‡Р°С‚Р° SA:MP СЃРѕРѕР±С‰РµРЅРёРµ Р·Р°РґР°РЅРЅРѕРіРѕ С†РІРµС‚Р°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampAddChatMessage">Open the wiki</a></b>  
 ---
----@param text zstring текст сообщения
----@param color uint цвет
+---@param text zstring С‚РµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ
+---@param color uint С†РІРµС‚
 function sampAddChatMessage(text, color) end
 
 ---
---- Отправляет на сервер текстовое сообщение или команду, если сообщение начинается с символа '/'  
+--- РћС‚РїСЂР°РІР»СЏРµС‚ РЅР° СЃРµСЂРІРµСЂ С‚РµРєСЃС‚РѕРІРѕРµ СЃРѕРѕР±С‰РµРЅРёРµ РёР»Рё РєРѕРјР°РЅРґСѓ, РµСЃР»Рё СЃРѕРѕР±С‰РµРЅРёРµ РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ СЃРёРјРІРѕР»Р° '/'  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendChat">Open the wiki</a></b>  
 ---
----@param text zstring текст сообщения
+---@param text zstring С‚РµРєСЃС‚ СЃРѕРѕР±С‰РµРЅРёСЏ
 function sampSendChat(text) end
 
 ---
---- Проверяет инициализацию структур SA:MP  
---- Если функция вернула `false`, то использование любых функций, начинающихся на `samp` вызовет ошибку  
+--- РџСЂРѕРІРµСЂСЏРµС‚ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ СЃС‚СЂСѓРєС‚СѓСЂ SA:MP  
+--- Р•СЃР»Рё С„СѓРЅРєС†РёСЏ РІРµСЂРЅСѓР»Р° `false`, С‚Рѕ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Р»СЋР±С‹С… С„СѓРЅРєС†РёР№, РЅР°С‡РёРЅР°СЋС‰РёС…СЃСЏ РЅР° `samp` РІС‹Р·РѕРІРµС‚ РѕС€РёР±РєСѓ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/isSampAvailable">Open the wiki</a></b>  
 ---
----@return bool result статус
+---@return bool result СЃС‚Р°С‚СѓСЃ
 function isSampAvailable() end
 
 ---
@@ -13570,48 +13591,48 @@ function sampRequestClass(class) end
 function sampSendScmEvent(event, id, param1, param2) end
 
 ---
---- Устанавливает специальное действие локальному игроку  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЃРїРµС†РёР°Р»СЊРЅРѕРµ РґРµР№СЃС‚РІРёРµ Р»РѕРєР°Р»СЊРЅРѕРјСѓ РёРіСЂРѕРєСѓ  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetSpecialAction">Open the wiki</a></b>  
 ---
----@param action int Специальное действие. Подробнее см. <a href="здесь">https://sampwiki.blast.hk/wiki/SpecialActions</a>
+---@param action int РЎРїРµС†РёР°Р»СЊРЅРѕРµ РґРµР№СЃС‚РІРёРµ. РџРѕРґСЂРѕР±РЅРµРµ СЃРј. <a href="Р·РґРµСЃСЊ">https://sampwiki.blast.hk/wiki/SpecialActions</a>
 function sampSetSpecialAction(action) end
 
 ---
---- Убивает игрока.  
+--- РЈР±РёРІР°РµС‚ РёРіСЂРѕРєР°.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendDeathByPlayer">Open the wiki</a></b>  
 ---
----@param playerId int ID игрока
----@param reason int причина смерти
+---@param playerId int ID РёРіСЂРѕРєР°
+---@param reason int РїСЂРёС‡РёРЅР° СЃРјРµСЂС‚Рё
 function sampSendDeathByPlayer(playerId, reason) end
 
 ---
---- Получает хендл т/с по его иду. Если автомобиля нет в зоне стрима, то возвращает false.  
+--- РџРѕР»СѓС‡Р°РµС‚ С…РµРЅРґР» С‚/СЃ РїРѕ РµРіРѕ РёРґСѓ. Р•СЃР»Рё Р°РІС‚РѕРјРѕР±РёР»СЏ РЅРµС‚ РІ Р·РѕРЅРµ СЃС‚СЂРёРјР°, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµС‚ false.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetCarHandleBySampVehicleId">Open the wiki</a></b>  
 ---
----@param id int ID т/c
----@return bool result результат
----@return Vehicle car хендл т/c
+---@param id int ID С‚/c
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚
+---@return Vehicle car С…РµРЅРґР» С‚/c
 function sampGetCarHandleBySampVehicleId(id) end
 
 ---
---- Получает хендл игрока по его иду.
+--- РџРѕР»СѓС‡Р°РµС‚ С…РµРЅРґР» РёРіСЂРѕРєР° РїРѕ РµРіРѕ РёРґСѓ.
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetCharHandleBySampPlayerId">Open the wiki</a></b>  
 ---
----@param id int ID игрока
----@return bool result результат
----@return Ped ped хендл игрока
+---@param id int ID РёРіСЂРѕРєР°
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚
+---@return Ped ped С…РµРЅРґР» РёРіСЂРѕРєР°
 function sampGetCharHandleBySampPlayerId(id) end
 
 ---
---- Проверяет открыт ли инпут чата.
+--- РџСЂРѕРІРµСЂСЏРµС‚ РѕС‚РєСЂС‹С‚ Р»Рё РёРЅРїСѓС‚ С‡Р°С‚Р°.
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsChatInputActive">Open the wiki</a></b>  
 ---
----@return bool result результат проверки
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚ РїСЂРѕРІРµСЂРєРё
 function sampIsChatInputActive() end
 
 ---
@@ -13622,12 +13643,12 @@ function sampIsChatInputActive() end
 function sampSetSendrate(type, rate) end
 
 ---
---- Проверяет подключен ли игрок к серверу.
+--- РџСЂРѕРІРµСЂСЏРµС‚ РїРѕРґРєР»СЋС‡РµРЅ Р»Рё РёРіСЂРѕРє Рє СЃРµСЂРІРµСЂСѓ.
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsPlayerConnected">Open the wiki</a></b>  
 ---
----@param id int ID игрока
----@return bool result результат выполнения
+---@param id int ID РёРіСЂРѕРєР°
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 function sampIsPlayerConnected(id) end
 
 ---
@@ -13645,28 +13666,28 @@ function sampGetPlayerStructPtr(id) end
 function sampGetPlayerHealth(id) end
 
 ---
---- Получает уровень здоровья игрока.
+--- РџРѕР»СѓС‡Р°РµС‚ СѓСЂРѕРІРµРЅСЊ Р·РґРѕСЂРѕРІСЊСЏ РёРіСЂРѕРєР°.
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerArmor">Open the wiki</a></b>  
 ---
----@param id int ИД игрока.
----@return int armor Уровень здоровья.
+---@param id int РР” РёРіСЂРѕРєР°.
+---@return int armor РЈСЂРѕРІРµРЅСЊ Р·РґРѕСЂРѕРІСЊСЏ.
 function sampGetPlayerArmor(id) end
 
 ---@alias GameState
----| 0 # GAMESTATE_NONE (ничего)
----| 1 # GAMESTATE_WAIT_CONNECT (установка соедения с сервером)
----| 2 # GAMESTATE_AWAIT_JOIN (соеденение установление, подключение)
----| 3 # GAMESTATE_CONNECTED (подключёно к серверу)
----| 4 # GAMESTATE_RESTARTING (сервер перезагружается)
----| 5 # GAMESTATE_DISCONNECTED (сервер закрыл соеденение)
+---| 0 # GAMESTATE_NONE (РЅРёС‡РµРіРѕ)
+---| 1 # GAMESTATE_WAIT_CONNECT (СѓСЃС‚Р°РЅРѕРІРєР° СЃРѕРµРґРµРЅРёСЏ СЃ СЃРµСЂРІРµСЂРѕРј)
+---| 2 # GAMESTATE_AWAIT_JOIN (СЃРѕРµРґРµРЅРµРЅРёРµ СѓСЃС‚Р°РЅРѕРІР»РµРЅРёРµ, РїРѕРґРєР»СЋС‡РµРЅРёРµ)
+---| 3 # GAMESTATE_CONNECTED (РїРѕРґРєР»СЋС‡С‘РЅРѕ Рє СЃРµСЂРІРµСЂСѓ)
+---| 4 # GAMESTATE_RESTARTING (СЃРµСЂРІРµСЂ РїРµСЂРµР·Р°РіСЂСѓР¶Р°РµС‚СЃСЏ)
+---| 5 # GAMESTATE_DISCONNECTED (СЃРµСЂРІРµСЂ Р·Р°РєСЂС‹Р» СЃРѕРµРґРµРЅРµРЅРёРµ)
 
 ---
---- Устанавливает статус подключения к серверу.  
+--- РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЃС‚Р°С‚СѓСЃ РїРѕРґРєР»СЋС‡РµРЅРёСЏ Рє СЃРµСЂРІРµСЂСѓ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetGamestate">Open the wiki</a></b>  
 ---
----@param gamestate GameState статус
+---@param gamestate GameState СЃС‚Р°С‚СѓСЃ
 function sampSetGamestate(gamestate) end
 
 ---
@@ -13743,19 +13764,19 @@ function sampSendSpawn() end
 function sampSendDamageVehicle(car, panel, doors, lights, tires) end
 
 ---
---- Регистрирует новую команду чата SA:MP с возможностью задать ей произвольное поведение.  
+--- Р РµРіРёСЃС‚СЂРёСЂСѓРµС‚ РЅРѕРІСѓСЋ РєРѕРјР°РЅРґСѓ С‡Р°С‚Р° SA:MP СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ Р·Р°РґР°С‚СЊ РµР№ РїСЂРѕРёР·РІРѕР»СЊРЅРѕРµ РїРѕРІРµРґРµРЅРёРµ.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampRegisterChatCommand">Open the wiki</a></b>  
 ---
----@param cmd zstring команда без символа '/'
----@param func fun(argument: string) функция-обработчик
----@return bool result результат выполнения
+---@param cmd zstring РєРѕРјР°РЅРґР° Р±РµР· СЃРёРјРІРѕР»Р° '/'
+---@param func fun(argument: string) С„СѓРЅРєС†РёСЏ-РѕР±СЂР°Р±РѕС‚С‡РёРє
+---@return bool result СЂРµР·СѓР»СЊС‚Р°С‚ РІС‹РїРѕР»РЅРµРЅРёСЏ
 function sampRegisterChatCommand(cmd, func) end
 
 ---
---- Получает ник игрока по его ID.
+--- РџРѕР»СѓС‡Р°РµС‚ РЅРёРє РёРіСЂРѕРєР° РїРѕ РµРіРѕ ID.
 ---
---- ### Пример использования  
+--- ### РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ  
 ---
 --- ```lua
 ---   script_name("Example script")
@@ -13776,17 +13797,17 @@ function sampRegisterChatCommand(cmd, func) end
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerNickname">Open the wiki</a></b>
 ---
----@param id int ID игрока
----@return zstring name ник
+---@param id int ID РёРіСЂРѕРєР°
+---@return zstring name РЅРёРє
 function sampGetPlayerNickname(id) end
 
 ---
---- Получает цвет игрока из scoreboard'a  
+--- РџРѕР»СѓС‡Р°РµС‚ С†РІРµС‚ РёРіСЂРѕРєР° РёР· scoreboard'a  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerColor">Open the wiki</a></b>  
 ---
----@param id int ИД игрока.
----@return uint color Цвет(ARGB).
+---@param id int РР” РёРіСЂРѕРєР°.
+---@return uint color Р¦РІРµС‚(ARGB).
 function sampGetPlayerColor(id) end
 
 ---
@@ -13954,11 +13975,11 @@ function sampDestroy3dText(textlabel) end
 function sampIs3dTextDefined(_3dText) end
 
 ---
---- Закрывает открытый диалог с указанием нажатой кнопки.  
+--- Р—Р°РєСЂС‹РІР°РµС‚ РѕС‚РєСЂС‹С‚С‹Р№ РґРёР°Р»РѕРі СЃ СѓРєР°Р·Р°РЅРёРµРј РЅР°Р¶Р°С‚РѕР№ РєРЅРѕРїРєРё.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampCloseCurrentDialogWithButton">Open the wiki</a></b>  
 ---
----@param button int номер кнопки
+---@param button int РЅРѕРјРµСЂ РєРЅРѕРїРєРё
 function sampCloseCurrentDialogWithButton(button) end
 
 ---
@@ -13986,11 +14007,11 @@ function sampGetCurrentDialogEditboxText() end
 function sampSetCurrentDialogEditboxText(text) end
 
 ---
---- Проверяет, активен ли любой SA:MP-диалог.  
+--- РџСЂРѕРІРµСЂСЏРµС‚, Р°РєС‚РёРІРµРЅ Р»Рё Р»СЋР±РѕР№ SA:MP-РґРёР°Р»РѕРі.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsDialogActive">Open the wiki</a></b>  
 ---
----@return bool result статус
+---@return bool result СЃС‚Р°С‚СѓСЃ
 function sampIsDialogActive() end
 
 ---
@@ -14000,15 +14021,15 @@ function sampIsDialogActive() end
 function sampGetCurrentDialogType() end
 
 ---
---- Возвращает ID последнего(открытого) диалогового окна  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ ID РїРѕСЃР»РµРґРЅРµРіРѕ(РѕС‚РєСЂС‹С‚РѕРіРѕ) РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogId">Open the wiki</a></b>  
 ---
----@return int id ID диалогового окна
+---@return int id ID РґРёР°Р»РѕРіРѕРІРѕРіРѕ РѕРєРЅР°
 function sampGetCurrentDialogId() end
 
 ---
---- Возвращает текущий gamestate.  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ С‚РµРєСѓС‰РёР№ gamestate.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetGamestate">Open the wiki</a></b>  
 ---
@@ -15143,14 +15164,14 @@ function sampGet3dTextInfoById(id) end
 function sampSet3dTextString(id, text) end
 
 ---
---- Создает текстдрав c заданными параметрами.  
+--- РЎРѕР·РґР°РµС‚ С‚РµРєСЃС‚РґСЂР°РІ c Р·Р°РґР°РЅРЅС‹РјРё РїР°СЂР°РјРµС‚СЂР°РјРё.  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawCreate">Open the wiki</a></b>  
 ---
----@param id int ID текстдрава
----@param text zstring текст текстдрава
----@param posX float координата X текстдрава
----@param posY float координата Y текстдрава
+---@param id int ID С‚РµРєСЃС‚РґСЂР°РІР°
+---@param text zstring С‚РµРєСЃС‚ С‚РµРєСЃС‚РґСЂР°РІР°
+---@param posX float РєРѕРѕСЂРґРёРЅР°С‚Р° X С‚РµРєСЃС‚РґСЂР°РІР°
+---@param posY float РєРѕРѕСЂРґРёРЅР°С‚Р° Y С‚РµРєСЃС‚РґСЂР°РІР°
 function sampTextdrawCreate(id, text, posX, posY) end
 
 ---
@@ -15475,12 +15496,12 @@ function sampForceStatsSync() end
 function sampForceWeaponsSync() end
 
 ---
---- Возвращает максимальный SAMP ид игрока на сервере/в зоне прорисовки (стриме)  
+--- Р’РѕР·РІСЂР°С‰Р°РµС‚ РјР°РєСЃРёРјР°Р»СЊРЅС‹Р№ SAMP РёРґ РёРіСЂРѕРєР° РЅР° СЃРµСЂРІРµСЂРµ/РІ Р·РѕРЅРµ РїСЂРѕСЂРёСЃРѕРІРєРё (СЃС‚СЂРёРјРµ)  
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetMaxPlayerId">Open the wiki</a></b>  
 ---
----@param streamed bool Поиск в стриме
----@return int id ID игрока
+---@param streamed bool РџРѕРёСЃРє РІ СЃС‚СЂРёРјРµ
+---@return int id ID РёРіСЂРѕРєР°
 function sampGetMaxPlayerId(streamed) end
 
 ---
@@ -15517,25 +15538,25 @@ function isSampfuncsConsoleCommandDefined(cmd) end
 function getCleoLibraryVersion() end
 
 ---
---- Основная функция, вызывается единожды за запуск скрипта.  
---- В ней можно использовать задержки `wait` и бесконечные циклы, при этом не нарушая работу игры.  
---- Вдействительности событие `main` является не событием, а сопрограммой, выполняющейся в отдельном Lua-потоке.  
---- Это и даёт возможность прерывать её выполнение на какой-то промежуток времени и затем продолжать работу с того же места без каких-либо негативных последствий.  
+--- РћСЃРЅРѕРІРЅР°СЏ С„СѓРЅРєС†РёСЏ, РІС‹Р·С‹РІР°РµС‚СЃСЏ РµРґРёРЅРѕР¶РґС‹ Р·Р° Р·Р°РїСѓСЃРє СЃРєСЂРёРїС‚Р°.  
+--- Р’ РЅРµР№ РјРѕР¶РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ Р·Р°РґРµСЂР¶РєРё `wait` Рё Р±РµСЃРєРѕРЅРµС‡РЅС‹Рµ С†РёРєР»С‹, РїСЂРё СЌС‚РѕРј РЅРµ РЅР°СЂСѓС€Р°СЏ СЂР°Р±РѕС‚Сѓ РёРіСЂС‹.  
+--- Р’РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕСЃС‚Рё СЃРѕР±С‹С‚РёРµ `main` СЏРІР»СЏРµС‚СЃСЏ РЅРµ СЃРѕР±С‹С‚РёРµРј, Р° СЃРѕРїСЂРѕРіСЂР°РјРјРѕР№, РІС‹РїРѕР»РЅСЏСЋС‰РµР№СЃСЏ РІ РѕС‚РґРµР»СЊРЅРѕРј Lua-РїРѕС‚РѕРєРµ.  
+--- Р­С‚Рѕ Рё РґР°С‘С‚ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РїСЂРµСЂС‹РІР°С‚СЊ РµС‘ РІС‹РїРѕР»РЅРµРЅРёРµ РЅР° РєР°РєРѕР№-С‚Рѕ РїСЂРѕРјРµР¶СѓС‚РѕРє РІСЂРµРјРµРЅРё Рё Р·Р°С‚РµРј РїСЂРѕРґРѕР»Р¶Р°С‚СЊ СЂР°Р±РѕС‚Сѓ СЃ С‚РѕРіРѕ Р¶Рµ РјРµСЃС‚Р° Р±РµР· РєР°РєРёС…-Р»РёР±Рѕ РЅРµРіР°С‚РёРІРЅС‹С… РїРѕСЃР»РµРґСЃС‚РІРёР№.  
 ---
---- ### Пример  
+--- ### РџСЂРёРјРµСЂ  
 ---
 --- ```lua
 ---   function main()
----     -- загрузим что-нибудь перед тем, как запустить бесконечный цикл
+---     -- Р·Р°РіСЂСѓР·РёРј С‡С‚Рѕ-РЅРёР±СѓРґСЊ РїРµСЂРµРґ С‚РµРј, РєР°Рє Р·Р°РїСѓСЃС‚РёС‚СЊ Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР»
 ---     loadStuff()
 ---     key1_timesPressed = 0
 ---   
----     -- бесконечный цикл - в данном примере именно в нём реализована основная часть скрипта
+---     -- Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» - РІ РґР°РЅРЅРѕРј РїСЂРёРјРµСЂРµ РёРјРµРЅРЅРѕ РІ РЅС‘Рј СЂРµР°Р»РёР·РѕРІР°РЅР° РѕСЃРЅРѕРІРЅР°СЏ С‡Р°СЃС‚СЊ СЃРєСЂРёРїС‚Р°
 ---     while true do
----       -- в нём обязательно должна присутствовать хотя-бы нулевая задержка, иначе игра попросту зависнет
----       -- объясняется это тем, что весь процесс игры выполняется последовательно, в том числе и скрипты MoonLoader-а
----       -- и поэтому периодически игре нужно давать возможность обработаться, делая паузу в каждом бесконечном цикле любого скрипта
----       -- нулевая задержка приостановит выполнение скрипта ровно на один кадр (задержка в main не оказывает влияния на выполнение остальных событий)
+---       -- РІ РЅС‘Рј РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РґРѕР»Р¶РЅР° РїСЂРёСЃСѓС‚СЃС‚РІРѕРІР°С‚СЊ С…РѕС‚СЏ-Р±С‹ РЅСѓР»РµРІР°СЏ Р·Р°РґРµСЂР¶РєР°, РёРЅР°С‡Рµ РёРіСЂР° РїРѕРїСЂРѕСЃС‚Сѓ Р·Р°РІРёСЃРЅРµС‚
+---       -- РѕР±СЉСЏСЃРЅСЏРµС‚СЃСЏ СЌС‚Рѕ С‚РµРј, С‡С‚Рѕ РІРµСЃСЊ РїСЂРѕС†РµСЃСЃ РёРіСЂС‹ РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕ, РІ С‚РѕРј С‡РёСЃР»Рµ Рё СЃРєСЂРёРїС‚С‹ MoonLoader-Р°
+---       -- Рё РїРѕСЌС‚РѕРјСѓ РїРµСЂРёРѕРґРёС‡РµСЃРєРё РёРіСЂРµ РЅСѓР¶РЅРѕ РґР°РІР°С‚СЊ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РѕР±СЂР°Р±РѕС‚Р°С‚СЊСЃСЏ, РґРµР»Р°СЏ РїР°СѓР·Сѓ РІ РєР°Р¶РґРѕРј Р±РµСЃРєРѕРЅРµС‡РЅРѕРј С†РёРєР»Рµ Р»СЋР±РѕРіРѕ СЃРєСЂРёРїС‚Р°
+---       -- РЅСѓР»РµРІР°СЏ Р·Р°РґРµСЂР¶РєР° РїСЂРёРѕСЃС‚Р°РЅРѕРІРёС‚ РІС‹РїРѕР»РЅРµРЅРёРµ СЃРєСЂРёРїС‚Р° СЂРѕРІРЅРѕ РЅР° РѕРґРёРЅ РєР°РґСЂ (Р·Р°РґРµСЂР¶РєР° РІ main РЅРµ РѕРєР°Р·С‹РІР°РµС‚ РІР»РёСЏРЅРёСЏ РЅР° РІС‹РїРѕР»РЅРµРЅРёРµ РѕСЃС‚Р°Р»СЊРЅС‹С… СЃРѕР±С‹С‚РёР№)
 ---       wait(0)
 ---       if isPlayerPlaying(playerHandle) then
 ---         if isKeyDown(0x31) then
