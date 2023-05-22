@@ -1387,25 +1387,38 @@ function getVehiclePointerHandle(ptr) end
 ---@return Object handle
 function getObjectPointerHandle(ptr) end
 
+---@class CollisionPointData
+---@field pos float[] позиция точки соприкосновения XYZ
+---@field normal float[] вектор нормали к поверхности соприкосновения
+---@field surfaceType int[] типы поверхности
+---@field pieceType int[] типы детали
+---@field depth float какая-то глубина чего-то
+---@field entity int указатель на объект сущности, с которой произошло столкновение
+---@field entityType int тип сущности
+
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/processLineOfSight">Open the wiki</a></b>
+--- Ищет точку соприкосновения в трёхмерном пространстве между двумя координатами, по направлению прямой из позиции `origin` к `target`.  
+--- Имеет флаги, определяющие, какие типы объектов нужно проверять на столкновение.  
+--- Возвращает таблицу с информацией о точке соприкосновения.  
 ---
----@param originX float
----@param originY float
----@param originZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param checkSolid bool? Default value is true
----@param car bool? Default value is false
----@param ped bool? Default value is false
----@param object bool? Default value is false
----@param particle bool? Default value is false
----@param seeThrough bool? Default value is false
----@param ignoreSomeObjects bool? Default value is false
----@param shootThrough bool? Default value is false
----@return bool result
----@return table colPoint
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/processLineOfSight">Open the wiki</a></b>  
+---
+---@param originX float начальная позиция X
+---@param originY float начальная позиция Y
+---@param originZ float начальная позиция Z
+---@param targetX float конечная позиция X
+---@param targetY float конечная позиция Y
+---@param targetZ float конечная позиция Z
+---@param checkSolid bool? статичные объекты (напр. любые постройки). По стандарту = `true`
+---@param car bool? транспорт. По стандарту = `false`
+---@param ped bool? персонажи. По стандарту = `false`
+---@param object bool? динамические объекты. По стандарту = `false`
+---@param particle bool? визуальные эффекты. По стандарту = `false`
+---@param seeThrough bool? учитывать прозрачные объекты. По стандарту = `false`
+---@param ignoreSomeObjects bool? игнорировать некоторые динамические объекты. По стандарту = `false`
+---@param shootThrough bool? учитывать объекты, простреливаемые насквозь. По стандарту = `false`
+---@return bool result результат выполнения
+---@return CollisionPointData colPoint информация о точке соприкосновения
 function processLineOfSight(originX, originY, originZ, targetX, targetY, targetZ, checkSolid, car, ped, object, particle, seeThrough, ignoreSomeObjects, shootThrough) end
 
 ---
@@ -1422,23 +1435,29 @@ function setClipboardText(text) end
 function getClipboardText() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getStructElement">Open the wiki</a></b>
+--- Читает значение целого из памяти по адресу и указанному оффсету размером от 1-го до 4-х байт.  
+--- Для чтения числа с плавающей точкой используйте `getStructFloatElement` либо `representIntAsFloat`.  
 ---
----@param struct uint
----@param offset int
----@param size uint
----@param unprotect bool? Default value is false
----@return int value
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/getStructElement">Open the wiki</a></b>  
+---
+---@param struct uint указатель на начало структуры
+---@param offset int оффсет
+---@param size uint размер
+---@param unprotect bool? снять защиту памяти. По стандарту = `false`
+---@return int value значение
 function getStructElement(struct, offset, size, unprotect) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setStructElement">Open the wiki</a></b>
+--- Записывает значение целого в память по адресу и указанному оффсету размером от 1-го до 4-х байт.  
+--- Для записи числа с плавающей точкой используйте `setStructFloatElement` либо `representFloatAsInt`.  
 ---
----@param struct uint
----@param offset int
----@param size uint
----@param value int
----@param unprotect bool? Default value is false
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/setStructElement">Open the wiki</a></b>  
+---
+---@param struct uint указатель на структуру
+---@param offset int оффсет
+---@param size uint размер
+---@param value int значение
+---@param unprotect bool? снять защиту памяти. По стандарту = `false`
 function setStructElement(struct, offset, size, value, unprotect) end
 
 ---
@@ -1581,37 +1600,46 @@ function downloadUrlToFile(url, file, statusCallback) end
 function isKeyJustPressed(key) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/convert3DCoordsToScreenEx">Open the wiki</a></b>
+--- Конвертирует мировые 3D-координаты в экранные. Расширенный вариант функции `convert3DCoordsToScreen`,
+--- имеет дополнительные аргументы и возвращаемые значения.  
 ---
----@param posX float
----@param posY float
----@param posZ float
----@param checkMin bool? Default value is false
----@param checkMax bool? Default value is false
----@return bool result
----@return float x
----@return float y
----@return float z
----@return float w
----@return float h
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/convert3DCoordsToScreenEx">Open the wiki</a></b>  
+---
+---@param posX float мировые координата X
+---@param posY float мировые координата Y
+---@param posZ float мировые координата Z
+---@param checkMin bool? проверять минимальное расстояние до камеры. По стандарту = `false`
+---@param checkMax bool? проверять максимальное расстояние до камеры. По стандарту = `false`
+---@return bool result результат преобразования
+---@return float x экранная координата X в пикселях
+---@return float y экранная координата Y в пикселях
+---@return float z неизвестно
+---@return float w неизвестно
+---@return float h неизвестно
 function convert3DCoordsToScreenEx(posX, posY, posZ, checkMin, checkMax) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getStructFloatElement">Open the wiki</a></b>
+--- Читает число с плавающей точкой из памяти по адресу и указанному оффсету размером в 4 байта.  
+--- Для чтения целого используйте функцию `getStructElement`.  
 ---
----@param struct uint
----@param offset int
----@param unprotect bool? Default value is false
----@return float value
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/getStructFloatElement">Open the wiki</a></b>  
+---
+---@param struct uint адрес начала структуры
+---@param offset int оффсет
+---@param unprotect bool? снять защиту памяти. По стандарту = `false`
+---@return float value прочитанное значение
 function getStructFloatElement(struct, offset, unprotect) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setStructFloatElement">Open the wiki</a></b>
+--- Записывает число с плавающей точкой в память по адресу и указанному оффсету.  
+--- Для записи целого используйте функцию `setStructElement`.  
 ---
----@param struct uint
----@param offset int
----@param value float
----@param unprotect bool? Default value is false
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/setStructFloatElement">Open the wiki</a></b>  
+---
+---@param struct uint адрес начала структуры
+---@param offset int оффсет
+---@param value float значение
+---@param unprotect bool? снять защиту памяти. По стандарту = `false`
 function setStructFloatElement(struct, offset, value, unprotect) end
 
 ---
@@ -1635,10 +1663,14 @@ function wasKeyReleased(key) end
 function getMousewheelDelta() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/consumeWindowMessage">Open the wiki</a></b>
+--- Помечает текущее обрабатываемое оконное сообщение для игнорирования.  
+--- Игнорирование сообщения может быть отменено вызовом функции с параметрами `false`.  
+--- Предназначена для использования только изнутри события `onWindowMessage`.  
 ---
----@param game bool? Default value is true
----@param scripts bool? Default value is true
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/consumeWindowMessage">Open the wiki</a></b>  
+---
+---@param game bool? игнорировать сообщение для игры (оно не будет передано игре, но будет передано Lua скриптам). По стандарту = `true`
+---@param scripts bool? игнорировать сообщение для Lua скриптов. По стандарту = `true`
 function consumeWindowMessage(game, scripts) end
 
 ---
@@ -1714,10 +1746,12 @@ function encodeJson(data) end
 function decodeJson(json) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/showCursor">Open the wiki</a></b>
+--- Показывает или скрывает системный курсор, блокируя вращение камеры и управление игроком (опционально).  
 ---
----@param show bool
----@param lockControls bool? Default value is nil
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/showCursor">Open the wiki</a></b>  
+---
+---@param show bool активировать/деактивировать
+---@param lockControls bool? заблокировать управление игроком. По стандарту = `false`
 function showCursor(show, lockControls) end
 
 ---
