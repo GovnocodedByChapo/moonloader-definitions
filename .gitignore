@@ -1,5 +1,11 @@
+.vscode
+
 *.code-workspace
 stylua.exe
+
+# Build system
 __pycache__
-test.lua
 build
+
+# IntelliSense testing
+test.lua

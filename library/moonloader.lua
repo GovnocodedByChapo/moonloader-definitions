@@ -171,7 +171,7 @@ function isCursorActive() end
 function getAllPickups() end
 
 ---
---- Возвращает хэндл пикапа по указателю на экземляр класса `CPickup`.  
+--- Возвращает хэндл пикапа по указателю на экземляр класса CPickup.  
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointerHandle)**  
 ---
@@ -180,19 +180,38 @@ function getAllPickups() end
 function getPickupPointerHandle(handle) end
 
 ---
---- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointer)**
+--- Возвращает указатель на структуру пикапа  
 ---
----@param pickup Pickup
----@return int pointer
+--- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupPointer)**  
+---
+---@param pickup Pickup хэндл
+---@return int pointer указатель
 function getPickupPointer(pickup) end
 
+---@alias PickupType
+---| 0 # Отображается не всегда. Не может быть подобран.
+---| 1 # Отображается всегда.
+---| 2 # Проподает после поднятия, появляется через 30 секунд, если игрок находится на дистанции хотя бы 15 метров от пикапа.
+---| 3 # Пропадает после поднятия, появляется после смерти.
+---| 4 # Пропадает через 15-20 секунд. Появляется после смерти.
+---| 8 # Пропадает после поднятия.
+---| 11 # Взрывается через несколько секунд после создания (бомбы?)
+---| 12 # Взрывается через несколько секунд после создания.
+---| 13 # Невидимый. Издаёт звук чекпоинта, когда подобран на автомобиле.
+---| 14 # Пропадает после поднятия, но может быть подобран только на автомобиле. Издоаёт звук чекпоинта.
+---| 15 # Тоже самое, что и тип 2.
+---| 18 # Похож на тип 1. Нажатие `TAB` заставит его пропасть.
+---| 19 # Пропадаёт после поднятия, но не появляется вновь. Издаёт звук поднятия денег.
+---| 20 # Похож на тип 1. Пропадает, когда ты его фотографируешь (используя фотоаппарат).
+---| 22 # Тоже самое, что и тип 3.
+
 ---
---- Возвращает указатель на структуру пикапа  
+--- Возвращает тип пикапа  
 ---
 --- **[Open the wiki](https://wiki.blast.hk/moonloader/lua/getPickupType)**  
 ---
----@param pickup Pickup хэндл
----@return int type указатель
+---@param pickup Pickup хэндл пикапа
+---@return PickupType type тип пикапа
 function getPickupType(pickup) end
 
 ---
