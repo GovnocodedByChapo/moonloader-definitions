@@ -12,3 +12,8 @@ Most of this repository is generated using python script, but also this reposito
 You can install this defintions using Lua Addon Manager.  
 Press F1 and type `Open Addon Manager`, then click at `Lua: Open Addon Manager`.  
 Find `moonloader` addon in this list and press `Install`
+
+## What will be in future?
+
+We want to make a full documentation, to make modding easier.  
+My next goal is to complete documentation for mimgui (GUI library).
