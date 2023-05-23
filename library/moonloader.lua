@@ -70,7 +70,6 @@ function lua_thread.create(func, ...) end
 ---@return LuaThread thread экземпляр `LuaThread`
 function lua_thread.create_suspended(func) end
 
-
 ---@class LuaScript # экземпляр класса LuaScript
 ---@field name string # имя скрипта, заданное функцией 'script_name'. Если имя не задано используется название файла
 ---@field description string # описание скрипта, указанное функцией 'script_description'. Пустая строка, если не указано
@@ -144,7 +143,7 @@ function script.find(name) end
 ---@return LuaScript[] list массив `LuaScript` загруженных скриптов
 function script.list() end
 
---- 
+---
 --- Получает загруженный скрипт по его уникальному идентификатору и возвращает объект `LuaScript`.<br/>
 --- Возвращает `nil`, если скрипта с таким идентификатором нет.<br/>
 ---
@@ -1573,7 +1572,23 @@ function getObjectPointerHandle(ptr) end
 ---@param shootThrough bool? учитывать объекты, простреливаемые насквозь. По стандарту = `false`
 ---@return bool result результат выполнения
 ---@return CollisionPointData colPoint информация о точке соприкосновения
-function processLineOfSight(originX, originY, originZ, targetX, targetY, targetZ, checkSolid, car, ped, object, particle, seeThrough, ignoreSomeObjects, shootThrough) end
+function processLineOfSight(
+	originX,
+	originY,
+	originZ,
+	targetX,
+	targetY,
+	targetZ,
+	checkSolid,
+	car,
+	ped,
+	object,
+	particle,
+	seeThrough,
+	ignoreSomeObjects,
+	shootThrough
+)
+end
 
 ---
 --- Записывает текст в буфер обмена Windows.<br/>
@@ -2856,7 +2871,21 @@ function isCarModel(car, modelId) end
 ---@param minDelay int
 ---@param maxDelay int
 ---@return int carGenerator
-function createCarGenerator(atX, atY, atZ, angle, modelId, color1, color2, forceSpawn, alarm, doorLock, minDelay, maxDelay) end
+function createCarGenerator(
+	atX,
+	atY,
+	atZ,
+	angle,
+	modelId,
+	color1,
+	color2,
+	forceSpawn,
+	alarm,
+	doorLock,
+	minDelay,
+	maxDelay
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/switchCarGenerator">Open the wiki</a></b>
@@ -3743,7 +3772,18 @@ function setPoliceIgnorePlayer(player, ignored) end
 ---@param targetModels4 Model
 ---@param completedText bool
 ---@return bool result
-function startKillFrenzy(gxtString, weapon, timeLimit, targets, targetModels1, targetModels2, targetModels3, targetModels4, completedText) end
+function startKillFrenzy(
+	gxtString,
+	weapon,
+	timeLimit,
+	targets,
+	targetModels1,
+	targetModels2,
+	targetModels3,
+	targetModels4,
+	completedText
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/readKillFrenzyStatus">Open the wiki</a></b>
@@ -4778,7 +4818,20 @@ function setCarVisible(car, visible) end
 ---@param object bool
 ---@param particle bool
 ---@return bool result
-function isAreaOccupied(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, solid, car, actor, object, particle) end
+function isAreaOccupied(
+	cornerAX,
+	cornerAY,
+	cornerAZ,
+	cornerBX,
+	cornerBY,
+	cornerBZ,
+	solid,
+	car,
+	actor,
+	object,
+	particle
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/displayText">Open the wiki</a></b>
@@ -6759,7 +6812,22 @@ function displayNthOnscreenCounterWithString(text, type, line, gxtString) end
 ---@param spawnBY float
 ---@param headedTowards2X float
 ---@param headedTowards2Y float
-function addSetPiece(type, rectX1, rectY1, rectX2, rectY2, spawnAX, spawnAY, headedTowards1X, headedTowards1Y, spawnBX, spawnBY, headedTowards2X, headedTowards2Y) end
+function addSetPiece(
+	type,
+	rectX1,
+	rectY1,
+	rectX2,
+	rectY2,
+	spawnAX,
+	spawnAY,
+	headedTowards1X,
+	headedTowards1Y,
+	spawnBX,
+	spawnBY,
+	headedTowards2X,
+	headedTowards2Y
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setExtraColours">Open the wiki</a></b>
@@ -7359,7 +7427,17 @@ function getAngleBetween2dVectors(vecX, vecY, vecX2, vecY2) end
 ---@param overlapscaleX float
 ---@param overlapscaleY float
 ---@return bool result
-function do2dRectanglesCollide(areaX, areaY, scaleX, scaleY, overlapareaX, overlapareaY, overlapscaleX, overlapscaleY) end
+function do2dRectanglesCollide(
+	areaX,
+	areaY,
+	scaleX,
+	scaleY,
+	overlapareaX,
+	overlapareaY,
+	overlapscaleX,
+	overlapscaleY
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getObjectRotationVelocity">Open the wiki</a></b>
@@ -8456,7 +8534,18 @@ function createFxSystemOnChar(particle, ped, offsetX, offsetY, offsetZ, type) en
 ---@param rotationZ float
 ---@param type int
 ---@return Particle particle
-function createFxSystemOnCharWithDirection(particle, ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, type) end
+function createFxSystemOnCharWithDirection(
+	particle,
+	ped,
+	offsetX,
+	offsetY,
+	offsetZ,
+	rotationX,
+	rotationY,
+	rotationZ,
+	type
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/createFxSystemOnCar">Open the wiki</a></b>
@@ -8483,7 +8572,18 @@ function createFxSystemOnCar(particle, car, offsetX, offsetY, offsetZ, type) end
 ---@param rotationZ float
 ---@param type int
 ---@return Particle particle
-function createFxSystemOnCarWithDirection(particle, car, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, type) end
+function createFxSystemOnCarWithDirection(
+	particle,
+	car,
+	offsetX,
+	offsetY,
+	offsetZ,
+	rotationX,
+	rotationY,
+	rotationZ,
+	type
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/createFxSystemOnObject">Open the wiki</a></b>
@@ -8510,7 +8610,18 @@ function createFxSystemOnObject(particle, object, offsetX, offsetY, offsetZ, typ
 ---@param rotationZ float
 ---@param flag int
 ---@return Particle particle
-function createFxSystemOnObjectWithDirection(particle, object, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ, flag) end
+function createFxSystemOnObjectWithDirection(
+	particle,
+	object,
+	offsetX,
+	offsetY,
+	offsetZ,
+	rotationX,
+	rotationY,
+	rotationZ,
+	flag
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/taskDestroyCar">Open the wiki</a></b>
@@ -9025,7 +9136,20 @@ function fireSingleBullet(fromX, fromY, fromZ, targetX, targetY, targetZ, energy
 ---@param checkObjects bool учитывать объекты
 ---@param checkParticles bool учитывать частицы
 ---@return bool result результат проверки
-function isLineOfSightClear(fromX, fromY, fromZ, toX, toY, toZ, checkBuildings, checkVehicles, checkActors, checkObjects, checkParticles) end
+function isLineOfSightClear(
+	fromX,
+	fromY,
+	fromZ,
+	toX,
+	toY,
+	toZ,
+	checkBuildings,
+	checkVehicles,
+	checkActors,
+	checkObjects,
+	checkParticles
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarRoll">Open the wiki</a></b>
@@ -10843,7 +10967,23 @@ function doesCarHaveHydraulics(car) end
 ---@param LY bool
 ---@param LF bool
 ---@param LT int
-function taskCharSlideToCoordAndPlayAnim(ped, toX, toY, toZ, angle, radius, animation, ifp1, ifp2, LA, LX, LY, LF, LT) end
+function taskCharSlideToCoordAndPlayAnim(
+	ped,
+	toX,
+	toY,
+	toZ,
+	angle,
+	radius,
+	animation,
+	ifp1,
+	ifp2,
+	LA,
+	LX,
+	LY,
+	LF,
+	LT
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/getTotalNumberOfPedsKilledByPlayer">Open the wiki</a></b>
@@ -10925,7 +11065,25 @@ function taskPlayAnimNonInterruptable(ped, animation, IFP, framedelta, loop, loc
 ---@param cameraY float
 ---@param cameraZ float
 ---@param reward int
-function addStuntJump(startX, startY, startZ, radiusX, radiusY, radiusZ, goalX, goalY, goalZ, radius2X, radius2Y, radius2Z, cameraX, cameraY, cameraZ, reward) end
+function addStuntJump(
+	startX,
+	startY,
+	startZ,
+	radiusX,
+	radiusY,
+	radiusZ,
+	goalX,
+	goalY,
+	goalZ,
+	radius2X,
+	radius2Y,
+	radius2Z,
+	cameraX,
+	cameraY,
+	cameraZ,
+	reward
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setObjectCoordinatesAndVelocity">Open the wiki</a></b>
@@ -11858,7 +12016,24 @@ function deleteMenu(menu) end
 ---@param data10 GxtString
 ---@param data11 GxtString
 ---@param data12 GxtString
-function setMenuColumn(menu, column, header, data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12) end
+function setMenuColumn(
+	menu,
+	column,
+	header,
+	data1,
+	data2,
+	data3,
+	data4,
+	data5,
+	data6,
+	data7,
+	data8,
+	data9,
+	data10,
+	data11,
+	data12
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setBlipEntryExit">Open the wiki</a></b>
@@ -13542,7 +13717,22 @@ function getCarModelValue(modelId) end
 ---@param maxDelay int
 ---@param plate string
 ---@return int generator
-function createCarGeneratorWithPlate(atX, atY, atZ, angle, modelId, color1, color2, forceSpawn, alarm, doorLock, minDelay, maxDelay, plate) end
+function createCarGeneratorWithPlate(
+	atX,
+	atY,
+	atZ,
+	angle,
+	modelId,
+	color1,
+	color2,
+	forceSpawn,
+	alarm,
+	doorLock,
+	minDelay,
+	maxDelay,
+	plate
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/findTrainDirection">Open the wiki</a></b>
@@ -13875,7 +14065,15 @@ function setHasBeenOwnedForCarGenerator(generator, owned) end
 ---@param questionWAV int
 ---@param answerYesWAV int
 ---@param answerNoWAV int
-function setUpConversationNodeWithScriptedSpeech(questionGXT, answerYesGXT, answerNoGXT, questionWAV, answerYesWAV, answerNoWAV) end
+function setUpConversationNodeWithScriptedSpeech(
+	questionGXT,
+	answerYesGXT,
+	answerNoGXT,
+	questionWAV,
+	answerYesWAV,
+	answerNoWAV
+)
+end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/setAreaName">Open the wiki</a></b>
@@ -14282,7 +14480,7 @@ function sampSpawnPlayer() end
 ---@return uint handle адрес
 function sampGetBase() end
 
---- 
+---
 --- Добавляет в окно чата SA:MP сообщение заданного цвета<br/>
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampAddChatMessage">Open the wiki</a></b><br/>
@@ -15739,7 +15937,22 @@ function sampSendEditObject(playerObject, objectId, response, posX, posY, posZ, 
 ---@param scaleX float Масштаб объекта X
 ---@param scaleY float Масштаб объекта Y
 ---@param scaleZ float Масштаб объекта Z
-function sampSendEditAttachedObject(response, index, model, bone, offsetX, offsetY, offsetZ, rotX, rotY, rotZ, scaleX, scaleY, scaleZ) end
+function sampSendEditAttachedObject(
+	response,
+	index,
+	model,
+	bone,
+	offsetX,
+	offsetY,
+	offsetZ,
+	rotX,
+	rotY,
+	rotZ,
+	scaleX,
+	scaleY,
+	scaleZ
+)
+end
 
 ---
 --- Отправляет RPC - RPC_SETINTERIORID<br/>
