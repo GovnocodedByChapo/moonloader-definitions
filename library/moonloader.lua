@@ -1,13 +1,6 @@
 ---@meta
 ---@diagnostic disable: lowercase-global, missing-return
 
----@alias boolean boolean # логический
----@alias number number # целочисленный со знаком, 4 байта
----@alias number number # целочисленный без знака, 4 байта
----@alias number number # число с плавающей точкой, 4 байта
----@alias number number # число с плавающей точкой двойной точности, 8 байт
----@alias string string # нуль-терминированная строка (в Lua обычная строка)
-
 ---@class Ped # скриптовый хэндл игрового персонажа
 ---@class Marker # скриптовый хэндл маркера
 ---@class Pickup # скриптовый хэндл пикапа
