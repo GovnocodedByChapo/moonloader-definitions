@@ -876,9 +876,12 @@ function script_description(description) end
 function script_authors(author, ...) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/script_author">Open the wiki</a></b>
+--- Задаёт автора или нескольких авторов скрипта.  
+--- Имеет аналог с более подходящим названием для указания нескольких авторов - <a class="is-internal-link is-valid-page" href="/moonloader/lua/script_authors">script_authors</a>.  
 ---
----@param author string
+--- <a href="https://wiki.blast.hk/moonloader/lua/script_author">Open the wiki</a>  
+---
+---@param author string автор скрипта
 function script_author(author) end
 
 ---
@@ -893,9 +896,12 @@ function script_author(author) end
 function script_dependencies(name, ...) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/script_moonloader">Open the wiki</a></b>
+--- Задаёт минимальную требуемую версию MoonLoader.  
+--- Если версия не соответствует, выводит сообщение об ошибке, но не прекращает работу скрипта.  
 ---
----@param version int
+--- <a href="https://wiki.blast.hk/moonloader/lua/script_moonloader">Open the wiki</a>  
+---
+---@param version int версия
 function script_moonloader(version) end
 
 ---
@@ -909,208 +915,279 @@ function script_moonloader(version) end
 function wait(time) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getGameGlobal">Open the wiki</a></b>
+--- Возвращает значение глобальной переменной игры по её индексу.  
+--- Для получения дробного значения дополнительно используется функция <a class="is-internal-link is-valid-page" href="/moonloader/lua/representIntAsFloat">representIntAsFloat</a>.  
 ---
----@param index int
----@return int value
+--- <a href="https://wiki.blast.hk/moonloader/lua/getGameGlobal">Open the wiki</a>  
+---
+---@param index int номер переменной
+---@return int value значение
 function getGameGlobal(index) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setGameGlobal">Open the wiki</a></b>
+--- Задаёт значение глобальной переменной игры по её индексу.  
+--- Для записи дробного значения дополнительно используется функция <a class="is-internal-link is-valid-page" href="/moonloader/lua/representFloatAsInt">representFloatAsInt</a>.  
 ---
----@param index int
----@param value int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setGameGlobal">Open the wiki</a>  
+---
+---@param index int номер переменной
+---@param value int значение
 function setGameGlobal(index, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getGameGlobalPtr">Open the wiki</a></b>
+--- Возвращает адрес глобальной переменной игры по индексу.  
 ---
----@param index int
----@return uint ptr
+--- <a href="https://wiki.blast.hk/moonloader/lua/getGameGlobalPtr">Open the wiki</a>  
+---
+---@param index int номер переменной
+---@return int ptr адрес
 function getGameGlobalPtr(index) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isSampfuncsLoaded">Open the wiki</a></b>
+--- Проверяет плагин <a class="is-internal-link is-valid-page" href="/sampfuncs">SAMPFUNCS</a> на подключенность к игре.  
 ---
----@return bool loaded
+--- <a href="https://wiki.blast.hk/moonloader/lua/isSampfuncsLoaded">Open the wiki</a>  
+---
+---@return bool loaded статус
 function isSampfuncsLoaded() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCleoLoaded">Open the wiki</a></b>
+--- Проверяет плагин CLEO на подключенность к игре.  
 ---
----@return bool loaded
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCleoLoaded">Open the wiki</a>  
+---
+---@return bool loaded статус
 function isCleoLoaded() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isSampLoaded">Open the wiki</a></b>
+--- Проверяет, запущен ли SA:MP.  
 ---
----@return bool loaded
+--- <a href="https://wiki.blast.hk/moonloader/lua/isSampLoaded">Open the wiki</a>  
+---
+---@return bool loaded результат
 function isSampLoaded() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isKeyDown">Open the wiki</a></b>
+--- Проверяет, зажата ли клавиша.  
 ---
----@param keyId int
----@return bool state
+--- <a href="https://wiki.blast.hk/moonloader/lua/isKeyDown">Open the wiki</a>  
+---
+---@param keyId int виртуальный ид клавиши
+---@return bool state статус
 function isKeyDown(keyId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/reloadScripts">Open the wiki</a></b>
+--- Выгружает все загруженные скрипты и загружает заново из рабочей директории, учитывая добавленные и убранные.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/reloadScripts">Open the wiki</a>  
 ---
 function reloadScripts() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isOpcodesAvailable">Open the wiki</a></b>
+--- Проверяет, доступны ли функции опкодов для использования.  
 ---
----@return bool status
+--- <a href="https://wiki.blast.hk/moonloader/lua/isOpcodesAvailable">Open the wiki</a>  
+---
+---@return bool status статус
 function isOpcodesAvailable() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/representFloatAsInt">Open the wiki</a></b>
+--- Представляет значение числа с плавающей точкой как целое.  
 ---
----@param f float
----@return int i
+--- <a href="https://wiki.blast.hk/moonloader/lua/representFloatAsInt">Open the wiki</a>  
+---
+---@param f float число с плавающей точкой
+---@return int i число с плавающей точкой в представлении целого
 function representFloatAsInt(f) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/representIntAsFloat">Open the wiki</a></b>
+--- Представляет значение целого в виде числа с плавающей точкой.  
 ---
----@param i int
----@return float i
+--- <a href="https://wiki.blast.hk/moonloader/lua/representIntAsFloat">Open the wiki</a>  
+---
+---@param i int целое значение
+---@return float i число с плавающей точкой
 function representIntAsFloat(i) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setGxtEntry">Open the wiki</a></b>
+--- Создаёт или перезаписывает существующую GXT-запись.  
 ---
----@param key string
----@param text string
+--- <a href="https://wiki.blast.hk/moonloader/lua/setGxtEntry">Open the wiki</a>  
+---
+---@param key string ключ GXT-записи
+---@param text string текст
 function setGxtEntry(key, text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setFreeGxtEntry">Open the wiki</a></b>
+--- Создаёт [новую]{.ul} GXT-запись с уникальным ключём и возвращает его.  
+--- Для изменения используйте функцию <a class="is-internal-link is-valid-page" href="/moonloader/lua/setGxtEntry">setGxtEntry</a>.  
 ---
----@param text string
----@return string key
+--- <a href="https://wiki.blast.hk/moonloader/lua/setFreeGxtEntry">Open the wiki</a>  
+---
+---@param text string текст
+---@return string key ключ созданной записи
 function setFreeGxtEntry(text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getFreeGxtKey">Open the wiki</a></b>
+--- Генерирует и возвращает [новый]{.ul} уникальный ключ для создания GXT-записи.  
 ---
----@return string key
+--- <a href="https://wiki.blast.hk/moonloader/lua/getFreeGxtKey">Open the wiki</a>  
+---
+---@return string key сгенерированный GXT ключ
 function getFreeGxtKey() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getGxtText">Open the wiki</a></b>
+--- Возвращает текст GXT-записи по ключу, поиск производится включая записи игры.  
+--- Возвращает пустую строку, если запись не существует.  
 ---
----@param key string
----@return string text
+--- <a href="https://wiki.blast.hk/moonloader/lua/getGxtText">Open the wiki</a>  
+---
+---@param key string ключ GXT-записи
+---@return string text текст
 function getGxtText(key) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/clearGxtEntry">Open the wiki</a></b>
+--- Удаляет GXT-запись по ключу, не затрагивает игровые записи.  
 ---
----@param key string
+--- <a href="https://wiki.blast.hk/moonloader/lua/clearGxtEntry">Open the wiki</a>  
+---
+---@param key string ключ GXT-записи
 function clearGxtEntry(key) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isPauseMenuActive">Open the wiki</a></b>
+--- Проверяет, открыто ли игровое меню паузы.  
 ---
----@return bool active
+--- <a href="https://wiki.blast.hk/moonloader/lua/isPauseMenuActive">Open the wiki</a>  
+---
+---@return bool active статус
 function isPauseMenuActive() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isGameWindowForeground">Open the wiki</a></b>
+--- Проверяет, находится ли окно игры на переднем плане.  
 ---
----@return bool foreground
+--- <a href="https://wiki.blast.hk/moonloader/lua/isGameWindowForeground">Open the wiki</a>  
+---
+---@return bool foreground результат
 function isGameWindowForeground() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getGameVersion">Open the wiki</a></b>
+--- Возвращает информацию о версии игры  
 ---
----@return int major
----@return int minor
----@return int majorRev
----@return int minorRev
----@return int game
----@return int region
----@return bool steam
----@return bool cracked
+--- <a href="https://wiki.blast.hk/moonloader/lua/getGameVersion">Open the wiki</a>  
+---
+---@return int major версия
+---@return int minor версия
+---@return int majorRev версия
+---@return int minorRev версия
+---@return int game часть серии
+---@return int region регион
+---@return bool steam Steam-версия
+---@return bool cracked взломана
 function getGameVersion() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getMoonloaderVersion">Open the wiki</a></b>
+--- Возвращает номер версии MoonLoader.  
 ---
----@return int version
+--- <a href="https://wiki.blast.hk/moonloader/lua/getMoonloaderVersion">Open the wiki</a>  
+---
+---@return int version версия
 function getMoonloaderVersion() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/localClock">Open the wiki</a></b>
+--- Возвращает значение внутреннего таймера в виде дробного в формате 'секунды.миллисекунды'.  
+--- В отличие от системного таймера os.clock(), этот таймер работает только если игра активна (не свёрнута и находится на переднем плане).  
 ---
----@return double time
+--- <a href="https://wiki.blast.hk/moonloader/lua/localClock">Open the wiki</a>  
+---
+---@return double time время
 function localClock() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/freeTextures">Open the wiki</a></b>
+--- Освобождает все загруженные функцией <a class="is-internal-link is-invalid-page" href="/moonloader/lua/loadSprite">loadSprite</a> текстуры, принадлежащие вызвавшему скрипту.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/freeTextures">Open the wiki</a>  
 ---
 function freeTextures() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getWorkingDirectory">Open the wiki</a></b>
+--- Возвращает полный путь к рабочей директории MoonLoader.  
 ---
----@return string path
+--- <a href="https://wiki.blast.hk/moonloader/lua/getWorkingDirectory">Open the wiki</a>  
+---
+---@return string path путь
 function getWorkingDirectory() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getGameDirectory">Open the wiki</a></b>
+--- Возвращает полный путь к директории игры.  
 ---
----@return string path
+--- <a href="https://wiki.blast.hk/moonloader/lua/getGameDirectory">Open the wiki</a>  
+---
+---@return string path путь
 function getGameDirectory() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/useRenderCommands">Open the wiki</a></b>
+--- Активирует или отключает рендер текста и текстур опкодами игры.  
+--- Аналог опкода <a class="is-internal-link is-invalid-page" href="/gta-sa/opcodes/03F0">03F0</a>.  
 ---
----@param enable bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/useRenderCommands">Open the wiki</a>  
+---
+---@param enable bool статус
 function useRenderCommands(enable) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/writeMemory">Open the wiki</a></b>
+--- Записывает значение в память процесса по указанному адресу.  
+--- Аналог опкода CLEO <a class="is-internal-link is-valid-page" href="/gta-sa/opcodes/0A8C">0A8C</a>.  
 ---
----@param address uint
----@param size uint
----@param value int
----@param virtualProtect bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/writeMemory">Open the wiki</a>  
+---
+---@param address int адрес памяти
+---@param size int размер (от 1 до 4)
+---@param value int размер (от 1 до 4)
+---@param virtualProtect bool флаг снятия протекции
 function writeMemory(address, size, value, virtualProtect) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/readMemory">Open the wiki</a></b>
+--- Читает значение из памяти процесса по указанному адресу.  
+--- Аналог опкода CLEO <a class="is-internal-link is-valid-page" href="/gta-sa/opcodes/0A8D">0A8D</a>.  
 ---
----@param address uint
----@param size uint
----@param virtualProtect bool
----@return int value
+--- <a href="https://wiki.blast.hk/moonloader/lua/readMemory">Open the wiki</a>  
+---
+---@param address int адрес памяти
+---@param size int размер (от 1 до 4)
+---@param virtualProtect bool флаг снятия протекции
+---@return int value значение
 function readMemory(address, size, virtualProtect) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/loadDynamicLibrary">Open the wiki</a></b>
+--- Загружает динамическую библиотеку по названию и возвращает её хендл (адрес).  
+--- Аналог опкода CLEO <a class="is-internal-link is-invalid-page" href="/gta-sa/opcodes/0AA2">0AA2</a>.  
 ---
----@param library string
----@return bool result
----@return uint handle
+--- <a href="https://wiki.blast.hk/moonloader/lua/loadDynamicLibrary">Open the wiki</a>  
+---
+---@param library string название библиотеки
+---@return bool result результат выполнения
+---@return int handle хендл библиотеки
 function loadDynamicLibrary(library) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/freeDynamicLibrary">Open the wiki</a></b>
+--- Выгружает динамическую библиотеку по её хендлу.  
+--- Аналог опкода CLEO <a class="is-internal-link is-invalid-page" href="/gta-sa/opcodes/0AA3">0AA3</a>.  
 ---
----@param handle uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/freeDynamicLibrary">Open the wiki</a>  
+---
+---@param handle int хендл библиотеки
 function freeDynamicLibrary(handle) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getDynamicLibraryProcedure">Open the wiki</a></b>
+--- Получает адрес экспортируемой функции по названию и хендлу библиотеки.  
+--- Аналог опкода CLEO <a class="is-internal-link is-invalid-page" href="/gta-sa/opcodes/0AA4">0AA4</a>.  
 ---
----@param proc string
----@param handle uint
----@return bool result
----@return uint proc
+--- <a href="https://wiki.blast.hk/moonloader/lua/getDynamicLibraryProcedure">Open the wiki</a>  
+---
+---@param proc string имя функции
+---@param handle int хендл библиотеки
+---@return bool result результат выполнения
+---@return int proc адрес функции
 function getDynamicLibraryProcedure(proc, handle) end
 
 ---
@@ -1123,10 +1200,13 @@ function getDynamicLibraryProcedure(proc, handle) end
 function doesFileExist(file) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/doesDirectoryExist">Open the wiki</a></b>
+--- Проверяет директорию на существование.  
+--- Аналог опкода CLEO <a class="is-internal-link is-invalid-page" href="/gta-sa/opcodes/0AE4">0AE4</a>.  
 ---
----@param directory string
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/doesDirectoryExist">Open the wiki</a>  
+---
+---@param directory string путь
+---@return bool result результат выполнения
 function doesDirectoryExist(directory) end
 
 ---
@@ -1139,49 +1219,65 @@ function doesDirectoryExist(directory) end
 function createDirectory(directory) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/popFloat">Open the wiki</a></b>
+--- Извлекает верхнее значение из стека FPU и возвращает его.  
+--- Аналог опкода CLEO <a class="is-internal-link is-invalid-page" href="/gta-sa/opcodes/0AE9">0AE9</a>.  
 ---
----@return float val
+--- <a href="https://wiki.blast.hk/moonloader/lua/popFloat">Open the wiki</a>  
+---
+---@return float val значение
 function popFloat() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isGameVersionOriginal">Open the wiki</a></b>
+--- Проверяет версию игры, если версия игры 1.0 US, то вернет true.  
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isGameVersionOriginal">Open the wiki</a>  
+---
+---@return bool result результат проверки
 function isGameVersionOriginal() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/allocateMemory">Open the wiki</a></b>
+--- Выделяет память и возвращает указатель на выделенную область.  
 ---
----@param size uint
----@return uint memory
+--- <a href="https://wiki.blast.hk/moonloader/lua/allocateMemory">Open the wiki</a>  
+---
+---@param size int количество выделяемой памяти в байтах
+---@return int memory указатель на выделенную память
 function allocateMemory(size) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/freeMemory">Open the wiki</a></b>
+--- Освобождает выделенную память.  
 ---
----@param memory uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/freeMemory">Open the wiki</a>  
+---
+---@param memory int указатель на выделенный участок памяти
 function freeMemory(memory) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/findFirstFile">Open the wiki</a></b>
+--- Начинает поиск файла по указанной маске.  
 ---
----@param mask string
----@return Filesearch handle
----@return string name
+--- <a href="https://wiki.blast.hk/moonloader/lua/findFirstFile">Open the wiki</a>  
+---
+---@param mask string путь и маска названия файла (например, "moonloader/*.lua")
+---@return Filesearch handle хэндл сессии поиска
+---@return string name имя файла
 function findFirstFile(mask) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/findNextFile">Open the wiki</a></b>
+--- Продолжает поиск файла по открытой сессии поиска файлов.  
+--- Сессия поиска создаётся функцией <a class="is-internal-link is-valid-page" href="/moonloader/lua/findFirstFile">findFirstFile</a>.  
 ---
----@param handle Filesearch
----@return string file
+--- <a href="https://wiki.blast.hk/moonloader/lua/findNextFile">Open the wiki</a>  
+---
+---@param handle Filesearch сессия поиска
+---@return string file имя файла
 function findNextFile(handle) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/findClose">Open the wiki</a></b>
+--- Закрывает сессию поиска файлов.  
 ---
----@param handle Filesearch
+--- <a href="https://wiki.blast.hk/moonloader/lua/findClose">Open the wiki</a>  
+---
+---@param handle Filesearch хэндл сессии поиска
 function findClose(handle) end
 
 ---
@@ -1223,24 +1319,30 @@ function findAllRandomVehiclesInSphere(posX, posY, posZ, radius, findNext, skipW
 function findAllRandomObjectsInSphere(posX, posY, posZ, radius, findNext) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharPointer">Open the wiki</a></b>
+--- Возвращает указатель на объект класса CPed по хэндлу персонажа.  
 ---
----@param ped Ped
----@return uint ptr
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharPointer">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return int ptr указатель
 function getCharPointer(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarPointer">Open the wiki</a></b>
+--- Возвращает указатель на объект класса CVehicle по хэндлу транспортного средства.  
 ---
----@param car Vehicle
----@return uint ptr
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarPointer">Open the wiki</a>  
+---
+---@param car Vehicle хэндл транспорта
+---@return int ptr указатель
 function getCarPointer(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getObjectPointer">Open the wiki</a></b>
+--- Возвращает указатель на экземпляр класса CObject по хэндлу объекта.  
 ---
----@param object Object
----@return uint struct
+--- <a href="https://wiki.blast.hk/moonloader/lua/getObjectPointer">Open the wiki</a>  
+---
+---@param object Object хэндл объекта
+---@return int struct указатель
 function getObjectPointer(object) end
 
 ---
@@ -1273,133 +1375,170 @@ function callFunction(address, params, pop, ...) end
 function callMethod(address, struct, params, pop, ...) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/storeClosestEntities">Open the wiki</a></b>
+--- Возвращает хэндлы ближайшего транспорта и персонажа к другому персонажу.  
 ---
----@param ped Ped
----@return Vehicle car
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/storeClosestEntities">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return Vehicle car хэндл ближайшего ТС
+---@return Ped ped хэндл ближайшего персонажа
 function storeClosestEntities(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/switchCarEngine">Open the wiki</a></b>
+--- Задаёт статус двигателя автомобиля.  
 ---
----@param car Vehicle
----@param state bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/switchCarEngine">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@param state bool статус двигателя
 function switchCarEngine(car, state) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getTargetBlipCoordinates">Open the wiki</a></b>
+--- Проверяет существует ли пользовательская метка на карте и возвращает ее координаты.  
 ---
----@return bool result
----@return float posX
----@return float posY
----@return float posZ
+--- <a href="https://wiki.blast.hk/moonloader/lua/getTargetBlipCoordinates">Open the wiki</a>  
+---
+---@return bool result результат проверки
+---@return float posX координаты метки
+---@return float posY координаты метки
+---@return float posZ координаты метки
 function getTargetBlipCoordinates() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarNumberOfGears">Open the wiki</a></b>
+--- Возвращает количество передач автомобиля.  
 ---
----@param car Vehicle
----@return int gears
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarNumberOfGears">Open the wiki</a>  
+---
+---@param car Vehicle хэндл автомобиля
+---@return int gears количество передач
 function getCarNumberOfGears(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarCurrentGear">Open the wiki</a></b>
+--- Возвращает текущую передачу автомобиля.  
 ---
----@param car Vehicle
----@return int gear
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarCurrentGear">Open the wiki</a>  
+---
+---@param car Vehicle хэндл автомобиля
+---@return int gear передача
 function getCarCurrentGear(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarSirenOn">Open the wiki</a></b>
+--- Проверяет включена ли сирена.  
 ---
----@param car Vehicle
----@return bool state
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarSirenOn">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@return bool state статус сирены
 function isCarSirenOn(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarEngineOn">Open the wiki</a></b>
+--- Проверяет заведен ли двигатель машины.  
 ---
----@param car Vehicle
----@return bool state
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarEngineOn">Open the wiki</a>  
+---
+---@param car Vehicle хендл машины
+---@return bool state статус двигателя
 function isCarEngineOn(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/printHelpString">Open the wiki</a></b>
+--- Выводит в левом верхнем углу панель с текстом на короткое время (как при активации чит-кодов).  
 ---
----@param text string
+--- <a href="https://wiki.blast.hk/moonloader/lua/printHelpString">Open the wiki</a>  
+---
+---@param text string текст (на русском может не выводиться)
 function printHelpString(text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/printStyledString">Open the wiki</a></b>
+--- Выводит стилизованный текст на определённое время.  
 ---
----@param text string
----@param time int
----@param style int
+--- <a href="https://wiki.blast.hk/moonloader/lua/printStyledString">Open the wiki</a>  
+---
+---@param text string текст
+---@param time int время в миллисекундах
+---@param style int стиль (1-7)
 function printStyledString(text, time, style) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/printString">Open the wiki</a></b>
+--- Выводит текст в нижней части экрана, добавляя его в очередь, если на момент вызова выводится другой текст.  
 ---
----@param text string
----@param time int
+--- <a href="https://wiki.blast.hk/moonloader/lua/printString">Open the wiki</a>  
+---
+---@param text string текст
+---@param time int время отображения текста в миллисекундах
 function printString(text, time) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/printStringNow">Open the wiki</a></b>
+--- Выводит текст в нижней части экрана, минуя очередь.  
 ---
----@param text string
----@param time int
+--- <a href="https://wiki.blast.hk/moonloader/lua/printStringNow">Open the wiki</a>  
+---
+---@param text string текст
+---@param time int время показа текста
 function printStringNow(text, time) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharPlayerIsTargeting">Open the wiki</a></b>
+--- Проверяет, целится ли игрок в другого персонажа, и возвращает его хэндл.  
 ---
----@param player Player
----@return bool result
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharPlayerIsTargeting">Open the wiki</a>  
+---
+---@param player Player хэндл игрока
+---@return bool result результат проверки
+---@return Ped ped хэндл персонажа
 function getCharPlayerIsTargeting(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getNameOfVehicleModel">Open the wiki</a></b>
+--- Возвращает сокращенное название модели машины.  
 ---
----@param modelId Model
----@return GxtString name
+--- <a href="https://wiki.blast.hk/moonloader/lua/getNameOfVehicleModel">Open the wiki</a>  
+---
+---@param modelId Model модель машины
+---@return GxtString name название модели (до 7 символов)
 function getNameOfVehicleModel(modelId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/testCheat">Open the wiki</a></b>
+--- Проверяет был ли введён указанный текст на клавиатуре.  
 ---
----@param text string
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/testCheat">Open the wiki</a>  
+---
+---@param text string текст
+---@return bool result статус
 function testCheat(text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/spawnVehicleByCheating">Open the wiki</a></b>
+--- Создаёт транспорт перед игроком.  
+--- Нет необходимости загружать модель самостоятельно.  
 ---
----@param modelId Model
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/spawnVehicleByCheating">Open the wiki</a>  
+---
+---@param modelId Model модель транспортного средства
+---@return bool result результат выполнения
 function spawnVehicleByCheating(modelId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharPointerHandle">Open the wiki</a></b>
+--- Возвращает хэндл персонажа по указателю на экземляр класса CPed.  
 ---
----@param ptr uint
----@return Ped handle
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharPointerHandle">Open the wiki</a>  
+---
+---@param ptr int указатель
+---@return Ped handle хэндл персонажа
 function getCharPointerHandle(ptr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getVehiclePointerHandle">Open the wiki</a></b>
+--- Возвращает хэндл транспортного средства по указателю на экземляр класса CVehicle.  
 ---
----@param ptr uint
----@return Vehicle handle
+--- <a href="https://wiki.blast.hk/moonloader/lua/getVehiclePointerHandle">Open the wiki</a>  
+---
+---@param ptr int указатель
+---@return Vehicle handle хэндл транспорта
 function getVehiclePointerHandle(ptr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getObjectPointerHandle">Open the wiki</a></b>
+--- Возвращает хэндл объект по указателю на экземляр класса CObject.  
 ---
----@param ptr uint
----@return Object handle
+--- <a href="https://wiki.blast.hk/moonloader/lua/getObjectPointerHandle">Open the wiki</a>  
+---
+---@param ptr int указатель
+---@return Object handle хэндл объекта
 function getObjectPointerHandle(ptr) end
 
 ---@class CollisionPointData
@@ -1437,16 +1576,20 @@ function getObjectPointerHandle(ptr) end
 function processLineOfSight(originX, originY, originZ, targetX, targetY, targetZ, checkSolid, car, ped, object, particle, seeThrough, ignoreSomeObjects, shootThrough) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setClipboardText">Open the wiki</a></b>
+--- Записывает текст в буфер обмена Windows.  
 ---
----@param text string
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/setClipboardText">Open the wiki</a>  
+---
+---@param text string текст
+---@return bool result результат выполнения
 function setClipboardText(text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getClipboardText">Open the wiki</a></b>
+--- Читает текст из буфера обмена Windows.  
 ---
----@return string text
+--- <a href="https://wiki.blast.hk/moonloader/lua/getClipboardText">Open the wiki</a>  
+---
+---@return string text текст
 function getClipboardText() end
 
 ---
@@ -1476,49 +1619,55 @@ function getStructElement(struct, offset, size, unprotect) end
 function setStructElement(struct, offset, size, value, unprotect) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/convertMatrixToQuaternion">Open the wiki</a></b>
+--- Создаёт кватернион из матрицы вращения.  
 ---
----@param rightX float
----@param rightY float
----@param rightZ float
----@param frontX float
----@param frontY float
----@param frontZ float
----@param upX float
----@param upY float
----@param upZ float
----@return float w
----@return float x
----@return float y
----@return float z
+--- <a href="https://wiki.blast.hk/moonloader/lua/convertMatrixToQuaternion">Open the wiki</a>  
+---
+---@param rightX float pitch
+---@param rightY float pitch
+---@param rightZ float pitch
+---@param frontX float roll
+---@param frontY float roll
+---@param frontZ float roll
+---@param upX float yaw
+---@param upY float yaw
+---@param upZ float yaw
+---@return float w кватернион
+---@return float x кватернион
+---@return float y кватернион
+---@return float z кватернион
 function convertMatrixToQuaternion(rightX, rightY, rightZ, frontX, frontY, frontZ, upX, upY, upZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/convertQuaternionToMatrix">Open the wiki</a></b>
+--- Создаёт матрицу вращения из кватерниона.  
 ---
----@param w float
----@param x float
----@param y float
----@param z float
----@return float rightX
----@return float rightY
----@return float rightZ
----@return float frontX
----@return float frontY
----@return float frontZ
----@return float upX
----@return float upY
----@return float upZ
+--- <a href="https://wiki.blast.hk/moonloader/lua/convertQuaternionToMatrix">Open the wiki</a>  
+---
+---@param w float кватернион
+---@param x float кватернион
+---@param y float кватернион
+---@param z float кватернион
+---@return float rightX pitch
+---@return float rightY pitch
+---@return float rightZ pitch
+---@return float frontX roll
+---@return float frontY roll
+---@return float frontZ roll
+---@return float upX yaw
+---@return float upY yaw
+---@return float upZ yaw
 function convertQuaternionToMatrix(w, x, y, z) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/convert3DCoordsToScreen">Open the wiki</a></b>
+--- Конвертирует игровые 3D координаты в экранные.  
 ---
----@param posX float
----@param posY float
----@param posZ float
----@return float wposX
----@return float wposY
+--- <a href="https://wiki.blast.hk/moonloader/lua/convert3DCoordsToScreen">Open the wiki</a>  
+---
+---@param posX float игровые 3D координаты
+---@param posY float игровые 3D координаты
+---@param posZ float игровые 3D координаты
+---@return float wposX экранные координаты
+---@return float wposY экранные координаты
 function convert3DCoordsToScreen(posX, posY, posZ) end
 
 ---
@@ -1529,68 +1678,84 @@ function convert3DCoordsToScreen(posX, posY, posZ) end
 function setGameKeyState(key, state) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCursorPos">Open the wiki</a></b>
+--- Возвращает позицию курсора.  
 ---
----@return int posX
----@return int posY
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCursorPos">Open the wiki</a>  
+---
+---@return int posX координаты
+---@return int posY координаты
 function getCursorPos() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/convertWindowScreenCoordsToGameScreenCoords">Open the wiki</a></b>
+--- Конвертирует пиксельные координаты в игровые экранные координаты.  
 ---
----@param wposX float
----@param wposY float
----@return float gposX
----@return float gposY
+--- <a href="https://wiki.blast.hk/moonloader/lua/convertWindowScreenCoordsToGameScreenCoords">Open the wiki</a>  
+---
+---@param wposX float пиксельные координаты
+---@param wposY float пиксельные координаты
+---@return float gposX игровые координаты
+---@return float gposY игровые координаты
 function convertWindowScreenCoordsToGameScreenCoords(wposX, wposY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/convertGameScreenCoordsToWindowScreenCoords">Open the wiki</a></b>
+--- Конвертирует игровые экранные координаты в пиксельные.  
 ---
----@param gposX float
----@param gposY float
----@return float wposX
----@return float wposY
+--- <a href="https://wiki.blast.hk/moonloader/lua/convertGameScreenCoordsToWindowScreenCoords">Open the wiki</a>  
+---
+---@param gposX float игровые координаты
+---@param gposY float игровые координаты
+---@return float wposX пиксельные координаты
+---@return float wposY пиксельные координаты
 function convertGameScreenCoordsToWindowScreenCoords(gposX, gposY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/convertScreenCoordsToWorld3D">Open the wiki</a></b>
+--- Создаёт точку в 3D-пространстве игры из экранных координат и указанной глубины.  
 ---
----@param posX float
----@param posY float
----@param depth float
----@return float posX
----@return float posY
----@return float posZ
+--- <a href="https://wiki.blast.hk/moonloader/lua/convertScreenCoordsToWorld3D">Open the wiki</a>  
+---
+---@param posX float экранные координаты
+---@param posY float экранные координаты
+---@param depth float глубина
+---@return float posX координаты точки в мире
+---@return float posY координаты точки в мире
+---@return float posZ координаты точки в мире
 function convertScreenCoordsToWorld3D(posX, posY, depth) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getModuleHandle">Open the wiki</a></b>
+--- Возвращает адрес DLL-модуля по названию.  
 ---
----@param module string
----@return uint handle
+--- <a href="https://wiki.blast.hk/moonloader/lua/getModuleHandle">Open the wiki</a>  
+---
+---@param module string название
+---@return int handle адрес
 function getModuleHandle(module) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getModuleProcAddress">Open the wiki</a></b>
+--- Получает адрес экспортируемой процедуры по названию модуля и процедуры.  
 ---
----@param module string
----@param proc string
----@return uint address
+--- <a href="https://wiki.blast.hk/moonloader/lua/getModuleProcAddress">Open the wiki</a>  
+---
+---@param module string название модуля
+---@param proc string название процедуры
+---@return int address адрес
 function getModuleProcAddress(module, proc) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setVirtualKeyDown">Open the wiki</a></b>
+--- Эмулирует нажатие виртуальной клавиши.  
 ---
----@param vkey int
----@param down bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setVirtualKeyDown">Open the wiki</a>  
+---
+---@param vkey int ID клавиши
+---@param down bool статус нажатия: true - нажата, false - отпущена
 function setVirtualKeyDown(vkey, down) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharKeyDown">Open the wiki</a></b>
+--- Эмулирует нажатие символьной клавиши.  
 ---
----@param ckey int
----@param down bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharKeyDown">Open the wiki</a>  
+---
+---@param ckey int ID символа
+---@param down bool статус нажатия: true - нажата, false - отпущена
 function setCharKeyDown(ckey, down) end
 
 ---@alias DownloadingCallback fun(id: int, status: int, p1: any, p2: any): boolean
@@ -1608,10 +1773,13 @@ function setCharKeyDown(ckey, down) end
 function downloadUrlToFile(url, file, statusCallback) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isKeyJustPressed">Open the wiki</a></b>
+--- Проверяет была ли клавиша нажата.  
+--- Псевдоним функции <a class="is-internal-link is-valid-page" href="/moonloader/lua/wasKeyPressed">wasKeyPressed</a>.  
 ---
----@param key int
----@return bool state
+--- <a href="https://wiki.blast.hk/moonloader/lua/isKeyJustPressed">Open the wiki</a>  
+---
+---@param key int ID клавиши
+---@return bool state результат проверки
 function isKeyJustPressed(key) end
 
 ---
@@ -1658,23 +1826,31 @@ function getStructFloatElement(struct, offset, unprotect) end
 function setStructFloatElement(struct, offset, value, unprotect) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/wasKeyPressed">Open the wiki</a></b>
+--- Проверяет была ли клавиша нажата.  
 ---
----@param key int
----@return bool state
+--- <a href="https://wiki.blast.hk/moonloader/lua/wasKeyPressed">Open the wiki</a>  
+---
+---@param key int ID клавиши
+---@return bool state результат проверки
 function wasKeyPressed(key) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/wasKeyReleased">Open the wiki</a></b>
+--- Проверяет была ли клавиша отпущена после нажатия.  
 ---
----@param key int
----@return bool state
+--- <a href="https://wiki.blast.hk/moonloader/lua/wasKeyReleased">Open the wiki</a>  
+---
+---@param key int ID клавиши
+---@return bool state результат проверки
 function wasKeyReleased(key) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getMousewheelDelta">Open the wiki</a></b>
+--- Получает значение, на сколько делений было прокручено колесо мыши.  
+--- Значение может быть отрицательным и положительным,<br/>  
+--- а также нулём, если колесо прокручено не было.  
 ---
----@return int delta
+--- <a href="https://wiki.blast.hk/moonloader/lua/getMousewheelDelta">Open the wiki</a>  
+---
+---@return int delta значение прокрутки
 function getMousewheelDelta() end
 
 ---
@@ -1714,15 +1890,20 @@ function consumeWindowMessage(game, scripts) end
 function addEventHandler(eventName, callback) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isGamePaused">Open the wiki</a></b>
+--- Проверяет, находится ли игра на паузе.  
 ---
----@return bool paused
+--- <a href="https://wiki.blast.hk/moonloader/lua/isGamePaused">Open the wiki</a>  
+---
+---@return bool paused статус
 function isGamePaused() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/gameClock">Open the wiki</a></b>
+--- Возвращает значение игрового таймера в виде дробного в формате 'секунды.миллисекунды'.  
+--- В отличие от системного таймера os.clock() и функции <a class="is-internal-link is-valid-page" href="/moonloader/lua/localClock">localClock</a>, этот таймер работает только если игра не находится на паузе.  
 ---
----@return double time
+--- <a href="https://wiki.blast.hk/moonloader/lua/gameClock">Open the wiki</a>  
+---
+---@return double time время
 function gameClock() end
 
 ---@alias ScriptProperty
@@ -1740,30 +1921,45 @@ function gameClock() end
 function script_properties(property, ...) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/script_url">Open the wiki</a></b>
+--- Задаёт Web-адрес для скрипта.  
+--- Адрес может быть любым, как и прямой ссылкой на файл, так и на страницей любого сайта.  
 ---
----@param url string
+--- <a href="https://wiki.blast.hk/moonloader/lua/script_url">Open the wiki</a>  
+---
+---@param url string ссылка
 function script_url(url) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/import">Open the wiki</a></b>
+--- Импортирует экспортируемые данные другого скрипта по имени файла, функция загружает скрипт самостоятельно, если он ещё не загружен.<br/>  
+--- Предотвращает повторную загрузку скрипта при стартовой загрузке скриптов из рабочей директории, т.е.  
+--- функцию можно вызывать и в глобальной области (вне <a class="is-internal-link is-valid-page" href="/moonloader/lua/main">main</a> и <a class="is-internal-link is-valid-page" href="/moonloader/scripting/threads">потоков</a>), не опасаясь возникновения проблем.<br/>  
+--- При повторном вызове для того же скрипта будет использоваться ранее полученное значение, если скрипт не был перезагружен или выгружен.<br/>  
+--- Возвращает <code>nil</code> и текст ошибки, если попытка импорта завершилась неудачей.<br/>  
+--- Подробнее об экспорте см.  
+--- на странице <a class="is-internal-link is-valid-page" href="/moonloader/exports">Экспорт</a>.  
 ---
----@param filename string
----@return any imports
+--- <a href="https://wiki.blast.hk/moonloader/lua/import">Open the wiki</a>  
+---
+---@param filename string имя файла Lua-скрипта
+---@return any imports импортированные данные из другого скрипта, обычно это таблица
 function import(filename) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/encodeJson">Open the wiki</a></b>
+--- Преобразует таблицу Lua в <a class="is-external-link" href="https://ru.wikipedia.org/wiki/JSON">JSON</a>-строку.  
 ---
----@param data table
----@return string json
+--- <a href="https://wiki.blast.hk/moonloader/lua/encodeJson">Open the wiki</a>  
+---
+---@param data table таблица с данными
+---@return string json строка в формате JSON
 function encodeJson(data) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/decodeJson">Open the wiki</a></b>
+--- Преобразует <a class="is-external-link" href="https://ru.wikipedia.org/wiki/JSON">JSON</a>-строку в таблицу Lua.  
 ---
----@param json string
----@return table data
+--- <a href="https://wiki.blast.hk/moonloader/lua/decodeJson">Open the wiki</a>  
+---
+---@param json string данные JSON в виде строки
+---@return table data результирующая таблица
 function decodeJson(json) end
 
 ---
@@ -1776,49 +1972,61 @@ function decodeJson(json) end
 function showCursor(show, lockControls) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/lockPlayerControl">Open the wiki</a></b>
+--- Блокирует управление игроком.  
 ---
----@param lock bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/lockPlayerControl">Open the wiki</a>  
+---
+---@param lock bool статус блокировки
 function lockPlayerControl(lock) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isPlayerControlLocked">Open the wiki</a></b>
+--- Возвращает статус блокировки управления игроком, заданный функцией <a class="is-internal-link is-valid-page" href="/moonloader/lua/lockPlayerControl">lockPlayerControl</a>.  
 ---
----@return bool locked
+--- <a href="https://wiki.blast.hk/moonloader/lua/isPlayerControlLocked">Open the wiki</a>  
+---
+---@return bool locked статус блокировки
 function isPlayerControlLocked() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setBlipCoordinates">Open the wiki</a></b>
+--- Перемещает маркер карты в заданные координаты.  
 ---
----@param blip Marker
----@param x float
----@param y float
----@param z float
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/setBlipCoordinates">Open the wiki</a>  
+---
+---@param blip Marker хэндл маркера
+---@param x float новые координаты
+---@param y float новые координаты
+---@param z float новые координаты
+---@return bool result результат выполнения
 function setBlipCoordinates(blip, x, y, z) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setTargetBlipCoordinates">Open the wiki</a></b>
+--- Перемещает маркер пользовательской точки назначения в заданные координаты.  
 ---
----@param x float
----@param y float
----@param z float
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/setTargetBlipCoordinates">Open the wiki</a>  
+---
+---@param x float новые координаты
+---@param y float новые координаты
+---@param z float новые координаты
+---@return bool result результат выполнения
 function setTargetBlipCoordinates(x, y, z) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/placeWaypoint">Open the wiki</a></b>
+--- Устанавливает пользовательскую точку назначения на заданные координаты.  
 ---
----@param x float
----@param y float
----@param z float
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/placeWaypoint">Open the wiki</a>  
+---
+---@param x float координаты
+---@param y float координаты
+---@param z float координаты
+---@return bool result результат выполнения
 function placeWaypoint(x, y, z) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/removeWaypoint">Open the wiki</a></b>
+--- Скрывает иконку пользовательской точки назначения.  
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/removeWaypoint">Open the wiki</a>  
+---
+---@return bool result результат выполнения
 function removeWaypoint() end
 
 ---
@@ -1829,179 +2037,225 @@ function removeWaypoint() end
 function getFolderPath(csidl) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getTimeStepValue">Open the wiki</a></b>
+--- Возвращает значение разницы во времени между предыдущим и текущим кадром (но это не точно).  
 ---
----@return float value
+--- <a href="https://wiki.blast.hk/moonloader/lua/getTimeStepValue">Open the wiki</a>  
+---
+---@return float value значение
 function getTimeStepValue() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getD3DDevicePtr">Open the wiki</a></b>
+--- Возвращает указатель на используемый игрой экземпляр класса IDirect3DDevice9.  
 ---
----@return uint devicePtr
+--- <a href="https://wiki.blast.hk/moonloader/lua/getD3DDevicePtr">Open the wiki</a>  
+---
+---@return uint devicePtr указатель
 function getD3DDevicePtr() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getAllObjects">Open the wiki</a></b>
+--- Возвращает массив со всеми созданными динамическими объектами.  
 ---
----@return Object[] objects
+--- <a href="https://wiki.blast.hk/moonloader/lua/getAllObjects">Open the wiki</a>  
+---
+---@return table objects таблица с хэндлами объектов
 function getAllObjects() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getAllChars">Open the wiki</a></b>
+--- Возвращает массив с хэндлами всех созданных персонажей, включая персонажа игрока.  
 ---
----@return Ped[] peds
+--- <a href="https://wiki.blast.hk/moonloader/lua/getAllChars">Open the wiki</a>  
+---
+---@return table peds таблица с хэндлами персонажей
 function getAllChars() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getAllVehicles">Open the wiki</a></b>
+--- Возвращает массив с хэндлами всех созданных транспортных средств, включая транспорт, в котором находится игрок.  
 ---
----@return Vehicle[] vehicles
+--- <a href="https://wiki.blast.hk/moonloader/lua/getAllVehicles">Open the wiki</a>  
+---
+---@return table vehicles таблица с хэндлами транспортных средств
 function getAllVehicles() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getGameGlobalFloat">Open the wiki</a></b>
+--- Возвращает значение глобальной скриптовой переменной числа с плавающей точкой  
 ---
----@param index int
----@return float value
+--- <a href="https://wiki.blast.hk/moonloader/lua/getGameGlobalFloat">Open the wiki</a>  
+---
+---@param index int индекс переменной
+---@return float value значение
 function getGameGlobalFloat(index) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setGameGlobalFloat">Open the wiki</a></b>
+--- Задаёт новое значение глобальной скриптовой переменной числа с плавающей точкой  
 ---
----@param index int
----@param value float
+--- <a href="https://wiki.blast.hk/moonloader/lua/setGameGlobalFloat">Open the wiki</a>  
+---
+---@param index int индекс переменной
+---@param value float новое значение
 function setGameGlobalFloat(index, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/shakeCam">Open the wiki</a></b>
+--- Создаёт эффект «тряски» камеры.  
 ---
----@param shake int
+--- <a href="https://wiki.blast.hk/moonloader/lua/shakeCam">Open the wiki</a>  
+---
+---@param shake int значение амплитуды
 function shakeCam(shake) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/createPlayer">Open the wiki</a></b>
+--- Создаёт (спавнит) модель игрока в игровом мире.  
 ---
----@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
----@return Player player
+--- <a href="https://wiki.blast.hk/moonloader/lua/createPlayer">Open the wiki</a>  
+---
+---@param modelId int ИД модели
+---@param atX float X-координата
+---@param atY float Y-координата
+---@param atZ float Z-координата
+---@return Player player хендл игрока
 function createPlayer(modelId, atX, atY, atZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/createChar">Open the wiki</a></b>
+--- Создает персонажа в заданных координатах с указанной моделью и поведением пешехода.  
+--- Хэндл персонажа записывается в указанную переменную.  
 ---
----@param pedtype int
----@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/createChar">Open the wiki</a>  
+---
+---@param pedtype int тип пешехода.
+---@param modelId Model модель персонажа.
+---@param atX float float координаты персонажа X
+---@param atY float float координаты персонажа Y
+---@param atZ float float координаты персонажа Z
+---@return Ped ped хэндл персонажа.
 function createChar(pedtype, modelId, atX, atY, atZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/deleteChar">Open the wiki</a></b>
+--- Удаляет персонажа.  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/deleteChar">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
 function deleteChar(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharCoordinates">Open the wiki</a></b>
+--- Получает координаты актера.  
 ---
----@param ped Ped
----@return float positionX
----@return float positionY
----@return float positionZ
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharCoordinates">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return float positionX координаты персонажа X
+---@return float positionY координаты персонажа Y
+---@return float positionZ координаты персонажа Z
 function getCharCoordinates(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharCoordinates">Open the wiki</a></b>
+--- Телепортирует определенного персонажа на указанные координаты.  
 ---
----@param ped Ped
----@param posX float
----@param posY float
----@param posZ float
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharCoordinates">Open the wiki</a>  
+---
+---@param ped Ped хэндл актера
+---@param posX float координаты X
+---@param posY float координаты Y
+---@param posZ float координаты Z
 function setCharCoordinates(ped, posX, posY, posZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInArea2d">Open the wiki</a></b>
+--- Проверяет, находится ли персонаж в указанной прямоугольной зоне.  
 ---
----@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInArea2d">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа игрока
+---@param cornerAX float первая X координата
+---@param cornerAY float первая Y координата
+---@param cornerBX float вторая X координата
+---@param cornerBY float вторая Y координата
+---@param sphere bool поиск в сфере
+---@return bool result результат проверки
 function isCharInArea2d(ped, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInArea3d">Open the wiki</a></b>
+--- Проверяет, находится ли персонаж в указанной кубической зоне.  
 ---
----@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInArea3d">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа игрока
+---@param cornerAX float первая X координата
+---@param cornerAY float первая Y координата
+---@param cornerAZ float первая Z координата
+---@param cornerBX float вторая X координата
+---@param cornerBY float вторая Y координата
+---@param cornerBZ float вторая Z координата
+---@param sphere bool поиск в сфере
+---@return bool result результат проверки
 function isCharInArea3d(ped, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/createCar">Open the wiki</a></b>
+--- Создает транспорт на указанных координатах.  
 ---
----@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
----@return Vehicle car
+--- <a href="https://wiki.blast.hk/moonloader/lua/createCar">Open the wiki</a>  
+---
+---@param modelId Model номер модели машины
+---@param atX float X координата
+---@param atY float Y координата
+---@param atZ float Z координата
+---@return Vehicle car хендл транспорта
 function createCar(modelId, atX, atY, atZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/deleteCar">Open the wiki</a></b>
+--- Удаляет транспорт.  
 ---
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/deleteCar">Open the wiki</a>  
+---
+---@param car Vehicle Хендл транспорта\
 function deleteCar(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/carGotoCoordinates">Open the wiki</a></b>
+--- Ведет машину на заданные координаты.<br/>  
+--- Процесс выглядит, как если бы за рулем машины сидел NPC.  
 ---
----@param car Vehicle
----@param driveToX float
----@param driveToY float
----@param driveToZ float
+--- <a href="https://wiki.blast.hk/moonloader/lua/carGotoCoordinates">Open the wiki</a>  
+---
+---@param car Vehicle Хендл транспорта
+---@param driveToX float X координата
+---@param driveToY float Y координата
+---@param driveToZ float Z координата
 function carGotoCoordinates(car, driveToX, driveToY, driveToZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/carWanderRandomly">Open the wiki</a></b>
+--- Устанавливает машине сумасшедшее вождение  
 ---
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/carWanderRandomly">Open the wiki</a>  
+---
+---@param car Vehicle хэндл автомобиля
 function carWanderRandomly(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/carSetIdle">Open the wiki</a></b>
+--- Устанавливает нормальное вождение автомобиля  
 ---
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/carSetIdle">Open the wiki</a>  
+---
+---@param car Vehicle хэндл автомобиля
 function carSetIdle(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarCoordinates">Open the wiki</a></b>
+--- Получает координаты машины.  
 ---
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarCoordinates">Open the wiki</a>  
+---
+---@param car Vehicle Хэндл машины.
 ---@return float positionX
 ---@return float positionY
----@return float positionZ
+---@return float positionZ Координаты (XYZ)
 function getCarCoordinates(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarCoordinates">Open the wiki</a></b>
+--- Задаёт позицию транспортного средства.  
 ---
----@param car Vehicle
----@param atX float
----@param atY float
----@param atZ float
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarCoordinates">Open the wiki</a>  
+---
+---@param car Vehicle хэндл ТС
+---@param atX float координаты
+---@param atY float координаты
+---@param atZ float координаты
 function setCarCoordinates(car, atX, atY, atZ) end
 
 ---
@@ -2012,59 +2266,78 @@ function setCarCoordinates(car, atX, atY, atZ) end
 function setCarCruiseSpeed(car, maxSpeed) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarDrivingStyle">Open the wiki</a></b>
+--- Устанавливает аккуратность вождения  
 ---
----@param car Vehicle
----@param behaviour int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarDrivingStyle">Open the wiki</a>  
+---
+---@param car Vehicle хэндл автомобиля
+---@param behaviour int уровень аккуратности вождения
 function setCarDrivingStyle(car, behaviour) end
 
+---@alias DriverBehaviour
+---| 1 # едет по дороге сам по себе
+---| 2 # врезается в машину игрока останавливаясь на светофорах
+---| 4 # едет за игроком проезжая светофоры
+---| 7 # едет задом
+---| 8 # едет по дороге и вне дороги
+
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarMission">Open the wiki</a></b>
+--- Устанавливает автомобилю поведение  
 ---
----@param car Vehicle
----@param driverBehaviour int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarMission">Open the wiki</a>  
+---
+---@param car Vehicle хэндл автомобиля
+---@param driverBehaviour DriverBehaviour стиль вождения
 function setCarMission(car, driverBehaviour) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarInArea2d">Open the wiki</a></b>
+--- Проверяет, находится ли транспорт в указанной прямоугольной зоне.  
 ---
----@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarInArea2d">Open the wiki</a>  
+---
+---@param car Vehicle хендл транспорта игрока
+---@param cornerAX float первая X координата
+---@param cornerAY float первая Y координата
+---@param cornerBX float вторая X координата
+---@param cornerBY float вторая Y координата
+---@param sphere bool поиск в сфере
+---@return bool result результат проверки
 function isCarInArea2d(car, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarInArea3d">Open the wiki</a></b>
+--- Проверяет, находится ли транспорт в указанной кубической зоне.  
 ---
----@param car Vehicle
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param sphere bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarInArea3d">Open the wiki</a>  
+---
+---@param car Vehicle хендл транспорта игрока
+---@param cornerAX float первая X координата
+---@param cornerAY float первая Y координата
+---@param cornerAZ float первая Z координата
+---@param cornerBX float вторая X координата
+---@param cornerBY float вторая Y координата
+---@param cornerBZ float вторая Z координата
+---@param sphere bool поиск в сфере
+---@return bool result результат проверки
 function isCarInArea3d(car, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/printBig">Open the wiki</a></b>
+--- Выводит стилизованный текст из GXT на определённое время.  
 ---
----@param gxtString GxtString
----@param time int
----@param style int
+--- <a href="https://wiki.blast.hk/moonloader/lua/printBig">Open the wiki</a>  
+---
+---@param gxtString GxtString ключ из GXT
+---@param time int время в миллисекундах
+---@param style int стиль (1-7)
 function printBig(gxtString, time, style) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/printText">Open the wiki</a></b>
+--- Отображает текстовую строку с низким приоритетом в нижней части экрана, в течение указанного времени.  
 ---
----@param gxtString GxtString
----@param time int
----@param flag int
+--- <a href="https://wiki.blast.hk/moonloader/lua/printText">Open the wiki</a>  
+---
+---@param gxtString GxtString ключ из GXT
+---@param time int время в миллисекундах
+---@param flag int Флаг
 function printText(gxtString, time, flag) end
 
 ---
@@ -2076,78 +2349,98 @@ function printText(gxtString, time, flag) end
 function printTextNow(gxtString, time, flag) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/clearPrints">Open the wiki</a></b>
+--- Удаляет с экрана все текстовые сообщения игры.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/clearPrints">Open the wiki</a>  
 ---
 function clearPrints() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getTimeOfDay">Open the wiki</a></b>
+--- Возвращает текущее игровое время.  
 ---
----@return int hours
----@return int mins
+--- <a href="https://wiki.blast.hk/moonloader/lua/getTimeOfDay">Open the wiki</a>  
+---
+---@return int hours количество часов
+---@return int mins количество минут
 function getTimeOfDay() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setTimeOfDay">Open the wiki</a></b>
+--- Меняет текущее время сервера, на указанное в функции.  
 ---
----@param hours int
----@param minutes int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setTimeOfDay">Open the wiki</a>  
+---
+---@param hours int количество часов
+---@param minutes int количество минут
 function setTimeOfDay(hours, minutes) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getMinutesToTimeOfDay">Open the wiki</a></b>
+--- Получает остаток минут до указаного времени  
 ---
----@param hours int
----@param minutes int
----@return int minutes
+--- <a href="https://wiki.blast.hk/moonloader/lua/getMinutesToTimeOfDay">Open the wiki</a>  
+---
+---@param hours int часы
+---@param minutes int минуты
+---@return int minutes остаток минут
 function getMinutesToTimeOfDay(hours, minutes) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isPointOnScreen">Open the wiki</a></b>
+--- Проверяет находится ли точка на экране в заданном радиусе.  
 ---
----@param sphereX float
----@param sphereY float
----@param sphereZ float
----@param radius float
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isPointOnScreen">Open the wiki</a>  
+---
+---@param sphereX float координаты точки X
+---@param sphereY float координаты точки Y
+---@param sphereZ float координаты точки Z
+---@param radius float радиус
+---@return bool radius результат проверки
 function isPointOnScreen(sphereX, sphereY, sphereZ, radius) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/storeCarCharIsIn">Open the wiki</a></b>
+--- Получает хэндл машины в которой сидит персонаж.  
 ---
----@param ped Ped
----@return Vehicle car
+--- <a href="https://wiki.blast.hk/moonloader/lua/storeCarCharIsIn">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return Vehicle car хэндл машины
 function storeCarCharIsIn(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInCar">Open the wiki</a></b>
+--- Проверяет находится ли игрок в указанной машине.  
 ---
----@param ped Ped
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInCar">Open the wiki</a>  
+---
+---@param ped Ped хэндл актера
+---@param car Vehicle хэндл машины
+---@return bool result результат проверки
 function isCharInCar(ped, car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInModel">Open the wiki</a></b>
+--- Проверяет находиться ли игрок в модели машины(Пример: 494 - Hotring)  
 ---
----@param ped Ped
----@param carModel Model
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInModel">Open the wiki</a>  
+---
+---@param ped Ped хэндл персоонажа
+---@param carModel Model модель машины
+---@return bool result результат проверки
 function isCharInModel(ped, carModel) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyCar">Open the wiki</a></b>
+--- Проверяет находится ли игрок в любой машине.  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyCar">Open the wiki</a>  
+---
+---@param ped Ped хэндл актера
+---@return bool result результат проверки
 function isCharInAnyCar(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isButtonPressed">Open the wiki</a></b>
+--- Возвращает <em>true</em>, если игрок нажимает указанную клавишу  
 ---
----@param player Player
----@param key int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isButtonPressed">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@param key int идентификатор клавиши
+---@return bool result результат проверки
 function isButtonPressed(player, key) end
 
 ---
@@ -2159,15 +2452,17 @@ function isButtonPressed(player, key) end
 function getPadState(player, key) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/locateCharAnyMeans2d">Open the wiki</a></b>
+--- Проверяет находится ли персонаж в радиусе координат  
 ---
----@param ped Ped
----@param pointX float
----@param pointY float
----@param radiusX float
----@param radiusY float
----@param sphere bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/locateCharAnyMeans2d">Open the wiki</a>  
+---
+---@param ped Ped хэндл актера
+---@param pointX float координата X
+---@param pointY float координата Y
+---@param radiusX float радиус по X
+---@param radiusY float радиус по Y
+---@param sphere bool поиск в сфере
+---@return bool result результат проверки
 function locateCharAnyMeans2d(ped, pointX, pointY, radiusX, radiusY, sphere) end
 
 ---
@@ -2383,33 +2678,40 @@ function locateCharOnFootChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere)
 function locateCharInCarChar3d(ped, nearPed, radiusX, radiusY, radiusZ, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/createObject">Open the wiki</a></b>
+--- Создает объект.  
 ---
----@param modelId Model
----@param atX float
----@param atY float
----@param atZ float
----@return Object object
+--- <a href="https://wiki.blast.hk/moonloader/lua/createObject">Open the wiki</a>  
+---
+---@param modelId Model модель объекта
+---@param atX float координаты где будет создан объект X
+---@param atY float координаты где будет создан объект X
+---@param atZ float координаты где будет создан объект X
+---@return Object object хэндл объекта
 function createObject(modelId, atX, atY, atZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/deleteObject">Open the wiki</a></b>
+--- Удаляет объект.  
 ---
----@param object Object
+--- <a href="https://wiki.blast.hk/moonloader/lua/deleteObject">Open the wiki</a>  
+---
+---@param object Object хэндл объекта
 function deleteObject(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/givePlayerMoney">Open the wiki</a></b>
+--- Дать денег персонажу.  
 ---
----@param player Player
----@param money int
+--- <a href="https://wiki.blast.hk/moonloader/lua/givePlayerMoney">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@param money int деньги
 function givePlayerMoney(player, money) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getPlayerMoney">Open the wiki</a></b>
+--- Возвращает количество денег игрока.  
 ---
----@param player Player
----@return int money
+--- <a href="https://wiki.blast.hk/moonloader/lua/getPlayerMoney">Open the wiki</a>  
+---
+---@return int money баланс
 function getPlayerMoney(player) end
 
 ---
@@ -2422,25 +2724,31 @@ function getPlayerMoney(player) end
 function giveRemoteControlledCarToPlayer(player, float2, float3, float4) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/alterWantedLevel">Open the wiki</a></b>
+--- Устанавливает уровень розыска игроку  
 ---
----@param player Player
----@param wantedLevel int
+--- <a href="https://wiki.blast.hk/moonloader/lua/alterWantedLevel">Open the wiki</a>  
+---
+---@param player Player хэндл игрока
+---@param wantedLevel int уровень розыска
 function alterWantedLevel(player, wantedLevel) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/alterWantedLevelNoDrop">Open the wiki</a></b>
+--- Устанавливает уровень розыска игроку, при этом не сбрасывая его в дальнейшем  
 ---
----@param player Player
----@param minimumWantedLevel int
+--- <a href="https://wiki.blast.hk/moonloader/lua/alterWantedLevelNoDrop">Open the wiki</a>  
+---
+---@param player Player хэндл игрока
+---@param minimumWantedLevel int минимальный уровень розыска
 function alterWantedLevelNoDrop(player, minimumWantedLevel) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isWantedLevelGreater">Open the wiki</a></b>
+--- Сравнивает уровень розыска, возвращает true если уровень розыска больше указаного  
 ---
----@param player Player
----@param level int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isWantedLevelGreater">Open the wiki</a>  
+---
+---@param player Player хэндл
+---@param level int уровень розыска для сравнения
+---@return bool result результат
 function isWantedLevelGreater(player, level) end
 
 ---
@@ -2450,68 +2758,86 @@ function isWantedLevelGreater(player, level) end
 function clearWantedLevel(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setDeatharrestState">Open the wiki</a></b>
+--- Устанавливает состояние персонажа: убит или арестован  
 ---
----@param value bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setDeatharrestState">Open the wiki</a>  
+---
+---@param value bool состояние
 function setDeatharrestState(value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/hasDeatharrestBeenExecuted">Open the wiki</a></b>
+--- Проверяет, умер ли персонаж или арестован  
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/hasDeatharrestBeenExecuted">Open the wiki</a>  
+---
+---@return bool result результат проверки
 function hasDeatharrestBeenExecuted() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addAmmoToChar">Open the wiki</a></b>
+--- Добавляет патроны персонажу, если у него есть оружие.  
 ---
----@param ped Ped
----@param weapon int
----@param ammo int
+--- <a href="https://wiki.blast.hk/moonloader/lua/addAmmoToChar">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param weapon int ID оружия
+---@param ammo int число патронов
 function addAmmoToChar(ped, weapon, ammo) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isPlayerDead">Open the wiki</a></b>
+--- Проверяет мертв ли игрок.  
 ---
----@param player Player
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isPlayerDead">Open the wiki</a>  
+---
+---@param player Player хэндл игрока
+---@return bool result результат проверки
 function isPlayerDead(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharDead">Open the wiki</a></b>
+--- Проверяет мертв ли персонаж.  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharDead">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return bool result результат проверки
 function isCharDead(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarDead">Open the wiki</a></b>
+--- Проверяет взорвана ли машина.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarDead">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@return bool result результат проверки
 function isCarDead(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isPlayerPressingHorn">Open the wiki</a></b>
+--- Проверяет сигналит ли игрок в машине.  
 ---
----@param player Player
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isPlayerPressingHorn">Open the wiki</a>  
+---
+---@param player Player хэндл игрока
+---@return bool result результат проверки
 function isPlayerPressingHorn(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/createCharInsideCar">Open the wiki</a></b>
+--- Создает персонажа сидящем в машине на водительском сиденье.  
 ---
----@param car Vehicle
----@param pedtype Model
----@param model int
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/createCharInsideCar">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@param pedtype Model модель персонажа
+---@param model int модель
+---@return Ped ped хэндл персонажа
 function createCharInsideCar(car, pedtype, model) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarModel">Open the wiki</a></b>
+--- Проверяет указанную машину на модель.  
 ---
----@param car Vehicle
----@param modelId Model
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarModel">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@param modelId Model модель машины
+---@return bool result результат проверки(возвращает true, если модель совпадает)
 function isCarModel(car, modelId) end
 
 ---
@@ -2583,7 +2909,9 @@ function pointCameraAtCar(car, mode, switchstyle) end
 function pointCameraAtChar(ped, mode, switchstyle) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/restoreCamera">Open the wiki</a></b>
+--- Восстанавливает камеру в обычное положение.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/restoreCamera">Open the wiki</a>  
 ---
 function restoreCamera() end
 
@@ -2596,9 +2924,11 @@ function restoreCamera() end
 function shakePad(player, time, intensity) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setTimeScale">Open the wiki</a></b>
+--- Устанавливает скорость игры.  
 ---
----@param gamespeed float
+--- <a href="https://wiki.blast.hk/moonloader/lua/setTimeScale">Open the wiki</a>  
+---
+---@param gamespeed float скорость
 function setTimeScale(gamespeed) end
 
 ---
@@ -2640,16 +2970,20 @@ function addBlipForCarOld(car, unused, visibility) end
 function addBlipForCharOld(ped, int2, int3) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/removeBlip">Open the wiki</a></b>
+--- Удаляет маркер.  
 ---
----@param marker Marker
+--- <a href="https://wiki.blast.hk/moonloader/lua/removeBlip">Open the wiki</a>  
+---
+---@param marker Marker Хендл маркера.
 function removeBlip(marker) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/changeBlipColour">Open the wiki</a></b>
+--- Меняет цвет маркера.  
 ---
----@param marker Marker
----@param color int
+--- <a href="https://wiki.blast.hk/moonloader/lua/changeBlipColour">Open the wiki</a>  
+---
+---@param marker Marker Хендл маркера.
+---@param color int Цвет.
 function changeBlipColour(marker, color) end
 
 ---
@@ -2664,10 +2998,12 @@ function changeBlipColour(marker, color) end
 function addBlipForCoordOld(atX, atY, atZ, color, flag) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/changeBlipScale">Open the wiki</a></b>
+--- Меняет размер маркера.  
 ---
----@param marker Marker
----@param size int
+--- <a href="https://wiki.blast.hk/moonloader/lua/changeBlipScale">Open the wiki</a>  
+---
+---@param marker Marker Хендл маркера.
+---@param size int Размер. (3 - стандартный)
 function changeBlipScale(marker, size) end
 
 ---
@@ -2686,9 +3022,11 @@ function setFadingColour(r, g, b) end
 function doFade(_in, time) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getFadingStatus">Open the wiki</a></b>
+--- Проверяет, затухает ли прямо сейчас в игре экран.  
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/getFadingStatus">Open the wiki</a>  
+---
+---@return bool result результат проверки
 function getFadingStatus() end
 
 ---
@@ -2736,38 +3074,48 @@ function overrideNextRestart(atX, atY, atZ, angle) end
 function drawShadow(particle, atX, atY, atZ, rotationFactor, size, intensity, flags1, flags2, flags3) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharHeading">Open the wiki</a></b>
+--- Возвращает Z-угол(поворот) персонажа.  
 ---
----@param ped Ped
----@return float angle
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharHeading">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@return float angle угол поворота
 function getCharHeading(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharHeading">Open the wiki</a></b>
+--- Устанавливает Z-угол(поворот) персонажа.  
 ---
----@param ped Ped
----@param angle float
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharHeading">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа игрока
+---@param angle float угол поворота
 function setCharHeading(ped, angle) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarHeading">Open the wiki</a></b>
+--- Возвращает Z-угол(поворот) транспорта.  
 ---
----@param car Vehicle
----@return float angle
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarHeading">Open the wiki</a>  
+---
+---@param car Vehicle хендл транспорта
+---@return float angle угол поворота
 function getCarHeading(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarHeading">Open the wiki</a></b>
+--- Устанавливает Z-угол(поворот) транспорта.  
 ---
----@param car Vehicle
----@param angle float
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarHeading">Open the wiki</a>  
+---
+---@param car Vehicle хендл транспорта
+---@param angle float угол поворота
 function setCarHeading(car, angle) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getObjectHeading">Open the wiki</a></b>
+--- Получает угол поворота объекта  
 ---
----@param object Object
----@return float angle
+--- <a href="https://wiki.blast.hk/moonloader/lua/getObjectHeading">Open the wiki</a>  
+---
+---@param object Object скриптовый хендл объекта
+---@return float angle угол поворота объекта
 function getObjectHeading(object) end
 
 ---
@@ -2778,19 +3126,23 @@ function getObjectHeading(object) end
 function setObjectHeading(object, angle) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharTouchingObject">Open the wiki</a></b>
+--- Узнает, касается ли персонаж объекта  
 ---
----@param ped Ped
----@param object Object
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharTouchingObject">Open the wiki</a>  
+---
+---@param ped Ped скриптовый хендл персонажа
+---@param object Object скриптовый хендл объекта
+---@return bool result результат выполнения функции
 function isCharTouchingObject(ped, object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharAmmo">Open the wiki</a></b>
+--- Устанавливает количество патронов в указанное оружие.  
 ---
----@param ped Ped
----@param weapon int
----@param ammo int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharAmmo">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param weapon int ID оружия
+---@param ammo int число патронов
 function setCharAmmo(ped, weapon, ammo) end
 
 ---
@@ -2800,33 +3152,41 @@ function setCharAmmo(ped, weapon, ammo) end
 function declareMissionFlag(flag) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addBlipForCar">Open the wiki</a></b>
+--- Создает маркер над автомобилем.  
 ---
----@param car Vehicle
----@return Marker marker
+--- <a href="https://wiki.blast.hk/moonloader/lua/addBlipForCar">Open the wiki</a>  
+---
+---@param car Vehicle Хендл машины.
+---@return Marker marker Хендл маркера.
 function addBlipForCar(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addBlipForChar">Open the wiki</a></b>
+--- Добавляет маркер над персонажем.  
 ---
----@param ped Ped
----@return Marker marker
+--- <a href="https://wiki.blast.hk/moonloader/lua/addBlipForChar">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@return Marker marker хендл маркера
 function addBlipForChar(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addBlipForObject">Open the wiki</a></b>
+--- Создает маркер над объектом.  
 ---
----@param object Object
----@return Marker marker
+--- <a href="https://wiki.blast.hk/moonloader/lua/addBlipForObject">Open the wiki</a>  
+---
+---@param object Object Хендл объекта.
+---@return Marker marker Хендл маркера.
 function addBlipForObject(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addBlipForCoord">Open the wiki</a></b>
+--- Создает маркер на указанных координатах.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/addBlipForCoord">Open the wiki</a>  
 ---
 ---@param atX float
 ---@param atY float
----@param atZ float
----@return Checkpoint checkpoint
+---@param atZ float Координаты (XYZ)
+---@return Checkpoint checkpoint Хендл маркера.
 function addBlipForCoord(atX, atY, atZ) end
 
 ---
@@ -2837,12 +3197,15 @@ function addBlipForCoord(atX, atY, atZ) end
 function changeBlipDisplay(marker, mode) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addOneOffSound">Open the wiki</a></b>
+--- Проигрывает короткий звук.<br/>  
+--- Если указаны координаты - то звук проиграется на указанных координатах.  
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param sound int
+--- <a href="https://wiki.blast.hk/moonloader/lua/addOneOffSound">Open the wiki</a>  
+---
+---@param atX float координата X
+---@param atY float координата Y
+---@param atZ float координата Z
+---@param sound int идентификатор звука
 function addOneOffSound(atX, atY, atZ, sound) end
 
 ---
@@ -2856,16 +3219,21 @@ function addOneOffSound(atX, atY, atZ, sound) end
 function addContinuousSound(atX, atY, atZ, sound) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/removeSound">Open the wiki</a></b>
+--- Удаляет проигрываемый звук  
 ---
----@param sound int
+--- <a href="https://wiki.blast.hk/moonloader/lua/removeSound">Open the wiki</a>  
+---
+---@param sound int ID звука
 function removeSound(sound) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarStuckOnRoof">Open the wiki</a></b>
+--- Возвращает <code>true</code> если машина перевёрнута (застряла на крыше), то есть транспорт был добавлен к проверке <a class="is-internal-link is-invalid-page" href="/moonloader/lua/addUpsidedownCarCheck">addUpsidedownCarCheck</a> и его движения в перевернутом состоянии минимальны.  
+--- Проверка срабатывает и с взорванным транспортом.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarStuckOnRoof">Open the wiki</a>  
+---
+---@param car Vehicle хэндл транспорта
+---@return bool result результат
 function isCarStuckOnRoof(car) end
 
 ---
@@ -3089,19 +3457,23 @@ function locateCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, 
 function locateStoppedCar3d(car, sphereX, sphereY, sphereZ, radiusX, radiusY, radiusZ, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/giveWeaponToChar">Open the wiki</a></b>
+--- Выдает ID оружия и кол-во патронов.  
 ---
----@param ped Ped
----@param weapon int
----@param ammo int
+--- <a href="https://wiki.blast.hk/moonloader/lua/giveWeaponToChar">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param weapon int ID оружия
+---@param ammo int количество патронов
 function giveWeaponToChar(ped, weapon, ammo) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setPlayerControl">Open the wiki</a></b>
+--- Устанавливает возможность передвижения персонажа  
 ---
----@param player Player
----@param canMove bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/setPlayerControl">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@param canMove bool может ли игрок передвигаться true - может, false - не может.
+---@return bool result результат выполнения
 function setPlayerControl(player, canMove) end
 
 ---
@@ -3112,10 +3484,11 @@ function setPlayerControl(player, canMove) end
 function forceWeather(weather) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/forceWeatherNow">Open the wiki</a></b>
+--- Моментально устанавливает погоду  
 ---
----@param weather int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/forceWeatherNow">Open the wiki</a>  
+---
+---@param weather int id погоды
 function forceWeatherNow(weather) end
 
 ---
@@ -3124,30 +3497,36 @@ function forceWeatherNow(weather) end
 function releaseWeather() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCurrentCharWeapon">Open the wiki</a></b>
+--- Дает персонажу в руки указанное оружие.  
 ---
----@param ped Ped
----@param weapon int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCurrentCharWeapon">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param weapon int ID оружия
 function setCurrentCharWeapon(ped, weapon) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getObjectCoordinates">Open the wiki</a></b>
+--- Возвращает координаты указанного объекта.  
 ---
----@param object Object
----@return bool result
----@return float positionX
----@return float positionY
----@return float positionZ
+--- <a href="https://wiki.blast.hk/moonloader/lua/getObjectCoordinates">Open the wiki</a>  
+---
+---@param object Object хендл объекта
+---@return bool result результат проверки
+---@return float atX x координата
+---@return float atY y координата
+---@return float atZ z координата
 function getObjectCoordinates(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setObjectCoordinates">Open the wiki</a></b>
+--- Устанавливает указанный объект на указанные координаты.  
 ---
----@param object Object
----@param atX float
----@param atY float
----@param atZ float
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/setObjectCoordinates">Open the wiki</a>  
+---
+---@param object Object хендл объекта
+---@param atX float x координата
+---@param atY float y координата
+---@param atZ float z координата
+---@return bool result результат проверки
 function setObjectCoordinates(object, atX, atY, atZ) end
 
 ---
@@ -3157,18 +3536,22 @@ function setObjectCoordinates(object, atX, atY, atZ) end
 function getGameTimer() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/storeWantedLevel">Open the wiki</a></b>
+--- Возвращает текущий уровень розыска персонажа.  
 ---
----@param player Player
----@return bool result
----@return int level
+--- <a href="https://wiki.blast.hk/moonloader/lua/storeWantedLevel">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@return bool result результат проверки
+---@return int level уровень розыска
 function storeWantedLevel(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarStopped">Open the wiki</a></b>
+--- Проверяет стоит ли машина на месте.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarStopped">Open the wiki</a>  
+---
+---@param car Vehicle Хендл машины.
+---@return bool result Результат проверки.
 function isCarStopped(car) end
 
 ---
@@ -3178,9 +3561,11 @@ function isCarStopped(car) end
 function markCharAsNoLongerNeeded(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/markCarAsNoLongerNeeded">Open the wiki</a></b>
+--- Помечает транспорт как более ненужный для скриптового движка и что он может быть удален в любое время игрой  
 ---
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/markCarAsNoLongerNeeded">Open the wiki</a>  
+---
+---@param car Vehicle хендл транспорта
 function markCarAsNoLongerNeeded(car) end
 
 ---
@@ -3202,14 +3587,12 @@ function dontRemoveChar(ped) end
 function dontRemoveObject(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/createCharAsPassenger">Open the wiki</a></b>
+--- Создает персонажа сидящем в машине на пассажирском сидении.  
 ---
----@param car Vehicle
----@param pedtype Model
----@param model int
----@param passengerSeat int
----@return bool result
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/createCharAsPassenger">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@return bool result результат
 function createCharAsPassenger(car, pedtype, model, passengerSeat) end
 
 ---
@@ -3266,18 +3649,22 @@ function switchRoadsOn(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerB
 function switchRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getNumberOfPassengers">Open the wiki</a></b>
+--- Возвращает количество пассажиров в автомобиле  
 ---
----@param car Vehicle
----@return bool result
----@return int passengers
+--- <a href="https://wiki.blast.hk/moonloader/lua/getNumberOfPassengers">Open the wiki</a>  
+---
+---@param car Vehicle хэндл транспорта
+---@return bool result результат проверки
+---@return int passengers количество пассажиров
 function getNumberOfPassengers(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getMaximumNumberOfPassengers">Open the wiki</a></b>
+--- Возвращает максимальное количество пассажиров для данного транспортного средства  
 ---
----@param car Vehicle
----@return int maxPassengers
+--- <a href="https://wiki.blast.hk/moonloader/lua/getMaximumNumberOfPassengers">Open the wiki</a>  
+---
+---@param car Vehicle скриптовый хэндл транспортного средства
+---@return int maxPassengers количество пассажиров
 function getMaximumNumberOfPassengers(car) end
 
 ---
@@ -3288,11 +3675,11 @@ function getMaximumNumberOfPassengers(car) end
 function setCarDensityMultiplier(multiplier) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarHeavy">Open the wiki</a></b>
+---   
 ---
----@param car Vehicle
----@param heavy bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarHeavy">Open the wiki</a>  
+---
+---@return bool result утяжелена ли машина
 function setCarHeavy(car, heavy) end
 
 ---
@@ -3302,25 +3689,29 @@ function setCarHeavy(car, heavy) end
 function setMaxWantedLevel(level) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarInAirProper">Open the wiki</a></b>
+--- Проверяет, когда машина отрывается от земли.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarInAirProper">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@return bool result результат проверки
 function isCarInAirProper(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarUpsidedown">Open the wiki</a></b>
+---   
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarUpsidedown">Open the wiki</a>  
+---
 function isCarUpsidedown(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getPlayerChar">Open the wiki</a></b>
+--- Получает хэндл персонажа игрока  
 ---
----@param player Player
----@return bool result
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/getPlayerChar">Open the wiki</a>  
+---
+---@param player Player хэндл игрока
+---@return bool result результат
+---@return Ped ped хэндл игрока
 function getPlayerChar(player) end
 
 ---
@@ -3330,11 +3721,13 @@ function getPlayerChar(player) end
 function cancelOverrideRestart() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setPoliceIgnorePlayer">Open the wiki</a></b>
+--- Устанавливает, должны ли полицейские игнорировать игрока независимо от уровня.  
 ---
----@param player Player
----@param ignored bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/setPoliceIgnorePlayer">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@param ignored bool true - включить игнорирование, false - выключить игнорирование
+---@return bool result результат
 function setPoliceIgnorePlayer(player, ignored) end
 
 ---
@@ -3429,27 +3822,33 @@ function locateCharOnFootCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 function locateCharInCarCar3d(ped, car, radiusX, radiusY, radiusZ, flag) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/lockCarDoors">Open the wiki</a></b>
+--- Устанавливает, открыты или закрыты двери т/с  
 ---
----@param car Vehicle
----@param status int
+--- <a href="https://wiki.blast.hk/moonloader/lua/lockCarDoors">Open the wiki</a>  
+---
+---@param car Vehicle хендл транспортного средства
+---@param status int статус
 function lockCarDoors(car, status) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/explodeCar">Open the wiki</a></b>
+--- Взрывает транспортное средство.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/explodeCar">Open the wiki</a>  
+---
+---@param car Vehicle скриптовый хендл транспортного средства
+---@return bool result результат выполнения операции
 function explodeCar(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addExplosion">Open the wiki</a></b>
+--- Вызывает эффект взрыва на экране.  
 ---
----@param atX float
----@param atY float
----@param atZ float
----@param radius int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/addExplosion">Open the wiki</a>  
+---
+---@param atX float Координата X взрыва
+---@param atY float Координата Y взрыва
+---@param atZ float Координата Z взрыва
+---@param radius int Радиус взрыва
+---@return bool result Результат
 function addExplosion(atX, atY, atZ, radius) end
 
 ---
@@ -3479,18 +3878,21 @@ function createPickup(modelId, type, atX, atY, atZ) end
 function hasPickupBeenCollected(pickup) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/removePickup">Open the wiki</a></b>
+--- Удаляет пикап.  
 ---
----@param pickup Pickup
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/removePickup">Open the wiki</a>  
+---
+---@param pickup Pickup скриптовый хендл пикапа
+---@return bool result результат выполнения операции
 function removePickup(pickup) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setTaxiLights">Open the wiki</a></b>
+--- Устанавливает свечение шашки такси  
 ---
----@param taxi Vehicle
----@param light bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/setTaxiLights">Open the wiki</a>  
+---
+---@param taxi Vehicle такси
+---@param light bool состояние
 function setTaxiLights(taxi, light) end
 
 ---
@@ -3511,25 +3913,32 @@ function printBigQ(gxtString, time, style) end
 function setTargetCarForMissionGarage(garage, car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/applyBrakesToPlayersCar">Open the wiki</a></b>
+--- Установить/Снять тормоза(невозможность двигаться) у авто<br/>  
+--- Если "тормоза" установить, то как бы игрок не пытался двигаться в авто он будет стоять на месте  
 ---
----@param player Player
----@param apply bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/applyBrakesToPlayersCar">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@param apply bool статус
+---@return bool result статус
 function applyBrakesToPlayersCar(player, apply) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharHealth">Open the wiki</a></b>
+--- Устанавливает персонажу уровень здоровья.  
 ---
----@param ped Ped
----@param health int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharHealth">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа.
+---@param health int Число здоровья.
 function setCharHealth(ped, health) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarHealth">Open the wiki</a></b>
+--- Устанавливает уровень здоровья машине.  
 ---
----@param car Vehicle
----@param health int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarHealth">Open the wiki</a>  
+---
+---@param car Vehicle Хендл машины.
+---@param health int Уровень здоровья.
 function setCarHealth(car, health) end
 
 ---
@@ -3540,19 +3949,23 @@ function setCarHealth(car, health) end
 function getCharHealth(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarHealth">Open the wiki</a></b>
+--- Получает состояние машины.  
 ---
----@param car Vehicle
----@return int health
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarHealth">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@return int health Состояние машины
 function getCarHealth(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/changeCarColour">Open the wiki</a></b>
+--- Меняет цвет машины.  
 ---
----@param car Vehicle
----@param primaryColor int
----@param secondaryColor int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/changeCarColour">Open the wiki</a>  
+---
+---@param car Vehicle Хендл автомобиля.
+---@param primaryColor int Первичный цвет.
+---@param secondaryColor int Вторичный цвет.
+---@return bool result Результат выполнения.
 function changeCarColour(car, primaryColor, secondaryColor) end
 
 ---
@@ -3578,12 +3991,14 @@ function switchPedRoadsOn(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, corn
 function switchPedRoadsOff(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setGangWeapons">Open the wiki</a></b>
+--- Устанавливает указанной банде оружие которое она может использовать.  
 ---
----@param gang int
----@param weapons1 int
----@param weapons2 int
----@param weapons3 int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setGangWeapons">Open the wiki</a>  
+---
+---@param gang int номер банды
+---@param weapons1 int ID первого оружия которое может использовать банда
+---@param weapons2 int ID второго оружия которое может использовать банда
+---@param weapons3 int ID третьего оружия которое может использовать банда
 function setGangWeapons(gang, weapons1, weapons2, weapons3) end
 
 ---
@@ -3631,22 +4046,29 @@ function setCutsceneOffset(posX, posY, posZ) end
 function setAnimGroupForChar(ped, style) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/requestModel">Open the wiki</a></b>
+--- Загружает указанную модель.  
 ---
----@param modelId Model
+--- <a href="https://wiki.blast.hk/moonloader/lua/requestModel">Open the wiki</a>  
+---
+---@param modelId Model номер модели
+---@return bool result
 function requestModel(modelId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/hasModelLoaded">Open the wiki</a></b>
+--- Проверяет загружена ли модель.  
 ---
----@param modelId Model
+--- <a href="https://wiki.blast.hk/moonloader/lua/hasModelLoaded">Open the wiki</a>  
+---
+---@param modelId Model номер модель
 ---@return bool result
 function hasModelLoaded(modelId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/markModelAsNoLongerNeeded">Open the wiki</a></b>
+--- Помечает загруженную ранее модель как более ненужную для скриптового движка  
 ---
----@param modelId Model
+--- <a href="https://wiki.blast.hk/moonloader/lua/markModelAsNoLongerNeeded">Open the wiki</a>  
+---
+---@param modelId Model номер модели
 function markModelAsNoLongerNeeded(modelId) end
 
 ---
@@ -3700,9 +4122,11 @@ function setCanResprayCar(car, sprayable) end
 function unloadSpecialCharacter(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/resetNumOfModelsKilledByPlayer">Open the wiki</a></b>
+--- Сбрасывает количество раз, сколько раз игрок уничтожил определенную модель.  
 ---
----@param player Player
+--- <a href="https://wiki.blast.hk/moonloader/lua/resetNumOfModelsKilledByPlayer">Open the wiki</a>  
+---
+---@param player Player хендл игрока
 function resetNumOfModelsKilledByPlayer(player) end
 
 ---
@@ -3730,10 +4154,12 @@ function activateGarage(garage) end
 function createObjectNoOffset(modelId, atX, atY, atZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharStopped">Open the wiki</a></b>
+--- Проверяет двигается ли игрок.  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharStopped">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return bool result результат проверки
 function isCharStopped(ped) end
 
 ---
@@ -3777,25 +4203,29 @@ function setCharOnlyDamagedByPlayer(ped, enabled) end
 function setCarOnlyDamagedByPlayer(car, enabled) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharProofs">Open the wiki</a></b>
+--- Устанавливает иммунитет персонажу  
 ---
----@param ped Ped
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharProofs">Open the wiki</a>  
+---
+---@param ped Ped Хэндл персонажа
+---@param BP bool иммунитет от пуль
+---@param FP bool иммунитет от огня
+---@param EP bool иммунитет от взрывов
+---@param CP bool иммунитет от ударений
+---@param MP bool иммунитет от оружия ближнего боя в т.ч. и кулаков
 function setCharProofs(ped, BP, FP, EP, CP, MP) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarProofs">Open the wiki</a></b>
+--- Устанавливает иммунитет машине  
 ---
----@param car Vehicle
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarProofs">Open the wiki</a>  
+---
+---@param car Vehicle Хэндл транспорта
+---@param BP bool иммунитет от пуль
+---@param FP bool иммунитет от огня
+---@param EP bool иммунитет от взрывов
+---@param CP bool иммунитет от ударений
+---@param MP bool иммунитет от оружия ближнего боя в т.ч. и кулаков
 function setCarProofs(car, BP, FP, EP, CP, MP) end
 
 ---
@@ -3805,10 +4235,12 @@ function setCarProofs(car, BP, FP, EP, CP, MP) end
 function deactivateGarage(garage) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarInWater">Open the wiki</a></b>
+--- Проверяет находиться ли машина в воде.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarInWater">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@return bool result результат проверки
 function isCarInWater(car) end
 
 ---
@@ -3843,33 +4275,41 @@ function getClosestCarNode(closestToX, closestToY, closestToZ) end
 function carGotoCoordinatesAccurate(car, toX, toY, toZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarOnScreen">Open the wiki</a></b>
+--- Проверяет видна ли машина.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarOnScreen">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@return bool result результат проверки
 function isCarOnScreen(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharOnScreen">Open the wiki</a></b>
+--- Проверяет виден ли персонаж.  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharOnScreen">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return bool result результат проверки
 function isCharOnScreen(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isObjectOnScreen">Open the wiki</a></b>
+--- Проверяет виден ли объект.  
 ---
----@param object Object
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isObjectOnScreen">Open the wiki</a>  
+---
+---@param object Object хэндл объекта
+---@return bool result результат проверки
 function isObjectOnScreen(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getGroundZFor3dCoord">Open the wiki</a></b>
+--- Находит высоту относительно 3д координат.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/getGroundZFor3dCoord">Open the wiki</a>  
 ---
 ---@param atX float
 ---@param atY float
----@param atZ float
----@return float z
+---@param atZ float Координаты
+---@return float z Результат
 function getGroundZFor3dCoord(atX, atY, atZ) end
 
 ---
@@ -3906,29 +4346,35 @@ function removeScriptFire(fire) end
 function boatGotoCoords(boat, toX, toY, toZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/boatStop">Open the wiki</a></b>
+--- Заглушить мотор т/c  
 ---
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/boatStop">Open the wiki</a>  
+---
+---@param car Vehicle хэндл т/c
 function boatStop(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharShootingInArea">Open the wiki</a></b>
+--- Проверяет выстрелил ли персонаж в заданной зоне.  
 ---
----@param ped Ped
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param weapon int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharShootingInArea">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа.
+---@param cornerAX float Координаты зоны.
+---@param cornerAY float Координаты зоны.
+---@param cornerBX float Координаты зоны.
+---@param cornerBY float Координаты зоны.
+---@param weapon int ID оружия
+---@return bool result Результат проверки.
 function isCharShootingInArea(ped, cornerAX, cornerAY, cornerBX, cornerBY, weapon) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCurrentCharWeapon">Open the wiki</a></b>
+--- Проверяет держит ли игрок в руках указанное оружие.  
 ---
----@param ped Ped
----@param weapon int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCurrentCharWeapon">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param weapon int ид оружия
+---@return bool result Результат проверки
 function isCurrentCharWeapon(ped, weapon) end
 
 ---
@@ -3949,10 +4395,12 @@ function setBoatCruiseSpeed(boat, speed) end
 function getRandomCharInZone(zone, pedtype, gang, criminal_prostitute) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharShooting">Open the wiki</a></b>
+--- Проверяет выстрелил ли персонаж.  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharShooting">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа\
+---@return bool result Результат проверки\
 function isCharShooting(ped) end
 
 ---
@@ -3974,10 +4422,12 @@ function createMoneyPickup(atX, atY, atZ, cash, permanenceFlag) end
 function setCharAccuracy(ped, accuracy) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarSpeed">Open the wiki</a></b>
+--- Получает скорость машины по ее хендлу.  
 ---
----@param car Vehicle
----@return float speed
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarSpeed">Open the wiki</a>  
+---
+---@param car Vehicle Хендл машины
+---@return float speed Скорость машины
 function getCarSpeed(car) end
 
 ---
@@ -4023,7 +4473,9 @@ function hasCutsceneFinished() end
 function clearCutscene() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/restoreCameraJumpcut">Open the wiki</a></b>
+--- Восстанавливает камеру в исходное положение  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/restoreCameraJumpcut">Open the wiki</a>  
 ---
 function restoreCameraJumpcut() end
 
@@ -4046,11 +4498,13 @@ function setCollectable1Total(total) end
 function isProjectileInArea(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharModel">Open the wiki</a></b>
+--- Сверяет модель персонажа с указанной.  
 ---
----@param ped Ped
----@param modelId Model
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharModel">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа.
+---@param modelId Model Номер модели.
+---@return bool result Результат проверки.
 function isCharModel(ped, modelId) end
 
 ---
@@ -4169,19 +4623,23 @@ function registerMissionPassed(mission) end
 function removeAllScriptFires() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/hasCharBeenDamagedByWeapon">Open the wiki</a></b>
+--- Проверяет с указанного оружия было попадание по персонажу.  
 ---
----@param ped Ped
----@param weapon int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/hasCharBeenDamagedByWeapon">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param weapon int ID оружия
+---@return bool result результат проверки
 function hasCharBeenDamagedByWeapon(ped, weapon) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/hasCarBeenDamagedByWeapon">Open the wiki</a></b>
+--- Проверяет с указанного ли оружия было попадание в машину.  
 ---
----@param car Vehicle
----@param weapon int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/hasCarBeenDamagedByWeapon">Open the wiki</a>  
+---
+---@param car Vehicle хендл машины
+---@param weapon int ID оружия
+---@return bool result Результат проверки
 function hasCarBeenDamagedByWeapon(car, weapon) end
 
 ---
@@ -4198,17 +4656,19 @@ function explodeCharHead(ped) end
 function anchorBoat(boat, anchor) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/startCarFire">Open the wiki</a></b>
+--- Воспламеняет машину по ее хендлу.  
 ---
----@param car Vehicle
----@return int fire
+--- <a href="https://wiki.blast.hk/moonloader/lua/startCarFire">Open the wiki</a>  
+---
+---@param car Vehicle хендл транспорта
 function startCarFire(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/startCharFire">Open the wiki</a></b>
+--- Воспломиняет персонажа по его хендлу.  
 ---
----@param ped Ped
----@return int fire
+--- <a href="https://wiki.blast.hk/moonloader/lua/startCharFire">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
 function startCharFire(ped) end
 
 ---
@@ -4230,9 +4690,11 @@ function getRandomCarOfTypeInArea(cornerAX, cornerAY, cornerBX, cornerBY, modelI
 function hasResprayHappened(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCameraZoom">Open the wiki</a></b>
+--- Устанавливает режим камеры  
 ---
----@param mode int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCameraZoom">Open the wiki</a>  
+---
+---@param mode int режим камеры 0/1/2
 function setCameraZoom(mode) end
 
 ---
@@ -4262,10 +4724,12 @@ function setCarRamCar(car, car2) end
 function setPlayerNeverGetsTired(player, infiniteRun) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setPlayerFastReload">Open the wiki</a></b>
+--- Игроку не нужно будет перезаряжаться.  
 ---
----@param player Player
----@param fastReload bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setPlayerFastReload">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@param fastReload bool true - включить, false - выключить
 function setPlayerFastReload(player, fastReload) end
 
 ---
@@ -4282,17 +4746,21 @@ function setCharBleeding(ped, bleeding) end
 function setFreeResprays(enable) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharVisible">Open the wiki</a></b>
+--- Устанавливает актёру невидимость  
 ---
----@param ped Ped
----@param visible bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharVisible">Open the wiki</a>  
+---
+---@param ped Ped актёр
+---@param visible bool значение невидимости
 function setCharVisible(ped, visible) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarVisible">Open the wiki</a></b>
+--- Устанавливает машине невидимость.  
 ---
----@param car Vehicle
----@param visible bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarVisible">Open the wiki</a>  
+---
+---@param car Vehicle Хендл транспорта
+---@param visible bool Значение невидимости
 function setCarVisible(car, visible) end
 
 ---
@@ -4403,9 +4871,11 @@ function rotateObject(object, fromAngle, toAngle, flag) end
 function slideObject(object, toX, toY, toZ, speedX, speedY, speedZ, collisionCheck) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/removeCharElegantly">Open the wiki</a></b>
+--- Плавно удаляет модель игрока.  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/removeCharElegantly">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
 function removeCharElegantly(ped) end
 
 ---
@@ -4465,12 +4935,14 @@ function openGarage(garage) end
 function closeGarage(garage) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/warpCharFromCarToCoord">Open the wiki</a></b>
+--- Вытаскивает персонажа из машины на указанные координаты.  
 ---
----@param ped Ped
----@param placeAtX float
----@param placeAtY float
----@param placeAtZ float
+--- <a href="https://wiki.blast.hk/moonloader/lua/warpCharFromCarToCoord">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param placeAtX float координата X.
+---@param placeAtY float координата Y.
+---@param placeAtZ float координата Z.
 function warpCharFromCarToCoord(ped, placeAtX, placeAtY, placeAtZ) end
 
 ---
@@ -4500,10 +4972,12 @@ function hasCharSpottedChar(ped, ped2) end
 function hasObjectBeenDamaged(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/warpCharIntoCar">Open the wiki</a></b>
+--- Помещает педа в указанный транспорт  
 ---
----@param ped Ped
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/warpCharIntoCar">Open the wiki</a>  
+---
+---@param ped Ped хендл педа/актера
+---@param car Vehicle хендл транспорта
 function warpCharIntoCar(ped, car) end
 
 ---
@@ -4522,12 +4996,14 @@ function printWith2NumbersBig(gxtString, numbers1, numbers2, time, style) end
 function setCameraBehindPlayer() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/createRandomChar">Open the wiki</a></b>
+--- Создает персонажа в заданных координатах с рандомной моделью и поведением пешехода.  
 ---
----@param atX float
----@param atY float
----@param atZ float
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/createRandomChar">Open the wiki</a>  
+---
+---@param atX float координата персонажа X.
+---@param atY float координата персонажа Y.
+---@param atZ float координата персонажа Z.
+---@return Ped ped хэндл персонажа.
 function createRandomChar(atX, atY, atZ) end
 
 ---
@@ -4552,10 +5028,12 @@ function isSniperBulletInArea(float1, float2, float3, float4, float5, float6) en
 function setObjectVelocity(object, velocityInDirectionX, velocityInDirectionY, velocityInDirectionZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setObjectCollision">Open the wiki</a></b>
+--- Устанавливает коллизию определенному объекту.  
 ---
----@param object Object
----@param collision bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setObjectCollision">Open the wiki</a>  
+---
+---@param object Object хэндл объекта
+---@param collision bool состояние
 function setObjectCollision(object, collision) end
 
 ---
@@ -4580,7 +5058,9 @@ function printStringInStringNow(gxtString, string, time1, time2) end
 function isPointObscuredByAMissionEntity(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/loadAllModelsNow">Open the wiki</a></b>
+--- Загрузка ранее запрошенных моделей  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/loadAllModelsNow">Open the wiki</a>  
 ---
 function loadAllModelsNow() end
 
@@ -4647,11 +5127,13 @@ function removeTextureDictionary() end
 function setObjectDynamic(object, moveable) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharAnimSpeed">Open the wiki</a></b>
+--- Устанавливает скорость анимации персонажу  
 ---
----@param ped Ped
----@param animation string
----@param speed float
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharAnimSpeed">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param animation string название анимации
+---@param speed float скорость анимации
 function setCharAnimSpeed(ped, animation, speed) end
 
 ---
@@ -4722,10 +5204,12 @@ function drawSphere(atX, atY, atZ, radius) end
 function setCarStatus(car, action) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharMale">Open the wiki</a></b>
+--- Проверяет является ли персонаж мужским.  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharMale">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа.
+---@return bool result результат проверки.
 function isCharMale(ped) end
 
 ---
@@ -4814,17 +5298,21 @@ function addSphere(atX, atY, atZ, radius) end
 function removeSphere(sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setEveryoneIgnorePlayer">Open the wiki</a></b>
+--- Устанавливает игнорирование пешеходов к игроку.  
 ---
----@param player Player
----@param ignored bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setEveryoneIgnorePlayer">Open the wiki</a>  
+---
+---@param player Player хендл
+---@param ignored bool true - включить игнорирование, false - выключить игнорирование
 function setEveryoneIgnorePlayer(player, ignored) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/storeCarCharIsInNoSave">Open the wiki</a></b>
+--- Возвращает хендл машины, используемый педом.  
 ---
----@param ped Ped
----@return Vehicle car
+--- <a href="https://wiki.blast.hk/moonloader/lua/storeCarCharIsInNoSave">Open the wiki</a>  
+---
+---@param ped Ped хендл педа/актера
+---@return Vehicle car хендл машины
 function storeCarCharIsInNoSave(ped) end
 
 ---
@@ -4859,7 +5347,9 @@ function createRandomCarForCarPark(coordsX, coordsY, coordsZ, zAngle) end
 function setWantedMultiplier(sensitivity) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCameraInFrontOfPlayer">Open the wiki</a></b>
+--- Помещает камеру перед игроком, указывая на игрока.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCameraInFrontOfPlayer">Open the wiki</a>  
 ---
 function setCameraInFrontOfPlayer() end
 
@@ -4871,10 +5361,12 @@ function setCameraInFrontOfPlayer() end
 function isCarVisiblyDamaged(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/doesObjectExist">Open the wiki</a></b>
+--- Проверяет, существует ли объект, возвращает true если объект существует  
 ---
----@param object Object
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/doesObjectExist">Open the wiki</a>  
+---
+---@param object Object хэндл объекта
+---@return bool result результат
 function doesObjectExist(object) end
 
 ---
@@ -4992,10 +5484,12 @@ function hasSaveGameFinished() end
 function noSpecialCameraForThisGarage(int1) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/addBlipForPickup">Open the wiki</a></b>
+--- Создает маркер над пикапом.  
 ---
----@param pickup Pickup
----@return Marker marker
+--- <a href="https://wiki.blast.hk/moonloader/lua/addBlipForPickup">Open the wiki</a>  
+---
+---@param pickup Pickup Хендл пикапа.
+---@return Marker marker Хендл маркера.
 function addBlipForPickup(pickup) end
 
 ---
@@ -5077,11 +5571,13 @@ function isPlayerControllable(player) end
 function makePlayerSafe(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarColours">Open the wiki</a></b>
+--- Получает цвета автомобиля.  
 ---
----@param car Vehicle
----@return int primaryColor
----@return int secondaryColor
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarColours">Open the wiki</a>  
+---
+---@param car Vehicle Хендл машины.
+---@return int primaryColor Первичный цвет.
+---@return int secondaryColor Вторичный цвет.
 function getCarColours(car) end
 
 ---
@@ -5162,11 +5658,13 @@ function loadAndLaunchMissionInternal(mission) end
 function setObjectDrawLast(object, drawLast) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getAmmoInCharWeapon">Open the wiki</a></b>
+--- Получает количество патронов у персонажа.  
 ---
----@param ped Ped
----@param int int
----@return int ammo
+--- <a href="https://wiki.blast.hk/moonloader/lua/getAmmoInCharWeapon">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param int int ID оружия
+---@return int ammo количество патронов
 function getAmmoInCharWeapon(ped, int) end
 
 ---
@@ -5247,27 +5745,33 @@ function registerFastestTime(stat, to) end
 function registerHighestScore(int1, int2) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/warpCharIntoCarAsPassenger">Open the wiki</a></b>
+--- Телепортирует персонажа в автомобиль на выбранное сидение  
 ---
----@param ped Ped
----@param car Vehicle
----@param passengerSeat int
+--- <a href="https://wiki.blast.hk/moonloader/lua/warpCharIntoCarAsPassenger">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param car Vehicle хэндл машины
+---@param passengerSeat int номер сидения
 function warpCharIntoCarAsPassenger(ped, car, passengerSeat) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarPassengerSeatFree">Open the wiki</a></b>
+--- Проверяет, доступно ли пассажирское сидение  
 ---
----@param car Vehicle
----@param seat int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarPassengerSeatFree">Open the wiki</a>  
+---
+---@param car Vehicle хэндл транспорта
+---@param seat int номер сидения
+---@return bool result результат проверки\
 function isCarPassengerSeatFree(car, seat) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharInCarPassengerSeat">Open the wiki</a></b>
+--- Получает хэндл игрока, который сидит на сидении транспортного средства  
 ---
----@param car Vehicle
----@param seat int
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharInCarPassengerSeat">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@param seat int номер сидения
+---@return Ped ped хэндл персонажа
 function getCharInCarPassengerSeat(car, seat) end
 
 ---
@@ -5278,19 +5782,25 @@ function getCharInCarPassengerSeat(car, seat) end
 function setCharIsChrisCriminal(ped, flag) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/startCredits">Open the wiki</a></b>
+--- Вызывает титры после прохождения игры на экран.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/startCredits">Open the wiki</a>  
 ---
 function startCredits() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/stopCredits">Open the wiki</a></b>
+--- Убирает титры после прохождения игры с экрана.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/stopCredits">Open the wiki</a>  
 ---
 function stopCredits() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/areCreditsFinished">Open the wiki</a></b>
+--- Проверяет, закончились ли титры окончания игры.  
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/areCreditsFinished">Open the wiki</a>  
+---
+---@return bool result Результат проверки
 function areCreditsFinished() end
 
 ---
@@ -5300,10 +5810,12 @@ function areCreditsFinished() end
 function setMusicDoesFade(enable) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarModel">Open the wiki</a></b>
+--- Возвращает ID транспорта по хендл машины  
 ---
----@param veh Vehicle
----@return Model modelId
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarModel">Open the wiki</a>  
+---
+---@param veh Vehicle хендл машины
+---@return Model modelId ID транспорта
 function getCarModel(veh) end
 
 ---
@@ -5320,25 +5832,31 @@ function areAnyCarCheatsActivated() end
 function setCharSuffersCriticalHits(ped, enable) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharSittingInCar">Open the wiki</a></b>
+--- Проверяет, сидит ли хэндл в указанном т/c  
 ---
----@param ped Ped
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharSittingInCar">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа игрока
+---@param car Vehicle хэндл т/с
+---@return bool result результат
 function isCharSittingInCar(ped, car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharSittingInAnyCar">Open the wiki</a></b>
+--- Проверяет находится ли игрок в любой машине  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharSittingInAnyCar">Open the wiki</a>  
+---
+---@param ped Ped хэндл
+---@return bool result результат
 function isCharSittingInAnyCar(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharOnFoot">Open the wiki</a></b>
+--- Проверяет не находится ли персонаж в транспорте.  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharOnFoot">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return bool result результат проверки
 function isCharOnFoot(ped) end
 
 ---
@@ -5363,19 +5881,23 @@ function setJamesCarOnPathToPlayer(int1) end
 function setObjectRotation(object, rotationX, rotationY, rotationZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getDebugCameraCoordinates">Open the wiki</a></b>
+--- Возвращает позицию отладочной камеры.  
 ---
----@return float X
----@return float Y
----@return float Z
+--- <a href="https://wiki.blast.hk/moonloader/lua/getDebugCameraCoordinates">Open the wiki</a>  
+---
+---@return float X координаты
+---@return float Y координаты
+---@return float Z координаты
 function getDebugCameraCoordinates() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isPlayerTargettingChar">Open the wiki</a></b>
+--- Проверяет, целится ли игрок в конкретного персонажа.  
 ---
----@param player Player
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isPlayerTargettingChar">Open the wiki</a>  
+---
+---@param player Player хэндл игрока
+---@param ped Ped хэндл персонажа
+---@return bool result результат проверки
 function isPlayerTargettingChar(player, ped) end
 
 ---
@@ -5418,11 +5940,13 @@ function failCurrentMission() end
 function setInterpolationParameters(delay, time) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getDebugCameraPointAt">Open the wiki</a></b>
+--- Возвращает координаты на которые указывает отладочная камера.  
 ---
----@return float X
----@return float Y
----@return float Z
+--- <a href="https://wiki.blast.hk/moonloader/lua/getDebugCameraPointAt">Open the wiki</a>  
+---
+---@return float X координаты
+---@return float Y координаты
+---@return float Z координаты
 function getDebugCameraPointAt() end
 
 ---
@@ -5452,15 +5976,19 @@ function detachCharFromCar(ped) end
 function setCarStayInFastLane(car, flag) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/clearCharLastWeaponDamage">Open the wiki</a></b>
+--- Очищает последний урон нанесённый персонажу.  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/clearCharLastWeaponDamage">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
 function clearCharLastWeaponDamage(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/clearCarLastWeaponDamage">Open the wiki</a></b>
+--- Очищает последний нанесенный урон машине.  
 ---
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/clearCarLastWeaponDamage">Open the wiki</a>  
+---
+---@param car Vehicle хендл машины
 function clearCarLastWeaponDamage(car) end
 
 ---
@@ -5479,10 +6007,12 @@ function clearCarLastWeaponDamage(car) end
 function getRandomCopInArea(float1, float2, float3, float4, int5, int6, int7, int8, int9) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getDriverOfCar">Open the wiki</a></b>
+--- Возвращает водителя указанного транспортного средства  
 ---
----@param car Vehicle
----@return Ped ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/getDriverOfCar">Open the wiki</a>  
+---
+---@param car Vehicle скриптовый хендл транспортного средства
+---@return Ped ped скриптовый хендл персонажа
 function getDriverOfCar(car) end
 
 ---
@@ -5504,10 +6034,12 @@ function getNumberOfFollowers(ped) end
 function giveRemoteControlledModelToPlayer(player, atX, atY, atZ, angle, RCModel) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCurrentCharWeapon">Open the wiki</a></b>
+--- Получает оружие находящееся в руках у персонажа.  
 ---
----@param ped Ped
----@return int weapon
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCurrentCharWeapon">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@return int weapon оружие
 function getCurrentCharWeapon(ped) end
 
 ---
@@ -5588,9 +6120,11 @@ function locateCharInCarObject3d(ped, object, radiusX, radiusY, radiusZ, sphere)
 function setCarTempAction(car, action, time) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharOnAnyBike">Open the wiki</a></b>
+--- Возвращает <code>true</code> если пед находится на мотоцикле/велосипеде  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharOnAnyBike">Open the wiki</a>  
+---
+---@param ped Ped хендл педа/актера
 ---@return bool result
 function isCharOnAnyBike(ped) end
 
@@ -5622,10 +6156,12 @@ function getRemoteControlledCar(player) end
 function isPcVersion() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isModelAvailable">Open the wiki</a></b>
+--- Проверяет доступна ли модель для использования.  
 ---
----@param modelId Model
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isModelAvailable">Open the wiki</a>  
+---
+---@param modelId Model Номер модели.
+---@return bool result Результат.
 function isModelAvailable(modelId) end
 
 ---
@@ -5649,26 +6185,32 @@ function setEnableRcDetonate(detonation) end
 function setCarRandomRouteSeed(car, routeSeed) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isAnyPickupAtCoords">Open the wiki</a></b>
+--- Проверяет есть ли на указанных координатах любой пикап.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/isAnyPickupAtCoords">Open the wiki</a>  
 ---
 ---@param pickupX float
 ---@param pickupY float
----@param pickupZ float
----@return bool result
+---@param pickupZ float Координаты (XYZ)
+---@return bool result Результат.
 function isAnyPickupAtCoords(pickupX, pickupY, pickupZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/removeAllCharWeapons">Open the wiki</a></b>
+--- Удаляет все оружие у персонажа.  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/removeAllCharWeapons">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
 function removeAllCharWeapons(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/hasCharGotWeapon">Open the wiki</a></b>
+--- Проверяет наличие указанного оружия у персонажа.  
 ---
----@param ped Ped
----@param weapon int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/hasCharGotWeapon">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param weapon int ID оружия
+---@return bool result результат проверки
 function hasCharGotWeapon(ped, weapon) end
 
 ---
@@ -5689,17 +6231,21 @@ function setTankDetonateCars(tank, detonate) end
 function getPositionOfAnalogueSticks(joystick) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarOnFire">Open the wiki</a></b>
+--- Проверяет, горит ли автомобиль.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarOnFire">Open the wiki</a>  
+---
+---@param car Vehicle хендл машины
+---@return bool state состояние автомобиля
 function isCarOnFire(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCarTireBurst">Open the wiki</a></b>
+--- Возвращает <code>true</code> при спущенном колесе автомобиля  
 ---
----@param car Vehicle
----@param tire int
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCarTireBurst">Open the wiki</a>  
+---
+---@param car Vehicle автомобиль
+---@param tire int номер колеса
 ---@return bool result
 function isCarTireBurst(car, tire) end
 
@@ -5762,41 +6308,51 @@ function getDeadCharPickupCoords(ped) end
 function createProtectionPickup(atX, atY, atZ, int4, int5) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyBoat">Open the wiki</a></b>
+--- Проверяет педа на нахождение в т/c типа "Лодка"  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyBoat">Open the wiki</a>  
 ---
 ---@param ped Ped
 ---@return bool result
 function isCharInAnyBoat(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyHeli">Open the wiki</a></b>
+--- Проверяет педа на нахождение в т/с типа "Вертолет"  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyHeli">Open the wiki</a>  
 ---
 ---@param ped Ped
 ---@return bool result
 function isCharInAnyHeli(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyPlane">Open the wiki</a></b>
+--- Проверяет хэндл на нахождение в т/с типа "Самолёт"  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyPlane">Open the wiki</a>  
+---
+---@param ped Ped хэндл
+---@return bool result результат
 function isCharInAnyPlane(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInWater">Open the wiki</a></b>
+--- Проверяет педа на нахождение в воде  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInWater">Open the wiki</a>  
+---
+---@param ped Ped хэндл игрока
 ---@return bool result
 function isCharInWater(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharWeaponInSlot">Open the wiki</a></b>
+--- Получает данные об оружии в указанном слоте.  
 ---
----@param ped Ped
----@param slot int
----@return int weapon
----@return int ammo
----@return Model modelId
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharWeaponInSlot">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param slot int номер слота
+---@return int weapon ID оружия
+---@return int ammo количество патронов к оружию
+---@return Model model модель оружия
 function getCharWeaponInSlot(ped, slot) end
 
 ---
@@ -5867,15 +6423,17 @@ function createScriptRoadblock(cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY,
 function clearAllScriptRoadblocks() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getOffsetFromCharInWorldCoords">Open the wiki</a></b>
+--- Возвращает позицию педа с указанным смещением  
 ---
----@param ped Ped
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@return float X
----@return float Y
----@return float Z
+--- <a href="https://wiki.blast.hk/moonloader/lua/getOffsetFromCharInWorldCoords">Open the wiki</a>  
+---
+---@param ped Ped хендл педа/актера
+---@param offsetX float смещение по оси X
+---@param offsetY float смещение по оси Y
+---@param offsetZ float смещение по оси Z
+---@return float X позиция по оси X
+---@return float Y позиция по оси Y
+---@return float Z позиция по оси Z
 function getOffsetFromCharInWorldCoords(ped, offsetX, offsetY, offsetZ) end
 
 ---
@@ -5965,10 +6523,12 @@ function drawWeaponshopCorona(X, Y, Z, radius, type, flare, r, g, b) end
 function setEnableRcDetonateOnContact(enable) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/freezeCharPosition">Open the wiki</a></b>
+--- Замораживает координаты персонажа по его хендлу  
 ---
----@param ped Ped
----@param locked bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/freezeCharPosition">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
+---@param locked bool Статус заморозки
 function freezeCharPosition(ped, locked) end
 
 ---
@@ -5998,10 +6558,12 @@ function hasObjectCollidedWithAnything(object) end
 function removeRcBuggy() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharArmour">Open the wiki</a></b>
+--- Возвращает количество брони у педа  
 ---
----@param ped Ped
----@return int armour
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharArmour">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@return int armour значение брони
 function getCharArmour(ped) end
 
 ---
@@ -6047,75 +6609,89 @@ function setPlayerMood(player, flag, time) end
 function requestCollision(X, Y) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/locateObject2d">Open the wiki</a></b>
+--- Проверяет нахождение объекта в указанных координат в определенном радиусе  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/locateObject2d">Open the wiki</a>  
 ---
 ---@param object Object
----@param X float
----@param Y float
----@param radiusX float
----@param radiusY float
----@param sphere bool
+---@param X float Позиция по оси X
+---@param Y float Позиция по оси Y
+---@param radiusX float Дистанция проверки по оси X
+---@param radiusY float Дистанция проверки по оси Y
+---@param sphere bool Отображать проверяемую дистанцию в виде сферы
 ---@return bool result
 function locateObject2d(object, X, Y, radiusX, radiusY, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/locateObject3d">Open the wiki</a></b>
+--- Проверяет нахождение объекта в указанных координат в определенном радиусе  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/locateObject3d">Open the wiki</a>  
 ---
 ---@param object Object
----@param X float
----@param Y float
----@param Z float
----@param radiusX float
----@param radiusY float
----@param radiusZ float
----@param flag bool
+---@param X float Позиция по оси X
+---@param Y float Позиция по оси Y
+---@param Z float Позиция по оси Z
+---@param radiusX float Дистанция проверки по оси X
+---@param radiusY float Дистанция проверки по оси Y
+---@param radiusZ float Дистанция проверки по оси Z
+---@param sphere bool Отображать проверяемую дистанцию в виде сферы
 ---@return bool result
-function locateObject3d(object, X, Y, Z, radiusX, radiusY, radiusZ, flag) end
+function locateObject3d(object, X, Y, Z, radiusX, radiusY, radiusZ, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isObjectInWater">Open the wiki</a></b>
+--- Проверяет нахождение объекта в воде  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/isObjectInWater">Open the wiki</a>  
 ---
 ---@param object Object
 ---@return bool result
 function isObjectInWater(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isObjectInArea2d">Open the wiki</a></b>
+--- Проверяет нахождение объекта в указанном квадрате  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/isObjectInArea2d">Open the wiki</a>  
 ---
 ---@param object Object
----@param cornerAX float
----@param cornerAY float
----@param cornerBX float
----@param cornerBY float
----@param sphere bool
+---@param cornerAX float Начальная координата по оси X
+---@param cornerAY float Начальная координата по оси Y
+---@param cornerBX float Конечная координата по оси X
+---@param cornerBY float Конечная координата по оси Y
+---@param sphere bool Отображать границы квадрата в виде сферы
 ---@return bool result
 function isObjectInArea2d(object, cornerAX, cornerAY, cornerBX, cornerBY, sphere) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isObjectInArea3d">Open the wiki</a></b>
+--- Проверяет нахождение объекта в указанном кубе  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/isObjectInArea3d">Open the wiki</a>  
 ---
 ---@param object Object
----@param cornerAX float
----@param cornerAY float
----@param cornerAZ float
----@param cornerBX float
----@param cornerBY float
----@param cornerBZ float
----@param flag bool
+---@param cornerAX float Начальная координата по оси X
+---@param cornerAY float Начальная координата по оси Y
+---@param cornerAZ float Начальная координата по оси Z
+---@param cornerBX float Конечная координата по оси X
+---@param cornerBY float Конечная координата по оси Y
+---@param cornerBZ float Конечная координата по оси Z
+---@param flag bool Отображать границы куба в виде сферы
 ---@return bool result
 function isObjectInArea3d(object, cornerAX, cornerAY, cornerAZ, cornerBX, cornerBY, cornerBZ, flag) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/taskToggleDuck">Open the wiki</a></b>
+--- Заставляет персонажа присесть (как на кнопку <code>C</code>) или наоборот, встать.  
 ---
----@param ped Ped
----@param crouch bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/taskToggleDuck">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param crouch bool если true, персонаж присядет, если false - встанет.
 function taskToggleDuck(ped, crouch) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/requestAnimation">Open the wiki</a></b>
+--- Предварительная загрузка файла анимации  
 ---
----@param animation string
+--- <a href="https://wiki.blast.hk/moonloader/lua/requestAnimation">Open the wiki</a>  
+---
+---@param animation string файл анимаций\
 function requestAnimation(animation) end
 
 ---
@@ -6211,10 +6787,12 @@ function clearExtraColours(fade) end
 function getWheelieStats(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/burstCarTire">Open the wiki</a></b>
+--- Спускает шину у автомобиля.  
 ---
----@param car Vehicle
----@param tire int
+--- <a href="https://wiki.blast.hk/moonloader/lua/burstCarTire">Open the wiki</a>  
+---
+---@param car Vehicle скриптовый хендл транспортного средства
+---@param tire int шина
 function burstCarTire(car, tire) end
 
 ---
@@ -6470,10 +7048,12 @@ function clearCarLastDamageEntity(car) end
 function freezeObjectPosition(object, freeze) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/removeWeaponFromChar">Open the wiki</a></b>
+--- Удаляет указанное оружие у персонажа.  
 ---
----@param ped Ped
----@param weapon int
+--- <a href="https://wiki.blast.hk/moonloader/lua/removeWeaponFromChar">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param weapon int ID оружия
 function removeWeaponFromChar(ped, weapon) end
 
 ---
@@ -6555,24 +7135,30 @@ function setCharNeverTargetted(ped, untargetable) end
 function wasCutsceneSkipped() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyPoliceVehicle">Open the wiki</a></b>
+--- Проверяет управляет ли хэндл полицейской машиной  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInAnyPoliceVehicle">Open the wiki</a>  
+---
+---@param ped Ped хэндл
+---@return bool result результат
 function isCharInAnyPoliceVehicle(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/doesCharExist">Open the wiki</a></b>
+--- Проверяет хэндл на существование  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/doesCharExist">Open the wiki</a>  
+---
+---@param ped Ped хэндл
+---@return bool result результат
 function doesCharExist(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/doesVehicleExist">Open the wiki</a></b>
+--- Проверяет существование транспорта.  
 ---
----@param car Vehicle
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/doesVehicleExist">Open the wiki</a>  
+---
+---@param car Vehicle хэндл транспорта
+---@return bool result результат проверки
 function doesVehicleExist(car) end
 
 ---
@@ -6612,9 +7198,10 @@ function freezeCharPositionAndDontLoadCollision(ped, keep) end
 function setPlayerIsInStadium(set) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/displayRadar">Open the wiki</a></b>
+---   
 ---
----@param enable bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/displayRadar">Open the wiki</a>  
+---
 function displayRadar(enable) end
 
 ---
@@ -6683,10 +7270,12 @@ function registerOddjobMissionPassed() end
 function isPlayerInShortcutTaxi(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharDucking">Open the wiki</a></b>
+--- Проверяет сидит ли персонаж  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharDucking">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return bool result результат проверки
 function isCharDucking(ped) end
 
 ---
@@ -6850,9 +7439,11 @@ function taskJump(ped, jump) end
 function taskTired(ped, timeMS) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/taskDie">Open the wiki</a></b>
+--- Отправляет смерть персонажа по его хендлу  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/taskDie">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
 function taskDie(ped) end
 
 ---
@@ -6911,9 +7502,11 @@ function taskDuck(ped, timeMS) end
 function taskUseAtm(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/taskScratchHead">Open the wiki</a></b>
+--- Воспроизводит анимацию где персонаж стоит расслабленно и смотрит по сторонам  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/taskScratchHead">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
 function taskScratchHead(ped) end
 
 ---
@@ -6957,19 +7550,34 @@ function taskLeaveCar(ped, car) end
 ---@param Z float
 function taskLeaveCarAndFlee(ped, car, X, Y, Z) end
 
+---@alias RideType
+---| 0 # едет обычно придерживаясь полосы
+---| 2 # напрямую не сворачивая
+---| 3 # едет по всей дорогe
+---| 4 # садится в автомобиль
+
+---@alias DriveType
+---| 0 # останавливаясь на светофорах и перед машинами
+---| 5 # останавливаясь на светофорах и объезжая машины
+---| 2 # проезжая светофоры и объезжая машины
+---| 4 # проезжая светофоры и останавливаясь перед машинами
+---| 7 # едет строго по дороге проезжая светофоры и не останавливаясь едет "через" машины
+
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/taskCarDriveToCoord">Open the wiki</a></b>
+--- Заставляет актёра ехать на координаты определенным способом  
 ---
----@param ped Ped
----@param car Vehicle
----@param toX float
----@param toY float
----@param toZ float
----@param speed float
----@param int7 int
----@param model int
----@param int9 int
-function taskCarDriveToCoord(ped, car, toX, toY, toZ, speed, int7, model, int9) end
+--- <a href="https://wiki.blast.hk/moonloader/lua/taskCarDriveToCoord">Open the wiki</a>  
+---
+---@param ped Ped хендл игрока
+---@param car Vehicle хендл транспорта
+---@param toX float позиция к которой начнет ехать актёр (X)
+---@param toY float позиция к которой начнет ехать актёр (Y)
+---@param toZ float позиция к которой начнет ехать актёр (Z)
+---@param speed float скорость с которой машина будет ехать
+---@param rideType RideType Способ езды
+---@param model int модель чего-то
+---@param driveType DriveType Тип вождения
+function taskCarDriveToCoord(ped, car, toX, toY, toZ, speed, rideType, model, driveType) end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/taskCarDriveWander">Open the wiki</a></b>
@@ -7340,26 +7948,30 @@ function taskGoToCoordAnyMeans(ped, toX, toY, toZ, mode, useCar) end
 function getHeadingFromVector2d(pX, pY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/taskPlayAnim">Open the wiki</a></b>
+--- Заставляет актёра воспроизвести / сбить анимацию.  
 ---
----@param ped Ped
----@param animation string
----@param IFP string
----@param framedelta float
----@param loop bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
+--- <a href="https://wiki.blast.hk/moonloader/lua/taskPlayAnim">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param animation string имя анимации
+---@param IFP string файл анимации
+---@param framedelta float скорость анимации
+---@param loop bool повторение анимации (`true` - да, `false` - нет)
+---@param lockX bool блокировка позиции по X (`true` - да, `false` - нет)
+---@param lockY bool блокировка позиции по Y (`true` - да, `false` - нет)
+---@param lockF bool возврат в исходное положение (true - возвращать, false - не возвращать)
+---@param time int время воспроизведения
 function taskPlayAnim(ped, animation, IFP, framedelta, loop, lockX, lockY, lockF, time) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/loadPathNodesInArea">Open the wiki</a></b>
+--- Загружает пути NPC из одиночной игры в прямоугольной зоне.  
 ---
----@param x1 float
----@param y1 float
----@param x2 float
----@param y2 float
+--- <a href="https://wiki.blast.hk/moonloader/lua/loadPathNodesInArea">Open the wiki</a>  
+---
+---@param x1 float x-координата одного угла зоны
+---@param y1 float y-координата одного угла зоны
+---@param x2 float x-координата второго угла зоны
+---@param y2 float y-координата второго угла зоны
 function loadPathNodesInArea(x1, y1, x2, y2) end
 
 ---
@@ -7368,10 +7980,12 @@ function loadPathNodesInArea(x1, y1, x2, y2) end
 function releasePathNodes() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/loadCharDecisionMaker">Open the wiki</a></b>
+--- Создает маркер поведения актера с заданным типом.  
 ---
----@param type int
----@return int maker
+--- <a href="https://wiki.blast.hk/moonloader/lua/loadCharDecisionMaker">Open the wiki</a>  
+---
+---@param type int тип поведения\
+---@return int maker маркер модели поведения\
 function loadCharDecisionMaker(type) end
 
 ---
@@ -7406,11 +8020,13 @@ function isPlaybackGoingOnForCar(car) end
 function setSenseRange(ped, accuracy) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharPlayingAnim">Open the wiki</a></b>
+--- проверяет, выполняет ли пед указанную анимацию.  
 ---
----@param ped Ped
----@param animation string
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharPlayingAnim">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param animation string название анимации
+---@return bool result Результат проверки
 function isCharPlayingAnim(ped, animation) end
 
 ---
@@ -7457,10 +8073,12 @@ function closeSequenceTask(task) end
 function performSequenceTask(ped, task) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharCollision">Open the wiki</a></b>
+--- Устанавливает коллизию персонажу.  
 ---
----@param ped Ped
----@param enable bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharCollision">Open the wiki</a>  
+---
+---@param ped Ped Хэндл персонажа
+---@param enable bool Статус (true\false)
 function setCharCollision(ped, enable) end
 
 ---
@@ -7768,12 +8386,14 @@ function limitAngle(angle) end
 function openCarDoor(car, door) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getPickupCoordinates">Open the wiki</a></b>
+--- Возвращает координаты пикапа  
 ---
----@param pickup Pickup
----@return float X
----@return float Y
----@return float Z
+--- <a href="https://wiki.blast.hk/moonloader/lua/getPickupCoordinates">Open the wiki</a>  
+---
+---@param pickup Pickup хэндл пикапа
+---@return float X - X координата
+---@return float Y - Y координата
+---@return float Z - Z координата
 function getPickupCoordinates(pickup) end
 
 ---
@@ -8144,10 +8764,12 @@ function popCarPanel(car, component, effectFlag) end
 function fixCarPanel(car, componentB) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/fixCarTire">Open the wiki</a></b>
+--- Чинит шину у транспортного средства.  
 ---
----@param car Vehicle
----@param tire int
+--- <a href="https://wiki.blast.hk/moonloader/lua/fixCarTire">Open the wiki</a>  
+---
+---@param car Vehicle скриптовый хендл транспортного средства
+---@param tire int шина
 function fixCarTire(car, tire) end
 
 ---
@@ -8177,19 +8799,23 @@ function attachObjectToObject(object, toObject, offsetX, offsetY, offsetZ, rotat
 function attachObjectToChar(object, ped, offsetX, offsetY, offsetZ, rotationX, rotationY, rotationZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarSpeedVector">Open the wiki</a></b>
+--- Возвращает скорость машины относительно её направления.  
 ---
----@param car Vehicle
----@return float vecX
----@return float vecY
----@return float vecZ
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarSpeedVector">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@return float vecX скорость по X
+---@return float vecY скорость по Y
+---@return float vecZ скорость по Z
 function getCarSpeedVector(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCarMass">Open the wiki</a></b>
+--- Возвращает массу автомобиля  
 ---
----@param car Vehicle
----@return float mass
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCarMass">Open the wiki</a>  
+---
+---@param car Vehicle хэндл автомобиля
+---@return float mass масса автомобиля
 function getCarMass(car) end
 
 ---
@@ -8234,17 +8860,21 @@ function taskGotoCharOffset(ped, toActor, timelimit, approachDistance, approachA
 function taskLookAtCoord(ped, toX, toY, toZ, timeMS) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/hideCharWeaponForScriptedCutscene">Open the wiki</a></b>
+--- Скрывает все оружие у персонажа.  
 ---
----@param ped Ped
----@param hide bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/hideCharWeaponForScriptedCutscene">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param hide bool будет ли скрыто оружие(true/false)
 function hideCharWeaponForScriptedCutscene(ped, hide) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharSpeed">Open the wiki</a></b>
+--- Получает скорость движения персонажа по его хендлу.  
 ---
----@param ped Ped
----@return float speed
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharSpeed">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
+---@return float speed Значение скорости
 function getCharSpeed(ped) end
 
 ---
@@ -8365,32 +8995,36 @@ function taskTurnCharToFaceCoord(ped, atX, atY, atZ) end
 function taskDrivePointRoute(ped, car, speed) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/fireSingleBullet">Open the wiki</a></b>
+--- Создает летящую пулю на указанных координатах и в указанном направлении.  
 ---
----@param fromX float
----@param fromY float
----@param fromZ float
----@param targetX float
----@param targetY float
----@param targetZ float
----@param energy int
+--- <a href="https://wiki.blast.hk/moonloader/lua/fireSingleBullet">Open the wiki</a>  
+---
+---@param fromX float точка создания по X
+---@param fromY float точка создания по Y
+---@param fromZ float точка создания по Z
+---@param targetX float направление по X
+---@param targetY float направление по Y
+---@param targetZ float направление по Z
+---@param energy int урон пули
 function fireSingleBullet(fromX, fromY, fromZ, targetX, targetY, targetZ, energy) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isLineOfSightClear">Open the wiki</a></b>
+--- Делает проверку на наличие обьектов определенных типов между точками в трёхмерном пространстве  
 ---
----@param fromX float
----@param fromY float
----@param fromZ float
----@param toX float
----@param toY float
----@param toZ float
----@param checkBuildings bool
----@param checkVehicles bool
----@param checkActors bool
----@param checkObjects bool
----@param checkParticles bool
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isLineOfSightClear">Open the wiki</a>  
+---
+---@param fromX float координата X первой точки
+---@param fromY float координата Y первой точки
+---@param fromZ float координата Z первой точки
+---@param toX float координата X второй точки
+---@param toY float координата Y второй точки
+---@param toZ float координата Z второй точки
+---@param checkBuildings bool учитывать здания
+---@param checkVehicles bool учитывать транспортные средства
+---@param checkActors bool учитывать игроков
+---@param checkObjects bool учитывать объекты
+---@param checkParticles bool учитывать частицы
+---@return bool result результат проверки
 function isLineOfSightClear(fromX, fromY, fromZ, toX, toY, toZ, checkBuildings, checkVehicles, checkActors, checkObjects, checkParticles) end
 
 ---
@@ -8807,12 +9441,15 @@ function getPercentageTaggedInArea(x1, y1, x2, y2) end
 function setTagStatusInArea(x1, y1, x2, y2, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/carGotoCoordinatesRacing">Open the wiki</a></b>
+--- Ведет машину на указанные координаты.  
+--- В отличии от <strong>carGotoCoordinates</strong> и <strong>carGotoCoordinatesAccurate</strong>, эта функция игнорирует игровые ПДД.  
 ---
----@param car Vehicle
----@param toX float
----@param toY float
----@param toZ float
+--- <a href="https://wiki.blast.hk/moonloader/lua/carGotoCoordinatesRacing">Open the wiki</a>  
+---
+---@param car Vehicle хэндл машины
+---@param toX float координата по X
+---@param toY float координата по Y
+---@param toZ float координата по Z
 function carGotoCoordinatesRacing(car, toX, toY, toZ) end
 
 ---
@@ -8972,17 +9609,21 @@ function finishSettingUpConversation() end
 function isConversationAtNode(ped, gxtString) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getObjectHealth">Open the wiki</a></b>
+--- Получает уровень здоровья объекта.  
 ---
----@param object Object
----@return int health
+--- <a href="https://wiki.blast.hk/moonloader/lua/getObjectHealth">Open the wiki</a>  
+---
+---@param object Object Хендл объекта.
+---@return int health Уровень здоровья.
 function getObjectHealth(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setObjectHealth">Open the wiki</a></b>
+--- Устанавливает уровень здоровья объекту.  
 ---
----@param object Object
----@param health int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setObjectHealth">Open the wiki</a>  
+---
+---@param object Object Хендл объекта.
+---@param health int Уровень здоровья.
 function setObjectHealth(object, health) end
 
 ---
@@ -9338,9 +9979,11 @@ function extendPatrolRoute(X, Y, Z, animation, IFPFile) end
 function playObjectAnim(object, animation, IFPFile, framedelta, lockF, loop) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setRadarZoom">Open the wiki</a></b>
+--- Устанавливает увеличение у радара  
 ---
----@param zoom int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setRadarZoom">Open the wiki</a>  
+---
+---@param zoom int значение для увеличения
 function setRadarZoom(zoom) end
 
 ---
@@ -9509,9 +10152,11 @@ function clearAllCharRelationships(ped, acquaintance) end
 function getCarPitch(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getActiveInterior">Open the wiki</a></b>
+--- Функция получает айди интерьера, в котором находится Ваш персонаж  
 ---
----@return int interior
+--- <a href="https://wiki.blast.hk/moonloader/lua/getActiveInterior">Open the wiki</a>  
+---
+---@return int interior Айди интерьера
 function getActiveInterior() end
 
 ---
@@ -9525,17 +10170,21 @@ function getActiveInterior() end
 function heliKeepEntityInView(heli, ped, car, minaltitude, maxaltitude) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getWeapontypeModel">Open the wiki</a></b>
+--- Получает модель оружия из его ID.  
 ---
----@param id int
----@return int model
+--- <a href="https://wiki.blast.hk/moonloader/lua/getWeapontypeModel">Open the wiki</a>  
+---
+---@param id int ID оружия
+---@return int model номер модели
 function getWeapontypeModel(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getWeapontypeSlot">Open the wiki</a></b>
+--- Возвращает слот указанного оружия.  
 ---
----@param id int
----@return int slot
+--- <a href="https://wiki.blast.hk/moonloader/lua/getWeapontypeSlot">Open the wiki</a>  
+---
+---@param id int ID оружия
+---@return int slot номер слота
 function getWeapontypeSlot(id) end
 
 ---
@@ -9729,9 +10378,11 @@ function taskKillCharOnFootTimed(ped, attackActor, time) end
 function getNearestTagPosition(X, Y, Z) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/taskJetpack">Open the wiki</a></b>
+--- Выдает джетпак персонажу по его хендлу  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/taskJetpack">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
 function taskJetpack(ped) end
 
 ---
@@ -9869,10 +10520,12 @@ function taskComplexPickupObject(ped, object) end
 function listenToPlayerGroupCommands(ped, listen) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setPlayerEnterCarButton">Open the wiki</a></b>
+--- Устанавливает, может ли игрок входить и выходить из машины.  
 ---
----@param player Player
----@param can bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setPlayerEnterCarButton">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@param can bool true - может, false - не может
 function setPlayerEnterCarButton(player, can) end
 
 ---
@@ -10098,7 +10751,9 @@ function setObjectCollisionDamageEffect(object, destructible) end
 function setCarFollowCar(car, followCar, radius) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/playerEnteredQuarryCrane">Open the wiki</a></b>
+--- Помещает игрока в кран на карьере недалеко от Лас-Вентурса.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/playerEnteredQuarryCrane">Open the wiki</a>  
 ---
 function playerEnteredQuarryCrane() end
 
@@ -10140,22 +10795,28 @@ function doesGroupExist(group) end
 function giveMeleeAttackToChar(ped, fightingStyle, moves) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarHydraulics">Open the wiki</a></b>
+--- Устанавливает на автомобиль гидравлику  
 ---
----@param car Vehicle
----@param hydraulics bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarHydraulics">Open the wiki</a>  
+---
+---@param car Vehicle скриптовый хэндл транспортного средства
+---@param hydraulics bool true - включить, false - выключить.
 function setCarHydraulics(car, hydraulics) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/is2playerGameGoingOn">Open the wiki</a></b>
+--- Проверяет, находиться ли игра в режиме 2 игроков.  
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/is2playerGameGoingOn">Open the wiki</a>  
+---
+---@return bool result результат
 function is2playerGameGoingOn() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCameraFov">Open the wiki</a></b>
+--- Возвращает поле зрения.  
 ---
----@return float fov
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCameraFov">Open the wiki</a>  
+---
+---@return float fov поле зрения
 function getCameraFov() end
 
 ---
@@ -10230,18 +10891,20 @@ function getParkingNodeInArea(x1, y1, z1, x2, y2, z2) end
 function getCarCharIsUsing(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/taskPlayAnimNonInterruptable">Open the wiki</a></b>
+--- Вынуждает актера воссоздать / очистить неприкосновенную анимацию.  
 ---
----@param ped Ped
----@param animation string
----@param IFP string
----@param framedelta float
----@param loopA bool
----@param lockX bool
----@param lockY bool
----@param lockF bool
----@param time int
-function taskPlayAnimNonInterruptable(ped, animation, IFP, framedelta, loopA, lockX, lockY, lockF, time) end
+--- <a href="https://wiki.blast.hk/moonloader/lua/taskPlayAnimNonInterruptable">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param animation string имя анимации
+---@param IFP string файл анимации
+---@param framedelta float скорость анимации
+---@param loop bool повторение анимации (true - да, false - нет)
+---@param lockX bool блокировка позиции по X (`true` - да, `false` - нет)
+---@param lockY bool блокировка позиции по Y (`true` - да, `false` - нет)
+---@param lockF bool возврат в исходное положение (true - возвращать, false - не возвращать)
+---@param time int время воспроизведения
+function taskPlayAnimNonInterruptable(ped, animation, IFP, framedelta, loop, lockX, lockY, lockF, time) end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/addStuntJump">Open the wiki</a></b>
@@ -10289,24 +10952,30 @@ function setCharKindaStayInSamePlace(ped, stay) end
 function taskFollowPatrolRoute(ped, walkMode, routeMode) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharInAir">Open the wiki</a></b>
+--- Проверяет находится ли персонаж в воздухе.  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharInAir">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
+---@return bool result Результат
 function isCharInAir(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharHeightAboveGround">Open the wiki</a></b>
+--- Возвращает точное значение высоты над землёй относительно персонажа  
 ---
----@param ped Ped
----@return float height
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharHeightAboveGround">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
+---@return float height Результат
 function getCharHeightAboveGround(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharWeaponSkill">Open the wiki</a></b>
+--- Устанавливает персонажу уровень владения оружием(скилл)  
 ---
----@param ped Ped
----@param skill int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharWeaponSkill">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param skill int уровень владения
 function setCharWeaponSkill(ped, skill) end
 
 ---
@@ -10327,30 +10996,38 @@ function setTextEdge(size, r, g, b, a) end
 function setCarEngineBroken(car, broken) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isThisModelABoat">Open the wiki</a></b>
+--- Проверяет, является ли указанная модель лодкой.  
 ---
----@param modelId Model
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isThisModelABoat">Open the wiki</a>  
+---
+---@param modelId Model идентификатор игровой модели
+---@return bool result true - является, false - не является
 function isThisModelABoat(modelId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isThisModelAPlane">Open the wiki</a></b>
+--- Проверяет, является ли указанная модель самолётом.  
 ---
----@param modelId Model
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isThisModelAPlane">Open the wiki</a>  
+---
+---@param modelId Model идентификатор игровой модели
+---@return bool result true - является, false - не является
 function isThisModelAPlane(modelId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isThisModelAHeli">Open the wiki</a></b>
+--- Проверяет, является ли указанная модель вертолётом.  
 ---
----@param modelId Model
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isThisModelAHeli">Open the wiki</a>  
+---
+---@param modelId Model идентификатор игровой модели
+---@return bool result true - является, false - не является
 function isThisModelAHeli(modelId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setFirstPersonInCarCameraMode">Open the wiki</a></b>
+--- Включает вид бампера автомобиля для камеры.  
 ---
----@param enable bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setFirstPersonInCarCameraMode">Open the wiki</a>  
+---
+---@param enable bool true - включить, false - выключить
 function setFirstPersonInCarCameraMode(enable) end
 
 ---
@@ -10369,9 +11046,12 @@ function taskGreetPartner(ped, ped2, unk1, unk2) end
 function setHeliBladesFullSpeed(heli) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/displayHud">Open the wiki</a></b>
+--- Устанавливает отображение/скрытие худа.  
+--- Оставляя радар.  
 ---
----@param enable bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/displayHud">Open the wiki</a>  
+---
+---@param enable bool статус худа
 function displayHud(enable) end
 
 ---
@@ -10517,19 +11197,23 @@ function setVehicleInterior(car, interior) end
 function selectWeaponsForVehicle(car, gun) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCityPlayerIsIn">Open the wiki</a></b>
+--- Получает текущий ID города, возвращает 0 если игрок не в городе.  
 ---
----@param player Player
----@return int city
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCityPlayerIsIn">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@return int city ID города
 function getCityPlayerIsIn(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getNameOfZone">Open the wiki</a></b>
+--- Получение название района/части карты.  
 ---
----@param X float
----@param Y float
----@param Z float
----@return GxtString name
+--- <a href="https://wiki.blast.hk/moonloader/lua/getNameOfZone">Open the wiki</a>  
+---
+---@param X float координаты X
+---@param Y float координаты Y
+---@param Z float координаты Z
+---@return GxtString name название района
 function getNameOfZone(X, Y, Z) end
 
 ---
@@ -10630,10 +11314,12 @@ function taskKindaStayInSamePlace(ped, stay) end
 function startPlaybackRecordedCarLooped(car, path) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharInterior">Open the wiki</a></b>
+--- Устанавливает интерьер актёру.  
 ---
----@param ped Ped
----@param interior int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharInterior">Open the wiki</a>  
+---
+---@param ped Ped хендл персонажа
+---@param interior int ID интерьера
 function setCharInterior(ped, interior) end
 
 ---
@@ -10988,9 +11674,11 @@ function streamScript(script) end
 function hasStreamedScriptLoaded(script) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setGangWarsTrainingMission">Open the wiki</a></b>
+--- Захват/отображение территорий в игре  
 ---
----@param set bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setGangWarsTrainingMission">Open the wiki</a>  
+---
+---@param set bool статус отображения (false - да, true - нет)
 function setGangWarsTrainingMission(set) end
 
 ---
@@ -11010,15 +11698,19 @@ function setCharHasUsedEntryExit(ped, X, Y, radius) end
 function setCharMaxHealth(ped, health) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setNightVision">Open the wiki</a></b>
+--- Включает игроку ночное зрение  
 ---
----@param enable bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setNightVision">Open the wiki</a>  
+---
+---@param enable bool true - включить, false - выключить
 function setNightVision(enable) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setInfraredVision">Open the wiki</a></b>
+--- Включает игроку инфракрасное зрение  
 ---
----@param enable bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setInfraredVision">Open the wiki</a>  
+---
+---@param enable bool true - включить, false - выключить
 function setInfraredVision(enable) end
 
 ---
@@ -11419,17 +12111,21 @@ function setHeathazeEffect(enable) end
 function isHelpMessageBeingDisplayed() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/hasObjectBeenDamagedByWeapon">Open the wiki</a></b>
+--- Проверяет с указанного ли оружия было попадание по объекту.  
 ---
----@param object Object
----@param type int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/hasObjectBeenDamagedByWeapon">Open the wiki</a>  
+---
+---@param object Object хендл объекта
+---@param type int ID оружия
+---@return bool result результат проверки
 function hasObjectBeenDamagedByWeapon(object, type) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/clearObjectLastWeaponDamage">Open the wiki</a></b>
+--- Очищает объект от последнего нанесенного урона.  
 ---
----@param object Object
+--- <a href="https://wiki.blast.hk/moonloader/lua/clearObjectLastWeaponDamage">Open the wiki</a>  
+---
+---@param object Object хендл объекта
 function clearObjectLastWeaponDamage(object) end
 
 ---
@@ -11801,9 +12497,11 @@ function setSearchlightClipIfColliding(searchlight, flag) end
 function hasPlayerBoughtItem(item) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCameraInFrontOfChar">Open the wiki</a></b>
+--- Помещает камеру перед указанным игроком.  
 ---
----@param ped Ped
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCameraInFrontOfChar">Open the wiki</a>  
+---
+---@param ped Ped хендл игрока
 function setCameraInFrontOfChar(ped) end
 
 ---
@@ -12042,10 +12740,12 @@ function setCharKeepTask(ped, keepTasks) end
 function createMenuGrid(gxtString, positionX, positionY, width, columns, interactive, background, alignment) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isCharSwimming">Open the wiki</a></b>
+--- Проверяет плавает ли пед  
 ---
----@param ped Ped
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isCharSwimming">Open the wiki</a>  
+---
+---@param ped Ped хендл педа
+---@return bool result результат
 function isCharSwimming(ped) end
 
 ---
@@ -12231,10 +12931,12 @@ function setCharForceDieInCar(ped, stayInCarWhenDead) end
 function setOnlyCreateGangMembers(enable) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getObjectModel">Open the wiki</a></b>
+--- Возвращает ид объекта по его хендлу.  
 ---
----@param object Object
----@return Model modelId
+--- <a href="https://wiki.blast.hk/moonloader/lua/getObjectModel">Open the wiki</a>  
+---
+---@param object Object хендл объекта
+---@return int id ID объекта
 function getObjectModel(object) end
 
 ---
@@ -12341,10 +13043,12 @@ function setMissionRespectTotal(respect) end
 function awardPlayerMissionRespect(respect) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCarCollision">Open the wiki</a></b>
+--- Устанавливает / отключает коллизию транспортному средству.  
 ---
----@param car Vehicle
----@param collision bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCarCollision">Open the wiki</a>  
+---
+---@param car Vehicle хендл транспортного средства
+---@param collision bool статус коллизии
 function setCarCollision(car, collision) end
 
 ---
@@ -12657,10 +13361,12 @@ function setPetrolTankWeakpoint(car, enabled) end
 function isCharUsingMapAttractor(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setPlayerModel">Open the wiki</a></b>
+--- Меняет скин игрока.  
 ---
----@param player Player
----@param modelId Model
+--- <a href="https://wiki.blast.hk/moonloader/lua/setPlayerModel">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@param modelId Model ID скина
 function setPlayerModel(player, modelId) end
 
 ---
@@ -12677,14 +13383,16 @@ function areSubtitlesSwitchedOn() end
 function removeCharFromCarMaintainPosition(ped, car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setObjectProofs">Open the wiki</a></b>
+--- Задает иммунитет объекту  
 ---
----@param object Object
----@param BP bool
----@param FP bool
----@param EP bool
----@param CP bool
----@param MP bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/setObjectProofs">Open the wiki</a>  
+---
+---@param object Object хендл объекта
+---@param BP bool иммунитет от пуль
+---@param FP bool иммунитет от огня
+---@param EP bool иммунитет от взрывов
+---@param CP bool иммунитет от ударений
+---@param MP bool иммунитет от оружия ближнего боя в т.ч. и кулаков
 function setObjectProofs(object, BP, FP, EP, CP, MP) end
 
 ---
@@ -12764,7 +13472,9 @@ function setCharSayScript(ped, sound, flags1, flags2, flags3) end
 function forceInteriorLightingForPlayer(player, force) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/useDetonator">Open the wiki</a></b>
+--- Использует детонатор  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/useDetonator">Open the wiki</a>  
 ---
 function useDetonator() end
 
@@ -12873,10 +13583,12 @@ function enableBurglaryHouses(enable) end
 function isPlayerControlOn(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getCharActiveInterior">Open the wiki</a></b>
+--- Функция возвращает айди интерьера, в котором находится персонаж по его хендлу  
 ---
----@param ped Ped
----@return int interior
+--- <a href="https://wiki.blast.hk/moonloader/lua/getCharActiveInterior">Open the wiki</a>  
+---
+---@param ped Ped Хендл персонажа
+---@return int interior Айди интерьера
 function getCharActiveInterior(ped) end
 
 ---
@@ -13077,16 +13789,20 @@ function enableDisabledAttractorsOnObject(object, enable) end
 function loadSceneInDirection(coordX, coordY, coordZ, angle) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isPlayerUsingJetpack">Open the wiki</a></b>
+--- Проверяет, использует ли игрок джетпак  
 ---
----@param player Player
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isPlayerUsingJetpack">Open the wiki</a>  
+---
+---@param player Player скриптовый хэндл игрока
+---@return bool result результат выполнения операции
 function isPlayerUsingJetpack(player) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/clearThisPrintBigNow">Open the wiki</a></b>
+--- Удаляет стилизованный текст, который был воспроизведен через <a class="is-internal-link is-valid-page" href="/moonloader/lua/printBig">printBig</a>  
 ---
----@param style int
+--- <a href="https://wiki.blast.hk/moonloader/lua/clearThisPrintBigNow">Open the wiki</a>  
+---
+---@param style int тип стиля
 function clearThisPrintBigNow(style) end
 
 ---
@@ -13204,9 +13920,11 @@ function disableHeliAudio(helicopter, disable) end
 function taskHandGesture(ped, ped2) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/takePhoto">Open the wiki</a></b>
+--- Сделать снимок экрана, снимок будет сохранён в <code>Мои Документы\GTA San Andreas User Files\Gallery</code>  
 ---
----@param unk bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/takePhoto">Open the wiki</a>  
+---
+---@param unk bool результат выполнения
 function takePhoto(unk) end
 
 ---
@@ -13261,7 +13979,9 @@ function setDisableMilitaryZones(disable) end
 function setCameraPositionUnfixed(xAngle, zAngle) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setRadioToPlayersFavouriteStation">Open the wiki</a></b>
+--- Устанавливает радиостанцию ​​транспортного средства, на котором игрок находится в настоящее время, на любимую станцию, полученную из статистики.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/setRadioToPlayersFavouriteStation">Open the wiki</a>  
 ---
 function setRadioToPlayersFavouriteStation() end
 
@@ -13273,17 +13993,21 @@ function setRadioToPlayersFavouriteStation() end
 function setDeathWeaponsPersist(ped, persist) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setCharSwimSpeed">Open the wiki</a></b>
+--- Устанавливает скорость плавания игроку  
 ---
----@param ped Ped
----@param speed float
+--- <a href="https://wiki.blast.hk/moonloader/lua/setCharSwimSpeed">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@param speed float скорость
 function setCharSwimSpeed(ped, speed) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isPlayerClimbing">Open the wiki</a></b>
+--- Возвращает true, если игрок перелазит/лезет на что-то (стена, забор, любое препятствие).  
 ---
----@param player Player
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isPlayerClimbing">Open the wiki</a>  
+---
+---@param player Player хендл игрока
+---@return bool result результат
 function isPlayerClimbing(player) end
 
 ---
@@ -13294,9 +14018,10 @@ function isPlayerClimbing(player) end
 function isThisHelpMessageBeingDisplayed(gxtString) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isWidescreenOnInOptions">Open the wiki</a></b>
+---   
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/isWidescreenOnInOptions">Open the wiki</a>  
+---
 function isWidescreenOnInOptions() end
 
 ---
@@ -13330,9 +14055,11 @@ function taskFollowPathNodesToCoordWithRadius(ped, toX, toY, toZ, mode, time, st
 function setPhotoCameraEffect(firstPersonView) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/fixCar">Open the wiki</a></b>
+--- Чинит транспортное средство.  
 ---
----@param car Vehicle
+--- <a href="https://wiki.blast.hk/moonloader/lua/fixCar">Open the wiki</a>  
+---
+---@param car Vehicle скриптовый хендл транспортного средства
 function fixCar(car) end
 
 ---
@@ -13379,9 +14106,11 @@ function isSkipWaitingForScriptToFadeIn() end
 function forceAllVehicleLightsOff(off) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getPlayerInCarCameraMode">Open the wiki</a></b>
+--- Возвращает выбранный режим камеры текущего автомобиля.  
 ---
----@return int mode
+--- <a href="https://wiki.blast.hk/moonloader/lua/getPlayerInCarCameraMode">Open the wiki</a>  
+---
+---@return int mode ID режима камеры.
 function getPlayerInCarCameraMode() end
 
 ---
@@ -13446,7 +14175,9 @@ function createUser3dMarker(atX, atY, atZ, color) end
 function removeUser3dMarker(marker) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getRidOfPlayerProstitute">Open the wiki</a></b>
+--- Отменяет любые приглашения проститутки, полученные в игре, и заставляет всех текущих проституток уйти.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/getRidOfPlayerProstitute">Open the wiki</a>  
 ---
 function getRidOfPlayerProstitute() end
 
@@ -13536,7 +14267,9 @@ function setCleoSharedVar(var, value) end
 function getCleoSharedVar(var) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSpawnPlayer">Open the wiki</a></b>
+--- Отправляет локального игрока на спавн.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSpawnPlayer">Open the wiki</a>  
 ---
 function sampSpawnPlayer() end
 
@@ -13659,10 +14392,12 @@ function sampIsPlayerConnected(id) end
 function sampGetPlayerStructPtr(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerHealth">Open the wiki</a></b>
+--- Получает уровень здоровья игрока.  
 ---
----@param id int
----@return int health
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerHealth">Open the wiki</a>  
+---
+---@param id int ИД игрока.
+---@return int health Уровень здоровья.
 function sampGetPlayerHealth(id) end
 
 ---
@@ -13697,55 +14432,69 @@ function sampSetGamestate(gamestate) end
 function sampDisconnectWithReason(timeout) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetLocalPlayerName">Open the wiki</a></b>
+--- Устанавливает локальному игроку новый ник.  
 ---
----@param name zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSetLocalPlayerName">Open the wiki</a>  
+---
+---@param name string новый ник
 function sampSetLocalPlayerName(name) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerPing">Open the wiki</a></b>
+--- Получает пинг игрока.  
 ---
----@param id int
----@return int ping
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerPing">Open the wiki</a>  
+---
+---@param id int ИД игрока.
+---@return int ping Пинг.
 function sampGetPlayerPing(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerIdByCharHandle">Open the wiki</a></b>
+--- Получает SAMP ID игрока по хэндлу персонажа.  
 ---
----@param ped Ped
----@return bool result
----@return int id
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerIdByCharHandle">Open the wiki</a>  
+---
+---@param ped Ped хэндл персонажа
+---@return bool result результат выполнения
+---@return int id ID игрока
 function sampGetPlayerIdByCharHandle(ped) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetVehicleIdByCarHandle">Open the wiki</a></b>
+--- Получает ID транспортного средства по его хендлу  
 ---
----@param car Vehicle
----@return bool result
----@return int id
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetVehicleIdByCarHandle">Open the wiki</a>  
+---
+---@param car Vehicle скриптовый хендл транспортного средства
+---@return bool result результат выполнения операции
+---@return int id ID транспортного средства
 function sampGetVehicleIdByCarHandle(car) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetStreamedOutPlayerPos">Open the wiki</a></b>
+--- Получает позицию игрока, который находится вне зоны стрима, если сервер даёт на это разрешение.  
 ---
----@param id int
----@return bool result
----@return float posX
----@return float posY
----@return float posZ
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetStreamedOutPlayerPos">Open the wiki</a>  
+---
+---@param id int ID игрока
+---@return bool result результат
+---@return float posX координаты
+---@return float posY координаты
+---@return float posZ координаты
 function sampGetStreamedOutPlayerPos(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendEnterVehicle">Open the wiki</a></b>
+--- Отправляет пакет о посадке в транспортное средство.  
 ---
----@param id int
----@param passenger bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendEnterVehicle">Open the wiki</a>  
+---
+---@param id int ID транспортного средства
+---@param passenger bool true - на пассажирское место, false - на водительское.
 function sampSendEnterVehicle(id, passenger) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendExitVehicle">Open the wiki</a></b>
+--- Отправляет RPC - `RPC_EXITVEHICLE`  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendExitVehicle">Open the wiki</a>  
+---
+---@param id int ид транспорта
 function sampSendExitVehicle(id) end
 
 ---
@@ -13795,10 +14544,10 @@ function sampRegisterChatCommand(cmd, func) end
 ---   end
 --- ```  
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerNickname">Open the wiki</a></b>
+--- Получает ник игрока по его ID.  
 ---
----@param id int ID игрока
----@return zstring name ник
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerNickname">Open the wiki</a>  
+---
 function sampGetPlayerNickname(id) end
 
 ---
@@ -13842,13 +14591,15 @@ function sampGetCurrentServerName() end
 function sampShowDialog(id, caption, text, button1, button2, style) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampHasDialogRespond">Open the wiki</a></b>
+--- Получает информацию с локального диалога (нужно использовать в цикле)  
 ---
----@param id int
----@return bool result
----@return int button
----@return int list
----@return zstring input
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampHasDialogRespond">Open the wiki</a>  
+---
+---@param id int id локального диалога
+---@return bool result результат, возвращает true если диалог открыт
+---@return int button номер кнопки
+---@return int list выбранная строка в списке
+---@return zstring input текст
 function sampHasDialogRespond(id) end
 
 ---
@@ -13870,60 +14621,76 @@ function raknetDeleteBitStream(bs) end
 function raknetResetBitStream(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteBool">Open the wiki</a></b>
+--- Записывает значение типа boolean в BitStream.  
 ---
----@param bs Bitstream
----@param value bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteBool">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param value bool значение
 function raknetBitStreamWriteBool(bs, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt8">Open the wiki</a></b>
+--- Записывает значение типа byte в BitStream.  
 ---
----@param bs Bitstream
----@param value int
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt8">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param value int значение
 function raknetBitStreamWriteInt8(bs, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt16">Open the wiki</a></b>
+--- Записывает значение типа short (2 байта) в BitStream.  
 ---
----@param bs Bitstream
----@param value int
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt16">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param value int значение
 function raknetBitStreamWriteInt16(bs, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt32">Open the wiki</a></b>
+--- Записывает значение типа integer (4 байта) в BitStream.  
 ---
----@param bs Bitstream
----@param value int
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteInt32">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param value int значение
 function raknetBitStreamWriteInt32(bs, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteFloat">Open the wiki</a></b>
+--- Записывает значение типа float (4 байта) в BitStream.  
 ---
----@param bs Bitstream
----@param value float
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteFloat">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param value float значение
 function raknetBitStreamWriteFloat(bs, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteBuffer">Open the wiki</a></b>
+--- Записывает буффер указанного размера в BitStream.  
 ---
----@param bs Bitstream
----@param dest uint
----@param size uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteBuffer">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param dest int буффер
+---@param size int размер
 function raknetBitStreamWriteBuffer(bs, dest, size) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteBitStream">Open the wiki</a></b>
+--- Записывает BitStream в BitStream.  
 ---
----@param bs Bitstream
----@param bitStream Bitstream
-function raknetBitStreamWriteBitStream(bs, bitStream) end
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteBitStream">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param other Bitstream bitStream (который записываем)
+function raknetBitStreamWriteBitStream(bs, other) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteString">Open the wiki</a></b>
+--- Записывает строку в BitStream.  
 ---
----@param bs Bitstream
----@param str string
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamWriteString">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param str string строка
 function raknetBitStreamWriteString(bs, str) end
 
 ---
@@ -13947,31 +14714,37 @@ function raknetSendRpcEx(rpc, bs, priority, reliability, channel, timestamp) end
 function raknetSendBitStreamEx(bs, priority, reliability, channel) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampCreate3dText">Open the wiki</a></b>
+--- Создает SAMP объект --- 3D-текст  
 ---
----@param text zstring
----@param color uint
----@param posX float
----@param posY float
----@param posZ float
----@param distance float
----@param ignoreWalls bool
----@param playerId int
----@param vehicleId int
----@return int textlabel
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampCreate3dText">Open the wiki</a>  
+---
+---@param text zstring Содержимое
+---@param color int Цвет (ARGB)
+---@param posX float Позиция/смещение относительно крепления по оси X
+---@param posY float Позиция/смещение относительно крепления по оси Y
+---@param posZ float Позиция/смещение относительно крепления по оси Z
+---@param distance float Дистанция при которой будет виден 3D-текст
+---@param ignoreWalls bool Виден за объектами/стенами
+---@param playerId int Крепление к игроку по ид (-1 --- отключить)
+---@param vehicleId int Крепление к т/с по ид (-1 --- отключить)
+---@return int textlabel ид созданного 3D-текста
 function sampCreate3dText(text, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampDestroy3dText">Open the wiki</a></b>
+--- Удаляет 3D текст.  
 ---
----@param textlabel int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampDestroy3dText">Open the wiki</a>  
+---
+---@param textlabel int указатель на 3D текст
 function sampDestroy3dText(textlabel) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIs3dTextDefined">Open the wiki</a></b>
+--- Проверяет 3D текст на существование.  
 ---
----@param _3dText int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIs3dTextDefined">Open the wiki</a>  
+---
+---@param _3dText int ID 3D текста
+---@return bool result результат проверки
 function sampIs3dTextDefined(_3dText) end
 
 ---
@@ -13983,27 +14756,35 @@ function sampIs3dTextDefined(_3dText) end
 function sampCloseCurrentDialogWithButton(button) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogListItem">Open the wiki</a></b>
+--- Возвращает номер элемента из списка (диалога), который в данный момент активен  
 ---
----@return int list
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogListItem">Open the wiki</a>  
+---
+---@return int list номер элемента из списка (диалога)
 function sampGetCurrentDialogListItem() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetCurrentDialogListItem">Open the wiki</a></b>
+--- Выбирает элемент из списка (диалога)  
 ---
----@param list int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSetCurrentDialogListItem">Open the wiki</a>  
+---
+---@param list int номер элемента
 function sampSetCurrentDialogListItem(list) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogEditboxText">Open the wiki</a></b>
+--- Возвращает текст из полей диалога 1 стиля  
 ---
----@return zstring text
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogEditboxText">Open the wiki</a>  
+---
+---@return zstring text текст
 function sampGetCurrentDialogEditboxText() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetCurrentDialogEditboxText">Open the wiki</a></b>
+--- Вставляет текст в поле для ввода диалога 1 стиля  
 ---
----@param text zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSetCurrentDialogEditboxText">Open the wiki</a>  
+---
+---@param text zstring текст
 function sampSetCurrentDialogEditboxText(text) end
 
 ---
@@ -14015,9 +14796,11 @@ function sampSetCurrentDialogEditboxText(text) end
 function sampIsDialogActive() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogType">Open the wiki</a></b>
+--- Возвращает стиль активного диалога  
 ---
----@return int type
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetCurrentDialogType">Open the wiki</a>  
+---
+---@return int type стиль
 function sampGetCurrentDialogType() end
 
 ---
@@ -14037,44 +14820,54 @@ function sampGetCurrentDialogId() end
 function sampGetGamestate() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetObjectHandleBySampId">Open the wiki</a></b>
+--- Возвращает хендл объекта по его иду.  
 ---
----@param id int
----@return Object object
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetObjectHandleBySampId">Open the wiki</a>  
+---
+---@param id int ID объекта
+---@return Object object хендл объекта
 function sampGetObjectHandleBySampId(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPickupHandleBySampId">Open the wiki</a></b>
+--- Получает хэндл пикапа по его id  
 ---
----@param id int
----@return Pickup pickup
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPickupHandleBySampId">Open the wiki</a>  
+---
+---@param id int id пикапа\
 function sampGetPickupHandleBySampId(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetObjectSampIdByHandle">Open the wiki</a></b>
+--- Получает ID объекта по его хендлу  
 ---
----@param object Object
----@return int objectId
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetObjectSampIdByHandle">Open the wiki</a>  
+---
+---@param object Object handle объекта
+---@return int objectId ID объекта
 function sampGetObjectSampIdByHandle(object) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPickupSampIdByHandle">Open the wiki</a></b>
+--- Получает id пикапа через его handle  
 ---
----@param pickup Pickup
----@return int pickupId
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPickupSampIdByHandle">Open the wiki</a>  
+---
+---@param pickup Pickup handle пикапа
 function sampGetPickupSampIdByHandle(pickup) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetListboxItemsCount">Open the wiki</a></b>
+--- Возвращает общее кол-во элементов в списке (последнего)открытого диалога.  
 ---
----@return int count
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetListboxItemsCount">Open the wiki</a>  
+---
+---@return int count кол-во элементов
 function sampGetListboxItemsCount() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerAnimationId">Open the wiki</a></b>
+--- Получает ид текущей анимации игрока.  
 ---
----@param playerId int
----@return int animid
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerAnimationId">Open the wiki</a>  
+---
+---@param playerId int ИД игрока.
+---@return int animid ИД анимации.
 function sampGetPlayerAnimationId(playerId) end
 
 ---
@@ -14094,64 +14887,82 @@ function sampGetAnimationNameAndFile(animid) end
 function sampFindAnimationIdByNameAndFile(name, file) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getScreenResolution">Open the wiki</a></b>
+--- Получает текущее разрешение экрана в пикселях  
 ---
----@return int resX
----@return int resY
+--- <a href="https://wiki.blast.hk/moonloader/lua/getScreenResolution">Open the wiki</a>  
+---
+---@return int resX ширина экрана
+---@return int resY высота экрана
 function getScreenResolution() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetListboxItemText">Open the wiki</a></b>
+--- Получает текст из листбокса по его номеру  
 ---
----@param item int
----@return zstring text
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetListboxItemText">Open the wiki</a>  
+---
+---@param item int номер элемента
+---@return zstring text текст
 function sampGetListboxItemText(item) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsPlayerPaused">Open the wiki</a></b>
+--- Проверяет, находится ли указанный игрок на паузе  
 ---
----@param id int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIsPlayerPaused">Open the wiki</a>  
+---
+---@param id int id игрока
+---@return bool result результат
 function sampIsPlayerPaused(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampToggleCursor">Open the wiki</a></b>
+--- Переключает видимость курсора SAMP  
 ---
----@param show bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampToggleCursor">Open the wiki</a>  
+---
+---@param show bool статус
 function sampToggleCursor(show) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsLocalPlayerSpawned">Open the wiki</a></b>
+--- Проверяет, заспавнился ли игрок.  
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIsLocalPlayerSpawned">Open the wiki</a>  
+---
+---@return bool result статус
 function sampIsLocalPlayerSpawned() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerSpecialAction">Open the wiki</a></b>
+--- Возвращает ид специального действия игрока.  
 ---
----@param id int
----@return int action
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerSpecialAction">Open the wiki</a>  
+---
+---@param id int ID игрока
+---@return int action ID специального действия
 function sampGetPlayerSpecialAction(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampUnregisterChatCommand">Open the wiki</a></b>
+--- Отменяет регистрацию команды, созданной с помощью функции <a class="is-internal-link is-valid-page" href="/moonloader/lua/sampRegisterChatCommand">sampRegisterChatCommand</a>.  
 ---
----@param cmd zstring
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampUnregisterChatCommand">Open the wiki</a>  
+---
+---@param cmd string команда
+---@return bool result результат выполнения
 function sampUnregisterChatCommand(cmd) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsPlayerNpc">Open the wiki</a></b>
+--- Проверяет, является ли указанный игрок NPC  
 ---
----@param id int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIsPlayerNpc">Open the wiki</a>  
+---
+---@param id int id игрока
+---@return bool result результат
 function sampIsPlayerNpc(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerScore">Open the wiki</a></b>
+--- Получает очки игрока.  
 ---
----@param id int
----@return int score
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerScore">Open the wiki</a>  
+---
+---@param id int ИД игрока.
+---@return int score Очки.
 function sampGetPlayerScore(id) end
 
 ---
@@ -14165,19 +14976,24 @@ function sampGetPlayerScore(id) end
 function sampSetChatString(id, text, prefix, color, pcolor) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetChatString">Open the wiki</a></b>
+--- Получает данные о сообщении в окне чата.<br/>  
+--- А именно: string text, string prefix, int color, int pcolor  
 ---
----@param id int
----@return zstring text
----@return zstring prefix
----@return uint color
----@return uint pcolor
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetChatString">Open the wiki</a>  
+---
+---@param id int Номер строки чата
+---@return string text Текст сообщения
+---@return string prefix Префикс
+---@return int color Цвет сообщения
+---@return int pcolor int pcolor
 function sampGetChatString(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetChatInputText">Open the wiki</a></b>
+--- Вставляет в поле чата текст.  
 ---
----@param text zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSetChatInputText">Open the wiki</a>  
+---
+---@param text zstring Строка
 function sampSetChatInputText(text) end
 
 ---
@@ -14187,15 +15003,19 @@ function sampSetChatInputText(text) end
 function sampGetChatInputText() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampfuncsLog">Open the wiki</a></b>
+--- Добавляет в консоль и лог-файл SAMPFUNCS текстовое сообщение.  
+--- Отличается от опкода тем, что не принимает динамическое количество аргументов для форматирования.  
 ---
----@param msg zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampfuncsLog">Open the wiki</a>  
+---
+---@param msg string текст
 function sampfuncsLog(msg) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetChatInputEnabled">Open the wiki</a></b>
+--- Открывает/Закрывает чат  
 ---
----@param enabled bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSetChatInputEnabled">Open the wiki</a>  
+---
 function sampSetChatInputEnabled(enabled) end
 
 ---
@@ -14238,97 +15058,117 @@ function sampGetRpcNodeByRpcId(index) end
 function sampGetSampInfoPtr() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutCreateDialog">Open the wiki</a></b>
+--- Создаёт dxut диалог  
 ---
----@param name zstring
----@return DxutDialog dialog
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutCreateDialog">Open the wiki</a>  
+---
+---@param name zstring заголовок
+---@return DxutDialog dialog указатель на объект диалога
 function dxutCreateDialog(name) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutPopEvent">Open the wiki</a></b>
+--- Возвращает последнее id события и компонента которое произошло с указанным диалогом  
 ---
----@param dialog DxutDialog
----@return bool result
----@return int event
----@return int id
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutPopEvent">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@return bool result результат
+---@return int events id события
+---@return int id id компонента
 function dxutPopEvent(dialog) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutAddButton">Open the wiki</a></b>
+--- Создаёт кнопку на Dxut диалоге  
 ---
----@param dialog DxutDialog
----@param id int
----@param text zstring
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutAddButton">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@param id int уникальный id кнопки
+---@param text zstring надпись на кнопке
+---@param posX int позиция кнопки
+---@param posY int позиция кнопки
+---@param sizeX int размер кнопки
+---@param sizeY int размер кнопки
 function dxutAddButton(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutAddCheckbox">Open the wiki</a></b>
+--- Создаёт чекбокс в Dxut диалоге  
 ---
----@param dialog DxutDialog
----@param id int
----@param text zstring
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutAddCheckbox">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@param id int уникальный id чекбокса
+---@param text zstring название чекбокса
+---@param posX int позиция чекбокса
+---@param posY int позиция чекбокса
+---@param sizeX int размер чекбокса
+---@param sizeY int размер чекбокса
 function dxutAddCheckbox(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutSetDialogPos">Open the wiki</a></b>
+--- Устанавливает позицию и размер Dxut диалогу  
 ---
----@param dialog DxutDialog
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutSetDialogPos">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@param posX int позиция диалога
+---@param posY int позиция диалога
+---@param sizeX int размер диалога
+---@param sizeY int размер диалога
 function dxutSetDialogPos(dialog, posX, posY, sizeX, sizeY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutGetDialogPosAndSize">Open the wiki</a></b>
+--- Получает позицию и размер Dxut диалога  
 ---
----@param dialog DxutDialog
----@return int posX
----@return int posY
----@return int sizeX
----@return int sizeY
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutGetDialogPosAndSize">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@return int posX позиция диалога
+---@return int posY позиция диалога
+---@return int sizeX размер диалога
+---@return int sizeY размер диалога
 function dxutGetDialogPosAndSize(dialog) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutSetDialogVisible">Open the wiki</a></b>
+--- Устанавливает видимость диалогу  
 ---
----@param dialog DxutDialog
----@param visible bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutSetDialogVisible">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@param visible bool видимость диалога (если true-виден, если false-не виден)
 function dxutSetDialogVisible(dialog, visible) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutIsDialogVisible">Open the wiki</a></b>
+--- Проверяет, виден ли Dxut диалог, возвращает true если диалог виден и наоборот  
 ---
----@param dialog DxutDialog
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutIsDialogVisible">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@return bool result результат
 function dxutIsDialogVisible(dialog) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutAddEditbox">Open the wiki</a></b>
+--- Добавляет поле для ввода текста в Dxut диалоге  
 ---
----@param dialog DxutDialog
----@param id int
----@param text zstring
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutAddEditbox">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект Dxut диалога
+---@param id int уникальный id
+---@param text zstring название
+---@param posX int позиция
+---@param posY int позиция
+---@param sizeX int размер
+---@param sizeY int размер
 function dxutAddEditbox(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutGetControlText">Open the wiki</a></b>
+--- Возвращает текст компонента по id  
 ---
----@param dialog DxutDialog
----@param id int
----@return zstring text
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutGetControlText">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@param id int id компонента
+---@return zstring text текст
 function dxutGetControlText(dialog, id) end
 
 ---
@@ -14345,41 +15185,57 @@ function raknetSendRpc(rpc, bs) end
 function raknetSendBitStream(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsCursorActive">Open the wiki</a></b>
+--- Проверяет, виден ли курсор  
 ---
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIsCursorActive">Open the wiki</a>  
+---
+---@return bool result результат
 function sampIsCursorActive() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetCursorMode">Open the wiki</a></b>
+--- Устанавливает режим курсора SAMP.<br/>  
+--- Доступные режимы:<br/>  
+--- 0 - Отключен.<br/>  
+--- 1 - Управление клавиатурой заблокировано, курсор отключен.<br/>  
+--- 2 - Управление клавиатурой и мышкой заблокировано, курсор включен.<br/>  
+--- 3 - Управление мышкой заблокировано, курсор включен.<br/>  
+--- 4 - Управление мышкой заблокировано, курсор отключен.\  
 ---
----@param mode int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSetCursorMode">Open the wiki</a>  
+---
+---@param mode int Режим
 function sampSetCursorMode(mode) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetCursorMode">Open the wiki</a></b>
+--- Возвращает текущий режим курсора  
 ---
----@return int mode
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetCursorMode">Open the wiki</a>  
+---
+---@return int mode ID режима
 function sampGetCursorMode() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutSetControlVisible">Open the wiki</a></b>
+--- Устанавливает видимость компонента Dxut диалога  
 ---
----@param dialog DxutDialog
----@param id int
----@param visible bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutSetControlVisible">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@param id int id компонента диалога
+---@param visible bool видимость компонента
 function dxutSetControlVisible(dialog, id, visible) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutAddStatic">Open the wiki</a></b>
+--- Создаёт статистический текст на Dxut диалоге  
 ---
----@param dialog DxutDialog
----@param id int
----@param text zstring
----@param posX int
----@param posY int
----@param sizeX int
----@param sizeY int
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutAddStatic">Open the wiki</a>  
+---
+---@param dialog DxutDialog указатель на объект диалога
+---@param id int уникальный id текста
+---@param text zstring текст
+---@param posX int позиция
+---@param posY int позиция
+---@param sizeX int размер
+---@param sizeY int размер
 function dxutAddStatic(dialog, id, text, posX, posY, sizeX, sizeY) end
 
 ---
@@ -14555,12 +15411,14 @@ function dxutSetFocusOnControl(dialog, id) end
 function dxutSetControlSize(dialog, id, sizeX, sizeY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/dxutGetControlSize">Open the wiki</a></b>
+--- Получает размеры компонента  
 ---
----@param dialog DxutDialog
----@param id int
----@return int sizeX
----@return int sizeY
+--- <a href="https://wiki.blast.hk/moonloader/lua/dxutGetControlSize">Open the wiki</a>  
+---
+---@param dialog DxutDialog Диалог
+---@param id int ID компонента
+---@return int sizeX ширина
+---@return int sizeY высота
 function dxutGetControlSize(dialog, id) end
 
 ---
@@ -14615,15 +15473,19 @@ function sampGetSampPoolsPtr() end
 function sampGetChatInfoPtr() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetInputInfoPtr">Open the wiki</a></b>
+--- Возвращает указатель на структуру поля ввода в чате  
 ---
----@return uint inputPtr
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetInputInfoPtr">Open the wiki</a>  
+---
+---@return uint inputPtr указатель
 function sampGetInputInfoPtr() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetDialogInfoPtr">Open the wiki</a></b>
+--- Возвращает указатель на структуру диалогов  
 ---
----@return uint dialogPtr
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetDialogInfoPtr">Open the wiki</a>  
+---
+---@return uint dialogPtr указатель
 function sampGetDialogInfoPtr() end
 
 ---
@@ -14639,9 +15501,11 @@ function sampGetKillInfoPtr() end
 function sampGetMiscInfoPtr() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetTextdrawPoolPtr">Open the wiki</a></b>
+--- Получает указатель на структуру текстдравов.  
 ---
----@return uint tdpoolPtr
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetTextdrawPoolPtr">Open the wiki</a>  
+---
+---@return int tdpool структура
 function sampGetTextdrawPoolPtr() end
 
 ---
@@ -14663,9 +15527,11 @@ function sampGetGangzonePoolPtr() end
 function sampGetTextlabelPoolPtr() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerPoolPtr">Open the wiki</a></b>
+--- Возвращает указатель на пул игроков  
 ---
----@return uint playerpoolPtr
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerPoolPtr">Open the wiki</a>  
+---
+---@return uint playerpoolPtr указатель
 function sampGetPlayerPoolPtr() end
 
 ---
@@ -14722,203 +15588,269 @@ function sampStorePlayerAimData(id, dstBuffer) end
 function sampSendRconCommand(cmd) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendOnfootData">Open the wiki</a></b>
+--- Отправляет onFootData серверу  
 ---
----@param dataPtr uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendOnfootData">Open the wiki</a>  
+---
+---@param dataPtr uint заполненная структура
 function sampSendOnfootData(dataPtr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendIncarData">Open the wiki</a></b>
+--- Отправляет IncarData серверу  
 ---
----@param dataPtr uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendIncarData">Open the wiki</a>  
+---
+---@param dataPtr uint заполненная структура
 function sampSendIncarData(dataPtr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendPassengerData">Open the wiki</a></b>
+--- Отправляет PassengerData серверу  
 ---
----@param dataPtr uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendPassengerData">Open the wiki</a>  
+---
+---@param dataPtr uint заполненная структура
 function sampSendPassengerData(dataPtr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendAimData">Open the wiki</a></b>
+--- Отправляет AimData серверу  
 ---
----@param dataPtr uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendAimData">Open the wiki</a>  
+---
+---@param dataPtr uint заполненная структура
 function sampSendAimData(dataPtr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendBulletData">Open the wiki</a></b>
+--- Отправляет BulletData серверу  
 ---
----@param dataPtr uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendBulletData">Open the wiki</a>  
+---
+---@param dataPtr uint заполненная структура
 function sampSendBulletData(dataPtr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendTrailerData">Open the wiki</a></b>
+--- Отправляет TrailerData серверу  
 ---
----@param dataPtr uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendTrailerData">Open the wiki</a>  
+---
+---@param dataPtr uint заполненная структура
 function sampSendTrailerData(dataPtr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendUnoccupiedData">Open the wiki</a></b>
+--- Отправляет UnoccupiedData серверу  
 ---
----@param dataPtr uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendUnoccupiedData">Open the wiki</a>  
+---
+---@param dataPtr uint заполненная структура
 function sampSendUnoccupiedData(dataPtr) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendSpectatorData">Open the wiki</a></b>
+--- Отправляет SpectatorData серверу  
 ---
----@param dataPtr uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendSpectatorData">Open the wiki</a>  
+---
+---@param dataPtr uint заполненная структура
 function sampSendSpectatorData(dataPtr) end
 
+---@alias ClickSource
+---| 0 # Нажатие в Scoreboard
+
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendClickPlayer">Open the wiki</a></b>
+--- Отправляет RPC - RPC_CLICKPLAYER  
 ---
----@param id int
----@param source int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendClickPlayer">Open the wiki</a>  
+---
+---@param id int ид игрока
+---@param source ClickSource источник вызова
 function sampSendClickPlayer(id, source) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendDialogResponse">Open the wiki</a></b>
+--- Отправляет RPC - RPC_DIALOGRESPONSE  
 ---
----@param id int
----@param button int
----@param listitem int
----@param input zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendDialogResponse">Open the wiki</a>  
+---
+---@param id int ид диалога
+---@param button int ид кнопки (0 / 1)
+---@param listitem int номер элемента списка (от 0)
+---@param input zstring текст введенный в поле
 function sampSendDialogResponse(id, button, listitem, input) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendClickTextdraw">Open the wiki</a></b>
+--- Отправляет RPC ClickTextdraw на сервер.  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendClickTextdraw">Open the wiki</a>  
+---
+---@param id int ID текстдрава
 function sampSendClickTextdraw(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendGiveDamage">Open the wiki</a></b>
+--- Отправляет RPC о нанесении урона другому игроку.  
 ---
----@param id int
----@param damage float
----@param weapon int
----@param bodypart int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendGiveDamage">Open the wiki</a>  
+---
+---@param id int ID игрока
+---@param damage float количество урона
+---@param weapon int ID оружия
+---@param bodypart int часть тела
 function sampSendGiveDamage(id, damage, weapon, bodypart) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendTakeDamage">Open the wiki</a></b>
+--- Отправляет RPC о получении урона от другого игрока.  
 ---
----@param id int
----@param damage float
----@param weapon int
----@param bodypart int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendTakeDamage">Open the wiki</a>  
+---
+---@param id int ID игрока
+---@param damage float количество урона
+---@param weapon int ID оружия
+---@param bodypart int часть тела
 function sampSendTakeDamage(id, damage, weapon, bodypart) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendEditObject">Open the wiki</a></b>
+--- Отправляет RPC о изменении структуры объекта в режиме его редактирования.  
 ---
----@param playerObject bool
----@param objectId int
----@param response int
----@param posX float
----@param posY float
----@param posZ float
----@param rotX float
----@param rotY float
----@param rotZ float
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendEditObject">Open the wiki</a>  
+---
+---@param playerObject bool `false` --- глобальный объект / `true` --- объект для одного игрока
+---@param objectId int ID объекта
+---@param response int Тип ответа (от 0 до 2)
+---@param posX float Позиция объекта X
+---@param posY float Позиция объекта Y
+---@param posZ float Позиция объекта Z
+---@param rotX float Поворот объекта X
+---@param rotY float Поворот объекта Y
+---@param rotZ float Поворот объекта Z
 function sampSendEditObject(playerObject, objectId, response, posX, posY, posZ, rotX, rotY, rotZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendEditAttachedObject">Open the wiki</a></b>
+--- Отправляет RPC о изменении прикрепленного объекта в режиме редактирования объекта.  
 ---
----@param response int
----@param index int
----@param model int
----@param bone int
----@param offsetX float
----@param offsetY float
----@param offsetZ float
----@param rotX float
----@param rotY float
----@param rotZ float
----@param scaleX float
----@param scaleY float
----@param scaleZ float
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendEditAttachedObject">Open the wiki</a>  
+---
+---@param response int Cтатус ответа(0 --- нажата отмена(ESC) / 1 --- сохранено)
+---@param index int Индекс/слот объекта
+---@param model int Модель объекта
+---@param bone int ID кости к которой присоединен объект
+---@param offsetX float Смещение объекта X
+---@param offsetY float Смещение объекта Y
+---@param offsetZ float Смещение объекта Z
+---@param rotX float Поворот объекта X
+---@param rotY float Поворот объекта Y
+---@param rotZ float Поворот объекта Z
+---@param scaleX float Масштаб объекта X
+---@param scaleY float Масштаб объекта Y
+---@param scaleZ float Масштаб объекта Z
 function sampSendEditAttachedObject(response, index, model, bone, offsetX, offsetY, offsetZ, rotX, rotY, rotZ, scaleX, scaleY, scaleZ) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendInteriorChange">Open the wiki</a></b>
+--- Отправляет RPC - RPC_SETINTERIORID  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendInteriorChange">Open the wiki</a>  
 ---
 ---@param id int
 function sampSendInteriorChange(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendRequestSpawn">Open the wiki</a></b>
+--- Отправляет RPC - RPC_REQUESTSPAWN  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendRequestSpawn">Open the wiki</a>  
 ---
 function sampSendRequestSpawn() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendPickedUpPickup">Open the wiki</a></b>
+--- Отправляет RPC - RPC_PICKEDUPPICKUP  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendPickedUpPickup">Open the wiki</a>  
 ---
 ---@param id int
 function sampSendPickedUpPickup(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendMenuSelectRow">Open the wiki</a></b>
+--- Отправляет RPC - RPC_MENUSELECT  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendMenuSelectRow">Open the wiki</a>  
+---
+---@param id int номер строки меню
 function sampSendMenuSelectRow(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendMenuQuit">Open the wiki</a></b>
+--- Отправляет RPC - RPC_MENUQUIT  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendMenuQuit">Open the wiki</a>  
 ---
 function sampSendMenuQuit() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSendVehicleDestroyed">Open the wiki</a></b>
+--- Отправляет RPC - RPC_VEHICLEDESTROYED  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSendVehicleDestroyed">Open the wiki</a>  
+---
+---@param id int ид т/с
 function sampSendVehicleDestroyed(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsScoreboardOpen">Open the wiki</a></b>
+--- Проверяет видимость списка игроков (TAB)  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIsScoreboardOpen">Open the wiki</a>  
 ---
 ---@return bool result
 function sampIsScoreboardOpen() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampToggleScoreboard">Open the wiki</a></b>
+--- Переключает видимость списка игроков (TAB)  
 ---
----@param show bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampToggleScoreboard">Open the wiki</a>  
+---
+---@param show bool статус
 function sampToggleScoreboard(show) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetDialogText">Open the wiki</a></b>
+--- Возвращает основной текст последнего или активного диалогового окна.  
 ---
----@return zstring text
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetDialogText">Open the wiki</a>  
+---
+---@return string text текст
 function sampGetDialogText() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetDialogCaption">Open the wiki</a></b>
+--- Возвращает заголовок последнего открытого диалога  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetDialogCaption">Open the wiki</a>  
 ---
 ---@return zstring caption
 function sampGetDialogCaption() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetDialogClientside">Open the wiki</a></b>
+--- Устанавливает сторону (клиентская/серверная) диалога.<br/>  
+--- Если указана клиентская, то информация после закрытия диалога (Dialog Response) не будет отправлена на сервер  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSetDialogClientside">Open the wiki</a>  
 ---
 ---@param clientside bool
 function sampSetDialogClientside(clientside) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsDialogClientside">Open the wiki</a></b>
+--- Проверяет диалог на то, что тот принадлежит клиентской стороне  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIsDialogClientside">Open the wiki</a>  
 ---
 ---@return bool result
 function sampIsDialogClientside() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsChatVisible">Open the wiki</a></b>
+--- Проверяет видимость чата  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIsChatVisible">Open the wiki</a>  
 ---
 ---@return bool result
 function sampIsChatVisible() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetChatDisplayMode">Open the wiki</a></b>
+--- Возвращает режим отображения чата<br/>  
+--- <strong>Режимы:</strong><br/>  
+--- 2 - обычный<br/>  
+--- 1 - без тени у текста<br/>  
+--- 0 - не виден\  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetChatDisplayMode">Open the wiki</a>  
 ---
 ---@return int mode
 function sampGetChatDisplayMode() end
@@ -14930,237 +15862,300 @@ function sampGetChatDisplayMode() end
 function sampSetChatDisplayMode(mode) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/pauseScmThread">Open the wiki</a></b>
+--- Останавливает scm поток  
 ---
----@param thread uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/pauseScmThread">Open the wiki</a>  
+---
+---@param thread uint номер потока\
 function pauseScmThread(thread) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/resumeScmThread">Open the wiki</a></b>
+--- Возобновляет исполнение SCM-потока.  
 ---
----@param thread uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/resumeScmThread">Open the wiki</a>  
+---
+---@param thread uint указатель на поток
 function resumeScmThread(thread) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadBool">Open the wiki</a></b>
+--- Читает значение типа boolean из BitStream.  
 ---
----@param bs Bitstream
----@return bool value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadBool">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@return bool value результирующее значение
 function raknetBitStreamReadBool(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt8">Open the wiki</a></b>
+--- Читает значение типа byte из BitStream.  
 ---
----@param bs Bitstream
----@return int value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt8">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@return int value результирующее значение
 function raknetBitStreamReadInt8(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt16">Open the wiki</a></b>
+--- Читает значение типа short (2 байта) из BitStream.  
 ---
----@param bs Bitstream
----@return int value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt16">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@return int value результирующее значение
 function raknetBitStreamReadInt16(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt32">Open the wiki</a></b>
+--- Читает значение типа integer (4 байта) из BitStream.  
 ---
----@param bs Bitstream
----@return int value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadInt32">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@return int value результирующее значение
 function raknetBitStreamReadInt32(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadFloat">Open the wiki</a></b>
+--- Читает значение типа float из BitStream.  
 ---
----@param bs Bitstream
----@return float value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadFloat">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@return float value результирующее значение
 function raknetBitStreamReadFloat(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadBuffer">Open the wiki</a></b>
+--- Читает буффер указанного размера из BitStream.  
 ---
----@param bs Bitstream
----@param dest uint
----@param size uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadBuffer">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param dest int буффер
+---@param size int размер
 function raknetBitStreamReadBuffer(bs, dest, size) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadString">Open the wiki</a></b>
+--- Читает строку указанной длины (переменный размер) из BitStream.  
 ---
----@param bs Bitstream
----@param size uint
----@return string value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamReadString">Open the wiki</a>  
+---
+---@param bs Bitstream bitStream
+---@param size int длина строки
+---@return string value результирующее значение
 function raknetBitStreamReadString(bs, size) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamResetReadPointer">Open the wiki</a></b>
+--- Сбрасывает указатель чтения битстрима  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamResetReadPointer">Open the wiki</a>  
 ---
 ---@param bs Bitstream
 function raknetBitStreamResetReadPointer(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamResetWritePointer">Open the wiki</a></b>
+--- Сбрасывает указатель записи битстрима  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamResetWritePointer">Open the wiki</a>  
 ---
 ---@param bs Bitstream
 function raknetBitStreamResetWritePointer(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamIgnoreBits">Open the wiki</a></b>
+--- Осуществляет пропуск битов в указателе чтения/записи битстрима  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamIgnoreBits">Open the wiki</a>  
 ---
 ---@param bs Bitstream
----@param amount int
+---@param amount int количество битов
 function raknetBitStreamIgnoreBits(bs, amount) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamSetWriteOffset">Open the wiki</a></b>
+--- Устанавливает смещение для последующей записи в битстрим  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamSetWriteOffset">Open the wiki</a>  
 ---
 ---@param bs Bitstream
----@param offset int
+---@param offset int смещение (в битах)
 function raknetBitStreamSetWriteOffset(bs, offset) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamSetReadOffset">Open the wiki</a></b>
+--- Устанавливает смещение для последующего чтения битстрима  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamSetReadOffset">Open the wiki</a>  
 ---
 ---@param bs Bitstream
----@param offset int
+---@param offset int смещение (в битах)
 function raknetBitStreamSetReadOffset(bs, offset) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfBitsUsed">Open the wiki</a></b>
+--- Возвращает количество записанных битов в битстриме  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfBitsUsed">Open the wiki</a>  
 ---
 ---@param bs Bitstream
----@return uint value
+---@return int value
 function raknetBitStreamGetNumberOfBitsUsed(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfBytesUsed">Open the wiki</a></b>
+--- Возвращает количество записанных байтов в битстриме  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfBytesUsed">Open the wiki</a>  
 ---
 ---@param bs Bitstream
----@return uint value
+---@return int value
 function raknetBitStreamGetNumberOfBytesUsed(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfUnreadBits">Open the wiki</a></b>
+--- Возвращает количество непрочитанных битов в битстриме  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetNumberOfUnreadBits">Open the wiki</a>  
 ---
 ---@param bs Bitstream
----@return uint value
+---@return int value
 function raknetBitStreamGetNumberOfUnreadBits(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetWriteOffset">Open the wiki</a></b>
+--- Возвращает текущий оффсет записи в BitStream.  
 ---
----@param bs Bitstream
----@return int value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetWriteOffset">Open the wiki</a>  
+---
+---@param bs Bitstream Указатель на BitStream
+---@return int value Оффсет
 function raknetBitStreamGetWriteOffset(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetReadOffset">Open the wiki</a></b>
+--- Возвращает текущий оффсет чтения из BitStream'а.  
 ---
----@param bs Bitstream
----@return int value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetReadOffset">Open the wiki</a>  
+---
+---@param bs Bitstream Указатель на BitStream
+---@return int value Оффсет
 function raknetBitStreamGetReadOffset(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetDataPtr">Open the wiki</a></b>
+--- Возвращает указатель на данные BitStream'а.  
 ---
----@param bs Bitstream
----@return uint value
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetDataPtr">Open the wiki</a>  
+---
+---@param bs Bitstream BitStream\
+---@return uint value указатель на структуру данных\
 function raknetBitStreamGetDataPtr(bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamDecodeString">Open the wiki</a></b>
+--- Декриптует строку из BitStream`a и записывает её в буфер  
 ---
----@param bs Bitstream
----@param size int
----@return zstring string
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamDecodeString">Open the wiki</a>  
+---
+---@param bs Bitstream Указатель на BitStream
+---@param size int Размер буфера
+---@return zstring string Буфер
 function raknetBitStreamDecodeString(bs, size) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamEncodeString">Open the wiki</a></b>
+--- Криптует строку и записывает в BitStream  
 ---
----@param bs Bitstream
----@param string zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamEncodeString">Open the wiki</a>  
+---
+---@param bs Bitstream Указатель на BitStream
+---@param string zstring Буфер
 function raknetBitStreamEncodeString(bs, string) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetEmulRpcReceiveBitStream">Open the wiki</a></b>
+--- Эмулирует входящий RPC с помощью данных BitStream'а.  
 ---
----@param rpc int
----@param bs Bitstream
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetEmulRpcReceiveBitStream">Open the wiki</a>  
+---
+---@param rpc int ID RPC
+---@param bs Bitstream Указатель на BitStream
 function raknetEmulRpcReceiveBitStream(rpc, bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetEmulPacketReceiveBitStream">Open the wiki</a></b>
+--- Эмулирует входящий пакет с помощью даннных BitStream'а.  
 ---
----@param packet int
----@param bs Bitstream
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetEmulPacketReceiveBitStream">Open the wiki</a>  
+---
+---@param packet int ID пакета
+---@param bs int Указатель на BitStream
 function raknetEmulPacketReceiveBitStream(packet, bs) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetGetRpcName">Open the wiki</a></b>
+--- Возвращает наименование RPC по его ид  
 ---
----@param rpc int
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetGetRpcName">Open the wiki</a>  
+---
+---@param rpc int ид RPC
 ---@return zstring name
 function raknetGetRpcName(rpc) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/raknetGetPacketName">Open the wiki</a></b>
+--- Возвращает наименование пакета по его ид  
 ---
----@param packet int
+--- <a href="https://wiki.blast.hk/moonloader/lua/raknetGetPacketName">Open the wiki</a>  
+---
+---@param packet int ид пакета
 ---@return zstring name
 function raknetGetPacketName(packet) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setSampfuncsGlobalVar">Open the wiki</a></b>
+--- Устанавливает новое значение (регистрирует) для глобальной переменной SAMPFUNCS  
 ---
----@param var zstring
----@param value int
+--- <a href="https://wiki.blast.hk/moonloader/lua/setSampfuncsGlobalVar">Open the wiki</a>  
+---
+---@param var zstring наименование переменной
+---@param value int значение переменной
 ---@return bool result
 function setSampfuncsGlobalVar(var, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getSampfuncsGlobalVar">Open the wiki</a></b>
+--- Возвращает значение глобальной переменной, зарегистрированной с помощью SAMPFUNCS  
 ---
----@param var zstring
----@return bool result
----@return int value
+--- <a href="https://wiki.blast.hk/moonloader/lua/getSampfuncsGlobalVar">Open the wiki</a>  
+---
+---@param var zstring наименование переменной
+---@return bool result переменная найдена
+---@return int value значение переменной
 function getSampfuncsGlobalVar(var) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampCreate3dTextEx">Open the wiki</a></b>
+--- Создает (перезаписывает) SAMP объект --- 3D-текст.<br/>  
+--- В отличии от <a class="is-internal-link is-valid-page" href="/moonloader/lua/sampCreate3dText">sampCreate3dText</a> данная функция взаимодействует с SAMP пулом напрямую.  
 ---
----@param id int
----@param text zstring
----@param color uint
----@param posX float
----@param posY float
----@param posZ float
----@param distance float
----@param ignoreWalls bool
----@param playerId int
----@param vehicleId int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampCreate3dTextEx">Open the wiki</a>  
+---
+---@param id int Ид создаваемого/перезаписываемого 3D-текста
+---@param text zstring Содержимое
+---@param color int Цвет (ARGB)
+---@param posX float Позиция/смещение относительно крепления по оси X
+---@param posY float Позиция/смещение относительно крепления по оси Y
+---@param posZ float Позиция/смещение относительно крепления по оси Z
+---@param distance float Дистанция при которой будет виден 3D-текст
+---@param ignoreWalls bool Виден за объектами/стенами
+---@param playerId int Крепление к игроку по ид (-1 --- отключить)
+---@param vehicleId int Крепление к т/с по ид (-1 --- отключить)
 function sampCreate3dTextEx(id, text, color, posX, posY, posZ, distance, ignoreWalls, playerId, vehicleId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGet3dTextInfoById">Open the wiki</a></b>
+--- Получает параметры 3D текста.  
 ---
----@param id int
----@return zstring string
----@return uint color
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGet3dTextInfoById">Open the wiki</a>  
+---
+---@param id int ID 3D Текста
+---@return string string текст.
+---@return int color цвет.
 ---@return float posX
 ---@return float posY
----@return float posZ
----@return float distance
----@return bool ignoreWalls
----@return int playerId
----@return int vehicleId
+---@return float posZ координаты 3D текста(XYZ)
+---@return float distance дистанция.
+---@return bool ignoreWalls виден ли через стены.
+---@return int playerId если прикреплен к игроку, то возвращает его ид.
+---@return int vehicleId если прикреплен к т/с, то возвращает его ид
 function sampGet3dTextInfoById(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSet3dTextString">Open the wiki</a></b>
+--- Устанавливает 3D тексту новый текст.  
 ---
----@param id int
----@param text zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSet3dTextString">Open the wiki</a>  
+---
+---@param id int ID 3D текста.
+---@param text string текст
 function sampSet3dTextString(id, text) end
 
 ---
@@ -15175,323 +16170,410 @@ function sampSet3dTextString(id, text) end
 function sampTextdrawCreate(id, text, posX, posY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetBoxColorAndSize">Open the wiki</a></b>
+--- Устанавливает параметры прямоугольника текстдраву.  
 ---
----@param id int
----@param box int
----@param color uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetBoxColorAndSize">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@param box int статус
+---@param color int цвет
 ---@param sizeX float
----@param sizeY float
+---@param sizeY float размеры
 function sampTextdrawSetBoxColorAndSize(id, box, color, sizeX, sizeY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetAlign">Open the wiki</a></b>
+--- Задает выравнивание текста текстдраву.  
 ---
----@param id int
----@param align int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetAlign">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@param align int тип выравнивания
 function sampTextdrawSetAlign(id, align) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetProportional">Open the wiki</a></b>
+--- Устанавливает масштабирование текста текстдрава.  
 ---
----@param id int
----@param proportional int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetProportional">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@param proportional int статус
 function sampTextdrawSetProportional(id, proportional) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetStyle">Open the wiki</a></b>
+--- Устанавливает стиль текстдрава.  
 ---
----@param id int
----@param style int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetStyle">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@param style int стиль
 function sampTextdrawSetStyle(id, style) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetShadow">Open the wiki</a></b>
+--- Устанавливает тень текстдраву.  
 ---
----@param id int
----@param shadow int
----@param color uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetShadow">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@param shadow int размер тени
+---@param color int цвет
 function sampTextdrawSetShadow(id, shadow, color) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetOutlineColor">Open the wiki</a></b>
+--- Устанавливает текстдраву обводку  
 ---
----@param id int
----@param outline int
----@param color uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetOutlineColor">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@param outline int толщина обводки
+---@param color int цвет
 function sampTextdrawSetOutlineColor(id, outline, color) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetModelRotationZoomVehColor">Open the wiki</a></b>
+--- Устанавливает модель объекта/машины текстдраву со стилем 5.  
 ---
----@param id int
----@param model int
----@param rotX float
----@param rotY float
----@param rotZ float
----@param zoom float
----@param clr1 int
----@param clr2 int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetModelRotationZoomVehColor">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@param model int номер модели
+---@param rotX float вращение модели по осям (XYZ)
+---@param rotY float вращение модели по осям (XYZ)
+---@param rotZ float вращение модели по осям (XYZ)
+---@param zoom float дальность камеры
+---@param clr1 int первичный цвет
+---@param clr2 int вторичный цвет
 function sampTextdrawSetModelRotationZoomVehColor(id, model, rotX, rotY, rotZ, zoom, clr1, clr2) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetString">Open the wiki</a></b>
+--- Устанавливает текст текстдраву.  
 ---
----@param id int
----@param text zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetString">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@param text string текст
 function sampTextdrawSetString(id, text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetPos">Open the wiki</a></b>
+--- Устанавливает позицию текстдрава.  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetPos">Open the wiki</a>  
+---
+---@param id int ID текстдрава
 ---@param posX float
----@param posY float
+---@param posY float позиция текстдрава (XY)
 function sampTextdrawSetPos(id, posX, posY) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetLetterSizeAndColor">Open the wiki</a></b>
+--- Устанавливает параметры символов текстдрава.  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawSetLetterSizeAndColor">Open the wiki</a>  
+---
+---@param id int ID текстдрава
 ---@param letSizeX float
----@param letSizeY float
----@param color uint
+---@param letSizeY float Размер
+---@param color int цвет
 function sampTextdrawSetLetterSizeAndColor(id, letSizeX, letSizeY, color) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetBoxEnabledColorAndSize">Open the wiki</a></b>
+--- Получает параметры прямоугольника текстдрава.  
 ---
----@param id int
----@return int box
----@return uint color
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetBoxEnabledColorAndSize">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return int box статус.
+---@return int color цвет.
 ---@return float sizeX
----@return float sizeY
+---@return float sizeY размер
 function sampTextdrawGetBoxEnabledColorAndSize(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetAlign">Open the wiki</a></b>
+--- Получает тип выравнивания текстдрава.  
 ---
----@param id int
----@return int align
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetAlign">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return int align тип
 function sampTextdrawGetAlign(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetProportional">Open the wiki</a></b>
+--- Получает статус масштабирования текста в пропорциональном соотношении указанного текстдрава.  
 ---
----@param id int
----@return int prop
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetProportional">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return int prop пропорция
 function sampTextdrawGetProportional(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetStyle">Open the wiki</a></b>
+--- Получает стиль текстдрава.  
 ---
----@param id int
----@return int style
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetStyle">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return int style стиль
 function sampTextdrawGetStyle(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetShadowColor">Open the wiki</a></b>
+--- Получает параметры тени текстдрава.  
 ---
----@param id int
----@return int shadow
----@return uint color
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetShadowColor">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return int shadow размер.
+---@return int color цвет
 function sampTextdrawGetShadowColor(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetOutlineColor">Open the wiki</a></b>
+--- Получает параметры обводки текстдрава.  
 ---
----@param id int
----@return int outline
----@return uint color
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetOutlineColor">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return int outline толщина.
+---@return int color цвет
 function sampTextdrawGetOutlineColor(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetModelRotationZoomVehColor">Open the wiki</a></b>
+--- Получает параметры модели текстдрава.  
 ---
----@param id int
----@return int model
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetModelRotationZoomVehColor">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return int model модель
 ---@return float rotX
 ---@return float rotY
----@return float rotZ
----@return float zoom
+---@return float rotZ поворот по осям(XYZ)
+---@return float zoom отдаление камеры
 ---@return int clr1
----@return int clr2
+---@return int clr2 первичный и вторичный цвета
 function sampTextdrawGetModelRotationZoomVehColor(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetString">Open the wiki</a></b>
+--- Получает текст текстдрава.  
 ---
----@param id int
----@return zstring text
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetString">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return string text текст
 function sampTextdrawGetString(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetPos">Open the wiki</a></b>
+--- Получает позицию текстдрава.  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetPos">Open the wiki</a>  
+---
+---@param id int ID текстдрава
 ---@return float posX
----@return float posY
+---@return float posY позиция по X и Y
 function sampTextdrawGetPos(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetLetterSizeAndColor">Open the wiki</a></b>
+--- Получает длину, ширину и цвет текстдрава.  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawGetLetterSizeAndColor">Open the wiki</a>  
+---
+---@param id int ID текстдрава
 ---@return float letSizeX
----@return float letSizeY
----@return uint color
+---@return float letSizeY размер.
+---@return int color цвет
 function sampTextdrawGetLetterSizeAndColor(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawIsExists">Open the wiki</a></b>
+--- Проверяет текстдрав на существование.  
 ---
----@param id int
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawIsExists">Open the wiki</a>  
+---
+---@param id int ID текстдрава
+---@return bool result результат проверки
 function sampTextdrawIsExists(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawDelete">Open the wiki</a></b>
+--- Удаляет текстдрав.  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampTextdrawDelete">Open the wiki</a>  
+---
+---@param id int ID текстдрава
 function sampTextdrawDelete(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isSampfuncsGlobalVarDefined">Open the wiki</a></b>
+--- Проверяет существование глобальной переменной, зарегистрированной с помощью SAMPFUNCS  
 ---
----@param var zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/isSampfuncsGlobalVarDefined">Open the wiki</a>  
+---
+---@param var zstring наименование переменной
 ---@return bool result
 function isSampfuncsGlobalVarDefined(var) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getSampfuncsGlobalVarAccessForThread">Open the wiki</a></b>
+--- Возвращает разрешения записи/чтения глобальной переменной, зарегистрированной с помощью SAMPFUNCS, для указанного SCM-потока  
 ---
----@param var zstring
----@param thread uint
----@return bool read
----@return bool write
+--- <a href="https://wiki.blast.hk/moonloader/lua/getSampfuncsGlobalVarAccessForThread">Open the wiki</a>  
+---
+---@param var zstring наименование переменной
+---@param thread int указатель на поток
+---@return int read чтение (bool?)
+---@return int write запись (bool?)
 function getSampfuncsGlobalVarAccessForThread(var, thread) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/runSampfuncsConsoleCommand">Open the wiki</a></b>
+--- Выполняет указанную консольную SAMPFUNCS команду  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/runSampfuncsConsoleCommand">Open the wiki</a>  
 ---
 ---@param cmd zstring
 function runSampfuncsConsoleCommand(cmd) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampfuncsRegisterConsoleCommand">Open the wiki</a></b>
+--- Добавляет новую команду в консоль SAMPFUNCS.  
+--- От оригинального опкода отличается дополнительн  
 ---
----@param cmd zstring
----@param func function
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampfuncsRegisterConsoleCommand">Open the wiki</a>  
+---
+---@param cmd string команда
+---@param func function функция-обработчик
+---@return bool result результат выполнения
 function sampfuncsRegisterConsoleCommand(cmd, func) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampfuncsUnregisterConsoleCommand">Open the wiki</a></b>
+--- Отменяет регистрацию консольной команды, созданной с помощью функции <a class="is-internal-link is-valid-page" href="/moonloader/lua/sampfuncsRegisterConsoleCommand">sampfuncsRegisterConsoleCommand</a>.  
 ---
----@param cmd zstring
----@return bool result
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampfuncsUnregisterConsoleCommand">Open the wiki</a>  
+---
+---@param cmd string команда
+---@return bool result результат выполнения
 function sampfuncsUnregisterConsoleCommand(cmd) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/createScmThreadAtPointer">Open the wiki</a></b>
+--- Создает SCM-поток, содержимое которого будет определено из участка памяти  
 ---
----@param pointer uint
----@param args table
----@return uint thread
+--- <a href="https://wiki.blast.hk/moonloader/lua/createScmThreadAtPointer">Open the wiki</a>  
+---
+---@param pointer int Указатель на участок памяти
+---@param args table Передаваемые значения/аргументы
+---@return int thread Указатель на поток
 function createScmThreadAtPointer(pointer, args) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setScmThreadLocalVar">Open the wiki</a></b>
+--- Устанавливает новое значение переменной в SCM-потоке  
 ---
----@param thread uint
----@param var int
----@param value any
+--- <a href="https://wiki.blast.hk/moonloader/lua/setScmThreadLocalVar">Open the wiki</a>  
+---
+---@param thread int Указатель на поток
+---@param var int Номер переменной
+---@param value int Значение
 function setScmThreadLocalVar(thread, var, value) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/getScmThreadLocalVar">Open the wiki</a></b>
+--- Возвращает значение переменной в SCM-потоке  
 ---
----@param thread uint
----@param var int
+--- <a href="https://wiki.blast.hk/moonloader/lua/getScmThreadLocalVar">Open the wiki</a>  
+---
+---@param thread int Указатель на поток
+---@param var int Номер переменной
 ---@return int value
 function getScmThreadLocalVar(thread, var) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/destroyScmThread">Open the wiki</a></b>
+--- Уничтожает ранее созданный SCM-поток  
 ---
----@param thread uint
+--- <a href="https://wiki.blast.hk/moonloader/lua/destroyScmThread">Open the wiki</a>  
+---
+---@param thread int Указатель на поток
 function destroyScmThread(thread) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/restartScmThread">Open the wiki</a></b>
+--- Перезагружает ранее созданный SCM-поток  
 ---
----@param thread uint
----@param args table
+--- <a href="https://wiki.blast.hk/moonloader/lua/restartScmThread">Open the wiki</a>  
+---
+---@param thread int Указатель на поток
+---@param args table Передаваемые значения/аргументы в поток
 function restartScmThread(thread, args) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isSampfuncsConsoleActive">Open the wiki</a></b>
+--- Проверяет видимость/активность консоли SAMPFUNCS  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/isSampfuncsConsoleActive">Open the wiki</a>  
 ---
 ---@return bool result
 function isSampfuncsConsoleActive() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetClientCommandDescription">Open the wiki</a></b>
+--- Устанавливает описание для клиентской команды  
 ---
----@param cmd zstring
----@param text zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampSetClientCommandDescription">Open the wiki</a>  
+---
+---@param cmd zstring Команда
+---@param text zstring Описание
 function sampSetClientCommandDescription(cmd, text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/setSampfuncsConsoleCommandDescription">Open the wiki</a></b>
+--- Устанавливает описание для консольной команды  
 ---
----@param cmd zstring
----@param text zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/setSampfuncsConsoleCommandDescription">Open the wiki</a>  
+---
+---@param cmd zstring Команда
+---@param text zstring Описание
 function setSampfuncsConsoleCommandDescription(cmd, text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampForceVehicleSync">Open the wiki</a></b>
+--- Принудительная отправка пакета синхронизации - PACKET_VEHICLE_SYNC  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampForceVehicleSync">Open the wiki</a>  
+---
+---@param id int SAMP ид т/с
 function sampForceVehicleSync(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampForceUnoccupiedSyncSeatId">Open the wiki</a></b>
+--- Принудительная отправка пакета синхронизации - PACKET_UNOCCUPIED_SYNC  
 ---
----@param id int
----@param seatId int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampForceUnoccupiedSyncSeatId">Open the wiki</a>  
+---
+---@param id int SAMP ид т/с
+---@param seatId int Номер сиденья
 function sampForceUnoccupiedSyncSeatId(id, seatId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampForceOnfootSync">Open the wiki</a></b>
+--- Принудительная отправка пакета синхронизации - PACKET_PLAYER_SYNC  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampForceOnfootSync">Open the wiki</a>  
 ---
 function sampForceOnfootSync() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampForceAimSync">Open the wiki</a></b>
+--- Принудительная отправка пакета синхронизации - PACKET_AIM_SYNC  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampForceAimSync">Open the wiki</a>  
 ---
 function sampForceAimSync() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampForceTrailerSync">Open the wiki</a></b>
+--- Принудительная отправка пакета синхронизации - PACKET_TRAILER_SYNC  
 ---
----@param id int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampForceTrailerSync">Open the wiki</a>  
+---
+---@param id int SAMP ид трейлера
 function sampForceTrailerSync(id) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampForcePassengerSyncSeatId">Open the wiki</a></b>
+--- Принудительная отправка пакета синхронизации - PACKET_PASSENGER_SYNC  
 ---
----@param id int
----@param seatId int
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampForcePassengerSyncSeatId">Open the wiki</a>  
+---
+---@param id int SAMP ид т/с
+---@param seatId int Номер сиденья
 function sampForcePassengerSyncSeatId(id, seatId) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampForceStatsSync">Open the wiki</a></b>
+--- Принудительная отправка пакета синхронизации - PACKET_STATS_UPDATE  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampForceStatsSync">Open the wiki</a>  
 ---
 function sampForceStatsSync() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampForceWeaponsSync">Open the wiki</a></b>
+--- Принудительная отправка пакета синхронизации - PACKET_WEAPONS_UPDATE  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampForceWeaponsSync">Open the wiki</a>  
 ---
 function sampForceWeaponsSync() end
 
@@ -15505,27 +16587,37 @@ function sampForceWeaponsSync() end
 function sampGetMaxPlayerId(streamed) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerCount">Open the wiki</a></b>
+--- Возвращает количество игроков.  
+--- При <strong>streamed = <em>false</em></strong> возвращает количество игроков на сервере, при противоположном значении - количество игроков в зоне прорисовки (стриме)  
 ---
----@param streamed bool
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPlayerCount">Open the wiki</a>  
+---
+---@param streamed bool Поиск в стриме
 ---@return int count
 function sampGetPlayerCount(streamed) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampProcessChatInput">Open the wiki</a></b>
+--- Передает строку на обработку к ChatInput (поле для ввода в чате)<br/>  
+--- FIXME Запрещен вызов внутри тела любой зарегистрированной команды (с помощью опкода <a class="is-internal-link is-invalid-page" href="/gta-sa/opcodes/0b34">0B34</a> или функции <a class="is-internal-link is-valid-page" href="/moonloader/lua/sampRegisterChatCommand">sampRegisterChatCommand</a>)  
 ---
----@param text zstring
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampProcessChatInput">Open the wiki</a>  
+---
+---@param text zstring Команда/строка
 function sampProcessChatInput(text) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/sampIsChatCommandDefined">Open the wiki</a></b>
+--- Проверяет существование клиентской команды, зарегистрированной SAMPFUNCS  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/sampIsChatCommandDefined">Open the wiki</a>  
 ---
 ---@param cmd zstring
 ---@return bool result
 function sampIsChatCommandDefined(cmd) end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/isSampfuncsConsoleCommandDefined">Open the wiki</a></b>
+--- Проверяет существование консольной команды SAMPFUNCS  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/isSampfuncsConsoleCommandDefined">Open the wiki</a>  
 ---
 ---@param cmd zstring
 ---@return bool result
@@ -15570,30 +16662,19 @@ function getCleoLibraryVersion() end
 ---   end
 --- ```  
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/main">Open the wiki</a></b>
+--- Основная функция, вызывается единожды за запуск скрипта.  
+--- В ней можно использовать задержки (<a class="is-internal-link is-valid-page" href="/moonloader/lua/wait">wait</a>) и бесконечные циклы, при этом не нарушая работу игры.<br/>  
+--- В действительности событие main является не событием, а сопрограммой, выполняющейся в отдельном Lua-потоке.<br/>  
+--- Это и даёт возможность прерывать её выполнение на какой-то промежуток времени и затем продолжать работу с того же места без каких-либо негативных последствий.  
+---
+--- <a href="https://wiki.blast.hk/moonloader/lua/main">Open the wiki</a>  
 ---
 function main() end
 
 ---
---- <b><a href="https://wiki.blast.hk/moonloader/lua/PLAYER_PED">Open the wiki</a></b>
+--- Хэндл персонажа игрока.  
+--- Применим во многих функциях, принимающих значение типа Char в качестве параметра.  
 ---
----@type Ped
-PLAYER_PED = {}
+--- <a href="https://wiki.blast.hk/moonloader/lua/PLAYER_PED">Open the wiki</a>  
+---
 
----
---- <b><a href="https://wiki.blast.hk/moonloader/lua/PLAYER_HANDLE">Open the wiki</a></b>
----
----@type Player
-PLAYER_HANDLE = {}
-
----
---- <b><a href="https://wiki.blast.hk/moonloader/lua/PLAYER_PED">Open the wiki</a></b>
----
----@type Ped
-playerPed = {}
-
----
---- <b><a href="https://wiki.blast.hk/moonloader/lua/PLAYER_HANDLE">Open the wiki</a></b>
----
----@type Player
-playerHandle = {}
