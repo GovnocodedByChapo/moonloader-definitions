@@ -1845,7 +1845,7 @@ function wasKeyReleased(key) end
 
 ---
 --- Получает значение, на сколько делений было прокручено колесо мыши.  
---- Значение может быть отрицательным и положительным,<br/>  
+--- Значение может быть отрицательным и положительным,  
 --- а также нулём, если колесо прокручено не было.  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/getMousewheelDelta">Open the wiki</a>  
@@ -1930,11 +1930,11 @@ function script_properties(property, ...) end
 function script_url(url) end
 
 ---
---- Импортирует экспортируемые данные другого скрипта по имени файла, функция загружает скрипт самостоятельно, если он ещё не загружен.<br/>  
+--- Импортирует экспортируемые данные другого скрипта по имени файла, функция загружает скрипт самостоятельно, если он ещё не загружен.  
 --- Предотвращает повторную загрузку скрипта при стартовой загрузке скриптов из рабочей директории, т.е.  
---- функцию можно вызывать и в глобальной области (вне <a class="is-internal-link is-valid-page" href="/moonloader/lua/main">main</a> и <a class="is-internal-link is-valid-page" href="/moonloader/scripting/threads">потоков</a>), не опасаясь возникновения проблем.<br/>  
---- При повторном вызове для того же скрипта будет использоваться ранее полученное значение, если скрипт не был перезагружен или выгружен.<br/>  
---- Возвращает <code>nil</code> и текст ошибки, если попытка импорта завершилась неудачей.<br/>  
+--- функцию можно вызывать и в глобальной области (вне <a class="is-internal-link is-valid-page" href="/moonloader/lua/main">main</a> и <a class="is-internal-link is-valid-page" href="/moonloader/scripting/threads">потоков</a>), не опасаясь возникновения проблем.  
+--- При повторном вызове для того же скрипта будет использоваться ранее полученное значение, если скрипт не был перезагружен или выгружен.  
+--- Возвращает <code>nil</code> и текст ошибки, если попытка импорта завершилась неудачей.  
 --- Подробнее об экспорте см.  
 --- на странице <a class="is-internal-link is-valid-page" href="/moonloader/exports">Экспорт</a>.  
 ---
@@ -2209,7 +2209,7 @@ function createCar(modelId, atX, atY, atZ) end
 function deleteCar(car) end
 
 ---
---- Ведет машину на заданные координаты.<br/>  
+--- Ведет машину на заданные координаты.  
 --- Процесс выглядит, как если бы за рулем машины сидел NPC.  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/carGotoCoordinates">Open the wiki</a>  
@@ -3197,7 +3197,7 @@ function addBlipForCoord(atX, atY, atZ) end
 function changeBlipDisplay(marker, mode) end
 
 ---
---- Проигрывает короткий звук.<br/>  
+--- Проигрывает короткий звук.  
 --- Если указаны координаты - то звук проиграется на указанных координатах.  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/addOneOffSound">Open the wiki</a>  
@@ -3913,7 +3913,7 @@ function printBigQ(gxtString, time, style) end
 function setTargetCarForMissionGarage(garage, car) end
 
 ---
---- Установить/Снять тормоза(невозможность двигаться) у авто<br/>  
+--- Установить/Снять тормоза(невозможность двигаться) у авто  
 --- Если "тормоза" установить, то как бы игрок не пытался двигаться в авто он будет стоять на месте  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/applyBrakesToPlayersCar">Open the wiki</a>  
@@ -14976,7 +14976,7 @@ function sampGetPlayerScore(id) end
 function sampSetChatString(id, text, prefix, color, pcolor) end
 
 ---
---- Получает данные о сообщении в окне чата.<br/>  
+--- Получает данные о сообщении в окне чата.  
 --- А именно: string text, string prefix, int color, int pcolor  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampGetChatString">Open the wiki</a>  
@@ -15820,7 +15820,7 @@ function sampGetDialogText() end
 function sampGetDialogCaption() end
 
 ---
---- Устанавливает сторону (клиентская/серверная) диалога.<br/>  
+--- Устанавливает сторону (клиентская/серверная) диалога.  
 --- Если указана клиентская, то информация после закрытия диалога (Dialog Response) не будет отправлена на сервер  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampSetDialogClientside">Open the wiki</a>  
@@ -16117,7 +16117,7 @@ function setSampfuncsGlobalVar(var, value) end
 function getSampfuncsGlobalVar(var) end
 
 ---
---- Создает (перезаписывает) SAMP объект --- 3D-текст.<br/>  
+--- Создает (перезаписывает) SAMP объект --- 3D-текст.  
 --- В отличии от <a class="is-internal-link is-valid-page" href="/moonloader/lua/sampCreate3dText">sampCreate3dText</a> данная функция взаимодействует с SAMP пулом напрямую.  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampCreate3dTextEx">Open the wiki</a>  
@@ -16599,7 +16599,7 @@ function sampGetMaxPlayerId(streamed) end
 function sampGetPlayerCount(streamed) end
 
 ---
---- Передает строку на обработку к ChatInput (поле для ввода в чате)<br/>  
+--- Передает строку на обработку к ChatInput (поле для ввода в чате)  
 --- FIXME Запрещен вызов внутри тела любой зарегистрированной команды (с помощью опкода <a class="is-internal-link is-invalid-page" href="/gta-sa/opcodes/0b34">0B34</a> или функции <a class="is-internal-link is-valid-page" href="/moonloader/lua/sampRegisterChatCommand">sampRegisterChatCommand</a>)  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampProcessChatInput">Open the wiki</a>  
@@ -16663,11 +16663,6 @@ function getCleoLibraryVersion() end
 ---     end
 ---   end
 --- ```  
----
---- Основная функция, вызывается единожды за запуск скрипта.  
---- В ней можно использовать задержки (<a class="is-internal-link is-valid-page" href="/moonloader/lua/wait">wait</a>) и бесконечные циклы, при этом не нарушая работу игры.<br/>  
---- В действительности событие main является не событием, а сопрограммой, выполняющейся в отдельном Lua-потоке.<br/>  
---- Это и даёт возможность прерывать её выполнение на какой-то промежуток времени и затем продолжать работу с того же места без каких-либо негативных последствий.  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/main">Open the wiki</a>  
 ---
