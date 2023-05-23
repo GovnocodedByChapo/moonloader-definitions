@@ -16670,8 +16670,32 @@ function main() end
 
 ---
 --- Хэндл персонажа игрока.  
---- Применим во многих функциях, принимающих значение типа Char в качестве параметра.  
+--- Применим во многих функциях, принимающих значение типа `Char` в качестве параметра.  
 ---
---- <a href="https://wiki.blast.hk/moonloader/lua/PLAYER_PED">Open the wiki</a>  
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/PLAYER_PED">Open the wiki</a></b>  
 ---
+---@type Ped
+PLAYER_PED = {}
 
+---
+--- Идентификатор активного игрока.  
+--- Применим во многих функциях, принимающих значение типа `Player` в качестве параметра.  
+---
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/PLAYER_HANDLE">Open the wiki</a></b>  
+---
+---@type Player
+PLAYER_HANDLE = {}
+
+---
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/PLAYER_PED">Open the wiki</a></b>  
+---
+---@type Ped
+---@deprecated Use PLAYER_PED
+playerPed = {}
+
+---
+--- <b><a href="https://wiki.blast.hk/moonloader/lua/PLAYER_HANDLE">Open the wiki</a></b>  
+---
+---@type Player
+---@deprecated Use PLAYER_HANDLE
+playerHandle = {}
