@@ -2205,7 +2205,7 @@ function createCar(modelId, atX, atY, atZ) end
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/deleteCar">Open the wiki</a>  
 ---
----@param car Vehicle Хендл транспорта\
+---@param car Vehicle Хендл транспорта
 function deleteCar(car) end
 
 ---
@@ -4399,8 +4399,8 @@ function getRandomCharInZone(zone, pedtype, gang, criminal_prostitute) end
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/isCharShooting">Open the wiki</a>  
 ---
----@param ped Ped Хендл персонажа\
----@return bool result Результат проверки\
+---@param ped Ped Хендл персонажа
+---@return bool result Результат проверки
 function isCharShooting(ped) end
 
 ---
@@ -5761,7 +5761,7 @@ function warpCharIntoCarAsPassenger(ped, car, passengerSeat) end
 ---
 ---@param car Vehicle хэндл транспорта
 ---@param seat int номер сидения
----@return bool result результат проверки\
+---@return bool result результат проверки
 function isCarPassengerSeatFree(car, seat) end
 
 ---
@@ -6691,7 +6691,7 @@ function taskToggleDuck(ped, crouch) end
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/requestAnimation">Open the wiki</a>  
 ---
----@param animation string файл анимаций\
+---@param animation string файл анимаций
 function requestAnimation(animation) end
 
 ---
@@ -7984,8 +7984,8 @@ function releasePathNodes() end
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/loadCharDecisionMaker">Open the wiki</a>  
 ---
----@param type int тип поведения\
----@return int maker маркер модели поведения\
+---@param type int тип поведения
+---@return int maker маркер модели поведения
 function loadCharDecisionMaker(type) end
 
 ---
@@ -14833,7 +14833,7 @@ function sampGetObjectHandleBySampId(id) end
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampGetPickupHandleBySampId">Open the wiki</a>  
 ---
----@param id int id пикапа\
+---@param id int id пикапа
 function sampGetPickupHandleBySampId(id) end
 
 ---
@@ -15199,7 +15199,7 @@ function sampIsCursorActive() end
 --- 1 - Управление клавиатурой заблокировано, курсор отключен.<br/>  
 --- 2 - Управление клавиатурой и мышкой заблокировано, курсор включен.<br/>  
 --- 3 - Управление мышкой заблокировано, курсор включен.<br/>  
---- 4 - Управление мышкой заблокировано, курсор отключен.\  
+--- 4 - Управление мышкой заблокировано, курсор отключен.  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampSetCursorMode">Open the wiki</a>  
 ---
@@ -15848,7 +15848,7 @@ function sampIsChatVisible() end
 --- <strong>Режимы:</strong><br/>  
 --- 2 - обычный<br/>  
 --- 1 - без тени у текста<br/>  
---- 0 - не виден\  
+--- 0 - не виден  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampGetChatDisplayMode">Open the wiki</a>  
 ---
@@ -15866,7 +15866,7 @@ function sampSetChatDisplayMode(mode) end
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/pauseScmThread">Open the wiki</a>  
 ---
----@param thread uint номер потока\
+---@param thread uint номер потока
 function pauseScmThread(thread) end
 
 ---
@@ -16035,8 +16035,8 @@ function raknetBitStreamGetReadOffset(bs) end
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/raknetBitStreamGetDataPtr">Open the wiki</a>  
 ---
----@param bs Bitstream BitStream\
----@return uint value указатель на структуру данных\
+---@param bs Bitstream BitStream
+---@return uint value указатель на структуру данных
 function raknetBitStreamGetDataPtr(bs) end
 
 ---
