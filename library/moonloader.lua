@@ -15843,22 +15843,23 @@ function sampIsDialogClientside() end
 ---@return bool result
 function sampIsChatVisible() end
 
+---@alias ChatDisplayMode
+---| 2 # обычный
+---| 1 # без тени у текста
+---| 0 # не виден
+
 ---
---- Возвращает режим отображения чата<br/>  
---- <strong>Режимы:</strong><br/>  
---- 2 - обычный<br/>  
---- 1 - без тени у текста<br/>  
---- 0 - не виден  
+--- Возвращает режим отображения чата  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampGetChatDisplayMode">Open the wiki</a>  
 ---
----@return int mode
+---@return ChatDisplayMode mode
 function sampGetChatDisplayMode() end
 
 ---
 --- <b><a href="https://wiki.blast.hk/moonloader/lua/sampSetChatDisplayMode">Open the wiki</a></b>
 ---
----@param mode int
+---@param mode ChatDisplayMode
 function sampSetChatDisplayMode(mode) end
 
 ---
