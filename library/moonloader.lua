@@ -15192,18 +15192,19 @@ function raknetSendBitStream(bs) end
 ---@return bool result результат
 function sampIsCursorActive() end
 
+---@alias CursorMode
+---| 0 # Отключен.
+---| 1 # Управление клавиатурой заблокировано, курсор отключен.
+---| 2 # Управление клавиатурой и мышкой заблокировано, курсор включен.
+---| 3 # Управление мышкой заблокировано, курсор включен.
+---| 4 # Управление мышкой заблокировано, курсор отключен.
+
 ---
---- Устанавливает режим курсора SAMP.<br/>  
---- Доступные режимы:<br/>  
---- 0 - Отключен.<br/>  
---- 1 - Управление клавиатурой заблокировано, курсор отключен.<br/>  
---- 2 - Управление клавиатурой и мышкой заблокировано, курсор включен.<br/>  
---- 3 - Управление мышкой заблокировано, курсор включен.<br/>  
---- 4 - Управление мышкой заблокировано, курсор отключен.  
+--- Устанавливает режим курсора SAMP.  
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampSetCursorMode">Open the wiki</a>  
 ---
----@param mode int Режим
+---@param mode CursorMode Режим
 function sampSetCursorMode(mode) end
 
 ---
@@ -15211,7 +15212,7 @@ function sampSetCursorMode(mode) end
 ---
 --- <a href="https://wiki.blast.hk/moonloader/lua/sampGetCursorMode">Open the wiki</a>  
 ---
----@return int mode ID режима
+---@return CursorMode mode ID режима
 function sampGetCursorMode() end
 
 ---
