@@ -4,7 +4,7 @@
 local inicfg = {}
 
 ---
----Usage:  
+---Usage:
 ---
 ---```lua
 ---local inicfg = require('inicfg')
@@ -33,7 +33,7 @@ local inicfg = {}
 function inicfg.load(default, file) end
 
 ---
----Usage:  
+---Usage:
 ---
 ---```lua
 ---<ini>.<section>.<key> = <value>
